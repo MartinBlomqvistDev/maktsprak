@@ -1,70 +1,126 @@
-# src/maktsprak_pipeline/config.py
-# Konfigurationsvariabler för MaktsprakAI
-# UPPDATERAD FÖR POSTGRESQL/SUPABASE + PARQUET
+"""Configuration module for the MaktspråkAI pipeline.
+
+All constants and environment-variable bindings live here. Import from this
+module instead of calling ``os.getenv`` directly in other modules.  This
+creates a single source of truth that is trivial to audit and test.
+"""
+
+from __future__ import annotations
+
+import os
+from pathlib import Path
 
 from dotenv import load_dotenv
-import os
 
-# Ladda .env (används lokalt för att läsa secrets, ignoreras av Streamlit Secrets)
+# ---------------------------------------------------------------------------
+# Load .env (ignored when real environment variables are already set, e.g.
+# on Streamlit Cloud or in a CI environment).
+# ---------------------------------------------------------------------------
 load_dotenv()
 
-# =========================================================
-# Databas (PostgreSQL/Supabase)
-# =========================================================
-# OBS: Dessa variabler läser in värden från Streamlit Cloud Secrets (eller .env lokalt)
-DB_HOST = os.getenv("DB_HOST")
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_PORT = os.getenv("DB_PORT", 5432) 
+# ---------------------------------------------------------------------------
+# Project layout
+# ---------------------------------------------------------------------------
+PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
+RAW_DATA_PATH: Path = PROJECT_ROOT / "data" / "raw"
+PROCESSED_DATA_PATH: Path = PROJECT_ROOT / "data" / "processed"
 
-# Supabase REST API (alternativ om du inte vill köra direkt mot Postgres)
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# ---------------------------------------------------------------------------
+# Supabase credentials
+# ---------------------------------------------------------------------------
+SUPABASE_URL: str | None = os.getenv("SUPABASE_URL")
+SUPABASE_KEY: str | None = os.getenv("SUPABASE_KEY")
+SUPABASE_SERVICE_KEY: str | None = os.getenv("SUPABASE_SERVICE_KEY")
 
-# =========================================================
-# Extern data / Parquet
-# =========================================================
-PARQUET_URL = os.getenv("PARQUET_URL")  # Google Drive eller annan extern länk
+# ---------------------------------------------------------------------------
+# PostgreSQL direct-connection (legacy / psycopg2 fallback)
+# ---------------------------------------------------------------------------
+DB_HOST: str | None = os.getenv("DB_HOST")
+DB_NAME: str | None = os.getenv("DB_NAME")
+DB_USER: str | None = os.getenv("DB_USER")
+DB_PASSWORD: str | None = os.getenv("DB_PASSWORD")
+DB_PORT: int = int(os.getenv("DB_PORT", "5432"))
 
-# =========================================================
-# Lokala filer
-# =========================================================
-RAW_DATA_PATH = "data/raw/"                # Rådata (tweets, debattext)
-PROCESSED_DATA_PATH = "data/processed/"    # Preprocessad text
-TON_LEXICON_PATH = "data/processed/ton_lexicon_with_weights.csv"
+# ---------------------------------------------------------------------------
+# External data
+# ---------------------------------------------------------------------------
+#: Google Drive (or other) URL for the historical Parquet snapshot.
+PARQUET_URL: str | None = os.getenv("PARQUET_URL")
 
-# =========================================================
-# Loggning
-# =========================================================
-LOG_LEVEL = "INFO"                         # Loggnivå
+# ---------------------------------------------------------------------------
+# Logging
+# ---------------------------------------------------------------------------
+LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 
-# =========================================================
-# API-URL:er och Nycklar
-# =========================================================
-RIKSDAG_API_URL = "https://data.riksdagen.se/dokumentlista/"  # Riksdagens dokumentlista
-X_API_URL = "https://api.twitter.com/2/tweets"                # X (Twitter) API
+# ---------------------------------------------------------------------------
+# Riksdag API
+# ---------------------------------------------------------------------------
+RIKSDAG_BASE_URL: str = "https://data.riksdagen.se/dokumentlista/"
 
-# API-nycklar (från .env / Secrets)
-RIKSDAG_API_KEY = os.getenv("RIKSDAG_API_KEY")
-X_API_KEY = os.getenv("TWITTER_BEARER_TOKEN")
+# ---------------------------------------------------------------------------
+# Twitter / X API
+# ---------------------------------------------------------------------------
+X_BASE_URL: str = "https://api.twitter.com/2/users"
+#: Bearer token sourced from either env key name variant.
+X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv(
+    "TWITTER_BEARER_TOKEN"
+)
 
-# =========================================================
-# AI-Modell / Hugging Face
-# =========================================================
-MODEL_NAME_OR_PATH = os.getenv("MODEL_NAME_OR_PATH", "MartinBlomqvist/maktsprak_bert")
+# ---------------------------------------------------------------------------
+# Swedish parliamentary parties
+# Single canonical definition — imported by etl, model, and the Streamlit app.
+# ---------------------------------------------------------------------------
+#: All valid Riksdag party abbreviations.
+VALID_PARTIES: frozenset[str] = frozenset(
+    {"C", "KD", "L", "M", "MP", "S", "SD", "V"}
+)
 
-# =========================================================
-# Träningskonfiguration (Används av train_party_model_db.py)
-# =========================================================
-TRAIN_MODEL_NAME = "KB/bert-base-swedish-cased"
-TRAIN_MODEL_DIR = "data/models/party_classifier" 
-TRAIN_BATCH_SIZE = 16
-TRAIN_MAX_EPOCHS = 20
-TRAIN_MAX_LENGTH = 512
-TRAIN_LEARNING_RATE = 3e-5
-TRAIN_WEIGHT_DECAY = 0.01
-TRAIN_EARLY_STOPPING_PATIENCE = 5
-TRAIN_LABEL_SMOOTHING = 0.05
-BASE_BATCH_SIZE = 16
-BASE_MAX_LR = 5e-5
+#: Left-to-right display order for charts and tables.
+PARTY_ORDER: list[str] = ["V", "MP", "S", "C", "L", "KD", "M", "SD"]
+
+#: Twitter / X user IDs for each party's current leader account(s).
+#: Update these when party leadership changes.
+PARTY_LEADERS_IDS: dict[str, list[str]] = {
+    "S": ["1587012835409788928"],
+    "M": ["747426555417198592"],
+    "V": ["282532238"],
+    "L": ["455193032"],
+    "KD": ["1407151866"],
+    "C": ["232799403"],
+    "MP": ["41214271", "370900852"],
+    "SD": ["95972673"],
+}
+
+# ---------------------------------------------------------------------------
+# Tweet-fetch limits
+# ---------------------------------------------------------------------------
+#: Maximum tweets stored per party per ETL run.
+MAX_TWEETS_PER_PARTY: int = 2
+#: Soft cap on total tweets fetched per calendar month.
+MONTHLY_TWEET_LIMIT: int = 100
+#: Seconds to wait when the Twitter API returns HTTP 429.
+RATE_LIMIT_WAIT_SECONDS: int = 900
+
+# ---------------------------------------------------------------------------
+# Inference model
+# ---------------------------------------------------------------------------
+#: Hugging Face repository for the fine-tuned party classifier.
+MODEL_NAME_OR_PATH: str = os.getenv(
+    "MODEL_NAME_OR_PATH", "MartinBlomqvist/maktsprak_classifier_clean"
+)
+
+# ---------------------------------------------------------------------------
+# Training hyperparameters (used by scripts/train_party_model_db.py)
+# ---------------------------------------------------------------------------
+TRAIN_BASE_MODEL: str = "KB/bert-base-swedish-cased"
+TRAIN_MODEL_DIR: Path = PROJECT_ROOT / "data" / "models" / "party_classifier"
+TRAIN_BATCH_SIZE: int = 16
+TRAIN_MAX_EPOCHS: int = 20
+TRAIN_MAX_LENGTH: int = 512
+TRAIN_LEARNING_RATE: float = 3e-5
+TRAIN_WEIGHT_DECAY: float = 0.01
+TRAIN_EARLY_STOPPING_PATIENCE: int = 5
+TRAIN_LABEL_SMOOTHING: float = 0.05
+TRAIN_GRAD_CLIP_NORM: float = 1.0
+TRAIN_DROPOUT_PROB: float = 0.2
+TRAIN_MAX_LR: float = 5e-5

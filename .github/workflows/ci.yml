@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "dev"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint-and-test:
+    name: Lint & Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dev dependencies
+        run: |
+          pip install --upgrade pip
+          pip install ruff pytest pytest-mock
+          # Install the package itself in editable mode (reads pyproject.toml)
+          pip install -e ".[dev]" --no-deps
+
+      - name: Ruff — lint
+        run: ruff check src/ tests/
+
+      - name: Ruff — format check
+        run: ruff format --check src/ tests/
+
+      - name: Pytest
+        env:
+          # Dummy values so db.client doesn't raise EnvironmentError at import.
+          # Tests mock all actual Supabase calls.
+          SUPABASE_URL: "https://dummy.supabase.co"
+          SUPABASE_KEY: "dummy-anon-key"
+          SUPABASE_SERVICE_KEY: "dummy-service-key"
+        run: pytest tests/ -v --tb=short

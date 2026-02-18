@@ -1,61 +1,58 @@
 # =========================================================
-# Fil: streamlit_app.py
-# Syfte: Interaktiv dashboard för MaktspråkAI
+# File: app/streamlit_app.py
+# Purpose: Interactive MaktspråkAI dashboard
 # =========================================================
 
-import sys
-from pathlib import Path
-import pandas as pd
-import streamlit as st
-import plotly.express as px
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
-from datetime import datetime, timedelta, date
 import random
 import re
-from streamlit_option_menu import option_menu
+import sys
+from datetime import date, datetime, timedelta
+from pathlib import Path
 
 import feedparser
-from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
 import requests
+import streamlit as st
+from bs4 import BeautifulSoup
 from huggingface_hub import hf_hub_download
+from streamlit_option_menu import option_menu
+from wordcloud import WordCloud
 
-plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams["font.family"] = "sans-serif"
 
 # =====================
-# Sökvägshantering
+# Path setup
 # =====================
 proj_root = Path(__file__).parent.parent.resolve()
 if str(proj_root) not in sys.path:
     sys.path.insert(0, str(proj_root))
 
 # =====================
-# Importer
+# Project imports
 # =====================
+from src.maktsprak_pipeline.config import PARTY_ORDER
 from src.maktsprak_pipeline.db import (
-    fetch_speeches_count,
     fetch_latest_speech_date_cached,
-    fetch_random_speeches,
+    fetch_speeches_count,
     fetch_speeches_historical,
-    insert_speech,
-    insert_tweet
 )
-from src.maktsprak_pipeline.nlp import apply_ton_lexicon, combined_stopwords, clean_text
 from src.maktsprak_pipeline.model import load_model_and_tokenizer, predict_party
+from src.maktsprak_pipeline.nlp import apply_ton_lexicon, clean_text, combined_stopwords
 
 # =====================
-# App-inställningar
+# App config
 # =====================
 st.set_page_config(
     page_title="MaktspråkAI",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 # =====================
-# Konstanter
+# Constants
 # =====================
-PARTY_ORDER = ["V", "MP", "S", "C", "L", "KD", "M", "SD"] 
 PAGE_OPTIONS = ["Om projektet", "Partiprediktion", "Språkbruk & Retorik", "Evaluering", "Historik"]
 
 # =====================
@@ -101,8 +98,7 @@ def get_full_article_text(url: str) -> str:
             full_text = " ".join([p.get_text(strip=True) for p in paragraphs])
             return full_text.strip()
         return ""
-    except Exception as e:
-        print(f"Ett fel uppstod vid skrapning av {url}: {e}")
+    except Exception:
         return ""
 
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -227,6 +223,22 @@ def load_all_resources():
     return model, tokenizer, Path(lexicon_local_path)
 
 model, tokenizer, LEXICON_PATH = load_all_resources()
+
+# =====================
+# Module-level cached helpers
+# (must be defined here, not inside conditionals, for Streamlit caching to work)
+# =====================
+
+@st.cache_data(show_spinner=False)
+def _compute_lexicon_cached(df: pd.DataFrame, text_col: str, lexicon_path: str) -> pd.DataFrame:
+    return apply_ton_lexicon(df, text_col=text_col, lexicon_path=Path(lexicon_path))
+
+
+@st.cache_data(ttl=1800)
+def _fetch_wordcloud_data(start_date, end_date) -> pd.DataFrame:
+    df = fetch_speeches_historical(start_date, end_date)
+    return df[["text", "party"]]
+
 
 # =====================
 # Gemensam och cachad funktion för all evaluering
@@ -483,9 +495,8 @@ elif page == "Partiprediktion":
 
 elif page == "Språkbruk & Retorik":
     st.header("Jämför partiernas retorik")
-    import datetime
 
-    today = datetime.date.today()
+    today = date.today()
 
     # --- Snabbval för perioder ---
     period_options = {
@@ -494,9 +505,9 @@ elif page == "Språkbruk & Retorik":
         "Senaste 6 månader": 180,
         "Senaste 12 månader": 365
     }
-    selected_period_label = st.selectbox("Välj tidsperiod:", list(period_options.keys()), index=1)  # default 3 månader
+    selected_period_label = st.selectbox("Välj tidsperiod:", list(period_options.keys()), index=1)
     days_delta = period_options[selected_period_label]
-    start_date = today - datetime.timedelta(days=days_delta)
+    start_date = today - timedelta(days=days_delta)
     end_date = today
     st.info(f"Visar tal från {start_date} till {end_date}")
 
@@ -690,7 +701,6 @@ elif page == "Evaluering":
         st.code("\n".join(debug_log), language="text")
 elif page == "Historik":
     st.header("Analysera retorikens utveckling över tid")
-    from datetime import date, timedelta
 
     MAX_YEARS = 10
     today = date.today()
@@ -724,12 +734,7 @@ elif page == "Historik":
                     st.warning("Hittade inga giltiga datum efter filtrering.")
                     st.stop()
 
-                # Lexikonanalys med cache
-                @st.cache_data(show_spinner=False)
-                def compute_lexicon(df, text_col, lexicon_path):
-                    return apply_ton_lexicon(df, text_col=text_col, lexicon_path=lexicon_path)
-
-                df_ton = compute_lexicon(valid_dates_df, text_col="text", lexicon_path=LEXICON_PATH)
+                df_ton = _compute_lexicon_cached(valid_dates_df, text_col="text", lexicon_path=str(LEXICON_PATH))
 
                 # Aggregera per år
                 df_ton['År'] = df_ton['protocol_date'].dt.to_period('Y')
@@ -777,12 +782,7 @@ elif page == "Historik":
     if st.button("Generera ordmoln"):
         start, end = time_periods_for_cloud[period_for_cloud]
 
-        @st.cache_data(ttl=1800)
-        def fetch_data_for_wordcloud(start_date, end_date):
-            df = fetch_speeches_historical(start_date, end_date)
-            return df[['text', 'party']]
-
-        df_wc = fetch_data_for_wordcloud(start, end)
+        df_wc = _fetch_wordcloud_data(start, end)
         if df_wc.empty:
             st.warning(f"Ingen data hittades för ordmoln under '{period_for_cloud}'.")
         else:

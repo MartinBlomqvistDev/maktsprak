@@ -1,77 +1,169 @@
-# MaktspråkAI: Analys av Sveriges politiska språkbruk
+# MaktspråkAI
 
-**Projektets slutmål:** Att etablera en robust, end-to-end data pipeline för insamling och AI-analys av politisk text, deployerad i molnet.
+A live NLP pipeline that tracks how Sweden's eight parliamentary parties argue — in the Riksdag chamber, and on social media.
 
-## 1. Översikt och Huvudfunktionalitet
+Every week it pulls new debate protocols from the Riksdag API, parses the PDFs, and feeds the extracted speeches into a fine-tuned Swedish BERT classifier. The results land in a Streamlit dashboard where you can paste any political text and watch the model decide which party wrote it.
 
-Detta projekt demonstrerar en detaljerad och systematisk förståelse för **Data Science** och **NLP** genom att hantera hela kedjan: ETL, molndatabaser, state-of-the-art AI-modellering och deployment av en storskalig data-applikation.
-
-### Nyckelfunktioner
-* **Datainsamling:** Automatisk hämtning av Riksdagsprotokoll och Twitterdata via API:er.
-* **AI-Prediktion:** Använder en finjusterad svensk BERT-modell för att förutsäga ett partis tillhörighet baserat på text.
-* **Retorikanalys:** Visuell jämförelse av partiernas språkbruk och ton över tid.
-* **Hållbarhet:** Systemet är helt molnbaserat (Supabase, Hugging Face) för skalbarhet och enkel deployment.
+**Live demo:** [maktsprak.streamlit.app](https://maktsprak.streamlit.app) *(Supabase free tier — give it a second on first load)*
 
 ---
 
-## 2. Arkitektur & Filstruktur
+## What it actually does
 
-Projektet använder en **modulär arkitektur** där all återanvändbar logik ligger i en kärnmodul (`src/maktsprak_pipeline/`) och körbara instanser ligger i projektets rot.
+| Stage | What happens |
+|---|---|
+| **Extract** | Riksdag API → XML listing → PDF download (cached locally) |
+| **Transform** | `pdfplumber` → full text → regex splits on `Anf. N Speaker (PARTY):` markers |
+| **Load** | Upsert to Supabase PostgreSQL — 44 000+ speeches, 2015–present |
+| **Classify** | Fine-tuned KB-BERT predicts party from raw text |
+| **Visualise** | Streamlit dashboard: live prediction, rhetoric fingerprints, word clouds, historical trends |
 
+A Windows Task Scheduler job (`run_etl.bat`) runs the ETL every week and keeps the database current.
+
+---
+
+## Architecture
+
+```
+Riksdag API ──────────────────────────────────────────────────────────────────────►┐
+                                                                                   │
+Twitter/X API ────────────────────────────────────────────────────────────────────►│
+                                                                                   ▼
+                                                                         pipeline/extract.py
+                                                                                   │
+                                                                                   ▼
+                                                                         pipeline/transform.py
+                                                                         (pdfplumber + regex)
+                                                                                   │
+                                                                                   ▼
+                                                                         pipeline/load.py
+                                                                                   │
+                                                                                   ▼
+                                                                    Supabase (PostgreSQL)
+                                                                    speeches + tweets tables
+                                                                                   │
+                                                               ┌───────────────────┘
+                                                               │
+                                                               ▼
+                                                    app/streamlit_app.py
+                                                    ├── Party prediction (BERT)
+                                                    ├── Rhetoric analysis (tone lexicon)
+                                                    ├── Word clouds per party
+                                                    └── Historical trend charts
+```
+
+---
+
+## Stack
+
+| Layer | Tools |
+|---|---|
+| Language | Python 3.11 |
+| ETL | `requests`, `pdfplumber`, `xml.etree`, `tqdm` |
+| NLP / ML | `transformers` (KB-BERT), `torch`, `scikit-learn` |
+| Database | Supabase (PostgreSQL) via `supabase-py` |
+| App | `streamlit`, `plotly`, `wordcloud`, `matplotlib` |
+| Logging | `loguru` — rotating 10 MB files, 30-day retention |
+| CI | GitHub Actions — `ruff` lint + `pytest` on every push |
+
+---
+
+## Model
+
+Fine-tuned from [KB/bert-base-swedish-cased](https://huggingface.co/KB/bert-base-swedish-cased) on ~44 000 Riksdag speeches (2015–2026) + party-leader tweets.
+
+Training used weighted sampling to handle class imbalance, FGM adversarial training for robustness, OneCycleLR scheduling, and mixed precision (AMP). The final checkpoint lives on Hugging Face Hub:
+
+👉 [`MartinBlomqvist/maktsprak_classifier_clean`](https://huggingface.co/MartinBlomqvist/maktsprak_classifier_clean)
+
+---
+
+## Getting started
 
 ```bash
-/MaktsprakAI
-├── src/
-│   └── maktsprak_pipeline/
-│       ├── __init__.py       # Initierar paketet
-│       ├── config.py         # Centraliserad konfiguration och Secrets-läsning
-│       ├── db.py             # PostgreSQL/Supabase-anslutning
-│       ├── etl.py            # Data-pipeline: Extract, Transform, Load
-│       ├── nlp.py            # Text- och lingvistisk behandling
-│       ├── model.py          # Hanterar AI-modellens I/O
-│       └── logger.py         # Central loggning för pipeline och app
-├── app/
-│   └── streamlit_app.py      # Deployment-applikationen
-├── scripts/
-│   ├── train_party_model_db.py   # Tränar BERT-modellen
-│   └── create_historic_database.py  # Skapar historisk Parquet-dump och laddar till Supabase
-├── main.py                   # Huvudkörning för pipeline och tester
-├── requirements.txt          # Python-beroenden för molnet
-└── .env                      # Ignoreras av git (Secrets)
+git clone https://github.com/martinblomqvistdev/MaktsprakAI.git
+cd MaktsprakAI
+
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+
+pip install -e ".[dev,app]"
+
+cp .env.example .env
+# Fill in SUPABASE_URL, SUPABASE_KEY, SUPABASE_SERVICE_KEY
+# (and X_BEARER_TOKEN if you want tweet collection)
 ```
+
+### Run the ETL once
+
+```bash
+python -m src.maktsprak_pipeline.main
+```
+
+### Run the dashboard
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+### Run tests
+
+```bash
+pytest tests/ -v
+```
+
 ---
 
+## Project structure
 
-## 3. Körning och Installation
+```
+MaktsprakAI/
+├── src/maktsprak_pipeline/
+│   ├── config.py            # All constants and env vars — single source of truth
+│   ├── logger.py            # Loguru setup (10 MB rotation, 30-day retention)
+│   ├── main.py              # ETL entry point
+│   ├── model.py             # BERT inference
+│   ├── db/
+│   │   ├── client.py        # Lazy Supabase client (no connect-at-import)
+│   │   ├── speeches.py      # Speech CRUD
+│   │   └── tweets.py        # Tweet CRUD
+│   ├── pipeline/
+│   │   ├── extract.py       # Riksdag API + Twitter fetch
+│   │   ├── transform.py     # PDF parsing + regex segmentation
+│   │   ├── load.py          # Upsert orchestration
+│   │   └── orchestrate.py   # run_etl() + run_historical_backfill()
+│   └── nlp/
+│       ├── cleaning.py      # clean_text + Swedish stop words
+│       └── lexicon.py       # Vectorised tone-lexicon scoring
+├── app/
+│   └── streamlit_app.py     # Dashboard (811 lines, 5 pages)
+├── scripts/
+│   ├── backfill_speeches.py       # One-time historical backfill
+│   ├── create_historic_database.py  # Dump speeches → Parquet snapshot
+│   └── train_party_model_db.py    # Full BERT fine-tuning script
+├── tests/                   # pytest suite (config, NLP, transform, DB mocks)
+├── .github/workflows/ci.yml # Ruff + pytest on every push
+├── pyproject.toml           # Package config + tool settings
+├── .env.example             # All required environment variables with comments
+└── run_etl.bat              # Windows Task Scheduler script
+```
 
-1. **Kloning:** `git clone [din_repo]`
-2. **Installation:** `pip install -r requirements.txt`
-3. **Secrets:** Sätt dina Supabase- och Twitter-variabler som **Secrets** i din deployment-miljö.
-4. **Kör appen:** `streamlit run app/streamlit_app.py`
+---
 
-***
+## Scheduled ETL (Windows)
 
-# 4. Appendix: Teknisk Rapportfördjupning (VG-Krav)
+`run_etl.bat` is set up as a Windows Task Scheduler job — it activates the venv, runs the incremental ETL, and logs output to `logs/`.  The script uses `%~dp0` for a portable path so it works on any machine, not just the original dev box.
 
-Detta avsnitt detaljerar de tekniska val och systematiska lösningar som ligger till grund för projektets VG-nivå.
+To backfill a historical date range:
 
-### 4.1 Modellutveckling och Optimering (`train_party_model_db.py`)
+```bash
+python scripts/backfill_speeches.py 2024-01-01
+```
 
-Modellen finjusterades på en svensk-specifik BERT-modell med följande optimeringar för att demonstrera detaljerad förståelse för modern NLP:
+---
 
-| Teknik | VG-Förklaring |
-| :--- | :--- |
-| **Weighted Sampling** | Istället för att bara använda klassvikter i loss-funktionen, används **`WeightedRandomSampler`** [cite: train_party_model_db.py]. Detta säkerställer att minibatchen aktivt balanserar samples från minoritetsklasserna (t.ex., MP, C), vilket är mer effektivt för att uppnå hög precision på hela klassuppsättningen. |
-| **Adversarial Training (FGM)** | Modellen utsätts för beräknade små störningar (brus) på embedding-nivå under träning. Denna process, känd som Fast Gradient Method, gör modellen **mer robust** och motståndskraftig mot små variationer i språket [cite: train_party_model_db.py]. |
-| **OneCycleLR & AMP** | Använder en avancerad *Learning Rate* scheduler (cyklisk) för snabb konvergens kombinerat med **Mixed Precision (AMP)** för att halvera minnesförbrukningen och **öka träningshastigheten** på GPU [cite: train_party_model_db.py]. |
-| **Resursladdning** | Modellen och lexikonet laddas direkt från **Hugging Face** via **`@st.cache_resource`** [cite: model.py, streamlit_app.py]. Detta är den moderna deployment-standarden som eliminerar lokala filberoenden. |
+## Contact
 
-### 4.2 Databas- och Migreringslösningar (Hållbarhet)
-
-Projektet löste problemet med en **417 MB stor databasfil** genom att migrera till molnet och utveckla en systematisk lösning för import:
-
-| Tekniskt Problem | VG-Implementering |
-| :--- | :--- |
-| **Molnmigrering** | Val av **Supabase (PostgreSQL)**, en permanent molntjänst [cite: db.py]. All anslutningsinformation hanteras säkert via `psycopg2-binary`.|
-| **Kringgå DB-importbegränsningar**| Datan delades upp i flera CSV-filer **under 100 MB** [cite: image_8848c3.png]. Tabellerna skapades initialt utan Primärnyckel, och den korrekta nyckeln sattes sedan via **`ALTER TABLE ADD PRIMARY KEY`** i SQL Editor *efter* att datan var inläst. |
-| **Säkerhet & Konfiguration** | Alla känsliga credentials läses in via **`os.getenv()`** från Streamlit Cloud Secrets, vilket är den professionella standarden för att hantera secrets i molnmiljöer [cite: config.py].
+**Martin Blomqvist**
+- LinkedIn: [martin-blomqvist](https://www.linkedin.com/in/martin-blomqvist)
+- GitHub: [martinblomqvistdev](https://github.com/martinblomqvistdev)
+- Email: cm.blomqvist@gmail.com
