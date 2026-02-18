@@ -24,12 +24,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
 
-      - name: Install dev dependencies
+      - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install ruff pytest pytest-mock
-          # Install the package itself in editable mode (reads pyproject.toml)
-          pip install -e ".[dev]" --no-deps
+          pip install -e ".[ci]"
 
       - name: Ruff — lint
         run: ruff check src/ tests/

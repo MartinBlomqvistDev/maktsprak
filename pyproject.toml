@@ -27,6 +27,21 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# Lightweight extras for CI — excludes torch and other heavy ML deps.
+ci = [
+    "pytest>=7.4,<9.0",
+    "pytest-mock>=3.12",
+    "ruff>=0.4",
+    "requests>=2.31,<3.0",
+    "pdfplumber>=0.11,<0.12",
+    "tqdm>=4.66,<5.0",
+    "python-dotenv",
+    "pandas>=2.0,<3.0",
+    "numpy>=1.25,<2.0",
+    "pyarrow",
+    "supabase",
+    "loguru>=0.7,<1.0",
+]
 dev = [
     "pytest>=7.4,<9.0",
     "pytest-mock>=3.12",
