@@ -11,7 +11,7 @@ import torch
 from torch.nn.functional import softmax
 from transformers import AutoConfig, AutoModelForSequenceClassification, AutoTokenizer
 
-from .config import MODEL_NAME_OR_PATH, PARTY_ORDER
+from .config import MODEL_NAME_OR_PATH
 from .logger import get_logger
 
 logger = get_logger()
@@ -59,7 +59,7 @@ def predict_party(
         Party order matches :data:`~config.PARTY_ORDER`.
     """
     device = next(model.parameters()).device
-    id2label: dict[int, str] = dict(enumerate(PARTY_ORDER))
+    id2label: dict[int, str] = {int(k): v for k, v in model.config.id2label.items()}
     results: list[dict[str, float]] = []
 
     for text in texts:
