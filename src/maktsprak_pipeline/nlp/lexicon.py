@@ -51,8 +51,7 @@ def apply_ton_lexicon(
     categories: list[str] = lex_df["kategori"].unique().tolist()
     word_weight: dict[str, float] = lex_df.set_index("ord")["vikt"].to_dict()
     cat_words: dict[str, set[str]] = {
-        cat: set(lex_df.loc[lex_df["kategori"] == cat, "ord"])
-        for cat in categories
+        cat: set(lex_df.loc[lex_df["kategori"] == cat, "ord"]) for cat in categories
     }
 
     result = df.copy()

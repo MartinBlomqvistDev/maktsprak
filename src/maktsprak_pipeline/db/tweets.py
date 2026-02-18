@@ -16,6 +16,7 @@ logger = get_logger()
 # Read operations
 # ---------------------------------------------------------------------------
 
+
 def fetch_tweets_count_since(since_date: str) -> int:
     """Return the number of tweets created on or after ``since_date``.
 
@@ -66,6 +67,7 @@ def fetch_all_tweets() -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Write operations
 # ---------------------------------------------------------------------------
+
 
 def insert_tweet(row: dict[str, Any]) -> list[dict[str, Any]] | None:
     """Insert a tweet, skipping rows that already exist in the table.

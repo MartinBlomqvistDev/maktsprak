@@ -32,6 +32,7 @@ except Exception:
 # Read operations
 # ---------------------------------------------------------------------------
 
+
 def fetch_speeches_count() -> int:
     """Return the total number of rows in the ``speeches`` table.
 
@@ -66,6 +67,7 @@ def fetch_latest_speech_date() -> str | None:
 
 
 if _USE_STREAMLIT:
+
     @st.cache_data(ttl=3600)
     def fetch_latest_speech_date_cached() -> str | None:
         """Streamlit-cached wrapper around :func:`fetch_latest_speech_date`."""
@@ -93,12 +95,7 @@ def fetch_random_speeches(limit: int = 5) -> list[dict[str, Any]]:
 
     window = max(limit * 10, 50)
     offset = random.randint(0, max(0, total - window))
-    resp = (
-        supabase.table("speeches")
-        .select("*")
-        .range(offset, offset + window - 1)
-        .execute()
-    )
+    resp = supabase.table("speeches").select("*").range(offset, offset + window - 1).execute()
     if not resp.data:
         return []
     sample = resp.data.copy()
@@ -212,6 +209,7 @@ def fetch_combined_speeches(
 # Write operations
 # ---------------------------------------------------------------------------
 
+
 def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
     """Upsert a single speech record into the ``speeches`` table.
 
@@ -246,10 +244,7 @@ def delete_speeches_invalid_parties(valid_parties: frozenset[str]) -> int:
         Number of rows deleted.
     """
     resp = (
-        supabase_write.table("speeches")
-        .delete()
-        .not_("party", "in", list(valid_parties))
-        .execute()
+        supabase_write.table("speeches").delete().not_("party", "in", list(valid_parties)).execute()
     )
     count = len(resp.data) if resp.data else 0
     if count:

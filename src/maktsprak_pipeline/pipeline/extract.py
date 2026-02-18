@@ -30,6 +30,7 @@ logger = get_logger()
 # Shared HTTP helper
 # ---------------------------------------------------------------------------
 
+
 def fetch_with_retry(
     url: str,
     headers: dict[str, str],
@@ -69,6 +70,7 @@ def fetch_with_retry(
 # Riksdag extraction
 # ---------------------------------------------------------------------------
 
+
 def extract_riksdag_protocols(
     lookback_days: int = 7,
     max_back: int = 90,
@@ -105,9 +107,7 @@ def extract_riksdag_protocols(
         doc_count = len(root.findall(".//dokument"))
 
         if doc_count > 0:
-            logger.info(
-                f"Found {doc_count} protocols from {start_date.date()} to {today.date()}."
-            )
+            logger.info(f"Found {doc_count} protocols from {start_date.date()} to {today.date()}.")
             filename = (
                 RAW_DATA_PATH
                 / f"protocols_{start_date.strftime('%Y%m%d')}_{today.strftime('%Y%m%d')}.xml"
@@ -126,6 +126,7 @@ def extract_riksdag_protocols(
 # ---------------------------------------------------------------------------
 # Twitter / X extraction
 # ---------------------------------------------------------------------------
+
 
 def extract_all_tweets() -> list[dict[str, Any]]:
     """Fetch recent tweets for each party leader, respecting monthly limits.
@@ -196,8 +197,7 @@ def extract_all_tweets() -> list[dict[str, Any]]:
         party_count = len(tweets_per_party[party])
         tweets_remaining -= party_count
         logger.info(
-            f"{party}: fetched {party_count} tweet(s). "
-            f"{tweets_remaining} remaining this month."
+            f"{party}: fetched {party_count} tweet(s). {tweets_remaining} remaining this month."
         )
 
     all_tweets = [t for tweets in tweets_per_party.values() for t in tweets]

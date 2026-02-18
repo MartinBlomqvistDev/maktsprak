@@ -35,9 +35,7 @@ def load_model_and_tokenizer(
     logger.info(f"Loading model '{MODEL_NAME_OR_PATH}' on device '{device}'.")
     config = AutoConfig.from_pretrained(MODEL_NAME_OR_PATH)
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME_OR_PATH)
-    model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME_OR_PATH, config=config
-    )
+    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME_OR_PATH, config=config)
     model.to(device)
     model.eval()
     logger.info("Model and tokenizer loaded successfully.")

@@ -10,9 +10,7 @@ class TestInsertSpeech:
         mock_resp = MagicMock()
         mock_resp.data = [{"id": "HD0972_1"}]
 
-        with patch(
-            "src.maktsprak_pipeline.db.speeches.supabase_write"
-        ) as mock_client:
+        with patch("src.maktsprak_pipeline.db.speeches.supabase_write") as mock_client:
             mock_client.table.return_value.upsert.return_value.execute.return_value = mock_resp
 
             from src.maktsprak_pipeline.db.speeches import insert_speech
@@ -24,17 +22,17 @@ class TestInsertSpeech:
         mock_resp = MagicMock()
         mock_resp.data = None
 
-        with patch(
-            "src.maktsprak_pipeline.db.speeches.supabase_write"
-        ) as mock_client:
+        with patch("src.maktsprak_pipeline.db.speeches.supabase_write") as mock_client:
             mock_client.table.return_value.upsert.return_value.execute.return_value = mock_resp
 
             import importlib
 
             import src.maktsprak_pipeline.db.speeches as mod
+
             importlib.reload(mod)
 
             import pytest
+
             with pytest.raises(RuntimeError):
                 mod.insert_speech({"id": "BAD", "party": "X"})
 
@@ -45,12 +43,11 @@ class TestFetchSpeechesCount:
         mock_resp.data = []
         mock_resp.count = 42
 
-        with patch(
-            "src.maktsprak_pipeline.db.speeches.supabase"
-        ) as mock_client:
+        with patch("src.maktsprak_pipeline.db.speeches.supabase") as mock_client:
             mock_client.table.return_value.select.return_value.execute.return_value = mock_resp
 
             from src.maktsprak_pipeline.db.speeches import fetch_speeches_count
+
             count = fetch_speeches_count()
             assert count == 42
 
@@ -59,12 +56,11 @@ class TestFetchSpeechesCount:
         mock_resp.data = []
         mock_resp.count = None
 
-        with patch(
-            "src.maktsprak_pipeline.db.speeches.supabase"
-        ) as mock_client:
+        with patch("src.maktsprak_pipeline.db.speeches.supabase") as mock_client:
             mock_client.table.return_value.select.return_value.execute.return_value = mock_resp
 
             from src.maktsprak_pipeline.db.speeches import fetch_speeches_count
+
             count = fetch_speeches_count()
             assert count == 0
 
@@ -74,13 +70,12 @@ class TestInsertTweet:
         mock_resp = MagicMock()
         mock_resp.data = [{"tweet_id": "123"}]
 
-        with patch(
-            "src.maktsprak_pipeline.db.tweets.supabase_write"
-        ) as mock_client:
+        with patch("src.maktsprak_pipeline.db.tweets.supabase_write") as mock_client:
             upsert_mock = mock_client.table.return_value.upsert
             upsert_mock.return_value.execute.return_value = mock_resp
 
             from src.maktsprak_pipeline.db.tweets import insert_tweet
+
             insert_tweet({"tweet_id": "123", "text": "Test tweet"})
 
             upsert_mock.assert_called_once()

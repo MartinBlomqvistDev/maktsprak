@@ -62,18 +62,14 @@ RIKSDAG_BASE_URL: str = "https://data.riksdagen.se/dokumentlista/"
 # ---------------------------------------------------------------------------
 X_BASE_URL: str = "https://api.twitter.com/2/users"
 #: Bearer token sourced from either env key name variant.
-X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv(
-    "TWITTER_BEARER_TOKEN"
-)
+X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")
 
 # ---------------------------------------------------------------------------
 # Swedish parliamentary parties
 # Single canonical definition — imported by etl, model, and the Streamlit app.
 # ---------------------------------------------------------------------------
 #: All valid Riksdag party abbreviations.
-VALID_PARTIES: frozenset[str] = frozenset(
-    {"C", "KD", "L", "M", "MP", "S", "SD", "V"}
-)
+VALID_PARTIES: frozenset[str] = frozenset({"C", "KD", "L", "M", "MP", "S", "SD", "V"})
 
 #: Left-to-right display order for charts and tables.
 PARTY_ORDER: list[str] = ["V", "MP", "S", "C", "L", "KD", "M", "SD"]
