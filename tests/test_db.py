@@ -29,8 +29,8 @@ class TestInsertSpeech:
         ) as mock_client:
             mock_client.table.return_value.upsert.return_value.execute.return_value = mock_resp
 
-            from src.maktsprak_pipeline.db.speeches import insert_speech
             import importlib
+
             import src.maktsprak_pipeline.db.speeches as mod
             importlib.reload(mod)
 

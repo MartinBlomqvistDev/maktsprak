@@ -8,10 +8,10 @@ from src.maktsprak_pipeline.config import (
     DB_PORT,
     PARTY_LEADERS_IDS,
     PARTY_ORDER,
-    PROJECT_ROOT,
     PROCESSED_DATA_PATH,
-    RAW_DATA_PATH,
+    PROJECT_ROOT,
     RATE_LIMIT_WAIT_SECONDS,
+    RAW_DATA_PATH,
     RIKSDAG_BASE_URL,
     VALID_PARTIES,
 )

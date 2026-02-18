@@ -63,10 +63,10 @@ def apply_ton_lexicon(
     for cat in categories:
         cat_set = cat_words[cat]
 
-        def _score(tokens: list[str]) -> float:
+        def _score(tokens: list[str], _cat_set: set[str] = cat_set) -> float:
             if not tokens:
                 return 0.0
-            total_weight = sum(word_weight.get(w, 0.0) for w in tokens if w in cat_set)
+            total_weight = sum(word_weight.get(w, 0.0) for w in tokens if w in _cat_set)
             return (total_weight / len(tokens)) * 100.0
 
         result[cat] = token_series.apply(_score)

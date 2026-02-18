@@ -7,7 +7,6 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import pytest
 
-
 # ---------------------------------------------------------------------------
 # Sample Riksdag XML
 # ---------------------------------------------------------------------------

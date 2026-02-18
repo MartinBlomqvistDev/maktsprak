@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from src.maktsprak_pipeline.nlp.cleaning import (
     clean_text,
     combined_stopwords,

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import re
-
 from src.maktsprak_pipeline.pipeline.transform import _SPEECH_RE
 
 

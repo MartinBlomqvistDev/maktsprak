@@ -11,8 +11,8 @@ from typing import Any
 import requests
 
 from ..config import (
-    MONTHLY_TWEET_LIMIT,
     MAX_TWEETS_PER_PARTY,
+    MONTHLY_TWEET_LIMIT,
     PARTY_LEADERS_IDS,
     RATE_LIMIT_WAIT_SECONDS,
     RAW_DATA_PATH,

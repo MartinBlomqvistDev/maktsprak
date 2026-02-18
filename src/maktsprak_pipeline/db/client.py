@@ -23,8 +23,8 @@ logger = get_logger()
 # Streamlit secret detection
 # ---------------------------------------------------------------------------
 try:
-    from streamlit.runtime.scriptrunner import get_script_run_ctx
     import streamlit as st
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
 
     _USE_STREAMLIT: bool = get_script_run_ctx() is not None
 except Exception:
@@ -47,7 +47,7 @@ def _resolve_credentials() -> tuple[str, str, str]:
         service = os.environ.get("SUPABASE_SERVICE_KEY", anon)
 
     if not url or not anon:
-        raise EnvironmentError(
+        raise OSError(
             "SUPABASE_URL and SUPABASE_KEY must be set in .env or Streamlit Secrets. "
             "See .env.example for the full list of required variables."
         )

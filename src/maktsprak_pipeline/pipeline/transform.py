@@ -5,7 +5,6 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from pathlib import Path
 from typing import Any
 
 import pdfplumber
@@ -134,5 +133,7 @@ def transform_riksdag(xml_file: str | None) -> list[dict[str, Any]]:
     for doc in tqdm(documents, desc="Parsing protocols"):
         results.extend(_process_doc(doc))
 
-    logger.info(f"Transformation complete: {len(results)} speeches from {len(documents)} protocols.")
+    logger.info(
+        f"Transformation complete: {len(results)} speeches from {len(documents)} protocols."
+    )
     return results
