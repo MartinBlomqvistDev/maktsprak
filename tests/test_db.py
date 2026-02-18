@@ -19,22 +19,18 @@ class TestInsertSpeech:
             assert result == [{"id": "HD0972_1"}]
 
     def test_raises_on_none_data(self):
+        import pytest
+
         mock_resp = MagicMock()
         mock_resp.data = None
 
         with patch("src.maktsprak_pipeline.db.speeches.supabase_write") as mock_client:
             mock_client.table.return_value.upsert.return_value.execute.return_value = mock_resp
 
-            import importlib
-
-            import src.maktsprak_pipeline.db.speeches as mod
-
-            importlib.reload(mod)
-
-            import pytest
+            from src.maktsprak_pipeline.db.speeches import insert_speech
 
             with pytest.raises(RuntimeError):
-                mod.insert_speech({"id": "BAD", "party": "X"})
+                insert_speech({"id": "BAD", "party": "X"})
 
 
 class TestFetchSpeechesCount:
