@@ -1,4 +1,5 @@
 # MaktspråkAI
+![CI](https://github.com/MartinBlomqvistDev/MaktsprakAI/actions/workflows/ci.yml/badge.svg)
 
 A live NLP pipeline that tracks how Sweden's eight parliamentary parties argue — in the Riksdag chamber, and on social media.
 
@@ -70,9 +71,9 @@ Twitter/X API ──────────────────────
 
 ## Model
 
-Fine-tuned from [KB/bert-base-swedish-cased](https://huggingface.co/KB/bert-base-swedish-cased) on ~44 000 Riksdag speeches (2015–2026) + party-leader tweets.
+Fine-tuned from [KB/bert-base-swedish-cased](https://huggingface.co/KB/bert-base-swedish-cased) on ~44 000 Riksdag speeches (2015–2026) + party-leader tweets. Trained with weighted sampling, adversarial FGM, and mixed precision — details in [`scripts/train_party_model_db.py`](scripts/train_party_model_db.py).
 
-Training used weighted sampling to handle class imbalance, FGM adversarial training for robustness, OneCycleLR scheduling, and mixed precision (AMP). The final checkpoint lives on Hugging Face Hub:
+The final checkpoint lives on Hugging Face Hub:
 
 👉 [`MartinBlomqvist/maktsprak_classifier_clean`](https://huggingface.co/MartinBlomqvist/maktsprak_classifier_clean)
 
