@@ -20,8 +20,8 @@ logger = get_logger()
 # Streamlit cache — applied conditionally so the module works outside Streamlit
 # ---------------------------------------------------------------------------
 try:
-    from streamlit.runtime.scriptrunner import get_script_run_ctx
     import streamlit as st
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
 
     _USE_STREAMLIT: bool = get_script_run_ctx() is not None
 except Exception:
