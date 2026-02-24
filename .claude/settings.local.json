@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell.exe -Command:*)",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\DS24\\\\MaktsprakAI\\\\app'' -Recurse -Name\")",
+      "Bash(source:*)",
+      "Bash(timeout 120 python:*)",
+      "Bash(.venv/Scripts/python.exe:*)",
+      "Bash(python -m src.maktsprak_pipeline.main:*)",
+      "Bash(python scripts/backfill_speeches.py:*)"
+    ]
+  }
+}
