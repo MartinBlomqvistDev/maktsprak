@@ -55,6 +55,7 @@ st_cache/
 Thumbs.db
 .vscode/
 .idea/
+.claude/
 
 # Loggfiler
 *.log
