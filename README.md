@@ -150,6 +150,18 @@ MaktsprakAI/
 
 ---
 
+## Database migrations
+
+The `migrations/` folder contains SQL scripts that must be run once in the Supabase SQL editor for each project instance.
+
+| File | What it does | Run by |
+|---|---|---|
+| `001_data_api_grants.sql` | Grants `SELECT` on `speeches` and `tweets` to `anon` and `authenticated` | May 30, 2026 for new projects; October 30, 2026 for existing |
+
+Paste the contents into **Supabase dashboard → SQL editor** and execute. Without this, PostgREST returns a `42501` error on any Data API read after the rollout date.
+
+---
+
 ## Scheduled ETL (Windows)
 
 `run_etl.bat` is set up as a Windows Task Scheduler job — it activates the venv, runs the incremental ETL, and logs output to `logs/`.  The script uses `%~dp0` for a portable path so it works on any machine, not just the original dev box.
