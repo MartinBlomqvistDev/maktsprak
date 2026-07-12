@@ -33,8 +33,9 @@ data/parquet/
 *.bin
 *.pkl
 *.safetensors
-data/models/
-/.env    
+data/models/*
+!data/models/README.md
+/.env
 
 # ----------------------------------------------------
 # 3. STREAMLIT & CLOUD ARTEFAKTER

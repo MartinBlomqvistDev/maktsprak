@@ -48,21 +48,19 @@ def run_etl(lookback_days: int = 7) -> None:
     logger.info("=" * 55)
 
 
-def run_historical_backfill(from_date: str) -> None:
-    """Back-fill all Riksdag protocols from *from_date* to today.
-
-    Paginates through the Riksdag API (20 results per page), downloads and
-    parses each protocol PDF, then upserts every speech to Supabase.
+def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.Element]:
+    """Paginate the Riksdag API and return every protocol ``<dokument>`` element.
 
     Args:
-        from_date: ISO date string for the start of the backfill window
-            (e.g. ``"2025-09-15"``).
+        from_date: ISO date string for the start of the window (e.g. ``"2015-06-01"``).
+        to_date:   ISO date string for the end of the window.  Defaults to today.
+
+    Returns:
+        All ``<dokument>`` elements in the window, ascending by date.
     """
     from datetime import datetime
 
-    to_date = datetime.today().strftime("%Y-%m-%d")
-    logger.info(f"Starting historical backfill: {from_date} → {to_date}")
-
+    to_date = to_date or datetime.today().strftime("%Y-%m-%d")
     all_docs: list[ET.Element] = []
     page = 1
 
@@ -89,6 +87,25 @@ def run_historical_backfill(from_date: str) -> None:
         page += 1
         time.sleep(1)
 
+    return all_docs
+
+
+def run_historical_backfill(from_date: str) -> None:
+    """Back-fill all Riksdag protocols from *from_date* to today.
+
+    Paginates through the Riksdag API, downloads and parses each protocol PDF,
+    then upserts every speech to Supabase.
+
+    Args:
+        from_date: ISO date string for the start of the backfill window
+            (e.g. ``"2025-09-15"``).
+    """
+    from datetime import datetime
+
+    to_date = datetime.today().strftime("%Y-%m-%d")
+    logger.info(f"Starting historical backfill: {from_date} → {to_date}")
+
+    all_docs = fetch_protocol_docs(from_date, to_date)
     logger.info(f"Fetched {len(all_docs)} protocols. Starting PDF extraction…")
 
     total_speeches = 0

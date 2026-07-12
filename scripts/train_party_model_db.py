@@ -1,370 +1,493 @@
-# =========================================================
-# Fil: scripts/train_party_model_db.py
-# Syfte: Träna BERT för parti-klassificering direkt från DB
-# Förbättrad version med:
-#  - AMP (mixed precision) på GPU
-#  - Gradient clipping
-#  - Weight decay
-#  - Label smoothing
-#  - MAX_LENGTH = 512 för riksdagstal
-#  - Weighted sampler för obalanserad data
-#  - Checkpoint & early stopping
-#  - FGM (adversarial training)
-#  - Mixup på embeddings
-#  - Gradual layer unfreezing
-#  - OneCycleLR scheduler
-#  - Extra dropout
-#  - Klassvikter
-#  - Backtranslation för små partier (utom M och S)
-# =========================================================
+"""Train the KB-BERT party classifier directly from the Supabase database.
 
+Fine-tunes ``KB/bert-base-swedish-cased`` on Riksdag speeches (plus a small
+set of party-leader tweets) to predict the speaker's party.  Training uses a
+**speaker-independent split**: 15 % of unique speakers are held out entirely,
+so validation measures generalisation to politicians the model has never seen.
+
+Techniques used:
+
+- AMP (mixed precision) on GPU
+- OneCycleLR schedule with batch-scaled max_lr
+- Weighted sampler + class-weighted loss for party imbalance
+- Label smoothing, gradient clipping, weight decay
+- FGM adversarial training on embeddings (disable with ``--no-fgm``)
+- Encoder frozen for the first two epochs, then unfrozen
+- Per-epoch checkpoints with resume, early stopping on macro-F1
+
+Usage::
+
+    # Full run (writes to config's TRAIN_MODEL_DIR):
+    python scripts/train_party_model_db.py
+
+    # Cheap baseline pass on Colab, saving checkpoints to Drive:
+    python scripts/train_party_model_db.py --no-fgm --max-length 256 \
+        --output-dir /content/drive/MyDrive/MaktsprakAI_Checkpoints
+
+The exported model directory contains both ``best_model.pt`` (raw state dict,
+best validation epoch) and a standard Hugging Face export of those same
+weights, ready for ``push_to_hub``.
+"""
+
+from __future__ import annotations
+
+import argparse
 import os
+import random
+import sys
+from pathlib import Path
+
+# Must be set before transformers is imported.
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+import numpy as np
 import pandas as pd
 import torch
-from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from torch.optim import AdamW
-from pathlib import Path
-from tqdm import tqdm
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
-from sklearn.utils.class_weight import compute_class_weight
-from src.maktsprak_pipeline.db import fetch_speeches_historical, fetch_all_tweets
-from src.maktsprak_pipeline.config import (
-    TRAIN_MODEL_NAME, TRAIN_MODEL_DIR, TRAIN_BATCH_SIZE,
-    TRAIN_MAX_EPOCHS, TRAIN_MAX_LENGTH, TRAIN_LEARNING_RATE,
-    TRAIN_WEIGHT_DECAY, TRAIN_EARLY_STOPPING_PATIENCE,
-    TRAIN_LABEL_SMOOTHING, BASE_BATCH_SIZE, BASE_MAX_LR
-)
-import glob
-import numpy as np
 import torch.nn as nn
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    f1_score,
+    precision_score,
+    recall_score,
+)
+from sklearn.utils.class_weight import compute_class_weight
+from torch.optim import AdamW
+from torch.optim.lr_scheduler import OneCycleLR
+from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
+from tqdm import tqdm
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-# =====================
-# Inställningar (Använder variabler från config)
-# =====================
-MODEL_NAME = TRAIN_MODEL_NAME
-MODEL_DIR = Path(TRAIN_MODEL_DIR)
-MODEL_DIR.mkdir(parents=True, exist_ok=True)
+from src.maktsprak_pipeline.config import (
+    TRAIN_BASE_MODEL,
+    TRAIN_BATCH_SIZE,
+    TRAIN_EARLY_STOPPING_PATIENCE,
+    TRAIN_LABEL_SMOOTHING,
+    TRAIN_LEARNING_RATE,
+    TRAIN_MAX_EPOCHS,
+    TRAIN_MAX_LENGTH,
+    TRAIN_MAX_LR,
+    TRAIN_MODEL_DIR,
+    TRAIN_WEIGHT_DECAY,
+    VALID_PARTIES,
+)
+from src.maktsprak_pipeline.db import fetch_all_tweets
+from src.maktsprak_pipeline.db.speeches import fetch_speeches_historical_v2
+from src.maktsprak_pipeline.logger import get_logger
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-BATCH_SIZE = TRAIN_BATCH_SIZE
-MAX_EPOCHS = TRAIN_MAX_EPOCHS
-MAX_LENGTH = TRAIN_MAX_LENGTH
-LEARNING_RATE = TRAIN_LEARNING_RATE
-WEIGHT_DECAY = TRAIN_WEIGHT_DECAY
-CHECKPOINT_DIR = MODEL_DIR / "checkpoints"
-CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+logger = get_logger()
 
-EARLY_STOPPING_PATIENCE = TRAIN_EARLY_STOPPING_PATIENCE
-LABEL_SMOOTHING = TRAIN_LABEL_SMOOTHING
-GRAD_CLIP_NORM = 1.0
-DROPOUT_PROB = 0.2
-MIXUP_ALPHA = 0.2
+GRAD_CLIP_NORM: float = 1.0
+CLASSIFIER_DROPOUT: float = 0.2
+SPLIT_SEED: int = 42
+TRAIN_SPEAKER_FRACTION: float = 0.85
+FREEZE_ENCODER_EPOCHS: int = 2
 
-# =====================
-# Batch-scalad max_lr för OneCycleLR
-# =====================
-scaled_max_lr = BASE_MAX_LR * (BATCH_SIZE / BASE_BATCH_SIZE)
-print(f"Batch size: {BATCH_SIZE} | max_lr skalar till {scaled_max_lr:.2e}")
+# Party-leader Twitter/X accounts, keyed by party.  Kept in sync with
+# build_test_set() in scripts/evaluate_model.py — tweets are part of the
+# speaker list, so they influence the speaker split.
+PARTY_ACCOUNTS: dict[str, list[str]] = {
+    "S": ["1587012835409788928"],
+    "M": ["747426555417198592"],
+    "V": ["282532238"],
+    "L": ["455193032"],
+    "KD": ["1407151866"],
+    "C": ["232799403"],
+    "MP": ["41214271", "370900852"],
+    "SD": ["95972673"],
+}
+ACCOUNT_TO_PARTY: dict[str, str] = {
+    account: party for party, accounts in PARTY_ACCOUNTS.items() for account in accounts
+}
 
-# =====================
-# Data-funktioner
-# =====================
-def clean_text(text):
-    return text.replace("\n"," ").strip() if isinstance(text,str) else ""
 
-def label_party_from_account(account: str) -> str:
-    party_accounts = {
-        "S": ["1587012835409788928"], "M": ["747426555417198592"],
-        "V": ["282532238"], "L": ["455193032"], "KD": ["1407151866"],
-        "C": ["232799403"], "MP": ["41214271","370900852"],
-        "SD": ["95972673"]
-    }
-    for party, accounts in party_accounts.items():
-        if account in accounts:
-            return party
-    return "NA"
+def clean_text(text: object) -> str:
+    """Normalise a raw text value to a single-line stripped string."""
+    return text.replace("\n", " ").strip() if isinstance(text, str) else ""
 
-def get_training_data():
-    # Speeches from Supabase
-    speeches_df = fetch_speeches_historical(start_date="2000-01-01")
+
+def get_training_data() -> pd.DataFrame:
+    """Fetch and combine speeches and tweets into one labelled DataFrame.
+
+    Speeches are fetched year by year (2015-2026) to keep individual Supabase
+    queries small.  Party-leader tweets are appended with the account id as
+    ``speaker``.  Rows outside the eight Riksdag parties are dropped.
+
+    Note:
+        The fetch order is load-bearing: ``scripts/evaluate_model.py``
+        recreates the speaker split by replicating this exact pipeline, so the
+        year loop, column selection, and concat order must not change without
+        updating the evaluation script in lockstep.
+
+    Returns:
+        DataFrame with columns ``text``, ``label`` (party), ``speaker``.
+    """
+    speech_dfs: list[pd.DataFrame] = []
+    for year in range(2015, 2027):
+        year_df = fetch_speeches_historical_v2(start_date=f"{year}-01-01", end_date=f"{year}-12-31")
+        logger.info(f"Fetched {len(year_df)} speeches for {year}.")
+        speech_dfs.append(year_df)
+    speeches_df = pd.concat(speech_dfs, ignore_index=True)
     speeches_df["text"] = speeches_df["text"].apply(clean_text)
-    speeches_df = speeches_df.rename(columns={"party": "label"})[["text", "label"]]
+    speeches_df = speeches_df.rename(columns={"party": "label"})[["text", "label", "speaker"]]
 
-    # Tweets from Supabase
     tweets_df = fetch_all_tweets()
     tweets_df["text"] = tweets_df["text"].apply(clean_text)
-    tweets_df["label"] = tweets_df["username"].apply(label_party_from_account)
-    tweets_df = tweets_df[["text", "label"]]
+    tweets_df["label"] = tweets_df["username"].apply(lambda u: ACCOUNT_TO_PARTY.get(u, "NA"))
+    tweets_df = tweets_df.rename(columns={"username": "speaker"})[["text", "label", "speaker"]]
 
     df = pd.concat([speeches_df, tweets_df]).reset_index(drop=True)
+    return df[df["label"].isin(VALID_PARTIES)].reset_index(drop=True)
 
-    riksdagspartier = ["S", "M", "V", "L", "KD", "C", "MP", "SD"]
-    df = df[df["label"].isin(riksdagspartier)].reset_index(drop=True)
 
-    return df
+def speaker_split(
+    df: pd.DataFrame,
+    seed: int = SPLIT_SEED,
+    train_fraction: float = TRAIN_SPEAKER_FRACTION,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Split rows so that no speaker appears in both train and validation.
 
-# =====================
-# Dataset Class
-# =====================
+    The speaker list is deliberately **not** sorted before shuffling: the
+    evaluation script reproduces this exact partition by shuffling the raw
+    ``unique()`` order with the same seed.  Change one, change both.
+
+    Args:
+        df:             Combined dataset with a ``speaker`` column.
+        seed:           RNG seed shared with the evaluation script.
+        train_fraction: Fraction of unique speakers assigned to training.
+
+    Returns:
+        Tuple of ``(train_df, val_df)``.
+    """
+    df["speaker"] = df["speaker"].fillna("Okänd")
+
+    unique_speakers = df["speaker"].unique().tolist()
+    random.seed(seed)
+    random.shuffle(unique_speakers)
+
+    split_idx = int(len(unique_speakers) * train_fraction)
+    train_speakers = set(unique_speakers[:split_idx])
+    val_speakers = set(unique_speakers[split_idx:])
+
+    train_df = df[df["speaker"].isin(train_speakers)].reset_index(drop=True)
+    val_df = df[df["speaker"].isin(val_speakers)].reset_index(drop=True)
+
+    logger.info(
+        f"Speaker split: {len(train_speakers)} train / {len(val_speakers)} val speakers "
+        f"-> {len(train_df)} train / {len(val_df)} val rows."
+    )
+    return train_df, val_df
+
+
 class PartyDataset(Dataset):
-    def __init__(self,texts,labels,tokenizer,max_length=128):
-        self.texts=texts
-        self.labels=labels
-        self.tokenizer=tokenizer
-        self.max_length=max_length
-    def __len__(self):
+    """Tokenised (text, label) pairs for party classification."""
+
+    def __init__(
+        self,
+        texts: list[str],
+        labels: list[int],
+        tokenizer: AutoTokenizer,
+        max_length: int,
+    ) -> None:
+        self.texts = texts
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
+    def __len__(self) -> int:
         return len(self.texts)
-    def __getitem__(self,idx):
+
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
         encoding = self.tokenizer(
             self.texts[idx],
             truncation=True,
             padding="max_length",
             max_length=self.max_length,
-            return_tensors="pt"
+            return_tensors="pt",
         )
-        item = {k:v.squeeze(0) for k,v in encoding.items()}
-        item["labels"] = torch.tensor(self.labels[idx],dtype=torch.long)
+        item = {k: v.squeeze(0) for k, v in encoding.items()}
+        item["labels"] = torch.tensor(self.labels[idx], dtype=torch.long)
         return item
 
 
-# =========================================================
-# Huvud-träningsskriptet
-# =========================================================
-if __name__ == "__main__":
-    print("Startar träning...")
-    
-    # Hämta och förbered data
-    df = get_training_data()
-    
-    # Statistik & logg
-    counts = df["label"].value_counts().to_dict()
-    print("Datapunkter per parti (efter filtrering och backtranslation):")
-    for p in ["S","M","V","L","KD","C","MP","SD"]:
-        print(f"  {p}: {counts.get(p,0)}")
-        if counts.get(p,0) < 10:
-            print(f"    VARNING: {p} har få samples ({counts.get(p,0)}). Överväg mer data eller augmentation.")
-    print(f"\nTotalt samples efter backtranslation: {len(df)}")
+class FGM:
+    """Fast Gradient Method: adversarial perturbation of embedding weights.
 
-    # Label → id
-    LABELS = sorted(df["label"].unique().tolist())
-    label2id = {l:i for i,l in enumerate(LABELS)}
-    id2label = {i:l for l,i in label2id.items()}
+    After the normal backward pass, ``attack()`` nudges the embedding weights
+    along the gradient direction; a second forward/backward on the perturbed
+    model adds an adversarial loss term, then ``restore()`` puts the original
+    weights back.
+    """
+
+    def __init__(self, model: nn.Module, epsilon: float = 1.0) -> None:
+        self.model = model
+        self.epsilon = epsilon
+        self.backup: dict[str, torch.Tensor] = {}
+
+    def attack(self) -> None:
+        for name, param in self.model.named_parameters():
+            if param.requires_grad and "embedding" in name and param.grad is not None:
+                self.backup[name] = param.data.clone()
+                norm = torch.norm(param.grad)
+                if norm != 0:
+                    param.data.add_(self.epsilon * param.grad / norm)
+
+    def restore(self) -> None:
+        for name, param in self.model.named_parameters():
+            if name in self.backup:
+                param.data = self.backup[name]
+        self.backup = {}
+
+
+def validate(
+    model: nn.Module, val_loader: DataLoader, device: torch.device, label_names: list[str]
+) -> dict[str, float]:
+    """Run validation and return headline metrics (also logs a per-class report)."""
+    model.eval()
+    preds_all: list[int] = []
+    labels_all: list[int] = []
+    with torch.no_grad():
+        for batch in val_loader:
+            batch = {k: v.to(device) for k, v in batch.items()}
+            with torch.amp.autocast("cuda", enabled=(device.type == "cuda")):
+                logits = model(**{k: v for k, v in batch.items() if k != "labels"}).logits
+            preds_all.extend(torch.argmax(logits, dim=1).cpu().tolist())
+            labels_all.extend(batch["labels"].cpu().tolist())
+
+    metrics = {
+        "accuracy": accuracy_score(labels_all, preds_all),
+        "f1_macro": f1_score(labels_all, preds_all, average="macro"),
+        "precision_macro": precision_score(labels_all, preds_all, average="macro", zero_division=0),
+        "recall_macro": recall_score(labels_all, preds_all, average="macro", zero_division=0),
+    }
+    logger.info(
+        "Validation: " + " | ".join(f"{name}={value:.4f}" for name, value in metrics.items())
+    )
+    logger.info(
+        "\n"
+        + classification_report(labels_all, preds_all, target_names=label_names, zero_division=0)
+    )
+    return metrics
+
+
+def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments."""
+    parser = argparse.ArgumentParser(description="Train the party classifier from the DB.")
+    parser.add_argument(
+        "--no-fgm",
+        action="store_true",
+        help="Disable FGM adversarial training (~2x faster; use for a cheap baseline).",
+    )
+    parser.add_argument(
+        "--max-length",
+        type=int,
+        default=TRAIN_MAX_LENGTH,
+        help=f"Token length (default {TRAIN_MAX_LENGTH}).",
+    )
+    parser.add_argument(
+        "--epochs",
+        type=int,
+        default=TRAIN_MAX_EPOCHS,
+        help=f"Max epochs (default {TRAIN_MAX_EPOCHS}).",
+    )
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=TRAIN_BATCH_SIZE,
+        help=f"Batch size (default {TRAIN_BATCH_SIZE}).",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path(TRAIN_MODEL_DIR),
+        help=f"Where to write checkpoints and the final model (default {TRAIN_MODEL_DIR}).",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    """Train, validate, and export the party classifier."""
+    args = parse_args()
+    use_fgm: bool = not args.no_fgm
+    output_dir: Path = args.output_dir
+    checkpoint_dir = output_dir / "checkpoints"
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    max_lr = TRAIN_MAX_LR * (args.batch_size / TRAIN_BATCH_SIZE)
+    logger.info(
+        f"Device: {device} | FGM={use_fgm} | max_length={args.max_length} | "
+        f"epochs={args.epochs} | batch_size={args.batch_size} | max_lr={max_lr:.2e} | "
+        f"output={output_dir}"
+    )
+
+    # ------------------------------------------------------------------ data
+    df = get_training_data()
+
+    counts = df["label"].value_counts().to_dict()
+    for party in sorted(VALID_PARTIES):
+        logger.info(f"  {party}: {counts.get(party, 0)} samples")
+        if counts.get(party, 0) < 10:
+            logger.warning(f"  {party} has very few samples ({counts.get(party, 0)}).")
+    logger.info(f"Total samples: {len(df)}")
+
+    label_names = sorted(df["label"].unique().tolist())
+    label2id = {label: i for i, label in enumerate(label_names)}
+    id2label = {i: label for label, i in label2id.items()}
     df["label_id"] = df["label"].map(label2id)
 
-    # Train/val split
-    train_texts, val_texts, train_labels, val_labels = train_test_split(
-        df["text"].tolist(), df["label_id"].tolist(), test_size=0.1, random_state=42, stratify=df["label_id"]
-    )
-    
-    # Tokenizer & datasets
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    train_dataset = PartyDataset(train_texts,train_labels,tokenizer,MAX_LENGTH)
-    val_dataset = PartyDataset(val_texts,val_labels,tokenizer,MAX_LENGTH)
-    
-    # Weighted sampler
+    train_df, val_df = speaker_split(df)
+    train_texts, train_labels = train_df["text"].tolist(), train_df["label_id"].tolist()
+    val_texts, val_labels = val_df["text"].tolist(), val_df["label_id"].tolist()
+
+    tokenizer = AutoTokenizer.from_pretrained(TRAIN_BASE_MODEL)
+    train_dataset = PartyDataset(train_texts, train_labels, tokenizer, args.max_length)
+    val_dataset = PartyDataset(val_texts, val_labels, tokenizer, args.max_length)
+
+    # Oversample rare parties so every batch stays roughly balanced.
     label_counts = pd.Series(train_labels).value_counts().sort_index()
-    weights = 1.0 / label_counts
-    sample_weights = [weights[label] for label in train_labels]
-    sampler = WeightedRandomSampler(sample_weights, num_samples=len(sample_weights), replacement=True)
-    train_loader = DataLoader(train_dataset,batch_size=BATCH_SIZE,sampler=sampler)
-    val_loader = DataLoader(val_dataset,batch_size=BATCH_SIZE)
-    
-    # Model & optimizer
+    sample_weights = [1.0 / label_counts[label] for label in train_labels]
+    sampler = WeightedRandomSampler(
+        sample_weights, num_samples=len(sample_weights), replacement=True
+    )
+    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, sampler=sampler)
+    val_loader = DataLoader(val_dataset, batch_size=args.batch_size)
+
+    # ----------------------------------------------------------------- model
     model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME, num_labels=len(LABELS), id2label=id2label, label2id=label2id
+        TRAIN_BASE_MODEL,
+        num_labels=len(label_names),
+        id2label=id2label,
+        label2id=label2id,
+        classifier_dropout=CLASSIFIER_DROPOUT,
+    ).to(device)
+
+    # Weight decay on everything except bias/LayerNorm.
+    no_decay = ("bias", "LayerNorm.weight", "layer_norm.weight")
+    optimizer = AdamW(
+        [
+            {
+                "params": [
+                    p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)
+                ],
+                "weight_decay": TRAIN_WEIGHT_DECAY,
+            },
+            {
+                "params": [
+                    p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)
+                ],
+                "weight_decay": 0.0,
+            },
+        ],
+        lr=TRAIN_LEARNING_RATE,
     )
-
-    # Dropout
-    try:
-        model.config.hidden_dropout_prob = DROPOUT_PROB
-        if hasattr(model,"dropout"):
-            model.dropout = nn.Dropout(DROPOUT_PROB)
-    except:
-        pass
-
-    model.to(DEVICE)
-    
-    # Weight decay på allt utom bias/LayerNorm
-    no_decay = ["bias","LayerNorm.weight","layer_norm.weight"]
-    optimizer_grouped_parameters = [
-        {"params":[p for n,p in model.named_parameters() if not any(nd in n for nd in no_decay)], "weight_decay":WEIGHT_DECAY},
-        {"params":[p for n,p in model.named_parameters() if any(nd in n for nd in no_decay)], "weight_decay":0.0},
-    ]
-    optimizer = AdamW(optimizer_grouped_parameters, lr=LEARNING_RATE)
-
-    # Scheduler: OneCycleLR med batch-scalad max_lr
-    from torch.optim.lr_scheduler import OneCycleLR
     scheduler = OneCycleLR(
-        optimizer, max_lr=scaled_max_lr, steps_per_epoch=len(train_loader), epochs=MAX_EPOCHS, pct_start=0.1, anneal_strategy='cos'
+        optimizer,
+        max_lr=max_lr,
+        steps_per_epoch=len(train_loader),
+        epochs=args.epochs,
+        pct_start=0.1,
+        anneal_strategy="cos",
     )
 
-    # Loss med klassvikter
-    class_weights = compute_class_weight(class_weight="balanced", classes=np.unique(train_labels), y=train_labels)
-    class_weights = torch.tensor(class_weights, dtype=torch.float).to(DEVICE)
-    criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=LABEL_SMOOTHING)
-
-    # FGM (adversarial training)
-    class FGM:
-        def __init__(self,model,epsilon=1.0):
-            self.model=model
-            self.epsilon=epsilon
-            self.backup={}
-        def attack(self):
-            for name,param in self.model.named_parameters():
-                if param.requires_grad and "embedding" in name:
-                    self.backup[name]=param.data.clone()
-                    norm = torch.norm(param.grad)
-                    if norm != 0:
-                        r_at = self.epsilon * param.grad / norm
-                        param.data.add_(r_at)
-        def restore(self):
-            for name,param in self.model.named_parameters():
-                if name in self.backup:
-                    param.data = self.backup[name]
-            self.backup = {}
+    class_weights = compute_class_weight(
+        class_weight="balanced", classes=np.unique(train_labels), y=train_labels
+    )
+    criterion = nn.CrossEntropyLoss(
+        weight=torch.tensor(class_weights, dtype=torch.float).to(device),
+        label_smoothing=TRAIN_LABEL_SMOOTHING,
+    )
     fgm = FGM(model)
+    scaler = torch.amp.GradScaler("cuda", enabled=(device.type == "cuda"))
 
-    # Load checkpoint om finns
-    checkpoint_files = sorted(glob.glob(str(CHECKPOINT_DIR/"epoch_*.pt")), key=lambda x:int(Path(x).stem.split("_")[-1]))
-    start_epoch=0
-    if checkpoint_files:
-        latest_ckpt=checkpoint_files[-1]
-        print(f"Found checkpoint: {latest_ckpt}, loading...")
-        model.load_state_dict(torch.load(latest_ckpt,map_location=DEVICE))
-        start_epoch=int(Path(latest_ckpt).stem.split("_")[-1])
-        print(f"Resuming from epoch {start_epoch+1}")
-    else:
-        print("No checkpoint found, starting from scratch.")
+    # ---------------------------------------------------------------- resume
+    checkpoints = sorted(
+        checkpoint_dir.glob("epoch_*.pt"), key=lambda p: int(p.stem.split("_")[-1])
+    )
+    start_epoch = 0
+    if checkpoints:
+        latest = checkpoints[-1]
+        logger.info(f"Resuming from checkpoint {latest}.")
+        model.load_state_dict(torch.load(latest, map_location=device))
+        start_epoch = int(latest.stem.split("_")[-1])
+    # Note: optimizer/scheduler state is not checkpointed, so a resumed run
+    # restarts the LR schedule.  Acceptable for occasional Colab disconnects.
 
-    # Pre-training sanity check
-    model.eval()
-    sanity_samples = min(500,len(val_dataset))
-    if sanity_samples>0:
-        sample_indices = np.random.choice(len(val_dataset),sanity_samples,replace=False)
-        correct=0
-        label_seen=set()
-        with torch.no_grad():
-            for idx in sample_indices:
-                batch = val_dataset[idx]
-                batch = {k:v.unsqueeze(0).to(DEVICE) for k,v in batch.items()}
-                outputs = model(**batch)
-                preds = torch.argmax(outputs.logits,dim=1)
-                correct += (preds==batch["labels"]).sum().item()
-                label_seen.add(batch["labels"].item())
-        acc = correct/sanity_samples
-        missing_labels = set(range(len(LABELS)))-label_seen
-        if missing_labels:
-            missing_names = [id2label[i] for i in missing_labels]
-            print(f"VARNING: Följande klasser saknas i sanity-sample: {missing_names}")
-        print(f"Sanity check validerings-accuracy: {acc:.4f} över {sanity_samples} samples")
-
-    # Train loop med AMP, grad clipping, FGM, OneCycleLR, early stopping
-    scaler = torch.cuda.amp.GradScaler(enabled=(DEVICE.type=="cuda"))
+    # ----------------------------------------------------------------- train
     best_val_f1 = 0.0
-    epochs_no_improve=0
+    epochs_no_improve = 0
+    best_path = output_dir / "best_model.pt"
 
-    # Freeze BERT initialt, gradual unfreeze epok 3
-    for name,param in model.named_parameters():
-        if "encoder" in name:
-            param.requires_grad = False
-        else:
-            param.requires_grad = True
+    for epoch in range(start_epoch, args.epochs):
+        # Freeze the encoder for the first epochs so the fresh classifier head
+        # settles before full fine-tuning ('>=' keeps this correct on resume).
+        unfreeze = epoch >= FREEZE_ENCODER_EPOCHS
+        for name, param in model.named_parameters():
+            param.requires_grad = unfreeze or "encoder" not in name
 
-    print(f"\nAnvänder enhet: {DEVICE}  | MAX_LENGTH: {MAX_LENGTH} | BATCH_SIZE: {BATCH_SIZE}")
-    for epoch in range(start_epoch, MAX_EPOCHS):
         model.train()
-        total_loss=0.0
-        loop = tqdm(train_loader,desc=f"Training epoch {epoch+1}",leave=True)
-        for batch in loop:
+        total_loss = 0.0
+        progress = tqdm(train_loader, desc=f"Epoch {epoch + 1}/{args.epochs}", leave=True)
+        for batch in progress:
             optimizer.zero_grad()
-            batch = {k:v.to(DEVICE) for k,v in batch.items()}
+            batch = {k: v.to(device) for k, v in batch.items()}
+            inputs = {k: v for k, v in batch.items() if k != "labels"}
 
-            # Gradual layer unfreeze: epok 3+
-            if epoch==2:
-                for name,param in model.named_parameters():
-                    param.requires_grad = True
-
-            with torch.cuda.amp.autocast(enabled=(DEVICE.type=="cuda")):
-                outputs = model(**{k:v for k,v in batch.items() if k!="labels"})
-                logits = outputs.logits
-                loss = criterion(logits,batch["labels"])
+            with torch.amp.autocast("cuda", enabled=(device.type == "cuda")):
+                loss = criterion(model(**inputs).logits, batch["labels"])
             scaler.scale(loss).backward()
 
-            # FGM adversarial step
-            fgm.attack()
-            with torch.cuda.amp.autocast(enabled=(DEVICE.type=="cuda")):
-                outputs_adv = model(**{k:v for k,v in batch.items() if k!="labels"})
-                logits_adv = outputs_adv.logits
-                loss_adv = criterion(logits_adv,batch["labels"])
-            scaler.scale(loss_adv).backward()
-            fgm.restore()
+            if use_fgm:
+                fgm.attack()
+                with torch.amp.autocast("cuda", enabled=(device.type == "cuda")):
+                    loss_adv = criterion(model(**inputs).logits, batch["labels"])
+                scaler.scale(loss_adv).backward()
+                fgm.restore()
 
-            # Gradient clipping
             scaler.unscale_(optimizer)
             torch.nn.utils.clip_grad_norm_(model.parameters(), GRAD_CLIP_NORM)
-
             scaler.step(optimizer)
             scaler.update()
             scheduler.step()
 
             total_loss += loss.item()
-            loop.set_postfix(loss=total_loss/(loop.n+1), batch_samples=len(batch["labels"]))
+            progress.set_postfix(loss=total_loss / (progress.n + 1))
 
-        avg_loss = total_loss/len(train_loader)
-        print(f"\nEpoch {epoch+1} finished. Avg loss: {avg_loss:.4f}")
+        logger.info(f"Epoch {epoch + 1} finished. Avg loss: {total_loss / len(train_loader):.4f}")
 
-        # Validering
-        model.eval()
-        preds_all,labels_all=[],[]
-        with torch.no_grad():
-            for batch in val_loader:
-                batch = {k:v.to(DEVICE) for k,v in batch.items()}
-                with torch.cuda.amp.autocast(enabled=(DEVICE.type=="cuda")):
-                    outputs = model(**{k:v for k,v in batch.items() if k!="labels"})
-                    logits = outputs.logits
-                preds = torch.argmax(logits,dim=1).cpu().numpy()
-                labels = batch["labels"].cpu().numpy()
-                preds_all.extend(preds)
-                labels_all.extend(labels)
+        metrics = validate(model, val_loader, device, label_names)
 
-        acc = accuracy_score(labels_all,preds_all)
-        f1_macro = f1_score(labels_all,preds_all,average="macro")
-        prec_macro = precision_score(labels_all,preds_all,average="macro",zero_division=0)
-        rec_macro = recall_score(labels_all,preds_all,average="macro",zero_division=0)
-
-        print(f"Validation metrics after epoch {epoch+1}:")
-        print(f"  Accuracy:  {acc:.4f}")
-        print(f"  F1-macro:  {f1_macro:.4f}")
-        print(f"  Precision: {prec_macro:.4f}")
-        print(f"  Recall:    {rec_macro:.4f}")
-
-        print("\nPer-klass metrics:")
-        print(classification_report(labels_all,preds_all,target_names=LABELS,zero_division=0))
-
-        # Early stopping
-        if f1_macro>best_val_f1:
-            best_val_f1=f1_macro
-            epochs_no_improve=0
-            best_path = MODEL_DIR/"best_model.pt"
-            torch.save(model.state_dict(),best_path)
-            print(f"New best model saved! ({best_path})")
+        if metrics["f1_macro"] > best_val_f1:
+            best_val_f1 = metrics["f1_macro"]
+            epochs_no_improve = 0
+            torch.save(model.state_dict(), best_path)
+            logger.info(f"New best model saved (macro-F1 {best_val_f1:.4f}) -> {best_path}")
         else:
-            epochs_no_improve+=1
-            print(f"No improvement for {epochs_no_improve} epoch(s). Best F1: {best_val_f1:.4f}")
-            if epochs_no_improve>=EARLY_STOPPING_PATIENCE:
-                print(f"Early stopping triggered at epoch {epoch+1}")
-                last_path = MODEL_DIR/f"last_epoch_{epoch+1}.pt"
-                torch.save(model.state_dict(),last_path)
+            epochs_no_improve += 1
+            logger.info(
+                f"No improvement for {epochs_no_improve} epoch(s). Best macro-F1: {best_val_f1:.4f}"
+            )
+            if epochs_no_improve >= TRAIN_EARLY_STOPPING_PATIENCE:
+                logger.info(f"Early stopping at epoch {epoch + 1}.")
                 break
 
-        # Checkpoint
-        checkpoint_path = CHECKPOINT_DIR/f"epoch_{epoch+1}.pt"
-        torch.save(model.state_dict(),checkpoint_path)
-        print(f"Checkpoint saved: {checkpoint_path}")
+        torch.save(model.state_dict(), checkpoint_dir / f"epoch_{epoch + 1}.pt")
 
-    # Spara slutmodell & tokenizer
-    model.save_pretrained(MODEL_DIR, safe_serialization=False)
-    tokenizer.save_pretrained(MODEL_DIR)
-    print(f"Partimodell sparad i {MODEL_DIR}")
+    # ---------------------------------------------------------------- export
+    # Reload the best epoch before exporting: after early stopping the live
+    # model holds the *last* (worse) weights, not the best ones.
+    if best_path.is_file():
+        model.load_state_dict(torch.load(best_path, map_location=device))
+    model.save_pretrained(output_dir, safe_serialization=False)
+    tokenizer.save_pretrained(output_dir)
+    logger.info(f"Best model (macro-F1 {best_val_f1:.4f}) exported to {output_dir}")
+
+
+if __name__ == "__main__":
+    main()

@@ -7,6 +7,7 @@ Re-exports the public API so callers can do::
 
 from .client import supabase, supabase_write
 from .speeches import (
+    delete_speeches_by_protocol,
     delete_speeches_invalid_parties,
     fetch_combined_speeches,
     fetch_latest_speech_date,
@@ -15,6 +16,7 @@ from .speeches import (
     fetch_speeches_count,
     fetch_speeches_historical,
     insert_speech,
+    insert_speeches,
     load_historical_parquet,
 )
 from .tweets import fetch_all_tweets, fetch_tweets_count_since, insert_tweet
@@ -31,6 +33,8 @@ __all__ = [
     "fetch_combined_speeches",
     "load_historical_parquet",
     "insert_speech",
+    "insert_speeches",
+    "delete_speeches_by_protocol",
     "delete_speeches_invalid_parties",
     # tweets
     "fetch_all_tweets",

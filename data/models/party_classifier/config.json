@@ -1,13 +1,13 @@
 {
+  "_name_or_path": "KB/bert-base-swedish-cased",
   "architectures": [
     "BertForSequenceClassification"
   ],
   "attention_probs_dropout_prob": 0.1,
   "classifier_dropout": null,
-  "dtype": "float32",
   "gradient_checkpointing": false,
   "hidden_act": "gelu",
-  "hidden_dropout_prob": 0.2,
+  "hidden_dropout_prob": 0.1,
   "hidden_size": 768,
   "id2label": {
     "0": "C",
@@ -39,8 +39,8 @@
   "output_past": true,
   "pad_token_id": 0,
   "position_embedding_type": "absolute",
-  "problem_type": "single_label_classification",
-  "transformers_version": "4.56.1",
+  "torch_dtype": "float32",
+  "transformers_version": "4.48.3",
   "type_vocab_size": 2,
   "use_cache": true,
   "vocab_size": 50325

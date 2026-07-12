@@ -57,3 +57,28 @@ class TestSpeechRegex:
         matches = _SPEECH_RE.findall(text)
         assert len(matches) == 1
         assert "Anna-Karin Hatt" in matches[0][0]
+
+    def test_reply_header_with_replik(self):
+        # Reply headers place the colon after "replik", not after the party.
+        text = "Anf. 8 Jimmie Åkesson (SD) replik: Herr talman! Det saknas svar."
+        matches = _SPEECH_RE.findall(text)
+        assert len(matches) == 1
+        speaker, party, body = matches[0]
+        assert speaker.strip() == "Jimmie Åkesson"
+        assert party == "SD"
+        assert "replik" not in body
+
+    def test_party_less_header_does_not_swallow_next_speech(self):
+        # A party-less speaker (independent "-", talman, unlisted minister) must
+        # not cause the following speech to be absorbed and mis-attributed.
+        text = (
+            "Anf. 30 Elsa Widding (-): Herr talman! Ett oberoende inlägg. "
+            "Anf. 31 Utrikesminister Maria Malmer Stenergard (M): Fru talman! Ett svar."
+        )
+        matches = _SPEECH_RE.findall(text)
+        # Only the party-affiliated minister should match; the "-" member is skipped.
+        assert len(matches) == 1
+        speaker, party, body = matches[0]
+        assert party == "M"
+        assert "Maria Malmer Stenergard" in speaker
+        assert "oberoende" not in body

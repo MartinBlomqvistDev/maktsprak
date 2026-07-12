@@ -71,11 +71,30 @@ Twitter/X API ──────────────────────
 
 ## Model
 
-Fine-tuned from [KB/bert-base-swedish-cased](https://huggingface.co/KB/bert-base-swedish-cased) on ~44 000 Riksdag speeches (2015–2026) + party-leader tweets. Trained with weighted sampling, adversarial FGM, and mixed precision — details in [`scripts/train_party_model_db.py`](scripts/train_party_model_db.py).
+Fine-tuned from [KB/bert-base-swedish-cased](https://huggingface.co/KB/bert-base-swedish-cased) on ~41 000 Riksdag speeches (2015–2026) + party-leader tweets. Trained with weighted sampling, adversarial FGM, and mixed precision — details in [`scripts/train_party_model_db.py`](scripts/train_party_model_db.py).
 
-The final checkpoint lives on Hugging Face Hub:
+The live checkpoint on Hugging Face Hub:
 
 👉 [`MartinBlomqvist/maktsprak_classifier_clean`](https://huggingface.co/MartinBlomqvist/maktsprak_classifier_clean)
+
+### Evaluation methodology
+
+Party classifiers are easy to over-report: a plain row-based train/test split
+leaves the same politicians' speeches in both halves, so the model partly
+learns to recognize *individuals' phrasing* rather than *party rhetoric*.
+[`scripts/evaluate_model.py`](scripts/evaluate_model.py) instead recreates
+training's **speaker-independent** split — 15% of speakers held out
+entirely — so the reported score reflects generalization to politicians the
+model has never seen:
+
+| Model | held-out accuracy | held-out macro-F1 |
+|---|---|---|
+| v2 — speaker-independent split, re-indexed data (local) | 0.588 | 0.595 |
+| v1 — row-based split, `maktsprak_classifier_clean` (live) | 0.776\* | 0.775\* |
+
+\* *Inflated by speaker leakage — not a fair estimate of real-world
+generalization. Full lineage and reproduction steps in
+[`data/models/README.md`](data/models/README.md).*
 
 ---
 
@@ -140,7 +159,15 @@ MaktsprakAI/
 ├── scripts/
 │   ├── backfill_speeches.py       # One-time historical backfill
 │   ├── create_historic_database.py  # Dump speeches → Parquet snapshot
-│   └── train_party_model_db.py    # Full BERT fine-tuning script
+│   ├── reindex_speeches.py        # Safe per-protocol re-parse with backup
+│   ├── train_party_model_db.py    # Full BERT fine-tuning script
+│   └── evaluate_model.py          # Speaker-independent benchmark, 2+ models
+├── notebooks/
+│   └── retrain_colab.ipynb  # End-to-end retrain on a Colab GPU
+├── data/models/              # Gitignored weights — see data/models/README.md
+│   ├── README.md            # Model lineage, v1 vs v2, benchmark methodology
+│   ├── party_classifier/    # v2 — current, speaker-independent split
+│   └── legacy/               # v1 and earlier — kept for comparison only
 ├── tests/                   # pytest suite (config, NLP, transform, DB mocks)
 ├── .github/workflows/ci.yml # Ruff + pytest on every push
 ├── pyproject.toml           # Package config + tool settings
