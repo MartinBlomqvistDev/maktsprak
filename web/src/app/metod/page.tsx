@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Metod — Maktspråk / Protokollet",
   description:
-    "Hur modellen valideras: talar-oberoende split, varför radbaserad split läcker, och vad som skiljer den hederliga siffran från den uppblåsta.",
+    "Hur modellen valideras: talar-oberoende split, varför radbaserad split läcker, och vad skillnaden kostar i siffror.",
 };
 
 export default function MetodPage() {
@@ -19,10 +19,9 @@ export default function MetodPage() {
         En modell är bara så trovärdig som sin utvärdering.
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">
-        Det här projektet rapporterade tidigare ~83 % träffsäkerhet. Den
-        siffran var fel — inte fusk, men ett läckage i hur modellen
-        validerades. Så här hittades det, och så här ser den ärliga siffran
-        ut.
+        Att klassificera parti från text är förrädiskt lätt att överskatta.
+        Så här valideras den här modellen — talar-oberoende, med den vanliga
+        fällan avslöjad och prissatt i siffror.
       </p>
 
       {/* ---------------------------------------------------------- THE LEAK */}
@@ -109,7 +108,7 @@ export default function MetodPage() {
               <tr>
                 <td className="py-3 pr-4">
                   <span className="text-ink-3">
-                    Tidigare modell — radbaserad split (läckt)
+                    Radbaserad split (läckt)
                   </span>
                 </td>
                 <td className="tabular py-3 pr-4 text-right text-ink-3 line-through decoration-crit">
@@ -154,8 +153,8 @@ export default function MetodPage() {
         <p className="text-[15px] leading-relaxed text-accent-soft-ink">
           <strong>Varför visa det här öppet?</strong> En modell som bara
           rapporterar sin bästa siffra går inte att lita på. En modell som
-          visar var den läcker, varför, och vad den kostar att fixa — det
-          går att lita på.
+          visar hur den valideras, vad som kan gå fel, och vad det kostar i
+          siffror — det går att lita på.
         </p>
       </div>
     </main>
