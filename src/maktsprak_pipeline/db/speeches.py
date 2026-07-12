@@ -176,7 +176,7 @@ def fetch_speeches_historical_v2(
 
     # ÄNDRING: Lade till 'speaker' i select-frågan.
     query = supabase.table("speeches").select("id, text, party, protocol_date, speaker")
-    
+
     if start_date:
         query = query.gte("protocol_date", str(start_date))
     if end_date:

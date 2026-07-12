@@ -71,6 +71,7 @@ def _canonical_party(raw_party: str) -> str | None:
     party = PARTY_RENAMES.get(party, party)
     return party if party in VALID_PARTIES else None
 
+
 # ---------------------------------------------------------------------------
 # Column-aware PDF text extraction
 #

@@ -26,9 +26,7 @@ class TestTokenize:
         ]
 
     def test_drops_short_and_stopwords(self):
-        assert tokenize("vi ska satsa på skolan", min_length=4, stopwords={"satsa"}) == [
-            "skolan"
-        ]
+        assert tokenize("vi ska satsa på skolan", min_length=4, stopwords={"satsa"}) == ["skolan"]
 
     def test_strips_digits_and_punctuation(self):
         assert tokenize("2024: klimatet, skatten!", stopwords=frozenset()) == [

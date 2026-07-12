@@ -81,9 +81,7 @@ def top_movers(
 
     tagged = df.copy()
     tagged["era"] = np.where(tagged[year_col] >= split_year, "late", "early")
-    counts = group_token_counts(
-        tagged, group_col="era", text_col=text_col, stopwords=stopwords
-    )
+    counts = group_token_counts(tagged, group_col="era", text_col=text_col, stopwords=stopwords)
     scores = weighted_log_odds(counts, min_count=min_count)
     risers = distinctive_words(scores, "late", top_n=top_n)
     fallers = distinctive_words(scores, "early", top_n=top_n)
@@ -138,9 +136,7 @@ def _js_divergence(p: np.ndarray, q: np.ndarray) -> float:
     return 0.5 * _kl(p, m) + 0.5 * _kl(q, m)
 
 
-def _year_party_divergence(
-    party_counts: dict[str, Counter[str]], min_count: int
-) -> float | None:
+def _year_party_divergence(party_counts: dict[str, Counter[str]], min_count: int) -> float | None:
     """Mean pairwise JS divergence across parties for one year.
 
     Builds each party's probability distribution over the shared vocabulary
@@ -169,9 +165,7 @@ def _year_party_divergence(
     if len(present) < 2:
         return None
     divs = [
-        _js_divergence(dists[a], dists[b])
-        for i, a in enumerate(present)
-        for b in present[i + 1 :]
+        _js_divergence(dists[a], dists[b]) for i, a in enumerate(present) for b in present[i + 1 :]
     ]
     return float(np.mean(divs)) if divs else None
 
@@ -260,47 +254,99 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         # a family-law term) — confirmed via real text: ~85% of its matches
         # were "tillgänglig*", not gang crime. "gängkriminal" catches the
         # genuine compounds (gängkriminalitet, gängkriminella, ...) instead.
-        "gängkriminal", "kriminell", "skjutning", "spräng", "straff", "brottsling",
-        "brottslig", "otrygg", "utvisning", "fängelse", "poliser",
+        "gängkriminal",
+        "kriminell",
+        "skjutning",
+        "spräng",
+        "straff",
+        "brottsling",
+        "brottslig",
+        "otrygg",
+        "utvisning",
+        "fängelse",
+        "poliser",
     ],
     "Migration": [
         # bare "anhörig" deliberately excluded: it heavily overlaps with
         # eldercare caregiving terms ("anhörigvårdare", "anhörigstöd") —
         # "anhöriginvandring" is the specific, unambiguous migration term
         # (family reunification).
-        "invandr", "migration", "asyl", "flykting", "nyanländ", "integration",
-        "uppehållstillstånd", "medborgarskap", "anhöriginvandr", "utlänning",
+        "invandr",
+        "migration",
+        "asyl",
+        "flykting",
+        "nyanländ",
+        "integration",
+        "uppehållstillstånd",
+        "medborgarskap",
+        "anhöriginvandr",
+        "utlänning",
     ],
     "Klimat": [
         # bare "omställning" deliberately excluded: it also matches COVID-era
         # business support ("omställningsstöd") and labor-market retraining
         # ("omställningsstudiestöd"), unrelated to climate. The compounds
         # below are specific.
-        "klimat", "utsläpp", "fossil", "förnybar", "klimatomställning",
-        "energiomställning", "koldioxid", "vindkraft",
+        "klimat",
+        "utsläpp",
+        "fossil",
+        "förnybar",
+        "klimatomställning",
+        "energiomställning",
+        "koldioxid",
+        "vindkraft",
     ],
     "Välfärd": [
-        "välfärd", "sjukvård", "äldreomsorg", "förskola", "vårdkö",
-        "underskötersk", "trygghetssystem",
+        "välfärd",
+        "sjukvård",
+        "äldreomsorg",
+        "förskola",
+        "vårdkö",
+        "underskötersk",
+        "trygghetssystem",
     ],
     "Ekonomi": [
-        "inflation", "ränta", "skattesänk", "tillväxt", "statsfinans", "hushållens",
+        "inflation",
+        "ränta",
+        "skattesänk",
+        "tillväxt",
+        "statsfinans",
+        "hushållens",
     ],
     "Skola & utbildning": [
         # bare "elev" deliberately excluded: it's a substring of "relevant"
         # / "relevans" and even "television" — confirmed via real text,
         # ~16% of its matches were these, not students. "elever" (plural)
         # doesn't have this collision.
-        "skola", "skolan", "elever", "lärare", "grundskol", "gymnasi", "läromedel",
-        "betyg", "utbildning",
+        "skola",
+        "skolan",
+        "elever",
+        "lärare",
+        "grundskol",
+        "gymnasi",
+        "läromedel",
+        "betyg",
+        "utbildning",
     ],
     "Försvar & säkerhet": [
-        "försvar", "totalförsvar", "nato", "militär", "beredskap", "säkerhetspolitik",
-        "underrättelse", "värnplikt",
+        "försvar",
+        "totalförsvar",
+        "nato",
+        "militär",
+        "beredskap",
+        "säkerhetspolitik",
+        "underrättelse",
+        "värnplikt",
     ],
     "Energi": [
-        "kärnkraft", "elpris", "elnät", "elförsörjning", "energipolitik", "kärnkraften",
-        "kraftverk", "elproduktion",
+        "kärnkraft",
+        "elpris",
+        "elnät",
+        "elförsörjning",
+        "energipolitik",
+        "kärnkraften",
+        "kraftverk",
+        "elproduktion",
     ],
     "Bostad": [
         # "boende" deliberately excluded: it's a substring of "äldreboende"
@@ -308,8 +354,14 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         # types), which is welfare/eldercare vocabulary, not housing-market
         # policy — confirmed via real text: ~half of its matches in one
         # sample were eldercare, not housing (see DEV_LOG).
-        "bostad", "bostäder", "hyresrätt", "bostadsbrist", "bostadsmarknad",
-        "bostadsrätt", "hyresgäst", "amortering",
+        "bostad",
+        "bostäder",
+        "hyresrätt",
+        "bostadsbrist",
+        "bostadsmarknad",
+        "bostadsrätt",
+        "hyresgäst",
+        "amortering",
     ],
     "Jämställdhet": [
         # "mäns våld" deliberately excluded: matching is substring-within-a
@@ -317,8 +369,14 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         # anything — confirmed via real text, it scored exactly zero hits.
         # "kvinnofrid" (the actual legal term, kvinnofridslagen) and
         # "kvinnomisshandel"/"hedersvåld" cover the same ground as real words.
-        "jämställd", "kvinnor", "kvinnofrid", "kvinnomisshandel", "hedersvåld",
-        "diskriminering", "hbtq", "föräldraledig",
+        "jämställd",
+        "kvinnor",
+        "kvinnofrid",
+        "kvinnomisshandel",
+        "hedersvåld",
+        "diskriminering",
+        "hbtq",
+        "föräldraledig",
     ],
 }
 

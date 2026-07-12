@@ -143,7 +143,6 @@ class TestFrameTrajectories:
             frame_trajectories(df, frames={"Bad": ["mäns våld"]})
 
 
-
 class TestTermTrajectories:
     def test_relative_frequency_per_year(self):
         df = pd.DataFrame(
