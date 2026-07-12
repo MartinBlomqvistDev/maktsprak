@@ -60,3 +60,7 @@ Thumbs.db
 
 # Loggfiler
 *.log
+
+# Utvärderingsartefakter (benchmark-körningar, confusion-matriser)
+results/
+results_new_model/

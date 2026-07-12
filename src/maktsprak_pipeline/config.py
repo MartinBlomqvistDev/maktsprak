@@ -25,6 +25,10 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 RAW_DATA_PATH: Path = PROJECT_ROOT / "data" / "raw"
 PROCESSED_DATA_PATH: Path = PROJECT_ROOT / "data" / "processed"
 
+#: Curated political tone lexicon (version-controlled in the repo, not fetched
+#: from Hugging Face Hub).  Columns: ``ord``, ``kategori``, ``vikt``.
+LEXICON_PATH: Path = PROJECT_ROOT / "data" / "lexicons" / "politisk_ton_lexikon.csv"
+
 # ---------------------------------------------------------------------------
 # Supabase credentials
 # ---------------------------------------------------------------------------

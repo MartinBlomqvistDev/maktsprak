@@ -58,3 +58,32 @@ class TestApplyTonLexicon:
         df = pd.DataFrame({"text": [""]})
         result = apply_ton_lexicon(df, lexicon_path=minimal_lexicon)
         assert result["Positivt"].iloc[0] == 0.0
+
+    def test_matching_is_case_insensitive(self, tmp_path):
+        # Regression: all-caps lexicon entries used to never match because
+        # tokens are lower-cased. Matching must be case-folded on both sides.
+        lex = tmp_path / "lex.csv"
+        lex.write_text("ord,kategori,vikt\nFAKTA,Sak,1.0\n", encoding="utf-8")
+        df = pd.DataFrame({"text": ["Det här handlar om fakta och siffror."]})
+        result = apply_ton_lexicon(df, lexicon_path=lex)
+        assert result["Sak"].iloc[0] > 0.0
+
+    def test_multiword_phrase_matches(self, tmp_path):
+        # Regression: multi-word entries used to never match because the text
+        # was split into single tokens. Phrases must match as a unit.
+        lex = tmp_path / "lex.csv"
+        lex.write_text("ord,kategori,vikt\nvi mot dem,Pop,2.0\n", encoding="utf-8")
+        df = pd.DataFrame(
+            {"text": ["Det är alltid vi mot dem i den här debatten.", "Vi samarbetar."]}
+        )
+        result = apply_ton_lexicon(df, lexicon_path=lex)
+        assert result["Pop"].iloc[0] > 0.0
+        assert result["Pop"].iloc[1] == 0.0
+
+    def test_single_word_does_not_match_as_substring(self, tmp_path):
+        # "hot" must not fire inside "hotell" — single words match whole tokens.
+        lex = tmp_path / "lex.csv"
+        lex.write_text("ord,kategori,vikt\nhot,Agg,1.0\n", encoding="utf-8")
+        df = pd.DataFrame({"text": ["Vi bokade ett hotell i staden."]})
+        result = apply_ton_lexicon(df, lexicon_path=lex)
+        assert result["Agg"].iloc[0] == 0.0

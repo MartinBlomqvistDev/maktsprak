@@ -1,2 +1,2 @@
-# Init-fil för paketet maktsprak_pipeline
-# Tom fil, behövs för att Python ska se detta som ett paket
+# Init file for the maktsprak_pipeline package.
+# Intentionally empty: marks this directory as a Python package.

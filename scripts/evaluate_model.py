@@ -16,7 +16,7 @@ Usage::
 
     python scripts/evaluate_model.py \
         --model MartinBlomqvist/maktsprak_classifier_clean \
-        --model data/models/party_classifier_v1_baseline \
+        --model data/models/legacy/v1_2025-09_row-split \
         --model data/models/party_classifier \
         --limit 2000
 

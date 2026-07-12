@@ -4,7 +4,6 @@
 # =========================================================
 
 import random
-import re
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -16,7 +15,6 @@ import plotly.express as px
 import requests
 import streamlit as st
 from bs4 import BeautifulSoup
-from huggingface_hub import hf_hub_download
 from streamlit_option_menu import option_menu
 from wordcloud import WordCloud
 
@@ -32,14 +30,20 @@ if str(proj_root) not in sys.path:
 # =====================
 # Project imports
 # =====================
-from src.maktsprak_pipeline.config import PARTY_ORDER
+from src.maktsprak_pipeline.config import LEXICON_PATH, PARTY_ORDER
 from src.maktsprak_pipeline.db import (
     fetch_latest_speech_date_cached,
     fetch_speeches_count,
     fetch_speeches_historical,
 )
 from src.maktsprak_pipeline.model import load_model_and_tokenizer, predict_party
-from src.maktsprak_pipeline.nlp import apply_ton_lexicon, clean_text, combined_stopwords
+from src.maktsprak_pipeline.nlp import (
+    apply_ton_lexicon,
+    clean_text,
+    group_token_counts,
+    weighted_log_odds,
+    wordcloud_frequencies,
+)
 
 # =====================
 # App config
@@ -55,14 +59,22 @@ st.set_page_config(
 # =====================
 PAGE_OPTIONS = ["Om projektet", "Partiprediktion", "Språkbruk & Retorik", "Evaluering", "Historik"]
 
+# Partifärger (avlästa på vit bakgrund) — används som data i ordmolnen.
+PARTY_COLORS = {
+    "S": "#C8102E",
+    "M": "#1C6FB5",
+    "SD": "#A98C00",
+    "C": "#009933",
+    "V": "#AF0000",
+    "KD": "#0B3D91",
+    "L": "#1E6BB8",
+    "MP": "#4E9A06",
+}
+DEFAULT_PARTY_COLOR = "#444444"
+
 # =====================
 # Helper-funktioner
 # =====================
-def preprocess_for_wordcloud(text_blob: str, min_length: int = 3) -> str:
-    words = re.sub(r'[^a-zA-ZåäöÅÄÖ\s]', '', text_blob).lower().split()
-    filtered_words = [word for word in words if word not in combined_stopwords and len(word) >= min_length]
-    return " ".join(filtered_words)
-
 @st.cache_data(ttl=900)
 def fetch_news(feed_url="http://www.svt.se/nyheter/inrikes/rss.xml"):
     feed = feedparser.parse(feed_url)
@@ -212,17 +224,14 @@ def is_unwanted_content(title: str, content: str) -> bool:
 # =====================
 # Ladda modell, tokenizer och lexikon
 # =====================
-@st.cache_resource(show_spinner="Laddar AI-modell och lexikon...")
+@st.cache_resource(show_spinner="Laddar AI-modell...")
 def load_all_resources():
-    model, tokenizer = load_model_and_tokenizer() 
-    lexicon_local_path = hf_hub_download(
-        repo_id="MartinBlomqvist/maktsprak_bert",
-        filename="politisk_ton_lexikon.csv",
-        revision="main"
-    )
-    return model, tokenizer, Path(lexicon_local_path)
+    # Lexikonet ligger nu versionshanterat i repot (config.LEXICON_PATH),
+    # inte på HF Hub — enklare att testa och granska.
+    model, tokenizer = load_model_and_tokenizer()
+    return model, tokenizer
 
-model, tokenizer, LEXICON_PATH = load_all_resources()
+model, tokenizer = load_all_resources()
 
 # =====================
 # Module-level cached helpers
@@ -238,6 +247,45 @@ def _compute_lexicon_cached(df: pd.DataFrame, text_col: str, lexicon_path: str) 
 def _fetch_wordcloud_data(start_date, end_date) -> pd.DataFrame:
     df = fetch_speeches_historical(start_date, end_date)
     return df[["text", "party"]]
+
+
+@st.cache_data(show_spinner=False)
+def _compute_distinctiveness(
+    df: pd.DataFrame, min_count: int = 5, alpha: float = 0.01
+) -> dict[str, dict[str, float]]:
+    """Fightin' Words z-scores per parti över hela urvalet (cachat).
+
+    Ordmolnen visar varje partis *särskiljande* ordförråd relativt de andra
+    partierna, inte de vanligaste (som blir samma politiska slitord för alla).
+    """
+    counts = group_token_counts(df, group_col="party", text_col="text")
+    return weighted_log_odds(counts, alpha=alpha, min_count=min_count)
+
+
+def _render_distinctive_cloud(
+    scores: dict[str, dict[str, float]], party: str, top_n: int = 60
+) -> None:
+    """Rita ett distinktivt ordmoln för *party* i partiets färg."""
+    freqs = wordcloud_frequencies(scores, party, top_n=top_n)
+    if not freqs:
+        st.write(f"**{party}** (För lite data)")
+        return
+
+    color = PARTY_COLORS.get(party, DEFAULT_PARTY_COLOR)
+    wc = WordCloud(
+        width=400,
+        height=300,
+        background_color="white",
+        prefer_horizontal=0.9,
+        color_func=lambda *args, **kwargs: color,
+    ).generate_from_frequencies(freqs)
+
+    st.write(f"**{party}**")
+    fig_wc, ax = plt.subplots(figsize=(4, 3))
+    ax.imshow(wc, interpolation="bilinear")
+    ax.axis("off")
+    st.pyplot(fig_wc, bbox_inches="tight", dpi=fig_wc.dpi)
+    plt.close(fig_wc)
 
 
 # =====================
@@ -580,33 +628,20 @@ elif page == "Språkbruk & Retorik":
 
         # --- WordClouds ---
         st.divider()
-        st.subheader("Vanligaste orden per parti")
+        st.subheader("Partiernas särskiljande ord")
+        st.caption(
+            "Storleken visar hur *utmärkande* ett ord är för partiet jämfört med "
+            "övriga (viktad log-odds med Dirichlet-prior, Monroe m.fl. 2008), "
+            "inte hur vanligt det är. Delade politiska slitord filtreras bort."
+        )
+        scores = _compute_distinctiveness(df[["text", "party"]])
         cols = st.columns(4)
         for i, party in enumerate(PARTY_ORDER):
             with cols[i % 4]:
-                raw_text_blob = " ".join(df[df["party"] == party]["text"].dropna().tolist())
-                cleaned_text_for_cloud = preprocess_for_wordcloud(raw_text_blob)
-
-                if not raw_text_blob.strip():
-                    st.write(f"**{party}** (Ingen data)")
-                elif not cleaned_text_for_cloud.strip():
-                    st.write(f"**{party}** (För lite text efter rensning)")
-                else:
-                    try:
-                        wc = WordCloud(
-                            width=400,
-                            height=300,
-                            background_color="white",
-                            collocations=False
-                        ).generate(cleaned_text_for_cloud)
-                        st.write(f"**{party}**")
-                        fig_wc, ax = plt.subplots(figsize=(4, 3))
-                        ax.imshow(wc, interpolation='bilinear')
-                        ax.axis("off")
-                        st.pyplot(fig_wc, bbox_inches='tight', dpi=fig_wc.dpi)
-                        plt.close(fig_wc)
-                    except Exception as e:
-                        st.error(f"Kunde inte generera moln för {party}: {e}")
+                try:
+                    _render_distinctive_cloud(scores, party)
+                except Exception as e:
+                    st.error(f"Kunde inte generera moln för {party}: {e}")
 
 
 elif page == "Evaluering":
@@ -744,8 +779,12 @@ elif page == "Historik":
     st.divider()
 
     # --- WordClouds per parti (helt separat) ---
-    st.subheader("Jämför partiernas vanligaste ord")
-    st.markdown("Genereras endast när du klickar på knappen.")
+    st.subheader("Jämför partiernas särskiljande ord")
+    st.markdown(
+        "Storleken visar hur *utmärkande* ordet är för partiet under perioden, "
+        "inte hur vanligt (viktad log-odds, Monroe m.fl. 2008). "
+        "Genereras endast när du klickar på knappen."
+    )
 
     time_periods_for_cloud = {
         "Senaste 10 åren": (today - timedelta(days=365*10), today),
@@ -767,24 +806,11 @@ elif page == "Historik":
             st.warning(f"Ingen data hittades för ordmoln under '{period_for_cloud}'.")
         else:
             st.markdown(f"**Ordmoln baserat på tal under perioden: {period_for_cloud}**")
+            scores = _compute_distinctiveness(df_wc)
             cols = st.columns(4)
             for i, party in enumerate(PARTY_ORDER):
                 with cols[i % 4]:
-                    df_party = df_wc[df_wc['party'] == party]
-                    if df_party.empty:
-                        st.write(f"**{party}** (Ingen data)")
-                        continue
-
-                    raw_text_blob = " ".join(df_party["text"].dropna().tolist())
-                    cleaned_text_for_cloud = preprocess_for_wordcloud(raw_text_blob)
-                    if not cleaned_text_for_cloud.strip():
-                        st.write(f"**{party}** (För lite text efter rensning)")
-                        continue
-
-                    wc = WordCloud(width=400, height=300, background_color="white", collocations=False).generate(cleaned_text_for_cloud)
-                    st.write(f"**{party}**")
-                    fig_wc, ax = plt.subplots(figsize=(4, 3))
-                    ax.imshow(wc, interpolation='bilinear')
-                    ax.axis("off")
-                    st.pyplot(fig_wc, bbox_inches='tight', dpi=fig_wc.dpi)
-                    plt.close(fig_wc)
+                    try:
+                        _render_distinctive_cloud(scores, party)
+                    except Exception as e:
+                        st.error(f"Kunde inte generera moln för {party}: {e}")
