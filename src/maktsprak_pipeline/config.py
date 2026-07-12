@@ -75,6 +75,12 @@ X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_B
 #: All valid Riksdag party abbreviations.
 VALID_PARTIES: frozenset[str] = frozenset({"C", "KD", "L", "M", "MP", "S", "SD", "V"})
 
+#: Historical party-abbreviation renames, applied at ingestion so the same party
+#: carries one label across time.  Folkpartiet (``FP``) became Liberalerna
+#: (``L``) in 2015; without this, pre-2015 backfilled speeches would be dropped
+#: (``FP`` is not in :data:`VALID_PARTIES`) or split into a phantom second party.
+PARTY_RENAMES: dict[str, str] = {"FP": "L"}
+
 #: Left-to-right display order for charts and tables.
 PARTY_ORDER: list[str] = ["V", "MP", "S", "C", "L", "KD", "M", "SD"]
 

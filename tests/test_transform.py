@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from src.maktsprak_pipeline.pipeline.transform import _SPEECH_RE
+from src.maktsprak_pipeline.pipeline.transform import _SPEECH_RE, _canonical_party
 
 
 class TestSpeechRegex:
@@ -82,3 +82,39 @@ class TestSpeechRegex:
         assert party == "M"
         assert "Maria Malmer Stenergard" in speaker
         assert "oberoende" not in body
+
+
+class TestCanonicalParty:
+    """Historical party-abbreviation normalisation for backfilled protocols."""
+
+    def test_folkpartiet_maps_to_liberalerna(self):
+        # Pre-2015 protocols label the Liberals "FP"; they must fold into "L"
+        # so drift analysis sees one continuous party.
+        assert _canonical_party("FP") == "L"
+
+    def test_current_parties_pass_through(self):
+        for p in ["S", "M", "SD", "C", "V", "KD", "MP", "L"]:
+            assert _canonical_party(p) == p
+
+    def test_unknown_party_returns_none(self):
+        assert _canonical_party("-") is None
+        assert _canonical_party("XYZ") is None
+
+    def test_lowercase_party_is_normalised(self):
+        # Protocols up to ~2009 lower-case the party abbreviation.
+        assert _canonical_party("m") == "M"
+        assert _canonical_party("s") == "S"
+        assert _canonical_party("fp") == "L"  # lowercase + historical rename
+
+
+class TestSpeechRegexOldFormat:
+    """Pre-2010 protocols lower-case the party in the header."""
+
+    def test_lowercase_party_header_matches(self):
+        text = "Anf. 2 HANS STENBERG (s): Herr talman! Jag vill börja med att tacka."
+        matches = _SPEECH_RE.findall(text)
+        assert len(matches) == 1
+        speaker, party, body = matches[0]
+        assert speaker.strip() == "HANS STENBERG"
+        assert party == "s"  # raw capture; canonicalised downstream
+        assert "talman" in body

@@ -9,6 +9,7 @@ import requests
 from tqdm import tqdm
 
 from ..config import RIKSDAG_BASE_URL
+from ..db import insert_speeches
 from ..logger import get_logger
 from .extract import extract_all_tweets, extract_riksdag_protocols
 from .load import load_riksdag, load_tweets
@@ -90,31 +91,48 @@ def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.E
     return all_docs
 
 
-def run_historical_backfill(from_date: str) -> None:
-    """Back-fill all Riksdag protocols from *from_date* to today.
+def run_historical_backfill(from_date: str, to_date: str | None = None) -> None:
+    """Back-fill Riksdag protocols over a date window.
 
-    Paginates through the Riksdag API, downloads and parses each protocol PDF,
-    then upserts every speech to Supabase.
+    Paginates the Riksdag API, downloads and parses each protocol PDF, then
+    **batch-upserts** each protocol's speeches to Supabase (one request per
+    protocol instead of one per row).  Every upsert is keyed on the row ``id``,
+    so a re-run is idempotent and the job can be safely restarted after an
+    interruption.  A failure on any single protocol is logged and skipped so a
+    long unattended run cannot be aborted by one bad PDF.
 
     Args:
-        from_date: ISO date string for the start of the backfill window
-            (e.g. ``"2025-09-15"``).
+        from_date: ISO date string for the start of the window (e.g. ``"2002-09-01"``).
+        to_date:   ISO date string for the end of the window.  Defaults to today.
+            Bound this to avoid re-processing an already-ingested range.
     """
     from datetime import datetime
 
-    to_date = datetime.today().strftime("%Y-%m-%d")
-    logger.info(f"Starting historical backfill: {from_date} → {to_date}")
+    to_date = to_date or datetime.today().strftime("%Y-%m-%d")
+    logger.info(f"Starting historical backfill: {from_date} -> {to_date}")
 
     all_docs = fetch_protocol_docs(from_date, to_date)
-    logger.info(f"Fetched {len(all_docs)} protocols. Starting PDF extraction…")
+    logger.info(f"Fetched {len(all_docs)} protocols. Starting PDF extraction...")
 
     total_speeches = 0
-    for doc in tqdm(all_docs, desc="Backfilling protocols"):
-        speeches = _process_doc(doc)
-        if speeches:
-            load_riksdag(speeches)
-            total_speeches += len(speeches)
+    failures = 0
+    for i, doc in enumerate(tqdm(all_docs, desc="Backfilling protocols"), start=1):
+        try:
+            speeches = _process_doc(doc)
+            if speeches:
+                inserted = insert_speeches(speeches)
+                total_speeches += inserted
+        except Exception as exc:  # noqa: BLE001 — one bad PDF must not abort the run
+            failures += 1
+            logger.warning(f"Backfill skipped a protocol ({exc}).")
+        time.sleep(0.3)  # be polite to the Riksdag file host; cuts connection resets
+        if i % 50 == 0:
+            logger.info(
+                f"Progress: {i}/{len(all_docs)} protocols, "
+                f"{total_speeches} speeches upserted, {failures} skipped."
+            )
 
     logger.info(
-        f"Historical backfill complete: {total_speeches} speeches from {len(all_docs)} protocols."
+        f"Historical backfill complete: {total_speeches} speeches from "
+        f"{len(all_docs)} protocols ({failures} skipped)."
     )

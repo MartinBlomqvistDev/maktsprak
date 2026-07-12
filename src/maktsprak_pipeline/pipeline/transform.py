@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import time
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -12,7 +13,7 @@ import pdfplumber
 import requests
 from tqdm import tqdm
 
-from ..config import RAW_DATA_PATH, VALID_PARTIES
+from ..config import PARTY_RENAMES, RAW_DATA_PATH, VALID_PARTIES
 from ..logger import get_logger
 
 logger = get_logger()
@@ -35,17 +36,40 @@ logger = get_logger()
 #
 # Capture groups:
 #   1 — speaker name
-#   2 — party abbreviation (1-2 uppercase letters including Swedish Å/Ä/Ö)
+#   2 — party abbreviation (1-2 letters incl. Swedish Å/Ä/Ö).  Protocols up to
+#       ~2009 lower-case the party — ``(m)``, ``(fp)`` — and switched to
+#       upper-case ``(M)`` around 2010; both are accepted and normalised to
+#       upper case in :func:`_canonical_party`.
 #   3 — speech body (up to the next Anf. marker or end-of-string)
 # ---------------------------------------------------------------------------
 _SPEECH_RE = re.compile(
     r"Anf\.\s+\d+\s+"
     r"((?:(?!Anf\.\s+\d).)*?)"  # 1: speaker name (never crosses a marker)
-    r"\s+\(([A-ZÅÄÖ]{1,2})\)"  # 2: party
+    r"\s+\(([A-Za-zÅÄÖåäö]{1,2})\)"  # 2: party (either case; see note above)
     r"(?:\s+replik)?:"  # optional reply marker
     r"((?:(?!Anf\.\s+\d).)*)",  # 3: body (never crosses a marker)
     re.S,
 )
+
+
+def _canonical_party(raw_party: str) -> str | None:
+    """Map a raw party abbreviation to its canonical form, or ``None`` if unknown.
+
+    Upper-cases the abbreviation (pre-2010 protocols lower-case it), applies
+    historical renames (e.g. ``FP`` -> ``L``, see :data:`~config.PARTY_RENAMES`)
+    so one party keeps a single label across time, then validates against
+    :data:`~config.VALID_PARTIES`.
+
+    Args:
+        raw_party: The party abbreviation as captured from the protocol header,
+            in either case (``m``, ``FP`` …).
+
+    Returns:
+        The canonical party code, or ``None`` if it is not a valid party.
+    """
+    party = raw_party.upper()
+    party = PARTY_RENAMES.get(party, party)
+    return party if party in VALID_PARTIES else None
 
 # ---------------------------------------------------------------------------
 # Column-aware PDF text extraction
@@ -186,6 +210,35 @@ def _extract_protocol_text(pdf_path: Path) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _download_pdf(file_url: str, pdf_path: Path, retries: int = 5) -> None:
+    """Download a protocol PDF, retrying transient connection failures.
+
+    The Riksdag file host drops connections under rapid sequential requests
+    (``ConnectionResetError`` / ``RemoteDisconnected``), especially during a
+    large backfill.  Without retries those protocols are lost.  Retry with a
+    short growing back-off (2, 4, 6, 8, 10 s) recovers them.
+
+    Args:
+        file_url: The protocol PDF URL.
+        pdf_path: Where to write the downloaded bytes.
+        retries:  Number of attempts before giving up.
+
+    Raises:
+        RuntimeError: If every attempt fails.
+    """
+    last_exc: Exception | None = None
+    for attempt in range(retries):
+        try:
+            resp = requests.get(file_url, timeout=60)
+            resp.raise_for_status()
+            pdf_path.write_bytes(resp.content)
+            return
+        except requests.exceptions.RequestException as exc:
+            last_exc = exc
+            time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"PDF download failed after {retries} attempts: {file_url}") from last_exc
+
+
 def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
     """Parse a single Riksdag protocol XML element into speech records.
 
@@ -214,9 +267,7 @@ def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
 
     # Download PDF only if not already cached from a previous run.
     if not pdf_path.exists():
-        resp_pdf = requests.get(file_url, timeout=60)
-        resp_pdf.raise_for_status()
-        pdf_path.write_bytes(resp_pdf.content)
+        _download_pdf(file_url, pdf_path)
 
     try:
         full_text = _extract_protocol_text(pdf_path)
@@ -228,8 +279,9 @@ def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
     # who holds the floor multiple times within one protocol is merged into a
     # single record.
     grouped: defaultdict[tuple[str, str], list[str]] = defaultdict(list)
-    for speaker, party, speech_body in _SPEECH_RE.findall(full_text):
-        if party not in VALID_PARTIES:
+    for speaker, raw_party, speech_body in _SPEECH_RE.findall(full_text):
+        party = _canonical_party(raw_party)
+        if party is None:
             continue
         body = speech_body.strip()
         if body:
