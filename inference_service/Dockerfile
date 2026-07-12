@@ -11,6 +11,7 @@ COPY app.py .
 
 ENV MODEL_NAME_OR_PATH=MartinBlomqvist/maktsprak_classifier_clean
 
+ENV PORT=7860
 EXPOSE 7860
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD uvicorn app:app --host 0.0.0.0 --port ${PORT}
