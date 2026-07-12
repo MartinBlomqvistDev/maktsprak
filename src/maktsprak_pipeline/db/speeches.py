@@ -116,11 +116,67 @@ def fetch_speeches_historical(
     Returns:
         DataFrame with columns ``id``, ``text``, ``party``, ``protocol_date``.
     """
+    # Keyset-paginate by the primary key ``id`` (indexed) instead of filtering /
+    # ordering on ``protocol_date`` (not indexed).  On the ~80k-row corpus a
+    # date-filtered, date-sorted scan of the text-heavy table exceeds Supabase's
+    # statement timeout; a PK keyset scan stays cheap and stable.  The date range
+    # is applied in pandas afterwards.  (Adding a Postgres index on
+    # ``protocol_date`` would let the filter be pushed back down to the DB.)
+    dfs: list[pd.DataFrame] = []
+    batch_size = 200  # small pages stay under the (tightened) statement timeout
+    last_id = ""
+
+    while True:
+        query = (
+            supabase.table("speeches")
+            .select("id, text, party, protocol_date")
+            .order("id", desc=False)
+            .limit(batch_size)
+        )
+        if last_id:
+            query = query.gt("id", last_id)
+        resp = query.execute()
+        if not resp.data:
+            break
+        dfs.append(pd.DataFrame(resp.data))
+        if len(resp.data) < batch_size:
+            break
+        last_id = resp.data[-1]["id"]
+
+    if not dfs:
+        return pd.DataFrame(columns=["id", "text", "party", "protocol_date"])
+
+    df = pd.concat(dfs, ignore_index=True)
+    df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")
+    df = df.dropna(subset=["protocol_date"])
+    if start_date:
+        df = df[df["protocol_date"] >= pd.to_datetime(start_date)]
+    if end_date:
+        df = df[df["protocol_date"] <= pd.to_datetime(end_date)]
+    return df.sort_values("protocol_date").reset_index(drop=True)
+
+
+def fetch_speeches_historical_v2(
+    start_date: str = "2015-01-01",
+    end_date: str | None = None,
+) -> pd.DataFrame:
+    """Fetch speeches from Supabase within a date range, using pagination.
+    VERSION 2: Includes the 'speaker' column for Speaker-Independent ML Training.
+
+    Args:
+        start_date: Inclusive lower bound (ISO date string).
+        end_date:   Inclusive upper bound.  ``None`` means no upper limit.
+
+    Returns:
+        DataFrame with columns ``id``, ``text``, ``party``, ``protocol_date``, ``speaker``.
+    """
     dfs: list[pd.DataFrame] = []
     batch_size = 1000
     offset = 0
 
-    query = supabase.table("speeches").select("id, text, party, protocol_date")
+    # ÄNDRING: Lade till 'speaker' i select-frågan.
+    query = supabase.table("speeches").select("id, text, party, protocol_date, speaker")
+    
     if start_date:
         query = query.gte("protocol_date", str(start_date))
     if end_date:
@@ -137,7 +193,7 @@ def fetch_speeches_historical(
         offset += batch_size
 
     if not dfs:
-        return pd.DataFrame(columns=["id", "text", "party", "protocol_date"])
+        return pd.DataFrame(columns=["id", "text", "party", "protocol_date", "speaker"])
 
     df = pd.concat(dfs, ignore_index=True)
     df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")

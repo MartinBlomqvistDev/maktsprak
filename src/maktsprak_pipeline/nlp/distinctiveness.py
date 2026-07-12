@@ -28,6 +28,57 @@ from .cleaning import combined_stopwords
 # form ("moskén", "moskéer") collapses to the same truncated stem.
 _TOKEN_RE = re.compile(r"[a-zA-ZÀ-ÖØ-öø-ÿ]+")
 
+# Runs of 2+ consecutive uppercase letters — how Riksdag protocols render a
+# speaker's actual name ("JOSEF FRANSSON"), as opposed to their title, which is
+# mixed case ("Statsminister", "Näringsminister").
+_CAPS_RUN_RE = re.compile(r"[A-ZÅÄÖ]{2,}")
+
+
+def speaker_name_stopwords(
+    speakers: pd.Series | list[str],
+    min_length: int = 3,
+    exclude: frozenset[str] = combined_stopwords,
+) -> frozenset[str]:
+    """Derive a name stopword set directly from the corpus's own speaker labels.
+
+    ``POLITICIAN_NAME_STOPWORDS`` below is a manually curated list — it only
+    covers the handful of ministers and party leaders someone happened to
+    notice leaking into a sample.  With ~1,600 unique speakers across
+    2002-2026, manual curation cannot keep up (older years, in particular,
+    surface many names nobody has reviewed).  This instead reads the corpus's
+    own ``speaker`` column, which is ground truth for exactly one thing: every
+    person who actually spoke.
+
+    The extraction exploits how the protocols render names: the person's name
+    is in ALL CAPS ("JOSEF FRANSSON"); a title, when present, is mixed case
+    ("Statsminister", "Näringsminister") and is skipped automatically because
+    it never matches the all-caps run.  Tokens already present in *exclude*
+    are dropped — this is what keeps ordinary words that double as first names
+    safe (e.g. a speaker surnamed "Hans" would otherwise reintroduce "hans" =
+    "his" as a stopword; "hans" is already in ``combined_stopwords``, so it's
+    excluded here for free, with no manual allowlist needed).
+
+    Args:
+        speakers:   The corpus's ``speaker`` column (or any iterable of raw
+            speaker strings).
+        min_length: Minimum token length to keep.
+        exclude:    Tokens that must never be added, even if they appear in an
+            all-caps name run. Defaults to the general stopword list.
+
+    Returns:
+        Lower-cased name tokens (given names, surnames, hyphenated parts) safe
+        to use as an additional ``stopwords`` set.
+    """
+    names: set[str] = set()
+    for raw in speakers:
+        if not isinstance(raw, str):
+            continue
+        for run in _CAPS_RUN_RE.findall(raw):
+            for word in _TOKEN_RE.findall(run.lower()):
+                if len(word) >= min_length and word not in exclude:
+                    names.add(word)
+    return frozenset(names)
+
 # Party self-references (and their morphological variants) are trivially
 # distinctive — every party names itself and its rivals — but tell you nothing
 # about *rhetoric*.  Filter them so the distinctiveness clouds surface subject
@@ -90,17 +141,62 @@ PARTY_NAME_STOPWORDS: frozenset[str] = frozenset(
         "kristdemokratisk",
         "kristdemokratiska",
         "kristdemokraten",
-        # Liberalerna (keep the ideological adjectives "liberal"/"liberala")
+        # Liberalerna (keep the ideological adjectives "liberal"/"liberala").
+        # Pre-2015 protocols use the party's old name, Folkpartiet.
         "liberaler",
         "liberalerna",
         "liberalernas",
         "liberalen",
+        "folkparti",
+        "folkpartiet",
+        "folkpartiets",
+        "folkpartist",
+        "folkpartister",
+    }
+)
+
+# Politician given/family names.  A politician's name is trivially
+# "distinctive" — to their own party (they're quoted, they speak in first
+# person, allies reference them) and to whichever years they held office — but
+# it's not rhetoric, just a proper noun.  Left unfiltered it crowds out actual
+# subject matter in both the per-party fingerprints and the time-based drift
+# analyses (top_movers, yearly_signatures).  This is a best-effort, manually
+# curated v1 covering ministers and party leaders active 2002-2026.  Names
+# that double as ordinary Swedish words ("hans" = his, "bo" = to live,
+# "sten" = stone, "per"/"jan" as loose fragments) are deliberately left out to
+# avoid false-positive filtering.  A systematic (NER-based) filter is a
+# future improvement.
+POLITICIAN_NAME_STOPWORDS: frozenset[str] = frozenset(
+    {
+        # surnames (low collision risk)
+        "löfven", "wallström", "hallengren", "kinberg", "batra", "svantesson",
+        "forssell", "strömmer", "stenergard", "roswall", "pourmokhtari",
+        "sabuni", "reinfeldt", "romson", "fridolin", "sjöstedt", "dadgostar",
+        "damberg", "hultqvist", "ygeman", "shekarabi", "kristersson",
+        "åkesson", "lööf", "wikström", "regnér", "fritzon", "barenfeld",
+        "beckman", "björnsdotter", "brandberg", "thorell", "edholm", "britz",
+        "busch", "pehrson", "carlson", "bolund", "stenevi", "dousa", "linde",
+        "borg", "smith", "schulte", "strandhäll", "johansson", "morgan",
+        "odell", "littorin", "björck", "olofsson",
+        # given names (checked for common-word collisions; ambiguous ones like
+        # "hans" [=his], "bo" [=live], "sten" [=stone], "per"/"jan" excluded)
+        "erik", "stefan", "jonas", "margot", "ylva", "isabella", "roger",
+        "gustav", "sven", "johan", "karin", "maria", "lars", "mikael",
+        "fredrik", "magdalena", "ulf", "jimmie", "annie", "nooshi", "peter",
+        "thomas", "carl", "göran", "mona", "lena", "elisabeth", "kristina",
+        "catarina", "monica", "birgitta", "gunnar", "bengt", "nils", "olof",
+        "johanna", "emma", "sofia", "daniel", "david", "markus", "rickard",
+        "teresa", "serkan", "benjamin", "edward", "tobias", "ebba", "paulina",
+        "linus", "gabriel", "helene", "anders", "anette", "romina", "ann",
+        "alexandra", "märta", "patrik", "maud",
     }
 )
 
 # Default stop-word set for distinctiveness scoring: the general Swedish +
-# political list, plus the party self-names above.
-_DISTINCT_STOPWORDS: frozenset[str] = combined_stopwords | PARTY_NAME_STOPWORDS
+# political list, plus the party self-names and curated politician names above.
+_DISTINCT_STOPWORDS: frozenset[str] = (
+    combined_stopwords | PARTY_NAME_STOPWORDS | POLITICIAN_NAME_STOPWORDS
+)
 
 
 def tokenize(

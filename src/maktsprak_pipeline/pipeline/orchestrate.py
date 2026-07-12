@@ -49,6 +49,35 @@ def run_etl(lookback_days: int = 7) -> None:
     logger.info("=" * 55)
 
 
+def _get_with_retry(url: str, timeout: int = 30, retries: int = 5) -> requests.Response:
+    """GET a URL, retrying transient connection failures with growing back-off.
+
+    The Riksdag host intermittently drops connections (``RemoteDisconnected`` /
+    ``ConnectionReset``); without retries a single reset aborts a long backfill.
+
+    Args:
+        url:     The URL to fetch.
+        timeout: Per-request timeout in seconds.
+        retries: Number of attempts before giving up.
+
+    Returns:
+        The successful :class:`requests.Response`.
+
+    Raises:
+        RuntimeError: If every attempt fails.
+    """
+    last_exc: Exception | None = None
+    for attempt in range(retries):
+        try:
+            resp = requests.get(url, timeout=timeout)
+            resp.raise_for_status()
+            return resp
+        except requests.exceptions.RequestException as exc:
+            last_exc = exc
+            time.sleep(3 * (attempt + 1))
+    raise RuntimeError(f"GET failed after {retries} attempts: {url}") from last_exc
+
+
 def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.Element]:
     """Paginate the Riksdag API and return every protocol ``<dokument>`` element.
 
@@ -71,8 +100,7 @@ def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.E
             f"?sok=&doktyp=prot&from={from_date}&tom={to_date}"
             f"&utformat=xml&sort=datum&sortorder=asc&p={page}"
         )
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
+        resp = _get_with_retry(url, timeout=30)
         root = ET.fromstring(resp.content)
 
         docs = root.findall(".//dokument")

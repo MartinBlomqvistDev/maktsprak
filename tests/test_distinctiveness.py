@@ -7,8 +7,10 @@ from collections import Counter
 import pandas as pd
 
 from src.maktsprak_pipeline.nlp.distinctiveness import (
+    POLITICIAN_NAME_STOPWORDS,
     distinctive_words,
     group_token_counts,
+    speaker_name_stopwords,
     tokenize,
     weighted_log_odds,
     wordcloud_frequencies,
@@ -76,6 +78,72 @@ class TestGroupTokenCounts:
         assert "vänsterpartiet" not in counts["V"]
         assert counts["SD"]["migranter"] == 1
         assert counts["V"]["gaza"] == 1
+
+    def test_liberal_party_old_name_filtered(self):
+        # Pre-2015 protocols call the party Folkpartiet, not Liberalerna —
+        # the old name must be filtered too, or it leaks into L's fingerprint.
+        df = pd.DataFrame(
+            {"party": ["L"], "text": ["folkpartiet vill skolan"]},
+        )
+        counts = group_token_counts(df)
+        assert "folkpartiet" not in counts["L"]
+        assert counts["L"]["skolan"] == 1
+
+    def test_politician_names_filtered_by_default(self):
+        # A party's own speeches naturally quote/reference their own leader
+        # and rivals by name — that's a proper noun, not rhetoric, and would
+        # otherwise dominate the per-party fingerprint cards.
+        df = pd.DataFrame(
+            {
+                "party": ["S", "M"],
+                "text": ["löfven löfven jobb", "magdalena magdalena skatterna"],
+            }
+        )
+        counts = group_token_counts(df)
+        assert "löfven" not in counts["S"]
+        assert "magdalena" not in counts["M"]
+        assert counts["S"]["jobb"] == 1
+        assert counts["M"]["skatterna"] == 1
+
+
+class TestPoliticianNameStopwords:
+    def test_ambiguous_common_words_excluded(self):
+        # These are real Swedish words that also happen to be first names —
+        # must NOT be in the filter, or ordinary sentences get mangled.
+        for ambiguous in ["hans", "bo", "sten", "per", "jan"]:
+            assert ambiguous not in POLITICIAN_NAME_STOPWORDS
+
+
+class TestSpeakerNameStopwords:
+    def test_extracts_all_caps_name_not_mixed_case_title(self):
+        # Protocols render the person's name in ALL CAPS and the title (when
+        # present) in mixed case — the title must not leak in as a "name".
+        stops = speaker_name_stopwords(["Statsminister FREDRIK REINFELDT"])
+        assert "fredrik" in stops
+        assert "reinfeldt" in stops
+        assert "statsminister" not in stops
+
+    def test_splits_hyphenated_surnames(self):
+        stops = speaker_name_stopwords(["CECILIE TENFJORD-TOFTBY"])
+        assert "tenfjord" in stops
+        assert "toftby" in stops
+
+    def test_known_collision_words_excluded_automatically(self):
+        # A speaker surnamed "Hans" must not reintroduce "hans" (= "his") as a
+        # stopword — it's already in combined_stopwords, so the exclude set
+        # catches it with no manual allowlist required.
+        stops = speaker_name_stopwords(["HANS OLSSON"], exclude=frozenset({"hans"}))
+        assert "hans" not in stops
+        assert "olsson" in stops
+
+    def test_ignores_non_string_entries(self):
+        stops = speaker_name_stopwords(["ANNA SVENSSON", None, float("nan")])
+        assert "anna" in stops
+
+    def test_min_length_filters_short_fragments(self):
+        stops = speaker_name_stopwords(["JONAS ANDERSSON i Ö"], min_length=3)
+        assert "jonas" in stops
+        assert "ö" not in stops
 
 
 class TestWeightedLogOdds:

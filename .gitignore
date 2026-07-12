@@ -64,3 +64,13 @@ Thumbs.db
 # Utvärderingsartefakter (benchmark-körningar, confusion-matriser)
 results/
 results_new_model/
+
+# ----------------------------------------------------
+# 5. WEB (Next.js/Vercel site under web/)
+# ----------------------------------------------------
+web/node_modules/
+web/.next/
+web/.env
+web/.env*.local
+# web/src/data/*.json (precomputed site data) stays tracked — Vercel's build
+# has no Python runtime, so those JSON files ARE the deploy artifact.
