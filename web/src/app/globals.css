@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   MaktspråkAI — "Protokollet" design system
+   The parliamentary record as a forensic instrument. Bone paper, warm ink,
+   one "blue pencil" accent (the actual editorial term for redaction/markup —
+   deliberately not the terracotta-on-cream AI-default). The eight party
+   colours exist only as data (spectrum bars, live predictions), never as UI
+   chrome — semantic colour stays separate from brand.
+   ============================================================================= */
+
+:root {
+  /* --- Ground --- */
+  --paper: #e9e6db;
+  --paper-2: #dfdccf;
+  --card: #f3f1e7;
+  --ink: #211d18;
+  --ink-2: #4a453c;
+  --ink-3: #7a7468;
+  --line: #cac5b4;
+  --line-2: #b6b09c;
+
+  /* --- Accent: blue pencil (editorial redaction mark) --- */
+  --accent: #2451a4;
+  --accent-ink: #f4f1e7;
+  --accent-soft: #dde5f2;
+  --accent-soft-ink: #1c3d80;
+
+  /* --- Semantic (separate from accent/brand) --- */
+  --good: #2f6b45;
+  --good-soft: #dde8de;
+  --warn: #8a5a12;
+  --warn-soft: #efe3c8;
+  --crit: #93372a;
+  --crit-soft: #eeddd6;
+
+  /* --- Party data colours (approximate official identities; DATA ONLY) --- */
+  --party-v: #9c1c2e;
+  --party-mp: #83cf39;
+  --party-s: #e8112d;
+  --party-c: #049235;
+  --party-l: #006ab3;
+  --party-kd: #1b3e7f;
+  --party-m: #52bdec;
+  --party-sd: #ddc300;
+
+  --radius: 3px;
+  --radius-lg: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17140f;
+    --paper-2: #100e0a;
+    --card: #1e1b15;
+    --ink: #ece7da;
+    --ink-2: #bcb4a2;
+    --ink-3: #857d6c;
+    --line: #34302683;
+    --line-2: #423c2f;
+
+    --accent: #7fa8e0;
+    --accent-ink: #0d1b33;
+    --accent-soft: #202d47;
+    --accent-soft-ink: #b7cdef;
+
+    --good: #7cb88f;
+    --good-soft: #1c2b20;
+    --warn: #d1a24c;
+    --warn-soft: #2e2513;
+    --crit: #d68f7f;
+    --crit-soft: #331e19;
+
+    --party-v: #d3495e;
+    --party-mp: #94d95a;
+    --party-s: #f0475f;
+    --party-c: #3db466;
+    --party-l: #4a9fdb;
+    --party-kd: #6e8fd6;
+    --party-m: #7fcdef;
+    --party-sd: #e6d34f;
+  }
+}
+
+:root[data-theme="light"] {
+  --paper: #e9e6db; --paper-2: #dfdccf; --card: #f3f1e7;
+  --ink: #211d18; --ink-2: #4a453c; --ink-3: #7a7468;
+  --line: #cac5b4; --line-2: #b6b09c;
+  --accent: #2451a4; --accent-ink: #f4f1e7; --accent-soft: #dde5f2; --accent-soft-ink: #1c3d80;
+  --good: #2f6b45; --good-soft: #dde8de;
+  --warn: #8a5a12; --warn-soft: #efe3c8;
+  --crit: #93372a; --crit-soft: #eeddd6;
+}
+
+:root[data-theme="dark"] {
+  --paper: #17140f; --paper-2: #100e0a; --card: #1e1b15;
+  --ink: #ece7da; --ink-2: #bcb4a2; --ink-3: #857d6c;
+  --line: #34302683; --line-2: #423c2f;
+  --accent: #7fa8e0; --accent-ink: #0d1b33; --accent-soft: #202d47; --accent-soft-ink: #b7cdef;
+  --good: #7cb88f; --good-soft: #1c2b20;
+  --warn: #d1a24c; --warn-soft: #2e2513;
+  --crit: #d68f7f; --crit-soft: #331e19;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-ink);
+
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-crit: var(--crit);
+  --color-crit-soft: var(--crit-soft);
+
+  --color-party-v: var(--party-v);
+  --color-party-mp: var(--party-mp);
+  --color-party-s: var(--party-s);
+  --color-party-c: var(--party-c);
+  --color-party-l: var(--party-l);
+  --color-party-kd: var(--party-kd);
+  --color-party-m: var(--party-m);
+  --color-party-sd: var(--party-sd);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-data: var(--font-data);
+
+  --radius-card: var(--radius-lg);
+}
+
+/* -----------------------------------------------------------------------
+   Base
+   ----------------------------------------------------------------------- */
+
+* {
+  border-color: var(--line);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-feature-settings: "case" 1;
+}
+
+/* Faint fibrous paper grain — pure CSS, no image request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Transcript / "protokoll" motifs
+   ----------------------------------------------------------------------- */
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+.font-data {
+  font-family: var(--font-data), ui-monospace, "SF Mono", monospace;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* A single anf.-style transcript marker: "ANF. 42 · NAMN (PARTI):" */
+.anf-marker {
+  font-family: var(--font-data), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.anf-marker b {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* Redaction bar — used while the hero copy is still "classified". */
+.redacted {
+  background-color: var(--ink);
+  color: transparent;
+  border-radius: 2px;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .redacted { background-color: var(--ink-3); }
+}
+:root[data-theme="dark"] .redacted { background-color: var(--ink-3); }
+:root[data-theme="light"] .redacted { background-color: var(--ink); }

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+import pytest
 
 from src.maktsprak_pipeline.nlp.drift import (
     _js_divergence,
@@ -132,6 +133,14 @@ class TestFrameTrajectories:
         assert set(result.keys()) == {"Klimat"}
         assert set(result["Klimat"].keys()) == {"A"}
         assert set(result["Klimat"]["A"].keys()) == {2020}
+
+    def test_rejects_a_stem_containing_a_space(self):
+        # A phrase stem can never match a single tokenized word — it would
+        # silently score zero forever ("mäns våld" did, in a shipped frame,
+        # until this was caught). Fail loudly instead.
+        df = pd.DataFrame({"year": [2020], "party": ["A"], "text": ["text"]})
+        with pytest.raises(ValueError, match="space"):
+            frame_trajectories(df, frames={"Bad": ["mäns våld"]})
 
 
 

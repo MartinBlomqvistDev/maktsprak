@@ -1,0 +1,1938 @@
+{
+ "V": [
+  {
+   "word": "kvinnor",
+   "z": 60.4
+  },
+  {
+   "word": "borgerliga",
+   "z": 52.44
+  },
+  {
+   "word": "rättigheter",
+   "z": 48.74
+  },
+  {
+   "word": "turkiet",
+   "z": 46.64
+  },
+  {
+   "word": "rikaste",
+   "z": 43.34
+  },
+  {
+   "word": "rika",
+   "z": 42.04
+  },
+  {
+   "word": "äldreomsorgen",
+   "z": 40.92
+  },
+  {
+   "word": "vinster",
+   "z": 39.36
+  },
+  {
+   "word": "hyresrätter",
+   "z": 38.41
+  },
+  {
+   "word": "fattiga",
+   "z": 37.89
+  },
+  {
+   "word": "privata",
+   "z": 37.66
+  },
+  {
+   "word": "sjuka",
+   "z": 37.44
+  },
+  {
+   "word": "löner",
+   "z": 37.37
+  },
+  {
+   "word": "arbetsvillkor",
+   "z": 37.09
+  },
+  {
+   "word": "män",
+   "z": 36.44
+  },
+  {
+   "word": "israel",
+   "z": 36.07
+  },
+  {
+   "word": "mänskliga",
+   "z": 35.19
+  },
+  {
+   "word": "kvinnors",
+   "z": 35.14
+  },
+  {
+   "word": "vapenexport",
+   "z": 34.44
+  },
+  {
+   "word": "kärnvapen",
+   "z": 34.27
+  },
+  {
+   "word": "erdo",
+   "z": 33.6
+  },
+  {
+   "word": "israels",
+   "z": 32.46
+  },
+  {
+   "word": "riskkapitalbolag",
+   "z": 32.31
+  },
+  {
+   "word": "ojämlikheten",
+   "z": 32.08
+  },
+  {
+   "word": "fackliga",
+   "z": 31.56
+  },
+  {
+   "word": "ensamstående",
+   "z": 31.46
+  },
+  {
+   "word": "nedskärningar",
+   "z": 31.19
+  },
+  {
+   "word": "saudiarabien",
+   "z": 31.13
+  },
+  {
+   "word": "rätten",
+   "z": 30.93
+  },
+  {
+   "word": "rättigheterna",
+   "z": 30.65
+  },
+  {
+   "word": "gaza",
+   "z": 30.53
+  },
+  {
+   "word": "privatiseringar",
+   "z": 30.02
+  },
+  {
+   "word": "högern",
+   "z": 29.98
+  },
+  {
+   "word": "ockupation",
+   "z": 29.92
+  },
+  {
+   "word": "västsahara",
+   "z": 29.88
+  },
+  {
+   "word": "marocko",
+   "z": 29.14
+  },
+  {
+   "word": "afghanistan",
+   "z": 29.08
+  },
+  {
+   "word": "arbetare",
+   "z": 28.89
+  },
+  {
+   "word": "hyror",
+   "z": 28.05
+  },
+  {
+   "word": "papperslösa",
+   "z": 27.86
+  },
+  {
+   "word": "vinstintresset",
+   "z": 27.85
+  },
+  {
+   "word": "stället",
+   "z": 27.11
+  },
+  {
+   "word": "vapenexporten",
+   "z": 26.38
+  },
+  {
+   "word": "diktaturer",
+   "z": 25.81
+  },
+  {
+   "word": "palestinier",
+   "z": 25.79
+  },
+  {
+   "word": "bankerna",
+   "z": 25.77
+  },
+  {
+   "word": "vinstdrivande",
+   "z": 25.69
+  },
+  {
+   "word": "djurförsök",
+   "z": 25.66
+  },
+  {
+   "word": "mäns",
+   "z": 25.62
+  },
+  {
+   "word": "jämlikhet",
+   "z": 25.61
+  },
+  {
+   "word": "israeliska",
+   "z": 25.4
+  },
+  {
+   "word": "emu",
+   "z": 25.21
+  },
+  {
+   "word": "folkrätten",
+   "z": 25.01
+  },
+  {
+   "word": "utsläpp",
+   "z": 24.96
+  },
+  {
+   "word": "miljöskadliga",
+   "z": 24.65
+  },
+  {
+   "word": "anställda",
+   "z": 24.62
+  },
+  {
+   "word": "kurdiska",
+   "z": 24.51
+  },
+  {
+   "word": "otrygga",
+   "z": 24.29
+  },
+  {
+   "word": "allmännyttan",
+   "z": 24.24
+  },
+  {
+   "word": "handelsavtal",
+   "z": 24.2
+  }
+ ],
+ "MP": [
+  {
+   "word": "förnybar",
+   "z": 51.56
+  },
+  {
+   "word": "fossila",
+   "z": 49.14
+  },
+  {
+   "word": "utsläppen",
+   "z": 48.38
+  },
+  {
+   "word": "energi",
+   "z": 46.13
+  },
+  {
+   "word": "gröna",
+   "z": 44.65
+  },
+  {
+   "word": "klimatförändringarna",
+   "z": 43.77
+  },
+  {
+   "word": "klimatpåverkan",
+   "z": 43.45
+  },
+  {
+   "word": "utsläpp",
+   "z": 37.96
+  },
+  {
+   "word": "hållbart",
+   "z": 37.36
+  },
+  {
+   "word": "bränslen",
+   "z": 37.11
+  },
+  {
+   "word": "biologisk",
+   "z": 36.94
+  },
+  {
+   "word": "klimat",
+   "z": 36.45
+  },
+  {
+   "word": "minska",
+   "z": 35.65
+  },
+  {
+   "word": "miljö",
+   "z": 34.3
+  },
+  {
+   "word": "klimatet",
+   "z": 33.63
+  },
+  {
+   "word": "klimatpolitik",
+   "z": 31.73
+  },
+  {
+   "word": "naturen",
+   "z": 31.72
+  },
+  {
+   "word": "mångfald",
+   "z": 31.23
+  },
+  {
+   "word": "grön",
+   "z": 31.17
+  },
+  {
+   "word": "förnybara",
+   "z": 30.63
+  },
+  {
+   "word": "energieffektivisering",
+   "z": 30.62
+  },
+  {
+   "word": "arter",
+   "z": 30.49
+  },
+  {
+   "word": "uranbrytning",
+   "z": 29.85
+  },
+  {
+   "word": "klimatmålen",
+   "z": 29.02
+  },
+  {
+   "word": "natur",
+   "z": 29.02
+  },
+  {
+   "word": "klimatkrisen",
+   "z": 29.01
+  },
+  {
+   "word": "djur",
+   "z": 28.83
+  },
+  {
+   "word": "naturvårdsverket",
+   "z": 28.64
+  },
+  {
+   "word": "parisavtalet",
+   "z": 28.29
+  },
+  {
+   "word": "klimatmål",
+   "z": 27.48
+  },
+  {
+   "word": "vättern",
+   "z": 27.19
+  },
+  {
+   "word": "olja",
+   "z": 26.92
+  },
+  {
+   "word": "hållbar",
+   "z": 26.57
+  },
+  {
+   "word": "klimatanpassning",
+   "z": 26.56
+  },
+  {
+   "word": "föredrogs",
+   "z": 26.39
+  },
+  {
+   "word": "världen",
+   "z": 26.35
+  },
+  {
+   "word": "ekologiska",
+   "z": 26.19
+  },
+  {
+   "word": "vatten",
+   "z": 26.16
+  },
+  {
+   "word": "biologiska",
+   "z": 25.92
+  },
+  {
+   "word": "förnybart",
+   "z": 25.8
+  },
+  {
+   "word": "ekologiskt",
+   "z": 25.38
+  },
+  {
+   "word": "klimatutsläpp",
+   "z": 25.29
+  },
+  {
+   "word": "fossil",
+   "z": 24.86
+  },
+  {
+   "word": "hållbara",
+   "z": 24.75
+  },
+  {
+   "word": "stället",
+   "z": 24.3
+  },
+  {
+   "word": "skogar",
+   "z": 24.25
+  },
+  {
+   "word": "klimatförändringar",
+   "z": 24.07
+  },
+  {
+   "word": "uran",
+   "z": 23.89
+  },
+  {
+   "word": "ekosystem",
+   "z": 23.8
+  },
+  {
+   "word": "vindkraft",
+   "z": 23.71
+  },
+  {
+   "word": "migrationsminister",
+   "z": 23.54
+  },
+  {
+   "word": "riksdagsledamoten",
+   "z": 23.43
+  },
+  {
+   "word": "bygga",
+   "z": 23.1
+  },
+  {
+   "word": "planeten",
+   "z": 23.0
+  },
+  {
+   "word": "konstitutionen",
+   "z": 22.72
+  },
+  {
+   "word": "klimatfrågan",
+   "z": 22.67
+  },
+  {
+   "word": "omställningen",
+   "z": 22.51
+  },
+  {
+   "word": "miljömålen",
+   "z": 22.46
+  },
+  {
+   "word": "klimatutsläppen",
+   "z": 22.45
+  },
+  {
+   "word": "miljön",
+   "z": 22.44
+  }
+ ],
+ "S": [
+  {
+   "word": "borgerliga",
+   "z": 88.52
+  },
+  {
+   "word": "arbetsmarknadsministern",
+   "z": 61.68
+  },
+  {
+   "word": "arbetslösa",
+   "z": 51.68
+  },
+  {
+   "word": "skattesänkningar",
+   "z": 51.01
+  },
+  {
+   "word": "arbetslösheten",
+   "z": 47.26
+  },
+  {
+   "word": "frågat",
+   "z": 45.9
+  },
+  {
+   "word": "utbildning",
+   "z": 39.75
+  },
+  {
+   "word": "fas",
+   "z": 39.73
+  },
+  {
+   "word": "naturligtvis",
+   "z": 36.37
+  },
+  {
+   "word": "vidta",
+   "z": 35.64
+  },
+  {
+   "word": "justitie",
+   "z": 33.42
+  },
+  {
+   "word": "avser",
+   "z": 32.24
+  },
+  {
+   "word": "resurser",
+   "z": 31.59
+  },
+  {
+   "word": "ungdomsarbetslösheten",
+   "z": 31.58
+  },
+  {
+   "word": "dialog",
+   "z": 31.39
+  },
+  {
+   "word": "arbetslöshet",
+   "z": 30.18
+  },
+  {
+   "word": "arbetsmarknadspolitiken",
+   "z": 30.02
+  },
+  {
+   "word": "ungdomar",
+   "z": 28.9
+  },
+  {
+   "word": "polismyndigheten",
+   "z": 28.29
+  },
+  {
+   "word": "arbetsförmedlingen",
+   "z": 27.52
+  },
+  {
+   "word": "ledda",
+   "z": 27.3
+  },
+  {
+   "word": "jobb",
+   "z": 26.31
+  },
+  {
+   "word": "borgerlig",
+   "z": 26.23
+  },
+  {
+   "word": "interpellationen",
+   "z": 26.12
+  },
+  {
+   "word": "län",
+   "z": 25.18
+  },
+  {
+   "word": "kollektivavtal",
+   "z": 24.9
+  },
+  {
+   "word": "löntagare",
+   "z": 24.8
+  },
+  {
+   "word": "arbetet",
+   "z": 24.78
+  },
+  {
+   "word": "underskott",
+   "z": 24.54
+  },
+  {
+   "word": "reda",
+   "z": 24.4
+  },
+  {
+   "word": "arbetsmarknaden",
+   "z": 24.38
+  },
+  {
+   "word": "klart",
+   "z": 24.33
+  },
+  {
+   "word": "svara",
+   "z": 24.18
+  },
+  {
+   "word": "interpellationsdebatten",
+   "z": 24.09
+  },
+  {
+   "word": "arbetsmarknadspolitik",
+   "z": 23.98
+  },
+  {
+   "word": "kompetens",
+   "z": 23.95
+  },
+  {
+   "word": "diskussion",
+   "z": 23.85
+  },
+  {
+   "word": "gymnasieutbildning",
+   "z": 23.75
+  },
+  {
+   "word": "insatser",
+   "z": 23.63
+  },
+  {
+   "word": "klara",
+   "z": 23.22
+  },
+  {
+   "word": "försäkringen",
+   "z": 23.16
+  },
+  {
+   "word": "klyftorna",
+   "z": 22.86
+  },
+  {
+   "word": "migrationsminister",
+   "z": 22.73
+  },
+  {
+   "word": "fackliga",
+   "z": 22.69
+  },
+  {
+   "word": "parterna",
+   "z": 22.24
+  },
+  {
+   "word": "uppfattning",
+   "z": 22.1
+  },
+  {
+   "word": "sjysta",
+   "z": 21.93
+  },
+  {
+   "word": "andrén",
+   "z": 21.83
+  },
+  {
+   "word": "infrastrukturminister",
+   "z": 21.78
+  },
+  {
+   "word": "långtidsarbetslösheten",
+   "z": 21.76
+  },
+  {
+   "word": "arbetsmarknad",
+   "z": 21.65
+  },
+  {
+   "word": "initiativ",
+   "z": 21.43
+  },
+  {
+   "word": "frågorna",
+   "z": 21.31
+  },
+  {
+   "word": "näringsministern",
+   "z": 21.17
+  },
+  {
+   "word": "utbildningsplatser",
+   "z": 21.15
+  },
+  {
+   "word": "beredd",
+   "z": 20.84
+  },
+  {
+   "word": "arbetslös",
+   "z": 20.6
+  },
+  {
+   "word": "kassan",
+   "z": 20.51
+  },
+  {
+   "word": "samverkan",
+   "z": 20.45
+  },
+  {
+   "word": "inlägg",
+   "z": 20.15
+  }
+ ],
+ "C": [
+  {
+   "word": "landsbygden",
+   "z": 55.57
+  },
+  {
+   "word": "företag",
+   "z": 41.59
+  },
+  {
+   "word": "förnybara",
+   "z": 39.97
+  },
+  {
+   "word": "företagande",
+   "z": 35.04
+  },
+  {
+   "word": "bredband",
+   "z": 35.02
+  },
+  {
+   "word": "företagen",
+   "z": 31.46
+  },
+  {
+   "word": "företagare",
+   "z": 28.5
+  },
+  {
+   "word": "grön",
+   "z": 28.47
+  },
+  {
+   "word": "oerhört",
+   "z": 28.42
+  },
+  {
+   "word": "gröna",
+   "z": 28.2
+  },
+  {
+   "word": "landsbygdsprogrammet",
+   "z": 27.16
+  },
+  {
+   "word": "skapa",
+   "z": 27.08
+  },
+  {
+   "word": "bygder",
+   "z": 26.51
+  },
+  {
+   "word": "pts",
+   "z": 26.28
+  },
+  {
+   "word": "alliansregeringen",
+   "z": 25.6
+  },
+  {
+   "word": "inlandsinnovation",
+   "z": 25.41
+  },
+  {
+   "word": "regionala",
+   "z": 25.09
+  },
+  {
+   "word": "möjligheter",
+   "z": 24.75
+  },
+  {
+   "word": "januariavtalet",
+   "z": 24.33
+  },
+  {
+   "word": "tillväxt",
+   "z": 24.25
+  },
+  {
+   "word": "matlandet",
+   "z": 24.12
+  },
+  {
+   "word": "banverket",
+   "z": 23.55
+  },
+  {
+   "word": "åhörare",
+   "z": 22.89
+  },
+  {
+   "word": "jobb",
+   "z": 22.67
+  },
+  {
+   "word": "näringarna",
+   "z": 22.54
+  },
+  {
+   "word": "lokala",
+   "z": 22.15
+  },
+  {
+   "word": "förnybar",
+   "z": 21.48
+  },
+  {
+   "word": "förutsättningar",
+   "z": 21.35
+  },
+  {
+   "word": "underifrån",
+   "z": 20.76
+  },
+  {
+   "word": "jämtland",
+   "z": 20.55
+  },
+  {
+   "word": "skatteväxling",
+   "z": 20.21
+  },
+  {
+   "word": "energi",
+   "z": 20.1
+  },
+  {
+   "word": "ärade",
+   "z": 19.97
+  },
+  {
+   "word": "småföretagen",
+   "z": 19.73
+  },
+  {
+   "word": "fossiloberoende",
+   "z": 19.73
+  },
+  {
+   "word": "anställa",
+   "z": 19.66
+  },
+  {
+   "word": "telefoni",
+   "z": 19.59
+  },
+  {
+   "word": "textilier",
+   "z": 19.55
+  },
+  {
+   "word": "landsbygdens",
+   "z": 19.34
+  },
+  {
+   "word": "almi",
+   "z": 19.17
+  },
+  {
+   "word": "lokalt",
+   "z": 19.03
+  },
+  {
+   "word": "mobilt",
+   "z": 18.86
+  },
+  {
+   "word": "landsbygd",
+   "z": 18.73
+  },
+  {
+   "word": "sida",
+   "z": 18.63
+  },
+  {
+   "word": "bandet",
+   "z": 18.5
+  },
+  {
+   "word": "företagandet",
+   "z": 18.49
+  },
+  {
+   "word": "arbetsgivaravgifterna",
+   "z": 18.46
+  },
+  {
+   "word": "arbetsgivaravgifter",
+   "z": 18.37
+  },
+  {
+   "word": "drivmedel",
+   "z": 18.19
+  },
+  {
+   "word": "jordbruket",
+   "z": 18.07
+  },
+  {
+   "word": "fiber",
+   "z": 17.84
+  },
+  {
+   "word": "småföretag",
+   "z": 17.79
+  },
+  {
+   "word": "kilometerskatt",
+   "z": 17.78
+  },
+  {
+   "word": "starta",
+   "z": 17.78
+  },
+  {
+   "word": "vägverket",
+   "z": 17.49
+  },
+  {
+   "word": "enklare",
+   "z": 17.44
+  },
+  {
+   "word": "energin",
+   "z": 17.42
+  },
+  {
+   "word": "turistnäringen",
+   "z": 17.23
+  },
+  {
+   "word": "bygderna",
+   "z": 17.12
+  },
+  {
+   "word": "fordonsflotta",
+   "z": 17.11
+  }
+ ],
+ "L": [
+  {
+   "word": "liberal",
+   "z": 57.28
+  },
+  {
+   "word": "skolan",
+   "z": 50.86
+  },
+  {
+   "word": "liberala",
+   "z": 38.99
+  },
+  {
+   "word": "gymnasiet",
+   "z": 38.44
+  },
+  {
+   "word": "elever",
+   "z": 33.15
+  },
+  {
+   "word": "högskolan",
+   "z": 31.34
+  },
+  {
+   "word": "frihet",
+   "z": 30.38
+  },
+  {
+   "word": "universitet",
+   "z": 28.98
+  },
+  {
+   "word": "gymnasieskolan",
+   "z": 26.78
+  },
+  {
+   "word": "grundskolan",
+   "z": 25.74
+  },
+  {
+   "word": "skollagen",
+   "z": 25.49
+  },
+  {
+   "word": "förskolan",
+   "z": 25.41
+  },
+  {
+   "word": "högskolor",
+   "z": 25.37
+  },
+  {
+   "word": "skola",
+   "z": 25.07
+  },
+  {
+   "word": "utbildningar",
+   "z": 24.82
+  },
+  {
+   "word": "årsrika",
+   "z": 24.66
+  },
+  {
+   "word": "eleverna",
+   "z": 24.47
+  },
+  {
+   "word": "lärare",
+   "z": 23.49
+  },
+  {
+   "word": "skolpolitik",
+   "z": 22.91
+  },
+  {
+   "word": "yrkeshögskolan",
+   "z": 22.81
+  },
+  {
+   "word": "våld",
+   "z": 22.67
+  },
+  {
+   "word": "betyg",
+   "z": 22.6
+  },
+  {
+   "word": "lärarutbildningen",
+   "z": 22.53
+  },
+  {
+   "word": "yrkesutbildningar",
+   "z": 22.53
+  },
+  {
+   "word": "punkten",
+   "z": 22.14
+  },
+  {
+   "word": "läroböcker",
+   "z": 21.53
+  },
+  {
+   "word": "skolpolitiken",
+   "z": 21.13
+  },
+  {
+   "word": "unionen",
+   "z": 21.09
+  },
+  {
+   "word": "vuxenutbildningen",
+   "z": 20.85
+  },
+  {
+   "word": "utbildningen",
+   "z": 20.83
+  },
+  {
+   "word": "skolinspektionen",
+   "z": 20.8
+  },
+  {
+   "word": "lärosäten",
+   "z": 20.67
+  },
+  {
+   "word": "frånvarande",
+   "z": 20.35
+  },
+  {
+   "word": "akademiker",
+   "z": 20.26
+  },
+  {
+   "word": "lära",
+   "z": 20.16
+  },
+  {
+   "word": "studenter",
+   "z": 20.11
+  },
+  {
+   "word": "hedersrelaterat",
+   "z": 19.94
+  },
+  {
+   "word": "europeiska",
+   "z": 19.92
+  },
+  {
+   "word": "kuba",
+   "z": 19.59
+  },
+  {
+   "word": "utbildning",
+   "z": 19.48
+  },
+  {
+   "word": "slutbetyg",
+   "z": 19.27
+  },
+  {
+   "word": "euron",
+   "z": 19.23
+  },
+  {
+   "word": "kommunaliseringen",
+   "z": 19.0
+  },
+  {
+   "word": "lärlingsutbildningar",
+   "z": 18.75
+  },
+  {
+   "word": "friheten",
+   "z": 18.68
+  },
+  {
+   "word": "skolväsendet",
+   "z": 18.59
+  },
+  {
+   "word": "skolinspektion",
+   "z": 18.41
+  },
+  {
+   "word": "liberalt",
+   "z": 18.28
+  },
+  {
+   "word": "talet",
+   "z": 18.21
+  },
+  {
+   "word": "demokratier",
+   "z": 18.18
+  },
+  {
+   "word": "välstånd",
+   "z": 17.99
+  },
+  {
+   "word": "integrationspolitiken",
+   "z": 17.99
+  },
+  {
+   "word": "läsa",
+   "z": 17.94
+  },
+  {
+   "word": "skolor",
+   "z": 17.94
+  },
+  {
+   "word": "vuxenutbildning",
+   "z": 17.93
+  },
+  {
+   "word": "forskning",
+   "z": 17.81
+  },
+  {
+   "word": "skolverket",
+   "z": 17.63
+  },
+  {
+   "word": "speciallärare",
+   "z": 17.62
+  },
+  {
+   "word": "hoppar",
+   "z": 17.62
+  },
+  {
+   "word": "sfi",
+   "z": 17.55
+  }
+ ],
+ "KD": [
+  {
+   "word": "vård",
+   "z": 46.82
+  },
+  {
+   "word": "kristna",
+   "z": 42.52
+  },
+  {
+   "word": "hälso",
+   "z": 40.12
+  },
+  {
+   "word": "äldre",
+   "z": 34.03
+  },
+  {
+   "word": "föräldrarna",
+   "z": 33.58
+  },
+  {
+   "word": "socialstyrelsen",
+   "z": 33.21
+  },
+  {
+   "word": "läkemedel",
+   "z": 32.04
+  },
+  {
+   "word": "ideella",
+   "z": 30.56
+  },
+  {
+   "word": "föräldrar",
+   "z": 30.33
+  },
+  {
+   "word": "apotek",
+   "z": 29.46
+  },
+  {
+   "word": "familjen",
+   "z": 29.44
+  },
+  {
+   "word": "människovärdet",
+   "z": 29.24
+  },
+  {
+   "word": "gåvor",
+   "z": 28.71
+  },
+  {
+   "word": "familjer",
+   "z": 27.64
+  },
+  {
+   "word": "vårdköerna",
+   "z": 27.48
+  },
+  {
+   "word": "förstås",
+   "z": 26.71
+  },
+  {
+   "word": "vårdplatser",
+   "z": 26.11
+  },
+  {
+   "word": "fritidskortet",
+   "z": 25.11
+  },
+  {
+   "word": "ensamhet",
+   "z": 24.51
+  },
+  {
+   "word": "gemenskap",
+   "z": 23.31
+  },
+  {
+   "word": "angeläget",
+   "z": 23.1
+  },
+  {
+   "word": "barnen",
+   "z": 22.17
+  },
+  {
+   "word": "etik",
+   "z": 22.06
+  },
+  {
+   "word": "värdegrund",
+   "z": 21.24
+  },
+  {
+   "word": "patienter",
+   "z": 21.22
+  },
+  {
+   "word": "behov",
+   "z": 21.21
+  },
+  {
+   "word": "värdighet",
+   "z": 20.76
+  },
+  {
+   "word": "bostäder",
+   "z": 20.65
+  },
+  {
+   "word": "värderingar",
+   "z": 20.58
+  },
+  {
+   "word": "småhus",
+   "z": 20.17
+  },
+  {
+   "word": "okränkbara",
+   "z": 20.03
+  },
+  {
+   "word": "landsting",
+   "z": 19.72
+  },
+  {
+   "word": "utskottets",
+   "z": 19.56
+  },
+  {
+   "word": "exempelvis",
+   "z": 19.51
+  },
+  {
+   "word": "boende",
+   "z": 19.42
+  },
+  {
+   "word": "kristen",
+   "z": 19.21
+  },
+  {
+   "word": "patienten",
+   "z": 19.17
+  },
+  {
+   "word": "kommunsektorn",
+   "z": 18.96
+  },
+  {
+   "word": "familjens",
+   "z": 18.82
+  },
+  {
+   "word": "patientens",
+   "z": 18.78
+  },
+  {
+   "word": "bostadsbyggandet",
+   "z": 18.72
+  },
+  {
+   "word": "familjerna",
+   "z": 18.7
+  },
+  {
+   "word": "betänkandet",
+   "z": 18.67
+  },
+  {
+   "word": "vårdens",
+   "z": 18.64
+  },
+  {
+   "word": "bostad",
+   "z": 18.45
+  },
+  {
+   "word": "etiska",
+   "z": 18.42
+  },
+  {
+   "word": "kristdemokratiskt",
+   "z": 18.22
+  },
+  {
+   "word": "omsorg",
+   "z": 18.16
+  },
+  {
+   "word": "gemenskaper",
+   "z": 18.15
+  },
+  {
+   "word": "enskilda",
+   "z": 17.99
+  },
+  {
+   "word": "religionsfrihet",
+   "z": 17.71
+  },
+  {
+   "word": "barnets",
+   "z": 17.69
+  },
+  {
+   "word": "vårdgarantin",
+   "z": 17.67
+  },
+  {
+   "word": "äldres",
+   "z": 17.5
+  },
+  {
+   "word": "fritidspengen",
+   "z": 17.38
+  },
+  {
+   "word": "religionsfriheten",
+   "z": 17.35
+  },
+  {
+   "word": "landstingen",
+   "z": 17.34
+  },
+  {
+   "word": "trafikverket",
+   "z": 17.16
+  },
+  {
+   "word": "värdegrunden",
+   "z": 17.05
+  },
+  {
+   "word": "mjölkbönder",
+   "z": 17.03
+  }
+ ],
+ "M": [
+  {
+   "word": "alliansregeringen",
+   "z": 47.85
+  },
+  {
+   "word": "alliansen",
+   "z": 41.72
+  },
+  {
+   "word": "arbetslinjen",
+   "z": 40.64
+  },
+  {
+   "word": "finanser",
+   "z": 35.85
+  },
+  {
+   "word": "utanförskap",
+   "z": 35.22
+  },
+  {
+   "word": "rut",
+   "z": 33.56
+  },
+  {
+   "word": "jobb",
+   "z": 32.63
+  },
+  {
+   "word": "arbeta",
+   "z": 31.83
+  },
+  {
+   "word": "reformer",
+   "z": 30.69
+  },
+  {
+   "word": "sysselsättning",
+   "z": 29.92
+  },
+  {
+   "word": "skattehöjningar",
+   "z": 29.86
+  },
+  {
+   "word": "försvarsmakten",
+   "z": 29.66
+  },
+  {
+   "word": "förtidspension",
+   "z": 29.4
+  },
+  {
+   "word": "alliansens",
+   "z": 28.52
+  },
+  {
+   "word": "arbetsmarknaden",
+   "z": 28.24
+  },
+  {
+   "word": "utanförskapet",
+   "z": 28.02
+  },
+  {
+   "word": "ekonomin",
+   "z": 27.98
+  },
+  {
+   "word": "sysselsättningen",
+   "z": 27.27
+  },
+  {
+   "word": "lönar",
+   "z": 27.16
+  },
+  {
+   "word": "jobben",
+   "z": 27.14
+  },
+  {
+   "word": "anställa",
+   "z": 26.97
+  },
+  {
+   "word": "tillväxt",
+   "z": 26.59
+  },
+  {
+   "word": "ukraina",
+   "z": 26.59
+  },
+  {
+   "word": "länder",
+   "z": 25.8
+  },
+  {
+   "word": "lönsamt",
+   "z": 25.76
+  },
+  {
+   "word": "högkonjunktur",
+   "z": 25.65
+  },
+  {
+   "word": "löna",
+   "z": 25.52
+  },
+  {
+   "word": "europeiska",
+   "z": 25.36
+  },
+  {
+   "word": "jobbskatteavdraget",
+   "z": 24.7
+  },
+  {
+   "word": "tillbaka",
+   "z": 24.19
+  },
+  {
+   "word": "inflationen",
+   "z": 24.1
+  },
+  {
+   "word": "överskottsmålet",
+   "z": 24.08
+  },
+  {
+   "word": "drivkrafterna",
+   "z": 23.64
+  },
+  {
+   "word": "skatten",
+   "z": 23.4
+  },
+  {
+   "word": "ordning",
+   "z": 23.0
+  },
+  {
+   "word": "utvecklingsgarantin",
+   "z": 22.82
+  },
+  {
+   "word": "interpellanten",
+   "z": 22.73
+  },
+  {
+   "word": "arbetar",
+   "z": 22.68
+  },
+  {
+   "word": "väsentligt",
+   "z": 22.39
+  },
+  {
+   "word": "arbetslinje",
+   "z": 22.26
+  },
+  {
+   "word": "konstatera",
+   "z": 22.17
+  },
+  {
+   "word": "höjda",
+   "z": 22.16
+  },
+  {
+   "word": "arbetsförmåga",
+   "z": 21.73
+  },
+  {
+   "word": "skatterna",
+   "z": 21.63
+  },
+  {
+   "word": "bromma",
+   "z": 21.62
+  },
+  {
+   "word": "grunden",
+   "z": 21.49
+  },
+  {
+   "word": "sysselsättningsfasen",
+   "z": 21.34
+  },
+  {
+   "word": "vänstern",
+   "z": 20.78
+  },
+  {
+   "word": "finanserna",
+   "z": 20.65
+  },
+  {
+   "word": "arbetsförmedlingen",
+   "z": 20.53
+  },
+  {
+   "word": "företag",
+   "z": 20.39
+  },
+  {
+   "word": "rikspolisstyrelsen",
+   "z": 20.24
+  },
+  {
+   "word": "europa",
+   "z": 20.06
+  },
+  {
+   "word": "rot",
+   "z": 19.47
+  },
+  {
+   "word": "bidragssystemen",
+   "z": 19.39
+  },
+  {
+   "word": "rödgröna",
+   "z": 19.38
+  },
+  {
+   "word": "utomordentligt",
+   "z": 19.15
+  },
+  {
+   "word": "polisen",
+   "z": 19.14
+  },
+  {
+   "word": "försäkringskassan",
+   "z": 19.01
+  },
+  {
+   "word": "påpeka",
+   "z": 18.86
+  }
+ ],
+ "SD": [
+  {
+   "word": "invandring",
+   "z": 48.17
+  },
+  {
+   "word": "invandringspolitik",
+   "z": 44.83
+  },
+  {
+   "word": "muslimska",
+   "z": 44.72
+  },
+  {
+   "word": "invandringen",
+   "z": 44.63
+  },
+  {
+   "word": "utlänningar",
+   "z": 43.8
+  },
+  {
+   "word": "medborgarskap",
+   "z": 38.05
+  },
+  {
+   "word": "migranter",
+   "z": 36.5
+  },
+  {
+   "word": "islamistiska",
+   "z": 36.34
+  },
+  {
+   "word": "parti",
+   "z": 35.79
+  },
+  {
+   "word": "kriminella",
+   "z": 34.61
+  },
+  {
+   "word": "islamiska",
+   "z": 34.06
+  },
+  {
+   "word": "givetvis",
+   "z": 32.71
+  },
+  {
+   "word": "islam",
+   "z": 32.4
+  },
+  {
+   "word": "moskéer",
+   "z": 32.22
+  },
+  {
+   "word": "islamister",
+   "z": 30.97
+  },
+  {
+   "word": "massinvandring",
+   "z": 30.97
+  },
+  {
+   "word": "invandringspolitiken",
+   "z": 30.81
+  },
+  {
+   "word": "svenskar",
+   "z": 30.37
+  },
+  {
+   "word": "vistas",
+   "z": 30.14
+  },
+  {
+   "word": "invandrare",
+   "z": 30.04
+  },
+  {
+   "word": "terrorister",
+   "z": 28.99
+  },
+  {
+   "word": "instämde",
+   "z": 28.39
+  },
+  {
+   "word": "straff",
+   "z": 27.98
+  },
+  {
+   "word": "partier",
+   "z": 27.92
+  },
+  {
+   "word": "gällande",
+   "z": 27.84
+  },
+  {
+   "word": "tidöavtalet",
+   "z": 27.8
+  },
+  {
+   "word": "illegalt",
+   "z": 27.3
+  },
+  {
+   "word": "uppehållstillstånd",
+   "z": 27.04
+  },
+  {
+   "word": "faktum",
+   "z": 26.26
+  },
+  {
+   "word": "brödraskapet",
+   "z": 25.94
+  },
+  {
+   "word": "yrka",
+   "z": 25.89
+  },
+  {
+   "word": "illegala",
+   "z": 25.73
+  },
+  {
+   "word": "exempelvis",
+   "z": 24.94
+  },
+  {
+   "word": "väljare",
+   "z": 24.39
+  },
+  {
+   "word": "samvetsfrihet",
+   "z": 23.99
+  },
+  {
+   "word": "försvaret",
+   "z": 23.81
+  },
+  {
+   "word": "kopplingar",
+   "z": 23.32
+  },
+  {
+   "word": "försvar",
+   "z": 23.26
+  },
+  {
+   "word": "debatterar",
+   "z": 23.25
+  },
+  {
+   "word": "förare",
+   "z": 23.19
+  },
+  {
+   "word": "kristna",
+   "z": 23.1
+  },
+  {
+   "word": "samtliga",
+   "z": 23.09
+  },
+  {
+   "word": "ansvarslös",
+   "z": 23.04
+  },
+  {
+   "word": "följdmotion",
+   "z": 22.63
+  },
+  {
+   "word": "utvisas",
+   "z": 22.59
+  },
+  {
+   "word": "islamism",
+   "z": 22.58
+  },
+  {
+   "word": "reduktionsplikten",
+   "z": 22.49
+  },
+  {
+   "word": "övriga",
+   "z": 22.37
+  },
+  {
+   "word": "väderberoende",
+   "z": 22.16
+  },
+  {
+   "word": "trots",
+   "z": 22.0
+  },
+  {
+   "word": "förespråkar",
+   "z": 21.94
+  },
+  {
+   "word": "ibn",
+   "z": 21.91
+  },
+  {
+   "word": "migration",
+   "z": 21.73
+  },
+  {
+   "word": "utanförskapsområden",
+   "z": 21.7
+  },
+  {
+   "word": "muslimer",
+   "z": 21.66
+  },
+  {
+   "word": "fall",
+   "z": 21.55
+  },
+  {
+   "word": "ansvarslösa",
+   "z": 21.53
+  },
+  {
+   "word": "migrationspolitik",
+   "z": 21.4
+  },
+  {
+   "word": "tidöpartierna",
+   "z": 21.39
+  },
+  {
+   "word": "rushd",
+   "z": 21.34
+  }
+ ]
+}

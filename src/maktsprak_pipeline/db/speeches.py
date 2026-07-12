@@ -200,50 +200,6 @@ def fetch_speeches_historical_v2(
     return df.dropna(subset=["protocol_date"]).sort_values("protocol_date").reset_index(drop=True)
 
 
-def fetch_speeches_historical_v2(
-    start_date: str = "2015-01-01",
-    end_date: str | None = None,
-) -> pd.DataFrame:
-    """Fetch speeches from Supabase within a date range, using pagination.
-    VERSION 2: Includes the 'speaker' column for Speaker-Independent ML Training.
-
-    Args:
-        start_date: Inclusive lower bound (ISO date string).
-        end_date:   Inclusive upper bound.  ``None`` means no upper limit.
-
-    Returns:
-        DataFrame with columns ``id``, ``text``, ``party``, ``protocol_date``, ``speaker``.
-    """
-    dfs: list[pd.DataFrame] = []
-    batch_size = 1000
-    offset = 0
-
-    # ÄNDRING: Lade till 'speaker' i select-frågan.
-    query = supabase.table("speeches").select("id, text, party, protocol_date, speaker")
-    
-    if start_date:
-        query = query.gte("protocol_date", str(start_date))
-    if end_date:
-        query = query.lte("protocol_date", str(end_date))
-    query = query.order("protocol_date", desc=False)
-
-    while True:
-        resp = query.range(offset, offset + batch_size - 1).execute()
-        if not resp.data:
-            break
-        dfs.append(pd.DataFrame(resp.data))
-        if len(resp.data) < batch_size:
-            break
-        offset += batch_size
-
-    if not dfs:
-        return pd.DataFrame(columns=["id", "text", "party", "protocol_date", "speaker"])
-
-    df = pd.concat(dfs, ignore_index=True)
-    df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")
-    return df.dropna(subset=["protocol_date"]).sort_values("protocol_date").reset_index(drop=True)
-
-
 def load_historical_parquet(parquet_url: str | None = None) -> pd.DataFrame:
     """Download and parse the historical Parquet snapshot.
 

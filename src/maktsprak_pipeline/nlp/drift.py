@@ -255,16 +255,29 @@ def yearly_signatures(
 #: Curated product content, not a statistical artefact — extend as needed.
 ISSUE_FRAMES: dict[str, list[str]] = {
     "Brott & straff": [
-        "gäng", "kriminell", "skjutning", "spräng", "straff", "brottsling",
+        # bare "gäng" deliberately excluded: it's a substring of
+        # "tillgänglig(het)" (accessibility) and "umgänge" (custody/contact,
+        # a family-law term) — confirmed via real text: ~85% of its matches
+        # were "tillgänglig*", not gang crime. "gängkriminal" catches the
+        # genuine compounds (gängkriminalitet, gängkriminella, ...) instead.
+        "gängkriminal", "kriminell", "skjutning", "spräng", "straff", "brottsling",
         "brottslig", "otrygg", "utvisning", "fängelse", "poliser",
     ],
     "Migration": [
+        # bare "anhörig" deliberately excluded: it heavily overlaps with
+        # eldercare caregiving terms ("anhörigvårdare", "anhörigstöd") —
+        # "anhöriginvandring" is the specific, unambiguous migration term
+        # (family reunification).
         "invandr", "migration", "asyl", "flykting", "nyanländ", "integration",
-        "uppehållstillstånd", "medborgarskap", "anhörig", "utlänning",
+        "uppehållstillstånd", "medborgarskap", "anhöriginvandr", "utlänning",
     ],
     "Klimat": [
-        "klimat", "utsläpp", "fossil", "förnybar", "omställning", "koldioxid",
-        "vindkraft",
+        # bare "omställning" deliberately excluded: it also matches COVID-era
+        # business support ("omställningsstöd") and labor-market retraining
+        # ("omställningsstudiestöd"), unrelated to climate. The compounds
+        # below are specific.
+        "klimat", "utsläpp", "fossil", "förnybar", "klimatomställning",
+        "energiomställning", "koldioxid", "vindkraft",
     ],
     "Välfärd": [
         "välfärd", "sjukvård", "äldreomsorg", "förskola", "vårdkö",
@@ -274,7 +287,11 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         "inflation", "ränta", "skattesänk", "tillväxt", "statsfinans", "hushållens",
     ],
     "Skola & utbildning": [
-        "skola", "skolan", "elev", "lärare", "grundskol", "gymnasi", "läromedel",
+        # bare "elev" deliberately excluded: it's a substring of "relevant"
+        # / "relevans" and even "television" — confirmed via real text,
+        # ~16% of its matches were these, not students. "elever" (plural)
+        # doesn't have this collision.
+        "skola", "skolan", "elever", "lärare", "grundskol", "gymnasi", "läromedel",
         "betyg", "utbildning",
     ],
     "Försvar & säkerhet": [
@@ -286,11 +303,22 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         "kraftverk", "elproduktion",
     ],
     "Bostad": [
+        # "boende" deliberately excluded: it's a substring of "äldreboende"
+        # (elderly care home) and "särskilt/gruppboende" (eldercare housing
+        # types), which is welfare/eldercare vocabulary, not housing-market
+        # policy — confirmed via real text: ~half of its matches in one
+        # sample were eldercare, not housing (see DEV_LOG).
         "bostad", "bostäder", "hyresrätt", "bostadsbrist", "bostadsmarknad",
-        "amortering", "boende",
+        "bostadsrätt", "hyresgäst", "amortering",
     ],
     "Jämställdhet": [
-        "jämställd", "kvinnor", "mäns våld", "diskriminering", "hbtq", "föräldraledig",
+        # "mäns våld" deliberately excluded: matching is substring-within-a
+        # single-token, so a stem containing a space can NEVER match
+        # anything — confirmed via real text, it scored exactly zero hits.
+        # "kvinnofrid" (the actual legal term, kvinnofridslagen) and
+        # "kvinnomisshandel"/"hedersvåld" cover the same ground as real words.
+        "jämställd", "kvinnor", "kvinnofrid", "kvinnomisshandel", "hedersvåld",
+        "diskriminering", "hbtq", "föräldraledig",
     ],
 }
 
@@ -306,15 +334,18 @@ def frame_trajectories(
     """Per-year relative frequency of each issue frame, broken out by group.
 
     A *frame* is a curated set of word stems (see :data:`ISSUE_FRAMES`), e.g.
-    "gäng", "kriminell", ... for "Brott & straff". A token counts toward the
-    frame if any stem is a substring of it. This is how "who talks about this
-    issue, and has that changed" becomes visible: plot every party's line for
-    one frame and watch them converge or diverge — e.g. whether a party's
-    crime-frame rate has climbed toward another's over time.
+    "kriminell", "skjutning", ... for "Brott & straff". A token counts toward
+    the frame if any stem is a substring of it. This is how "who talks about
+    this issue, and has that changed" becomes visible: plot every party's
+    line for one frame and watch them converge or diverge — e.g. whether a
+    party's crime-frame rate has climbed toward another's over time.
 
     Args:
         df:        Speeches with text, an integer *year_col* and *group_col*.
-        frames:    Mapping of frame name -> list of stems.
+        frames:    Mapping of frame name -> list of stems. Each stem is
+            matched as a substring of a single tokenized word — a stem
+            containing a space can never match anything (tokens never
+            contain spaces) and is almost certainly a mistake.
         text_col:  Column holding the speech text.
         year_col:  Integer year column.
         group_col: Column to break out by (default: party).
@@ -322,7 +353,20 @@ def frame_trajectories(
 
     Returns:
         ``{frame: {group: {year: rate}}}``.
+
+    Raises:
+        ValueError: If any stem contains whitespace — it would silently
+            score zero for every group and year (this is exactly how "mäns
+            våld" went unnoticed as dead weight in a shipped frame).
     """
+    for frame, stems in frames.items():
+        bad = [s for s in stems if " " in s]
+        if bad:
+            raise ValueError(
+                f"Frame {frame!r} has stem(s) with a space, which can never match a "
+                f"single token and would silently score zero: {bad}"
+            )
+
     out: dict[str, dict[str, dict[int, float]]] = {f: {} for f in frames}
     for (year, group), sub in df.groupby([year_col, group_col], observed=True):
         # Count once per (year, group), then match stems against the *unique*
