@@ -93,24 +93,28 @@ def _clean_text(text: object) -> str:
     return text.replace("\n", " ").strip() if isinstance(text, str) else ""
 
 
-def build_test_set(limit: int | None, seed: int = 42) -> tuple[list[str], list[str]]:
+def build_test_set(
+    limit: int | None, seed: int = 42, frozen_val_speakers: set[str] | None = None
+) -> tuple[list[str], list[str]]:
     """Recreate the speaker-independent validation set used during training.
 
-    Replicates ``train_party_model_db.py`` step for step: fetch speeches
-    year-by-year (2015-2026) with the speaker column, append party-leader
-    tweets, filter to the eight Riksdag parties, then hold out 15 % of unique
-    speakers via a seeded shuffle.  Only rows from those held-out speakers are
-    returned, so no evaluated speaker was seen during training.
-
-    Note: the speaker list is deliberately **not** sorted before shuffling —
-    the training run shuffled the raw ``unique()`` order, and reproducing its
-    exact partition requires doing the same.  Sorting first would select a
-    different 15 % of speakers and re-introduce train/test speaker leakage.
+    Fetches speeches year-by-year (2015-2026) with the speaker column,
+    appends party-leader tweets, filters to the eight Riksdag parties.
 
     Args:
         limit: Max number of rows to evaluate (stratified downsample);
             ``None`` evaluates the full validation split.
-        seed:  RNG seed — must stay 42 to match training.
+        seed:  RNG seed for the shuffle fallback (see below).
+        frozen_val_speakers: The exact held-out speaker set persisted at
+            training time (``val_speakers.json`` next to the model). When
+            given, rows are filtered directly against this set — no
+            leakage risk regardless of how much the corpus has grown since
+            training. When ``None``, falls back to re-deriving a split by
+            shuffling the *current* corpus's speaker list, which does
+            **not** reproduce the actual training-time partition once the
+            database has changed (backfill, reindexing) — the seed matches
+            but the input doesn't, so this fallback should only be used for
+            a model with no persisted speaker list (e.g. the legacy model).
 
     Returns:
         Tuple of ``(texts, parties)``.
@@ -133,23 +137,30 @@ def build_test_set(limit: int | None, seed: int = 42) -> tuple[list[str], list[s
     tweets_df["label"] = tweets_df["username"].apply(lambda u: _ACCOUNT_TO_PARTY.get(u, "NA"))
     tweets_df = tweets_df.rename(columns={"username": "speaker"})[["text", "label", "speaker"]]
 
-    # --- 3. Combine, filter, speaker-split (identical order of operations) ---
+    # --- 3. Combine, filter, then select the held-out speakers ---
     df = pd.concat([speeches_df, tweets_df]).reset_index(drop=True)
     df = df[df["label"].isin(VALID_PARTIES)].reset_index(drop=True)
     df["speaker"] = df["speaker"].fillna("Okänd")
 
-    unique_speakers = df["speaker"].unique().tolist()
-    random.seed(seed)
-    random.shuffle(unique_speakers)
-
-    split_idx = int(len(unique_speakers) * 0.85)
-    val_speakers = set(unique_speakers[split_idx:])
+    if frozen_val_speakers is not None:
+        val_speakers = frozen_val_speakers
+        logger.info(f"Using frozen held-out speaker set: {len(val_speakers)} speakers.")
+    else:
+        logger.warning(
+            "No frozen val_speakers.json given — re-deriving the split by shuffling the "
+            "CURRENT corpus. This does not reproduce the actual training-time partition "
+            "if the database has grown since training; treat results with caution."
+        )
+        unique_speakers = df["speaker"].unique().tolist()
+        random.seed(seed)
+        random.shuffle(unique_speakers)
+        split_idx = int(len(unique_speakers) * 0.85)
+        val_speakers = set(unique_speakers[split_idx:])
 
     val_df = df[df["speaker"].isin(val_speakers)].reset_index(drop=True)
-    # Cross-check these against the training run's printout.
     logger.info(
-        f"Speaker split: {split_idx} train / {len(val_speakers)} val speakers "
-        f"({len(unique_speakers)} total) — {len(df) - len(val_df)} train / {len(val_df)} val rows."
+        f"{len(val_speakers)} held-out speakers -> "
+        f"{len(df) - len(val_df)} train-side / {len(val_df)} val rows."
     )
 
     if limit is not None and limit < len(val_df):
@@ -278,12 +289,32 @@ if __name__ == "__main__":
     parser.add_argument("--max-length", type=int, default=512, help="Token truncation length.")
     parser.add_argument("--batch-size", type=int, default=32, help="Inference batch size.")
     parser.add_argument("--out", default="results", help="Output directory.")
+    parser.add_argument(
+        "--val-speakers",
+        type=Path,
+        default=None,
+        help="Path to a frozen val_speakers.json (written by train_party_model_db.py). "
+        "Auto-discovered next to the first --model path if it's a local directory.",
+    )
     args = parser.parse_args()
 
     device = _select_device()
     logger.info(f"Device: {device}")
 
-    texts, truth = build_test_set(None if args.limit == 0 else args.limit)
+    val_speakers_path = args.val_speakers
+    if val_speakers_path is None:
+        candidate = Path(args.model[0]) / "val_speakers.json"
+        if candidate.is_file():
+            val_speakers_path = candidate
+            logger.info(f"Auto-discovered {candidate}")
+
+    frozen_val_speakers = None
+    if val_speakers_path is not None:
+        frozen_val_speakers = set(json.loads(val_speakers_path.read_text(encoding="utf-8")))
+
+    texts, truth = build_test_set(
+        None if args.limit == 0 else args.limit, frozen_val_speakers=frozen_val_speakers
+    )
     out_dir = Path(args.out)
 
     results = [

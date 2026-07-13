@@ -9,7 +9,10 @@ Techniques used:
 
 - AMP (mixed precision) on GPU
 - OneCycleLR schedule with batch-scaled max_lr
-- Weighted sampler + class-weighted loss for party imbalance
+- Weighted sampler for party imbalance (oversamples rare parties so every
+  batch is roughly balanced; deliberately not *also* class-weighting the
+  loss on top of that — stacking both double-counts the correction and
+  biases predictions toward the smallest classes under low-signal input)
 - Label smoothing, gradient clipping, weight decay
 - FGM adversarial training on embeddings (disable with ``--no-fgm``)
 - Encoder frozen for the first two epochs, then unfrozen
@@ -32,6 +35,7 @@ weights, ready for ``push_to_hub``.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import random
 import sys
@@ -46,7 +50,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
@@ -57,7 +60,6 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
 )
-from sklearn.utils.class_weight import compute_class_weight
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import OneCycleLR
 from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
@@ -150,20 +152,27 @@ def speaker_split(
     df: pd.DataFrame,
     seed: int = SPLIT_SEED,
     train_fraction: float = TRAIN_SPEAKER_FRACTION,
-) -> tuple[pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame, set[str]]:
     """Split rows so that no speaker appears in both train and validation.
 
-    The speaker list is deliberately **not** sorted before shuffling: the
-    evaluation script reproduces this exact partition by shuffling the raw
-    ``unique()`` order with the same seed.  Change one, change both.
+    Note:
+        The resulting ``val_speakers`` set is persisted to disk by ``main()``
+        (``val_speakers.json`` next to the exported model). Re-deriving this
+        split later by re-running the same seeded shuffle against a live,
+        growing database does **not** reproduce the original partition — the
+        corpus keeps changing (backfill, parser reindexing), so the "same"
+        seed on different input silently drifts and can reintroduce speaker
+        leakage into what should be an honest held-out set.
+        ``scripts/evaluate_model.py`` must load the persisted file, not
+        re-derive the split.
 
     Args:
         df:             Combined dataset with a ``speaker`` column.
-        seed:           RNG seed shared with the evaluation script.
+        seed:           RNG seed for the shuffle.
         train_fraction: Fraction of unique speakers assigned to training.
 
     Returns:
-        Tuple of ``(train_df, val_df)``.
+        Tuple of ``(train_df, val_df, val_speakers)``.
     """
     df["speaker"] = df["speaker"].fillna("Okänd")
 
@@ -182,7 +191,7 @@ def speaker_split(
         f"Speaker split: {len(train_speakers)} train / {len(val_speakers)} val speakers "
         f"-> {len(train_df)} train / {len(val_df)} val rows."
     )
-    return train_df, val_df
+    return train_df, val_df, val_speakers
 
 
 class PartyDataset(Dataset):
@@ -342,7 +351,14 @@ def main() -> None:
     id2label = {i: label for label, i in label2id.items()}
     df["label_id"] = df["label"].map(label2id)
 
-    train_df, val_df = speaker_split(df)
+    train_df, val_df, val_speakers = speaker_split(df)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    val_speakers_path = output_dir / "val_speakers.json"
+    val_speakers_path.write_text(
+        json.dumps(sorted(val_speakers), ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    logger.info(f"Wrote {len(val_speakers)} held-out speaker IDs -> {val_speakers_path}")
+
     train_texts, train_labels = train_df["text"].tolist(), train_df["label_id"].tolist()
     val_texts, val_labels = val_df["text"].tolist(), val_df["label_id"].tolist()
 
@@ -396,13 +412,12 @@ def main() -> None:
         anneal_strategy="cos",
     )
 
-    class_weights = compute_class_weight(
-        class_weight="balanced", classes=np.unique(train_labels), y=train_labels
-    )
-    criterion = nn.CrossEntropyLoss(
-        weight=torch.tensor(class_weights, dtype=torch.float).to(device),
-        label_smoothing=TRAIN_LABEL_SMOOTHING,
-    )
+    # No class_weight here: the WeightedRandomSampler above already balances
+    # every batch by oversampling rare parties. Adding class-weighted loss on
+    # top double-counts the correction and was empirically over-correcting —
+    # low-signal input (short, ambiguous text) collapsed toward the smallest
+    # training classes (V, MP, SD) regardless of content.
+    criterion = nn.CrossEntropyLoss(label_smoothing=TRAIN_LABEL_SMOOTHING)
     fgm = FGM(model)
     scaler = torch.amp.GradScaler("cuda", enabled=(device.type == "cuda"))
 
