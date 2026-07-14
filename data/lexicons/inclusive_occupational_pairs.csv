@@ -1,0 +1,15 @@
+gendered,neutral,status,source,note
+riksdagsman,riksdagsledamot,settled,riksdagen,"The chamber's own title. The substitution is documented and effectively complete — the best-attested case in this corpus."
+riksdagsmän,riksdagsledamöter,settled,riksdagen,Plural of the above.
+talesman,talesperson,emerging,isof,Widely adopted in political language; substitution is live and visible.
+talesmän,talespersoner,emerging,isof,Plural of the above.
+tjänsteman,tjänsteperson,emerging,isof,Ongoing substitution in administrative language.
+tjänstemän,tjänstepersoner,emerging,isof,Plural of the above.
+ombudsman,ombudsperson,contested,isof,"Neutral form exists but the official agency titles (DO, JO) retain -man."
+förtroendeman,förtroendevald,settled,isof,Long-settled substitution.
+yrkesman,yrkesperson,emerging,isof,Ongoing substitution.
+fackman,expert,emerging,isof,Neutral alternative is a different word rather than a -person coinage.
+lärarinna,lärare,settled,isof,"Long-settled; substitution largely predates the 2002 corpus window."
+skådespelerska,skådespelare,settled,isof,Settled substitution.
+sjuksköterska,,no_alternative,isof,"Deliberate null case: ISOF records no settled neutral alternative. Tracked to show absence of change where none is claimed — not to imply one is owed."
+brandman,brandperson,no_uptake,isof,"Deliberate null case: the neutral form has zero corpus occurrences. Reported as found."

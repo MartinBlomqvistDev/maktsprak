@@ -35,6 +35,7 @@ settled.
 
 from __future__ import annotations
 
+import bisect
 import random
 import re
 from collections import Counter
@@ -157,6 +158,39 @@ def sentence_split(text: str) -> list[str]:
     return [text[start:end] for start, end in sentence_spans(text)]
 
 
+#: Column holding cached sentence offsets (see :func:`ensure_sentence_spans`).
+SENT_COL = "sent_spans"
+
+
+def ensure_sentence_spans(
+    df: pd.DataFrame, text_col: str = "text", col: str = SENT_COL
+) -> pd.DataFrame:
+    """Add (once) a column of per-speech sentence offsets.
+
+    Segmenting 7.3 million sentences is the expensive half of a precompute
+    pass, and every dimension needs the same segmentation.  Doing it once and
+    caching it on the frame turns "expensive × number of dimensions" back into
+    "expensive".  Idempotent: a frame that already carries the column is
+    returned untouched.
+    """
+    if col in df.columns:
+        return df
+    out = df.copy()
+    out[col] = [sentence_spans(t) for t in out[text_col]]
+    return out
+
+
+def sentence_index(sent_spans: list[tuple[int, int]], offset: int) -> int | None:
+    """Index of the sentence containing *offset*, or ``None`` if outside them all."""
+    if not sent_spans:
+        return None
+    position = bisect.bisect_right([start for start, _ in sent_spans], offset) - 1
+    if position < 0:
+        return None
+    start, end = sent_spans[position]
+    return position if start <= offset < end else None
+
+
 # --------------------------------------------------------------------------
 # Pattern tables
 # --------------------------------------------------------------------------
@@ -230,7 +264,26 @@ def load_pattern_table(path: Path, key_col: str, required_cols: list[str]) -> pd
         )
 
     table["regex"] = [compile_pattern(p) for p in table[key_col]]
+    table.attrs["alternation"] = compile_alternation(table[key_col].tolist())
     return table
+
+
+def compile_alternation(patterns: list[str]) -> re.Pattern[str]:
+    """One regex matching any of *patterns* as a whole word/phrase.
+
+    Scanning 80 000 speeches once per pattern is the difference between a
+    three-minute precompute and an hour-long one, so the whole table becomes a
+    single alternation.  Because every pattern is a **literal**, the matched
+    text *is* the pattern (lower-cased), which is how the caller still knows
+    which one fired.
+
+    Alternatives are ordered longest-first so the regex engine's leftmost-first
+    semantics prefer ``"de allra rikaste"`` over ``"de rikaste"`` rather than
+    truncating the longer phrase.
+    """
+    ordered = sorted({p.strip().lower() for p in patterns}, key=len, reverse=True)
+    body = "|".join(re.escape(p) for p in ordered)
+    return re.compile(rf"(?<!\w)(?:{body})(?!\w)", re.IGNORECASE)
 
 
 def find_spans(text: str, table: pd.DataFrame, key_col: str) -> list[tuple[int, int, str]]:
@@ -248,6 +301,12 @@ def find_spans(text: str, table: pd.DataFrame, key_col: str) -> list[tuple[int, 
         patterns may legitimately both fire on the same words, and collapsing
         them would silently under-count.
     """
+    alternation = table.attrs.get("alternation")
+    if alternation is not None:
+        if not isinstance(text, str) or not text:
+            return []
+        return [(m.start(), m.end(), m.group(0).lower()) for m in alternation.finditer(text)]
+
     if not isinstance(text, str) or not text:
         return []
     spans: list[tuple[int, int, str]] = []
@@ -260,6 +319,20 @@ def find_spans(text: str, table: pd.DataFrame, key_col: str) -> list[tuple[int, 
 # --------------------------------------------------------------------------
 # Statistics
 # --------------------------------------------------------------------------
+
+
+def sentences_with_a_hit(
+    sent_spans: list[tuple[int, int]], spans: list[tuple[int, int, str]]
+) -> int:
+    """How many sentences contain at least one of *spans*.
+
+    The unit of measurement is the **sentence, not the marker**: a sentence that
+    says "de rika" twice is not twice as class-conflictual as one that says it
+    once, and counting markers would let a single rhetorical flourish outweigh a
+    whole debate.  Counting sentences also keeps ``hits <= n``, which is what
+    lets the rate be read as "X sentences in every 1 000".
+    """
+    return len({i for start, _, _ in spans if (i := sentence_index(sent_spans, start)) is not None})
 
 
 def raw_rate(hits: int, n: int, per: float = 1000.0) -> float:
@@ -412,7 +485,13 @@ def _validate_counts(hits: int, n: int, background_hits: int, background_n: int)
 
 @dataclass(frozen=True)
 class CellStats:
-    """One (group, year) cell of a dimension."""
+    """One (group, year) cell of a dimension.
+
+    ``rate`` is the dimension's **headline number**.  For a rate-type dimension
+    that is ``hits / n * per``; for a composite index like LIX it is the index
+    itself, and ``hits``/``n`` carry its components instead.  ``extra`` holds
+    whatever else the tooltip must show so a reader can redo the arithmetic.
+    """
 
     hits: int
     n: int
@@ -420,11 +499,12 @@ class CellStats:
     rate: float
     smoothed: float
     z: float | None
+    extra: dict[str, float | int] = field(default_factory=dict)
 
-    def as_dict(self) -> dict[str, float | int | None]:
+    def as_dict(self) -> dict[str, object]:
         """JSON-ready form.  Raw counts are always published: a reader must be
         able to see that a rate of 4.0 came from 2 hits in 500 sentences."""
-        return {
+        out: dict[str, object] = {
             "hits": self.hits,
             "n": self.n,
             "speeches": self.speeches,
@@ -432,6 +512,9 @@ class CellStats:
             "smoothed": round(self.smoothed, 3),
             "z": None if self.z is None else round(self.z, 2),
         }
+        if self.extra:
+            out["extra"] = self.extra
+        return out
 
 
 def aggregate_cells(
@@ -739,6 +822,11 @@ class DimensionSpec:
     technique: Literal["lexical", "stylometric", "structural"]
     #: ``df -> df`` with ``hits``, ``n`` and (evidentiary dimensions) ``spans``.
     measure_fn: Callable[[pd.DataFrame], pd.DataFrame]
+    #: Optional override for dimensions that are not a hits-per-n rate.  LIX is
+    #: a composite index, not a proportion, so it cannot be smoothed or
+    #: z-scored the same way; it supplies its own aggregation rather than being
+    #: bent into a shape it does not have.  ``None`` uses :func:`aggregate_cells`.
+    aggregate_fn: Callable[[pd.DataFrame], dict[str, dict[int, CellStats]]] | None = None
     receipt_kind: ReceiptKind = "evidentiary"
     status: Literal["launch", "phase2"] = "phase2"
     supports_frames: bool = False

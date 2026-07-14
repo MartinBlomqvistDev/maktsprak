@@ -1,0 +1,33 @@
+pattern,slot,subtype,source,note
+svenska folket,ingroup,folk,mudde_adapted,People-centrism: the people as one undivided body.
+vanligt folk,ingroup,folk,mudde_adapted,People-centrism.
+vanliga människor,ingroup,folk,mudde_adapted,People-centrism.
+vanliga svenskar,ingroup,folk,mudde_adapted,People-centrism.
+vi svenskar,ingroup,folk,mudde_adapted,Explicit national in-group.
+det svenska folket,ingroup,folk,mudde_adapted,People-centrism.
+folkflertalet,ingroup,folk,own,People-centrism (older register).
+vi arbetare,ingroup,folk,own,Class in-group; the left-side mirror of vi svenskar.
+etablissemanget,outgroup,elite,rooduijn_pauwels_adapted,"Anti-elitism. Clean signal, no homograph."
+makteliten,outgroup,elite,rooduijn_pauwels_adapted,Anti-elitism.
+politiska eliten,outgroup,elite,rooduijn_pauwels_adapted,"Qualified: bare 'eliten' also means a top tier (research/sport) and was cut."
+politiska etablissemanget,outgroup,elite,rooduijn_pauwels_adapted,Anti-elitism.
+ekonomiska eliten,outgroup,elite,rooduijn_pauwels_adapted,Qualified elite reference.
+politikerklassen,outgroup,elite,rooduijn_pauwels_adapted,Anti-elitism.
+politikeradeln,outgroup,elite,own,Anti-elitism.
+maktens korridorer,outgroup,elite,own,Anti-elitism.
+de rika,outgroup,economic,own,"Class-conflict framing. Outgroup defined by wealth."
+de rikaste,outgroup,economic,own,Class-conflict framing.
+de allra rikaste,outgroup,economic,own,Class-conflict framing.
+miljardärerna,outgroup,economic,own,Class-conflict framing.
+miljonärerna,outgroup,economic,own,Class-conflict framing.
+storföretagen,outgroup,economic,own,Class-conflict framing.
+storbolagen,outgroup,economic,own,Class-conflict framing.
+kapitalägarna,outgroup,economic,own,Class-conflict framing.
+direktörerna,outgroup,economic,own,Class-conflict framing.
+riskkapitalisterna,outgroup,economic,own,Class-conflict framing.
+de som kommer hit,outgroup,origin,own,"Origin-defined out-group. Audit: often used neutrally or sympathetically; only counts inside a vi-mot-dom construction."
+dem som kommer hit,outgroup,origin,own,Origin-defined out-group. Same caveat.
+folk som kommer hit,outgroup,origin,own,Origin-defined out-group.
+de som inte är svenskar,outgroup,origin,own,Origin-defined out-group.
+invandrarna,outgroup,origin,own,"Origin-defined out-group. Referential in most uses; only counts inside a construction."
+utlänningarna,outgroup,origin,own,Origin-defined out-group.
