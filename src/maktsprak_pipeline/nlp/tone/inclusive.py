@@ -21,19 +21,30 @@ too, that is a *replication*, not an accusation.
 
 **Occupational pairs** (:func:`occupational_report`) — the ``-man`` → ``-person``
 / ``-ledamot`` substitutions.  Deliberately measured on the terms the Riksdag
-actually uses about itself (``riksdagsman`` → ``riksdagsledamot``, ``talesman``
-→ ``talesperson``, ``tjänsteman`` → ``tjänsteperson``), because an audit of the
-obvious textbook pairs found they simply do not occur in political debate:
-``brandperson``, ``flygvärd`` and ``ombudsperson`` have **zero** occurrences in
-the whole 2002-2026 corpus.  That null result is reported, not buried — and
-``sjuksköterska`` (for which ISOF records no settled neutral alternative) and
-``brandman`` are kept in the table precisely *as* null cases, to show absence of
-change where none is claimed.
+actually uses about itself, because an audit of the obvious textbook pairs found
+they simply do not occur in political debate: ``brandperson``, ``flygvärd`` and
+``ombudsperson`` have **zero** occurrences in the whole 2002-2026 corpus.  Those
+nulls are reported, not buried — ``sjuksköterska`` (no settled neutral form per
+ISOF) and ``brandman`` are kept precisely *as* null cases.
 
-The measure is a **substitution ratio**, ``neutral / (neutral + gendered)``, not
-a raw count: it asks which form a speaker chose *given that they raised the
-topic at all*, which controls for how much any party happens to talk about
-firefighters or civil servants.
+**Two measures, because there are two different phenomena** (``measure`` column):
+
+- ``ratio`` — a **coinage** competes with a gendered form: ``riksdagsledamot``,
+  ``talesperson`` and ``tjänsteperson`` exist *only* as replacements, so
+  ``neutral / (neutral + gendered)`` really is "which word did the speaker
+  choose".  This is where the finding is: the chamber renamed **itself**
+  (``riksdagsman`` → ``riksdagsledamot``, ~97%) but not its civil servants
+  (``tjänsteman`` → ``tjänsteperson``, ~3%).
+- ``decline`` — a **marked feminine form** fading against an unmarked base word:
+  ``lärarinna`` vs ``lärare``.  A ratio here is meaningless and was briefly
+  reported as one: ``lärare`` is simply the word for teacher (19 013 hits) and
+  was never coined to replace ``lärarinna``, so the "99.9% neutral" it produced
+  measured nothing but how often anyone mentions teachers.  What is real is the
+  disappearance of the marked form, so that is what gets reported.
+
+``fackman`` → ``expert`` was dropped outright: ``expert`` is an ordinary word
+with a life of its own, not a substitution, and pairing them manufactures a
+number out of nothing.
 """
 
 from __future__ import annotations
@@ -62,9 +73,12 @@ PAIRS_PATH = PROJECT_ROOT / "data" / "lexicons" / "inclusive_occupational_pairs.
 #: patterns are what guarantee that, and it is regression-tested.
 HEN_FORMS: tuple[str, ...] = ("hen", "hens")
 
-#: 395 hits in 7.3 million sentences: a per-1 000 rate would round to zero on
+#: 324 hits in 7.3 million sentences: a per-1 000 rate would round to zero on
 #: every chart. The unit is honest about how rare the word still is.
 HEN_PER = 100_000.0
+
+#: Constant group for the corpus-wide series (see :data:`HEN` below).
+RIKSDAGEN = "Riksdagen"
 
 
 @lru_cache(maxsize=1)
@@ -76,7 +90,11 @@ def _hen_table() -> pd.DataFrame:
 
 
 def measure_hen(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
-    """Per-speech count of sentences using ``hen``/``hens``."""
+    """Per-speech count of sentences using ``hen``/``hens``.
+
+    Adds a constant :data:`RIKSDAGEN` group column: the registered series is
+    corpus-wide, because per party it is too thin to plot (see :data:`HEN`).
+    """
     out = ensure_sentence_spans(df, text_col=text_col).copy()
     table = _hen_table()
     spans = [find_spans(text, table, "pattern") for text in out[text_col]]
@@ -85,7 +103,37 @@ def measure_hen(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
     out["hits"] = [
         sentences_with_a_hit(sent, sp) for sent, sp in zip(out[SENT_COL], spans, strict=True)
     ]
+    out[RIKSDAGEN] = RIKSDAGEN
     return out
+
+
+def hen_by_party(df: pd.DataFrame, min_hits: int = 20) -> dict[str, dict[str, float]]:
+    """Per-party ``hen`` use, **pooled over all years** — totals, not a series.
+
+    The year-by-year split is too thin to chart (median 3 hits per party-year
+    cell), but pooling 24 years gives some parties a well-attested total, and
+    the contrast is real.  Reported as a table rather than lines: a total is an
+    honest thing to state, a line drawn through 3-hit cells is not.
+
+    Args:
+        df:        Speeches, measured or not (measured if ``hits`` is absent).
+        min_hits:  Parties below this are reported with ``rate=None`` rather
+            than a rate computed from a handful of sentences.
+
+    Returns:
+        ``{party: {"hits": …, "sentences": …, "rate": … | None}}``.
+    """
+    if "hits" not in df.columns:
+        df = measure_hen(df)
+    pooled = df.groupby("party", observed=True).agg(hits=("hits", "sum"), n=("n", "sum"))
+    return {
+        str(party): {
+            "hits": int(row.hits),
+            "sentences": int(row.n),
+            "rate": round(row.hits / row.n * HEN_PER, 2) if row.hits >= min_hits else None,
+        }
+        for party, row in pooled.iterrows()
+    }
 
 
 # ------------------------------------------------------- occupational pairs
@@ -97,7 +145,7 @@ def load_pairs() -> pd.DataFrame:
     return load_pattern_table(
         PAIRS_PATH,
         key_col="gendered",
-        required_cols=["gendered", "neutral", "status", "source", "note"],
+        required_cols=["gendered", "neutral", "measure", "status", "source", "note"],
     )
 
 
@@ -158,11 +206,18 @@ def occupational_report(
             {
                 "gendered": row.gendered,
                 "neutral": neutral or None,
+                "measure": row.measure,
                 "status": row.status,
                 "note": row.note,
                 "gendered_hits": total_g,
                 "neutral_hits": total_n,
-                "ratio": _ratio(total_n, total_g),
+                # A ratio is only a real "which word did they choose" when the
+                # neutral form is a coinage that exists solely as the
+                # replacement. For a marked feminine form fading against an
+                # unmarked base word ("lärarinna" vs "lärare"), it would just
+                # measure how often anyone mentions teachers. Emit None rather
+                # than a number that looks meaningful and is not.
+                "ratio": _ratio(total_n, total_g) if row.measure == "ratio" else None,
                 "by_year": {
                     int(y): {
                         "gendered": int(sub["gendered"].sum()),
@@ -196,13 +251,21 @@ def _ratio(neutral: int, gendered: int) -> float | None:
 HEN = register(
     DimensionSpec(
         id="hen",
-        label_sv="Användning av »hen«",
+        label_sv="Användning av »hen« i kammaren",
         unit_sv="meningar per 100 000 som använder hen/hens",
         technique="structural",
         measure_fn=measure_hen,
         status="launch",
-        supports_frames=False,  # 395 hits corpus-wide; a frame split would be noise
-        min_cell_speeches=8,
+        # Corpus-wide, not per party — decided by measurement, not preference.
+        # The density guard rejected the per-party-year split (median 3 hits per
+        # cell, 55% of cells empty) and binning did not save it: even 5-year
+        # buckets leave 39% empty. Pooled across the chamber the same 324 hits
+        # are a clean, well-attested adoption curve that tracks the published
+        # timeline (near-zero before 2012, a jump in 2013-14 when »hen« entered
+        # SAOL, sustained after). Per-party belongs in `hen_by_party` as totals.
+        group_col=RIKSDAGEN,
+        supports_frames=False,
+        min_cell_speeches=0,
         per=HEN_PER,
         pattern_paths=[],  # a closed-class pronoun, not a curated list
     )

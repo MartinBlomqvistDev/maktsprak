@@ -43,6 +43,22 @@ def load_corpus(
             f"Corpus archive not found at {archive}. Run scripts/export_corpus.py first."
         )
     df = pd.read_parquet(archive)
+
+    # The archive held 5 425 duplicate-id rows once (the 2002-2015 backfill
+    # overlapped the range the ETL had already ingested; 2014 was 95%
+    # duplicated). A duplicated speech is counted twice in every denominator
+    # and inflates the confidence of every z-score built on it, and nothing
+    # downstream can detect it. export_corpus.py dedups now, but this is the
+    # gate every analysis passes through, so it fails loudly here rather than
+    # letting a stale or hand-made archive quietly skew a published number.
+    duplicated = int(df["id"].duplicated().sum())
+    if duplicated:
+        raise ValueError(
+            f"{archive.name} has {duplicated} duplicate-id rows. Analysis built on it "
+            f"would double-count those speeches. Re-run scripts/export_corpus.py, which "
+            f"deduplicates on export."
+        )
+
     df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")
     df = df.dropna(subset=["protocol_date"])
     if start_date:

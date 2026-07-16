@@ -1,15 +1,14 @@
-gendered,neutral,status,source,note
-riksdagsman,riksdagsledamot,settled,riksdagen,"The chamber's own title. The substitution is documented and effectively complete — the best-attested case in this corpus."
-riksdagsmän,riksdagsledamöter,settled,riksdagen,Plural of the above.
-talesman,talesperson,emerging,isof,Widely adopted in political language; substitution is live and visible.
-talesmän,talespersoner,emerging,isof,Plural of the above.
-tjänsteman,tjänsteperson,emerging,isof,Ongoing substitution in administrative language.
-tjänstemän,tjänstepersoner,emerging,isof,Plural of the above.
-ombudsman,ombudsperson,contested,isof,"Neutral form exists but the official agency titles (DO, JO) retain -man."
-förtroendeman,förtroendevald,settled,isof,Long-settled substitution.
-yrkesman,yrkesperson,emerging,isof,Ongoing substitution.
-fackman,expert,emerging,isof,Neutral alternative is a different word rather than a -person coinage.
-lärarinna,lärare,settled,isof,"Long-settled; substitution largely predates the 2002 corpus window."
-skådespelerska,skådespelare,settled,isof,Settled substitution.
-sjuksköterska,,no_alternative,isof,"Deliberate null case: ISOF records no settled neutral alternative. Tracked to show absence of change where none is claimed — not to imply one is owed."
-brandman,brandperson,no_uptake,isof,"Deliberate null case: the neutral form has zero corpus occurrences. Reported as found."
+gendered,neutral,measure,status,source,note
+riksdagsman,riksdagsledamot,ratio,settled,riksdagen,"The chamber's own title. 'riksdagsledamot' exists only as this replacement, so the ratio is a real choice between two competing words. Best-attested case in the corpus (96.9% neutral)."
+riksdagsmän,riksdagsledamöter,ratio,settled,riksdagen,Plural of the above (98.2% neutral).
+talesman,talesperson,ratio,emerging,isof,Coinage. Substitution live and visible (76.8%).
+talesmän,talespersoner,ratio,emerging,isof,Plural of the above (73.4%).
+tjänsteman,tjänsteperson,ratio,emerging,isof,"Coinage — but barely used (2.5%). The contrast with riksdagsledamot is the finding: the chamber renamed itself, not its civil servants."
+tjänstemän,tjänstepersoner,ratio,emerging,isof,Plural of the above (3.8%).
+ombudsman,ombudsperson,ratio,contested,isof,"Coinage with zero corpus uptake (0.0%). The official agency titles (DO, JO) retain -man, which is likely why."
+förtroendeman,förtroendevald,ratio,settled,isof,Coinage; substitution largely complete (89.7%).
+yrkesman,yrkesperson,ratio,emerging,isof,Coinage; little uptake (9.5%).
+lärarinna,lärare,decline,settled,isof,"NOT a ratio: 'lärare' is the unmarked base word for teacher and always covered everyone — it was never coined to replace 'lärarinna'. A ratio here would just measure how often anyone says 'teacher' (19 013 hits) and read as a meaningless 99.9%. What is real is the near-disappearance of the marked feminine form."
+skådespelerska,skådespelare,decline,settled,isof,"Same: 'skådespelare' is the base word, not a coinage. Track the decline of the marked form, not a ratio."
+sjuksköterska,,none,no_alternative,isof,"Deliberate null case: ISOF records no settled neutral alternative, so there is nothing to substitute toward. Tracked to show absence of change where none is claimed — not to imply one is owed."
+brandman,brandperson,ratio,no_uptake,isof,"Deliberate null case: the neutral coinage has zero corpus occurrences. Reported as found."

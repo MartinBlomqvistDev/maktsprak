@@ -8,6 +8,14 @@ the source of truth for analysis and precompute: free, no quota, and faster to r
 Reads in small keyset pages (by primary key), which stays under Supabase's statement
 timeout even while the project is throttled for exceeding its size cap.
 
+**Deduplicates on ``id``.**  The table itself holds duplicates: the 2002-2015
+historical backfill overlapped the range the weekly ETL had already ingested, so
+5 425 speeches exist twice (2014 is 95% duplicated, 2002 76%, 2015 75%).  The
+copies are byte-identical, so keeping the first is lossless.  This matters
+beyond tidiness — a duplicated speech is counted twice in every rate denominator
+and inflates the confidence of every z-score built on it.  Since this file is
+the source of truth for analysis, the dedup belongs here, at the boundary.
+
 Usage::
 
     python scripts/export_corpus.py [--out data/parquet/speeches_full.parquet]
@@ -67,6 +75,7 @@ def export(out_path: Path) -> int:
         return 0
 
     df = pd.concat(frames, ignore_index=True)
+    df = deduplicate(df)
     df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")
     df = df.sort_values("protocol_date").reset_index(drop=True)
     df.to_parquet(out_path, compression="zstd", index=False)
@@ -76,6 +85,30 @@ def export(out_path: Path) -> int:
     logger.info(f"Wrote {len(df)} rows to {out_path} ({size_mb:.1f} MB, {years}).")
     logger.info(f"Rows per party: {df['party'].value_counts().to_dict()}")
     return len(df)
+
+
+def deduplicate(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop rows repeating an ``id`` already seen, reporting what went.
+
+    See the module docstring: the backfill overlapped the ETL's range, so the
+    table holds the same speech twice.  Reported per year rather than as a bare
+    total, because the shape of the overlap is the evidence for *why* they are
+    there — a flat 7% would mean something very different from "2014 is 95%
+    duplicated".
+    """
+    duplicated = df["id"].duplicated()
+    if not duplicated.any():
+        logger.info("No duplicate ids.")
+        return df
+
+    dropped = df[duplicated]
+    years = pd.to_datetime(dropped["protocol_date"], errors="coerce").dt.year
+    logger.warning(
+        f"Dropping {len(dropped)} duplicate-id rows ({len(dropped) / len(df):.1%} of the "
+        f"export) — the backfill overlapped the ETL's range. Per year: "
+        f"{years.value_counts().sort_index().to_dict()}"
+    )
+    return df[~duplicated].reset_index(drop=True)
 
 
 def main() -> None:

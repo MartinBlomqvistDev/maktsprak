@@ -5,57 +5,58 @@
       "technique": "structural",
       "hits": 351,
       "cells": 192,
-      "cells_kept": 192
+      "cells_kept": 192,
+      "density": {
+        "median_hits": 3.0,
+        "empty_share": 0.547,
+        "total_hits": 351.0
+      }
     },
     {
       "dimension": "lix",
       "technique": "stylometric",
       "hits": 29343123,
       "cells": 192,
-      "cells_kept": 192
-    },
-    {
-      "dimension": "folk",
-      "technique": "lexical",
-      "hits": 11848,
-      "cells": 192,
-      "cells_kept": 192
-    },
-    {
-      "dimension": "antielit",
-      "technique": "lexical",
-      "hits": 254,
-      "cells": 192,
-      "cells_kept": 192
+      "cells_kept": 192,
+      "density": {
+        "median_hits": 114621.0,
+        "empty_share": 0.0,
+        "total_hits": 29342992.0
+      }
     },
     {
       "dimension": "klasskonflikt",
       "technique": "lexical",
-      "hits": 3165,
+      "hits": 2580,
       "cells": 192,
-      "cells_kept": 192
+      "cells_kept": 192,
+      "density": {
+        "median_hits": 6.0,
+        "empty_share": 0.109,
+        "total_hits": 2580.0
+      }
     }
   ],
   "symmetry": {
     "economic": {
-      "C": 107,
-      "KD": 111,
-      "L": 141,
-      "M": 326,
-      "MP": 281,
-      "S": 846,
-      "SD": 63,
-      "V": 1352
+      "C": 50,
+      "KD": 85,
+      "L": 107,
+      "M": 283,
+      "MP": 156,
+      "S": 758,
+      "SD": 47,
+      "V": 1143
     },
     "elite": {
-      "C": 16,
-      "KD": 11,
-      "L": 11,
-      "M": 28,
-      "MP": 27,
-      "S": 40,
+      "C": 7,
+      "KD": 8,
+      "L": 9,
+      "M": 25,
+      "MP": 17,
+      "S": 31,
       "SD": 42,
-      "V": 79
+      "V": 65
     },
     "origin (construction)": {
       "C": 0,

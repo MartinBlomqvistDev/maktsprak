@@ -196,6 +196,23 @@ class TestInclusive:
         assert out["hits"].iloc[0] == 2
         assert [p for _, _, p in out["spans"].iloc[0]] == ["hen", "hens"]
 
+    def test_hen_series_is_corpus_wide_not_per_party(self):
+        # Decided by the density guard, not by preference: split eight ways the
+        # 324 corpus hits give a median of 3 per party-year cell with 55% of
+        # cells empty, and 5-year binning still leaves 39% empty. One honest
+        # line beats eight noisy ones.
+        assert TONE_DIMENSIONS["hen"].group_col == inclusive.RIKSDAGEN
+        out = inclusive.measure_hen(_speeches([{"text": "Hen talade."}]))
+        assert out[inclusive.RIKSDAGEN].iloc[0] == inclusive.RIKSDAGEN
+
+    def test_hen_by_party_suppresses_thin_totals(self):
+        # Pooled totals are a fair thing to state; a rate off three sentences
+        # is not.
+        df = _speeches([{"text": "Hen talade.", "party": "MP"}])
+        report = inclusive.hen_by_party(df, min_hits=20)
+        assert report["MP"]["hits"] == 1
+        assert report["MP"]["rate"] is None
+
     def test_occupational_report_finds_the_chamber_substitution(self):
         df = _speeches(
             [
@@ -218,6 +235,27 @@ class TestInclusive:
         report = inclusive.occupational_report(_speeches([{"text": "Helt orelaterat."}]))
         pair = next(p for p in report["pairs"] if p["gendered"] == "brandman")
         assert pair["ratio"] is None
+
+    def test_decline_pairs_report_no_ratio(self):
+        # "lärare" is the unmarked base word for teacher (19,013 corpus hits) —
+        # it was never coined to replace "lärarinna". A ratio here measured
+        # nothing but how often anyone mentions teachers, and read as a
+        # meaningless "99.9% neutral". Counts yes, ratio no.
+        df = _speeches([{"text": "En lärarinna och en lärare talade om skolan."}])
+        report = inclusive.occupational_report(df, min_pair_mentions=1)
+        pair = next(p for p in report["pairs"] if p["gendered"] == "lärarinna")
+        assert pair["measure"] == "decline"
+        assert pair["ratio"] is None
+        assert pair["gendered_hits"] == 1  # the counts are still real
+
+    def test_coinage_pairs_do_report_a_ratio(self):
+        # "riksdagsledamot" exists only as the replacement, so the ratio really
+        # is "which of the two words did the speaker choose".
+        df = _speeches([{"text": "En riksdagsman och en riksdagsledamot."}])
+        report = inclusive.occupational_report(df, min_pair_mentions=1)
+        pair = next(p for p in report["pairs"] if p["gendered"] == "riksdagsman")
+        assert pair["measure"] == "ratio"
+        assert pair["ratio"] == pytest.approx(0.5)
 
     def test_null_cases_are_kept_in_the_table_on_purpose(self):
         # sjuksköterska (no settled neutral form) and brandman (neutral form has

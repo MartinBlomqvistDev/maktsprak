@@ -45,6 +45,7 @@ load_dotenv()
 
 import pandas as pd
 
+from scripts._corpus import load_corpus as _load_archive
 from src.maktsprak_pipeline.logger import get_logger
 from src.maktsprak_pipeline.nlp.tone import inclusive, readability, vi_dom
 from src.maktsprak_pipeline.nlp.tone.kernel import (
@@ -63,12 +64,14 @@ OUT_DIR = Path("data/reports")
 
 
 def load_corpus(limit: int | None = None) -> pd.DataFrame:
-    """The speech corpus with an integer ``year``."""
-    df = pd.read_parquet(
-        CORPUS,
-        columns=["id", "protocol_id", "protocol_date", "speaker", "party", "text", "file_url"],
-    )
-    df["year"] = pd.to_datetime(df["protocol_date"], errors="coerce").dt.year
+    """The speech corpus with an integer ``year``.
+
+    Goes through the shared loader rather than reading the Parquet directly —
+    that is where the duplicate-id guard lives, and a tone number computed on a
+    double-counted corpus would be wrong in a way nothing downstream can see.
+    """
+    df = _load_archive()
+    df["year"] = df["protocol_date"].dt.year
     df = df[df["year"].notna() & df["text"].notna()].astype({"year": int})
     if limit:
         df = df.sample(limit, random_state=42)
@@ -154,7 +157,9 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
     cells = (
         spec.aggregate_fn(measured)
         if spec.aggregate_fn
-        else aggregate_cells(measured, per=spec.per, alpha=spec.alpha)
+        else aggregate_cells(
+            measured, group_col=spec.group_col, per=spec.per, alpha=spec.alpha
+        )
     )
     kept = suppress_thin_cells(cells, spec.min_cell_speeches, spec.min_cell_n)
 

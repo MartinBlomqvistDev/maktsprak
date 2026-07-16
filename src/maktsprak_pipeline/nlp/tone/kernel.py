@@ -901,6 +901,13 @@ class DimensionSpec:
     aggregate_fn: Callable[[pd.DataFrame], dict[str, dict[int, CellStats]]] | None = None
     receipt_kind: ReceiptKind = "evidentiary"
     status: Literal["launch", "phase2"] = "phase2"
+    #: What to break the series out by.  ``"party"`` for almost everything —
+    #: but a rare marker can be real corpus-wide and pure noise per party, and
+    #: then the honest chart is one line, not eight.  ``hen`` is exactly that:
+    #: 324 hits over 24 years is a clean national adoption curve and, split
+    #: eight ways, a median of 3 hits per cell (binning to 5-year buckets does
+    #: not rescue it — measured, not assumed).
+    group_col: str = "party"
     supports_frames: bool = False
     min_cell_speeches: int = 8
     min_cell_n: int = 0

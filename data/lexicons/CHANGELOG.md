@@ -13,6 +13,47 @@ is a change.
 
 ---
 
+## 2026-07-16 — gate run #2: a corpus bug, a `hen` demotion, a ratio that meant nothing
+
+**The corpus was 6.7% duplicated.** Found via the census printing the same
+sentence twice. `speeches_full.parquet` held **80 541 rows but 75 116 unique
+ids** — the 2002-2015 backfill overlapped the range the weekly ETL had already
+ingested. **2014 was 95.2% duplicated, 2002 76.3%, 2015 75.4%**; the copies are
+byte-identical. Blast radius is wider than tone: a duplicated speech is counted
+twice in every denominator and inflates the confidence of every z-score built on
+it (rates mostly survive — numerator and denominator double together — but
+counts and z-scores do not). Fixed at the boundary (`export_corpus.py` now
+dedups on `id` and reports the per-year shape), and `scripts/_corpus.py` — the
+loader every analysis passes through — now **raises** on a duplicated archive
+rather than letting it quietly skew a published number. **Supabase itself still
+holds the duplicates**; that is a destructive DB cleanup and is left for Martin.
+
+**`hen` demoted to a corpus-wide series.** The new density guard rejected the
+per-party split: median 3 hits per party-year cell, 55% of cells empty. The plan
+allowed 2-3 year binning as a fallback, so it was tested rather than assumed —
+**it does not rescue it**: 2-year 47% empty, 3-year 49%, 5-year 39%. All fail.
+Pooled across the chamber the same 324 hits are a clean adoption curve matching
+the published SAOL timeline, so that is what ships; per-party becomes pooled
+totals (`hen_by_party`), not lines. `DimensionSpec.group_col` added — being
+corpus-level rather than party-level is a real property of a dimension.
+
+**The occupational ratio was meaningless for half the table.** It reported
+`lärarinna → lärare` at **99.9% neutral** and `fackman → expert` at 99.2%. Both
+are nonsense: `lärare` is the unmarked base word for teacher (19 013 hits) and
+was never coined to replace `lärarinna`, so the ratio measured how often anyone
+mentions teachers. A ratio only means "which word did the speaker choose" when
+the neutral form is a **coinage existing solely as the replacement**. New
+`measure` column: `ratio` for coinages (`riksdagsledamot`, `talesperson`,
+`tjänsteperson`), `decline` for marked feminine forms (counts, no ratio),
+`none` for `sjuksköterska`. `fackman → expert` dropped outright — `expert` is an
+ordinary word, and pairing them manufactures a number out of nothing.
+
+**And the finding that survives all of it:** the chamber renamed **itself** —
+`riksdagsman` → `riksdagsledamot` at **96.9%**, plural **98.2%** — but did not
+rename its civil servants: `tjänsteman` → `tjänsteperson` **2.5%**, plural
+**3.8%**, `ombudsperson` **0.0%**. Apolitical, mechanical, and genuinely
+interesting.
+
 ## 2026-07-14 (later) — first validation gate run: two dimensions cut, three bugs fixed
 
 `scripts/validate_tone.py` on the full corpus. Nothing here was predicted from
