@@ -3,325 +3,325 @@
  "risers": [
   {
    "word": "ukraina",
-   "z": 115.93
+   "z": 112.09
   },
   {
    "word": "kriminella",
-   "z": 75.37
+   "z": 72.71
   },
   {
    "word": "inflationen",
-   "z": 64.36
+   "z": 61.48
   },
   {
    "word": "våld",
-   "z": 61.44
-  },
-  {
-   "word": "omställningen",
-   "z": 59.19
+   "z": 59.54
   },
   {
    "word": "stärka",
-   "z": 58.23
+   "z": 57.44
+  },
+  {
+   "word": "omställningen",
+   "z": 57.21
   },
   {
    "word": "säkerställa",
-   "z": 57.8
-  },
-  {
-   "word": "gaza",
-   "z": 55.79
+   "z": 57.15
   },
   {
    "word": "pandemin",
-   "z": 54.48
+   "z": 53.47
+  },
+  {
+   "word": "gaza",
+   "z": 53.37
   },
   {
    "word": "interpellationsdebatten",
-   "z": 54.12
-  },
-  {
-   "word": "civilsamhället",
-   "z": 52.26
-  },
-  {
-   "word": "israel",
-   "z": 50.06
+   "z": 52.45
   },
   {
    "word": "ryssland",
-   "z": 49.22
+   "z": 51.29
   },
   {
-   "word": "cirka",
-   "z": 48.73
+   "word": "civilsamhället",
+   "z": 50.96
   },
   {
-   "word": "kärnkraft",
-   "z": 48.49
+   "word": "israel",
+   "z": 47.76
   },
   {
    "word": "rysslands",
-   "z": 47.97
+   "z": 47.64
+  },
+  {
+   "word": "kärnkraft",
+   "z": 47.42
+  },
+  {
+   "word": "cirka",
+   "z": 47.25
   },
   {
    "word": "krig",
-   "z": 47.35
-  },
-  {
-   "word": "kollegor",
-   "z": 46.81
+   "z": 46.4
   },
   {
    "word": "kriget",
-   "z": 46.64
+   "z": 45.25
+  },
+  {
+   "word": "kollegor",
+   "z": 44.87
   },
   {
    "word": "klimatomställningen",
-   "z": 46.59
+   "z": 44.84
   },
   {
    "word": "stödet",
-   "z": 45.82
+   "z": 44.34
   },
   {
    "word": "exempelvis",
-   "z": 45.66
+   "z": 44.33
   },
   {
    "word": "hushåll",
-   "z": 45.06
+   "z": 43.71
   },
   {
    "word": "verktyg",
-   "z": 42.83
-  },
-  {
-   "word": "sammanträdet",
-   "z": 42.25
-  },
-  {
-   "word": "stötta",
-   "z": 42.03
-  },
-  {
-   "word": "digitala",
-   "z": 41.81
+   "z": 41.16
   },
   {
    "word": "vindkraft",
-   "z": 41.8
-  },
-  {
-   "word": "sis",
-   "z": 41.11
-  },
-  {
-   "word": "inflation",
    "z": 41.1
   },
   {
-   "word": "brottslighet",
-   "z": 40.82
+   "word": "stötta",
+   "z": 40.88
   },
   {
-   "word": "pandemi",
-   "z": 40.78
-  },
-  {
-   "word": "otroligt",
-   "z": 40.36
-  },
-  {
-   "word": "ukrainska",
-   "z": 40.35
+   "word": "digitala",
+   "z": 40.14
   },
   {
    "word": "gröna",
-   "z": 40.28
+   "z": 39.97
   },
   {
-   "word": "reduktionsplikten",
-   "z": 40.06
+   "word": "otroligt",
+   "z": 39.8
   },
   {
-   "word": "hamas",
+   "word": "sammanträdet",
+   "z": 39.8
+  },
+  {
+   "word": "brottslighet",
+   "z": 39.8
+  },
+  {
+   "word": "inflation",
    "z": 39.61
   },
   {
+   "word": "pandemi",
+   "z": 39.59
+  },
+  {
    "word": "igång",
-   "z": 38.83
+   "z": 39.54
   },
   {
-   "word": "ukrainas",
-   "z": 38.65
+   "word": "sis",
+   "z": 39.39
   },
   {
-   "word": "gängen",
-   "z": 38.6
+   "word": "reduktionsplikten",
+   "z": 39.05
+  },
+  {
+   "word": "hamas",
+   "z": 38.47
+  },
+  {
+   "word": "plats",
+   "z": 38.13
+  },
+  {
+   "word": "ryska",
+   "z": 38.08
+  },
+  {
+   "word": "skydda",
+   "z": 37.89
   }
  ],
  "fallers": [
   {
    "word": "borgerliga",
-   "z": 66.23
+   "z": 66.33
   },
   {
    "word": "alliansen",
-   "z": 60.51
-  },
-  {
-   "word": "jobb",
-   "z": 53.97
+   "z": 59.04
   },
   {
    "word": "naturligtvis",
-   "z": 52.61
+   "z": 53.81
+  },
+  {
+   "word": "jobb",
+   "z": 50.1
   },
   {
    "word": "ungdomar",
-   "z": 51.29
+   "z": 49.89
   },
   {
    "word": "arbetsmarknaden",
-   "z": 48.33
-  },
-  {
-   "word": "alliansregeringen",
-   "z": 47.8
+   "z": 48.02
   },
   {
    "word": "landsting",
-   "z": 47.41
+   "z": 46.85
+  },
+  {
+   "word": "alliansregeringen",
+   "z": 45.87
   },
   {
    "word": "överläggningen",
-   "z": 38.55
-  },
-  {
-   "word": "alliansens",
-   "z": 38.17
+   "z": 38.13
   },
   {
    "word": "intressant",
-   "z": 37.55
+   "z": 37.28
+  },
+  {
+   "word": "alliansens",
+   "z": 36.53
   },
   {
    "word": "talar",
-   "z": 37.0
+   "z": 36.17
   },
   {
    "word": "förhandlingarna",
-   "z": 34.62
+   "z": 34.3
   },
   {
    "word": "sysselsättning",
-   "z": 32.86
-  },
-  {
-   "word": "jobben",
-   "z": 32.4
-  },
-  {
-   "word": "diskutera",
-   "z": 31.46
-  },
-  {
-   "word": "vattenfall",
-   "z": 31.46
-  },
-  {
-   "word": "irak",
-   "z": 31.03
+   "z": 32.41
   },
   {
    "word": "majoriteten",
-   "z": 30.61
+   "z": 32.06
   },
   {
-   "word": "sysselsättningen",
-   "z": 30.2
+   "word": "diskutera",
+   "z": 31.97
   },
   {
-   "word": "utveckling",
-   "z": 30.16
+   "word": "vattenfall",
+   "z": 31.38
   },
   {
-   "word": "sektorn",
-   "z": 30.0
+   "word": "irak",
+   "z": 30.84
   },
   {
    "word": "diskussion",
-   "z": 29.8
+   "z": 30.36
   },
   {
-   "word": "tala",
-   "z": 29.7
-  },
-  {
-   "word": "uppfattning",
-   "z": 29.14
-  },
-  {
-   "word": "reservationerna",
-   "z": 28.87
+   "word": "jobben",
+   "z": 29.77
   },
   {
    "word": "motioner",
-   "z": 28.71
+   "z": 29.65
   },
   {
-   "word": "arbetslösa",
-   "z": 28.69
+   "word": "sysselsättningen",
+   "z": 29.61
   },
   {
-   "word": "rut",
-   "z": 28.51
+   "word": "uppfattning",
+   "z": 29.55
   },
   {
-   "word": "diskussionen",
-   "z": 28.32
+   "word": "sektorn",
+   "z": 29.39
   },
   {
-   "word": "föra",
-   "z": 28.23
+   "word": "tala",
+   "z": 29.38
   },
   {
-   "word": "beträffande",
-   "z": 28.12
+   "word": "utveckling",
+   "z": 29.38
   },
   {
    "word": "oppositionen",
-   "z": 27.72
+   "z": 29.2
   },
   {
-   "word": "gamla",
-   "z": 27.32
+   "word": "reservationerna",
+   "z": 29.08
+  },
+  {
+   "word": "diskussionen",
+   "z": 28.73
+  },
+  {
+   "word": "beträffande",
+   "z": 28.48
+  },
+  {
+   "word": "arbetslösa",
+   "z": 28.25
   },
   {
    "word": "redovisas",
-   "z": 27.18
+   "z": 28.07
   },
   {
-   "word": "betänkandet",
-   "z": 27.17
-  },
-  {
-   "word": "arbetsmarknadsministern",
-   "z": 27.16
+   "word": "föra",
+   "z": 28.0
   },
   {
    "word": "tisdagen",
-   "z": 27.15
+   "z": 27.97
   },
   {
    "word": "högskolan",
-   "z": 26.88
+   "z": 27.93
+  },
+  {
+   "word": "betänkandet",
+   "z": 27.81
+  },
+  {
+   "word": "bilaga",
+   "z": 27.31
+  },
+  {
+   "word": "gamla",
+   "z": 27.23
   },
   {
    "word": "män",
-   "z": 26.86
+   "z": 27.14
+  },
+  {
+   "word": "rut",
+   "z": 27.14
   }
  ]
 }

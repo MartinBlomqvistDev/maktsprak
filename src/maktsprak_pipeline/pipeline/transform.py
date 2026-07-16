@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import time
+import unicodedata
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -50,6 +51,103 @@ _SPEECH_RE = re.compile(
     r"((?:(?!Anf\.\s+\d).)*)",  # 3: body (never crosses a marker)
     re.S,
 )
+
+
+_SLUG_STRIP_RE = re.compile(r"[^a-z0-9]+")
+
+#: Swedish letters that must fold to a Latin base rather than be dropped.
+#: NFKD alone turns "ö" into "o"+combining-diaeresis and then discards the
+#: mark, which happens to be right for ö/ä/å here — but spelling it out keeps
+#: the mapping explicit and independent of unicodedata's behaviour.
+_SLUG_FOLD = str.maketrans({"å": "a", "ä": "a", "ö": "o", "é": "e", "è": "e", "ü": "u", "ø": "o"})
+
+
+def _speaker_slug(speaker: str) -> str:
+    """Normalise a speaker name into a stable identifier component.
+
+    The protocols spell one person several ways — hyphen or space
+    ("JAN-EMANUEL JOHANSSON" / "JAN EMANUEL JOHANSSON"), and inconsistent case
+    inside a qualifier ("CECILIA WIGSTRÖM I GÖTEBORG" / "... i Göteborg").
+    Keying on the raw string files those as different speakers and splits one
+    person's speeches across records.  Folding to a slug merges them.
+
+    Args:
+        speaker: Raw speaker string as it appears in the protocol header.
+
+    Returns:
+        A lower-case ASCII slug, e.g. ``"cecilia-wigstrom-i-goteborg"``.
+        Empty only if *speaker* holds no alphanumerics at all.
+    """
+    folded = speaker.strip().lower().translate(_SLUG_FOLD)
+    ascii_only = unicodedata.normalize("NFKD", folded).encode("ascii", "ignore").decode()
+    return _SLUG_STRIP_RE.sub("-", ascii_only).strip("-")
+
+
+def records_from_text(
+    full_text: str,
+    protocol_id: str,
+    protocol_date: str,
+    file_url: str,
+) -> list[dict[str, Any]]:
+    """Turn one protocol's extracted text into speech records.
+
+    Split out from the PDF/download path so the record shape — above all the
+    **id** — is testable without a PDF, and reusable by an offline rebuild that
+    reads the cached documents in ``data/raw`` instead of the API.
+
+    A record is one speaker's contributions to one protocol, concatenated in
+    document order.  Grouping keys on the *slug*, not the raw name: the
+    protocols spell the same person several ways ("JAN-EMANUEL JOHANSSON" vs
+    "JAN EMANUEL JOHANSSON", "CECILIA WIGSTRÖM I GÖTEBORG" vs "... i
+    Göteborg"), and the raw string files those as different speakers, splitting
+    one person across records.  Party stays in the key, so a real clash — the
+    same name under two parties in one protocol — still yields two records.
+
+    Args:
+        full_text:     Text extracted from the protocol.
+        protocol_id:   Riksdag document id, e.g. ``"HD098"``.
+        protocol_date: ISO date of the protocol.
+        file_url:      Source document URL.
+
+    Returns:
+        Records sorted by ``id``; the same text always yields the same list.
+    """
+    grouped: defaultdict[tuple[str, str], list[str]] = defaultdict(list)
+    spellings: defaultdict[tuple[str, str], set[str]] = defaultdict(set)
+    for speaker, raw_party, speech_body in _SPEECH_RE.findall(full_text):
+        party = _canonical_party(raw_party)
+        if party is None:
+            continue
+        body = speech_body.strip()
+        if not body:
+            continue
+        key = (_speaker_slug(speaker), party)
+        grouped[key].append(body)
+        spellings[key].add(speaker.strip())
+
+    records: list[dict[str, Any]] = [
+        {
+            # The natural key: protocol + who + which party.  Previously
+            # `f"{protocol_id}_{idx}"`, an enumerate() counter over
+            # first-appearance order — a property of the parser *run*, not of
+            # the speech.  When the parser fix changed which speeches were
+            # extracted, every later index shifted, so one id came to mean two
+            # different speeches across re-ingests and no join, dedup or upsert
+            # could be trusted.  This key depends only on the document.
+            "id": f"{protocol_id}_{slug}_{party.lower()}",
+            "protocol_id": protocol_id,
+            "protocol_date": protocol_date,
+            # Deterministic pick among spelling variants — never the
+            # iteration-order one, or the choice drifts between runs.
+            "speaker": sorted(spellings[(slug, party)])[0],
+            "party": party,
+            "text": "\n\n".join(segments),
+            "file_url": file_url,
+        }
+        for (slug, party), segments in grouped.items()
+    ]
+    # Sorted so a protocol parses to an identical record list every run.
+    return sorted(records, key=lambda record: record["id"])
 
 
 def _canonical_party(raw_party: str) -> str | None:
@@ -276,33 +374,7 @@ def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
         logger.warning(f"PDF extraction failed for {protocol_id}: {exc}")
         return []
 
-    # Group consecutive speech segments by (speaker, party) so that a speaker
-    # who holds the floor multiple times within one protocol is merged into a
-    # single record.
-    grouped: defaultdict[tuple[str, str], list[str]] = defaultdict(list)
-    for speaker, raw_party, speech_body in _SPEECH_RE.findall(full_text):
-        party = _canonical_party(raw_party)
-        if party is None:
-            continue
-        body = speech_body.strip()
-        if body:
-            grouped[(speaker.strip(), party)].append(body)
-
-    records: list[dict[str, Any]] = []
-    for idx, ((speaker, party), segments) in enumerate(grouped.items(), start=1):
-        records.append(
-            {
-                "id": f"{protocol_id}_{idx}",
-                "protocol_id": protocol_id,
-                "protocol_date": protocol_date,
-                "speaker": speaker,
-                "party": party,
-                "text": "\n\n".join(segments),
-                "file_url": file_url,
-            }
-        )
-
-    return records
+    return records_from_text(full_text, protocol_id, protocol_date, file_url)
 
 
 def transform_riksdag(xml_file: str | None) -> list[dict[str, Any]]:

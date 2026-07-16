@@ -2,7 +2,40 @@
 
 from __future__ import annotations
 
-from src.maktsprak_pipeline.pipeline.transform import _SPEECH_RE, _canonical_party
+from src.maktsprak_pipeline.pipeline.transform import (
+    _SPEECH_RE,
+    _canonical_party,
+    _speaker_slug,
+    records_from_text,
+)
+
+
+class TestSpeakerSlug:
+    """The id's stability rests entirely on this function."""
+
+    def test_folds_swedish_letters_to_latin(self):
+        assert _speaker_slug("CECILIA WIGSTRÖM") == "cecilia-wigstrom"
+        assert _speaker_slug("ÅSA ANDERSSON") == "asa-andersson"
+        assert _speaker_slug("PÄR ÖBERG") == "par-oberg"
+
+    def test_hyphen_and_space_spellings_agree(self):
+        # Real collision from the corpus: the same person, two spellings, filed
+        # as two separate speakers by the old raw-string grouping.
+        assert _speaker_slug("JAN-EMANUEL JOHANSSON") == _speaker_slug("JAN EMANUEL JOHANSSON")
+
+    def test_case_variants_agree(self):
+        # Real collision: note the lower-case "i" in the second spelling.
+        assert _speaker_slug("CECILIA WIGSTRÖM I GÖTEBORG") == _speaker_slug(
+            "CECILIA WIGSTRÖM i Göteborg"
+        )
+
+    def test_different_people_stay_different(self):
+        assert _speaker_slug("ANNA ANDERSSON") != _speaker_slug("ANNA ANDERSON")
+
+    def test_is_deterministic(self):
+        # The whole point: same input, same output, every run, forever.
+        assert _speaker_slug("MARIA MALMER STENERGARD") == "maria-malmer-stenergard"
+        assert _speaker_slug(" MARIA  MALMER  STENERGARD ") == "maria-malmer-stenergard"
 
 
 class TestSpeechRegex:
@@ -82,6 +115,62 @@ class TestSpeechRegex:
         assert party == "M"
         assert "Maria Malmer Stenergard" in speaker
         assert "oberoende" not in body
+
+
+class TestRecordIdStability:
+    """The regression that cost a corpus rebuild.
+
+    The id was ``f"{protocol_id}_{idx}"`` where idx came from ``enumerate()``
+    over first-appearance order — a property of the parser run, not of the
+    speech.  When the parser fix changed which speeches were extracted, every
+    later index shifted, so ``HD098_60`` meant one speech before the fix and a
+    different one after.  Re-ingesting then wrote both, and no join, dedup or
+    upsert could tell them apart.
+    """
+
+    def _records(self, text):
+        # Exercises the real record builder — a reimplementation here could
+        # pass while the shipped parser was broken.
+        return records_from_text(text, "P1", "2020-01-01", "http://x")
+
+    def test_id_survives_an_extra_speech_appearing_earlier(self):
+        # THE bug, reproduced. A parser fix makes an earlier speech visible;
+        # every id after it must NOT move.
+        before = "Anf. 2 ANNA ANDERSSON (S): Ett. Anf. 3 ERIK ERIKSSON (M): Tva."
+        after = (
+            "Anf. 1 NYA TALAREN (C): Noll. "
+            "Anf. 2 ANNA ANDERSSON (S): Ett. Anf. 3 ERIK ERIKSSON (M): Tva."
+        )
+        ids_before = {r["id"] for r in self._records(before)}
+        ids_after = {r["id"] for r in self._records(after)}
+        # Anna and Erik keep their ids; only the new speaker adds one.
+        assert ids_before < ids_after
+        assert ids_after - ids_before == {"P1_nya-talaren_c"}
+
+    def test_id_does_not_depend_on_document_order(self):
+        a = "Anf. 1 ANNA ANDERSSON (S): Ett. Anf. 2 ERIK ERIKSSON (M): Tva."
+        b = "Anf. 1 ERIK ERIKSSON (M): Tva. Anf. 2 ANNA ANDERSSON (S): Ett."
+        assert {r["id"] for r in self._records(a)} == {r["id"] for r in self._records(b)}
+
+    def test_same_name_different_party_stays_two_records(self):
+        # Real case: JEPPE JOHNSSON appears under both S and M in one protocol.
+        text = "Anf. 1 JEPPE JOHNSSON (S): Ett. Anf. 2 JEPPE JOHNSSON (M): Tva."
+        assert {r["id"] for r in self._records(text)} == {
+            "P1_jeppe-johnsson_s",
+            "P1_jeppe-johnsson_m",
+        }
+
+    def test_spelling_variants_merge_into_one_record(self):
+        text = "Anf. 1 JAN-EMANUEL JOHANSSON (S): Ett. Anf. 2 JAN EMANUEL JOHANSSON (S): Tva."
+        records = self._records(text)
+        assert len(records) == 1
+        assert "Ett." in records[0]["text"] and "Tva." in records[0]["text"]
+
+    def test_output_is_sorted_and_reproducible(self):
+        text = "Anf. 1 ZULU (S): Z. Anf. 2 ALFA (M): A."
+        first = self._records(text)
+        assert [r["id"] for r in first] == sorted(r["id"] for r in first)
+        assert first == self._records(text)
 
 
 class TestCanonicalParty:
