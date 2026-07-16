@@ -29,9 +29,13 @@ values.  A one-line interjection ("Ja, herr talman!") has a per-speech LIX that
 is pure noise, and averaging lets it shout as loudly as a twenty-minute speech.
 
 **Very short speeches are excluded entirely.**  A speech needs at least 3
-sentences and 20 words to enter the pool.  The chamber is full of one-word
-objections, and they say nothing about how a party *speaks*.  The excluded
-share is published rather than hidden.
+sentences and 20 words to enter the pool, so a bare procedural interjection
+cannot swing a cell.  In practice the floor almost never fires — measured on
+the real corpus it excludes **0.1%** of speeches, because the rewritten PDF
+parser assembles whole anföranden (median 1 061 words / 64 sentences) rather
+than the fragments the pre-fix parser produced.  The guard stays because it
+costs nothing and the corpus is re-ingested regularly; the excluded share is
+published rather than assumed.
 
 Cross-language comparison is LIX's known weak point — Swedish compounds
 (``arbetslöshetsersättning``) inflate the long-word count relative to English.

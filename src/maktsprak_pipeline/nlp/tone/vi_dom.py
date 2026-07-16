@@ -1,49 +1,50 @@
-"""Vi-mot-dom: people-centrism, anti-elitism, class conflict — and the construction.
+"""Vi-mot-dom: what survived the audit, and what the audit killed.
 
-What an audit of the real corpus forced this module to become
----------------------------------------------------------------
-The first design counted "generalised out-group references" — ``dessa
-människor``, ``de som kommer hit`` — and treated a hit as evidence of othering.
-Sampling the actual matches killed that idea outright:
+Three rounds of reading *real matches* — not reasoning about patterns — cut this
+module down to what the corpus actually supports.  The cuts are the substance
+here, so they are documented rather than quietly reverted:
 
-    "Vi har all anledning att stötta de här människorna."            (S)
-    "De som kommer hit ska ges möjlighet att vara med och bygga landet." (V)
-    "Vi måste kunna möta de här människorna med behandling."         (V)
+**Round 1 — referring expressions are not othering.**  ``dessa människor``
+(3 356 hits) and ``de här människorna`` (1 262) turned out to be overwhelmingly
+*sympathetic*: "Vi har all anledning att stötta de här människorna" (S), "Vi
+måste kunna möta de här människorna med behandling" (V).  ``de som kommer hit``
+fails the same way: "De som kommer hit ska ges möjlighet att vara med och bygga
+landet" (V).  Bare ``eliten`` is a homograph — "den internationella eliten" (L)
+means world-class researchers.  **In the formal chamber register hostility lives
+in the predicate, not the noun phrase.**
 
-Every one of those is *sympathetic*, and every one would have counted as
-othering.  In the formal chamber register the hostility is not in the noun
-phrase — it is in the predicate around it.  A word list over referring
-expressions measures "talking about a group of people", which is what a welfare
-debate consists of.  ``dessa människor`` and ``de här människorna`` (4 618 hits
-between them) were cut for precisely this reason, and bare ``eliten`` was cut
-because it also means a *top tier*: "den internationella eliten" in an L speech
-is about world-class researchers.
+**Round 2 — two more dimensions failed their own gate.**
 
-What survives is measured three ways, none of which requires judging whether a
-speaker was being hostile:
+- ``folk`` (11 848 hits) was specced as *people-centrism* in Mudde's sense: the
+  people as one virtuous, undivided body set against a corrupt elite.  The
+  sample says otherwise — "skogen har en speciell plats i hjärtat hos svenska
+  folket" (V), "svenska folket tror mer på alliansregeringen" (C).  That is the
+  electorate, referred to.  Charting it as people-centrism would repeat exactly
+  the Round-1 mistake with a longer word list.
+- ``antielit`` (254 hits) is precise enough, but **median 2 hits per non-empty
+  party-year cell and 91 of 192 cells empty**.  That is not a time series; it is
+  noise with a line through it.  The speech-count suppression floor cannot catch
+  this because the speeches are there — the *hits* are not.
 
-1. :func:`measure_folk` — **folkhänvisningar** (people-centrism).  How often a
-   party invokes the people as one undivided body ("svenska folket", "vanligt
-   folk").  Countable, valence-free, and one of the two constitutive components
-   of populism in the academic definition (Mudde 2004; Rooduijn & Pauwels 2011).
-2. :func:`measure_antielit` — **anti-elit-språk** (anti-elitism).  The other
-   constitutive component.  Qualified elite terms only, for the homograph
-   reason above.
-3. :func:`measure_klasskonflikt` — **klasskonflikt-ramning**.  An out-group
-   defined by wealth ("de rika", "miljardärerna").  Structurally the same
-   rhetorical move as an origin-defined out-group, aimed at a different target —
-   which is exactly why it is measured on the same axis rather than quietly
-   omitted.
+Both remain as the **halves of the construction detector** (a census needs an
+in-group half and an out-group half), and neither is registered as a chart.
 
-4. :func:`vi_dom_census` — the **construction** itself: an in-group marker and
-   an out-group marker in the *same sentence*.  This is the real "us versus
-   them", and it is genuinely rare — 51 sentences in 80 541 speeches.  Too few
-   for a time series, which is why it is published as an **exhaustive census**
-   (every single one, not a sample) rather than a chart.  The census is also the
-   most striking result the project has: of those 51, roughly two thirds are
-   *economic* and only a handful are origin-based, and the parties using the
-   construction most are S and V, not SD.  A single undifferentiated "us-vs-them"
-   number would have said the opposite, loudly and wrongly.
+**What ships.**
+
+- :func:`measure_klasskonflikt` — an out-group defined by wealth.  3 165 hits,
+  real variation between parties, and it exists so the instrument can find the
+  same rhetorical move aimed leftward.  It does: V is the top user by a distance.
+  Homographs are excluded rather than the patterns thrown away ("de rikaste
+  **länderna**" is about countries — the audit caught "Sverige är inte längre ett
+  av de rikaste länderna" (M) counted as class conflict).
+- :func:`vi_dom_census` — the **construction**: an in-group marker and an
+  out-group marker in the *same sentence*.  This is the real "us versus them",
+  and it is genuinely rare — ~51 sentences in 80 541 speeches.  Too few to chart,
+  so it is published as an **exhaustive census**: every single one, not a sample,
+  which is stronger than any statistic because there was nothing to cherry-pick.
+  Its distribution is the project's most striking result — mostly *economic*,
+  barely any origin-based, led by S and V rather than SD.  A single
+  undifferentiated "us-vs-them" number would have said the opposite, loudly.
 """
 
 from __future__ import annotations
@@ -68,7 +69,7 @@ from .kernel import (
 
 PATTERN_PATH = PROJECT_ROOT / "data" / "lexicons" / "vi_dom_patterns.csv"
 
-_REQUIRED_COLS = ["pattern", "slot", "subtype", "source", "note"]
+_REQUIRED_COLS = ["pattern", "slot", "subtype", "source", "exclude_next", "note"]
 
 
 @lru_cache(maxsize=1)
@@ -83,8 +84,11 @@ def _subset(slot: str, subtype: str | None = None) -> pd.DataFrame:
     if subtype is not None:
         rows = rows[rows["subtype"] == subtype]
     rows = rows.reset_index(drop=True)
-    # find_spans reads the alternation off .attrs; a slice does not inherit it.
+    # A slice does not inherit .attrs, and find_spans reads both off it.
     rows.attrs["alternation"] = compile_alternation(rows["pattern"].tolist())
+    rows.attrs["excludes"] = {
+        p: rx for p, rx in table.attrs.get("excludes", {}).items() if p in set(rows["pattern"])
+    }
     return rows
 
 
@@ -97,7 +101,9 @@ def subtype_map() -> dict[str, str]:
 def _measure(df: pd.DataFrame, table: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
     """Per-speech ``hits`` (matching sentences), ``n`` (sentences), ``spans``."""
     out = ensure_sentence_spans(df, text_col=text_col).copy()
-    spans = [find_spans(text, table, "pattern") for text in out[text_col]]
+    spans = [
+        find_spans(text, table, "pattern", exclude_col="exclude_next") for text in out[text_col]
+    ]
     out["spans"] = spans
     out["n"] = [len(s) for s in out[SENT_COL]]
     out["hits"] = [
@@ -107,12 +113,22 @@ def _measure(df: pd.DataFrame, table: pd.DataFrame, text_col: str = "text") -> p
 
 
 def measure_folk(df: pd.DataFrame) -> pd.DataFrame:
-    """Sentences invoking the people as one body, per speech."""
+    """In-group ("folket") sentences per speech.
+
+    **Not a registered chart dimension.**  The audit found these are usually
+    just the electorate, referred to — not people-centrism in Mudde's sense (see
+    the module docstring).  Kept because the census needs an in-group half.
+    """
     return _measure(df, _subset("ingroup"))
 
 
 def measure_antielit(df: pd.DataFrame) -> pd.DataFrame:
-    """Sentences using anti-elite / anti-establishment vocabulary, per speech."""
+    """Anti-elite / anti-establishment sentences per speech.
+
+    **Not a registered chart dimension.**  Precise, but far too sparse to plot:
+    median 2 hits per non-empty party-year cell, 91 of 192 cells empty.  Kept
+    because the census needs an out-group half.
+    """
     return _measure(df, _subset("outgroup", "elite"))
 
 
@@ -221,34 +237,12 @@ def _url(value: object) -> str | None:
 
 
 # ------------------------------------------------------------------ registry
-
-FOLK = register(
-    DimensionSpec(
-        id="folk",
-        label_sv="Folkhänvisningar",
-        unit_sv="meningar per 1 000 som åberopar »folket«",
-        technique="lexical",
-        measure_fn=measure_folk,
-        status="launch",
-        supports_frames=True,
-        min_cell_speeches=8,
-        pattern_paths=[PATTERN_PATH],
-    )
-)
-
-ANTIELIT = register(
-    DimensionSpec(
-        id="antielit",
-        label_sv="Anti-elit-språk",
-        unit_sv="meningar per 1 000 med elit-/etablissemangsretorik",
-        technique="lexical",
-        measure_fn=measure_antielit,
-        status="launch",
-        supports_frames=True,
-        min_cell_speeches=8,
-        pattern_paths=[PATTERN_PATH],
-    )
-)
+#
+# `folk` and `antielit` are deliberately NOT registered — they failed their own
+# validation gate (see the module docstring: one measures the electorate rather
+# than people-centrism, the other is too sparse to plot).  They stay as measure
+# functions because the census consumes them.  Re-registering either without
+# re-running scripts/validate_tone.py would put a known-bad series on the site.
 
 KLASSKONFLIKT = register(
     DimensionSpec(

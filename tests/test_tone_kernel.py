@@ -24,6 +24,7 @@ from src.maktsprak_pipeline.nlp.tone.kernel import (
     context_for_span,
     fightin_z,
     find_spans,
+    hit_density,
     load_pattern_table,
     raw_rate,
     register,
@@ -337,6 +338,41 @@ class TestSuppressThinCells:
 
     def test_no_floors_keeps_everything(self):
         assert suppress_thin_cells(self._cells()) == self._cells()
+
+
+class TestHitDensity:
+    def test_flags_the_antielit_failure_mode(self):
+        # The real numbers that got antielit unregistered: a dimension can pass
+        # every speech-count floor and still have no evidence in it. 4 cells,
+        # 2 empty, the others holding 2 hits each.
+        cells = {
+            "A": {
+                2020: CellStats(2, 5000, speeches=300, rate=0.4, smoothed=0.4, z=1.0),
+                2021: CellStats(0, 5000, speeches=300, rate=0.0, smoothed=0.2, z=None),
+            },
+            "B": {
+                2020: CellStats(2, 5000, speeches=300, rate=0.4, smoothed=0.4, z=1.0),
+                2021: CellStats(0, 5000, speeches=300, rate=0.0, smoothed=0.2, z=None),
+            },
+        }
+        density = hit_density(cells)
+        assert density["median_hits"] == 2
+        assert density["empty_share"] == 0.5
+        assert density["total_hits"] == 4
+
+    def test_a_healthy_dimension_passes(self):
+        cells = {
+            "A": {
+                y: CellStats(120, 5000, speeches=300, rate=24.0, smoothed=24.0, z=2.0)
+                for y in (2020, 2021)
+            }
+        }
+        density = hit_density(cells)
+        assert density["median_hits"] == 120
+        assert density["empty_share"] == 0.0
+
+    def test_empty_input(self):
+        assert hit_density({})["empty_share"] == 1.0
 
 
 class TestContextForSpan:

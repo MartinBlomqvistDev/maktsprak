@@ -52,6 +52,7 @@ from src.maktsprak_pipeline.nlp.tone.kernel import (
     aggregate_cells,
     context_for_span,
     ensure_sentence_spans,
+    hit_density,
     suppress_thin_cells,
 )
 
@@ -83,8 +84,6 @@ def symmetry(df: pd.DataFrame) -> pd.DataFrame:
     is both absurd and indefensible.  Splitting by subtype is what makes the
     result honest: V's number is class conflict, not origin framing.
     """
-    outgroup = vi_dom.load_patterns()
-    outgroup = outgroup[outgroup["slot"] == "outgroup"]
     subtypes = vi_dom.subtype_map()
 
     rows = []
@@ -110,9 +109,7 @@ def symmetry(df: pd.DataFrame) -> pd.DataFrame:
     return pd.crosstab(frame["party"], frame["subtype"])
 
 
-def precision_sample(
-    df: pd.DataFrame, dimension: str, size: int, seed: int = 42
-) -> pd.DataFrame:
+def precision_sample(df: pd.DataFrame, dimension: str, size: int, seed: int = 42) -> pd.DataFrame:
     """A party-stratified sample of real matches, ready for hand-labelling.
 
     Stratified so no party is judged on three examples while another gets fifty
@@ -165,10 +162,23 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
     kept_cells = sum(len(v) for v in kept.values())
     hits = int(measured["hits"].sum()) if "hits" in measured else 0
 
+    density = hit_density(cells)
+
     print(f"\n{'=' * 78}\n{dimension}  ({spec.technique}) — {spec.label_sv}\n{'=' * 78}")
     print(f"  unit          : {spec.unit_sv}")
     print(f"  total hits    : {hits:,}")
     print(f"  cells         : {total_cells} -> {kept_cells} kept after suppression")
+
+    # The check the speech-count floor cannot make: enough TEXT is not enough
+    # EVIDENCE. antielit passed every floor with a median of 2 hits per cell.
+    if spec.technique != "stylometric":
+        verdict = ""
+        if density["median_hits"] < 5 or density["empty_share"] > 0.35:
+            verdict = "  <-- TOO SPARSE TO CHART: this is noise with a line through it"
+        print(
+            f"  density       : median {density['median_hits']:.0f} hits/cell, "
+            f"{density['empty_share']:.0%} of cells empty{verdict}"
+        )
 
     if spec.technique == "stylometric":
         excluded = readability.excluded_share(measured)
@@ -198,7 +208,9 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
             path = OUT_DIR / f"precision_{dimension}.csv"
             sample.to_csv(path, index=False, encoding="utf-8-sig")
             print(f"\n  -> {len(sample)} matches for hand-labelling: {path}")
-            print("     (fill in is_correct__fill_in with 1/0; the resulting number gets published)")
+            print(
+                "     (fill in is_correct__fill_in with 1/0; the resulting number gets published)"
+            )
 
     return {
         "dimension": dimension,
@@ -206,6 +218,7 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
         "hits": hits,
         "cells": total_cells,
         "cells_kept": kept_cells,
+        "density": density,
     }
 
 
@@ -217,9 +230,7 @@ def main() -> None:
     args = parser.parse_args()
 
     df = load_corpus(args.limit)
-    wanted = args.dimension or [
-        d for d, s in TONE_DIMENSIONS.items() if s.status == "launch"
-    ]
+    wanted = args.dimension or [d for d, s in TONE_DIMENSIONS.items() if s.status == "launch"]
 
     summary = [report_dimension(df, d, args.sample) for d in wanted]
 
@@ -235,7 +246,9 @@ def main() -> None:
 
     # --------------------------------------------------------------- census
     census = vi_dom.vi_dom_census(df)
-    print(f"\n{'=' * 78}\nVI-MOT-DOM CENSUS — {len(census)} constructions in the whole corpus\n{'=' * 78}")
+    print(
+        f"\n{'=' * 78}\nVI-MOT-DOM CENSUS — {len(census)} constructions in the whole corpus\n{'=' * 78}"
+    )
     if census:
         by_party = pd.Series([c.party for c in census]).value_counts()
         by_type = pd.Series([t for c in census for t in c.subtypes]).value_counts()

@@ -265,7 +265,26 @@ def load_pattern_table(path: Path, key_col: str, required_cols: list[str]) -> pd
 
     table["regex"] = [compile_pattern(p) for p in table[key_col]]
     table.attrs["alternation"] = compile_alternation(table[key_col].tolist())
+    table.attrs["excludes"] = _compile_excludes(table, key_col)
     return table
+
+
+def _compile_excludes(table: pd.DataFrame, key_col: str) -> dict[str, re.Pattern[str]]:
+    """``{pattern: regex}`` matching a disqualifying word right after a hit.
+
+    Driven by an optional ``exclude_next`` column of ``|``-separated words.
+    """
+    if "exclude_next" not in table.columns:
+        return {}
+    out: dict[str, re.Pattern[str]] = {}
+    for pattern, raw in zip(table[key_col], table["exclude_next"], strict=True):
+        if not isinstance(raw, str) or not raw.strip():
+            continue
+        words = [w.strip().lower() for w in raw.split("|") if w.strip()]
+        if words:
+            body = "|".join(re.escape(w) for w in words)
+            out[pattern] = re.compile(rf"\s+(?:{body})(?!\w)", re.IGNORECASE)
+    return out
 
 
 def compile_alternation(patterns: list[str]) -> re.Pattern[str]:
@@ -286,34 +305,58 @@ def compile_alternation(patterns: list[str]) -> re.Pattern[str]:
     return re.compile(rf"(?<!\w)(?:{body})(?!\w)", re.IGNORECASE)
 
 
-def find_spans(text: str, table: pd.DataFrame, key_col: str) -> list[tuple[int, int, str]]:
+def find_spans(
+    text: str,
+    table: pd.DataFrame,
+    key_col: str,
+    exclude_col: str | None = None,
+) -> list[tuple[int, int, str]]:
     """Every match of every pattern in *table*, as ``(start, end, pattern)``.
 
     Offsets index *text*, so a receipt can highlight the exact span.
 
     Args:
-        text:    Raw speech text.
-        table:   Output of :func:`load_pattern_table` (needs a ``regex`` column).
-        key_col: Column holding the pattern string.
+        text:        Raw speech text.
+        table:       Output of :func:`load_pattern_table` (needs ``regex``).
+        key_col:     Column holding the pattern string.
+        exclude_col: Optional column of ``|``-separated words which, if they
+            appear immediately after the match, disqualify it.  This is how a
+            homograph is handled without throwing the pattern away: "de rikaste
+            **länderna**" is about countries, "de rikaste" alone is about
+            people, and the audit found both in the corpus.
 
     Returns:
         Matches sorted by start offset.  Overlaps are *not* removed — two
         patterns may legitimately both fire on the same words, and collapsing
         them would silently under-count.
     """
-    alternation = table.attrs.get("alternation")
-    if alternation is not None:
-        if not isinstance(text, str) or not text:
-            return []
-        return [(m.start(), m.end(), m.group(0).lower()) for m in alternation.finditer(text)]
-
     if not isinstance(text, str) or not text:
         return []
-    spans: list[tuple[int, int, str]] = []
-    for pattern, regex in zip(table[key_col], table["regex"], strict=True):
-        for match in regex.finditer(text):
-            spans.append((match.start(), match.end(), pattern))
-    return sorted(spans)
+
+    excludes = table.attrs.get("excludes") if exclude_col else None
+    alternation = table.attrs.get("alternation")
+
+    if alternation is not None:
+        raw = [(m.start(), m.end(), m.group(0).lower()) for m in alternation.finditer(text)]
+    else:
+        raw = sorted(
+            (m.start(), m.end(), pattern)
+            for pattern, regex in zip(table[key_col], table["regex"], strict=True)
+            for m in regex.finditer(text)
+        )
+
+    if not excludes:
+        return raw
+    return [span for span in raw if not _is_excluded(text, span, excludes)]
+
+
+def _is_excluded(
+    text: str, span: tuple[int, int, str], excludes: dict[str, re.Pattern[str]]
+) -> bool:
+    """True when the word following *span* disqualifies it (see ``exclude_col``)."""
+    _, end, pattern = span
+    regex = excludes.get(pattern)
+    return bool(regex and regex.match(text, end))
 
 
 # --------------------------------------------------------------------------
@@ -582,6 +625,35 @@ def aggregate_cells(
             z=fightin_z(hits, n, bg_hits, bg_n, alpha=alpha),
         )
     return {g: dict(sorted(years.items())) for g, years in sorted(out.items())}
+
+
+def hit_density(cells: dict[str, dict[int, CellStats]]) -> dict[str, float]:
+    """Is there enough signal here to draw a line at all?
+
+    The suppression floors ask whether a cell has enough *text*.  This asks the
+    question they cannot: whether it has enough **hits**.  A dimension can pass
+    every floor and still be unplottable — ``antielit`` had 254 hits across 24
+    years, a median of 2 per non-empty cell and 91 of 192 cells empty.  The
+    speeches were there; the evidence was not.  A line through that is noise
+    with a trend drawn on it, and it took a hand-audit to notice, which is
+    exactly the kind of thing that should be mechanical.
+
+    Returns:
+        ``median_hits`` (over non-empty cells), ``empty_share`` (fraction of
+        cells with no hits at all) and ``total_hits``.  A dimension whose
+        ``median_hits`` is low single digits or whose ``empty_share`` is near
+        half does not belong on a time-series chart, whatever its precision.
+    """
+    counts = [cell.hits for years in cells.values() for cell in years.values()]
+    if not counts:
+        return {"median_hits": 0.0, "empty_share": 1.0, "total_hits": 0.0}
+    non_empty = sorted(c for c in counts if c > 0)
+    median = float(non_empty[len(non_empty) // 2]) if non_empty else 0.0
+    return {
+        "median_hits": median,
+        "empty_share": round(1 - len(non_empty) / len(counts), 3),
+        "total_hits": float(sum(counts)),
+    }
 
 
 def suppress_thin_cells(

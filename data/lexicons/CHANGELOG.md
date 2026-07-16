@@ -13,6 +13,50 @@ is a change.
 
 ---
 
+## 2026-07-14 (later) — first validation gate run: two dimensions cut, three bugs fixed
+
+`scripts/validate_tone.py` on the full corpus. Nothing here was predicted from
+reading patterns; all of it came from reading **real matches**.
+
+**Cut from the launch set (failed their own gate):**
+
+- **`folk` — unregistered.** 11 848 hits, and precise in the narrow sense: the
+  matches really do contain the words. But they are not *people-centrism* in
+  Mudde's sense (the people as one virtuous body against a corrupt elite) — they
+  are the electorate, referred to: "skogen har en speciell plats i hjärtat hos
+  svenska folket" (V), "svenska folket tror mer på alliansregeringen" (C).
+  Charting this as people-centrism would repeat the `dessa människor` mistake
+  with a longer word list.
+- **`antielit` — unregistered.** Precision is fine; the *density* is not.
+  254 hits over 24 years is a **median of 2 hits per non-empty party-year cell,
+  with 91 of 192 cells empty**. That is not a time series. Note the
+  speech-count suppression floor could not catch this — the speeches are there,
+  the hits are not — so a hit-density check belongs in the gate.
+
+Both survive as measure functions because the census consumes them. A test
+asserts they stay unregistered.
+
+**Patterns removed:**
+
+- **`maktens korridorer`** — matched `#imaktenskorridorer`, the **#MeToo
+  hashtag**. An L speech about 1 600 women in politics signing an appeal was
+  counted as anti-elite rhetoric.
+- **`storföretagen` / `storbolagen`** — usually neutral sectoral description
+  ("Storföretagen och industrin har kompletterats av…" — C), not class framing.
+- **`de styrande`** — too often literal (whoever currently governs).
+
+**Homographs fixed rather than discarded** (new `exclude_next` column): `de
+rika`/`de rikaste`/`de allra rikaste` now drop a match followed by
+`länderna|länder|delarna|regionerna|procenten`. The audit caught "Sverige är
+inte längre ett av de rikaste **länderna** i världen" (M) counted as framing a
+wealthy out-group. It is about countries. Regression-tested both ways.
+
+**Launch set is now three dimensions across three techniques** —
+`klasskonflikt` (lexical), `lix` (stylometric), `hen` (structural) — plus the
+census and the occupational report as findings rather than charts. The
+technique-diversity claim survives the cuts intact, which is the point of having
+built it that way.
+
 ## 2026-07-14 — `vi_dom_patterns.csv` created (32 patterns)
 
 Initial table. Its shape was decided by an audit of real matches, not by

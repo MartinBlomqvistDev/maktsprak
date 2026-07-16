@@ -1,0 +1,3116 @@
+{
+  "dimensions": [
+    {
+      "dimension": "hen",
+      "technique": "structural",
+      "hits": 351,
+      "cells": 192,
+      "cells_kept": 192
+    },
+    {
+      "dimension": "lix",
+      "technique": "stylometric",
+      "hits": 29343123,
+      "cells": 192,
+      "cells_kept": 192
+    },
+    {
+      "dimension": "folk",
+      "technique": "lexical",
+      "hits": 11848,
+      "cells": 192,
+      "cells_kept": 192
+    },
+    {
+      "dimension": "antielit",
+      "technique": "lexical",
+      "hits": 254,
+      "cells": 192,
+      "cells_kept": 192
+    },
+    {
+      "dimension": "klasskonflikt",
+      "technique": "lexical",
+      "hits": 3165,
+      "cells": 192,
+      "cells_kept": 192
+    }
+  ],
+  "symmetry": {
+    "economic": {
+      "C": 107,
+      "KD": 111,
+      "L": 141,
+      "M": 326,
+      "MP": 281,
+      "S": 846,
+      "SD": 63,
+      "V": 1352
+    },
+    "elite": {
+      "C": 16,
+      "KD": 11,
+      "L": 11,
+      "M": 28,
+      "MP": 27,
+      "S": 40,
+      "SD": 42,
+      "V": 79
+    },
+    "origin (construction)": {
+      "C": 0,
+      "KD": 0,
+      "L": 0,
+      "M": 0,
+      "MP": 0,
+      "S": 0,
+      "SD": 2,
+      "V": 0
+    }
+  },
+  "census": [
+    {
+      "party": "S",
+      "year": 2002,
+      "protocol_id": "GQ0914",
+      "speaker": "VERONICA PALM",
+      "sentence": "Jag håller med Sten Tolgfors om att en självvald etnisk segregation ibland kan vara bra, men det som vi har sett i Stockholm under de senaste fyra åren är en annan självvald, klassmässig segregation, där moderatpolitik har lett till att man till underpris har sålt ut våra gemensamma hyresrätter i innerstaden till dem som har råd att köpa, vilket har lett till en självvald segregation där de rika väljer att fjärma sig från vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
+    },
+    {
+      "party": "S",
+      "year": 2002,
+      "protocol_id": "GQ0914",
+      "speaker": "VERONICA PALM",
+      "sentence": "Jag håller med Sten Tolgfors om att en självvald etnisk segregation ibland kan vara bra, men det som vi har sett i Stockholm under de senaste fyra åren är en annan självvald, klassmässig segregation, där moderatpolitik har lett till att man till underpris har sålt ut våra gemensamma hyresrätter i innerstaden till dem som har råd att köpa, vilket har lett till en självvald segregation där de rika väljer att fjärma sig från vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
+    },
+    {
+      "party": "V",
+      "year": 2002,
+      "protocol_id": "GQ0914",
+      "speaker": "KALLE LARSSON",
+      "sentence": "Dessa manifestationer förtjänar att vara breda där hela det svenska folket och det politiska etablissemanget deltar.",
+      "ingroup": [
+        "det svenska folket"
+      ],
+      "outgroup": [
+        "politiska etablissemanget"
+      ],
+      "subtypes": [
+        "elite"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
+    },
+    {
+      "party": "V",
+      "year": 2002,
+      "protocol_id": "GQ0914",
+      "speaker": "KALLE LARSSON",
+      "sentence": "Dessa manifestationer förtjänar att vara breda där hela det svenska folket och det politiska etablissemanget deltar.",
+      "ingroup": [
+        "det svenska folket"
+      ],
+      "outgroup": [
+        "politiska etablissemanget"
+      ],
+      "subtypes": [
+        "elite"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
+    },
+    {
+      "party": "V",
+      "year": 2003,
+      "protocol_id": "GQ09109",
+      "speaker": "LARS BÄCKSTRÖM",
+      "sentence": "Det svenska folket har insett att inflation ofta berikar de rika och gör de fattiga fattigare.",
+      "ingroup": [
+        "det svenska folket"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/52328798-6F84-443D-A6E3-BBFCC51073DF"
+    },
+    {
+      "party": "KD",
+      "year": 2004,
+      "protocol_id": "GS0947",
+      "speaker": "MIKAEL OSCARSSON",
+      "sentence": "Varför ska det vara ett skattefrälse, några få, de allra rikaste i Sverige, som slipper förmögenhetsskatten, men inte vanliga svenskar?",
+      "ingroup": [
+        "vanliga svenskar"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/7A283E5E-651E-4E42-A5E2-8647A2CD43FD"
+    },
+    {
+      "party": "C",
+      "year": 2006,
+      "protocol_id": "GT09120",
+      "speaker": "JÖRGEN JOHANSSON",
+      "sentence": "Det är en skatt som av de rika upplevs som frivillig, och de som råkar mest illa ut är vanliga svenskar med vanliga inkomster.",
+      "ingroup": [
+        "vanliga svenskar"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/27F638E0-2522-4387-80B5-3AF76B6B8F97"
+    },
+    {
+      "party": "M",
+      "year": 2006,
+      "protocol_id": "GT09120",
+      "speaker": "ULF SJÖSTEN",
+      "sentence": "Några av de rikaste människorna som vi har i Sverige är delvis skattebefriade medan vanligt folk som har råkat bo in sig i ett hus som har stigit kraftigt i värde tvingas att betala skatten.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/27F638E0-2522-4387-80B5-3AF76B6B8F97"
+    },
+    {
+      "party": "S",
+      "year": 2006,
+      "protocol_id": "GU0917",
+      "speaker": "VERONICA PALM",
+      "sentence": "Därför ser jag med oro på hur de borgerliga föreslår försämringar för dem som har det tuffast och för vanliga människor samtidigt som man minskar förmögenhetsskatten för de rika.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/600B0029-2B73-4666-A527-6E3B6968E5DB"
+    },
+    {
+      "party": "S",
+      "year": 2007,
+      "protocol_id": "GU09127",
+      "speaker": "HILLEVI LARSSON",
+      "sentence": "Det är i och för sig inte ett guldregn över hela svenska folket, tyvärr, utan det handlar om de allra rikaste.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/A046A57A-433D-4AA1-BB52-4AFB84C84947"
+    },
+    {
+      "party": "L",
+      "year": 2007,
+      "protocol_id": "GV0924",
+      "speaker": "JOHAN PEHRSON",
+      "sentence": "Det rimmar inte direkt med att vanliga människor ska betala förmögenhetsskatt medan miljardärerna ska slippa.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "miljardärerna"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/BF125C4B-2128-49DF-8334-72A346101C04"
+    },
+    {
+      "party": "S",
+      "year": 2007,
+      "protocol_id": "GV0934",
+      "speaker": "HILLEVI LARSSON",
+      "sentence": "De 11 procenten är inte de rikaste, utan det är helt vanliga människor.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/757CD72B-4DC6-4066-AC04-72511C4D992B"
+    },
+    {
+      "party": "S",
+      "year": 2007,
+      "protocol_id": "GV0944",
+      "speaker": "HANS OLSSON",
+      "sentence": "Jag vill nog påstå att vi vet mer om hur vanligt folk har det och att den borgerliga majoriteten vet bättre än vi hur miljonärerna stretar på.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "miljonärerna"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/703AB5CD-FDF0-4ED9-ACAA-39DF824A3A6B"
+    },
+    {
+      "party": "V",
+      "year": 2009,
+      "protocol_id": "GX0947",
+      "speaker": "AMINEH KAKABAVEH",
+      "sentence": "Precis som svenska folket tycker vi att det är viktigare att satsa på skattefinansierade verksamheter än att sänka för de rika och att de fattiga ska betala för 20 procent av Sveriges rika människor.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/DE118AF4-1830-4DCB-82BD-042C5640B0B2"
+    },
+    {
+      "party": "SD",
+      "year": 2011,
+      "protocol_id": "GY09120",
+      "speaker": "RICHARD JOMSHOF",
+      "sentence": "Och visst är sfi-bonusen kränkande och orättvis, fast inte mot invandrarna, som förmodligen de rödgröna menade, utan mot det svenska folket.",
+      "ingroup": [
+        "det svenska folket"
+      ],
+      "outgroup": [
+        "invandrarna"
+      ],
+      "subtypes": [
+        "origin"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/339420FF-9E8A-4923-A918-ED13D725013C"
+    },
+    {
+      "party": "S",
+      "year": 2012,
+      "protocol_id": "GZ0985",
+      "speaker": "LARS JOHANSSON",
+      "sentence": "Men vi behöver som sagt var inte hålla på med det, utan vi kan i stället titta i dagstidningarna där det står att direktörerna får det ena lönelyftet efter det andra som är oerhört mycket större än vad vanliga människor får.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "direktörerna"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/F808441E-EA71-47C2-9F7F-64918ABF89A0"
+    },
+    {
+      "party": "M",
+      "year": 2015,
+      "protocol_id": "H20977",
+      "speaker": "NIKLAS WYKMAN",
+      "sentence": "I takt med att man hade skattebefriat stora delar av de allra rikaste i samhället hade man lagt tunga skattebördor på vanliga människor med vanliga jobb.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/BEE3DAF9-2B3D-4B84-AE68-2741208AB3C9"
+    },
+    {
+      "party": "M",
+      "year": 2015,
+      "protocol_id": "H20977",
+      "speaker": "NIKLAS WYKMAN",
+      "sentence": "I takt med att man hade skattebefriat stora delar av de allra rikaste i samhället hade man lagt tunga skattebördor på vanliga människor med vanliga jobb.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/BEE3DAF9-2B3D-4B84-AE68-2741208AB3C9"
+    },
+    {
+      "party": "M",
+      "year": 2016,
+      "protocol_id": "H30980",
+      "speaker": "FREDRIK SCHULTE",
+      "sentence": "Att då göra som finansministerns ministerkollega föreslår, att höja skatten för vanligt folk och sänka den för de allra rikaste, är problematiskt.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/FF496B75-C5B8-4BA4-8053-1A53EE6CBAD8"
+    },
+    {
+      "party": "V",
+      "year": 2016,
+      "protocol_id": "H40947",
+      "speaker": "ALI ESBATI",
+      "sentence": "När man talar om lönsamhet och jobb skulle man kunna tycka att man ska se på samma sätt på lönsamhet för vanliga människor som jobbar som för de allra rikaste, nämligen att det som gör det mest lönsamt att jobba är att ha hög lön.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/C2F12A68-ABFC-4A0F-B2C6-97DC53099D56"
+    },
+    {
+      "party": "SD",
+      "year": 2017,
+      "protocol_id": "H40952",
+      "speaker": "JIMMIE ÅKESSON",
+      "sentence": "Vi ser nu en situation i hela vår del av världen, både i Europa och i Nordamerika, där människor ur verkligheten – vanligt folk – reser sig mot den dominans från det vänsterliberala etablissemanget som har funnits i flera decennier och på olika sätt har förstört vårt samhälle.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "etablissemanget"
+      ],
+      "subtypes": [
+        "elite"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/727354B9-4C64-49C7-A176-1F1E841C612D"
+    },
+    {
+      "party": "V",
+      "year": 2018,
+      "protocol_id": "H60917",
+      "speaker": "ULLA ANDERSSON",
+      "sentence": "Vi vill inte ha ett skattesystem som är riggat för de rikaste utan för vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/AF2655CE-5CB5-415C-81A0-BDF043BBF1D7"
+    },
+    {
+      "party": "V",
+      "year": 2018,
+      "protocol_id": "H60931",
+      "speaker": "YASMINE POSIO",
+      "sentence": "Den ska inte innehålla reformer, vare sig sådana som gynnar de rika eller sådana som gynnar folkflertalet.",
+      "ingroup": [
+        "folkflertalet"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/6F711873-F10A-452B-9B28-6F096F08F44A"
+    },
+    {
+      "party": "S",
+      "year": 2019,
+      "protocol_id": "H60959",
+      "speaker": "Finansminister MAGDALENA ANDERSSON",
+      "sentence": "Att Moderaterna är ett parti för de rika och att vi socialdemokrater står upp för folkflertalet blir oerhört tydligt när man tittar på den ekonomiska politik som har förts i praktiken.",
+      "ingroup": [
+        "folkflertalet"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/E8C4E8C5-E44B-48FA-A9B7-C246C25C22A5"
+    },
+    {
+      "party": "S",
+      "year": 2019,
+      "protocol_id": "H60964",
+      "speaker": "PATRIK LUNDQVIST",
+      "sentence": "Klassamhällets fula tryne visar sig i Frankrike där gula västarna slåss mot skattesänkningar för de rikaste samtidigt som vanligt folk får dras med ökade skatter och nedskärningar i det offentliga medan inkomsterna inte ökar.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/1D1FC92A-F898-434F-A428-D8E9FB68FEA5"
+    },
+    {
+      "party": "V",
+      "year": 2019,
+      "protocol_id": "H60976",
+      "speaker": "ULLA ANDERSSON",
+      "sentence": "Varför ska man ha ett system som gynnar den ekonomiska eliten i stället för det stora folkflertalet?",
+      "ingroup": [
+        "folkflertalet"
+      ],
+      "outgroup": [
+        "ekonomiska eliten"
+      ],
+      "subtypes": [
+        "elite"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/A4CEEA13-1C9F-4B88-9106-CA3EDD7D2A49"
+    },
+    {
+      "party": "V",
+      "year": 2019,
+      "protocol_id": "H60996",
+      "speaker": "TONY HADDOU",
+      "sentence": "Det vore, så enkelt som det låter, mer rimligt att utjämna klyftorna och orättvisorna än att omfördela pengar från vanligt folk till de rika.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/D25D37F6-D61B-4466-B5F5-501771CA491C"
+    },
+    {
+      "party": "V",
+      "year": 2019,
+      "protocol_id": "H70954",
+      "speaker": "ANDREAS LENNKVIST MANRIQUEZ",
+      "sentence": "Då krävs det reformer som inte slår undan benen för vanligt folk och bara gynnar de rika och mäktiga.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/16F3F8DD-3133-491C-864A-91EA68E2AC9C"
+    },
+    {
+      "party": "V",
+      "year": 2020,
+      "protocol_id": "H709141",
+      "speaker": "TONY HADDOU",
+      "sentence": "Medan vanligt folk har halkat efter har de rikaste kunnat dra ifrån kraftigt, inte minst på grund av låg skatt på kapitalinkomster.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/411F1430-2B26-4836-B1AB-22A1DA787029"
+    },
+    {
+      "party": "S",
+      "year": 2020,
+      "protocol_id": "H80914",
+      "speaker": "Justitie- och migrationsminister MORGAN JOHANSSON",
+      "sentence": "Det andra som händer när man sänker skatten, framför allt om man sänker skatten för de rikaste men samtidigt skär ned på a-kassa och på välfärden för vanligt folk, är att man ökar klyftorna.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/6FB954FA-41CC-47FE-BA78-1BDAF52A0C4C"
+    },
+    {
+      "party": "SD",
+      "year": 2020,
+      "protocol_id": "H80926",
+      "speaker": "ADAM MARTTINEN",
+      "sentence": "Och jag vill be om ett viktigt klargörande till svenska folket: Betraktar justitieministern över huvud taget de här utlänningarna, i enlighet med Frankrike, som fiender till vår nation?",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "utlänningarna"
+      ],
+      "subtypes": [
+        "origin"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/E1A30287-9616-405E-8501-02CA479313EB"
+    },
+    {
+      "party": "SD",
+      "year": 2021,
+      "protocol_id": "H809132",
+      "speaker": "DAVID LÅNG",
+      "sentence": "Finansminister Magdalena Andersson har kallat det för en ”gräddfil för den ekonomiska eliten” och säger att det har varit fråga om en orättvisa mellan denna elit och vanligt folk som nu ska undanröjas.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "ekonomiska eliten"
+      ],
+      "subtypes": [
+        "elite"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/051CEC7C-B26D-496A-9AAB-C19B6B2814C7"
+    },
+    {
+      "party": "M",
+      "year": 2022,
+      "protocol_id": "H90981",
+      "speaker": "LARS BECKMAN",
+      "sentence": "Men ta nu sista chansen och berätta för svenska folket om mötet med de 20 direktörerna!",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "direktörerna"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/27EDD7FE-92FD-4714-8969-E940B63D4ED8"
+    },
+    {
+      "party": "V",
+      "year": 2022,
+      "protocol_id": "HA0914",
+      "speaker": "NOOSHI DADGOSTAR",
+      "sentence": "Svenska folket ska inte behöva stå för notan när lobbyistregeringen säkrar tillgångarna för kapitalägarna.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "kapitalägarna"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "http://data.riksdagen.se/fil/D843FC4F-6D04-415B-BC08-7C8086B88AAB"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HB0985",
+      "speaker": "MATHIAS TEGNÉR",
+      "sentence": "Regeringen har valt att prioritera skattesänkningar till framför allt de rikaste framför reformer för att värna vanligt folk och välfärden i krisen.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/775CEBD7-F913-40FB-89A4-705DFAC76D5F"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HB0989",
+      "speaker": "MATTIAS VEPSÄ",
+      "sentence": "Man avfärdar bankskatt för de allra rikaste och väljer att skjuta över inflationsbekämpningen på vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/800E4F9D-7809-4B1F-AB68-F1446F4CD879"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC097",
+      "speaker": "MIKAEL DAMBERG",
+      "sentence": "Elisabeth Svantesson väljer i stället att skuldsätta svenska folket för att sänka skatten mest för de allra rikaste.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/8F5AC3ED-79BF-46CE-9372-B16679E51EF8"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC0911",
+      "speaker": "TERESA CARVALHO",
+      "sentence": "Som om detta inte vore nog bränner man nu också miljarder på skattesänkningar för de allra rikaste och skickar notan till vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/5FCBDA0A-34D5-4C6D-9395-49A8D74F20B9"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC0916",
+      "speaker": "IDA EKEROTH CLAUSSON",
+      "sentence": "Regeringen har valt att lämna vanligt folk i sticket när den bränner miljarder på skattesänkningar för de allra rikaste.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/CA454B00-F9F5-4330-865C-F55493C623D7"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC0931",
+      "speaker": "IDA EKEROTH CLAUSSON",
+      "sentence": "Regeringen har valt att lämna vanligt folk i sticket när den bränner miljarder på skattesänkningar för de allra rikaste.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/02449E49-337B-40FF-B967-70F9B7B8A4BC"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC0938",
+      "speaker": "MIKAEL DAMBERG",
+      "sentence": "I stället för att ta tag i samhällsproblemen, ge vanligt folk mer i plånboken, prioritera tillväxten och sätta fart på svensk ekonomi lägger regeringen all sin kraft på att genomföra en exklusiv skattesänkning som bara träffar de rikaste procenten.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/7AE99CF2-7057-448B-8437-59B51895704B"
+    },
+    {
+      "party": "S",
+      "year": 2024,
+      "protocol_id": "HC0943",
+      "speaker": "IDA EKEROTH CLAUSSON",
+      "sentence": "I stället för att ta tag i samhällsproblemen, ge vanligt folk mer pengar i plånboken, prioritera tillväxten och åter sätta fart på svensk ekonomi lägger regeringen all sin kraft på att genomföra en exklusiv skattesänkning som bara träffar de rikaste procenten.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/4EA10F3A-55FA-457E-8ECB-595FE5A4DB16"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HC0956",
+      "speaker": "MAGDALENA ANDERSSON",
+      "sentence": "Vi socialdemokrater vill se en rättvis skattesänkning för vanliga svenskar snarare än stora skattesänkningar som riktar sig till de allra rikaste.",
+      "ingroup": [
+        "vanliga svenskar"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/98D75AD1-24E8-4D5D-A143-03C39288FCEC"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HC0964",
+      "speaker": "NIKLAS SIGVARDSSON",
+      "sentence": "Vi socialdemokrater ser nämligen till att värna vanligt folk i stället för att sänka skatterna för de allra rikaste med flera tusen kronor i månaden.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/54F82AA8-A8F4-43EF-8D7C-A533EE9A217D"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HC0968",
+      "speaker": "ÅSA ERIKSSON",
+      "sentence": "Men den enda gången som vi märker att det blir reell verkstad är ju när det handlar om att sänka skatten för de rikaste eller att försämra för vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/538EF9CC-39F1-4D00-B153-59F657071F8B"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HC0986",
+      "speaker": "EVA LINDH",
+      "sentence": "Man prioriterar skattesänkningar för de rikaste framför stöd till vanligt folk, och det missgynnar jämlikheten, som verkligen är något centralt i Agenda 2030.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/C9F81667-AA53-4E87-9219-F082192B5489"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HC0999",
+      "speaker": "MATHIAS TEGNÉR",
+      "sentence": "Det behövs en regering som ser vanligt folk, klarar av att sätta välfärden främst och låter de rika bidra lite mer.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/FF4CD494-6DD8-4F9F-A732-04B49C6F3199"
+    },
+    {
+      "party": "KD",
+      "year": 2025,
+      "protocol_id": "HC0999",
+      "speaker": "CECILIA ENGSTRÖM",
+      "sentence": "Det handlar inte om skatteförmåner för de rikaste utan om att ge vanliga människor möjlighet att bygga ekonomisk trygghet utan att beskattas hårt för varje sparad krona.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/FF4CD494-6DD8-4F9F-A732-04B49C6F3199"
+    },
+    {
+      "party": "SD",
+      "year": 2025,
+      "protocol_id": "HC09112",
+      "speaker": "MARTIN KINNUNEN",
+      "sentence": "Socialdemokraterna har inte fört en politik som har hjälpt vanligt folk: Politiken har varit en morot för de rika och en piska för andra.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/CF79C548-1761-42E9-BA70-78FBCF9715DC"
+    },
+    {
+      "party": "SD",
+      "year": 2025,
+      "protocol_id": "HC09112",
+      "speaker": "MARTIN KINNUNEN",
+      "sentence": "Den politik som Socialdemokraterna bedrev handlade alltså om morot för de rika och piska för vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/CF79C548-1761-42E9-BA70-78FBCF9715DC"
+    },
+    {
+      "party": "SD",
+      "year": 2025,
+      "protocol_id": "HC09112",
+      "speaker": "MARTIN KINNUNEN",
+      "sentence": "Men det är ju just detta vi har tagit bort: Vi har tagit bort moroten för de rika och piskan för vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/CF79C548-1761-42E9-BA70-78FBCF9715DC"
+    },
+    {
+      "party": "V",
+      "year": 2025,
+      "protocol_id": "HD0915",
+      "speaker": "CICZIE WEIDBY",
+      "sentence": "Det här är inget annat än en gräddfil för de rika – en ordning där höginkomsttagare premieras medan vanligt folk straffas.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/432ECAEA-CC84-460A-8C12-0841CEAEC24B"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HD0943",
+      "speaker": "BJÖRN WIECHEL",
+      "sentence": "Det beror på att ni väljer fel grejer, som att sänka skatten för de rika i stället för att göra det för vanligt folk.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/7102C335-9BCA-48D3-827E-38E7E029D5DE"
+    },
+    {
+      "party": "S",
+      "year": 2025,
+      "protocol_id": "HD0944",
+      "speaker": "IDA EKEROTH CLAUSSON",
+      "sentence": "I stället för att ta tag i samhällsproblemen, ge vanligt folk mer pengar i plånboken, prioritera tillväxten och åter sätta fart på svensk ekonomi lägger regeringen all sin kraft på att genomföra en exklusiv skattesänkning som bara träffar de rikaste procenten.",
+      "ingroup": [
+        "vanligt folk"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/33D201C3-31CE-4C6F-BAAA-B426D6534346"
+    },
+    {
+      "party": "V",
+      "year": 2026,
+      "protocol_id": "HD0977",
+      "speaker": "MALCOLM MOMODOU JALLOW",
+      "sentence": "Vi ser hur regeringen har byggt ett marknadsparadis för de rika medan vanliga människor lever i en mardröm.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/62D0FD7A-70C5-45D6-A8DB-BC48150800CB"
+    },
+    {
+      "party": "V",
+      "year": 2026,
+      "protocol_id": "HD0977",
+      "speaker": "MALCOLM MOMODOU JALLOW",
+      "sentence": "Vi har sett skattesänkningar för de rika och bidrag till småhus där pengar redan finns men en total ovilja att bygga hyresrätter som vanliga människor har råd med.",
+      "ingroup": [
+        "vanliga människor"
+      ],
+      "outgroup": [
+        "de rika"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/62D0FD7A-70C5-45D6-A8DB-BC48150800CB"
+    },
+    {
+      "party": "S",
+      "year": 2026,
+      "protocol_id": "HD09136",
+      "speaker": "MAGDALENA ANDERSSON",
+      "sentence": "Detta är resultatet när Tidöpartierna har prioriterat skattesänkningar för de rikaste i stället för välfärd åt svenska folket.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "de rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/45684AE4-4912-4CBF-956C-9F7B6AA5CC41"
+    },
+    {
+      "party": "S",
+      "year": 2026,
+      "protocol_id": "HD09136",
+      "speaker": "MAGDALENA ANDERSSON",
+      "sentence": "Resultat: Tidöpartierna skuldsätter svenska folket med 200 000 kronor i minuten, varje dag, året runt, för att sänka skatten för de allra rikaste.",
+      "ingroup": [
+        "svenska folket"
+      ],
+      "outgroup": [
+        "de allra rikaste"
+      ],
+      "subtypes": [
+        "economic"
+      ],
+      "file_url": "https://data.riksdagen.se/fil/45684AE4-4912-4CBF-956C-9F7B6AA5CC41"
+    }
+  ],
+  "occupational": {
+    "pairs": [
+      {
+        "gendered": "riksdagsman",
+        "neutral": "riksdagsledamot",
+        "status": "settled",
+        "note": "The chamber's own title. The substitution is documented and effectively complete — the best-attested case in this corpus.",
+        "gendered_hits": 85,
+        "neutral_hits": 2629,
+        "ratio": 0.9687,
+        "by_year": {
+          "2002": {
+            "gendered": 6,
+            "neutral": 63,
+            "ratio": 0.913
+          },
+          "2003": {
+            "gendered": 7,
+            "neutral": 88,
+            "ratio": 0.9263
+          },
+          "2004": {
+            "gendered": 5,
+            "neutral": 72,
+            "ratio": 0.9351
+          },
+          "2005": {
+            "gendered": 8,
+            "neutral": 83,
+            "ratio": 0.9121
+          },
+          "2006": {
+            "gendered": 4,
+            "neutral": 113,
+            "ratio": 0.9658
+          },
+          "2007": {
+            "gendered": 9,
+            "neutral": 88,
+            "ratio": 0.9072
+          },
+          "2008": {
+            "gendered": 8,
+            "neutral": 100,
+            "ratio": 0.9259
+          },
+          "2009": {
+            "gendered": 7,
+            "neutral": 97,
+            "ratio": 0.9327
+          },
+          "2010": {
+            "gendered": 2,
+            "neutral": 103,
+            "ratio": 0.981
+          },
+          "2011": {
+            "gendered": 8,
+            "neutral": 82,
+            "ratio": 0.9111
+          },
+          "2012": {
+            "gendered": 1,
+            "neutral": 76,
+            "ratio": 0.987
+          },
+          "2013": {
+            "gendered": 2,
+            "neutral": 93,
+            "ratio": 0.9789
+          },
+          "2014": {
+            "gendered": 2,
+            "neutral": 202,
+            "ratio": 0.9902
+          },
+          "2015": {
+            "gendered": 2,
+            "neutral": 208,
+            "ratio": 0.9905
+          },
+          "2016": {
+            "gendered": 1,
+            "neutral": 128,
+            "ratio": 0.9922
+          },
+          "2017": {
+            "gendered": 2,
+            "neutral": 117,
+            "ratio": 0.9832
+          },
+          "2018": {
+            "gendered": 3,
+            "neutral": 104,
+            "ratio": 0.972
+          },
+          "2019": {
+            "gendered": 0,
+            "neutral": 89,
+            "ratio": 1.0
+          },
+          "2020": {
+            "gendered": 0,
+            "neutral": 80,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 0,
+            "neutral": 111,
+            "ratio": 1.0
+          },
+          "2022": {
+            "gendered": 1,
+            "neutral": 118,
+            "ratio": 0.9916
+          },
+          "2023": {
+            "gendered": 3,
+            "neutral": 105,
+            "ratio": 0.9722
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 100,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 2,
+            "neutral": 122,
+            "ratio": 0.9839
+          },
+          "2026": {
+            "gendered": 2,
+            "neutral": 87,
+            "ratio": 0.9775
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 2,
+            "neutral": 208,
+            "ratio": 0.9905
+          },
+          "KD": {
+            "gendered": 9,
+            "neutral": 239,
+            "ratio": 0.9637
+          },
+          "L": {
+            "gendered": 17,
+            "neutral": 200,
+            "ratio": 0.9217
+          },
+          "M": {
+            "gendered": 30,
+            "neutral": 522,
+            "ratio": 0.9457
+          },
+          "MP": {
+            "gendered": 4,
+            "neutral": 325,
+            "ratio": 0.9878
+          },
+          "S": {
+            "gendered": 14,
+            "neutral": 767,
+            "ratio": 0.9821
+          },
+          "SD": {
+            "gendered": 5,
+            "neutral": 119,
+            "ratio": 0.9597
+          },
+          "V": {
+            "gendered": 4,
+            "neutral": 249,
+            "ratio": 0.9842
+          }
+        }
+      },
+      {
+        "gendered": "riksdagsmän",
+        "neutral": "riksdagsledamöter",
+        "status": "settled",
+        "note": "Plural of the above.",
+        "gendered_hits": 66,
+        "neutral_hits": 3551,
+        "ratio": 0.9818,
+        "by_year": {
+          "2002": {
+            "gendered": 4,
+            "neutral": 77,
+            "ratio": 0.9506
+          },
+          "2003": {
+            "gendered": 4,
+            "neutral": 137,
+            "ratio": 0.9716
+          },
+          "2004": {
+            "gendered": 11,
+            "neutral": 156,
+            "ratio": 0.9341
+          },
+          "2005": {
+            "gendered": 7,
+            "neutral": 178,
+            "ratio": 0.9622
+          },
+          "2006": {
+            "gendered": 7,
+            "neutral": 125,
+            "ratio": 0.947
+          },
+          "2007": {
+            "gendered": 6,
+            "neutral": 193,
+            "ratio": 0.9698
+          },
+          "2008": {
+            "gendered": 3,
+            "neutral": 160,
+            "ratio": 0.9816
+          },
+          "2009": {
+            "gendered": 2,
+            "neutral": 156,
+            "ratio": 0.9873
+          },
+          "2010": {
+            "gendered": 3,
+            "neutral": 127,
+            "ratio": 0.9769
+          },
+          "2011": {
+            "gendered": 5,
+            "neutral": 99,
+            "ratio": 0.9519
+          },
+          "2012": {
+            "gendered": 3,
+            "neutral": 127,
+            "ratio": 0.9769
+          },
+          "2013": {
+            "gendered": 2,
+            "neutral": 187,
+            "ratio": 0.9894
+          },
+          "2014": {
+            "gendered": 0,
+            "neutral": 264,
+            "ratio": 1.0
+          },
+          "2015": {
+            "gendered": 2,
+            "neutral": 220,
+            "ratio": 0.991
+          },
+          "2016": {
+            "gendered": 1,
+            "neutral": 160,
+            "ratio": 0.9938
+          },
+          "2017": {
+            "gendered": 3,
+            "neutral": 114,
+            "ratio": 0.9744
+          },
+          "2018": {
+            "gendered": 0,
+            "neutral": 133,
+            "ratio": 1.0
+          },
+          "2019": {
+            "gendered": 0,
+            "neutral": 86,
+            "ratio": 1.0
+          },
+          "2020": {
+            "gendered": 1,
+            "neutral": 97,
+            "ratio": 0.9898
+          },
+          "2021": {
+            "gendered": 2,
+            "neutral": 120,
+            "ratio": 0.9836
+          },
+          "2022": {
+            "gendered": 0,
+            "neutral": 124,
+            "ratio": 1.0
+          },
+          "2023": {
+            "gendered": 0,
+            "neutral": 144,
+            "ratio": 1.0
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 141,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 138,
+            "ratio": 1.0
+          },
+          "2026": {
+            "gendered": 0,
+            "neutral": 88,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 4,
+            "neutral": 310,
+            "ratio": 0.9873
+          },
+          "KD": {
+            "gendered": 2,
+            "neutral": 276,
+            "ratio": 0.9928
+          },
+          "L": {
+            "gendered": 13,
+            "neutral": 279,
+            "ratio": 0.9555
+          },
+          "M": {
+            "gendered": 21,
+            "neutral": 675,
+            "ratio": 0.9698
+          },
+          "MP": {
+            "gendered": 2,
+            "neutral": 384,
+            "ratio": 0.9948
+          },
+          "S": {
+            "gendered": 17,
+            "neutral": 1074,
+            "ratio": 0.9844
+          },
+          "SD": {
+            "gendered": 6,
+            "neutral": 153,
+            "ratio": 0.9623
+          },
+          "V": {
+            "gendered": 1,
+            "neutral": 400,
+            "ratio": 0.9975
+          }
+        }
+      },
+      {
+        "gendered": "talesman",
+        "neutral": "talesperson",
+        "status": "emerging",
+        "note": "Widely adopted in political language; substitution is live and visible.",
+        "gendered_hits": 282,
+        "neutral_hits": 934,
+        "ratio": 0.7681,
+        "by_year": {
+          "2002": {
+            "gendered": 13,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2003": {
+            "gendered": 28,
+            "neutral": 4,
+            "ratio": 0.125
+          },
+          "2004": {
+            "gendered": 11,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 29,
+            "neutral": 2,
+            "ratio": 0.0645
+          },
+          "2006": {
+            "gendered": 39,
+            "neutral": 9,
+            "ratio": 0.1875
+          },
+          "2007": {
+            "gendered": 35,
+            "neutral": 10,
+            "ratio": 0.2222
+          },
+          "2008": {
+            "gendered": 33,
+            "neutral": 11,
+            "ratio": 0.25
+          },
+          "2009": {
+            "gendered": 31,
+            "neutral": 13,
+            "ratio": 0.2955
+          },
+          "2010": {
+            "gendered": 16,
+            "neutral": 34,
+            "ratio": 0.68
+          },
+          "2011": {
+            "gendered": 11,
+            "neutral": 30,
+            "ratio": 0.7317
+          },
+          "2012": {
+            "gendered": 6,
+            "neutral": 38,
+            "ratio": 0.8636
+          },
+          "2013": {
+            "gendered": 6,
+            "neutral": 37,
+            "ratio": 0.8605
+          },
+          "2014": {
+            "gendered": 11,
+            "neutral": 76,
+            "ratio": 0.8736
+          },
+          "2015": {
+            "gendered": 3,
+            "neutral": 121,
+            "ratio": 0.9758
+          },
+          "2016": {
+            "gendered": 0,
+            "neutral": 63,
+            "ratio": 1.0
+          },
+          "2017": {
+            "gendered": 2,
+            "neutral": 59,
+            "ratio": 0.9672
+          },
+          "2018": {
+            "gendered": 4,
+            "neutral": 64,
+            "ratio": 0.9412
+          },
+          "2019": {
+            "gendered": 2,
+            "neutral": 40,
+            "ratio": 0.9524
+          },
+          "2020": {
+            "gendered": 0,
+            "neutral": 45,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 0,
+            "neutral": 60,
+            "ratio": 1.0
+          },
+          "2022": {
+            "gendered": 1,
+            "neutral": 45,
+            "ratio": 0.9783
+          },
+          "2023": {
+            "gendered": 1,
+            "neutral": 52,
+            "ratio": 0.9811
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 52,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 37,
+            "ratio": 1.0
+          },
+          "2026": {
+            "gendered": 0,
+            "neutral": 32,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 38,
+            "neutral": 100,
+            "ratio": 0.7246
+          },
+          "KD": {
+            "gendered": 26,
+            "neutral": 70,
+            "ratio": 0.7292
+          },
+          "L": {
+            "gendered": 36,
+            "neutral": 45,
+            "ratio": 0.5556
+          },
+          "M": {
+            "gendered": 56,
+            "neutral": 174,
+            "ratio": 0.7565
+          },
+          "MP": {
+            "gendered": 17,
+            "neutral": 123,
+            "ratio": 0.8786
+          },
+          "S": {
+            "gendered": 83,
+            "neutral": 210,
+            "ratio": 0.7167
+          },
+          "SD": {
+            "gendered": 5,
+            "neutral": 81,
+            "ratio": 0.9419
+          },
+          "V": {
+            "gendered": 21,
+            "neutral": 131,
+            "ratio": 0.8618
+          }
+        }
+      },
+      {
+        "gendered": "talesmän",
+        "neutral": "talespersoner",
+        "status": "emerging",
+        "note": "Plural of the above.",
+        "gendered_hits": 34,
+        "neutral_hits": 94,
+        "ratio": 0.7344,
+        "by_year": {
+          "2003": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 4,
+            "neutral": 1,
+            "ratio": 0.2
+          },
+          "2007": {
+            "gendered": 4,
+            "neutral": 1,
+            "ratio": 0.2
+          },
+          "2008": {
+            "gendered": 8,
+            "neutral": 1,
+            "ratio": 0.1111
+          },
+          "2009": {
+            "gendered": 5,
+            "neutral": 3,
+            "ratio": 0.375
+          },
+          "2012": {
+            "gendered": 0,
+            "neutral": 9,
+            "ratio": 1.0
+          },
+          "2014": {
+            "gendered": 0,
+            "neutral": 12,
+            "ratio": 1.0
+          },
+          "2015": {
+            "gendered": 0,
+            "neutral": 8,
+            "ratio": 1.0
+          },
+          "2016": {
+            "gendered": 1,
+            "neutral": 5,
+            "ratio": 0.8333
+          },
+          "2017": {
+            "gendered": 0,
+            "neutral": 5,
+            "ratio": 1.0
+          },
+          "2018": {
+            "gendered": 0,
+            "neutral": 8,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 1,
+            "neutral": 8,
+            "ratio": 0.8889
+          },
+          "2022": {
+            "gendered": 0,
+            "neutral": 7,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 8,
+            "neutral": 12,
+            "ratio": 0.6
+          },
+          "KD": {
+            "gendered": 4,
+            "neutral": 14,
+            "ratio": 0.7778
+          },
+          "M": {
+            "gendered": 2,
+            "neutral": 14,
+            "ratio": 0.875
+          },
+          "MP": {
+            "gendered": 2,
+            "neutral": 15,
+            "ratio": 0.8824
+          },
+          "S": {
+            "gendered": 14,
+            "neutral": 25,
+            "ratio": 0.641
+          },
+          "SD": {
+            "gendered": 0,
+            "neutral": 5,
+            "ratio": 1.0
+          },
+          "V": {
+            "gendered": 1,
+            "neutral": 8,
+            "ratio": 0.8889
+          }
+        }
+      },
+      {
+        "gendered": "tjänsteman",
+        "neutral": "tjänsteperson",
+        "status": "emerging",
+        "note": "Ongoing substitution in administrative language.",
+        "gendered_hits": 748,
+        "neutral_hits": 19,
+        "ratio": 0.0248,
+        "by_year": {
+          "2002": {
+            "gendered": 13,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2003": {
+            "gendered": 20,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2004": {
+            "gendered": 28,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 36,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2006": {
+            "gendered": 20,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2007": {
+            "gendered": 40,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2008": {
+            "gendered": 30,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2009": {
+            "gendered": 23,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2010": {
+            "gendered": 26,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2011": {
+            "gendered": 20,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2012": {
+            "gendered": 19,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2013": {
+            "gendered": 19,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2014": {
+            "gendered": 43,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2015": {
+            "gendered": 42,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2016": {
+            "gendered": 29,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2017": {
+            "gendered": 38,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2018": {
+            "gendered": 27,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2019": {
+            "gendered": 49,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2020": {
+            "gendered": 32,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2021": {
+            "gendered": 40,
+            "neutral": 2,
+            "ratio": 0.0476
+          },
+          "2022": {
+            "gendered": 44,
+            "neutral": 2,
+            "ratio": 0.0435
+          },
+          "2023": {
+            "gendered": 26,
+            "neutral": 1,
+            "ratio": 0.037
+          },
+          "2024": {
+            "gendered": 23,
+            "neutral": 4,
+            "ratio": 0.1481
+          },
+          "2025": {
+            "gendered": 37,
+            "neutral": 2,
+            "ratio": 0.0513
+          },
+          "2026": {
+            "gendered": 24,
+            "neutral": 8,
+            "ratio": 0.25
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 61,
+            "neutral": 4,
+            "ratio": 0.0615
+          },
+          "KD": {
+            "gendered": 85,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "L": {
+            "gendered": 67,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "M": {
+            "gendered": 168,
+            "neutral": 1,
+            "ratio": 0.0059
+          },
+          "MP": {
+            "gendered": 46,
+            "neutral": 2,
+            "ratio": 0.0417
+          },
+          "S": {
+            "gendered": 203,
+            "neutral": 9,
+            "ratio": 0.0425
+          },
+          "SD": {
+            "gendered": 77,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "V": {
+            "gendered": 41,
+            "neutral": 3,
+            "ratio": 0.0682
+          }
+        }
+      },
+      {
+        "gendered": "tjänstemän",
+        "neutral": "tjänstepersoner",
+        "status": "emerging",
+        "note": "Plural of the above.",
+        "gendered_hits": 3077,
+        "neutral_hits": 121,
+        "ratio": 0.0378,
+        "by_year": {
+          "2002": {
+            "gendered": 43,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2003": {
+            "gendered": 92,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2004": {
+            "gendered": 111,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 192,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2006": {
+            "gendered": 139,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2007": {
+            "gendered": 150,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2008": {
+            "gendered": 117,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2009": {
+            "gendered": 106,
+            "neutral": 1,
+            "ratio": 0.0093
+          },
+          "2010": {
+            "gendered": 96,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2011": {
+            "gendered": 87,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2012": {
+            "gendered": 108,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2013": {
+            "gendered": 141,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2014": {
+            "gendered": 192,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2015": {
+            "gendered": 133,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2016": {
+            "gendered": 93,
+            "neutral": 1,
+            "ratio": 0.0106
+          },
+          "2017": {
+            "gendered": 119,
+            "neutral": 1,
+            "ratio": 0.0083
+          },
+          "2018": {
+            "gendered": 132,
+            "neutral": 3,
+            "ratio": 0.0222
+          },
+          "2019": {
+            "gendered": 148,
+            "neutral": 5,
+            "ratio": 0.0327
+          },
+          "2020": {
+            "gendered": 123,
+            "neutral": 6,
+            "ratio": 0.0465
+          },
+          "2021": {
+            "gendered": 154,
+            "neutral": 15,
+            "ratio": 0.0888
+          },
+          "2022": {
+            "gendered": 124,
+            "neutral": 13,
+            "ratio": 0.0949
+          },
+          "2023": {
+            "gendered": 109,
+            "neutral": 12,
+            "ratio": 0.0992
+          },
+          "2024": {
+            "gendered": 131,
+            "neutral": 15,
+            "ratio": 0.1027
+          },
+          "2025": {
+            "gendered": 109,
+            "neutral": 22,
+            "ratio": 0.1679
+          },
+          "2026": {
+            "gendered": 128,
+            "neutral": 27,
+            "ratio": 0.1742
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 242,
+            "neutral": 26,
+            "ratio": 0.097
+          },
+          "KD": {
+            "gendered": 256,
+            "neutral": 3,
+            "ratio": 0.0116
+          },
+          "L": {
+            "gendered": 273,
+            "neutral": 2,
+            "ratio": 0.0073
+          },
+          "M": {
+            "gendered": 705,
+            "neutral": 11,
+            "ratio": 0.0154
+          },
+          "MP": {
+            "gendered": 190,
+            "neutral": 26,
+            "ratio": 0.1204
+          },
+          "S": {
+            "gendered": 827,
+            "neutral": 39,
+            "ratio": 0.045
+          },
+          "SD": {
+            "gendered": 276,
+            "neutral": 1,
+            "ratio": 0.0036
+          },
+          "V": {
+            "gendered": 308,
+            "neutral": 13,
+            "ratio": 0.0405
+          }
+        }
+      },
+      {
+        "gendered": "ombudsman",
+        "neutral": "ombudsperson",
+        "status": "contested",
+        "note": "Neutral form exists but the official agency titles (DO, JO) retain -man.",
+        "gendered_hits": 195,
+        "neutral_hits": 0,
+        "ratio": 0.0,
+        "by_year": {
+          "2002": {
+            "gendered": 7,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2003": {
+            "gendered": 15,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2004": {
+            "gendered": 11,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 12,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2006": {
+            "gendered": 10,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2007": {
+            "gendered": 7,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2008": {
+            "gendered": 10,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2009": {
+            "gendered": 10,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2010": {
+            "gendered": 17,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2011": {
+            "gendered": 10,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2012": {
+            "gendered": 8,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2013": {
+            "gendered": 9,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2014": {
+            "gendered": 22,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2015": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2016": {
+            "gendered": 6,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2017": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2022": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2023": {
+            "gendered": 6,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 9,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "KD": {
+            "gendered": 8,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "L": {
+            "gendered": 22,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "M": {
+            "gendered": 42,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "MP": {
+            "gendered": 23,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "S": {
+            "gendered": 63,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "V": {
+            "gendered": 27,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        }
+      },
+      {
+        "gendered": "förtroendeman",
+        "neutral": "förtroendevald",
+        "status": "settled",
+        "note": "Long-settled substitution.",
+        "gendered_hits": 28,
+        "neutral_hits": 245,
+        "ratio": 0.8974,
+        "by_year": {
+          "2003": {
+            "gendered": 0,
+            "neutral": 7,
+            "ratio": 1.0
+          },
+          "2004": {
+            "gendered": 0,
+            "neutral": 16,
+            "ratio": 1.0
+          },
+          "2005": {
+            "gendered": 2,
+            "neutral": 10,
+            "ratio": 0.8333
+          },
+          "2006": {
+            "gendered": 2,
+            "neutral": 16,
+            "ratio": 0.8889
+          },
+          "2007": {
+            "gendered": 1,
+            "neutral": 6,
+            "ratio": 0.8571
+          },
+          "2008": {
+            "gendered": 1,
+            "neutral": 10,
+            "ratio": 0.9091
+          },
+          "2009": {
+            "gendered": 0,
+            "neutral": 11,
+            "ratio": 1.0
+          },
+          "2010": {
+            "gendered": 0,
+            "neutral": 5,
+            "ratio": 1.0
+          },
+          "2011": {
+            "gendered": 0,
+            "neutral": 12,
+            "ratio": 1.0
+          },
+          "2014": {
+            "gendered": 0,
+            "neutral": 14,
+            "ratio": 1.0
+          },
+          "2015": {
+            "gendered": 2,
+            "neutral": 18,
+            "ratio": 0.9
+          },
+          "2016": {
+            "gendered": 1,
+            "neutral": 12,
+            "ratio": 0.9231
+          },
+          "2017": {
+            "gendered": 2,
+            "neutral": 5,
+            "ratio": 0.7143
+          },
+          "2018": {
+            "gendered": 0,
+            "neutral": 14,
+            "ratio": 1.0
+          },
+          "2019": {
+            "gendered": 2,
+            "neutral": 16,
+            "ratio": 0.8889
+          },
+          "2020": {
+            "gendered": 6,
+            "neutral": 5,
+            "ratio": 0.4545
+          },
+          "2021": {
+            "gendered": 1,
+            "neutral": 7,
+            "ratio": 0.875
+          },
+          "2022": {
+            "gendered": 2,
+            "neutral": 13,
+            "ratio": 0.8667
+          },
+          "2023": {
+            "gendered": 2,
+            "neutral": 17,
+            "ratio": 0.8947
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 9,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 10,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 0,
+            "neutral": 28,
+            "ratio": 1.0
+          },
+          "KD": {
+            "gendered": 2,
+            "neutral": 22,
+            "ratio": 0.9167
+          },
+          "L": {
+            "gendered": 5,
+            "neutral": 19,
+            "ratio": 0.7917
+          },
+          "M": {
+            "gendered": 0,
+            "neutral": 44,
+            "ratio": 1.0
+          },
+          "MP": {
+            "gendered": 0,
+            "neutral": 14,
+            "ratio": 1.0
+          },
+          "S": {
+            "gendered": 4,
+            "neutral": 82,
+            "ratio": 0.9535
+          },
+          "SD": {
+            "gendered": 15,
+            "neutral": 16,
+            "ratio": 0.5161
+          },
+          "V": {
+            "gendered": 2,
+            "neutral": 20,
+            "ratio": 0.9091
+          }
+        }
+      },
+      {
+        "gendered": "yrkesman",
+        "neutral": "yrkesperson",
+        "status": "emerging",
+        "note": "Ongoing substitution.",
+        "gendered_hits": 19,
+        "neutral_hits": 2,
+        "ratio": 0.0952,
+        "by_year": {
+          "2014": {
+            "gendered": 10,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        },
+        "by_party": {
+          "S": {
+            "gendered": 13,
+            "neutral": 1,
+            "ratio": 0.0714
+          }
+        }
+      },
+      {
+        "gendered": "fackman",
+        "neutral": "expert",
+        "status": "emerging",
+        "note": "Neutral alternative is a different word rather than a -person coinage.",
+        "gendered_hits": 4,
+        "neutral_hits": 527,
+        "ratio": 0.9925,
+        "by_year": {
+          "2002": {
+            "gendered": 0,
+            "neutral": 12,
+            "ratio": 1.0
+          },
+          "2003": {
+            "gendered": 1,
+            "neutral": 25,
+            "ratio": 0.9615
+          },
+          "2004": {
+            "gendered": 0,
+            "neutral": 14,
+            "ratio": 1.0
+          },
+          "2005": {
+            "gendered": 1,
+            "neutral": 22,
+            "ratio": 0.9565
+          },
+          "2006": {
+            "gendered": 0,
+            "neutral": 20,
+            "ratio": 1.0
+          },
+          "2007": {
+            "gendered": 0,
+            "neutral": 19,
+            "ratio": 1.0
+          },
+          "2008": {
+            "gendered": 0,
+            "neutral": 30,
+            "ratio": 1.0
+          },
+          "2009": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          },
+          "2010": {
+            "gendered": 0,
+            "neutral": 15,
+            "ratio": 1.0
+          },
+          "2011": {
+            "gendered": 0,
+            "neutral": 19,
+            "ratio": 1.0
+          },
+          "2012": {
+            "gendered": 0,
+            "neutral": 35,
+            "ratio": 1.0
+          },
+          "2013": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          },
+          "2014": {
+            "gendered": 2,
+            "neutral": 40,
+            "ratio": 0.9524
+          },
+          "2015": {
+            "gendered": 0,
+            "neutral": 47,
+            "ratio": 1.0
+          },
+          "2016": {
+            "gendered": 0,
+            "neutral": 18,
+            "ratio": 1.0
+          },
+          "2017": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          },
+          "2018": {
+            "gendered": 0,
+            "neutral": 27,
+            "ratio": 1.0
+          },
+          "2019": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          },
+          "2020": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 0,
+            "neutral": 19,
+            "ratio": 1.0
+          },
+          "2022": {
+            "gendered": 0,
+            "neutral": 16,
+            "ratio": 1.0
+          },
+          "2023": {
+            "gendered": 0,
+            "neutral": 12,
+            "ratio": 1.0
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 15,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 19,
+            "ratio": 1.0
+          },
+          "2026": {
+            "gendered": 0,
+            "neutral": 18,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 0,
+            "neutral": 38,
+            "ratio": 1.0
+          },
+          "KD": {
+            "gendered": 2,
+            "neutral": 42,
+            "ratio": 0.9545
+          },
+          "L": {
+            "gendered": 1,
+            "neutral": 59,
+            "ratio": 0.9833
+          },
+          "M": {
+            "gendered": 1,
+            "neutral": 108,
+            "ratio": 0.9908
+          },
+          "MP": {
+            "gendered": 0,
+            "neutral": 60,
+            "ratio": 1.0
+          },
+          "S": {
+            "gendered": 0,
+            "neutral": 126,
+            "ratio": 1.0
+          },
+          "SD": {
+            "gendered": 0,
+            "neutral": 40,
+            "ratio": 1.0
+          },
+          "V": {
+            "gendered": 0,
+            "neutral": 54,
+            "ratio": 1.0
+          }
+        }
+      },
+      {
+        "gendered": "lärarinna",
+        "neutral": "lärare",
+        "status": "settled",
+        "note": "Long-settled; substitution largely predates the 2002 corpus window.",
+        "gendered_hits": 11,
+        "neutral_hits": 19013,
+        "ratio": 0.9994,
+        "by_year": {
+          "2002": {
+            "gendered": 2,
+            "neutral": 254,
+            "ratio": 0.9922
+          },
+          "2003": {
+            "gendered": 0,
+            "neutral": 727,
+            "ratio": 1.0
+          },
+          "2004": {
+            "gendered": 1,
+            "neutral": 659,
+            "ratio": 0.9985
+          },
+          "2005": {
+            "gendered": 0,
+            "neutral": 699,
+            "ratio": 1.0
+          },
+          "2006": {
+            "gendered": 2,
+            "neutral": 635,
+            "ratio": 0.9969
+          },
+          "2007": {
+            "gendered": 0,
+            "neutral": 492,
+            "ratio": 1.0
+          },
+          "2008": {
+            "gendered": 0,
+            "neutral": 520,
+            "ratio": 1.0
+          },
+          "2009": {
+            "gendered": 0,
+            "neutral": 479,
+            "ratio": 1.0
+          },
+          "2010": {
+            "gendered": 1,
+            "neutral": 479,
+            "ratio": 0.9979
+          },
+          "2011": {
+            "gendered": 0,
+            "neutral": 531,
+            "ratio": 1.0
+          },
+          "2012": {
+            "gendered": 0,
+            "neutral": 512,
+            "ratio": 1.0
+          },
+          "2013": {
+            "gendered": 0,
+            "neutral": 1006,
+            "ratio": 1.0
+          },
+          "2014": {
+            "gendered": 2,
+            "neutral": 1507,
+            "ratio": 0.9987
+          },
+          "2015": {
+            "gendered": 2,
+            "neutral": 1694,
+            "ratio": 0.9988
+          },
+          "2016": {
+            "gendered": 0,
+            "neutral": 926,
+            "ratio": 1.0
+          },
+          "2017": {
+            "gendered": 0,
+            "neutral": 1104,
+            "ratio": 1.0
+          },
+          "2018": {
+            "gendered": 1,
+            "neutral": 746,
+            "ratio": 0.9987
+          },
+          "2019": {
+            "gendered": 0,
+            "neutral": 968,
+            "ratio": 1.0
+          },
+          "2020": {
+            "gendered": 0,
+            "neutral": 501,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 0,
+            "neutral": 540,
+            "ratio": 1.0
+          },
+          "2022": {
+            "gendered": 0,
+            "neutral": 791,
+            "ratio": 1.0
+          },
+          "2023": {
+            "gendered": 0,
+            "neutral": 941,
+            "ratio": 1.0
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 623,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 821,
+            "ratio": 1.0
+          },
+          "2026": {
+            "gendered": 0,
+            "neutral": 858,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 0,
+            "neutral": 1560,
+            "ratio": 1.0
+          },
+          "KD": {
+            "gendered": 3,
+            "neutral": 1344,
+            "ratio": 0.9978
+          },
+          "L": {
+            "gendered": 2,
+            "neutral": 2698,
+            "ratio": 0.9993
+          },
+          "M": {
+            "gendered": 0,
+            "neutral": 2991,
+            "ratio": 1.0
+          },
+          "MP": {
+            "gendered": 3,
+            "neutral": 2525,
+            "ratio": 0.9988
+          },
+          "S": {
+            "gendered": 0,
+            "neutral": 5197,
+            "ratio": 1.0
+          },
+          "SD": {
+            "gendered": 3,
+            "neutral": 1151,
+            "ratio": 0.9974
+          },
+          "V": {
+            "gendered": 0,
+            "neutral": 1547,
+            "ratio": 1.0
+          }
+        }
+      },
+      {
+        "gendered": "skådespelerska",
+        "neutral": "skådespelare",
+        "status": "settled",
+        "note": "Settled substitution.",
+        "gendered_hits": 4,
+        "neutral_hits": 194,
+        "ratio": 0.9798,
+        "by_year": {
+          "2002": {
+            "gendered": 0,
+            "neutral": 6,
+            "ratio": 1.0
+          },
+          "2004": {
+            "gendered": 1,
+            "neutral": 27,
+            "ratio": 0.9643
+          },
+          "2005": {
+            "gendered": 0,
+            "neutral": 13,
+            "ratio": 1.0
+          },
+          "2006": {
+            "gendered": 0,
+            "neutral": 12,
+            "ratio": 1.0
+          },
+          "2007": {
+            "gendered": 0,
+            "neutral": 18,
+            "ratio": 1.0
+          },
+          "2009": {
+            "gendered": 0,
+            "neutral": 14,
+            "ratio": 1.0
+          },
+          "2012": {
+            "gendered": 1,
+            "neutral": 6,
+            "ratio": 0.8571
+          },
+          "2014": {
+            "gendered": 0,
+            "neutral": 5,
+            "ratio": 1.0
+          },
+          "2015": {
+            "gendered": 0,
+            "neutral": 7,
+            "ratio": 1.0
+          },
+          "2016": {
+            "gendered": 0,
+            "neutral": 8,
+            "ratio": 1.0
+          },
+          "2017": {
+            "gendered": 0,
+            "neutral": 6,
+            "ratio": 1.0
+          },
+          "2019": {
+            "gendered": 2,
+            "neutral": 5,
+            "ratio": 0.7143
+          },
+          "2020": {
+            "gendered": 0,
+            "neutral": 6,
+            "ratio": 1.0
+          },
+          "2021": {
+            "gendered": 0,
+            "neutral": 8,
+            "ratio": 1.0
+          },
+          "2023": {
+            "gendered": 0,
+            "neutral": 5,
+            "ratio": 1.0
+          },
+          "2024": {
+            "gendered": 0,
+            "neutral": 6,
+            "ratio": 1.0
+          },
+          "2025": {
+            "gendered": 0,
+            "neutral": 13,
+            "ratio": 1.0
+          },
+          "2026": {
+            "gendered": 0,
+            "neutral": 8,
+            "ratio": 1.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 1,
+            "neutral": 15,
+            "ratio": 0.9375
+          },
+          "KD": {
+            "gendered": 0,
+            "neutral": 15,
+            "ratio": 1.0
+          },
+          "L": {
+            "gendered": 0,
+            "neutral": 26,
+            "ratio": 1.0
+          },
+          "M": {
+            "gendered": 0,
+            "neutral": 36,
+            "ratio": 1.0
+          },
+          "MP": {
+            "gendered": 0,
+            "neutral": 28,
+            "ratio": 1.0
+          },
+          "S": {
+            "gendered": 3,
+            "neutral": 51,
+            "ratio": 0.9444
+          },
+          "SD": {
+            "gendered": 0,
+            "neutral": 6,
+            "ratio": 1.0
+          },
+          "V": {
+            "gendered": 0,
+            "neutral": 17,
+            "ratio": 1.0
+          }
+        }
+      },
+      {
+        "gendered": "sjuksköterska",
+        "neutral": "nan",
+        "status": "no_alternative",
+        "note": "Deliberate null case: ISOF records no settled neutral alternative. Tracked to show absence of change where none is claimed — not to imply one is owed.",
+        "gendered_hits": 779,
+        "neutral_hits": 0,
+        "ratio": 0.0,
+        "by_year": {
+          "2002": {
+            "gendered": 17,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2003": {
+            "gendered": 23,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2004": {
+            "gendered": 19,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2005": {
+            "gendered": 17,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2006": {
+            "gendered": 25,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2007": {
+            "gendered": 27,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2008": {
+            "gendered": 27,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2009": {
+            "gendered": 35,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2010": {
+            "gendered": 26,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2011": {
+            "gendered": 27,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2012": {
+            "gendered": 20,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2013": {
+            "gendered": 28,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2014": {
+            "gendered": 34,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2015": {
+            "gendered": 37,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2016": {
+            "gendered": 17,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2017": {
+            "gendered": 39,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2018": {
+            "gendered": 46,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2019": {
+            "gendered": 20,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2020": {
+            "gendered": 32,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2021": {
+            "gendered": 51,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2022": {
+            "gendered": 22,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2023": {
+            "gendered": 37,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2024": {
+            "gendered": 35,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2025": {
+            "gendered": 81,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2026": {
+            "gendered": 37,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        },
+        "by_party": {
+          "C": {
+            "gendered": 110,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "KD": {
+            "gendered": 84,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "L": {
+            "gendered": 74,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "M": {
+            "gendered": 207,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "MP": {
+            "gendered": 39,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "S": {
+            "gendered": 149,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "SD": {
+            "gendered": 33,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "V": {
+            "gendered": 83,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        }
+      },
+      {
+        "gendered": "brandman",
+        "neutral": "brandperson",
+        "status": "no_uptake",
+        "note": "Deliberate null case: the neutral form has zero corpus occurrences. Reported as found.",
+        "gendered_hits": 51,
+        "neutral_hits": 0,
+        "ratio": 0.0,
+        "by_year": {
+          "2008": {
+            "gendered": 6,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2013": {
+            "gendered": 7,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2016": {
+            "gendered": 7,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2018": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "2021": {
+            "gendered": 5,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        },
+        "by_party": {
+          "M": {
+            "gendered": 16,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "S": {
+            "gendered": 11,
+            "neutral": 0,
+            "ratio": 0.0
+          },
+          "SD": {
+            "gendered": 12,
+            "neutral": 0,
+            "ratio": 0.0
+          }
+        }
+      }
+    ],
+    "min_pair_mentions": 5
+  }
+}

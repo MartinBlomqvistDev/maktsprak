@@ -72,6 +72,18 @@ class TestViDomMeasures:
         spans = vi_dom.measure_klasskonflikt(df)["spans"].iloc[0]
         assert [p for _, _, p in spans] == ["de allra rikaste"]
 
+    def test_richest_countries_is_not_class_conflict(self):
+        # The audit caught this live: "Sverige är inte längre ett av de rikaste
+        # länderna i världen" (M) was counted as framing a wealthy out-group.
+        # It is about countries. exclude_next keeps the pattern and drops the
+        # homograph rather than throwing away a useful marker.
+        df = _speeches([{"text": "Sverige är inte längre ett av de rikaste länderna i världen."}])
+        assert vi_dom.measure_klasskonflikt(df)["hits"].iloc[0] == 0
+
+    def test_richest_people_still_counts(self):
+        df = _speeches([{"text": "Skattesänkningar för de rikaste är fel prioritering."}])
+        assert vi_dom.measure_klasskonflikt(df)["hits"].iloc[0] == 1
+
     def test_measures_feed_the_kernel_unchanged(self):
         df = _speeches(
             [
@@ -218,13 +230,24 @@ class TestInclusive:
 class TestRegistry:
     def test_launch_dimensions_are_registered(self):
         launch = {k for k, v in TONE_DIMENSIONS.items() if v.status == "launch"}
-        assert {"folk", "antielit", "klasskonflikt", "lix", "hen"} <= launch
+        assert {"klasskonflikt", "lix", "hen"} <= launch
+
+    @pytest.mark.parametrize("failed", ["folk", "antielit"])
+    def test_dimensions_that_failed_the_gate_are_not_chartable(self, failed):
+        # `folk` measures the electorate being referred to, not people-centrism
+        # ("skogen har en speciell plats i hjärtat hos svenska folket" — V).
+        # `antielit` has a median of 2 hits per non-empty party-year cell and
+        # 91 of 192 cells empty — not a time series.
+        # Both still exist as measure functions because the census needs them;
+        # registering either puts a known-bad line on the public site.
+        assert failed not in TONE_DIMENSIONS
+        assert hasattr(vi_dom, f"measure_{failed}")
 
     def test_lix_declares_illustrative_receipts(self):
         # A stylometric dimension has no discrete hit to point at, so a receipt
         # can illustrate the arithmetic but can never be evidence of a hit.
         assert TONE_DIMENSIONS["lix"].receipt_kind == "illustrative"
-        assert TONE_DIMENSIONS["folk"].receipt_kind == "evidentiary"
+        assert TONE_DIMENSIONS["klasskonflikt"].receipt_kind == "evidentiary"
 
     def test_techniques_are_genuinely_mixed(self):
         # The defence is "three different techniques, not one algorithm" — if
