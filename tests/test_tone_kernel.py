@@ -360,6 +360,32 @@ class TestHitDensity:
         assert density["empty_share"] == 0.5
         assert density["total_hits"] == 4
 
+    def test_leading_zeros_are_data_not_absence(self):
+        # `hen`'s real shape: nothing 2002-2011 because the word had not entered
+        # Swedish yet, then a healthy curve. The zeros ARE the finding. Counting
+        # them as missing evidence flagged a perfectly good adoption curve as
+        # unchartable, which is how this distinction got written.
+        years = dict.fromkeys(range(2002, 2012), 0) | {y: 20 for y in range(2012, 2027)}
+        cells = {
+            "Riksdagen": {
+                y: CellStats(h, 300_000, speeches=3000, rate=6.6, smoothed=6.6, z=None)
+                for y, h in years.items()
+            }
+        }
+        density = hit_density(cells)
+        assert density["median_hits"] == 20
+        assert density["leading_empty"] == 10  # informative, not a defect
+        assert density["empty_share"] == 0.0  # no holes once it appears
+
+    def test_a_hole_after_the_phenomenon_appears_still_counts(self):
+        cells = {
+            "A": {
+                2020: CellStats(10, 5000, speeches=300, rate=2.0, smoothed=2.0, z=1.0),
+                2021: CellStats(0, 5000, speeches=300, rate=0.0, smoothed=1.0, z=None),
+            }
+        }
+        assert hit_density(cells)["empty_share"] == 0.5
+
     def test_a_healthy_dimension_passes(self):
         cells = {
             "A": {

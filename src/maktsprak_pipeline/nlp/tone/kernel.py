@@ -634,24 +634,42 @@ def hit_density(cells: dict[str, dict[int, CellStats]]) -> dict[str, float]:
     question they cannot: whether it has enough **hits**.  A dimension can pass
     every floor and still be unplottable — ``antielit`` had 254 hits across 24
     years, a median of 2 per non-empty cell and 91 of 192 cells empty.  The
-    speeches were there; the evidence was not.  A line through that is noise
-    with a trend drawn on it, and it took a hand-audit to notice, which is
-    exactly the kind of thing that should be mechanical.
+    speeches were there; the evidence was not.
+
+    **A leading zero is data, not absence.**  ``hen`` is empty for 2002-2011
+    because the word had not entered Swedish yet — that is the finding, not a
+    gap in it.  Counting those years as "missing evidence" flagged a perfectly
+    good adoption curve as unchartable (median 20 hits/cell).  So emptiness is
+    measured only from each group's **first attested year** onward: before that
+    the zero is a fact; after it, a hole is a hole.
 
     Returns:
-        ``median_hits`` (over non-empty cells), ``empty_share`` (fraction of
-        cells with no hits at all) and ``total_hits``.  A dimension whose
-        ``median_hits`` is low single digits or whose ``empty_share`` is near
-        half does not belong on a time-series chart, whatever its precision.
+        ``median_hits`` (over non-empty cells), ``empty_share`` (holes *after*
+        the phenomenon first appears), ``leading_empty`` (cells before it
+        appears — informative, not a defect) and ``total_hits``.  Low single-
+        digit ``median_hits``, or an ``empty_share`` near half, means this does
+        not belong on a time-series chart whatever its precision.
     """
     counts = [cell.hits for years in cells.values() for cell in years.values()]
     if not counts:
-        return {"median_hits": 0.0, "empty_share": 1.0, "total_hits": 0.0}
+        return {"median_hits": 0.0, "empty_share": 1.0, "leading_empty": 0.0, "total_hits": 0.0}
+
+    leading = 0
+    attested_empty = 0
+    attested_total = 0
+    for years in cells.values():
+        series = [cells_for_year.hits for _, cells_for_year in sorted(years.items())]
+        first_hit = next((i for i, h in enumerate(series) if h > 0), len(series))
+        leading += first_hit
+        live = series[first_hit:]
+        attested_total += len(live)
+        attested_empty += sum(1 for h in live if h == 0)
+
     non_empty = sorted(c for c in counts if c > 0)
-    median = float(non_empty[len(non_empty) // 2]) if non_empty else 0.0
     return {
-        "median_hits": median,
-        "empty_share": round(1 - len(non_empty) / len(counts), 3),
+        "median_hits": float(non_empty[len(non_empty) // 2]) if non_empty else 0.0,
+        "empty_share": round(attested_empty / attested_total, 3) if attested_total else 1.0,
+        "leading_empty": float(leading),
         "total_hits": float(sum(counts)),
     }
 

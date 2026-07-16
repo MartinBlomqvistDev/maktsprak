@@ -3,60 +3,60 @@
     {
       "dimension": "hen",
       "technique": "structural",
-      "hits": 351,
-      "cells": 192,
-      "cells_kept": 192,
+      "hits": 324,
+      "cells": 25,
+      "cells_kept": 25,
       "density": {
-        "median_hits": 3.0,
-        "empty_share": 0.547,
-        "total_hits": 351.0
+        "median_hits": 20.0,
+        "empty_share": 0.4,
+        "total_hits": 324.0
       }
     },
     {
       "dimension": "lix",
       "technique": "stylometric",
-      "hits": 29343123,
+      "hits": 27353670,
       "cells": 192,
       "cells_kept": 192,
       "density": {
-        "median_hits": 114621.0,
+        "median_hits": 111172.0,
         "empty_share": 0.0,
-        "total_hits": 29342992.0
+        "total_hits": 27353555.0
       }
     },
     {
       "dimension": "klasskonflikt",
       "technique": "lexical",
-      "hits": 2580,
+      "hits": 2459,
       "cells": 192,
       "cells_kept": 192,
       "density": {
         "median_hits": 6.0,
-        "empty_share": 0.109,
-        "total_hits": 2580.0
+        "empty_share": 0.12,
+        "total_hits": 2459.0
       }
     }
   ],
   "symmetry": {
     "economic": {
-      "C": 50,
-      "KD": 85,
-      "L": 107,
-      "M": 283,
-      "MP": 156,
-      "S": 758,
-      "SD": 47,
-      "V": 1143
+      "C": 48,
+      "KD": 68,
+      "L": 104,
+      "M": 266,
+      "MP": 147,
+      "S": 728,
+      "SD": 41,
+      "V": 1102
     },
     "elite": {
       "C": 7,
       "KD": 8,
       "L": 9,
       "M": 25,
-      "MP": 17,
-      "S": 31,
-      "SD": 42,
-      "V": 65
+      "MP": 15,
+      "S": 28,
+      "SD": 36,
+      "V": 60
     },
     "origin (construction)": {
       "C": 0,
@@ -84,40 +84,6 @@
       ],
       "subtypes": [
         "economic"
-      ],
-      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
-    },
-    {
-      "party": "S",
-      "year": 2002,
-      "protocol_id": "GQ0914",
-      "speaker": "VERONICA PALM",
-      "sentence": "Jag håller med Sten Tolgfors om att en självvald etnisk segregation ibland kan vara bra, men det som vi har sett i Stockholm under de senaste fyra åren är en annan självvald, klassmässig segregation, där moderatpolitik har lett till att man till underpris har sålt ut våra gemensamma hyresrätter i innerstaden till dem som har råd att köpa, vilket har lett till en självvald segregation där de rika väljer att fjärma sig från vanligt folk.",
-      "ingroup": [
-        "vanligt folk"
-      ],
-      "outgroup": [
-        "de rika"
-      ],
-      "subtypes": [
-        "economic"
-      ],
-      "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
-    },
-    {
-      "party": "V",
-      "year": 2002,
-      "protocol_id": "GQ0914",
-      "speaker": "KALLE LARSSON",
-      "sentence": "Dessa manifestationer förtjänar att vara breda där hela det svenska folket och det politiska etablissemanget deltar.",
-      "ingroup": [
-        "det svenska folket"
-      ],
-      "outgroup": [
-        "politiska etablissemanget"
-      ],
-      "subtypes": [
-        "elite"
       ],
       "file_url": "https://data.riksdagen.se/fil/B807E00E-BE2F-41B3-A031-0EC475959071"
     },
@@ -341,23 +307,6 @@
         "economic"
       ],
       "file_url": "http://data.riksdagen.se/fil/F808441E-EA71-47C2-9F7F-64918ABF89A0"
-    },
-    {
-      "party": "M",
-      "year": 2015,
-      "protocol_id": "H20977",
-      "speaker": "NIKLAS WYKMAN",
-      "sentence": "I takt med att man hade skattebefriat stora delar av de allra rikaste i samhället hade man lagt tunga skattebördor på vanliga människor med vanliga jobb.",
-      "ingroup": [
-        "vanliga människor"
-      ],
-      "outgroup": [
-        "de allra rikaste"
-      ],
-      "subtypes": [
-        "economic"
-      ],
-      "file_url": "http://data.riksdagen.se/fil/BEE3DAF9-2B3D-4B84-AE68-2741208AB3C9"
     },
     {
       "party": "M",
@@ -1062,21 +1011,22 @@
       {
         "gendered": "riksdagsman",
         "neutral": "riksdagsledamot",
+        "measure": "ratio",
         "status": "settled",
-        "note": "The chamber's own title. The substitution is documented and effectively complete — the best-attested case in this corpus.",
-        "gendered_hits": 85,
-        "neutral_hits": 2629,
-        "ratio": 0.9687,
+        "note": "The chamber's own title. 'riksdagsledamot' exists only as this replacement, so the ratio is a real choice between two competing words. Best-attested case in the corpus (96.9% neutral).",
+        "gendered_hits": 80,
+        "neutral_hits": 2415,
+        "ratio": 0.9679,
         "by_year": {
           "2002": {
-            "gendered": 6,
-            "neutral": 63,
-            "ratio": 0.913
+            "gendered": 3,
+            "neutral": 36,
+            "ratio": 0.9231
           },
           "2003": {
             "gendered": 7,
-            "neutral": 88,
-            "ratio": 0.9263
+            "neutral": 86,
+            "ratio": 0.9247
           },
           "2004": {
             "gendered": 5,
@@ -1129,14 +1079,14 @@
             "ratio": 0.9789
           },
           "2014": {
-            "gendered": 2,
-            "neutral": 202,
-            "ratio": 0.9902
+            "gendered": 1,
+            "neutral": 95,
+            "ratio": 0.9896
           },
           "2015": {
-            "gendered": 2,
-            "neutral": 208,
-            "ratio": 0.9905
+            "gendered": 1,
+            "neutral": 130,
+            "ratio": 0.9924
           },
           "2016": {
             "gendered": 1,
@@ -1197,64 +1147,65 @@
         "by_party": {
           "C": {
             "gendered": 2,
-            "neutral": 208,
-            "ratio": 0.9905
+            "neutral": 195,
+            "ratio": 0.9898
           },
           "KD": {
-            "gendered": 9,
-            "neutral": 239,
-            "ratio": 0.9637
+            "gendered": 8,
+            "neutral": 224,
+            "ratio": 0.9655
           },
           "L": {
             "gendered": 17,
-            "neutral": 200,
-            "ratio": 0.9217
+            "neutral": 186,
+            "ratio": 0.9163
           },
           "M": {
-            "gendered": 30,
-            "neutral": 522,
-            "ratio": 0.9457
+            "gendered": 28,
+            "neutral": 471,
+            "ratio": 0.9439
           },
           "MP": {
             "gendered": 4,
-            "neutral": 325,
-            "ratio": 0.9878
+            "neutral": 282,
+            "ratio": 0.986
           },
           "S": {
-            "gendered": 14,
-            "neutral": 767,
-            "ratio": 0.9821
+            "gendered": 12,
+            "neutral": 711,
+            "ratio": 0.9834
           },
           "SD": {
             "gendered": 5,
-            "neutral": 119,
-            "ratio": 0.9597
+            "neutral": 115,
+            "ratio": 0.9583
           },
           "V": {
             "gendered": 4,
-            "neutral": 249,
-            "ratio": 0.9842
+            "neutral": 231,
+            "ratio": 0.983
           }
         }
       },
       {
         "gendered": "riksdagsmän",
         "neutral": "riksdagsledamöter",
+        "measure": "ratio",
         "status": "settled",
-        "note": "Plural of the above.",
-        "gendered_hits": 66,
-        "neutral_hits": 3551,
-        "ratio": 0.9818,
+        "note": "Plural of the above (98.2% neutral).",
+        "gendered_hits": 65,
+        "neutral_hits": 3316,
+        "ratio": 0.9808,
         "by_year": {
           "2002": {
-            "gendered": 4,
-            "neutral": 77,
-            "ratio": 0.9506
+            "gendered": 3,
+            "neutral": 48,
+            "ratio": 0.9412
           },
           "2003": {
             "gendered": 4,
-            "neutral": 137,
-            "ratio": 0.9716
+            "neutral": 133,
+            "ratio": 0.9708
           },
           "2004": {
             "gendered": 11,
@@ -1298,8 +1249,8 @@
           },
           "2012": {
             "gendered": 3,
-            "neutral": 127,
-            "ratio": 0.9769
+            "neutral": 126,
+            "ratio": 0.9767
           },
           "2013": {
             "gendered": 2,
@@ -1308,13 +1259,13 @@
           },
           "2014": {
             "gendered": 0,
-            "neutral": 264,
+            "neutral": 147,
             "ratio": 1.0
           },
           "2015": {
             "gendered": 2,
-            "neutral": 220,
-            "ratio": 0.991
+            "neutral": 136,
+            "ratio": 0.9855
           },
           "2016": {
             "gendered": 1,
@@ -1375,57 +1326,58 @@
         "by_party": {
           "C": {
             "gendered": 4,
-            "neutral": 310,
-            "ratio": 0.9873
+            "neutral": 288,
+            "ratio": 0.9863
           },
           "KD": {
             "gendered": 2,
-            "neutral": 276,
-            "ratio": 0.9928
+            "neutral": 261,
+            "ratio": 0.9924
           },
           "L": {
-            "gendered": 13,
-            "neutral": 279,
-            "ratio": 0.9555
+            "gendered": 12,
+            "neutral": 267,
+            "ratio": 0.957
           },
           "M": {
             "gendered": 21,
-            "neutral": 675,
-            "ratio": 0.9698
+            "neutral": 629,
+            "ratio": 0.9677
           },
           "MP": {
             "gendered": 2,
-            "neutral": 384,
-            "ratio": 0.9948
+            "neutral": 342,
+            "ratio": 0.9942
           },
           "S": {
             "gendered": 17,
-            "neutral": 1074,
-            "ratio": 0.9844
+            "neutral": 1015,
+            "ratio": 0.9835
           },
           "SD": {
             "gendered": 6,
-            "neutral": 153,
-            "ratio": 0.9623
+            "neutral": 138,
+            "ratio": 0.9583
           },
           "V": {
             "gendered": 1,
-            "neutral": 400,
-            "ratio": 0.9975
+            "neutral": 376,
+            "ratio": 0.9973
           }
         }
       },
       {
         "gendered": "talesman",
         "neutral": "talesperson",
+        "measure": "ratio",
         "status": "emerging",
-        "note": "Widely adopted in political language; substitution is live and visible.",
-        "gendered_hits": 282,
-        "neutral_hits": 934,
-        "ratio": 0.7681,
+        "note": "Coinage. Substitution live and visible (76.8%).",
+        "gendered_hits": 272,
+        "neutral_hits": 831,
+        "ratio": 0.7534,
         "by_year": {
           "2002": {
-            "gendered": 13,
+            "gendered": 9,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -1485,14 +1437,14 @@
             "ratio": 0.8605
           },
           "2014": {
-            "gendered": 11,
-            "neutral": 76,
-            "ratio": 0.8736
+            "gendered": 6,
+            "neutral": 36,
+            "ratio": 0.8571
           },
           "2015": {
-            "gendered": 3,
-            "neutral": 121,
-            "ratio": 0.9758
+            "gendered": 2,
+            "neutral": 58,
+            "ratio": 0.9667
           },
           "2016": {
             "gendered": 0,
@@ -1553,60 +1505,56 @@
         "by_party": {
           "C": {
             "gendered": 38,
-            "neutral": 100,
-            "ratio": 0.7246
+            "neutral": 91,
+            "ratio": 0.7054
           },
           "KD": {
-            "gendered": 26,
-            "neutral": 70,
-            "ratio": 0.7292
+            "gendered": 25,
+            "neutral": 65,
+            "ratio": 0.7222
           },
           "L": {
-            "gendered": 36,
-            "neutral": 45,
-            "ratio": 0.5556
+            "gendered": 34,
+            "neutral": 43,
+            "ratio": 0.5584
           },
           "M": {
-            "gendered": 56,
-            "neutral": 174,
-            "ratio": 0.7565
+            "gendered": 54,
+            "neutral": 134,
+            "ratio": 0.7128
           },
           "MP": {
-            "gendered": 17,
-            "neutral": 123,
-            "ratio": 0.8786
+            "gendered": 13,
+            "neutral": 112,
+            "ratio": 0.896
           },
           "S": {
-            "gendered": 83,
-            "neutral": 210,
-            "ratio": 0.7167
+            "gendered": 82,
+            "neutral": 193,
+            "ratio": 0.7018
           },
           "SD": {
             "gendered": 5,
-            "neutral": 81,
-            "ratio": 0.9419
+            "neutral": 77,
+            "ratio": 0.939
           },
           "V": {
             "gendered": 21,
-            "neutral": 131,
-            "ratio": 0.8618
+            "neutral": 116,
+            "ratio": 0.8467
           }
         }
       },
       {
         "gendered": "talesmän",
         "neutral": "talespersoner",
+        "measure": "ratio",
         "status": "emerging",
-        "note": "Plural of the above.",
-        "gendered_hits": 34,
-        "neutral_hits": 94,
-        "ratio": 0.7344,
+        "note": "Plural of the above (73.4%).",
+        "gendered_hits": 32,
+        "neutral_hits": 83,
+        "ratio": 0.7217,
         "by_year": {
-          "2003": {
-            "gendered": 5,
-            "neutral": 0,
-            "ratio": 0.0
-          },
           "2005": {
             "gendered": 4,
             "neutral": 1,
@@ -1634,12 +1582,7 @@
           },
           "2014": {
             "gendered": 0,
-            "neutral": 12,
-            "ratio": 1.0
-          },
-          "2015": {
-            "gendered": 0,
-            "neutral": 8,
+            "neutral": 6,
             "ratio": 1.0
           },
           "2016": {
@@ -1671,33 +1614,28 @@
         "by_party": {
           "C": {
             "gendered": 8,
-            "neutral": 12,
-            "ratio": 0.6
+            "neutral": 9,
+            "ratio": 0.5294
           },
           "KD": {
-            "gendered": 4,
-            "neutral": 14,
-            "ratio": 0.7778
+            "gendered": 2,
+            "neutral": 13,
+            "ratio": 0.8667
           },
           "M": {
+            "gendered": 2,
+            "neutral": 12,
+            "ratio": 0.8571
+          },
+          "MP": {
             "gendered": 2,
             "neutral": 14,
             "ratio": 0.875
           },
-          "MP": {
-            "gendered": 2,
-            "neutral": 15,
-            "ratio": 0.8824
-          },
           "S": {
             "gendered": 14,
-            "neutral": 25,
-            "ratio": 0.641
-          },
-          "SD": {
-            "gendered": 0,
-            "neutral": 5,
-            "ratio": 1.0
+            "neutral": 22,
+            "ratio": 0.6111
           },
           "V": {
             "gendered": 1,
@@ -1709,14 +1647,15 @@
       {
         "gendered": "tjänsteman",
         "neutral": "tjänsteperson",
+        "measure": "ratio",
         "status": "emerging",
-        "note": "Ongoing substitution in administrative language.",
-        "gendered_hits": 748,
+        "note": "Coinage — but barely used (2.5%). The contrast with riksdagsledamot is the finding: the chamber renamed itself, not its civil servants.",
+        "gendered_hits": 708,
         "neutral_hits": 19,
-        "ratio": 0.0248,
+        "ratio": 0.0261,
         "by_year": {
           "2002": {
-            "gendered": 13,
+            "gendered": 9,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -1776,12 +1715,12 @@
             "ratio": 0.0
           },
           "2014": {
-            "gendered": 43,
+            "gendered": 22,
             "neutral": 0,
             "ratio": 0.0
           },
           "2015": {
-            "gendered": 42,
+            "gendered": 27,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -1843,58 +1782,59 @@
         },
         "by_party": {
           "C": {
-            "gendered": 61,
+            "gendered": 53,
             "neutral": 4,
-            "ratio": 0.0615
+            "ratio": 0.0702
           },
           "KD": {
-            "gendered": 85,
+            "gendered": 80,
             "neutral": 0,
             "ratio": 0.0
           },
           "L": {
-            "gendered": 67,
+            "gendered": 65,
             "neutral": 0,
             "ratio": 0.0
           },
           "M": {
-            "gendered": 168,
+            "gendered": 161,
             "neutral": 1,
-            "ratio": 0.0059
+            "ratio": 0.0062
           },
           "MP": {
-            "gendered": 46,
+            "gendered": 41,
             "neutral": 2,
-            "ratio": 0.0417
+            "ratio": 0.0465
           },
           "S": {
-            "gendered": 203,
+            "gendered": 197,
             "neutral": 9,
-            "ratio": 0.0425
+            "ratio": 0.0437
           },
           "SD": {
-            "gendered": 77,
+            "gendered": 76,
             "neutral": 0,
             "ratio": 0.0
           },
           "V": {
-            "gendered": 41,
+            "gendered": 35,
             "neutral": 3,
-            "ratio": 0.0682
+            "ratio": 0.0789
           }
         }
       },
       {
         "gendered": "tjänstemän",
         "neutral": "tjänstepersoner",
+        "measure": "ratio",
         "status": "emerging",
-        "note": "Plural of the above.",
-        "gendered_hits": 3077,
+        "note": "Plural of the above (3.8%).",
+        "gendered_hits": 2918,
         "neutral_hits": 121,
-        "ratio": 0.0378,
+        "ratio": 0.0398,
         "by_year": {
           "2002": {
-            "gendered": 43,
+            "gendered": 31,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -1954,12 +1894,12 @@
             "ratio": 0.0
           },
           "2014": {
-            "gendered": 192,
+            "gendered": 101,
             "neutral": 0,
             "ratio": 0.0
           },
           "2015": {
-            "gendered": 133,
+            "gendered": 77,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -2021,61 +1961,57 @@
         },
         "by_party": {
           "C": {
-            "gendered": 242,
+            "gendered": 222,
             "neutral": 26,
-            "ratio": 0.097
+            "ratio": 0.1048
           },
           "KD": {
-            "gendered": 256,
+            "gendered": 248,
             "neutral": 3,
-            "ratio": 0.0116
+            "ratio": 0.012
           },
           "L": {
-            "gendered": 273,
+            "gendered": 268,
             "neutral": 2,
-            "ratio": 0.0073
+            "ratio": 0.0074
           },
           "M": {
-            "gendered": 705,
+            "gendered": 654,
             "neutral": 11,
-            "ratio": 0.0154
+            "ratio": 0.0165
           },
           "MP": {
-            "gendered": 190,
+            "gendered": 178,
             "neutral": 26,
-            "ratio": 0.1204
+            "ratio": 0.1275
           },
           "S": {
-            "gendered": 827,
+            "gendered": 784,
             "neutral": 39,
-            "ratio": 0.045
+            "ratio": 0.0474
           },
           "SD": {
-            "gendered": 276,
+            "gendered": 272,
             "neutral": 1,
-            "ratio": 0.0036
+            "ratio": 0.0037
           },
           "V": {
-            "gendered": 308,
+            "gendered": 292,
             "neutral": 13,
-            "ratio": 0.0405
+            "ratio": 0.0426
           }
         }
       },
       {
         "gendered": "ombudsman",
         "neutral": "ombudsperson",
+        "measure": "ratio",
         "status": "contested",
-        "note": "Neutral form exists but the official agency titles (DO, JO) retain -man.",
-        "gendered_hits": 195,
+        "note": "Coinage with zero corpus uptake (0.0%). The official agency titles (DO, JO) retain -man, which is likely why.",
+        "gendered_hits": 182,
         "neutral_hits": 0,
         "ratio": 0.0,
         "by_year": {
-          "2002": {
-            "gendered": 7,
-            "neutral": 0,
-            "ratio": 0.0
-          },
           "2003": {
             "gendered": 15,
             "neutral": 0,
@@ -2132,12 +2068,7 @@
             "ratio": 0.0
           },
           "2014": {
-            "gendered": 22,
-            "neutral": 0,
-            "ratio": 0.0
-          },
-          "2015": {
-            "gendered": 5,
+            "gendered": 14,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -2174,12 +2105,12 @@
             "ratio": 0.0
           },
           "L": {
-            "gendered": 22,
+            "gendered": 21,
             "neutral": 0,
             "ratio": 0.0
           },
           "M": {
-            "gendered": 42,
+            "gendered": 41,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -2189,12 +2120,12 @@
             "ratio": 0.0
           },
           "S": {
-            "gendered": 63,
+            "gendered": 58,
             "neutral": 0,
             "ratio": 0.0
           },
           "V": {
-            "gendered": 27,
+            "gendered": 21,
             "neutral": 0,
             "ratio": 0.0
           }
@@ -2203,11 +2134,12 @@
       {
         "gendered": "förtroendeman",
         "neutral": "förtroendevald",
+        "measure": "ratio",
         "status": "settled",
-        "note": "Long-settled substitution.",
-        "gendered_hits": 28,
-        "neutral_hits": 245,
-        "ratio": 0.8974,
+        "note": "Coinage; substitution largely complete (89.7%).",
+        "gendered_hits": 27,
+        "neutral_hits": 229,
+        "ratio": 0.8945,
         "by_year": {
           "2003": {
             "gendered": 0,
@@ -2256,13 +2188,13 @@
           },
           "2014": {
             "gendered": 0,
-            "neutral": 14,
+            "neutral": 6,
             "ratio": 1.0
           },
           "2015": {
             "gendered": 2,
-            "neutral": 18,
-            "ratio": 0.9
+            "neutral": 11,
+            "ratio": 0.8462
           },
           "2016": {
             "gendered": 1,
@@ -2318,18 +2250,18 @@
         "by_party": {
           "C": {
             "gendered": 0,
-            "neutral": 28,
+            "neutral": 24,
             "ratio": 1.0
           },
           "KD": {
             "gendered": 2,
-            "neutral": 22,
-            "ratio": 0.9167
+            "neutral": 21,
+            "ratio": 0.913
           },
           "L": {
-            "gendered": 5,
-            "neutral": 19,
-            "ratio": 0.7917
+            "gendered": 4,
+            "neutral": 17,
+            "ratio": 0.8095
           },
           "M": {
             "gendered": 0,
@@ -2343,239 +2275,63 @@
           },
           "S": {
             "gendered": 4,
-            "neutral": 82,
-            "ratio": 0.9535
+            "neutral": 75,
+            "ratio": 0.9494
           },
           "SD": {
             "gendered": 15,
-            "neutral": 16,
-            "ratio": 0.5161
+            "neutral": 15,
+            "ratio": 0.5
           },
           "V": {
             "gendered": 2,
-            "neutral": 20,
-            "ratio": 0.9091
+            "neutral": 19,
+            "ratio": 0.9048
           }
         }
       },
       {
         "gendered": "yrkesman",
         "neutral": "yrkesperson",
+        "measure": "ratio",
         "status": "emerging",
-        "note": "Ongoing substitution.",
-        "gendered_hits": 19,
+        "note": "Coinage; little uptake (9.5%).",
+        "gendered_hits": 14,
         "neutral_hits": 2,
-        "ratio": 0.0952,
+        "ratio": 0.125,
         "by_year": {
           "2014": {
-            "gendered": 10,
+            "gendered": 5,
             "neutral": 0,
             "ratio": 0.0
           }
         },
         "by_party": {
           "S": {
-            "gendered": 13,
+            "gendered": 9,
             "neutral": 1,
-            "ratio": 0.0714
-          }
-        }
-      },
-      {
-        "gendered": "fackman",
-        "neutral": "expert",
-        "status": "emerging",
-        "note": "Neutral alternative is a different word rather than a -person coinage.",
-        "gendered_hits": 4,
-        "neutral_hits": 527,
-        "ratio": 0.9925,
-        "by_year": {
-          "2002": {
-            "gendered": 0,
-            "neutral": 12,
-            "ratio": 1.0
-          },
-          "2003": {
-            "gendered": 1,
-            "neutral": 25,
-            "ratio": 0.9615
-          },
-          "2004": {
-            "gendered": 0,
-            "neutral": 14,
-            "ratio": 1.0
-          },
-          "2005": {
-            "gendered": 1,
-            "neutral": 22,
-            "ratio": 0.9565
-          },
-          "2006": {
-            "gendered": 0,
-            "neutral": 20,
-            "ratio": 1.0
-          },
-          "2007": {
-            "gendered": 0,
-            "neutral": 19,
-            "ratio": 1.0
-          },
-          "2008": {
-            "gendered": 0,
-            "neutral": 30,
-            "ratio": 1.0
-          },
-          "2009": {
-            "gendered": 0,
-            "neutral": 17,
-            "ratio": 1.0
-          },
-          "2010": {
-            "gendered": 0,
-            "neutral": 15,
-            "ratio": 1.0
-          },
-          "2011": {
-            "gendered": 0,
-            "neutral": 19,
-            "ratio": 1.0
-          },
-          "2012": {
-            "gendered": 0,
-            "neutral": 35,
-            "ratio": 1.0
-          },
-          "2013": {
-            "gendered": 0,
-            "neutral": 17,
-            "ratio": 1.0
-          },
-          "2014": {
-            "gendered": 2,
-            "neutral": 40,
-            "ratio": 0.9524
-          },
-          "2015": {
-            "gendered": 0,
-            "neutral": 47,
-            "ratio": 1.0
-          },
-          "2016": {
-            "gendered": 0,
-            "neutral": 18,
-            "ratio": 1.0
-          },
-          "2017": {
-            "gendered": 0,
-            "neutral": 17,
-            "ratio": 1.0
-          },
-          "2018": {
-            "gendered": 0,
-            "neutral": 27,
-            "ratio": 1.0
-          },
-          "2019": {
-            "gendered": 0,
-            "neutral": 17,
-            "ratio": 1.0
-          },
-          "2020": {
-            "gendered": 0,
-            "neutral": 17,
-            "ratio": 1.0
-          },
-          "2021": {
-            "gendered": 0,
-            "neutral": 19,
-            "ratio": 1.0
-          },
-          "2022": {
-            "gendered": 0,
-            "neutral": 16,
-            "ratio": 1.0
-          },
-          "2023": {
-            "gendered": 0,
-            "neutral": 12,
-            "ratio": 1.0
-          },
-          "2024": {
-            "gendered": 0,
-            "neutral": 15,
-            "ratio": 1.0
-          },
-          "2025": {
-            "gendered": 0,
-            "neutral": 19,
-            "ratio": 1.0
-          },
-          "2026": {
-            "gendered": 0,
-            "neutral": 18,
-            "ratio": 1.0
-          }
-        },
-        "by_party": {
-          "C": {
-            "gendered": 0,
-            "neutral": 38,
-            "ratio": 1.0
-          },
-          "KD": {
-            "gendered": 2,
-            "neutral": 42,
-            "ratio": 0.9545
-          },
-          "L": {
-            "gendered": 1,
-            "neutral": 59,
-            "ratio": 0.9833
-          },
-          "M": {
-            "gendered": 1,
-            "neutral": 108,
-            "ratio": 0.9908
-          },
-          "MP": {
-            "gendered": 0,
-            "neutral": 60,
-            "ratio": 1.0
-          },
-          "S": {
-            "gendered": 0,
-            "neutral": 126,
-            "ratio": 1.0
-          },
-          "SD": {
-            "gendered": 0,
-            "neutral": 40,
-            "ratio": 1.0
-          },
-          "V": {
-            "gendered": 0,
-            "neutral": 54,
-            "ratio": 1.0
+            "ratio": 0.1
           }
         }
       },
       {
         "gendered": "lärarinna",
         "neutral": "lärare",
+        "measure": "decline",
         "status": "settled",
-        "note": "Long-settled; substitution largely predates the 2002 corpus window.",
-        "gendered_hits": 11,
-        "neutral_hits": 19013,
-        "ratio": 0.9994,
+        "note": "NOT a ratio: 'lärare' is the unmarked base word for teacher and always covered everyone — it was never coined to replace 'lärarinna'. A ratio here would just measure how often anyone says 'teacher' (19 013 hits) and read as a meaningless 99.9%. What is real is the near-disappearance of the marked feminine form.",
+        "gendered_hits": 8,
+        "neutral_hits": 17792,
+        "ratio": null,
         "by_year": {
           "2002": {
-            "gendered": 2,
-            "neutral": 254,
-            "ratio": 0.9922
+            "gendered": 1,
+            "neutral": 166,
+            "ratio": 0.994
           },
           "2003": {
             "gendered": 0,
-            "neutral": 727,
+            "neutral": 723,
             "ratio": 1.0
           },
           "2004": {
@@ -2620,7 +2376,7 @@
           },
           "2012": {
             "gendered": 0,
-            "neutral": 512,
+            "neutral": 511,
             "ratio": 1.0
           },
           "2013": {
@@ -2629,14 +2385,14 @@
             "ratio": 1.0
           },
           "2014": {
-            "gendered": 2,
-            "neutral": 1507,
-            "ratio": 0.9987
+            "gendered": 0,
+            "neutral": 860,
+            "ratio": 1.0
           },
           "2015": {
             "gendered": 2,
-            "neutral": 1694,
-            "ratio": 0.9988
+            "neutral": 1213,
+            "ratio": 0.9984
           },
           "2016": {
             "gendered": 0,
@@ -2697,42 +2453,42 @@
         "by_party": {
           "C": {
             "gendered": 0,
-            "neutral": 1560,
+            "neutral": 1469,
             "ratio": 1.0
           },
           "KD": {
-            "gendered": 3,
-            "neutral": 1344,
-            "ratio": 0.9978
+            "gendered": 1,
+            "neutral": 1272,
+            "ratio": 0.9992
           },
           "L": {
             "gendered": 2,
-            "neutral": 2698,
-            "ratio": 0.9993
+            "neutral": 2611,
+            "ratio": 0.9992
           },
           "M": {
             "gendered": 0,
-            "neutral": 2991,
+            "neutral": 2811,
             "ratio": 1.0
           },
           "MP": {
-            "gendered": 3,
-            "neutral": 2525,
-            "ratio": 0.9988
+            "gendered": 2,
+            "neutral": 2208,
+            "ratio": 0.9991
           },
           "S": {
             "gendered": 0,
-            "neutral": 5197,
+            "neutral": 4858,
             "ratio": 1.0
           },
           "SD": {
             "gendered": 3,
-            "neutral": 1151,
-            "ratio": 0.9974
+            "neutral": 1089,
+            "ratio": 0.9973
           },
           "V": {
             "gendered": 0,
-            "neutral": 1547,
+            "neutral": 1474,
             "ratio": 1.0
           }
         }
@@ -2740,11 +2496,12 @@
       {
         "gendered": "skådespelerska",
         "neutral": "skådespelare",
+        "measure": "decline",
         "status": "settled",
-        "note": "Settled substitution.",
+        "note": "Same: 'skådespelare' is the base word, not a coinage. Track the decline of the marked form, not a ratio.",
         "gendered_hits": 4,
-        "neutral_hits": 194,
-        "ratio": 0.9798,
+        "neutral_hits": 188,
+        "ratio": null,
         "by_year": {
           "2002": {
             "gendered": 0,
@@ -2780,16 +2537,6 @@
             "gendered": 1,
             "neutral": 6,
             "ratio": 0.8571
-          },
-          "2014": {
-            "gendered": 0,
-            "neutral": 5,
-            "ratio": 1.0
-          },
-          "2015": {
-            "gendered": 0,
-            "neutral": 7,
-            "ratio": 1.0
           },
           "2016": {
             "gendered": 0,
@@ -2845,12 +2592,12 @@
           },
           "KD": {
             "gendered": 0,
-            "neutral": 15,
+            "neutral": 13,
             "ratio": 1.0
           },
           "L": {
             "gendered": 0,
-            "neutral": 26,
+            "neutral": 25,
             "ratio": 1.0
           },
           "M": {
@@ -2860,7 +2607,7 @@
           },
           "MP": {
             "gendered": 0,
-            "neutral": 28,
+            "neutral": 25,
             "ratio": 1.0
           },
           "S": {
@@ -2883,14 +2630,15 @@
       {
         "gendered": "sjuksköterska",
         "neutral": "nan",
+        "measure": "none",
         "status": "no_alternative",
-        "note": "Deliberate null case: ISOF records no settled neutral alternative. Tracked to show absence of change where none is claimed — not to imply one is owed.",
-        "gendered_hits": 779,
+        "note": "Deliberate null case: ISOF records no settled neutral alternative, so there is nothing to substitute toward. Tracked to show absence of change where none is claimed — not to imply one is owed.",
+        "gendered_hits": 744,
         "neutral_hits": 0,
-        "ratio": 0.0,
+        "ratio": null,
         "by_year": {
           "2002": {
-            "gendered": 17,
+            "gendered": 10,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -2950,12 +2698,12 @@
             "ratio": 0.0
           },
           "2014": {
-            "gendered": 34,
+            "gendered": 17,
             "neutral": 0,
             "ratio": 0.0
           },
           "2015": {
-            "gendered": 37,
+            "gendered": 26,
             "neutral": 0,
             "ratio": 0.0
           },
@@ -3017,42 +2765,42 @@
         },
         "by_party": {
           "C": {
-            "gendered": 110,
+            "gendered": 105,
             "neutral": 0,
             "ratio": 0.0
           },
           "KD": {
-            "gendered": 84,
+            "gendered": 83,
             "neutral": 0,
             "ratio": 0.0
           },
           "L": {
-            "gendered": 74,
+            "gendered": 72,
             "neutral": 0,
             "ratio": 0.0
           },
           "M": {
-            "gendered": 207,
+            "gendered": 200,
             "neutral": 0,
             "ratio": 0.0
           },
           "MP": {
-            "gendered": 39,
+            "gendered": 38,
             "neutral": 0,
             "ratio": 0.0
           },
           "S": {
-            "gendered": 149,
+            "gendered": 139,
             "neutral": 0,
             "ratio": 0.0
           },
           "SD": {
-            "gendered": 33,
+            "gendered": 31,
             "neutral": 0,
             "ratio": 0.0
           },
           "V": {
-            "gendered": 83,
+            "gendered": 76,
             "neutral": 0,
             "ratio": 0.0
           }
@@ -3061,9 +2809,10 @@
       {
         "gendered": "brandman",
         "neutral": "brandperson",
+        "measure": "ratio",
         "status": "no_uptake",
-        "note": "Deliberate null case: the neutral form has zero corpus occurrences. Reported as found.",
-        "gendered_hits": 51,
+        "note": "Deliberate null case: the neutral coinage has zero corpus occurrences. Reported as found.",
+        "gendered_hits": 50,
         "neutral_hits": 0,
         "ratio": 0.0,
         "by_year": {
@@ -3095,7 +2844,7 @@
         },
         "by_party": {
           "M": {
-            "gendered": 16,
+            "gendered": 15,
             "neutral": 0,
             "ratio": 0.0
           },

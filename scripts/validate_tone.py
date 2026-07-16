@@ -180,9 +180,14 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
         verdict = ""
         if density["median_hits"] < 5 or density["empty_share"] > 0.35:
             verdict = "  <-- TOO SPARSE TO CHART: this is noise with a line through it"
+        leading = (
+            f", {density['leading_empty']:.0f} cells before it first appears"
+            if density["leading_empty"]
+            else ""
+        )
         print(
             f"  density       : median {density['median_hits']:.0f} hits/cell, "
-            f"{density['empty_share']:.0%} of cells empty{verdict}"
+            f"{density['empty_share']:.0%} empty once attested{leading}{verdict}"
         )
 
     if spec.technique == "stylometric":
