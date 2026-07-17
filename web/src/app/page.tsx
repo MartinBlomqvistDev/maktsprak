@@ -2,10 +2,15 @@ import { ProtokollMarker } from "@/components/ProtokollMarker";
 import { PartySpectrum } from "@/components/PartySpectrum";
 import { PredictDemo } from "@/components/PredictDemo";
 import { RedactReveal } from "@/components/RedactReveal";
-import { fetchSpeechesCount } from "@/lib/supabase";
+import { meta } from "@/lib/site-data";
 
-export default async function Home() {
-  const speechCount = await fetchSpeechesCount();
+export default function Home() {
+  // The corpus count comes from meta.json, which build_site_data.py writes from
+  // the Parquet archive. It used to be fetched from Supabase, which is the wrong
+  // source and was quietly giving the wrong answer: Supabase is a trimmed ETL
+  // landing zone holding only recent years (~37k rows), not the 2002-2026 corpus.
+  // It also meant a database round-trip, and egress, to render the front page.
+  const speechCount = meta.count.toLocaleString("sv-SE");
 
   return (
     <main className="relative z-[1]">
@@ -31,10 +36,10 @@ export default async function Home() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2">
-            En finjusterad språkmodell läser 41 000+ riksdagsanföranden och
-            lär sig partiernas retoriska fingeravtryck: inte vad en politiker
-            talar om, utan hur. Klistra in valfri text nedan, utan att ange
-            källa, och se vilket parti modellen tror den kommer från.
+            En finjusterad språkmodell har läst {speechCount} riksdagsanföranden
+            och lärt sig partiernas retoriska fingeravtryck: inte vad en
+            politiker talar om, utan hur. Klistra in valfri text nedan, utan att
+            ange källa, och se vilket parti modellen tror den kommer från.
           </p>
 
           <div className="mt-10 max-w-xl">
@@ -58,17 +63,13 @@ export default async function Home() {
                 <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
                   Anföranden
                 </dt>
-                <dd className="tabular font-display text-2xl">
-                  {speechCount !== null
-                    ? speechCount.toLocaleString("sv-SE")
-                    : "—"}
-                </dd>
+                <dd className="tabular font-display text-2xl">{speechCount}</dd>
               </div>
               <div>
                 <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
                   Macro-F1, ohörda talare
                 </dt>
-                <dd className="tabular font-display text-2xl">0.595</dd>
+                <dd className="tabular font-display text-2xl">0.619</dd>
               </div>
             </dl>
           </div>

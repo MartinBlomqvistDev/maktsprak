@@ -58,10 +58,10 @@ export default function MetodPage() {
           </p>
           <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-4">
             {[
-              ["Träningstalare", "827"],
+              ["Träningstalare", "821"],
               ["Testtalare", "146"],
-              ["Träningsrader", "32 615"],
-              ["Testrader", "5 887"],
+              ["Träningsrader", "31 572"],
+              ["Testrader", "5 713"],
             ].map(([label, value]) => (
               <div key={label} className="bg-card px-4 py-3">
                 <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
@@ -99,11 +99,20 @@ export default function MetodPage() {
                   <span className="text-ink-3">— talar-oberoende split</span>
                 </td>
                 <td className="tabular py-3 pr-4 text-right text-good font-medium">
-                  0.588
+                  0.628
                 </td>
                 <td className="tabular py-3 text-right text-good font-medium">
-                  0.595
+                  0.619
                 </td>
+              </tr>
+              <tr className="border-b border-line">
+                <td className="py-3 pr-4">
+                  <span className="text-ink-3">
+                    Föregående — dubbelriktad klassvikt
+                  </span>
+                </td>
+                <td className="tabular py-3 pr-4 text-right text-ink-3">0.588</td>
+                <td className="tabular py-3 text-right text-ink-3">0.595</td>
               </tr>
               <tr>
                 <td className="py-3 pr-4">
@@ -123,8 +132,17 @@ export default function MetodPage() {
         </div>
         <p className="mt-5 text-sm text-ink-3">
           Slumpbaslinje för 8-vägsklassificering: 0.125. Random Forest på
-          samma korpus utan läckage landar i samma härad — 0.595 är alltså
+          samma korpus utan läckage landar i samma härad — 0.619 är alltså
           en verklig, försvarbar signal, inte brus.
+        </p>
+        <p className="mt-3 text-sm text-ink-3">
+          Mellansteget är värt en rad: den föregående modellen korrigerade
+          partiobalansen <em>två gånger</em> — både genom att översampla
+          ovanliga partier och genom att vikta förlustfunktionen. Aggregerat
+          syntes det inte. Det syntes på korta meningar, där modellen föll
+          tillbaka på de minsta partierna oavsett innehåll: »Stoppa
+          invandringen!« lästes som V. Med en mekanism i stället för två läses
+          samma mening som SD, med 95,9 %.
         </p>
       </section>
 
