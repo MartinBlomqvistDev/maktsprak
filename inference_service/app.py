@@ -1,9 +1,15 @@
 """FastAPI inference service for the party classifier.
 
-Deployed standalone on Hugging Face Spaces, deliberately with no dependency
-on the ``src.maktsprak_pipeline`` package: importing that package's
-``__init__.py`` pulls in ``pipeline.orchestrate`` -> ``db.client``, which
-requires Supabase credentials this container has no reason to hold.
+Deployed to Cloud Run, deliberately with no dependency on the
+``src.maktsprak_pipeline`` package: importing that package's ``__init__.py``
+pulls in ``pipeline.orchestrate`` -> ``db.client``, which requires Supabase
+credentials this container has no reason to hold.
+
+``MODEL_NAME_OR_PATH`` points at ``/opt/model``, baked into the image at build
+time (see the Dockerfile).  It used to be a Hub id resolved at startup, which
+meant every cold start depended on Hugging Face answering — until HF returned
+429 and the service simply stopped starting.  The weights ship with the image
+now; nothing in the request path touches the network.
 """
 
 from __future__ import annotations

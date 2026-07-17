@@ -1,0 +1,15 @@
+# The site build only needs web/. Everything here is either enormous (data/raw
+# is 2.4 GB of source PDFs, data/parquet ~250 MB) or irrelevant: the site reads
+# precomputed JSON from web/src/data and never touches the Python side.
+#
+# Leading slashes anchor to the repo root. Without them, `src/` also matches
+# `web/src/` and deletes the Next.js app directory out from under the build.
+/data/
+/.venv/
+/notebooks/
+/scripts/
+/src/
+/tests/
+/inference_service/
+/logs/
+/migrations/
