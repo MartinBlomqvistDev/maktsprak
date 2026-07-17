@@ -64,10 +64,30 @@ def _round_pairs(pairs: list[tuple[str, float]], ndigits: int = 2) -> list[dict[
     return [{"word": w, "z": round(z, ndigits)} for w, z in pairs]
 
 
+#: The Next.js app imports these from ``web/src/data`` (see
+#: ``web/src/lib/site-data.ts``), so every payload is written to both places.
+#: Keeping it a manual copy meant a regenerate could silently leave the live
+#: site on stale numbers, with nothing to catch it — precompute drift is
+#: invisible by construction, because the old file is still perfectly valid JSON.
+WEB_DATA_DIR = Path("web/src/data")
+
+
 def _write(out_dir: Path, name: str, payload: object) -> None:
+    """Write one payload to *out_dir* and mirror it into the web app.
+
+    The mirror is unconditional rather than an argument threaded through every
+    call site: a call site is something a future edit can forget, and forgetting
+    this one leaves the live site on stale numbers with nothing to catch it.
+    """
+    body = json.dumps(payload, ensure_ascii=False, indent=1)
     path = out_dir / name
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
-    logger.info(f"Wrote {path} ({path.stat().st_size // 1024 or 1} KB).")
+    path.write_text(body, encoding="utf-8")
+
+    mirrored = ""
+    if WEB_DATA_DIR.exists():
+        (WEB_DATA_DIR / name).write_text(body, encoding="utf-8")
+        mirrored = f" -> also {WEB_DATA_DIR / name}"
+    logger.info(f"Wrote {path} ({path.stat().st_size // 1024 or 1} KB){mirrored}.")
 
 
 def build(

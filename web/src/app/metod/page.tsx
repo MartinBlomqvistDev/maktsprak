@@ -142,9 +142,22 @@ export default function MetodPage() {
             nästa anförande sluka det föregående.
           </p>
           <p>
-            Hela korpusen parsades om med den fixade koden:{" "}
-            <strong>41 292</strong> rena anföranden, mot tidigare
-            44 820 som delvis var trasiga eller felattribuerade.
+            Hela korpusen byggs om från källan med den fixade koden:{" "}
+            <strong>75 148</strong> anföranden ur 2 970 protokoll,
+            2002–2026. Varje protokoll Riksdagen publicerat finns sparat
+            lokalt, så korpusen är inte ett arv från tidigare körningar utan
+            något som går att återskapa: ett kommando, utan nätverk, med
+            samma resultat varje gång.
+          </p>
+          <p>
+            Det är inte en akademisk poäng. Radens id var länge{" "}
+            <code>protokoll_N</code> där N var en räknare över det{" "}
+            <em>parsern råkade hitta</em> — inte något som stod i dokumentet.
+            När parsern lagades ändrades vilka anföranden som hittades, alla
+            följande index sköts ett steg, och samma id kom att peka på två
+            olika tal. Id:t är nu{" "}
+            <code>protokoll_talare_parti</code>: det står i dokumentet och
+            kan inte glida.
           </p>
         </div>
       </section>

@@ -267,9 +267,24 @@ def fetch_combined_speeches(
 
 
 def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
-    """Upsert a single speech record into the ``speeches`` table.
+    """Insert a single speech record into the ``speeches`` table.
 
-    Conflicts on the primary key (``id``) are resolved by updating the row.
+    .. warning::
+        **This is not idempotent yet.** It reads as an upsert and is not one.
+        ``id`` is the natural key but the table's PRIMARY KEY is the surrogate
+        ``supabase_id``, which is auto-generated and therefore never in *row* —
+        so PostgREST finds no conflict target and every call INSERTs. Re-running
+        the ETL over a protocol appends a second copy of every speech in it;
+        this is how the archive accumulated 5 425 duplicate ids.
+
+        Fixing it needs a unique index for ``ON CONFLICT`` to target:
+        run ``migrations/002_speeches_id_unique.sql``, then pass
+        ``on_conflict="id"`` here. Adding that argument first only raises,
+        because PostgREST requires the constraint to exist.
+
+        The corpus does not depend on this: ``scripts/rebuild_corpus.py``
+        regenerates the Parquet archive from ``data/raw`` offline, and Supabase
+        is the ETL landing zone rather than the source of truth.
 
     Args:
         row: Speech dict with keys matching the table schema.
@@ -291,10 +306,14 @@ def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
 
 
 def insert_speeches(rows: list[dict[str, Any]]) -> int:
-    """Batch-upsert many speech records in a single request.
+    """Batch-insert many speech records in a single request.
 
     Far faster than looping :func:`insert_speech` (one HTTP round-trip instead
-    of one per row).  Conflicts on the primary key (``id``) update the row.
+    of one per row).
+
+    .. warning::
+        Not idempotent — see :func:`insert_speech` for why, and
+        ``migrations/002_speeches_id_unique.sql`` for the fix.
 
     Args:
         rows: Speech dicts with keys matching the table schema.
