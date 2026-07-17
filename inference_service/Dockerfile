@@ -23,6 +23,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # A separate script rather than an inline heredoc: heredocs in RUN need BuildKit
 # (`# syntax=docker/dockerfile:1.4`), which Cloud Build's default builder does
 # not guarantee.
+# Deploy with `gcloud run deploy --clear-env-vars` so these apply. Two reasons,
+# both learned the hard way:
+#   1. `gcloud run deploy` PRESERVES a service's existing env vars, so an old
+#      MODEL_NAME_OR_PATH pointing at the Hub silently overrides this line and
+#      resurrects the cold-start failure above.
+#   2. Passing `--set-env-vars MODEL_NAME_OR_PATH=/opt/model` from Git Bash on
+#      Windows does not do what it looks like: MSYS rewrites the POSIX-looking
+#      path, and the container is told to load
+#      'C:/Program Files/Git/opt/model'. Letting the image own these avoids the
+#      shell entirely.
 ENV MODEL_ID=MartinBlomqvist/maktsprak_classifier_clean
 ENV MODEL_NAME_OR_PATH=/opt/model
 COPY bake_model.py .
