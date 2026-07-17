@@ -1,7 +1,7 @@
 """Shared local-corpus loader for precompute/analysis scripts.
 
 The archived corpus (``data/parquet/speeches_full.parquet``) is the source of
-truth for analysis and site precompute, not Supabase (see DEV_LOG #10): the
+truth for analysis and site precompute, not Supabase: the
 Vercel site only ever reads static JSON, and Supabase's free tier can't hold
 the full history anyway. Loading from the local archive is also far faster and
 has no network/quota dependency.

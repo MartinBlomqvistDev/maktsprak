@@ -25,8 +25,8 @@ it (rates mostly survive — numerator and denominator double together — but
 counts and z-scores do not). Fixed at the boundary (`export_corpus.py` now
 dedups on `id` and reports the per-year shape), and `scripts/_corpus.py` — the
 loader every analysis passes through — now **raises** on a duplicated archive
-rather than letting it quietly skew a published number. **Supabase itself still
-holds the duplicates**; that is a destructive DB cleanup and is left for Martin.
+rather than letting it quietly skew a published number. The database cleanup
+(dedup plus a `UNIQUE(id)` constraint) is tracked in `migrations/002`.
 
 **`hen` demoted to a corpus-wide series.** The new density guard rejected the
 per-party split: median 3 hits per party-year cell, 55% of cells empty. The plan

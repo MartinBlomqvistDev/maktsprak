@@ -3,7 +3,7 @@
 The site has no Python runtime, so all analysis is computed here and written as
 small JSON files it can fetch statically. Reads from the local Parquet archive
 (``data/parquet/speeches_full.parquet``), not Supabase — that archive is the
-source of truth for analysis (see DEV_LOG #10); run ``scripts/export_corpus.py``
+source of truth for analysis; run ``scripts/export_corpus.py``
 first if it doesn't exist yet or is stale.
 
 Outputs (in ``--out``):

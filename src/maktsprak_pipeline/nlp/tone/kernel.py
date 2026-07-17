@@ -29,7 +29,7 @@ all-party background rate; a large cell is barely moved.  That is the
 "low-sample years must not look artificially extreme" requirement, and it is
 the *only* thing standing between a party that spoke twice in 2003 and a
 headline-grabbing spike.  ``alpha`` is therefore a load-bearing constant and
-is flagged for a sensitivity check (see DEV_LOG §12) rather than treated as
+is flagged for a sensitivity check rather than treated as
 settled.
 """
 

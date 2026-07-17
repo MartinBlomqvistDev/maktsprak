@@ -132,7 +132,7 @@ The defensible version requires an in-group **and** an out-group marker in the s
 
 A single undifferentiated "us-vs-them" score would have ranked V highest and SD near the bottom, and been read as a machine calling V populist. The measurement that worked found something no one expected; the one that failed would have confirmed a prior. That is the whole argument for the gate.
 
-Full narrative: [`DEV_LOG.md`](DEV_LOG.md) · pattern provenance: [`data/lexicons/CHANGELOG.md`](data/lexicons/CHANGELOG.md).
+Pattern provenance and the audit trail behind every word list: [`data/lexicons/CHANGELOG.md`](data/lexicons/CHANGELOG.md).
 
 ---
 
@@ -185,7 +185,7 @@ src/maktsprak_pipeline/
 └── nlp/
     ├── distinctiveness.py  # Fightin' Words (Monroe et al. 2008)
     ├── drift.py            # temporal drift, issue frames, JS divergence
-    └── tone/               # tone kernel + dimensions (see DEV_LOG §12-16)
+    └── tone/               # tone kernel + dimensions
 scripts/
 ├── rebuild_corpus.py       # offline rebuild from data/raw — the source of truth
 ├── train_party_model_db.py # BERT fine-tuning, speaker-independent split

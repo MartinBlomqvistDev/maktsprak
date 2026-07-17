@@ -353,7 +353,7 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         # (elderly care home) and "särskilt/gruppboende" (eldercare housing
         # types), which is welfare/eldercare vocabulary, not housing-market
         # policy — confirmed via real text: ~half of its matches in one
-        # sample were eldercare, not housing (see DEV_LOG).
+        # sample were eldercare, not housing.
         "bostad",
         "bostäder",
         "hyresrätt",
