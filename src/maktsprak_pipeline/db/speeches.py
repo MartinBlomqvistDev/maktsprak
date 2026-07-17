@@ -267,24 +267,17 @@ def fetch_combined_speeches(
 
 
 def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
-    """Insert a single speech record into the ``speeches`` table.
+    """Upsert a single speech record into the ``speeches`` table.
 
-    .. warning::
-        **This is not idempotent yet.** It reads as an upsert and is not one.
-        ``id`` is the natural key but the table's PRIMARY KEY is the surrogate
-        ``supabase_id``, which is auto-generated and therefore never in *row* —
-        so PostgREST finds no conflict target and every call INSERTs. Re-running
-        the ETL over a protocol appends a second copy of every speech in it;
-        this is how the archive accumulated 5 425 duplicate ids.
+    Idempotent on ``id`` (the natural key ``protocol_speaker_party``): re-running
+    the ETL over a protocol updates its rows rather than appending copies.
 
-        Fixing it needs a unique index for ``ON CONFLICT`` to target:
-        run ``migrations/002_speeches_id_unique.sql``, then pass
-        ``on_conflict="id"`` here. Adding that argument first only raises,
-        because PostgREST requires the constraint to exist.
-
-        The corpus does not depend on this: ``scripts/rebuild_corpus.py``
-        regenerates the Parquet archive from ``data/raw`` offline, and Supabase
-        is the ETL landing zone rather than the source of truth.
+    This requires the ``UNIQUE (id)`` constraint from
+    ``migrations/002_speeches_id_unique.sql`` — ``on_conflict="id"`` raises
+    without it. Before that constraint existed the table's only key was the
+    surrogate ``supabase_id`` (auto-generated, never in *row*), so PostgREST
+    found no conflict target and every "upsert" silently INSERTed, which is how
+    the table accumulated duplicate ids.
 
     Args:
         row: Speech dict with keys matching the table schema.
@@ -295,7 +288,7 @@ def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
     Raises:
         RuntimeError: If Supabase returns a ``None`` data payload (hard failure).
     """
-    resp = supabase_write.table("speeches").upsert(row).execute()
+    resp = supabase_write.table("speeches").upsert(row, on_conflict="id").execute()
     if resp.data is None:
         raise RuntimeError(f"Supabase upsert failed for id={row.get('id')}: {resp}")
     if resp.data:
@@ -306,14 +299,10 @@ def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
 
 
 def insert_speeches(rows: list[dict[str, Any]]) -> int:
-    """Batch-insert many speech records in a single request.
+    """Batch-upsert many speech records in a single request.
 
     Far faster than looping :func:`insert_speech` (one HTTP round-trip instead
-    of one per row).
-
-    .. warning::
-        Not idempotent — see :func:`insert_speech` for why, and
-        ``migrations/002_speeches_id_unique.sql`` for the fix.
+    of one per row). Idempotent on ``id`` — see :func:`insert_speech`.
 
     Args:
         rows: Speech dicts with keys matching the table schema.
@@ -326,7 +315,7 @@ def insert_speeches(rows: list[dict[str, Any]]) -> int:
     """
     if not rows:
         return 0
-    resp = supabase_write.table("speeches").upsert(rows).execute()
+    resp = supabase_write.table("speeches").upsert(rows, on_conflict="id").execute()
     if resp.data is None:
         raise RuntimeError(f"Supabase batch upsert failed for {len(rows)} rows: {resp}")
     return len(resp.data)
