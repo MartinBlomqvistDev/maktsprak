@@ -3,19 +3,34 @@
 import { useEffect, useRef, useState } from "react";
 import { YEARS, yearSignatures } from "@/lib/site-data";
 
+// One-line gloss per year. Every caption must be grounded in that year's actual
+// top distinctive words (data/site/year_signatures.json) — the caption sits
+// directly beside the word list, so a claim the words don't support reads as
+// the site contradicting its own data. RE-VERIFY these against the words
+// whenever the corpus is rebuilt; they are hand-written and will otherwise drift.
 const CAPTIONS: Record<number, string> = {
-  2002: "EMU-folkomröstningens år. Gamla Moderaterna, före omdaningen.",
-  2010: "Sverigedemokraterna tar plats i riksdagen för första gången.",
-  2015: "Flyktingkrisen. RUT, ROT och jobben dominerar fortfarande.",
-  2016: "Alliansen, nyanlända, Daish. Krisen sätter sig i språket.",
-  2018: "Regeringskaos efter valet: en lång regeringsbildning.",
-  2019: "Januariavtalet präglar allt. Värnskatten avskaffas.",
+  2002: "EMU-folkomröstningen. Maxtaxa och buffertfonder.",
+  2003: "EMU och Irakkriget. Saddam Hussein.",
+  2005: "Stormen Gudrun. Apatiska barn och amnestikravet.",
+  2006: "Alliansen vinner. Fastighetsskatten och Citybanan.",
+  2008: "Lissabonfördraget och vårdnadsbidraget. Varslen börjar.",
+  2009: "Finanskrisen. Bonusar och lågkonjunktur.",
+  2010: "De rödgröna mot Alliansen. Vattenfall och Arbetsförmedlingen.",
+  2011: "Arabiska våren. Libyen, Egypten, Gaddafi.",
+  2013: "Jobbskatteavdraget och arbetslösheten.",
+  2014: "Bromma flygplats och jobben. Förbifarten.",
+  2015: "RUT, ROT och jobben. Bromma och Paris.",
+  2016: "Flyktingmottagandet. Nyanlända, Daish, ensamkommande.",
+  2017: "Metoo. Nyanlända, poliser och flygskatt.",
+  2018: "Lång regeringsbildning. CETA och barnäktenskap.",
+  2019: "Januariavtalet präglar allt. Värnskatten slopas. Brexit.",
   2020: "Pandemin slår in med full kraft. Nära nog inget annat.",
   2021: "Vaccin och restriktioner. Pandemin fortsätter.",
-  2022: "Rysslands invasion. Ukraina blir kammarens ord.",
-  2023: "Inflationen och elstödet. Ekonomin tar över.",
-  2024: "Gaza och Ukraina parallellt. Kärnvapenfrågan är tillbaka.",
-  2025: "Gaza fortsätter. Matpriser och Västbanken.",
+  2022: "Rysslands invasion av Ukraina. Tidöavtalet efter valet.",
+  2023: "Inflationen och elstödet. Tidöavtalet.",
+  2024: "Gaza och Ukraina parallellt. Kärnvapenfrågan tillbaka.",
+  2025: "Gaza och UNRWA. Ukraina och gängkriminaliteten.",
+  2026: "Ukraina och Tidöregeringen. Förvarsfrågan och alunskiffern.",
 };
 
 const MAX_WORDS = 10;

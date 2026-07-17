@@ -8,7 +8,7 @@ export function SiteFooter() {
         <p>
           Byggt av{" "}
           <a
-            href="https://github.com/martinblomqvistdev"
+            href="https://www.linkedin.com/in/martin-blomqvist"
             className="text-ink-2 underline underline-offset-2 hover:text-accent"
           >
             Martin Blomqvist
