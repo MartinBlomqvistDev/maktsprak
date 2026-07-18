@@ -5,6 +5,8 @@
 
 **Can a machine tell which Swedish party wrote a sentence, and has the way parties argue changed since 2002?**
 
+**Live: [maktsprak.se](https://maktsprak.se)**
+
 An end-to-end NLP system over the complete Riksdag debate record: a weekly ETL that parses the chamber's two-column PDFs, a fine-tuned KB-BERT classifier served from its own inference API, and a precomputed analytics site built on the Fightin' Words statistic.
 
 Every headline number here is one that could have been inflated and wasn't. That is the point of the project.
