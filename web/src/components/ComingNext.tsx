@@ -9,7 +9,7 @@ interface ComingNextProps {
 }
 
 /**
- * A designed "not built yet" state for routes ahead in the roadmap — reads
+ * A designed "not built yet" state for routes ahead in the roadmap, reads
  * as a deliberate placeholder with real content about what's coming, not a
  * broken or forgotten page.
  */

@@ -1,6 +1,6 @@
 /**
  * The eight Riksdag parties. Mirrors PARTY_ORDER / VALID_PARTIES in the
- * Python pipeline's config.py — keep both in sync if party composition
+ * Python pipeline's config.py, keep both in sync if party composition
  * ever changes.
  */
 export type PartyCode = "V" | "MP" | "S" | "C" | "L" | "KD" | "M" | "SD";

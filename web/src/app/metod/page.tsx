@@ -2,7 +2,7 @@ import { ProtokollMarker } from "@/components/ProtokollMarker";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Metod — Maktspråk / Protokollet",
+  title: "Metod · Maktspråk / Protokollet",
   description:
     "Hur modellen valideras: talar-oberoende split, varför radbaserad split läcker, och vad skillnaden kostar i siffror.",
 };
@@ -20,7 +20,7 @@ export default function MetodPage() {
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">
         Att klassificera parti från text är förrädiskt lätt att överskatta.
-        Så här valideras den här modellen — talar-oberoende, med den vanliga
+        Så här validerar jag modellen: talar-oberoende, med den vanliga
         fällan avslöjad och prissatt i siffror.
       </p>
 
@@ -32,14 +32,14 @@ export default function MetodPage() {
             Att klassificera parti från text är förrädiskt lätt att
             överskatta. Om samma politiker förekommer i både tränings- och
             testdata lär sig modellen delvis att känna igen{" "}
-            <em>enskilda personers</em> formuleringar — inte partiets
+            <em>enskilda personers</em> formuleringar, inte partiets
             retorik. En vanlig radbaserad train/test-split (90/10 på
             anföranden) gör exakt det: samma talare hamnar på båda sidor.
           </p>
           <p>
             Resultatet är en siffra som ser imponerande ut men mäter fel
             sak. Den säger egentligen: &ldquo;känner modellen igen
-            Magdalena Andersson när hon talar?&rdquo; — inte &ldquo;känner
+            Magdalena Andersson när hon talar?&rdquo;, inte &ldquo;känner
             modellen igen Socialdemokraternas sätt att argumentera?&rdquo;
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function MetodPage() {
               <tr className="border-b border-line">
                 <td className="py-3 pr-4">
                   <span className="font-medium text-ink">Nuvarande</span>{" "}
-                  <span className="text-ink-3">— talar-oberoende split</span>
+                  <span className="text-ink-3">· talar-oberoende split</span>
                 </td>
                 <td className="tabular py-3 pr-4 text-right text-good font-medium">
                   0.628
@@ -108,7 +108,7 @@ export default function MetodPage() {
               <tr className="border-b border-line">
                 <td className="py-3 pr-4">
                   <span className="text-ink-3">
-                    Föregående — dubbelriktad klassvikt
+                    Föregående · dubbelriktad klassvikt
                   </span>
                 </td>
                 <td className="tabular py-3 pr-4 text-right text-ink-3">0.588</td>
@@ -132,12 +132,12 @@ export default function MetodPage() {
         </div>
         <p className="mt-5 text-sm text-ink-3">
           Slumpbaslinje för 8-vägsklassificering: 0.125. Random Forest på
-          samma korpus utan läckage landar i samma härad — 0.619 är alltså
+          samma korpus utan läckage landar i samma härad; 0.619 är alltså
           en verklig, försvarbar signal, inte brus.
         </p>
         <p className="mt-3 text-sm text-ink-3">
           Mellansteget är värt en rad: den föregående modellen korrigerade
-          partiobalansen <em>två gånger</em> — både genom att översampla
+          partiobalansen <em>två gånger</em>: både genom att översampla
           ovanliga partier och genom att vikta förlustfunktionen. Aggregerat
           syntes det inte. Det syntes på korta meningar, där modellen föll
           tillbaka på de minsta partierna oavsett innehåll: »Stoppa
@@ -156,7 +156,7 @@ export default function MetodPage() {
             (protokollnummer, datum) hamnar mitt i meningar. Parsern läser nu
             kolumnvis, känner igen och rensar bort återkommande sidhuvuden,
             och hanterar repliker (<code>Anf. N X (Y) replik:</code>) och
-            talare utan partibeteckning korrekt — istället för att låta
+            talare utan partibeteckning korrekt, istället för att låta
             nästa anförande sluka det föregående.
           </p>
           <p>
@@ -170,7 +170,7 @@ export default function MetodPage() {
           <p>
             Det är inte en akademisk poäng. Radens id var länge{" "}
             <code>protokoll_N</code> där N var en räknare över det{" "}
-            <em>parsern råkade hitta</em> — inte något som stod i dokumentet.
+            <em>parsern råkade hitta</em>, inte något som stod i dokumentet.
             När parsern lagades ändrades vilka anföranden som hittades, alla
             följande index sköts ett steg, och samma id kom att peka på två
             olika tal. Id:t är nu{" "}
@@ -182,10 +182,12 @@ export default function MetodPage() {
 
       <div className="mt-16 rounded-card border-l-[3px] border-accent bg-accent-soft px-6 py-5">
         <p className="text-[15px] leading-relaxed text-accent-soft-ink">
-          <strong>Varför visa det här öppet?</strong> En modell som bara
+          <strong>Varför jag visar det här öppet:</strong> en modell som bara
           rapporterar sin bästa siffra går inte att lita på. En modell som
-          visar hur den valideras, vad som kan gå fel, och vad det kostar i
-          siffror — det går att lita på.
+          visar hur den valideras, vad som kan gå fel och vad det kostar i
+          siffror, den går att lita på. Varje siffra på den här sidan är en
+          som gick att blåsa upp, och inte blev det. Det är hela poängen med
+          projektet.
         </p>
       </div>
     </main>

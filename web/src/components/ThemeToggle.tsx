@@ -15,7 +15,7 @@ export function ThemeToggle() {
 
   useEffect(() => {
     // Reading localStorage/matchMedia requires the browser, so this can't be
-    // a useState initializer (SSR has no window) — the one legitimate case
+    // a useState initializer (SSR has no window), the one legitimate case
     // for setState-in-effect, same pattern libraries like next-themes use.
     const stored = window.localStorage.getItem("maktsprak-theme") as Theme | null;
     const initial = stored ?? systemTheme();

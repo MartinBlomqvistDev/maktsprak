@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /* =============================================================================
-   MaktspråkAI — "Protokollet" design system
+   Maktspråk, "Protokollet" design system
    The parliamentary record as a forensic instrument. Bone paper, warm ink,
-   one "blue pencil" accent (the actual editorial term for redaction/markup —
+   one "blue pencil" accent (the actual editorial term for redaction/markup,
    deliberately not the terracotta-on-cream AI-default). The eight party
    colours exist only as data (spectrum bars, live predictions), never as UI
-   chrome — semantic colour stays separate from brand.
+   chrome; semantic colour stays separate from brand.
    ============================================================================= */
 
 :root {
@@ -154,7 +154,7 @@ body {
   font-feature-settings: "case" 1;
 }
 
-/* Faint fibrous paper grain — pure CSS, no image request. */
+/* Faint fibrous paper grain, pure CSS, no image request. */
 body::before {
   content: "";
   position: fixed;
@@ -216,7 +216,7 @@ body::before {
   font-weight: 500;
 }
 
-/* Redaction bar — used while the hero copy is still "classified". */
+/* Redaction bar, used while the hero copy is still "classified". */
 .redacted {
   background-color: var(--ink);
   color: transparent;

@@ -5,7 +5,7 @@ import { PARTY_ORDER } from "@/lib/parties";
 import { distinctive } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Partierna — Maktspråk / Protokollet",
+  title: "Partierna · Maktspråk / Protokollet",
   description:
     "Varje partis retoriska fingeravtryck: de ord som är mest utmärkande för just det partiet, jämfört med de andra sju.",
 };

@@ -10,7 +10,7 @@ interface PartyFingerprintCardProps {
 /**
  * A party's distinctive-vocabulary "fingerprint": its most over-represented
  * words versus every other party (Fightin' Words), ranked by z-score.
- * Deliberately a ranked list rather than a literal word cloud — this is meant
+ * Deliberately a ranked list rather than a literal word cloud, this is meant
  * to read as an analytical instrument, not a decorative graphic.
  */
 export function PartyFingerprintCard({

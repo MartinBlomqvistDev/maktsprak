@@ -5,9 +5,9 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-// Display face — Redaction, drawn from scanned/degrading legal and political
+// Display face, Redaction, drawn from scanned/degrading legal and political
 // documents (SIL OFL, see src/app/fonts/Redaction-OFL.txt). Used sparingly for
-// headlines: the typeface itself carries the project's thesis — legibility
+// headlines: the typeface itself carries the project's thesis, legibility
 // recovered from an official record.
 const redaction = localFont({
   src: "./fonts/Redaction-Regular.woff2",
@@ -16,7 +16,7 @@ const redaction = localFont({
   weight: "400",
 });
 
-// Body face — a quiet, confident grotesque. Deliberately not Inter/Space
+// Body face, a quiet, confident grotesque. Deliberately not Inter/Space
 // Grotesk (the default AI-generated pairing).
 const archivo = Archivo({
   subsets: ["latin", "latin-ext"],
@@ -24,7 +24,7 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// Data / transcript face — for Anf. speech markers, probabilities, and the
+// Data / transcript face, for Anf. speech markers, probabilities, and the
 // "record" texture. A typewriter-report register rather than a dev-tool mono.
 const fragmentMono = Fragment_Mono({
   subsets: ["latin"],
@@ -34,7 +34,7 @@ const fragmentMono = Fragment_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MaktspråkAI — Protokollet",
+  title: "Maktspråk / Protokollet",
   description:
     "En AI-läsning av den svenska riksdagens språk: vad avslöjar retoriken om vem som talar?",
 };

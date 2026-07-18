@@ -21,7 +21,7 @@ interface RedactRevealProps {
 
 /**
  * The site's signature moment: a sentence that loads with key phrases
- * redacted, then declassifies word-group by word-group — performing, quite
+ * redacted, then declassifies word-group by word-group, performing, quite
  * literally, what the model does to political language. Instant + fully
  * visible when prefers-reduced-motion is set.
  */
@@ -42,7 +42,7 @@ export function RedactReveal({
 
     if (reduceMotion || redactableCount === 0) {
       // Deciding this requires matchMedia (browser-only), so it can't be a
-      // useState initializer — same justified exception as the theme toggle.
+      // useState initializer, same justified exception as the theme toggle.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setRevealed(redactableCount);
       onComplete?.();

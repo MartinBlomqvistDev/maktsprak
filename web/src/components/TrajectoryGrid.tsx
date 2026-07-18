@@ -33,7 +33,7 @@ export function TrajectoryGrid({ terms, direction, notes }: TrajectoryGridProps)
   const allSeries = terms.map((term) => ({ term, data: seriesFor(term) }));
 
   // Shared y-domain across every card in this group, so bar/curve HEIGHT is
-  // comparable between terms — without this each card auto-scales to its own
+  // comparable between terms, without this each card auto-scales to its own
   // max and a modest rise looks exactly as dramatic as a huge one.
   const sharedMax = Math.max(
     ...allSeries.flatMap(({ data }) => data.map((d) => d.value)),
@@ -54,7 +54,7 @@ export function TrajectoryGrid({ terms, direction, notes }: TrajectoryGridProps)
           >
             <div className="flex items-baseline justify-between gap-2">
               <p className="font-data truncate text-[13px]">{term}</p>
-              {/* The peak year is stated here, in plain text next to the value —
+              {/* The peak year is stated here, in plain text next to the value ,
                   not positioned inside the chart. A chart-coordinate label (DOM
                   percentage math, and separately Recharts' own ReferenceDot
                   label) both proved unreliable at this card size: either it

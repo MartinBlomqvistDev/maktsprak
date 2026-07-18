@@ -73,7 +73,7 @@ export function PredictDemo() {
       {status === "done" && probs && (
         <div className="mt-6 border-t border-line pt-5">
           <p className="mb-3 font-data text-[11px] uppercase tracking-widest text-ink-3">
-            Läses som —
+            Läses som:
           </p>
           <PredictionBars probabilities={probs} />
         </div>
@@ -83,7 +83,7 @@ export function PredictDemo() {
         <div className="mt-6 rounded-sm border border-dashed border-line-2 bg-paper-2 px-4 py-3">
           <p className="text-sm text-ink-2">
             <span className="font-data uppercase text-warn">Ej ansluten ännu</span>
-            {" — "}
+            {": "}
             inferens-tjänsten publiceras i nästa fas av ombyggnationen. Se{" "}
             <a href="/metod" className="text-accent underline underline-offset-2">
               metodsidan

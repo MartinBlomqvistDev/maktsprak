@@ -7,9 +7,9 @@ import { YearSlider } from "@/components/YearSlider";
 import { meta } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Utveckling — Maktspråk / Protokollet",
+  title: "Utveckling · Maktspråk / Protokollet",
   description:
-    "Riksdagens språk från 2002 till idag: vad debatten rörde sig mot, och ifrån — och hur partiernas retorik har förändrats.",
+    "Riksdagens språk från 2002 till idag: vad debatten rörde sig mot och ifrån, och hur partiernas retorik har förändrats.",
 };
 
 const RISING_TERMS = ["ukraina", "pandemin", "inflationen", "gaza", "kärnkraft"];
@@ -116,7 +116,7 @@ export default function UtvecklingPage() {
               (Jensen–Shannon-divergens). Högre värde betyder att de talar om
               mer olika saker. {meta.first_year} var skillnaden som störst;
               sedan dess har ordförrådet legat förhållandevis stabilt. Ingen
-              dramatisk konvergens och ingen tydlig splittring — partierna
+              dramatisk konvergens och ingen tydlig splittring; partierna
               talar i hög grad om samma kriser, om än med olika ord och,
               som föregående avsnitt visar, med olika tyngdpunkt.
             </p>

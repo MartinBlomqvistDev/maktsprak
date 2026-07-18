@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { YEARS, yearSignatures } from "@/lib/site-data";
 
 // One-line gloss per year. Every caption must be grounded in that year's actual
-// top distinctive words (data/site/year_signatures.json) — the caption sits
+// top distinctive words (data/site/year_signatures.json), the caption sits
 // directly beside the word list, so a claim the words don't support reads as
 // the site contradicting its own data. RE-VERIFY these against the words
 // whenever the corpus is rebuilt; they are hand-written and will otherwise drift.

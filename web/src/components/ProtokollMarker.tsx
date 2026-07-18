@@ -12,7 +12,7 @@ interface ProtokollMarkerProps {
 /**
  * A transcript-marker divider styled after the Riksdag protocol's own
  * "Anf. 42 NAMN (PARTI):" convention. Used as a structural device throughout
- * the site instead of generic section headers — the record's own grammar.
+ * the site instead of generic section headers, the record's own grammar.
  */
 export function ProtokollMarker({ n, name, party }: ProtokollMarkerProps) {
   const p = party ? partyByCode(party) : undefined;

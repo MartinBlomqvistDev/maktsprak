@@ -28,7 +28,7 @@ export default function Home() {
               segments={[
                 { text: "Hur något sägs avslöjar " },
                 { text: "partiet", redact: true },
-                { text: " — inte bara " },
+                { text: ", inte bara " },
                 { text: "vad som sägs", redact: true },
                 { text: "." },
               ]}
@@ -36,10 +36,11 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2">
-            En finjusterad språkmodell har läst {speechCount} riksdagsanföranden
-            och lärt sig partiernas retoriska fingeravtryck: inte vad en
-            politiker talar om, utan hur. Klistra in valfri text nedan, utan att
-            ange källa, och se vilket parti modellen tror den kommer från.
+            Jag har låtit en finjusterad språkmodell läsa {speechCount}{" "}
+            riksdagsanföranden tills den lärt sig partiernas retoriska
+            fingeravtryck: inte vad en politiker talar om, utan hur. Klistra in
+            valfri text nedan, utan att ange källa, och se vilket parti modellen
+            tror att den kommer från.
           </p>
 
           <div className="mt-10 max-w-xl">
@@ -84,7 +85,7 @@ export default function Home() {
             <p className="mt-4 mb-10 text-ink-2">
               Varje vecka hämtas nya protokoll från Riksdagens öppna API.
               Tvåspaltiga PDF:er läses kolumnvis, sidhuvuden rensas bort och
-              varje anförande knyts till rätt talare — även repliker och
+              varje anförande knyts till rätt talare, även repliker och
               talare utan partibeteckning.
             </p>
 
@@ -93,15 +94,15 @@ export default function Home() {
               En KB-BERT-modell finjusteras på den rensade korpusen.
               Valideringen är <strong>talar-oberoende</strong>: 15 % av
               politikerna hålls helt utanför träningen, så resultatet mäter
-              generalisering till personer modellen aldrig sett — inte
+              generalisering till personer modellen aldrig sett, inte
               igenkänning av bekanta röster.
             </p>
 
             <ProtokollMarker n={3} name="AVSLÖJAR" />
             <p className="mt-4 text-ink-2">
               Resultatet är ett verktyg som läser politisk text och visar
-              vilket parti den mest liknar retoriskt — och en öppen
-              redovisning av var modellen är säker, och var den gissar.
+              vilket parti den mest liknar retoriskt, och en öppen
+              redovisning av var modellen är säker och var den gissar.
             </p>
           </div>
         </div>

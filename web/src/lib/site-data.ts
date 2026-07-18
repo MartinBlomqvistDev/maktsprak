@@ -2,7 +2,7 @@
  * Typed access to the precomputed analysis JSON in src/data/.
  *
  * All of this is generated offline by scripts/build_site_data.py (in the
- * Python pipeline repo) from the archived speech corpus — the site itself
+ * Python pipeline repo) from the archived speech corpus, the site itself
  * never queries a database. Re-run that script and copy its output here to
  * refresh the numbers.
  */

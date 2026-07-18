@@ -1,7 +1,7 @@
 import { PARTY_ORDER } from "@/lib/parties";
 
 /**
- * The eight-party spectrum bar — the site's recurring signature mark.
+ * The eight-party spectrum bar, the site's recurring signature mark.
  * Colour is used only as data here, never as UI chrome elsewhere.
  */
 export function PartySpectrum({ withLabels = true }: { withLabels?: boolean }) {

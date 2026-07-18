@@ -107,7 +107,7 @@ The same estimator drives every lens, with a different grouping axis:
 | `top_movers` | era (early/late) | What rose and fell across the window? |
 | `yearly_signatures` | year | What made each year distinct? |
 | Issue frames | party × year | Has a party's crime-frame rate climbed toward another's? |
-| `party_divergence_by_year` | — | Are the parties' vocabularies converging or diverging? |
+| `party_divergence_by_year` | n/a | Are the parties' vocabularies converging or diverging? |
 
 Curated word lists are treated as code, with the failure modes documented at the point of use. Every stem in `ISSUE_FRAMES` was audited against the real corpus, and the comments record what was cut and why: `gäng` matched `tillgänglig` (accessibility) in ~85% of hits; `boende` matched `äldreboende` (eldercare), not housing policy; `mäns våld` scored exactly zero forever, because matching is substring-within-token and a stem with a space can never match. `frame_trajectories` now raises on a whitespace stem rather than silently scoring nothing.
 
@@ -189,7 +189,7 @@ src/maktsprak_pipeline/
     ├── drift.py            # temporal drift, issue frames, JS divergence
     └── tone/               # tone kernel + dimensions
 scripts/
-├── rebuild_corpus.py       # offline rebuild from data/raw — the source of truth
+├── rebuild_corpus.py       # offline rebuild from data/raw, the source of truth
 ├── train_party_model_db.py # BERT fine-tuning, speaker-independent split
 ├── evaluate_model.py       # honest benchmark against a frozen speaker set
 ├── build_site_data.py      # precompute the site's static JSON

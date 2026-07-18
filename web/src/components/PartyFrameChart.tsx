@@ -51,10 +51,10 @@ export function PartyFrameChart() {
   const frames = partyFrames.frames;
   const [frame, setFrame] = useState(frames[0]);
   // Three party colours are all blue (L/M/KD), two green (C/MP), two red
-  // (S/V) — solid lines alone don't reliably separate them on an 8-line
+  // (S/V), solid lines alone don't reliably separate them on an 8-line
   // chart. Rather than dash patterns (tried, unreadable at this density),
   // hovering a legend entry isolates that one line: every other line dims,
-  // so any single line — including the near-identical blues — can be traced
+  // so any single line, including the near-identical blues, can be traced
   // precisely on demand, while the chart stays clean (all solid) at rest.
   const [hovered, setHovered] = useState<string | null>(null);
 

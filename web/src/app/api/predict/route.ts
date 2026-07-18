@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
 /**
- * Proxies to the FastAPI inference service (Phase 2 of the rebuild — a
+ * Proxies to the FastAPI inference service (Phase 2 of the rebuild, a
  * `POST /predict` endpoint hosted on Hugging Face Spaces). Until that
  * service exists, this returns a clear, typed "not yet connected" response
- * rather than a fabricated prediction — the UI is designed to show this
+ * rather than a fabricated prediction, the UI is designed to show this
  * state gracefully instead of erroring.
  */
 export async function POST(request: Request) {
