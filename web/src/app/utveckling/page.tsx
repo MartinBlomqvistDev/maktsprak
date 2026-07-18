@@ -17,7 +17,7 @@ const FALLING_TERMS = ["alliansen", "landsting", "jobb", "arbetsmarknaden", "rut
 
 const RISING_NOTES: Record<string, string> = {
   ukraina: "Rysslands invasion, 2022",
-  pandemin: "Covid-19, 2020–21",
+  pandemin: "Covid-19, 2020-21",
   inflationen: "Prischocken, 2023",
   gaza: "Kriget bryter ut, 2023",
   kärnkraft: "Energidebatten återvänder",
@@ -47,8 +47,8 @@ export default function UtvecklingPage() {
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">
             Jag har låtit en språkmodell analysera samtliga anföranden i riksdagen
             sedan {meta.first_year}. Skiftena är stora: ett år präglas debatten av
-            flyktingkrisen, nästa av pandemin, därefter av kriget i Ukraina. Samma
-            kammare, men språket byts ut.
+            flyktingkrisen, nästa av pandemin, därefter av kriget i Ukraina. Orden
+            byts ut i takt med kriserna.
           </p>
         </div>
       </section>
@@ -111,10 +111,10 @@ export default function UtvecklingPage() {
           <div className="mt-4 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <DivergenceChart />
             <p className="text-ink-2">
-              Ett mått, inte en värdering: hur olika partierna talar från år
-              till år, mätt som skillnaden mellan deras ordförråd
-              (Jensen–Shannon-divergens). Högre värde betyder att de talar om
-              mer olika saker. {meta.first_year} var skillnaden som störst;
+              Kurvan visar hur olika partierna talar från år till år, mätt som
+              skillnaden mellan deras ordförråd (Jensen-Shannon-divergens).
+              Högre värde betyder att de talar om mer olika saker, ingenting om
+              vem som har rätt. {meta.first_year} var skillnaden som störst;
               sedan dess har ordförrådet legat förhållandevis stabilt. Ingen
               dramatisk konvergens och ingen tydlig splittring; partierna
               talar i hög grad om samma kriser, om än med olika ord och,

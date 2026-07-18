@@ -16,12 +16,12 @@ export default function MetodPage() {
         <span>METOD OCH VALIDERING</span>
       </p>
       <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
-        En modell är bara så trovärdig som sin utvärdering.
+        Varför siffran sjönk från 0,78 till 0,62.
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">
-        Att klassificera parti från text är förrädiskt lätt att överskatta.
-        Så här validerar jag modellen: talar-oberoende, med den vanliga
-        fällan avslöjad och prissatt i siffror.
+        Den högre siffran kom från en vanlig valideringsfälla. Den lägre är
+        talar-oberoende: ingen politiker i testet har en enda mening i
+        träningsdatan. Här är skillnaden, och vad den kostar i siffror.
       </p>
 
       {/* ---------------------------------------------------------- THE LEAK */}
@@ -29,9 +29,9 @@ export default function MetodPage() {
         <ProtokollMarker n={1} name="PROBLEMET" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
-            Att klassificera parti från text är förrädiskt lätt att
-            överskatta. Om samma politiker förekommer i både tränings- och
-            testdata lär sig modellen delvis att känna igen{" "}
+            Att gissa parti från text är lätt att överskatta. Om samma
+            politiker förekommer i både tränings- och testdata lär sig
+            modellen delvis att känna igen{" "}
             <em>enskilda personers</em> formuleringar, inte partiets
             retorik. En vanlig radbaserad train/test-split (90/10 på
             anföranden) gör exakt det: samma talare hamnar på båda sidor.
@@ -162,7 +162,7 @@ export default function MetodPage() {
           <p>
             Hela korpusen byggs om från källan med den fixade koden:{" "}
             <strong>75 148</strong> anföranden ur 2 970 protokoll,
-            2002–2026. Varje protokoll Riksdagen publicerat finns sparat
+            2002-2026. Varje protokoll Riksdagen publicerat finns sparat
             lokalt, så korpusen är inte ett arv från tidigare körningar utan
             något som går att återskapa: ett kommando, utan nätverk, med
             samma resultat varje gång.
@@ -183,11 +183,10 @@ export default function MetodPage() {
       <div className="mt-16 rounded-card border-l-[3px] border-accent bg-accent-soft px-6 py-5">
         <p className="text-[15px] leading-relaxed text-accent-soft-ink">
           <strong>Varför jag visar det här öppet:</strong> en modell som bara
-          rapporterar sin bästa siffra går inte att lita på. En modell som
-          visar hur den valideras, vad som kan gå fel och vad det kostar i
-          siffror, den går att lita på. Varje siffra på den här sidan är en
-          som gick att blåsa upp, och inte blev det. Det är hela poängen med
-          projektet.
+          redovisar sin bästa siffra går inte att kontrollera. Den här sidan
+          visar hur modellen valideras, var den kan gå fel och vad felen
+          kostar, så att du kan bedöma den själv istället för att ta mitt ord
+          för det.
         </p>
       </div>
     </main>

@@ -9,7 +9,7 @@
 
 An end-to-end NLP system over the complete Riksdag debate record: a weekly ETL that parses the chamber's two-column PDFs, a fine-tuned KB-BERT classifier served from its own inference API, and a precomputed analytics site built on the Fightin' Words statistic.
 
-Every headline number here is one that could have been inflated and wasn't. That is the point of the project.
+Every headline number here is one a validation leak would have inflated. I found the leak, fixed it, and report the lower number.
 
 | | |
 |---|---|

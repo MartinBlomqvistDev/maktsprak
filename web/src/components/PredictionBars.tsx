@@ -1,7 +1,7 @@
 import { PARTY_ORDER } from "@/lib/parties";
 
 interface PredictionBarsProps {
-  /** Party code → probability (0–1). Missing codes render as 0. */
+  /** Party code -> probability (0-1). Missing codes render as 0. */
   probabilities: Partial<Record<string, number>>;
 }
 
