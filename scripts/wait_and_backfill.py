@@ -1,7 +1,7 @@
 """Wait for the Riksdag host to recover, then run the 2002->2015 backfill.
 
 data.riksdagen.se rate-limits/blocks the IP after heavy use.  This poller checks
-connectivity gently (one request every 10 minutes — never hammering, which would
+connectivity gently (one request every 10 minutes, never hammering, which would
 only prolong a block) and launches the historical backfill the moment the host
 responds.  If the backfill aborts on a transient host failure it goes back to
 waiting and tries again.  The backfill itself is idempotent, so restarts are safe.
@@ -49,18 +49,30 @@ def main() -> None:
     for attempt in range(1, MAX_WAITS + 1):
         stamp = time.strftime("%Y-%m-%d %H:%M")
         if _reachable():
-            print(f"[{stamp}] Riksdag reachable — starting backfill {FROM_DATE} -> {TO_DATE}.", flush=True)
+            print(
+                f"[{stamp}] Riksdag reachable, starting backfill {FROM_DATE} -> {TO_DATE}.",
+                flush=True,
+            )
             try:
                 run_historical_backfill(FROM_DATE, TO_DATE)
                 print(f"[{time.strftime('%Y-%m-%d %H:%M')}] Backfill finished.", flush=True)
                 return
-            except Exception as exc:  # noqa: BLE001 — host flaked mid-run; wait and retry
-                print(f"[{stamp}] Backfill aborted ({exc}); will retry after {POLL_SECONDS // 60} min.", flush=True)
+            except Exception as exc:  # noqa: BLE001, host flaked mid-run; wait and retry
+                print(
+                    f"[{stamp}] Backfill aborted ({exc}); will retry after {POLL_SECONDS // 60} min.",
+                    flush=True,
+                )
         else:
-            print(f"[{stamp}] Riksdag still refusing (check {attempt}/{MAX_WAITS}); waiting {POLL_SECONDS // 60} min.", flush=True)
+            print(
+                f"[{stamp}] Riksdag still refusing (check {attempt}/{MAX_WAITS}); waiting {POLL_SECONDS // 60} min.",
+                flush=True,
+            )
         time.sleep(POLL_SECONDS)
 
-    print(f"[{time.strftime('%Y-%m-%d %H:%M')}] Gave up: host refused for the whole window.", flush=True)
+    print(
+        f"[{time.strftime('%Y-%m-%d %H:%M')}] Gave up: host refused for the whole window.",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":

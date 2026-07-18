@@ -1,7 +1,7 @@
 """Tests for the launch-set tone dimensions (vi_dom, readability, inclusive).
 
 Several of these pin findings from the corpus audit rather than abstract
-behaviour — the patterns that were *cut*, and why, matter as much as the ones
+behaviour, the patterns that were *cut*, and why, matter as much as the ones
 that were kept, because re-adding them would silently restore a measure that
 counts sympathy as hostility.
 """
@@ -30,7 +30,7 @@ class TestViDomPatternTable:
     def test_patterns_the_audit_rejected_stay_out(self, cut):
         # "dessa människor" / "de här människorna": sampled matches were
         # overwhelmingly SYMPATHETIC ("vi har all anledning att stötta de här
-        # människorna") — they point at a group, they do not other it.
+        # människorna"), they point at a group, they do not other it.
         # Bare "eliten" also means a top tier ("den internationella eliten" =
         # world-class researchers). Re-adding any of these silently restores a
         # measure that counts compassion as hostility.
@@ -192,7 +192,7 @@ class TestInclusive:
     def test_hen_matches_the_pronoun_only(self):
         df = _speeches([{"text": "Hen sade det. Henrik höll med. Hens uppfattning var klar."}])
         out = inclusive.measure_hen(df)
-        # "Henrik" must not count — the whole dimension rests on this.
+        # "Henrik" must not count, the whole dimension rests on this.
         assert out["hits"].iloc[0] == 2
         assert [p for _, _, p in out["spans"].iloc[0]] == ["hen", "hens"]
 
@@ -237,7 +237,7 @@ class TestInclusive:
         assert pair["ratio"] is None
 
     def test_decline_pairs_report_no_ratio(self):
-        # "lärare" is the unmarked base word for teacher (19,013 corpus hits) —
+        # "lärare" is the unmarked base word for teacher (19,013 corpus hits),
         # it was never coined to replace "lärarinna". A ratio here measured
         # nothing but how often anyone mentions teachers, and read as a
         # meaningless "99.9% neutral". Counts yes, ratio no.
@@ -273,9 +273,9 @@ class TestRegistry:
     @pytest.mark.parametrize("failed", ["folk", "antielit"])
     def test_dimensions_that_failed_the_gate_are_not_chartable(self, failed):
         # `folk` measures the electorate being referred to, not people-centrism
-        # ("skogen har en speciell plats i hjärtat hos svenska folket" — V).
+        # ("skogen har en speciell plats i hjärtat hos svenska folket", V).
         # `antielit` has a median of 2 hits per non-empty party-year cell and
-        # 91 of 192 cells empty — not a time series.
+        # 91 of 192 cells empty, not a time series.
         # Both still exist as measure functions because the census needs them;
         # registering either puts a known-bad line on the public site.
         assert failed not in TONE_DIMENSIONS
@@ -288,7 +288,7 @@ class TestRegistry:
         assert TONE_DIMENSIONS["klasskonflikt"].receipt_kind == "evidentiary"
 
     def test_techniques_are_genuinely_mixed(self):
-        # The defence is "three different techniques, not one algorithm" — if
+        # The defence is "three different techniques, not one algorithm", if
         # every launch dimension were lexical, that claim would be false.
         techniques = {v.technique for v in TONE_DIMENSIONS.values() if v.status == "launch"}
         assert {"lexical", "stylometric", "structural"} <= techniques

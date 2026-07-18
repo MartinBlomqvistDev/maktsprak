@@ -17,7 +17,7 @@ from .client import supabase, supabase_write
 logger = get_logger()
 
 # ---------------------------------------------------------------------------
-# Streamlit cache — applied conditionally so the module works outside Streamlit
+# Streamlit cache, applied conditionally so the module works outside Streamlit
 # ---------------------------------------------------------------------------
 try:
     import streamlit as st
@@ -87,7 +87,7 @@ def fetch_random_speeches(limit: int = 5) -> list[dict[str, Any]]:
     Returns:
         List of speech dicts (all columns).
     """
-    # Fetch a modest window at a random position — fast and memory-safe.
+    # Fetch a modest window at a random position, fast and memory-safe.
     count_resp = supabase.table("speeches").select("id", count="exact").execute()
     total = count_resp.count or 0
     if total == 0:
@@ -211,7 +211,7 @@ def load_historical_parquet(parquet_url: str | None = None) -> pd.DataFrame:
     """
     url = parquet_url or PARQUET_URL
     if not url:
-        logger.warning("No Parquet URL configured — returning empty DataFrame.")
+        logger.warning("No Parquet URL configured, returning empty DataFrame.")
         return pd.DataFrame(columns=["id", "text", "party", "protocol_date"])
 
     resp = requests.get(url, timeout=60)
@@ -255,7 +255,7 @@ def fetch_combined_speeches(
         .reset_index(drop=True)
     )
     logger.info(
-        f"Combined speeches — historic: {len(df_hist):,}, new: {len(df_new):,}, "
+        f"Combined speeches, historic: {len(df_hist):,}, new: {len(df_new):,}, "
         f"total: {len(df_combined):,}"
     )
     return df_combined
@@ -273,7 +273,7 @@ def insert_speech(row: dict[str, Any]) -> list[dict[str, Any]] | None:
     the ETL over a protocol updates its rows rather than appending copies.
 
     This requires the ``UNIQUE (id)`` constraint from
-    ``migrations/002_speeches_id_unique.sql`` — ``on_conflict="id"`` raises
+    ``migrations/002_speeches_id_unique.sql``, ``on_conflict="id"`` raises
     without it. Before that constraint existed the table's only key was the
     surrogate ``supabase_id`` (auto-generated, never in *row*), so PostgREST
     found no conflict target and every "upsert" silently INSERTed, which is how
@@ -302,7 +302,7 @@ def insert_speeches(rows: list[dict[str, Any]]) -> int:
     """Batch-upsert many speech records in a single request.
 
     Far faster than looping :func:`insert_speech` (one HTTP round-trip instead
-    of one per row). Idempotent on ``id`` — see :func:`insert_speech`.
+    of one per row). Idempotent on ``id``, see :func:`insert_speech`.
 
     Args:
         rows: Speech dicts with keys matching the table schema.

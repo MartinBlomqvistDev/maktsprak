@@ -60,7 +60,7 @@ class TestTopMovers:
 
     def test_politician_names_filtered_by_default(self):
         # A minister's surname is trivially "distinctive" to their years in
-        # office, but it's noise, not a topic — must not survive the default
+        # office, but it's noise, not a topic, must not survive the default
         # stopword filter.
         rows = []
         for _ in range(30):
@@ -135,7 +135,7 @@ class TestFrameTrajectories:
         assert set(result["Klimat"]["A"].keys()) == {2020}
 
     def test_rejects_a_stem_containing_a_space(self):
-        # A phrase stem can never match a single tokenized word — it would
+        # A phrase stem can never match a single tokenized word, it would
         # silently score zero forever ("mäns våld" did, in a shipped frame,
         # until this was caught). Fail loudly instead.
         df = pd.DataFrame({"year": [2020], "party": ["A"], "text": ["text"]})

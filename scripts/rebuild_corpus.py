@@ -2,26 +2,26 @@
 
 The corpus is derived data: every protocol Riksdagen published is already on
 disk under ``data/raw`` (~3 200 PDFs). This script re-parses them all with the
-current parser and writes ``speeches_full.parquet`` from scratch — no Supabase,
+current parser and writes ``speeches_full.parquet`` from scratch, no Supabase,
 no network, no egress. That makes the archive **reproducible from source**
 rather than an artefact whose provenance is a chain of past ETL runs.
 
 Why it exists
 -------------
 The old record id was ``f"{protocol_id}_{idx}"``, an ``enumerate()`` counter
-over first-appearance order — a property of the parser run, not of the speech.
+over first-appearance order, a property of the parser run, not of the speech.
 When the parser fix changed which speeches were extracted, every later index
 shifted, so ``HD098_60`` meant one speech before the fix and a different one
 after. Re-ingesting wrote both, ids stopped being unique, and no join, dedup or
 upsert could tell the two apart. Ids are now the natural key
-(``protocol + speaker-slug + party``), which depends only on the document — but
+(``protocol + speaker-slug + party``), which depends only on the document, but
 every row written under the old scheme has to be regenerated, and Supabase only
 retains recent years (it is a trimmed ETL landing zone), so the source documents
 are the only complete truth.
 
 Metadata (protocol date, source URL) is not in the PDFs. It is recovered from
 the cached API responses (``data/raw/*.xml``) and, for older protocols the XML
-sweep does not cover, from the existing archive — whose per-protocol metadata is
+sweep does not cover, from the existing archive, whose per-protocol metadata is
 unaffected by the id bug.
 
 Usage::
@@ -144,7 +144,7 @@ def rebuild(out: Path, limit: int | None, jobs: int) -> pd.DataFrame:
             records.extend(parse_one(task))
 
     if not records:
-        raise RuntimeError("No records parsed — refusing to write an empty archive.")
+        raise RuntimeError("No records parsed, refusing to write an empty archive.")
 
     df = pd.DataFrame(records)
     df["protocol_date"] = pd.to_datetime(df["protocol_date"], errors="coerce")
@@ -156,7 +156,7 @@ def rebuild(out: Path, limit: int | None, jobs: int) -> pd.DataFrame:
     if duplicated.any():
         examples = df.loc[duplicated, "id"].head(5).tolist()
         raise RuntimeError(
-            f"{int(duplicated.sum())} duplicate ids after rebuild — the natural key is not "
+            f"{int(duplicated.sum())} duplicate ids after rebuild, the natural key is not "
             f"unique, which is the bug this rebuild removes. Examples: {examples}"
         )
 

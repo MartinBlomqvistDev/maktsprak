@@ -19,14 +19,14 @@ logger = get_logger()
 
 def main() -> None:
     """Run the incremental ETL pipeline, logging any unhandled exceptions."""
-    logger.info("MaktspråkAI ETL — starting.")
+    logger.info("MaktspråkAI ETL, starting.")
     try:
         run_etl()
     except Exception:
         logger.exception("ETL run failed with an unhandled exception.")
         raise
     else:
-        logger.info("MaktspråkAI ETL — finished successfully.")
+        logger.info("MaktspråkAI ETL, finished successfully.")
 
 
 if __name__ == "__main__":

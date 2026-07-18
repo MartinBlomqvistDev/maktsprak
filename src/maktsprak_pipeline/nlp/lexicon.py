@@ -4,10 +4,10 @@ Assigns weighted category scores to each speech in a DataFrame using the
 curated ``politisk_ton_lexikon.csv`` (columns ``ord``, ``kategori``, ``vikt``).
 
 The scorer matches both single words (exact, case-folded token match) and
-**multi-word phrases** (e.g. ``vi mot dem``, ``lag och ordning``) — the latter
+**multi-word phrases** (e.g. ``vi mot dem``, ``lag och ordning``), the latter
 being essential for the populist-rhetoric markers, which are mostly phrases.
 An earlier version split text on whitespace only, so every multi-word entry
-silently never matched.  Scoring is vectorised — no ``iterrows`` — so it scales
+silently never matched.  Scoring is vectorised, no ``iterrows``, so it scales
 to tens of thousands of speeches.
 """
 
@@ -88,7 +88,7 @@ def apply_ton_lexicon(
         A copy of *df* with one lexicon-category score column appended.
     """
     if lexicon_path is None or not Path(lexicon_path).exists():
-        logger.debug("Lexicon path not available — skipping tone scoring.")
+        logger.debug("Lexicon path not available, skipping tone scoring.")
         return df.copy()
 
     categories, single_words, phrases = _load_lexicon(Path(lexicon_path))

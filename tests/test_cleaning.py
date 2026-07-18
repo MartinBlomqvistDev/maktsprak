@@ -24,7 +24,7 @@ class TestStopwords:
         """Ensure the missing-comma bug is fixed: 'sverigestackt' must not appear."""
         bad_concat = "sverigestackt"
         assert bad_concat not in combined_stopwords, (
-            f"'{bad_concat}' found in combined_stopwords — "
+            f"'{bad_concat}' found in combined_stopwords, "
             "likely caused by a missing comma in the set literal."
         )
 

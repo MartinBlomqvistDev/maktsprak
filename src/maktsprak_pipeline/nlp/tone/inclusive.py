@@ -5,37 +5,37 @@ about who argues badly; this one cannot be read that way by anybody.  It tracks
 a documented change in the Swedish language and asks, mechanically, which
 parties' speech moved with it.  Having it on the page is what makes the feature
 legible as *"how political language changes"* rather than *"who is the
-demagogue"* — and that reframing is not decoration, it is the point.
+demagogue"*, and that reframing is not decoration, it is the point.
 
 Two sub-measures, reported separately because the data behaves completely
 differently:
 
-**``hen``** (:func:`measure_hen`) — a single closed-class pronoun, not a curated
+**``hen``** (:func:`measure_hen`), a single closed-class pronoun, not a curated
 list, so there is no word-choice to defend.  The corpus timeline matches the
 published sociolinguistics almost exactly: near-zero before 2012, a sharp rise
 in 2013-14 (the year ``hen`` entered SAOL, the Swedish Academy's wordlist), then
 sustained use.  Gustafsson Sendén, Bäck & Lindqvist (2015) and Lindqvist,
 Renström & Gustafsson Sendén (2021) document both the adoption curve and an
-attitude gradient across the political spectrum — so if the corpus shows one
+attitude gradient across the political spectrum, so if the corpus shows one
 too, that is a *replication*, not an accusation.
 
-**Occupational pairs** (:func:`occupational_report`) — the ``-man`` → ``-person``
+**Occupational pairs** (:func:`occupational_report`), the ``-man`` → ``-person``
 / ``-ledamot`` substitutions.  Deliberately measured on the terms the Riksdag
 actually uses about itself, because an audit of the obvious textbook pairs found
 they simply do not occur in political debate: ``brandperson``, ``flygvärd`` and
 ``ombudsperson`` have **zero** occurrences in the whole 2002-2026 corpus.  Those
-nulls are reported, not buried — ``sjuksköterska`` (no settled neutral form per
+nulls are reported, not buried, ``sjuksköterska`` (no settled neutral form per
 ISOF) and ``brandman`` are kept precisely *as* null cases.
 
 **Two measures, because there are two different phenomena** (``measure`` column):
 
-- ``ratio`` — a **coinage** competes with a gendered form: ``riksdagsledamot``,
+- ``ratio``, a **coinage** competes with a gendered form: ``riksdagsledamot``,
   ``talesperson`` and ``tjänsteperson`` exist *only* as replacements, so
   ``neutral / (neutral + gendered)`` really is "which word did the speaker
   choose".  This is where the finding is: the chamber renamed **itself**
   (``riksdagsman`` → ``riksdagsledamot``, ~97%) but not its civil servants
   (``tjänsteman`` → ``tjänsteperson``, ~3%).
-- ``decline`` — a **marked feminine form** fading against an unmarked base word:
+- ``decline``, a **marked feminine form** fading against an unmarked base word:
   ``lärarinna`` vs ``lärare``.  A ratio here is meaningless and was briefly
   reported as one: ``lärare`` is simply the word for teacher (19 013 hits) and
   was never coined to replace ``lärarinna``, so the "99.9% neutral" it produced
@@ -68,7 +68,7 @@ from .kernel import (
 
 PAIRS_PATH = PROJECT_ROOT / "data" / "lexicons" / "inclusive_occupational_pairs.csv"
 
-#: ``hen`` and its genitive.  Not a curated list — a closed-class pronoun.
+#: ``hen`` and its genitive.  Not a curated list, a closed-class pronoun.
 #: ``hen`` must never match inside ``Henrik``; the kernel's word-boundary
 #: patterns are what guarantee that, and it is regression-tested.
 HEN_FORMS: tuple[str, ...] = ("hen", "hens")
@@ -108,7 +108,7 @@ def measure_hen(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
 
 
 def hen_by_party(df: pd.DataFrame, min_hits: int = 20) -> dict[str, dict[str, float]]:
-    """Per-party ``hen`` use, **pooled over all years** — totals, not a series.
+    """Per-party ``hen`` use, **pooled over all years**, totals, not a series.
 
     The year-by-year split is too thin to chart (median 3 hits per party-year
     cell), but pooling 24 years gives some parties a well-attested total, and
@@ -156,7 +156,7 @@ def occupational_report(
     year_col: str = "year",
     min_pair_mentions: int = 5,
 ) -> dict[str, object]:
-    """Substitution ratios per pair — corpus-wide, by year, and by party.
+    """Substitution ratios per pair, corpus-wide, by year, and by party.
 
     A report rather than a registered chart dimension: the audit showed most
     neutral forms are vanishingly rare in chamber debate, so a party-by-year
@@ -256,7 +256,7 @@ HEN = register(
         technique="structural",
         measure_fn=measure_hen,
         status="launch",
-        # Corpus-wide, not per party — decided by measurement, not preference.
+        # Corpus-wide, not per party, decided by measurement, not preference.
         # The density guard rejected the per-party-year split (median 3 hits per
         # cell, 55% of cells empty) and binning did not save it: even 5-year
         # buckets leave 39% empty. Pooled across the chamber the same 324 hits

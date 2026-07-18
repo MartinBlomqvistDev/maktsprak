@@ -2,8 +2,8 @@
 
 Two clients are provided:
 
-- ``supabase``       — anon key, respects Row Level Security.  Use for reads.
-- ``supabase_write`` — service-role key, bypasses RLS.  Use for writes.
+- ``supabase``, anon key, respects Row Level Security.  Use for reads.
+- ``supabase_write``, service-role key, bypasses RLS.  Use for writes.
 
 Clients are created lazily on first access so that importing this module
 never raises an error when credentials are absent (useful in tests).

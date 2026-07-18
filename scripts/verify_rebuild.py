@@ -5,14 +5,14 @@ seeing the numbers is a check designed to pass. Every assertion here is one the
 rebuild could genuinely fail.
 
 Three independent lines of evidence, because agreement between them is what
-makes the result trustworthy — any one alone could be fooled:
+makes the result trustworthy, any one alone could be fooled:
 
-1. **Internal** — is the archive self-consistent? Unique ids, no empties, plausible
+1. **Internal**, is the archive self-consistent? Unique ids, no empties, plausible
    parties per era (SD cannot appear before 2010; FP must be folded into L).
-2. **Against the old archive** — did content survive? The old rows are keyed by a
+2. **Against the old archive**, did content survive? The old rows are keyed by a
    broken id, so ids cannot be compared. Text can: the same speaker in the same
    protocol must still be there, saying the same thing.
-3. **Against the source PDFs** — the ground truth. Re-extract a random protocol
+3. **Against the source PDFs**, the ground truth. Re-extract a random protocol
    and confirm the archive's text is really in the document.
 
 Usage::
@@ -52,7 +52,7 @@ class Report:
         self.failures: list[str] = []
 
     def check(self, ok: bool, label: str, detail: str = "") -> bool:
-        print(f"{OK if ok else FAIL} {label}{(' — ' + detail) if detail else ''}")
+        print(f"{OK if ok else FAIL} {label}{(', ' + detail) if detail else ''}")
         if not ok:
             self.failures.append(label)
         return ok
@@ -60,7 +60,7 @@ class Report:
 
 def iteration_1_internal(new: pd.DataFrame, report: Report) -> None:
     """Is the archive self-consistent?"""
-    print("\n" + "=" * 78 + "\nITERATION 1 — internal consistency\n" + "=" * 78)
+    print("\n" + "=" * 78 + "\nITERATION 1, internal consistency\n" + "=" * 78)
     new["year"] = new["protocol_date"].dt.year
 
     report.check(
@@ -107,7 +107,7 @@ def iteration_2_vs_old(new: pd.DataFrame, old: pd.DataFrame, report: Report) -> 
     Ids are not comparable (the old ones are the bug). Content is: for a given
     protocol, the same (speaker-ish, party) should be saying the same words.
     """
-    print("\n" + "=" * 78 + "\nITERATION 2 — content vs the old archive\n" + "=" * 78)
+    print("\n" + "=" * 78 + "\nITERATION 2, content vs the old archive\n" + "=" * 78)
 
     old_p, new_p = set(old["protocol_id"]), set(new["protocol_id"])
     report.check(
@@ -155,7 +155,7 @@ def iteration_2_vs_old(new: pd.DataFrame, old: pd.DataFrame, report: Report) -> 
 
 def iteration_3_vs_source(new: pd.DataFrame, report: Report) -> None:
     """The ground truth: is the archive's text actually in the PDF?"""
-    print("\n" + "=" * 78 + "\nITERATION 3 — against the source documents\n" + "=" * 78)
+    print("\n" + "=" * 78 + "\nITERATION 3, against the source documents\n" + "=" * 78)
 
     rng = random.Random(7)
     protocols = rng.sample(sorted(set(new["protocol_id"])), 5)
@@ -197,8 +197,12 @@ def main() -> None:
     old = pd.read_parquet(args.old)
     old["protocol_date"] = pd.to_datetime(old["protocol_date"])
 
-    print(f"new: {len(new):,} rows  {new['protocol_date'].min():%Y-%m-%d}..{new['protocol_date'].max():%Y-%m-%d}")
-    print(f"old: {len(old):,} rows  {old['protocol_date'].min():%Y-%m-%d}..{old['protocol_date'].max():%Y-%m-%d}")
+    print(
+        f"new: {len(new):,} rows  {new['protocol_date'].min():%Y-%m-%d}..{new['protocol_date'].max():%Y-%m-%d}"
+    )
+    print(
+        f"old: {len(old):,} rows  {old['protocol_date'].min():%Y-%m-%d}..{old['protocol_date'].max():%Y-%m-%d}"
+    )
 
     report = Report()
     iteration_1_internal(new, report)
@@ -207,7 +211,7 @@ def main() -> None:
 
     print("\n" + "=" * 78)
     if report.failures:
-        print(f"VERDICT: {len(report.failures)} CHECK(S) FAILED — do not swap in")
+        print(f"VERDICT: {len(report.failures)} CHECK(S) FAILED, do not swap in")
         for failure in report.failures:
             print(f"  - {failure}")
         sys.exit(1)

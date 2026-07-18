@@ -1,4 +1,4 @@
-"""Tests for the db sub-package — all Supabase calls are mocked."""
+"""Tests for the db sub-package, all Supabase calls are mocked."""
 
 from __future__ import annotations
 

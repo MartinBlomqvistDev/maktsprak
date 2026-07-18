@@ -38,7 +38,7 @@ DELETE_BATCH = 100
 
 def trim(cutoff: str, archive: Path) -> None:
     if not archive.exists():
-        logger.error(f"Archive {archive} not found — refusing to delete anything.")
+        logger.error(f"Archive {archive} not found, refusing to delete anything.")
         sys.exit(1)
 
     df = pd.read_parquet(archive, columns=["id", "protocol_date"])
@@ -66,10 +66,10 @@ def trim(cutoff: str, archive: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Trim Supabase back under the free-tier cap.")
-    parser.add_argument("--cutoff", default="2015-06-01", help="Delete speeches strictly before this date.")
     parser.add_argument(
-        "--archive", type=Path, default=Path("data/parquet/speeches_full.parquet")
+        "--cutoff", default="2015-06-01", help="Delete speeches strictly before this date."
     )
+    parser.add_argument("--archive", type=Path, default=Path("data/parquet/speeches_full.parquet"))
     args = parser.parse_args()
     trim(args.cutoff, args.archive)
 

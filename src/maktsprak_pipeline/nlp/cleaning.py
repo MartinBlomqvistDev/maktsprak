@@ -25,7 +25,7 @@ except FileNotFoundError:
 
     warnings.warn(
         f"Swedish stop-word file not found: {_STOPWORDS_FILE}. "
-        "Using an empty set — word cloud quality will be reduced.",
+        "Using an empty set, word cloud quality will be reduced.",
         RuntimeWarning,
         stacklevel=2,
     )

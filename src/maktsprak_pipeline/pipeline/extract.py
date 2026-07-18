@@ -1,4 +1,4 @@
-"""Extraction phase — pull raw data from the Riksdag API and Twitter/X API."""
+"""Extraction phase, pull raw data from the Riksdag API and Twitter/X API."""
 
 from __future__ import annotations
 
@@ -54,7 +54,7 @@ def fetch_with_retry(
             return resp
         if resp.status_code == 429:
             logger.warning(
-                f"Rate limit hit on attempt {attempt + 1}/{max_retries} — "
+                f"Rate limit hit on attempt {attempt + 1}/{max_retries}, "
                 f"waiting {RATE_LIMIT_WAIT_SECONDS}s."
             )
             time.sleep(RATE_LIMIT_WAIT_SECONDS)
@@ -116,7 +116,7 @@ def extract_riksdag_protocols(
             logger.info(f"Protocol listing saved: {filename}")
             return str(filename)
 
-        logger.info("No protocols found — stepping back one week.")
+        logger.info("No protocols found, stepping back one week.")
         lookback_days += 7
 
     logger.warning(f"No protocols found within {max_back} days. Aborting.")
@@ -138,7 +138,7 @@ def extract_all_tweets() -> list[dict[str, Any]]:
         List of tweet dicts ready for :func:`~.load.load_tweets`.
     """
     if not X_BEARER_TOKEN:
-        logger.warning("X_BEARER_TOKEN not set — skipping tweet extraction.")
+        logger.warning("X_BEARER_TOKEN not set, skipping tweet extraction.")
         return []
 
     headers = {"Authorization": f"Bearer {X_BEARER_TOKEN}"}
@@ -150,7 +150,7 @@ def extract_all_tweets() -> list[dict[str, Any]]:
     tweets_remaining = max(0, MONTHLY_TWEET_LIMIT - already_fetched)
 
     if tweets_remaining == 0:
-        logger.info("Monthly tweet limit reached — skipping fetch.")
+        logger.info("Monthly tweet limit reached, skipping fetch.")
         return []
 
     tweets_per_party: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)

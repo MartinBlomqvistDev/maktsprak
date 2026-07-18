@@ -1,4 +1,4 @@
-"""Load phase — persist transformed records to Supabase."""
+"""Load phase, persist transformed records to Supabase."""
 
 from __future__ import annotations
 

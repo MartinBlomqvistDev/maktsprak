@@ -4,13 +4,13 @@ This is the neutral, data-driven half of the analysis.  It does not anchor on
 any single thesis (migration, the SD turn, ...); it surfaces *whatever* shifted.
 Three lenses, all computed straight from the speech corpus:
 
-- :func:`top_movers` — the words that rose or fell most across the window,
+- :func:`top_movers`, the words that rose or fell most across the window,
   scored with the **Fightin' Words** method (Monroe et al. 2008) but with *time*
   as the grouping axis (early era vs late era) instead of party.  This reuses the
   distinctiveness machinery: a word "distinctive to the late era" is a riser.
-- :func:`term_trajectories` — per-year relative frequency (per 10k tokens, so
+- :func:`term_trajectories`, per-year relative frequency (per 10k tokens, so
   years with more debate don't dominate) for chosen terms, for line charts.
-- :func:`party_divergence_by_year` — mean pairwise Jensen-Shannon divergence
+- :func:`party_divergence_by_year`, mean pairwise Jensen-Shannon divergence
   between parties' yearly vocabularies: are the parties' languages converging or
   diverging over time?  One neutral lens, not a headline.
 """
@@ -24,7 +24,7 @@ import pandas as pd
 
 from .distinctiveness import (
     _DISTINCT_STOPWORDS,
-    POLITICIAN_NAME_STOPWORDS,  # noqa: F401 — re-exported, used by nlp/__init__ and tests
+    POLITICIAN_NAME_STOPWORDS,  # noqa: F401, re-exported, used by nlp/__init__ and tests
     distinctive_words,
     group_token_counts,
     tokenize,
@@ -246,12 +246,12 @@ def yearly_signatures(
 
 #: Issue frames as sets of Swedish word stems, matched as substrings of tokens
 #: (so declensions/compounds match: "gäng" also hits "gängkriminalitet").
-#: Curated product content, not a statistical artefact — extend as needed.
+#: Curated product content, not a statistical artefact, extend as needed.
 ISSUE_FRAMES: dict[str, list[str]] = {
     "Brott & straff": [
         # bare "gäng" deliberately excluded: it's a substring of
         # "tillgänglig(het)" (accessibility) and "umgänge" (custody/contact,
-        # a family-law term) — confirmed via real text: ~85% of its matches
+        # a family-law term), confirmed via real text: ~85% of its matches
         # were "tillgänglig*", not gang crime. "gängkriminal" catches the
         # genuine compounds (gängkriminalitet, gängkriminella, ...) instead.
         "gängkriminal",
@@ -268,7 +268,7 @@ ISSUE_FRAMES: dict[str, list[str]] = {
     ],
     "Migration": [
         # bare "anhörig" deliberately excluded: it heavily overlaps with
-        # eldercare caregiving terms ("anhörigvårdare", "anhörigstöd") —
+        # eldercare caregiving terms ("anhörigvårdare", "anhörigstöd"),
         # "anhöriginvandring" is the specific, unambiguous migration term
         # (family reunification).
         "invandr",
@@ -315,7 +315,7 @@ ISSUE_FRAMES: dict[str, list[str]] = {
     ],
     "Skola & utbildning": [
         # bare "elev" deliberately excluded: it's a substring of "relevant"
-        # / "relevans" and even "television" — confirmed via real text,
+        # / "relevans" and even "television", confirmed via real text,
         # ~16% of its matches were these, not students. "elever" (plural)
         # doesn't have this collision.
         "skola",
@@ -352,7 +352,7 @@ ISSUE_FRAMES: dict[str, list[str]] = {
         # "boende" deliberately excluded: it's a substring of "äldreboende"
         # (elderly care home) and "särskilt/gruppboende" (eldercare housing
         # types), which is welfare/eldercare vocabulary, not housing-market
-        # policy — confirmed via real text: ~half of its matches in one
+        # policy, confirmed via real text: ~half of its matches in one
         # sample were eldercare, not housing.
         "bostad",
         "bostäder",
@@ -366,7 +366,7 @@ ISSUE_FRAMES: dict[str, list[str]] = {
     "Jämställdhet": [
         # "mäns våld" deliberately excluded: matching is substring-within-a
         # single-token, so a stem containing a space can NEVER match
-        # anything — confirmed via real text, it scored exactly zero hits.
+        # anything, confirmed via real text, it scored exactly zero hits.
         # "kvinnofrid" (the actual legal term, kvinnofridslagen) and
         # "kvinnomisshandel"/"hedersvåld" cover the same ground as real words.
         "jämställd",
@@ -395,13 +395,13 @@ def frame_trajectories(
     "kriminell", "skjutning", ... for "Brott & straff". A token counts toward
     the frame if any stem is a substring of it. This is how "who talks about
     this issue, and has that changed" becomes visible: plot every party's
-    line for one frame and watch them converge or diverge — e.g. whether a
+    line for one frame and watch them converge or diverge, e.g. whether a
     party's crime-frame rate has climbed toward another's over time.
 
     Args:
         df:        Speeches with text, an integer *year_col* and *group_col*.
         frames:    Mapping of frame name -> list of stems. Each stem is
-            matched as a substring of a single tokenized word — a stem
+            matched as a substring of a single tokenized word, a stem
             containing a space can never match anything (tokens never
             contain spaces) and is almost certainly a mistake.
         text_col:  Column holding the speech text.
@@ -413,7 +413,7 @@ def frame_trajectories(
         ``{frame: {group: {year: rate}}}``.
 
     Raises:
-        ValueError: If any stem contains whitespace — it would silently
+        ValueError: If any stem contains whitespace, it would silently
             score zero for every group and year (this is exactly how "mäns
             våld" went unnoticed as dead weight in a shipped frame).
     """
@@ -428,7 +428,7 @@ def frame_trajectories(
     out: dict[str, dict[str, dict[int, float]]] = {f: {} for f in frames}
     for (year, group), sub in df.groupby([year_col, group_col], observed=True):
         # Count once per (year, group), then match stems against the *unique*
-        # vocabulary rather than every token instance — a corpus this size has
+        # vocabulary rather than every token instance, a corpus this size has
         # heavy repetition, so this is an order of magnitude fewer substring
         # checks than scanning the full token stream per frame.
         counter: Counter[str] = Counter()

@@ -1,4 +1,4 @@
-"""LIX — how plainly a party speaks.  No word list, no judgement calls.
+"""LIX, how plainly a party speaks.  No word list, no judgement calls.
 
 Every other tone dimension rests on a curated list of words, and a curated list
 is always answerable to "who chose those words, and why those?".  This one is
@@ -7,7 +7,7 @@ bias because there is nothing to bias.  That makes it the most defensible thing
 on the page, and it is worth saying so plainly in the methodology.
 
 The measure is **LIX** (läsbarhetsindex, Björnsson 1968), the standard Swedish
-readability formula — deliberately *not* Flesch-Kincaid, which is calibrated on
+readability formula, deliberately *not* Flesch-Kincaid, which is calibrated on
 English syllable structure and returns meaningless numbers on Swedish::
 
     LIX = O/M + (L × 100 / O)
@@ -24,20 +24,20 @@ party has moved.
 Two things that would quietly corrupt the number, and how they are handled:
 
 **Aggregation is pooled, never averaged.**  A cell's LIX is computed from the
-summed O, M and L of every speech in it — not by averaging per-speech LIX
+summed O, M and L of every speech in it, not by averaging per-speech LIX
 values.  A one-line interjection ("Ja, herr talman!") has a per-speech LIX that
 is pure noise, and averaging lets it shout as loudly as a twenty-minute speech.
 
 **Very short speeches are excluded entirely.**  A speech needs at least 3
 sentences and 20 words to enter the pool, so a bare procedural interjection
-cannot swing a cell.  In practice the floor almost never fires — measured on
+cannot swing a cell.  In practice the floor almost never fires, measured on
 the real corpus it excludes **0.1%** of speeches, because the rewritten PDF
 parser assembles whole anföranden (median 1 061 words / 64 sentences) rather
 than the fragments the pre-fix parser produced.  The guard stays because it
 costs nothing and the corpus is re-ingested regularly; the excluded share is
 published rather than assumed.
 
-Cross-language comparison is LIX's known weak point — Swedish compounds
+Cross-language comparison is LIX's known weak point, Swedish compounds
 (``arbetslöshetsersättning``) inflate the long-word count relative to English.
 That is not a problem here: every comparison is Swedish against Swedish, party
 against party, year against year.  Stated in the methodology so it does not have
@@ -63,7 +63,7 @@ MIN_SENTENCES = 3
 MIN_WORDS = 20
 
 #: Below this many pooled sentences a cell's LIX is not stable enough to plot.
-#: Speech count is the wrong guard here — eight one-line interjections are eight
+#: Speech count is the wrong guard here, eight one-line interjections are eight
 #: speeches and almost no text.
 MIN_CELL_SENTENCES = 50
 
@@ -80,7 +80,7 @@ def measure_lix(df: pd.DataFrame, text_col: str = "text") -> pd.DataFrame:
 
     ``hits`` and ``n`` are set to ``long_words`` and ``words`` so the shared
     suppression and tooltip machinery keeps working (``long_words <= words``
-    always holds).  The headline number is not a rate, though — it is the index,
+    always holds).  The headline number is not a rate, though, it is the index,
     computed in :func:`aggregate_lix`.
     """
     out = ensure_sentence_spans(df, text_col=text_col).copy()
@@ -112,7 +112,7 @@ def aggregate_lix(
     """Pool counts per (group, year), then compute one LIX from the totals.
 
     LIX is a composite of two ratios, so it is smoothed by smoothing each ratio
-    toward the pooled all-party value for that year — the same informative-prior
+    toward the pooled all-party value for that year, the same informative-prior
     idea the rest of the kernel uses, applied twice::
 
         smoothed_LIX = shrink(words/sentences) + 100 * shrink(long_words/words)
@@ -184,7 +184,7 @@ LIX = register(
     DimensionSpec(
         id="lix",
         label_sv="Läsbarhet (LIX)",
-        unit_sv="läsbarhetsindex (Björnsson) — högre = mer svårläst",
+        unit_sv="läsbarhetsindex (Björnsson), högre = mer svårläst",
         technique="stylometric",
         measure_fn=measure_lix,
         aggregate_fn=aggregate_lix,

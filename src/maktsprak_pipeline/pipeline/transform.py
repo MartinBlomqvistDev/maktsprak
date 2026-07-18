@@ -1,4 +1,4 @@
-"""Transformation phase — parse Riksdag PDFs into structured speech records."""
+"""Transformation phase, parse Riksdag PDFs into structured speech records."""
 
 from __future__ import annotations
 
@@ -36,12 +36,12 @@ logger = get_logger()
 # reply headers, whose colon follows ``replik`` rather than the party.
 #
 # Capture groups:
-#   1 — speaker name
-#   2 — party abbreviation (1-2 letters incl. Swedish Å/Ä/Ö).  Protocols up to
-#       ~2009 lower-case the party — ``(m)``, ``(fp)`` — and switched to
+#   1, speaker name
+#   2, party abbreviation (1-2 letters incl. Swedish Å/Ä/Ö).  Protocols up to
+#       ~2009 lower-case the party, ``(m)``, ``(fp)``, and switched to
 #       upper-case ``(M)`` around 2010; both are accepted and normalised to
 #       upper case in :func:`_canonical_party`.
-#   3 — speech body (up to the next Anf. marker or end-of-string)
+#   3, speech body (up to the next Anf. marker or end-of-string)
 # ---------------------------------------------------------------------------
 _SPEECH_RE = re.compile(
     r"Anf\.\s+\d+\s+"
@@ -57,7 +57,7 @@ _SLUG_STRIP_RE = re.compile(r"[^a-z0-9]+")
 
 #: Swedish letters that must fold to a Latin base rather than be dropped.
 #: NFKD alone turns "ö" into "o"+combining-diaeresis and then discards the
-#: mark, which happens to be right for ö/ä/å here — but spelling it out keeps
+#: mark, which happens to be right for ö/ä/å here, but spelling it out keeps
 #: the mapping explicit and independent of unicodedata's behaviour.
 _SLUG_FOLD = str.maketrans({"å": "a", "ä": "a", "ö": "o", "é": "e", "è": "e", "ü": "u", "ø": "o"})
 
@@ -65,7 +65,7 @@ _SLUG_FOLD = str.maketrans({"å": "a", "ä": "a", "ö": "o", "é": "e", "è": "e
 def _speaker_slug(speaker: str) -> str:
     """Normalise a speaker name into a stable identifier component.
 
-    The protocols spell one person several ways — hyphen or space
+    The protocols spell one person several ways, hyphen or space
     ("JAN-EMANUEL JOHANSSON" / "JAN EMANUEL JOHANSSON"), and inconsistent case
     inside a qualifier ("CECILIA WIGSTRÖM I GÖTEBORG" / "... i Göteborg").
     Keying on the raw string files those as different speakers and splits one
@@ -91,8 +91,8 @@ def records_from_text(
 ) -> list[dict[str, Any]]:
     """Turn one protocol's extracted text into speech records.
 
-    Split out from the PDF/download path so the record shape — above all the
-    **id** — is testable without a PDF, and reusable by an offline rebuild that
+    Split out from the PDF/download path so the record shape, above all the
+    **id**, is testable without a PDF, and reusable by an offline rebuild that
     reads the cached documents in ``data/raw`` instead of the API.
 
     A record is one speaker's contributions to one protocol, concatenated in
@@ -100,8 +100,8 @@ def records_from_text(
     protocols spell the same person several ways ("JAN-EMANUEL JOHANSSON" vs
     "JAN EMANUEL JOHANSSON", "CECILIA WIGSTRÖM I GÖTEBORG" vs "... i
     Göteborg"), and the raw string files those as different speakers, splitting
-    one person across records.  Party stays in the key, so a real clash — the
-    same name under two parties in one protocol — still yields two records.
+    one person across records.  Party stays in the key, so a real clash, the
+    same name under two parties in one protocol, still yields two records.
 
     Args:
         full_text:     Text extracted from the protocol.
@@ -129,7 +129,7 @@ def records_from_text(
         {
             # The natural key: protocol + who + which party.  Previously
             # `f"{protocol_id}_{idx}"`, an enumerate() counter over
-            # first-appearance order — a property of the parser *run*, not of
+            # first-appearance order, a property of the parser *run*, not of
             # the speech.  When the parser fix changed which speeches were
             # extracted, every later index shifted, so one id came to mean two
             # different speeches across re-ingests and no join, dedup or upsert
@@ -137,7 +137,7 @@ def records_from_text(
             "id": f"{protocol_id}_{slug}_{party.lower()}",
             "protocol_id": protocol_id,
             "protocol_date": protocol_date,
-            # Deterministic pick among spelling variants — never the
+            # Deterministic pick among spelling variants, never the
             # iteration-order one, or the choice drifts between runs.
             "speaker": sorted(spellings[(slug, party)])[0],
             "party": party,
@@ -183,7 +183,7 @@ def _canonical_party(raw_party: str) -> str | None:
 _MONTHS = "januari|februari|mars|april|maj|juni|juli|augusti|september|oktober|november|december"
 _PROT_LINE_RE = re.compile(r"^Prot\.\s")
 _DATE_LINE_RE = re.compile(rf"^\d{{1,2}}\s+(?:{_MONTHS})$", re.I)
-_RULE_LINE_RE = re.compile(r"^[\s¯‾–—_-]+$")
+_RULE_LINE_RE = re.compile(r"^[\s¯‾–, _-]+$")
 _NUMBER_LINE_RE = re.compile(r"^\d{1,4}$")
 
 

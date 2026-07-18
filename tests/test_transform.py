@@ -75,7 +75,7 @@ class TestSpeechRegex:
 
     def test_two_letter_party_with_swedish_chars(self):
         # Parties like "MP" contain only standard uppercase letters, but
-        # the regex allows Å, Ä, Ö — ensure they are accepted.
+        # the regex allows Å, Ä, Ö, ensure they are accepted.
         text = "Anf. 3 Åsa Andersson (MP): Klimat är vår tids stora fråga."
         matches = _SPEECH_RE.findall(text)
         assert matches[0][1] == "MP"
@@ -121,7 +121,7 @@ class TestRecordIdStability:
     """The regression that cost a corpus rebuild.
 
     The id was ``f"{protocol_id}_{idx}"`` where idx came from ``enumerate()``
-    over first-appearance order — a property of the parser run, not of the
+    over first-appearance order, a property of the parser run, not of the
     speech.  When the parser fix changed which speeches were extracted, every
     later index shifted, so ``HD098_60`` meant one speech before the fix and a
     different one after.  Re-ingesting then wrote both, and no join, dedup or
@@ -129,7 +129,7 @@ class TestRecordIdStability:
     """
 
     def _records(self, text):
-        # Exercises the real record builder — a reimplementation here could
+        # Exercises the real record builder, a reimplementation here could
         # pass while the shipped parser was broken.
         return records_from_text(text, "P1", "2020-01-01", "http://x")
 

@@ -25,8 +25,8 @@ def get_logger():  # -> loguru.Logger
     """Return the configured Loguru logger, initialising handlers on first call.
 
     The logger writes to:
-    - ``logs/etl_<UTC-timestamp>.log`` — rotated at 10 MB, retained for 30 days.
-    - ``stdout`` — useful during interactive development and CI runs.
+    - ``logs/etl_<UTC-timestamp>.log``, rotated at 10 MB, retained for 30 days.
+    - ``stdout``, useful during interactive development and CI runs.
 
     Returns:
         The module-level Loguru ``logger`` singleton.

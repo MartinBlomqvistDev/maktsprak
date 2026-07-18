@@ -1,4 +1,4 @@
-"""High-level orchestration — the public ``run_etl`` and ``run_historical_backfill`` functions."""
+"""High-level orchestration, the public ``run_etl`` and ``run_historical_backfill`` functions."""
 
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ def run_etl(lookback_days: int = 7) -> None:
         lookback_days: How many days back to fetch protocols (default: 7).
     """
     logger.info("=" * 55)
-    logger.info("MaktspråkAI ETL — starting incremental run")
+    logger.info("MaktspråkAI ETL, starting incremental run")
     logger.info("=" * 55)
 
     xml_file = extract_riksdag_protocols(lookback_days=lookback_days)
@@ -150,7 +150,7 @@ def run_historical_backfill(from_date: str, to_date: str | None = None) -> None:
             if speeches:
                 inserted = insert_speeches(speeches)
                 total_speeches += inserted
-        except Exception as exc:  # noqa: BLE001 — one bad PDF must not abort the run
+        except Exception as exc:  # noqa: BLE001, one bad PDF must not abort the run
             failures += 1
             logger.warning(f"Backfill skipped a protocol ({exc}).")
         time.sleep(0.3)  # be polite to the Riksdag file host; cuts connection resets

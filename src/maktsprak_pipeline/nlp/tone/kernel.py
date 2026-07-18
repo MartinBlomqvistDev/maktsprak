@@ -1,15 +1,15 @@
 """Dimension-agnostic kernel for the tone/rhetoric analytics.
 
-Every tone dimension — lexical (vi-mot-dom, absolutord), stylometric (LIX),
-or structural (``hen``, frågeteckenfrekvens) — measures something different,
+Every tone dimension, lexical (vi-mot-dom, absolutord), stylometric (LIX),
+or structural (``hen``, frågeteckenfrekvens), measures something different,
 but they all need the *same* downstream machinery: a rate, a prior that keeps
 thin cells from looking extreme, a distinctiveness score, a suppression rule,
 and reproducible receipts.  Building that once, here, is the point: get the
 statistics right in one place rather than eleven times.
 
-A dimension supplies exactly one thing — a ``measure_fn`` that takes the
+A dimension supplies exactly one thing, a ``measure_fn`` that takes the
 speech DataFrame and returns it with ``hits``/``n`` (and, for dimensions that
-can point at a specific span of text, ``spans``) — and registers a
+can point at a specific span of text, ``spans``), and registers a
 :class:`DimensionSpec`.  Everything below is shared.
 
 Statistical notes
@@ -22,7 +22,7 @@ for exactly the same reason the word clouds are, and :func:`fightin_z` is a
 thin wrapper over :func:`~..distinctiveness.weighted_log_odds` rather than a
 second, parallel implementation of the same math that could drift out of sync.
 
-The prior's strength is ``alpha * background_n`` — i.e. it scales with how
+The prior's strength is ``alpha * background_n``, i.e. it scales with how
 much was said in that (frame, year), not with a fixed pseudo-count.  A cell
 whose own ``n`` is small relative to that prior mass is pulled toward the
 all-party background rate; a large cell is barely moved.  That is the
@@ -55,7 +55,7 @@ from ..distinctiveness import weighted_log_odds
 # Swedish abbreviations whose internal periods must not be read as sentence
 # ends.  Masking them (rather than post-hoc re-joining) keeps the segmentation
 # a single pass, and the mask is length-preserving so character offsets into
-# the *original* string stay valid — which is what makes receipts able to point
+# the *original* string stay valid, which is what makes receipts able to point
 # at an exact span of the real text.
 _ABBREVIATIONS: tuple[str, ...] = (
     "bl.a.",
@@ -116,7 +116,7 @@ def _mask_abbreviations(text: str) -> str:
 def sentence_spans(text: str) -> list[tuple[int, int]]:
     """Character offsets ``[start, end)`` of each sentence in *text*.
 
-    Offsets index *text* itself, not a normalised copy — a receipt can slice
+    Offsets index *text* itself, not a normalised copy, a receipt can slice
     the original string and highlight an exact span inside it.
 
     Abbreviations (``bl.a.``, ``t.ex.``, ``m.fl.`` …) do not end a sentence.
@@ -199,14 +199,14 @@ def sentence_index(sent_spans: list[tuple[int, int]], offset: int) -> int | None
 def compile_pattern(pattern: str) -> re.Pattern[str]:
     """Compile *pattern* as a case-insensitive, word-boundary-anchored literal.
 
-    The boundaries are the whole point.  A raw substring search — which is what
-    :func:`..lexicon.apply_ton_lexicon` still does — counts ``"ta över"`` inside
+    The boundaries are the whole point.  A raw substring search, which is what
+    :func:`..lexicon.apply_ton_lexicon` still does, counts ``"ta över"`` inside
     ``"prata över"`` and ``"hen"`` inside ``"Henrik"``.  ``(?<!\\w)``/``(?!\\w)``
     are Unicode-aware, so å/ä/ö count as word characters and ``"över"`` does not
     match inside ``"överens"``.
 
     Args:
-        pattern: A literal word or phrase (not a regex — it is escaped).
+        pattern: A literal word or phrase (not a regex, it is escaped).
 
     Returns:
         Compiled pattern matching *pattern* as a whole word/phrase.
@@ -221,7 +221,7 @@ def load_pattern_table(path: Path, key_col: str, required_cols: list[str]) -> pd
     whitespace-containing stems: a pattern table that is silently wrong scores
     zero (or double) forever and nobody notices.  A duplicate key in
     particular is the bug that produced the old tone lexicon's 44
-    multi-category words — the same word counted twice under two headings,
+    multi-category words, the same word counted twice under two headings,
     quietly inflating both.
 
     Args:
@@ -246,9 +246,7 @@ def load_pattern_table(path: Path, key_col: str, required_cols: list[str]) -> pd
     if missing:
         raise ValueError(f"{path.name} is missing required column(s): {missing}")
     if table.empty:
-        raise ValueError(
-            f"{path.name} is empty — a dimension with no patterns scores zero forever."
-        )
+        raise ValueError(f"{path.name} is empty, a dimension with no patterns scores zero forever.")
 
     table[key_col] = table[key_col].astype(str).str.strip().str.lower()
 
@@ -326,7 +324,7 @@ def find_spans(
             people, and the audit found both in the corpus.
 
     Returns:
-        Matches sorted by start offset.  Overlaps are *not* removed — two
+        Matches sorted by start offset.  Overlaps are *not* removed, two
         patterns may legitimately both fire on the same words, and collapsing
         them would silently under-count.
     """
@@ -449,7 +447,7 @@ def fightin_z(
     """Fightin' Words z-score for this cell's marker rate vs. the pooled rest.
 
     Reuses :func:`..distinctiveness.weighted_log_odds` verbatim on a
-    **two-token vocabulary** — ``MARKER`` and ``OTHER`` — so the cell's rate is
+    **two-token vocabulary**, ``MARKER`` and ``OTHER``, so the cell's rate is
     scored against the other groups exactly the way a word is scored against
     the other parties in the distinctiveness clouds.  No second implementation
     of the same statistic: if the word clouds are right, this is right.
@@ -482,7 +480,7 @@ def fightin_z(
     rest_hits = background_hits - hits
 
     # No data, no comparison group, or a degenerate background in which the
-    # marker never fires (or fires on literally everything) — in all of these
+    # marker never fires (or fires on literally everything), in all of these
     # the log-odds ratio is undefined or meaningless.  Say so rather than
     # emitting a number that looks real.
     if n <= 0 or rest_n <= 0:
@@ -508,7 +506,7 @@ def _validate_counts(hits: int, n: int, background_hits: int, background_n: int)
             f"background_hits={background_hits}, background_n={background_n}"
         )
     if hits > n:
-        raise ValueError(f"hits ({hits}) exceeds n ({n}) — the denominator cannot be smaller.")
+        raise ValueError(f"hits ({hits}) exceeds n ({n}), the denominator cannot be smaller.")
     if background_hits > background_n:
         raise ValueError(
             f"background_hits ({background_hits}) exceeds background_n ({background_n})."
@@ -516,7 +514,7 @@ def _validate_counts(hits: int, n: int, background_hits: int, background_n: int)
     if hits > background_hits or n > background_n:
         raise ValueError(
             f"Cell (hits={hits}, n={n}) is larger than the background "
-            f"(hits={background_hits}, n={background_n}) that should contain it — "
+            f"(hits={background_hits}, n={background_n}) that should contain it, "
             "the background must be the pooled total *including* this cell."
         )
 
@@ -571,14 +569,14 @@ def aggregate_cells(
 ) -> dict[str, dict[int, CellStats]]:
     """Pool per-speech measurements into ``{group: {year: CellStats}}``.
 
-    Counts are summed *before* the rate is computed — never an average of
+    Counts are summed *before* the rate is computed, never an average of
     per-speech rates.  This matters: a one-sentence interjection carries the
     same weight as a twenty-minute speech under averaging, and the resulting
     series is noise.  (:func:`..drift.frame_trajectories` pools the same way,
     for the same reason.)
 
     The background for the prior and the z-score is the **pooled all-group
-    total for that year** — so a party's tone is scored against what everyone
+    total for that year**, so a party's tone is scored against what everyone
     else said that year, not against a fixed corpus-wide constant.
 
     Args:
@@ -632,12 +630,12 @@ def hit_density(cells: dict[str, dict[int, CellStats]]) -> dict[str, float]:
 
     The suppression floors ask whether a cell has enough *text*.  This asks the
     question they cannot: whether it has enough **hits**.  A dimension can pass
-    every floor and still be unplottable — ``antielit`` had 254 hits across 24
+    every floor and still be unplottable, ``antielit`` had 254 hits across 24
     years, a median of 2 per non-empty cell and 91 of 192 cells empty.  The
     speeches were there; the evidence was not.
 
     **A leading zero is data, not absence.**  ``hen`` is empty for 2002-2011
-    because the word had not entered Swedish yet — that is the finding, not a
+    because the word had not entered Swedish yet, that is the finding, not a
     gap in it.  Counting those years as "missing evidence" flagged a perfectly
     good adoption curve as unchartable (median 20 hits/cell).  So emptiness is
     measured only from each group's **first attested year** onward: before that
@@ -646,7 +644,7 @@ def hit_density(cells: dict[str, dict[int, CellStats]]) -> dict[str, float]:
     Returns:
         ``median_hits`` (over non-empty cells), ``empty_share`` (holes *after*
         the phenomenon first appears), ``leading_empty`` (cells before it
-        appears — informative, not a defect) and ``total_hits``.  Low single-
+        appears, informative, not a defect) and ``total_hits``.  Low single-
         digit ``median_hits``, or an ``empty_share`` near half, means this does
         not belong on a time-series chart whatever its precision.
     """
@@ -683,7 +681,7 @@ def suppress_thin_cells(
 
     Emitting nothing is the right call for a cell with no real evidence behind
     it.  A smoothed value would still render as a dot on the chart, and a dot
-    reads as a measurement — the prior would be doing the talking, not the
+    reads as a measurement, the prior would be doing the talking, not the
     data.  A gap in the line is the honest rendering of "we don't know".
 
     Two independent floors, because dimensions fail differently: a lexical
@@ -717,11 +715,11 @@ def suppress_thin_cells(
 
 #: What a receipt can honestly claim.
 #:
-#: ``evidentiary`` — a pattern fired on an exact span of text.  The receipt
+#: ``evidentiary``, a pattern fired on an exact span of text.  The receipt
 #: *proves* the hit: here is the sentence, here is the phrase, here is the
 #: protocol it came from.  Every lexical and structural dimension is this.
 #:
-#: ``illustrative`` — there is no discrete hit to point at.  LIX is arithmetic
+#: ``illustrative``, there is no discrete hit to point at.  LIX is arithmetic
 #: over a whole speech; no single sentence "is" the readability score.  The
 #: receipt is a representative sentence, shown so a reader can check the
 #: arithmetic by hand, and it must never be labelled as evidence.  Conflating
@@ -824,7 +822,7 @@ def sample_receipts(
 
     Args:
         df:         Per-speech rows with *spans_col*, *group_col*, *year_col*,
-            *text_col* — plus, where available, ``id``, ``protocol_id``,
+            *text_col*, plus, where available, ``id``, ``protocol_id``,
             ``speaker``, ``protocol_date``, ``file_url`` for the citation.
         dimension:  Dimension id, stamped onto each marker.
         kind:       ``evidentiary`` or ``illustrative`` (see :data:`ReceiptKind`).
@@ -902,7 +900,7 @@ class DimensionSpec:
     """Everything the precompute and the validation script need about a dimension.
 
     Adding a twelfth dimension means writing one ``measure_fn`` and one of
-    these — no changes to ``build_site_data.py`` or the validator, which both
+    these, no changes to ``build_site_data.py`` or the validator, which both
     iterate the registry.
     """
 
@@ -919,12 +917,12 @@ class DimensionSpec:
     aggregate_fn: Callable[[pd.DataFrame], dict[str, dict[int, CellStats]]] | None = None
     receipt_kind: ReceiptKind = "evidentiary"
     status: Literal["launch", "phase2"] = "phase2"
-    #: What to break the series out by.  ``"party"`` for almost everything —
+    #: What to break the series out by.  ``"party"`` for almost everything,
     #: but a rare marker can be real corpus-wide and pure noise per party, and
     #: then the honest chart is one line, not eight.  ``hen`` is exactly that:
     #: 324 hits over 24 years is a clean national adoption curve and, split
     #: eight ways, a median of 3 hits per cell (binning to 5-year buckets does
-    #: not rescue it — measured, not assumed).
+    #: not rescue it, measured, not assumed).
     group_col: str = "party"
     supports_frames: bool = False
     min_cell_speeches: int = 8
@@ -948,7 +946,7 @@ class DimensionSpec:
 
 
 #: Populated by the dimension modules (``vi_dom``, ``readability``, ``inclusive``, …).
-#: Empty here by design — the kernel knows nothing about any specific dimension.
+#: Empty here by design, the kernel knows nothing about any specific dimension.
 TONE_DIMENSIONS: dict[str, DimensionSpec] = {}
 
 

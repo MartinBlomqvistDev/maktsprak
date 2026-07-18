@@ -3,7 +3,7 @@
 The kernel is the one place the tone statistics live, so every dimension built
 on it inherits whatever these tests do or do not pin down.  The z-score test in
 particular re-derives Fightin' Words from the paper's formula independently and
-asserts the kernel agrees — the wrapper reuses
+asserts the kernel agrees, the wrapper reuses
 ``distinctiveness.weighted_log_odds``, and this proves the two-token trick it
 relies on actually computes the statistic it claims to.
 """
@@ -161,7 +161,7 @@ class TestSmoothedRate:
         assert smoothed_rate(0, 0, self.BG_HITS, self.BG_N) == pytest.approx(20.0)
 
     def test_thin_cell_is_pulled_hard_toward_the_background(self):
-        # 2 hits in 10 sentences is a raw rate of 200 per 1 000 — a spike that
+        # 2 hits in 10 sentences is a raw rate of 200 per 1 000, a spike that
         # would dominate the chart on the strength of two sentences. The prior
         # (alpha * 8000 = 80 pseudo-sentences) outweighs the 10 real ones.
         raw = raw_rate(2, 10)
@@ -175,7 +175,7 @@ class TestSmoothedRate:
         # One party genuinely uses the marker far more than the rest: 200 hits
         # in its 1 000 sentences, ~10 each for the other seven. The prior is 80
         # pseudo-sentences against 1 000 real ones, so a real signal this well
-        # attested survives nearly intact — smoothing must not erase it.
+        # attested survives nearly intact, smoothing must not erase it.
         bg_hits, bg_n = 270, 8000
         raw = raw_rate(200, 1000)
         smoothed = smoothed_rate(200, 1000, bg_hits, bg_n)
@@ -195,7 +195,7 @@ class TestSmoothedRate:
 def _reference_fightin_z(hits: int, n: int, bg_hits: int, bg_n: int, alpha: float = 0.01) -> float:
     """Fightin' Words z, re-derived straight from Monroe et al. (2008) eq. 22.
 
-    Deliberately *not* built on ``weighted_log_odds`` — this is the independent
+    Deliberately *not* built on ``weighted_log_odds``, this is the independent
     check that the kernel's two-token reuse of it computes the right statistic.
     """
     prior_marker = alpha * bg_hits
@@ -242,7 +242,7 @@ class TestFightinZ:
 
     def test_thin_cell_is_not_significant_on_one_hit(self):
         # 1 hit in 5 sentences is a raw rate of 200 per 1 000 against a
-        # background of 20 — a 10x "spike" that must not clear significance.
+        # background of 20, a 10x "spike" that must not clear significance.
         z = fightin_z(1, 5, 200, 10000)
         assert z is not None and abs(z) < 1.96
 
@@ -250,7 +250,7 @@ class TestFightinZ:
         ("hits", "n", "bg_hits", "bg_n", "why"),
         [
             (0, 0, 200, 10000, "empty cell"),
-            (200, 10000, 200, 10000, "cell is the whole background — no rest"),
+            (200, 10000, 200, 10000, "cell is the whole background, no rest"),
             (0, 500, 0, 10000, "marker never occurs anywhere"),
             (500, 500, 10000, 10000, "marker occurs everywhere"),
         ],
@@ -267,7 +267,7 @@ class TestAggregateCells:
     def test_pools_counts_before_dividing_never_averages_rates(self):
         # THE regression for this module. Two speeches from one party:
         #   a 1-word interjection that is 100% marker, and a 99-word speech
-        #   with none. Averaging per-speech rates gives 500 per 1 000 — a
+        #   with none. Averaging per-speech rates gives 500 per 1 000, a
         #   fabricated spike. Pooling gives 1/100 = 10 per 1 000, the truth.
         df = pd.DataFrame(
             [
@@ -447,7 +447,7 @@ class TestSampleReceipts:
 
     def test_is_deterministic_under_a_fixed_seed(self):
         # The public site shows these quotes. A refactor must not silently
-        # change which ones — that is why the seed is pinned in a test.
+        # change which ones, that is why the seed is pinned in a test.
         first = sample_receipts(self._df(), dimension="vi_dom")
         second = sample_receipts(self._df(), dimension="vi_dom")
         assert [m.speech_id for m in first["SD"][2022]] == [m.speech_id for m in second["SD"][2022]]

@@ -81,7 +81,7 @@ class TestApplyTonLexicon:
         assert result["Pop"].iloc[1] == 0.0
 
     def test_single_word_does_not_match_as_substring(self, tmp_path):
-        # "hot" must not fire inside "hotell" — single words match whole tokens.
+        # "hot" must not fire inside "hotell", single words match whole tokens.
         lex = tmp_path / "lex.csv"
         lex.write_text("ord,kategori,vikt\nhot,Agg,1.0\n", encoding="utf-8")
         df = pd.DataFrame({"text": ["Vi bokade ett hotell i staden."]})

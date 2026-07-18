@@ -1,6 +1,6 @@
 """Tone/rhetoric analytics: how a party speaks, not what it speaks about.
 
-Every dimension plugs into the shared kernel (:mod:`.kernel`) — the statistics,
+Every dimension plugs into the shared kernel (:mod:`.kernel`), the statistics,
 the suppression rule and the receipt sampling are written once and reused, so a
 new dimension is one ``measure_fn`` plus one :class:`~.kernel.DimensionSpec`.
 
@@ -11,7 +11,7 @@ validation script iterate.
 
 from __future__ import annotations
 
-# Importing the dimension modules is what populates TONE_DIMENSIONS — the
+# Importing the dimension modules is what populates TONE_DIMENSIONS, the
 # registry is the single wiring point that build_site_data.py and the validator
 # iterate, so a dimension that is not imported here simply does not exist.
 from . import inclusive, readability, vi_dom

@@ -62,7 +62,7 @@ from src.maktsprak_pipeline.logger import get_logger
 
 logger = get_logger()
 
-# Must match label_party_from_account() in scripts/train_party_model_db.py —
+# Must match label_party_from_account() in scripts/train_party_model_db.py,
 # tweets are part of the speaker list, so they influence the split.
 _PARTY_ACCOUNTS: dict[str, list[str]] = {
     "S": ["1587012835409788928"],
@@ -107,12 +107,12 @@ def build_test_set(
         seed:  RNG seed for the shuffle fallback (see below).
         frozen_val_speakers: The exact held-out speaker set persisted at
             training time (``val_speakers.json`` next to the model). When
-            given, rows are filtered directly against this set — no
+            given, rows are filtered directly against this set, no
             leakage risk regardless of how much the corpus has grown since
             training. When ``None``, falls back to re-deriving a split by
             shuffling the *current* corpus's speaker list, which does
             **not** reproduce the actual training-time partition once the
-            database has changed (backfill, reindexing) — the seed matches
+            database has changed (backfill, reindexing), the seed matches
             but the input doesn't, so this fallback should only be used for
             a model with no persisted speaker list (e.g. the legacy model).
 
@@ -122,9 +122,7 @@ def build_test_set(
     # --- 1. Speeches, fetched exactly as training fetched them ---
     speech_dfs: list[pd.DataFrame] = []
     for year in range(2015, 2027):
-        year_df = fetch_speeches_historical_v2(
-            start_date=f"{year}-01-01", end_date=f"{year}-12-31"
-        )
+        year_df = fetch_speeches_historical_v2(start_date=f"{year}-01-01", end_date=f"{year}-12-31")
         logger.info(f"Fetched {len(year_df)} speeches for {year}.")
         speech_dfs.append(year_df)
     speeches_df = pd.concat(speech_dfs, ignore_index=True)
@@ -147,7 +145,7 @@ def build_test_set(
         logger.info(f"Using frozen held-out speaker set: {len(val_speakers)} speakers.")
     else:
         logger.warning(
-            "No frozen val_speakers.json given — re-deriving the split by shuffling the "
+            "No frozen val_speakers.json given, re-deriving the split by shuffling the "
             "CURRENT corpus. This does not reproduce the actual training-time partition "
             "if the database has grown since training; treat results with caution."
         )
@@ -261,7 +259,12 @@ def evaluate(
     out_dir.mkdir(parents=True, exist_ok=True)
     safe_name = model_path.replace("/", "_").replace("\\", "_").strip("._")
     disp = ConfusionMatrixDisplay.from_predictions(
-        truth, preds, labels=labels, normalize="true", xticks_rotation="vertical", values_format=".2f"
+        truth,
+        preds,
+        labels=labels,
+        normalize="true",
+        xticks_rotation="vertical",
+        values_format=".2f",
     )
     disp.ax_.set_title(f"{model_path}\nacc={acc:.3f}  macro-F1={f1:.3f}")
     plt.tight_layout()
@@ -327,9 +330,11 @@ if __name__ == "__main__":
     print(f"{'model':50} {'accuracy':>9} {'macro-F1':>9}")
     for r in results:
         print(f"{r['model']:50} {r['accuracy']:>9.4f} {r['macro_f1']:>9.4f}")
-    # ASCII only — Windows consoles default to cp1252.
+    # ASCII only, Windows consoles default to cp1252.
     for r in results[1:]:
         d_acc = r["accuracy"] - results[0]["accuracy"]
         d_f1 = r["macro_f1"] - results[0]["macro_f1"]
-        print(f"\ndelta ({r['model']} vs {results[0]['model']}):  accuracy {d_acc:+.4f}   macro-F1 {d_f1:+.4f}")
+        print(
+            f"\ndelta ({r['model']} vs {results[0]['model']}):  accuracy {d_acc:+.4f}   macro-F1 {d_f1:+.4f}"
+        )
     print(f"\nWrote {out_dir / 'benchmark.json'} and confusion matrices.")

@@ -1,4 +1,4 @@
-"""Inference module — load the fine-tuned party classifier and run predictions.
+"""Inference module, load the fine-tuned party classifier and run predictions.
 
 The model is a KB-BERT (KB/bert-base-swedish-cased) sequence classifier
 fine-tuned on Riksdag speeches and tweets.  It is hosted on Hugging Face Hub

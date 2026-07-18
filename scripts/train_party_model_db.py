@@ -11,7 +11,7 @@ Techniques used:
 - OneCycleLR schedule with batch-scaled max_lr
 - Weighted sampler for party imbalance (oversamples rare parties so every
   batch is roughly balanced; deliberately not *also* class-weighting the
-  loss on top of that — stacking both double-counts the correction and
+  loss on top of that, stacking both double-counts the correction and
   biases predictions toward the smallest classes under low-signal input)
 - Label smoothing, gradient clipping, weight decay
 - FGM adversarial training on embeddings (disable with ``--no-fgm``)
@@ -92,7 +92,7 @@ TRAIN_SPEAKER_FRACTION: float = 0.85
 FREEZE_ENCODER_EPOCHS: int = 2
 
 # Party-leader Twitter/X accounts, keyed by party.  Kept in sync with
-# build_test_set() in scripts/evaluate_model.py — tweets are part of the
+# build_test_set() in scripts/evaluate_model.py, tweets are part of the
 # speaker list, so they influence the speaker split.
 PARTY_ACCOUNTS: dict[str, list[str]] = {
     "S": ["1587012835409788928"],
@@ -159,7 +159,7 @@ def speaker_split(
         The resulting ``val_speakers`` set is persisted to disk by ``main()``
         (``val_speakers.json`` next to the exported model). Re-deriving this
         split later by re-running the same seeded shuffle against a live,
-        growing database does **not** reproduce the original partition — the
+        growing database does **not** reproduce the original partition, the
         corpus keeps changing (backfill, parser reindexing), so the "same"
         seed on different input silently drifts and can reintroduce speaker
         leakage into what should be an honest held-out set.
@@ -414,7 +414,7 @@ def main() -> None:
 
     # No class_weight here: the WeightedRandomSampler above already balances
     # every batch by oversampling rare parties. Adding class-weighted loss on
-    # top double-counts the correction and was empirically over-correcting —
+    # top double-counts the correction and was empirically over-correcting,
     # low-signal input (short, ambiguous text) collapsed toward the smallest
     # training classes (V, MP, SD) regardless of content.
     criterion = nn.CrossEntropyLoss(label_smoothing=TRAIN_LABEL_SMOOTHING)

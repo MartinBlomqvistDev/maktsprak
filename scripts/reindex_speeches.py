@@ -12,7 +12,7 @@ delete the protocol's existing rows, then batch-insert the freshly-parsed ones.
 
 Usage::
 
-    # Safe dry run — parse everything, write nothing, report counts:
+    # Safe dry run, parse everything, write nothing, report counts:
     python scripts/reindex_speeches.py --dry-run
 
     # Validate end-to-end on a single protocol (writes to DB):
@@ -85,7 +85,7 @@ def backup_speeches() -> Path:
         offset += batch_size
 
     if not frames:
-        raise RuntimeError("No rows to back up — is the table already empty / creds set?")
+        raise RuntimeError("No rows to back up, is the table already empty / creds set?")
 
     df = pd.concat(frames, ignore_index=True)
     _BACKUP_DIR.mkdir(parents=True, exist_ok=True)

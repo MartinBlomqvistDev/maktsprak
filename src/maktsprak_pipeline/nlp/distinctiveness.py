@@ -4,13 +4,13 @@ Monroe, Colaresi & Quinn (2008), *Fightin' Words: Lexical Feature Selection
 and Evaluation for Identifying the Content of Political Conflict.*
 
 A raw word-frequency cloud surfaces the same generic political vocabulary for
-every party — the words common to all of them dominate everyone's cloud
+every party, the words common to all of them dominate everyone's cloud
 equally, so nothing distinguishes the parties.  This module instead computes a
 **weighted log-odds-ratio with an informative Dirichlet prior**: for each
 party it scores every word by how over-represented it is relative to the other
 parties combined, with rare words shrunk toward the shared background so they
 can't top the ranking on noise alone.  The result is each party's *distinctive*
-vocabulary — exactly what a "rhetorical fingerprint" word cloud should show.
+vocabulary, exactly what a "rhetorical fingerprint" word cloud should show.
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ from .cleaning import combined_stopwords
 # form ("moskén", "moskéer") collapses to the same truncated stem.
 _TOKEN_RE = re.compile(r"[a-zA-ZÀ-ÖØ-öø-ÿ]+")
 
-# Runs of 2+ consecutive uppercase letters — how Riksdag protocols render a
+# Runs of 2+ consecutive uppercase letters, how Riksdag protocols render a
 # speaker's actual name ("JOSEF FRANSSON"), as opposed to their title, which is
 # mixed case ("Statsminister", "Näringsminister").
 _CAPS_RUN_RE = re.compile(r"[A-ZÅÄÖ]{2,}")
@@ -41,7 +41,7 @@ def speaker_name_stopwords(
 ) -> frozenset[str]:
     """Derive a name stopword set directly from the corpus's own speaker labels.
 
-    ``POLITICIAN_NAME_STOPWORDS`` below is a manually curated list — it only
+    ``POLITICIAN_NAME_STOPWORDS`` below is a manually curated list, it only
     covers the handful of ministers and party leaders someone happened to
     notice leaking into a sample.  With ~1,600 unique speakers across
     2002-2026, manual curation cannot keep up (older years, in particular,
@@ -53,7 +53,7 @@ def speaker_name_stopwords(
     is in ALL CAPS ("JOSEF FRANSSON"); a title, when present, is mixed case
     ("Statsminister", "Näringsminister") and is skipped automatically because
     it never matches the all-caps run.  Tokens already present in *exclude*
-    are dropped — this is what keeps ordinary words that double as first names
+    are dropped, this is what keeps ordinary words that double as first names
     safe (e.g. a speaker surnamed "Hans" would otherwise reintroduce "hans" =
     "his" as a stopword; "hans" is already in ``combined_stopwords``, so it's
     excluded here for free, with no manual allowlist needed).
@@ -81,7 +81,7 @@ def speaker_name_stopwords(
 
 
 # Party self-references (and their morphological variants) are trivially
-# distinctive — every party names itself and its rivals — but tell you nothing
+# distinctive, every party names itself and its rivals, but tell you nothing
 # about *rhetoric*.  Filter them so the distinctiveness clouds surface subject
 # matter and framing rather than letterhead.
 PARTY_NAME_STOPWORDS: frozenset[str] = frozenset(
@@ -157,8 +157,8 @@ PARTY_NAME_STOPWORDS: frozenset[str] = frozenset(
 )
 
 # Politician given/family names.  A politician's name is trivially
-# "distinctive" — to their own party (they're quoted, they speak in first
-# person, allies reference them) and to whichever years they held office — but
+# "distinctive", to their own party (they're quoted, they speak in first
+# person, allies reference them) and to whichever years they held office, but
 # it's not rhetoric, just a proper noun.  Left unfiltered it crowds out actual
 # subject matter in both the per-party fingerprints and the time-based drift
 # analyses (top_movers, yearly_signatures).  This is a best-effort, manually

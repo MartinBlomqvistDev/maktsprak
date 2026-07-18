@@ -78,7 +78,7 @@ class TestGroupTokenCounts:
         assert counts["V"]["gaza"] == 1
 
     def test_liberal_party_old_name_filtered(self):
-        # Pre-2015 protocols call the party Folkpartiet, not Liberalerna —
+        # Pre-2015 protocols call the party Folkpartiet, not Liberalerna,
         # the old name must be filtered too, or it leaks into L's fingerprint.
         df = pd.DataFrame(
             {"party": ["L"], "text": ["folkpartiet vill skolan"]},
@@ -89,7 +89,7 @@ class TestGroupTokenCounts:
 
     def test_politician_names_filtered_by_default(self):
         # A party's own speeches naturally quote/reference their own leader
-        # and rivals by name — that's a proper noun, not rhetoric, and would
+        # and rivals by name, that's a proper noun, not rhetoric, and would
         # otherwise dominate the per-party fingerprint cards.
         df = pd.DataFrame(
             {
@@ -106,7 +106,7 @@ class TestGroupTokenCounts:
 
 class TestPoliticianNameStopwords:
     def test_ambiguous_common_words_excluded(self):
-        # These are real Swedish words that also happen to be first names —
+        # These are real Swedish words that also happen to be first names,
         # must NOT be in the filter, or ordinary sentences get mangled.
         for ambiguous in ["hans", "bo", "sten", "per", "jan"]:
             assert ambiguous not in POLITICIAN_NAME_STOPWORDS
@@ -115,7 +115,7 @@ class TestPoliticianNameStopwords:
 class TestSpeakerNameStopwords:
     def test_extracts_all_caps_name_not_mixed_case_title(self):
         # Protocols render the person's name in ALL CAPS and the title (when
-        # present) in mixed case — the title must not leak in as a "name".
+        # present) in mixed case, the title must not leak in as a "name".
         stops = speaker_name_stopwords(["Statsminister FREDRIK REINFELDT"])
         assert "fredrik" in stops
         assert "reinfeldt" in stops
@@ -128,7 +128,7 @@ class TestSpeakerNameStopwords:
 
     def test_known_collision_words_excluded_automatically(self):
         # A speaker surnamed "Hans" must not reintroduce "hans" (= "his") as a
-        # stopword — it's already in combined_stopwords, so the exclude set
+        # stopword, it's already in combined_stopwords, so the exclude set
         # catches it with no manual allowlist required.
         stops = speaker_name_stopwords(["HANS OLSSON"], exclude=frozenset({"hans"}))
         assert "hans" not in stops

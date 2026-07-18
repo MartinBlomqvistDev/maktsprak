@@ -2,7 +2,7 @@
 
 The site has no Python runtime, so all analysis is computed here and written as
 small JSON files it can fetch statically. Reads from the local Parquet archive
-(``data/parquet/speeches_full.parquet``), not Supabase — that archive is the
+(``data/parquet/speeches_full.parquet``), not Supabase, that archive is the
 source of truth for analysis; run ``scripts/export_corpus.py``
 first if it doesn't exist yet or is stale.
 
@@ -67,7 +67,7 @@ def _round_pairs(pairs: list[tuple[str, float]], ndigits: int = 2) -> list[dict[
 #: The Next.js app imports these from ``web/src/data`` (see
 #: ``web/src/lib/site-data.ts``), so every payload is written to both places.
 #: Keeping it a manual copy meant a regenerate could silently leave the live
-#: site on stale numbers, with nothing to catch it — precompute drift is
+#: site on stale numbers, with nothing to catch it, precompute drift is
 #: invisible by construction, because the old file is still perfectly valid JSON.
 WEB_DATA_DIR = Path("web/src/data")
 
@@ -151,7 +151,7 @@ def build(
 
     # --- trajectories of the notable movers ---
     # Top-15 algorithmic movers each side, plus a curated set of terms the site
-    # highlights by name in its copy (e.g. "kärnkraft") — some of those are real,
+    # highlights by name in its copy (e.g. "kärnkraft"), some of those are real,
     # data-backed movers that just miss a top-10/15 cutoff by rank (e.g.
     # "kärnkraft" is riser #15-20 depending on the run), not fabricated trends.
     # Without this a curated term silently renders as an all-zero flat line if

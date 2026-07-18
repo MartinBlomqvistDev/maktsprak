@@ -70,7 +70,7 @@ X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_B
 
 # ---------------------------------------------------------------------------
 # Swedish parliamentary parties
-# Single canonical definition — imported by etl, model, and the Streamlit app.
+# Single canonical definition, imported by etl, model, and the Streamlit app.
 # ---------------------------------------------------------------------------
 #: All valid Riksdag party abbreviations.
 VALID_PARTIES: frozenset[str] = frozenset({"C", "KD", "L", "M", "MP", "S", "SD", "V"})

@@ -2,7 +2,7 @@
 
 Three things a tone dimension has to survive before it is allowed on the site:
 
-**Symmetry** — does the instrument find the pattern on both sides of the
+**Symmetry**, does the instrument find the pattern on both sides of the
 spectrum, or only where we went looking?  For a dimension with an out-group
 subtype (``vi_dom``'s economic / origin / elite), the breakdown is printed per
 party.  If class-conflict framing from the left shows up at comparable intensity
@@ -10,14 +10,14 @@ to origin framing from the right, it gets shown identically.  If it genuinely
 does not, that is stated on the methodology page rather than quietly omitted.
 Either answer is content; only a missing answer is a problem.
 
-**Precision** — of the sentences this dimension counts, how many really are what
+**Precision**, of the sentences this dimension counts, how many really are what
 it claims?  Exports a seeded, party-stratified sample for hand-labelling, and the
 resulting number gets published.  This is not ceremony: the first pattern list
 scored well under 50% because ``dessa människor`` mostly appears in *sympathetic*
 sentences ("vi har all anledning att stötta de här människorna"), and only
 reading real matches caught it.
 
-**Correctness** — for a stylometric dimension there is nothing to hand-label; the
+**Correctness**, for a stylometric dimension there is nothing to hand-label; the
 number is arithmetic.  It gets a worked example instead, printed so the formula
 can be checked by hand.  A reader must never assume LIX has a hidden precision
 score: the question does not apply to it.
@@ -66,7 +66,7 @@ OUT_DIR = Path("data/reports")
 def load_corpus(limit: int | None = None) -> pd.DataFrame:
     """The speech corpus with an integer ``year``.
 
-    Goes through the shared loader rather than reading the Parquet directly —
+    Goes through the shared loader rather than reading the Parquet directly,
     that is where the duplicate-id guard lives, and a tone number computed on a
     double-counted corpus would be wrong in a way nothing downstream can see.
     """
@@ -80,7 +80,7 @@ def load_corpus(limit: int | None = None) -> pd.DataFrame:
 
 
 def symmetry(df: pd.DataFrame) -> pd.DataFrame:
-    """Out-group subtype by party — the check that decides whether this is fair.
+    """Out-group subtype by party, the check that decides whether this is fair.
 
     A single undifferentiated "us-vs-them" count would rank V top and SD near
     the bottom, and the naive reading of that ("V is the most populist party")
@@ -115,9 +115,9 @@ def symmetry(df: pd.DataFrame) -> pd.DataFrame:
 def precision_sample(df: pd.DataFrame, dimension: str, size: int, seed: int = 42) -> pd.DataFrame:
     """A party-stratified sample of real matches, ready for hand-labelling.
 
-    Stratified so no party is judged on three examples while another gets fifty
-    — an unbalanced audit would produce a precision number that is really just a
-    statement about whichever party happened to dominate the sample.
+        Stratified so no party is judged on three examples while another gets fifty
+    , an unbalanced audit would produce a precision number that is really just a
+        statement about whichever party happened to dominate the sample.
     """
     spec = TONE_DIMENSIONS[dimension]
     measured = spec.measure_fn(df)
@@ -157,9 +157,7 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
     cells = (
         spec.aggregate_fn(measured)
         if spec.aggregate_fn
-        else aggregate_cells(
-            measured, group_col=spec.group_col, per=spec.per, alpha=spec.alpha
-        )
+        else aggregate_cells(measured, group_col=spec.group_col, per=spec.per, alpha=spec.alpha)
     )
     kept = suppress_thin_cells(cells, spec.min_cell_speeches, spec.min_cell_n)
 
@@ -169,7 +167,7 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
 
     density = hit_density(cells)
 
-    print(f"\n{'=' * 78}\n{dimension}  ({spec.technique}) — {spec.label_sv}\n{'=' * 78}")
+    print(f"\n{'=' * 78}\n{dimension}  ({spec.technique}), {spec.label_sv}\n{'=' * 78}")
     print(f"  unit          : {spec.unit_sv}")
     print(f"  total hits    : {hits:,}")
     print(f"  cells         : {total_cells} -> {kept_cells} kept after suppression")
@@ -193,7 +191,7 @@ def report_dimension(df: pd.DataFrame, dimension: str, sample_size: int) -> dict
     if spec.technique == "stylometric":
         excluded = readability.excluded_share(measured)
         print(f"  excluded      : {excluded:.1%} of speeches below the LIX inclusion floor")
-        print("  precision     : n/a — arithmetic, not a judgement call. Worked example:")
+        print("  precision     : n/a, arithmetic, not a judgement call. Worked example:")
         sample = measured[measured["included"]].iloc[0]
         print(
             f"      {sample['words']} ord / {sample['sentences']} meningar"
@@ -245,7 +243,7 @@ def main() -> None:
     summary = [report_dimension(df, d, args.sample) for d in wanted]
 
     # ------------------------------------------------------------- symmetry
-    print(f"\n{'=' * 78}\nSYMMETRY — where does the instrument find the pattern?\n{'=' * 78}")
+    print(f"\n{'=' * 78}\nSYMMETRY, where does the instrument find the pattern?\n{'=' * 78}")
     table = symmetry(df)
     if not table.empty:
         print(table.to_string())
@@ -257,7 +255,7 @@ def main() -> None:
     # --------------------------------------------------------------- census
     census = vi_dom.vi_dom_census(df)
     print(
-        f"\n{'=' * 78}\nVI-MOT-DOM CENSUS — {len(census)} constructions in the whole corpus\n{'=' * 78}"
+        f"\n{'=' * 78}\nVI-MOT-DOM CENSUS, {len(census)} constructions in the whole corpus\n{'=' * 78}"
     )
     if census:
         by_party = pd.Series([c.party for c in census]).value_counts()
@@ -268,12 +266,12 @@ def main() -> None:
             print(f"    [{c.party} {c.year}] {c.sentence[:120]}")
 
     # ---------------------------------------------------------- occupational
-    print(f"\n{'=' * 78}\nOCCUPATIONAL SUBSTITUTION — the honest null result\n{'=' * 78}")
+    print(f"\n{'=' * 78}\nOCCUPATIONAL SUBSTITUTION, the honest null result\n{'=' * 78}")
     pairs = inclusive.occupational_report(df)
     for pair in pairs["pairs"]:
         ratio = "  n/a" if pair["ratio"] is None else f"{pair['ratio']:5.1%}"
         print(
-            f"  {pair['gendered']:16} -> {str(pair['neutral'] or '—'):18} "
+            f"  {pair['gendered']:16} -> {str(pair['neutral'] or ', '):18} "
             f"{pair['gendered_hits']:5} vs {pair['neutral_hits']:5}   neutral share {ratio}"
         )
 
