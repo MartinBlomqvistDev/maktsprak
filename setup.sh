@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# MaktsprakAI — first-time project setup
+# Maktspråk — first-time project setup
 # Run from the repository root: bash setup.sh
 
 set -euo pipefail

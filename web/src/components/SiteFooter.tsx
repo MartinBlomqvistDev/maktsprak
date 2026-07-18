@@ -15,7 +15,7 @@ export function SiteFooter() {
           </a>{" "}
           · källkod på{" "}
           <a
-            href="https://github.com/MartinBlomqvistDev/MaktsprakAI"
+            href="https://github.com/MartinBlomqvistDev/maktsprak"
             className="text-ink-2 underline underline-offset-2 hover:text-accent"
           >
             GitHub

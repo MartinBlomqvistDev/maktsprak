@@ -1,5 +1,5 @@
 @echo off
-REM MaktsprakAI — scheduled ETL runner
+REM Maktspråk — scheduled ETL runner
 REM
 REM Uses %%~dp0 (the directory containing this script) instead of a hard-coded
 REM path so the script works on any machine or user account without modification.

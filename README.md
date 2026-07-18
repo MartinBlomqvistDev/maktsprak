@@ -1,7 +1,7 @@
 # Maktspråk
 
-![CI](https://github.com/MartinBlomqvistDev/MaktsprakAI/actions/workflows/ci.yml/badge.svg)
-![Web CI](https://github.com/MartinBlomqvistDev/MaktsprakAI/actions/workflows/web-ci.yml/badge.svg)
+![CI](https://github.com/MartinBlomqvistDev/maktsprak/actions/workflows/ci.yml/badge.svg)
+![Web CI](https://github.com/MartinBlomqvistDev/maktsprak/actions/workflows/web-ci.yml/badge.svg)
 
 **Can a machine tell which Swedish party wrote a sentence, and has the way parties argue changed since 2002?**
 
@@ -153,8 +153,8 @@ Pattern provenance and the audit trail behind every word list: [`data/lexicons/C
 ## Getting started
 
 ```bash
-git clone https://github.com/MartinBlomqvistDev/MaktsprakAI.git
-cd MaktsprakAI
+git clone https://github.com/MartinBlomqvistDev/maktsprak.git
+cd maktsprak
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e ".[dev,app]"
 cp .env.example .env                                # SUPABASE_URL, SUPABASE_KEY, ...

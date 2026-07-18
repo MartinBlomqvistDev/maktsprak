@@ -1,13 +1,13 @@
 # Maktspråk / Protokollet
 
-The public site for [MaktspråkAI](https://github.com/MartinBlomqvistDev/MaktsprakAI) — a
+The public site for [MaktspråkAI](https://github.com/MartinBlomqvistDev/maktsprak) — a
 fine-tuned KB-BERT classifier that reads Swedish Riksdag speeches and predicts
 which party is speaking, trained on a talar-oberoende (speaker-independent)
 split so the reported score reflects real generalisation, not memorised
 politicians.
 
 This repo is the Next.js frontend only. The ETL pipeline, PDF parser, and
-model training live in the [Python repo](https://github.com/MartinBlomqvistDev/MaktsprakAI);
+model training live in the [Python repo](https://github.com/MartinBlomqvistDev/maktsprak);
 this site reads from the same Supabase database and calls a separate FastAPI
 inference service for live predictions.
 
