@@ -47,8 +47,13 @@ load_dotenv()
 # newest model, so keep the set small and recognisable.
 
 # %%
-# Same platform Nordan used, so the setups line up. Verify these are current.
-MODELS: list[str] = [
+# Two providers are supported, picked automatically from whichever key is in
+# .env. Google AI Studio (GEMINI_API_KEY) is free and needs no card, so it is the
+# easy way to a first result; OpenRouter (OPENROUTER_API_KEY) reaches every
+# provider in one key and is the way to the full cross-provider comparison.
+
+# OpenRouter model ids (same platform Nordan used). Verify at openrouter.ai/models.
+OPENROUTER_MODELS: list[str] = [
     "openai/gpt-4o-mini",
     "openai/gpt-4o",
     "anthropic/claude-3.5-sonnet",
@@ -57,6 +62,15 @@ MODELS: list[str] = [
     "meta-llama/llama-3.3-70b-instruct",
     "mistralai/mistral-large",
     "qwen/qwen-2.5-72b-instruct",
+]
+
+# Google AI Studio model ids. A first pass across the Gemini family; not the full
+# cross-provider spread, but a real result. Verify at ai.google.dev/models.
+GEMINI_MODELS: list[str] = [
+    "gemini-1.5-flash",
+    "gemini-1.5-pro",
+    "gemini-2.0-flash",
+    "gemini-2.5-flash",
 ]
 
 # Topics track the project's ISSUE_FRAMES so the speeches land on axes the
@@ -87,6 +101,16 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY")
+GEMINI_KEY = os.environ.get("GEMINI_API_KEY")
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models"
+
+# Prefer OpenRouter when its key is present (broader), else Google, else nothing.
+if OPENROUTER_KEY:
+    PROVIDER, MODELS = "openrouter", OPENROUTER_MODELS
+elif GEMINI_KEY:
+    PROVIDER, MODELS = "gemini", GEMINI_MODELS
+else:
+    PROVIDER, MODELS = None, []
 
 # %% [markdown]
 # ## Classifier
@@ -186,14 +210,33 @@ def _openrouter(model: str, prompt: str) -> str:
     return resp.json()["choices"][0]["message"]["content"].strip()
 
 
+def _gemini(model: str, prompt: str) -> str:
+    resp = requests.post(
+        f"{GEMINI_URL}/{model}:generateContent?key={GEMINI_KEY}",
+        json={
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": TEMPERATURE, "maxOutputTokens": MAX_TOKENS},
+        },
+        timeout=90,
+    )
+    resp.raise_for_status()
+    return resp.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+
+
+def _call(model: str, prompt: str) -> str:
+    return _openrouter(model, prompt) if PROVIDER == "openrouter" else _gemini(model, prompt)
+
+
 def generate_all(models=MODELS, topics=TOPICS) -> pd.DataFrame:
     """Fill the cache with generations and return it as a DataFrame.
 
     kind is 'speech' or 'neutral'.
     """
     cache = _load_cache()
-    if OPENROUTER_KEY is None:
-        print("No OPENROUTER_API_KEY set; returning only what is cached.")
+    if PROVIDER is None:
+        print("No API key set (GEMINI_API_KEY or OPENROUTER_API_KEY); returning cache only.")
+    else:
+        print(f"Provider: {PROVIDER}, {len(models)} models.")
     plan = [
         (m, t, kind, s)
         for m in models
@@ -206,11 +249,11 @@ def generate_all(models=MODELS, topics=TOPICS) -> pd.DataFrame:
 
     with GEN_CACHE.open("a", encoding="utf-8") as fh:
         for i, (model, topic, kind, sample) in enumerate(todo, 1):
-            if OPENROUTER_KEY is None:
+            if PROVIDER is None:
                 break
             prompt = (speech_prompt if kind == "speech" else neutral_prompt)(topic)
             try:
-                text = _openrouter(model, prompt)
+                text = _call(model, prompt)
             except Exception as exc:  # a single failed call must not lose the batch
                 print(f"  [{i}/{len(todo)}] {model} / {topic} / {kind}: FAILED {exc}")
                 continue
@@ -348,7 +391,8 @@ def plot_profiles(profiles: pd.DataFrame, title: str, path: Path) -> None:
 # %% [markdown]
 # ## Run
 #
-# Set OPENROUTER_API_KEY in .env, then run top to bottom. Generation is cached,
+# Set GEMINI_API_KEY (free, from Google AI Studio) or OPENROUTER_API_KEY in .env,
+# then run top to bottom. Generation is cached,
 # so a second run only re-classifies.
 
 
@@ -358,7 +402,7 @@ def main() -> None:
     reference = reference_distribution()
     gens = generate_all()
     if gens.empty:
-        print("No generations yet. Set OPENROUTER_API_KEY and rerun generate_all().")
+        print("No generations yet. Set GEMINI_API_KEY or OPENROUTER_API_KEY and rerun.")
         return
 
     speech = build_profiles(gens, reference, kind="speech")

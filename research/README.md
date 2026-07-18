@@ -29,8 +29,13 @@ it. Writing style is not ideology.
 
 ## Running it
 
+Two providers, picked automatically from whichever key is in `.env`:
+
 ```bash
-# one OpenRouter key reaches every provider; the whole run costs a few dollars
+# Easy path: a free Google AI Studio key (no card), runs across the Gemini family
+echo "GEMINI_API_KEY=..." >> .env          # from aistudio.google.com/apikey
+
+# Full path: one OpenRouter key reaches every provider (a few dollars)
 echo "OPENROUTER_API_KEY=sk-or-..." >> .env
 
 # runs as a script, or open as a notebook (it is cell-marked)
