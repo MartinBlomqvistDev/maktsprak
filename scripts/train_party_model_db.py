@@ -149,7 +149,7 @@ def get_training_data() -> pd.DataFrame:
 
 
 def get_training_data_from_parquet(
-    path: Path, year_min: int = 2002, year_max: int = 2026
+    path: Path, year_min: int = 2015, year_max: int = 2026
 ) -> pd.DataFrame:
     """Load training rows from the rebuilt corpus Parquet instead of the DB.
 
@@ -157,6 +157,8 @@ def get_training_data_from_parquet(
     ``data/parquet/speeches_full.parquet`` (75,148 rows, 2002-2026, natural-key
     ids, merged speaker slugs). Training from it matches the model to the corpus
     the site actually serves and gives a clean, reconstructable speaker split.
+    Defaults to 2015+ (the model's deliberate scope); pre-2015 is in the corpus
+    for the drift/time-series features only and is kept out of training.
 
     No party-leader tweets here (they live in the DB and need credentials);
     speeches only, which keeps a Colab run self-contained: upload the Parquet,
@@ -361,8 +363,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--year-min",
         type=int,
-        default=2002,
-        help="With --parquet: earliest protocol year to include (default 2002, the full corpus).",
+        default=2015,
+        help="With --parquet: earliest protocol year (default 2015, the model's deliberate scope). "
+        "Pre-2015 exists in the corpus for the time-series features only: it has era drift, "
+        "no SD before 2010, and the FP->L / Nya Moderaterna realignments, so it is kept out of training.",
     )
     parser.add_argument(
         "--year-max",

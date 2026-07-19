@@ -98,7 +98,7 @@ def build_test_set(
     seed: int = 42,
     frozen_val_speakers: set[str] | None = None,
     parquet: Path | None = None,
-    year_min: int = 2002,
+    year_min: int = 2015,
     year_max: int = 2026,
 ) -> tuple[list[str], list[str]]:
     """Recreate the speaker-independent validation set used during training.
@@ -325,7 +325,9 @@ if __name__ == "__main__":
         help="Evaluate against this corpus Parquet (speeches only), for a model "
         "trained via train_party_model_db.py --parquet.",
     )
-    parser.add_argument("--year-min", type=int, default=2002, help="With --parquet: earliest year.")
+    parser.add_argument(
+        "--year-min", type=int, default=2015, help="With --parquet: earliest year (default 2015)."
+    )
     parser.add_argument("--year-max", type=int, default=2026, help="With --parquet: latest year.")
     args = parser.parse_args()
 
