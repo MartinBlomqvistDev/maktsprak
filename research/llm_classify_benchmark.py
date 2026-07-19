@@ -48,7 +48,14 @@ BENCH_MODELS: list[str] = [
 
 N_PER_PARTY = 40
 SEED = 13
-MAX_CHARS = 1200  # comparable window to KB-BERT's 512 tokens, and bounds cost
+MAX_CHARS = 2000  # ~KB-BERT's full 512-token window, so it is not handicapped
+
+# The frozen speaker-independent split from training (146 held-out speakers,
+# next to the model). Testing on their 2015-2026 speeches is the fair test:
+# same era KB-BERT trained on, speakers it never saw. 2002-2014 confounds the
+# comparison with era drift and is not used.
+_VAL_PATH = Path("data/models/party_classifier/val_speakers.json")
+VAL_SPEAKERS: set[str] = set(json.loads(_VAL_PATH.read_text(encoding="utf-8")))
 PARTY_NAMES = {
     "C": "Centerpartiet",
     "KD": "Kristdemokraterna",
@@ -63,9 +70,15 @@ PARTY_NAMES = {
 
 # %%
 def sample_speeches(n_per_party: int = N_PER_PARTY, seed: int = SEED) -> pd.DataFrame:
-    """Balanced sample of pre-2015 speeches (unseen by KB-BERT), with labels."""
-    df = pd.read_parquet(CORPUS_PATH, columns=["protocol_date", "party", "text"])
-    df = df[pd.to_datetime(df["protocol_date"]).dt.year < 2015]
+    """Balanced sample of the held-out speaker-independent test set.
+
+    Speeches from 2015-2026 by the 146 speakers held out of training. Unseen by
+    KB-BERT (no speaker leak) yet in its own era (no era drift), which is the
+    only fair way to compare it against the LLMs.
+    """
+    df = pd.read_parquet(CORPUS_PATH, columns=["protocol_date", "speaker", "party", "text"])
+    df = df[df["speaker"].isin(VAL_SPEAKERS)]
+    df = df[pd.to_datetime(df["protocol_date"]).dt.year >= 2015]
     df = df[df["party"].isin(PARTIES)]
     df = df[df["text"].str.len() > 200]  # skip procedural fragments
     parts = [

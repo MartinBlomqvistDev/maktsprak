@@ -94,12 +94,19 @@ def _clean_text(text: object) -> str:
 
 
 def build_test_set(
-    limit: int | None, seed: int = 42, frozen_val_speakers: set[str] | None = None
+    limit: int | None,
+    seed: int = 42,
+    frozen_val_speakers: set[str] | None = None,
+    parquet: Path | None = None,
+    year_min: int = 2002,
+    year_max: int = 2026,
 ) -> tuple[list[str], list[str]]:
     """Recreate the speaker-independent validation set used during training.
 
-    Fetches speeches year-by-year (2015-2026) with the speaker column,
-    appends party-leader tweets, filters to the eight Riksdag parties.
+    Two sources. With ``parquet`` (the rebuilt corpus, speeches only, no tweets),
+    it matches a model trained via ``train_party_model_db.py --parquet``. Without
+    it, fetches speeches year-by-year (2015-2026) from the DB and appends
+    party-leader tweets, matching a DB-trained model.
 
     Args:
         limit: Max number of rows to evaluate (stratified downsample);
@@ -119,24 +126,36 @@ def build_test_set(
     Returns:
         Tuple of ``(texts, parties)``.
     """
-    # --- 1. Speeches, fetched exactly as training fetched them ---
-    speech_dfs: list[pd.DataFrame] = []
-    for year in range(2015, 2027):
-        year_df = fetch_speeches_historical_v2(start_date=f"{year}-01-01", end_date=f"{year}-12-31")
-        logger.info(f"Fetched {len(year_df)} speeches for {year}.")
-        speech_dfs.append(year_df)
-    speeches_df = pd.concat(speech_dfs, ignore_index=True)
-    speeches_df["text"] = speeches_df["text"].apply(_clean_text)
-    speeches_df = speeches_df.rename(columns={"party": "label"})[["text", "label", "speaker"]]
+    if parquet is not None:
+        # Parquet source: speeches only, exactly as training with --parquet.
+        df = pd.read_parquet(parquet, columns=["protocol_date", "speaker", "party", "text"])
+        years = pd.to_datetime(df["protocol_date"]).dt.year
+        df = df[(years >= year_min) & (years <= year_max)]
+        df["text"] = df["text"].apply(_clean_text)
+        df = df.rename(columns={"party": "label"})[["text", "label", "speaker"]]
+        logger.info(f"Loaded {len(df)} speeches from {parquet.name} ({year_min}-{year_max}).")
+    else:
+        # --- 1. Speeches, fetched exactly as training fetched them ---
+        speech_dfs: list[pd.DataFrame] = []
+        for year in range(2015, 2027):
+            year_df = fetch_speeches_historical_v2(
+                start_date=f"{year}-01-01", end_date=f"{year}-12-31"
+            )
+            logger.info(f"Fetched {len(year_df)} speeches for {year}.")
+            speech_dfs.append(year_df)
+        speeches_df = pd.concat(speech_dfs, ignore_index=True)
+        speeches_df["text"] = speeches_df["text"].apply(_clean_text)
+        speeches_df = speeches_df.rename(columns={"party": "label"})[["text", "label", "speaker"]]
 
-    # --- 2. Tweets, appended exactly as training appended them ---
-    tweets_df = fetch_all_tweets()
-    tweets_df["text"] = tweets_df["text"].apply(_clean_text)
-    tweets_df["label"] = tweets_df["username"].apply(lambda u: _ACCOUNT_TO_PARTY.get(u, "NA"))
-    tweets_df = tweets_df.rename(columns={"username": "speaker"})[["text", "label", "speaker"]]
+        # --- 2. Tweets, appended exactly as training appended them ---
+        tweets_df = fetch_all_tweets()
+        tweets_df["text"] = tweets_df["text"].apply(_clean_text)
+        tweets_df["label"] = tweets_df["username"].apply(lambda u: _ACCOUNT_TO_PARTY.get(u, "NA"))
+        tweets_df = tweets_df.rename(columns={"username": "speaker"})[["text", "label", "speaker"]]
 
-    # --- 3. Combine, filter, then select the held-out speakers ---
-    df = pd.concat([speeches_df, tweets_df]).reset_index(drop=True)
+        df = pd.concat([speeches_df, tweets_df]).reset_index(drop=True)
+
+    # --- 3. Filter, then select the held-out speakers ---
     df = df[df["label"].isin(VALID_PARTIES)].reset_index(drop=True)
     df["speaker"] = df["speaker"].fillna("Okänd")
 
@@ -299,6 +318,15 @@ if __name__ == "__main__":
         help="Path to a frozen val_speakers.json (written by train_party_model_db.py). "
         "Auto-discovered next to the first --model path if it's a local directory.",
     )
+    parser.add_argument(
+        "--parquet",
+        type=Path,
+        default=None,
+        help="Evaluate against this corpus Parquet (speeches only), for a model "
+        "trained via train_party_model_db.py --parquet.",
+    )
+    parser.add_argument("--year-min", type=int, default=2002, help="With --parquet: earliest year.")
+    parser.add_argument("--year-max", type=int, default=2026, help="With --parquet: latest year.")
     args = parser.parse_args()
 
     device = _select_device()
@@ -316,7 +344,11 @@ if __name__ == "__main__":
         frozen_val_speakers = set(json.loads(val_speakers_path.read_text(encoding="utf-8")))
 
     texts, truth = build_test_set(
-        None if args.limit == 0 else args.limit, frozen_val_speakers=frozen_val_speakers
+        None if args.limit == 0 else args.limit,
+        frozen_val_speakers=frozen_val_speakers,
+        parquet=args.parquet,
+        year_min=args.year_min,
+        year_max=args.year_max,
     )
     out_dir = Path(args.out)
 

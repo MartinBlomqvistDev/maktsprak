@@ -148,6 +148,40 @@ def get_training_data() -> pd.DataFrame:
     return df[df["label"].isin(VALID_PARTIES)].reset_index(drop=True)
 
 
+def get_training_data_from_parquet(
+    path: Path, year_min: int = 2002, year_max: int = 2026
+) -> pd.DataFrame:
+    """Load training rows from the rebuilt corpus Parquet instead of the DB.
+
+    The DB is now a trimmed ETL landing zone (~37k rows); the source of truth is
+    ``data/parquet/speeches_full.parquet`` (75,148 rows, 2002-2026, natural-key
+    ids, merged speaker slugs). Training from it matches the model to the corpus
+    the site actually serves and gives a clean, reconstructable speaker split.
+
+    No party-leader tweets here (they live in the DB and need credentials);
+    speeches only, which keeps a Colab run self-contained: upload the Parquet,
+    train, done.
+
+    Args:
+        path:     Path to the corpus Parquet.
+        year_min: Earliest protocol year to include (inclusive).
+        year_max: Latest protocol year to include (inclusive).
+
+    Returns:
+        DataFrame with columns ``text``, ``label`` (party), ``speaker``.
+    """
+    df = pd.read_parquet(path, columns=["protocol_date", "speaker", "party", "text"])
+    years = pd.to_datetime(df["protocol_date"]).dt.year
+    df = df[(years >= year_min) & (years <= year_max)]
+    df = df[df["party"].isin(VALID_PARTIES)]
+    df["text"] = df["text"].apply(clean_text)
+    df = df.rename(columns={"party": "label"})[["text", "label", "speaker"]]
+    logger.info(
+        f"Loaded {len(df)} speeches from {path.name} ({year_min}-{year_max}), speeches only."
+    )
+    return df.reset_index(drop=True)
+
+
 def speaker_split(
     df: pd.DataFrame,
     seed: int = SPLIT_SEED,
@@ -317,6 +351,25 @@ def parse_args() -> argparse.Namespace:
         default=Path(TRAIN_MODEL_DIR),
         help=f"Where to write checkpoints and the final model (default {TRAIN_MODEL_DIR}).",
     )
+    parser.add_argument(
+        "--parquet",
+        type=Path,
+        default=None,
+        help="Train from this corpus Parquet (speeches only) instead of the DB. "
+        "Use the rebuilt data/parquet/speeches_full.parquet.",
+    )
+    parser.add_argument(
+        "--year-min",
+        type=int,
+        default=2002,
+        help="With --parquet: earliest protocol year to include (default 2002, the full corpus).",
+    )
+    parser.add_argument(
+        "--year-max",
+        type=int,
+        default=2026,
+        help="With --parquet: latest protocol year to include (default 2026).",
+    )
     return parser.parse_args()
 
 
@@ -337,7 +390,10 @@ def main() -> None:
     )
 
     # ------------------------------------------------------------------ data
-    df = get_training_data()
+    if args.parquet:
+        df = get_training_data_from_parquet(args.parquet, args.year_min, args.year_max)
+    else:
+        df = get_training_data()
 
     counts = df["label"].value_counts().to_dict()
     for party in sorted(VALID_PARTIES):
