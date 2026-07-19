@@ -138,6 +138,16 @@ Pattern provenance and the audit trail behind every word list: [`data/lexicons/C
 
 ---
 
+## Research
+
+Two studies in [`research/`](research/) reuse the classifier as a measurement instrument. Both are companions to Nordan AI's [Which Swedish party do LLMs vote for?](https://www.nordan.ai/research/which-swedish-party-do-llms-vote-for), which measured stated preference by having models answer a voting-advice test.
+
+**Which party do LLMs write like?** ([`llm_language_profile.py`](research/llm_language_profile.py) · [maktsprak.se/llm](https://maktsprak.se/llm) · [dataset](https://huggingface.co/datasets/MartinBlomqvist/maktsprak-llm-language-profile)). 14 frontier models (all ten of Nordan's providers) wrote riksdag speeches with no party named; the classifier read the 669 texts. Every model over-produces the centre-right register (Moderaterna + Liberalerna); none writes more like V, C or KD than baseline; the newest lean hardest (Opus 4.8 puts 51% of its mass on M against a 21% baseline). The effect vanishes in a neutral-prose control, so it lives in the models' picture of parliamentary speech, not in the models in general. Controls for the instrument's own bias throughout: calibration on out-of-window speeches, a subtracted baseline, and the neutral condition.
+
+**Is a fine-tuned model worth it against a frontier LLM?** ([`llm_classify_benchmark.py`](research/llm_classify_benchmark.py) · [maktsprak.se/riktmarke](https://maktsprak.se/riktmarke)). The same 110M classifier against six frontier LLMs on party classification, over 320 speeches from 2002-2014 (outside the model's training window), with real per-token cost measured. The frontier flagships win on accuracy (0.53-0.56 vs the small model's 0.33 on identical truncated input, 0.45 at full context), but at $2-3 per 1000 classifications and an API round-trip, against $0, 44 seconds, and no data leaving the machine. Published with the result unspun: the small model loses the accuracy test it was built to win, and the trade-off is the finding.
+
+---
+
 ## Stack
 
 | Layer | Tools |
@@ -194,6 +204,9 @@ scripts/
 ├── evaluate_model.py       # honest benchmark against a frozen speaker set
 ├── build_site_data.py      # precompute the site's static JSON
 └── validate_tone.py        # the gate: symmetry, precision, hit density
+research/                   # LLM studies that reuse the classifier as an instrument
+├── llm_language_profile.py # which party do LLMs write like
+└── llm_classify_benchmark.py # KB-BERT vs frontier LLMs, with cost
 inference_service/          # FastAPI + Dockerfile, deployed to Cloud Run
 web/                        # Next.js site (Vercel)
 notebooks/retrain_colab.ipynb
