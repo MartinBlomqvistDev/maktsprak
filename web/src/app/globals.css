@@ -34,6 +34,12 @@
   --crit: #93372a;
   --crit-soft: #eeddd6;
 
+  /* Diverging pair for the LLM-study heatmap: blue pencil = above baseline,
+     sienna = below. Validated for CVD separation and surface contrast in both
+     modes; cells are tints of these mixed into --card. */
+  --hm-pos: #2451a4;
+  --hm-neg: #a06a2e;
+
   /* --- Party data colours (approximate official identities; DATA ONLY) --- */
   --party-v: #9c1c2e;
   --party-mp: #83cf39;
@@ -71,6 +77,9 @@
     --crit: #d68f7f;
     --crit-soft: #331e19;
 
+    --hm-pos: #5b8bd8;
+    --hm-neg: #bd7f38;
+
     --party-v: #d3495e;
     --party-mp: #94d95a;
     --party-s: #f0475f;
@@ -90,6 +99,7 @@
   --good: #2f6b45; --good-soft: #dde8de;
   --warn: #8a5a12; --warn-soft: #efe3c8;
   --crit: #93372a; --crit-soft: #eeddd6;
+  --hm-pos: #2451a4; --hm-neg: #a06a2e;
 }
 
 :root[data-theme="dark"] {
@@ -100,6 +110,7 @@
   --good: #7cb88f; --good-soft: #1c2b20;
   --warn: #d1a24c; --warn-soft: #2e2513;
   --crit: #d68f7f; --crit-soft: #331e19;
+  --hm-pos: #5b8bd8; --hm-neg: #bd7f38;
 }
 
 @theme inline {
