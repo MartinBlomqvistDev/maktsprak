@@ -6,7 +6,7 @@ import { NEUTRAL, SPEECH, STUDY_META } from "@/lib/llm-study";
 export const metadata: Metadata = {
   title: "Vilket parti skriver språkmodellerna som? · Maktspråk / Protokollet",
   description:
-    "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Alla fjorton drar mot högerblockets register.",
+    "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Tolv av fjorton skriver mest som Moderaterna, ingen som Vänsterpartiet.",
 };
 
 const NORDAN_URL = "https://www.nordan.ai/research/which-swedish-party-do-llms-vote-for";
@@ -76,16 +76,16 @@ export default function LlmPage() {
           <p>
             <strong>Kalibrering.</strong> Klassificeraren är tränad på
             2015-2026. Anföranden från 2002-2014 har den aldrig sett. På{" "}
-            {STUDY_META.calibrationN} sådana träffar den rätt parti i 48,8
+            {STUDY_META.calibrationN} sådana träffar den rätt parti i 47,5
             procent av fallen, mot 12,5 för slumpen. Instrumentet mäter något
             verkligt även utanför sin träningsdata.
           </p>
           <p>
             <strong>Baslinje.</strong> På en partibalanserad mängd verkliga
-            anföranden svarar klassificeraren inte jämnt: M får 21 procent i
-            snitt, L bara 7. Den lutningen är instrumentets, inte
-            modellernas. Allt nedan redovisas därför som avvikelse från just
-            den baslinjen.
+            anföranden svarar klassificeraren inte jämnt: S får 25 procent i
+            snitt och M 21, medan L bara får 6. Den lutningen är instrumentets,
+            inte modellernas. Allt nedan redovisas därför som avvikelse från
+            just den baslinjen.
           </p>
           <p>
             <strong>Neutral kontroll.</strong> Samma modeller fick också
@@ -112,30 +112,25 @@ export default function LlmPage() {
         </div>
         <div className="mt-8 space-y-4 text-ink-2">
           <p>
-            Tre saker står ut. Alla fjorton modeller överanvänder M- och
-            L-registret sammantaget: summan av de två avvikelserna är positiv
-            för varje enskild modell, från Opus 4.8 (+0.42) ner till Qwen
-            (+0.06). Och ingen modell, inte en, skriver mer som C, KD eller V
-            än baslinjen. Vänstern och de mindre borgerliga partierna är
-            systematiskt frånvarande i modellernas riksdagssvenska.
+            Två saker står ut. <strong>Tolv av fjorton modeller skriver mer som
+            Moderaterna</strong> än baslinjen, från Claude Opus 4.8 (+0.42) och
+            DeepSeek V4 Pro (+0.33) och nedåt. Och <strong>inte en enda av de
+            fjorton skriver mer som Vänsterpartiet eller Centerpartiet</strong>
+            än baslinjen: avståndet till vänstern och Centern är entydigt, hela
+            kolumnerna är bruna.
           </p>
           <p>
-            De nyaste modellerna drar hårdast. Claude Opus 4.8 lägger 51
-            procent av sin sannolikhetsmassa på M, mot baslinjens 21. Sonnet
-            4.6 ligger på 50.
+            De största modellerna drar hårdast. Claude Opus 4.8 lägger 63
+            procent av sin sannolikhetsmassa på Moderaterna, mot baslinjens 21.
+            DeepSeek ligger på 53.
           </p>
           <p>
-            Undantaget är Googles Gemini-modeller, de enda två som inte drar
-            mot M. De drar mot L i stället: Gemini 3.1 Pro lägger 30 procent
-            på L, mot baslinjens 7. Varför just Googles modeller föreställer
-            sig en riksdagstalare som liberal snarare än moderat vet jag
-            inte. De är samtidigt de mest välkalibrerade i hela studien i den
-            neutrala kontrollen nedan.
-          </p>
-          <p>
-            SD delar fältet efter leverantör: Qwen (+0.17) och GLM (+0.08)
-            drar mot SD, medan GPT-5.5 (-0.13) och Opus 4.8 (-0.11) drar
-            tydligast ifrån.
+            Två modeller bryter M-mönstret. Qwen och GLM skriver inte mer som
+            Moderaterna än baslinjen; de drar i stället mot SD (GLM +0.28, Qwen
+            +0.25). Och Googles Gemini-modeller är de enda som drar mot
+            Liberalerna (Gemini 3.5 Flash +0.11, 3.1 Pro +0.07): de föreställer
+            sig en riksdagstalare som liberal snarare än moderat. Varför vet jag
+            inte.
           </p>
         </div>
       </section>
@@ -162,17 +157,16 @@ export default function LlmPage() {
             egenskap hos modellerna; den aktiveras av uppgiften. Det
             modellerna bär på är en föreställning om hur en svensk
             riksdagspolitiker låter, och den föreställningen är skriven på
-            högerblockets språk.
+            Moderaternas språk.
           </p>
           <p>
-            Den neutrala texten drar i stället mot SD för de flesta modeller.
-            Varför vet jag inte säkert. Troligast är att klassificeraren,
-            tränad enbart på debattinlägg, saknar en plats för text utan
-            politisk riktning, och att SD-klassen råkar ligga närmast
-            myndighetsprosans korta, deklarativa meningar. Jag redovisar det
-            som en öppen fråga om instrumentet, inte som ett fynd om
-            modellerna. Gemini-modellerna, vars neutrala text ligger nästan
-            exakt på baslinjen, visar hur kontrollen ser ut när den är ren.
+            Den neutrala texten drar i stället mot S och SD för de flesta
+            modeller. Varför vet jag inte säkert. Troligast är att
+            klassificeraren, tränad enbart på debattinlägg, saknar en plats för
+            text utan politisk riktning, och att den faller tillbaka på de
+            största klasserna när riktningen försvinner. Jag redovisar det som
+            en öppen fråga om instrumentet, inte som ett fynd om modellerna. Det
+            som bär beviset är att M-lutningen är borta i varje enda cell.
           </p>
         </div>
       </section>
@@ -186,7 +180,7 @@ export default function LlmPage() {
             Klassificeraren mäter register: ordval, meningsbyggnad, retoriska
             vanor. Den vet ingenting om åsikter. Studien säger inte att
             modellerna är moderater; den säger att när de föreställer sig en
-            svensk riksdagstalare låter föreställningen borgerlig.
+            svensk riksdagstalare låter föreställningen som Moderaterna.
           </p>
           <p>
             Mätningen är också liten: 22 till 24 anföranden per modell, en
