@@ -73,5 +73,9 @@ web/.next/
 web/.env
 web/.env*.local
 # web/src/data/*.json (precomputed site data) stays tracked — Vercel's build
-# has no Python runtime, so those JSON files ARE the deploy artifact.DEV_LOG.md
+# has no Python runtime, so those JSON files ARE the deploy artifact.
+DEV_LOG.md
 research/out/
+
+# local strategy doc, not public (names outreach targets / career strategy)
+PLAN.md
