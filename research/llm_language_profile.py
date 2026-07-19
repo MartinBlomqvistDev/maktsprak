@@ -53,15 +53,24 @@ load_dotenv()
 # provider in one key and is the way to the full cross-provider comparison.
 
 # OpenRouter model ids (same platform Nordan used). Verify at openrouter.ai/models.
+# Current frontier models (2026), one to three per provider, chosen to mirror
+# the set Nordan tested in "Which Swedish party do LLMs vote for?" so the two
+# studies compare like with like. Ids verified live against openrouter.ai/models.
 OPENROUTER_MODELS: list[str] = [
-    "openai/gpt-4o-mini",
-    "openai/gpt-4o",
-    "anthropic/claude-3.5-sonnet",
-    "anthropic/claude-3-haiku",
-    "google/gemini-flash-1.5",
-    "meta-llama/llama-3.3-70b-instruct",
-    "mistralai/mistral-large",
-    "qwen/qwen-2.5-72b-instruct",
+    "anthropic/claude-opus-4.8",
+    "anthropic/claude-sonnet-4.6",
+    "openai/gpt-5.5",
+    "openai/gpt-5.4",
+    "google/gemini-3.1-pro-preview",
+    "google/gemini-3.5-flash",
+    "google/gemma-4-31b-it",
+    "x-ai/grok-4.3",
+    "deepseek/deepseek-v4-pro",
+    "moonshotai/kimi-k2.6",
+    "z-ai/glm-5.2",
+    "minimax/minimax-m3",
+    "qwen/qwen3.6-plus",
+    "nvidia/nemotron-3-ultra-550b-a55b",
 ]
 
 # Google AI Studio model ids. A first pass across the Gemini family; not the full
@@ -195,19 +204,38 @@ def _load_cache() -> dict[tuple, dict]:
 
 
 def _openrouter(model: str, prompt: str) -> str:
+    body = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": TEMPERATURE,
+        "max_tokens": MAX_TOKENS,
+        # We want the speech, not chain-of-thought. Disabling reasoning keeps
+        # billed output tokens (and cost) bounded on the reasoning-capable
+        # flagships. Some providers (Gemini) make reasoning mandatory and 400
+        # on this flag; for those we drop it and retry (below).
+        "reasoning": {"enabled": False},
+    }
     resp = requests.post(
         OPENROUTER_URL,
         headers={"Authorization": f"Bearer {OPENROUTER_KEY}"},
-        json={
-            "model": model,
-            "messages": [{"role": "user", "content": prompt}],
-            "temperature": TEMPERATURE,
-            "max_tokens": MAX_TOKENS,
-        },
-        timeout=90,
+        json=body,
+        timeout=120,
     )
+    if resp.status_code == 400 and "reasoning" in resp.text.lower():
+        body.pop("reasoning")
+        resp = requests.post(
+            OPENROUTER_URL,
+            headers={"Authorization": f"Bearer {OPENROUTER_KEY}"},
+            json=body,
+            timeout=120,
+        )
     resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"].strip()
+    payload = resp.json()
+    # A model can return HTTP 200 with an error object and no choices (rate
+    # limit, provider hiccup). Surface it clearly instead of a bare KeyError.
+    if "choices" not in payload:
+        raise RuntimeError(f"no choices: {payload.get('error', payload)}")
+    return payload["choices"][0]["message"]["content"].strip()
 
 
 def _gemini(model: str, prompt: str) -> str:
