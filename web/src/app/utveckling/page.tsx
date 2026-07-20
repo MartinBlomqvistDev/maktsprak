@@ -59,8 +59,9 @@ export default function UtvecklingPage() {
           <ProtokollMarker n={1} name="ETT ÅR I TAGET" />
           <p className="mt-4 mb-8 max-w-2xl text-ink-2">
             Dra i reglaget, eller tryck play. För varje år: de ord som är mest
-            utmärkande jämfört med alla andra år (viktad log-odds, Monroe m.fl.
-            2008). Politikernamn och procedurord är till stor del bortfiltrerade.
+            utmärkande jämfört med alla andra år (samma metod, Fightin&apos;
+            Words, Monroe m.fl. 2008). Politikernamn och procedurord är till stor
+            del bortfiltrerade.
           </p>
           <YearSlider />
         </div>

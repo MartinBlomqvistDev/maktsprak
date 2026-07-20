@@ -135,9 +135,7 @@ export default function RiktmarkePage() {
           <p>
             Frontier-modellerna vinner på träffsäkerhet, hela vägen ner. GPT-5.5
             ligger 17 procentenheter över min modell, och även de billigaste,
-            Qwen och DeepSeek, ligger några enheter över. Att bara rapportera min
-            egen siffra, eller dölja att den kom sist, vore poänglöst: den kom
-            sist, och det är en del av svaret.
+            Qwen och DeepSeek, ligger några enheter över.
           </p>
           <p>
             Men träffsäkerhet är inte det enda man betalar för. Den bästa
@@ -155,18 +153,24 @@ export default function RiktmarkePage() {
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Frågan är inte bara vem som är mest träffsäker, utan vad man byter
-            bort. Den här sajten klassificerar en hel korpus i veckan, år efter
-            år, på pseudonymiserad text. Att skicka varenda anförande till ett
-            API vecka efter vecka kostar pengar som växer med korpusen, lägger
-            till en nätverksrunda, och skickar ut text som inte borde lämna
-            maskinen. En finjusterad modell som ligger några procentenheter under
-            men kör gratis och lokalt är då rätt val, inte trots att den är
-            mindre träffsäker utan för att skillnaden inte är värd priset.
+            bort. Den här sajten läser in nya anföranden varje vecka och bygger
+            om analysen på hela korpusen. Att skicka varje anförande till ett API
+            i det tempot kostar pengar som växer med materialet, och lägger till
+            ett externt beroende och en nätverksrunda för en uppgift som annars
+            kör på en enda maskin. En modell som ligger några procentenheter
+            under men kör gratis och lokalt är då rätt val: skillnaden är inte
+            värd priset.
+          </p>
+          <p>
+            En sak till talar för den lilla modellen, som tabellen inte visar:
+            frontier-modellerna är tränade på i princip hela webben, riksdagens
+            protokoll inkluderat. En del av deras försprång kan alltså vara
+            igenkänning av text de redan sett, inte generalisering. KB-BERT såg
+            aldrig de här talarna.
           </p>
           <p>
             Skulle uppgiften i stället vara enstaka, eller kräva högsta möjliga
-            träffsäkerhet, då är API-anropet rätt val. Det är därför jag mätte, i
-            stället för att gissa.
+            träffsäkerhet, är API-anropet rätt val.
           </p>
           <p className="text-sm text-ink-3">
             Systerstudien vänder på instrumentet: där är LLM:erna författare och
@@ -177,15 +181,6 @@ export default function RiktmarkePage() {
           </p>
         </div>
       </section>
-
-      <div className="mt-16 rounded-card border-l-[3px] border-accent bg-accent-soft px-6 py-5">
-        <p className="text-[15px] leading-relaxed text-accent-soft-ink">
-          Jag byggde den här sajten på min egen modell, och den kom sist i det
-          här testet. Att visa det ändå, med siffrorna som förklarar när den
-          lilla modellen är rätt val och när den inte är det, är mer värt än en
-          riggad vinst.
-        </p>
-      </div>
     </main>
   );
 }

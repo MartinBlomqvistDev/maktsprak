@@ -179,16 +179,6 @@ export default function MetodPage() {
           </p>
         </div>
       </section>
-
-      <div className="mt-16 rounded-card border-l-[3px] border-accent bg-accent-soft px-6 py-5">
-        <p className="text-[15px] leading-relaxed text-accent-soft-ink">
-          <strong>Varför jag visar det här öppet:</strong> en modell som bara
-          redovisar sin bästa siffra går inte att kontrollera. Den här sidan
-          visar hur modellen valideras, var den kan gå fel och vad felen
-          kostar, så att du kan bedöma den själv istället för att ta mitt ord
-          för det.
-        </p>
-      </div>
     </main>
   );
 }

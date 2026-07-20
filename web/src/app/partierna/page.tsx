@@ -27,9 +27,9 @@ export default function PartiernaPage() {
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">
             Nedan är varje partis mest utmärkande ord: inte de vanligaste
             orden i partiets tal, utan de som skiljer partiet från de andra
-            sju (viktad log-odds med en informativ Dirichlet-prior, Monroe
-            m.fl. 2008). Delade politiska slitord filtreras bort, liksom
-            partiernas egna namn.
+            sju, viktat så att sällsynta ord inte får för stor vikt (metoden
+            heter Fightin&apos; Words, Monroe m.fl. 2008). Delade politiska
+            slitord filtreras bort, liksom partiernas egna namn.
           </p>
         </div>
       </section>

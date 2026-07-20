@@ -161,12 +161,11 @@ export default function LlmPage() {
           </p>
           <p>
             Den neutrala texten drar i stället mot S och SD för de flesta
-            modeller. Varför vet jag inte säkert. Troligast är att
-            klassificeraren, tränad enbart på debattinlägg, saknar en plats för
-            text utan politisk riktning, och att den faller tillbaka på de
-            största klasserna när riktningen försvinner. Jag redovisar det som
+            modeller. Varför vet jag inte. Klassificeraren är tränad enbart på
+            debattinlägg och har ingen klass för text utan politisk riktning, så
+            vad den gör med sådan text är svårt att tolka. Jag redovisar det som
             en öppen fråga om instrumentet, inte som ett fynd om modellerna. Det
-            som bär beviset är att M-lutningen är borta i varje enda cell.
+            som bär beviset är att M-lutningen är borta i varenda cell.
           </p>
         </div>
       </section>
@@ -217,8 +216,8 @@ export default function LlmPage() {
       <div className="mt-16 rounded-card border-l-[3px] border-accent bg-accent-soft px-6 py-5">
         <p className="text-[15px] leading-relaxed text-accent-soft-ink">
           Nordans mätning gäller vad modellerna säger att de tycker. Den här
-          gäller hur de faktiskt skriver. Det är inte samma axel, och det är i
-          skillnaden mellan de två som det intressanta bor.
+          gäller hur de faktiskt skriver. Två olika axlar, och de pekar åt olika
+          håll.
         </p>
       </div>
     </main>

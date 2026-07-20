@@ -14,7 +14,7 @@ Every headline number here is one a validation leak would have inflated. I found
 | | |
 |---|---|
 | **Corpus** | 75 148 speeches · 2 970 protocols · 2002-2026 · rebuilt from source, verified against it |
-| **Model** | KB-BERT, 8-way party classification, **0.628 acc / 0.619 macro-F1** speaker-independent |
+| **Model** | KB-BERT, 8-way party classification, **0.628 acc / 0.619 macro-F1** speaker-independent. Trained once on 2015-onward debates; the pre-2015 corpus powers the drift analytics, not the model |
 | **Serving** | FastAPI on Cloud Run, scale-to-zero |
 | **Site** | Next.js on Vercel, static precomputed JSON |
 | **Tests** | 211, green, on every push |

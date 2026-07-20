@@ -36,11 +36,10 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2">
-            Jag har låtit en finjusterad språkmodell läsa {speechCount}{" "}
-            riksdagsanföranden tills den lärt sig partiernas retoriska
-            fingeravtryck: inte vad en politiker talar om, utan hur. Klistra in
-            valfri text nedan, utan att ange källa, och se vilket parti modellen
-            tror att den kommer från.
+            Jag har finjusterat en språkmodell på riksdagens debatter tills den
+            lärt sig partiernas retoriska fingeravtryck: inte vad en politiker
+            talar om, utan hur. Klistra in valfri text nedan, utan att ange
+            källa, och se vilket parti modellen tror att den kommer från.
           </p>
 
           <div className="mt-10 max-w-xl">
@@ -89,13 +88,14 @@ export default function Home() {
               talare utan partibeteckning.
             </p>
 
-            <ProtokollMarker n={2} name="TRÄNAR" />
+            <ProtokollMarker n={2} name="TRÄNADES" />
             <p className="mt-4 mb-10 text-ink-2">
-              En KB-BERT-modell finjusteras på den rensade korpusen.
-              Valideringen är <strong>talar-oberoende</strong>: 15 % av
-              politikerna hålls helt utanför träningen, så resultatet mäter
-              generalisering till personer modellen aldrig sett, inte
-              igenkänning av bekanta röster.
+              En KB-BERT-modell finjusterades en gång på anföranden från 2015 och
+              framåt. Den tränas inte om varje vecka; det som växer vecka för
+              vecka är korpusen den läses mot, inte modellen. Valideringen är{" "}
+              <strong>talar-oberoende</strong>: 15 % av politikerna hölls helt
+              utanför träningen, så resultatet mäter generalisering till personer
+              modellen aldrig sett, inte igenkänning av bekanta röster.
             </p>
 
             <ProtokollMarker n={3} name="AVSLÖJAR" />
