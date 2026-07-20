@@ -13,12 +13,14 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Load file-based Swedish stop words
 # ---------------------------------------------------------------------------
-_STOPWORDS_FILE: Path = Path(__file__).parents[3] / "data" / "processed" / "stopwords-sv.txt"
+_STOPWORDS_FILE: Path = Path(__file__).parent / "resources" / "stopwords-sv.txt"
 
 try:
     with _STOPWORDS_FILE.open(encoding="utf-8") as _fh:
         swedish_stopwords: frozenset[str] = frozenset(
-            line.strip().lower() for line in _fh if line.strip()
+            line.strip().lower()
+            for line in _fh
+            if line.strip() and not line.lstrip().startswith("#")
         )
 except FileNotFoundError:
     import warnings

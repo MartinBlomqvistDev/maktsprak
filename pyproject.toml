@@ -59,6 +59,9 @@ maktsprak-etl = "src.maktsprak_pipeline.main:main"
 [tool.setuptools.packages.find]
 where = ["."]
 
+[tool.setuptools.package-data]
+"src.maktsprak_pipeline.nlp" = ["resources/*.txt"]
+
 # ---------------------------------------------------------------------------
 # Ruff — linter + formatter
 # ---------------------------------------------------------------------------

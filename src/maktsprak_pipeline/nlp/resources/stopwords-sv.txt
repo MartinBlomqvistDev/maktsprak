@@ -1,3 +1,8 @@
+# General-purpose Swedish stop words for corpus cleaning and the site's
+# distinctiveness charts. One lowercase token per line; blank lines and lines
+# starting with # are ignored. Domain-specific parliamentary terms (titles,
+# debate vocabulary, party names) are curated separately in political_stopwords
+# in cleaning.py, not here. Loaded by nlp/cleaning.py.
 absolut
 aderton
 adertonde
