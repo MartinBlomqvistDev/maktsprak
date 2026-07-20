@@ -49,6 +49,8 @@ BENCH_MODELS: list[str] = [
 
 N_PER_PARTY = 40
 SEED = 13
+
+
 def _kb_window(text: str) -> str:
     """The exact text KB-BERT sees: the speech truncated to its 512-token window,
     decoded back to words. Every model (KB-BERT and the LLMs) is fed this, so no
@@ -56,6 +58,7 @@ def _kb_window(text: str) -> str:
     same-evidence comparison rather than handing the LLMs extra context."""
     ids = _tokenizer(text, truncation=True, max_length=512, add_special_tokens=False)["input_ids"]
     return _tokenizer.decode(ids, skip_special_tokens=True)
+
 
 # The frozen speaker-independent split from training (146 held-out speakers,
 # next to the model). Testing on their 2015-2026 speeches is the fair test:
@@ -88,10 +91,7 @@ def sample_speeches(n_per_party: int = N_PER_PARTY, seed: int = SEED) -> pd.Data
     df = df[pd.to_datetime(df["protocol_date"]).dt.year >= 2015]
     df = df[df["party"].isin(PARTIES)]
     df = df[df["text"].str.len() > 200]  # skip procedural fragments
-    parts = [
-        g.sample(min(n_per_party, len(g)), random_state=seed)
-        for _, g in df.groupby("party")
-    ]
+    parts = [g.sample(min(n_per_party, len(g)), random_state=seed) for _, g in df.groupby("party")]
     out = pd.concat(parts).sample(frac=1, random_state=seed).reset_index(drop=True)
     out["text"] = out["text"].apply(_kb_window)
     return out
@@ -136,12 +136,18 @@ def llm_classify(model: str, text: str) -> tuple[str | None, int, int]:
         "reasoning": {"enabled": False},
     }
     r = requests.post(
-        OPENROUTER_URL, headers={"Authorization": f"Bearer {OPENROUTER_KEY}"}, json=body, timeout=120
+        OPENROUTER_URL,
+        headers={"Authorization": f"Bearer {OPENROUTER_KEY}"},
+        json=body,
+        timeout=120,
     )
     if r.status_code == 400 and "reasoning" in r.text.lower():
         body.pop("reasoning")
         r = requests.post(
-            OPENROUTER_URL, headers={"Authorization": f"Bearer {OPENROUTER_KEY}"}, json=body, timeout=120
+            OPENROUTER_URL,
+            headers={"Authorization": f"Bearer {OPENROUTER_KEY}"},
+            json=body,
+            timeout=120,
         )
     r.raise_for_status()
     j = r.json()

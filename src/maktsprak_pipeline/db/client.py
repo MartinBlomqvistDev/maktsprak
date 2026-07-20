@@ -19,6 +19,7 @@ from ..logger import get_logger
 
 logger = get_logger()
 
+
 def _resolve_credentials() -> tuple[str, str, str]:
     """Return (url, anon_key, service_key) from environment variables.
 
