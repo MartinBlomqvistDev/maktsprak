@@ -105,15 +105,6 @@ export default function MetodPage() {
                   0.619
                 </td>
               </tr>
-              <tr className="border-b border-line">
-                <td className="py-3 pr-4">
-                  <span className="text-ink-3">
-                    Föregående · dubbelriktad klassvikt
-                  </span>
-                </td>
-                <td className="tabular py-3 pr-4 text-right text-ink-3">0.588</td>
-                <td className="tabular py-3 text-right text-ink-3">0.595</td>
-              </tr>
               <tr>
                 <td className="py-3 pr-4">
                   <span className="text-ink-3">
@@ -136,13 +127,12 @@ export default function MetodPage() {
           en verklig, försvarbar signal, inte brus.
         </p>
         <p className="mt-3 text-sm text-ink-3">
-          Mellansteget är värt en rad: den föregående modellen korrigerade
-          partiobalansen <em>två gånger</em>: både genom att översampla
-          ovanliga partier och genom att vikta förlustfunktionen. Aggregerat
-          syntes det inte. Det syntes på korta meningar, där modellen föll
-          tillbaka på de minsta partierna oavsett innehåll: »Stoppa
-          invandringen!« lästes som V. Med en mekanism i stället för två läses
-          samma mening som SD, med 95,9 %.
+          En tidigare version korrigerade partiobalansen <em>två gånger</em>,
+          både genom att översampla ovanliga partier och genom att vikta
+          förlustfunktionen. Aggregerat syntes det knappt (macro-F1 0.595). Det
+          syntes på korta meningar, där modellen föll tillbaka på de minsta
+          partierna oavsett innehåll: »Stoppa invandringen!« lästes som V. Med en
+          mekanism i stället för två läses samma mening som SD, med 95,9 %.
         </p>
       </section>
 

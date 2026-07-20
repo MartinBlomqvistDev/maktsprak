@@ -4,13 +4,13 @@ import { ProtokollMarker } from "@/components/ProtokollMarker";
 export const metadata: Metadata = {
   title: "Behövs en egen modell? · Maktspråk / Protokollet",
   description:
-    "Den finjusterade 110M-modellen mot sex frontier-LLM på party-klassificering, på modellens egna osedda talare. Träffsäkerhet mot kostnad, latens och om texten måste lämna maskinen.",
+    "Den finjusterade 110M-modellen mot sex frontier-LLM på party-klassificering, på modellens egna osedda talare. Träffsäkerhet mot kostnad och latens.",
 };
 
 const LLM_URL = "https://maktsprak.se/llm";
 
 // Benchmark 2026-07-20: the DEPLOYED classifier vs six frontier LLMs on 320
-// speeches (2015-2026) by the 145 speakers held out of training. Split verified
+// speeches (2015-2026) by the 146 speakers held out of training. Split verified
 // clean: 0.559 on held-out speakers vs 0.995 on training speakers. Same 2000-char
 // input for everyone. LLM cost from actual tokens via OpenRouter.
 const ROWS: { name: string; acc: number; f1: number; cost: number; local?: boolean }[] = [
@@ -54,7 +54,7 @@ export default function RiktmarkePage() {
         <ProtokollMarker n={1} name="UPPLÄGGET" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
-            320 anföranden med känt parti, 40 per parti, alla hållna av de 145
+            320 anföranden med känt parti, 40 per parti, alla hållna av de 146
             talare som hölls utanför träningen. Det är modellens eget osedda
             testset, och att det verkligen är osett är kontrollerat: modellen
             träffar rätt på <strong>99,5 %</strong> för talare den tränats på,
@@ -143,9 +143,9 @@ export default function RiktmarkePage() {
           <p>
             Men träffsäkerhet är inte det enda man betalar för. Den bästa
             modellen, GPT-5.5, kostar nästan fyra dollar per tusen
-            klassificeringar och kräver att varje anförande lämnar din
-            infrastruktur. KB-BERT kostar noll, svarar på millisekunder, och
-            texten lämnar aldrig maskinen.
+            klassificeringar och kräver ett API-anrop per anförande. KB-BERT
+            kostar noll och svarar på millisekunder, på samma maskin som kör
+            resten av pipelinen.
           </p>
         </div>
       </section>
@@ -156,13 +156,14 @@ export default function RiktmarkePage() {
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Frågan är inte bara vem som är mest träffsäker, utan vad man byter
-            bort. Den här sajten läser in nya anföranden varje vecka och bygger
-            om analysen på hela korpusen. Att skicka varje anförande till ett API
-            i det tempot kostar pengar som växer med materialet, och lägger till
-            ett externt beroende och en nätverksrunda för en uppgift som annars
-            kör på en enda maskin. En modell som ligger några procentenheter
-            under men kör gratis och lokalt är då rätt val: skillnaden är inte
-            värd priset.
+            bort. Det handlar inte om integritet här; riksdagens protokoll är
+            offentliga. Det handlar om kostnad och drift. Den här sajten läser in
+            nya anföranden varje vecka och bygger om analysen på hela korpusen.
+            Att skicka varje anförande till ett API i det tempot kostar pengar
+            som växer med materialet, och lägger till ett externt beroende och en
+            nätverksrunda för en uppgift som annars kör på en enda maskin. En
+            modell som ligger några procentenheter under men kör gratis är då
+            rätt val: skillnaden är inte värd priset.
           </p>
           <p>
             En sak till talar för den lilla modellen, som tabellen inte visar:
@@ -172,8 +173,8 @@ export default function RiktmarkePage() {
             aldrig de här talarna.
           </p>
           <p>
-            Skulle uppgiften i stället vara enstaka, eller kräva högsta möjliga
-            träffsäkerhet, är API-anropet rätt val.
+            Ska du bara klassificera enstaka texter, eller väger träffsäkerheten
+            tyngre än kostnaden, då är API-anropet rätt val.
           </p>
           <p className="text-sm text-ink-3">
             Systerstudien vänder på instrumentet: där är LLM:erna författare och

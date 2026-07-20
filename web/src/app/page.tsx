@@ -90,12 +90,12 @@ export default function Home() {
 
             <ProtokollMarker n={2} name="TRÄNADES" />
             <p className="mt-4 mb-10 text-ink-2">
-              En KB-BERT-modell finjusterades en gång på anföranden från 2015 och
-              framåt. Den tränas inte om varje vecka; det som växer vecka för
-              vecka är korpusen den läses mot, inte modellen. Valideringen är{" "}
-              <strong>talar-oberoende</strong>: 15 % av politikerna hölls helt
-              utanför träningen, så resultatet mäter generalisering till personer
-              modellen aldrig sett, inte igenkänning av bekanta röster.
+              Modellen finjusterades en gång, på anföranden från 2015 och framåt.
+              Den tränas alltså inte om vecka för vecka; det är korpusen som
+              växer, inte modellen. Valideringen är <strong>talar-oberoende</strong>:
+              15 % av politikerna hölls helt utanför träningen, så siffran mäter
+              om modellen fångar ett partis sätt att argumentera, inte om den
+              känner igen enskilda talare.
             </p>
 
             <ProtokollMarker n={3} name="AVSLÖJAR" />
