@@ -29,6 +29,7 @@ from llm_language_profile import (
     OPENROUTER_KEY,
     OPENROUTER_URL,
     PARTIES,
+    _tokenizer,  # KB-BERT tokenizer, for the shared 512-token window
     classify,  # KB-BERT, in-process
 )
 
@@ -48,7 +49,13 @@ BENCH_MODELS: list[str] = [
 
 N_PER_PARTY = 40
 SEED = 13
-MAX_CHARS = 2000  # ~KB-BERT's full 512-token window, so it is not handicapped
+def _kb_window(text: str) -> str:
+    """The exact text KB-BERT sees: the speech truncated to its 512-token window,
+    decoded back to words. Every model (KB-BERT and the LLMs) is fed this, so no
+    model gets more of the speech than the 110M model can physically read. Fair
+    same-evidence comparison rather than handing the LLMs extra context."""
+    ids = _tokenizer(text, truncation=True, max_length=512, add_special_tokens=False)["input_ids"]
+    return _tokenizer.decode(ids, skip_special_tokens=True)
 
 # The frozen speaker-independent split from training (146 held-out speakers,
 # next to the model). Testing on their 2015-2026 speeches is the fair test:
@@ -86,7 +93,7 @@ def sample_speeches(n_per_party: int = N_PER_PARTY, seed: int = SEED) -> pd.Data
         for _, g in df.groupby("party")
     ]
     out = pd.concat(parts).sample(frac=1, random_state=seed).reset_index(drop=True)
-    out["text"] = out["text"].str.slice(0, MAX_CHARS)
+    out["text"] = out["text"].apply(_kb_window)
     return out
 
 

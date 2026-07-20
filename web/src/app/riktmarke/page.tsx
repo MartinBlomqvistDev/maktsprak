@@ -14,16 +14,16 @@ const LLM_URL = "https://maktsprak.se/llm";
 // clean: 0.559 on held-out speakers vs 0.995 on training speakers. Same 2000-char
 // input for everyone. LLM cost from actual tokens via OpenRouter.
 const ROWS: { name: string; acc: number; f1: number; cost: number; local?: boolean }[] = [
-  { name: "GPT-5.5", acc: 0.709, f1: 0.704, cost: 2.96 },
-  { name: "Claude Opus 4.8", acc: 0.681, f1: 0.678, cost: 4.41 },
-  { name: "Gemini 3.1 Pro", acc: 0.654, f1: 0.66, cost: 3.44 },
-  { name: "DeepSeek V4 Pro", acc: 0.628, f1: 0.634, cost: 0.29 },
-  { name: "Grok 4.3", acc: 0.616, f1: 0.615, cost: 0.91 },
-  { name: "Qwen 3.6 Plus", acc: 0.609, f1: 0.618, cost: 0.2 },
-  { name: "KB-BERT (110M, lokal)", acc: 0.559, f1: 0.563, cost: 0, local: true },
+  { name: "GPT-5.5", acc: 0.762, f1: 0.76, cost: 3.73 },
+  { name: "Claude Opus 4.8", acc: 0.719, f1: 0.718, cost: 5.62 },
+  { name: "Gemini 3.1 Pro", acc: 0.677, f1: 0.679, cost: 3.76 },
+  { name: "DeepSeek V4 Pro", acc: 0.659, f1: 0.664, cost: 0.37 },
+  { name: "Grok 4.3", acc: 0.656, f1: 0.657, cost: 1.09 },
+  { name: "Qwen 3.6 Plus", acc: 0.644, f1: 0.654, cost: 0.25 },
+  { name: "KB-BERT (110M, lokal)", acc: 0.591, f1: 0.606, cost: 0, local: true },
 ];
 
-const MAX_ACC = 0.75;
+const MAX_ACC = 0.8;
 
 function pct(v: number): string {
   return v.toFixed(3);
@@ -58,9 +58,11 @@ export default function RiktmarkePage() {
             talare som hölls utanför träningen. Det är modellens eget osedda
             testset, och att det verkligen är osett är kontrollerat: modellen
             träffar rätt på <strong>99,5 %</strong> för talare den tränats på,
-            men <strong>55,9 %</strong> för de här. Den skillnaden är beviset på
-            att det inte läcker. Varje modell fick samma text; KB-BERT kör
-            lokalt, de sex LLM:erna via API med faktisk tokenkostnad uppmätt.
+            men <strong>59,1 %</strong> för de här. Den skillnaden är beviset på
+            att det inte läcker. Alla sju fick exakt samma text, KB-BERT:s eget
+            512-token-fönster: ingen LLM fick mer av anförandet än den lilla
+            modellen fysiskt kan läsa. KB-BERT kör lokalt, de sex LLM:erna via
+            API med faktisk tokenkostnad uppmätt.
           </p>
         </div>
       </section>
@@ -122,7 +124,7 @@ export default function RiktmarkePage() {
         </div>
         <p className="mt-4 text-sm text-ink-3">
           Slumpbaslinje för 8 partier: 0.125. KB-BERT klarade sina 320
-          klassificeringar på 100 sekunder lokalt, utan ett enda API-anrop.
+          klassificeringar på drygt tre minuter lokalt, utan ett enda API-anrop.
         </p>
       </section>
 
@@ -132,16 +134,17 @@ export default function RiktmarkePage() {
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Frontier-modellerna vinner på träffsäkerhet, hela vägen ner. GPT-5.5
-            ligger 15 procentenheter över min modell, och även de billigaste,
+            ligger 17 procentenheter över min modell, och även de billigaste,
             Qwen och DeepSeek, ligger några enheter över. Att bara rapportera min
             egen siffra, eller dölja att den kom sist, vore poänglöst: den kom
             sist, och det är en del av svaret.
           </p>
           <p>
             Men träffsäkerhet är inte det enda man betalar för. Den bästa
-            modellen, GPT-5.5, kostar 3 dollar per tusen klassificeringar och
-            kräver att varje anförande lämnar din infrastruktur. KB-BERT kostar
-            noll, svarar på millisekunder, och texten lämnar aldrig maskinen.
+            modellen, GPT-5.5, kostar nästan fyra dollar per tusen
+            klassificeringar och kräver att varje anförande lämnar din
+            infrastruktur. KB-BERT kostar noll, svarar på millisekunder, och
+            texten lämnar aldrig maskinen.
           </p>
         </div>
       </section>
