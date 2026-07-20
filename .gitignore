@@ -76,3 +76,6 @@ research/out/
 
 # local strategy doc, not public (names outreach targets / career strategy)
 PLAN.md
+
+# never track streamlit secrets or any local streamlit artefact
+.streamlit/

@@ -20,11 +20,11 @@ errors.
 
 ---
 
-## Phase 1 — Re-index the DB (local, free)
+## Phase 1, Re-index the DB (local, free)
 
 Runs on your machine against the cached PDFs in `data/raw/`. No GPU. Expect
-**~2–4 h** (the parser is heavier than before; a big debate protocol takes
-~13 s). The app reads Supabase directly, so it degrades during the run — fine
+**~2-4 h** (the parser is heavier than before; a big debate protocol takes
+~13 s). The app reads Supabase directly, so it degrades during the run, fine
 when there's no traffic. Each protocol is replaced atomically, so a crash just
 means "resume by re-running"; nothing is left corrupt.
 
@@ -33,10 +33,10 @@ means "resume by re-running"; nothing is left corrupt.
 #    speeches_backup_<timestamp>.parquet. Re-run any time:
 .venv/Scripts/python -c "from scripts.reindex_speeches import backup_speeches; backup_speeches()"
 
-# 1. Sanity dry-run — parse, write nothing:
+# 1. Sanity dry-run, parse, write nothing:
 .venv/Scripts/python scripts/reindex_speeches.py --dry-run --limit 5
 
-# 2. Single-protocol live test — proves the delete+insert path:
+# 2. Single-protocol live test, proves the delete+insert path:
 .venv/Scripts/python scripts/reindex_speeches.py --limit 1
 
 # 3. Full re-index from the start of the dataset (backs up first):
@@ -53,7 +53,7 @@ back, or keep it as the record of the old state.
 
 ---
 
-## Phase 2 — Retrain (Colab GPU, ~$1–2, ~1 h)
+## Phase 2, Retrain (Colab GPU, ~$1-2, ~1 h)
 
 Training reads the (now clean) `speeches` table straight from Supabase, so the
 Colab VM only needs the repo + credentials.
@@ -95,7 +95,7 @@ An L4/A10/4090 is plenty for a 110 M-param BERT; you do not need an A100.
 
 ---
 
-## Phase 3 — Benchmark + promote
+## Phase 3, Benchmark + promote
 
 Cell 6 scores the **new checkpoint vs the current live model** on one fixed,
 clean held-out set (accuracy, macro-F1, per-class report, confusion matrices in
@@ -117,7 +117,7 @@ The Cloud Run inference service picks it up on its next model load / redeploy.
 
 ---
 
-## Phase 4 — Refresh the app's Parquet (optional)
+## Phase 4, Refresh the app's Parquet (optional)
 
 `create_historic_database.py` dumps Supabase → Parquet for `PARQUET_URL`. That
 path (`fetch_combined_speeches`) is currently **unused** by the app, so this is

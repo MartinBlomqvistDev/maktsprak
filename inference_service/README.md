@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 ---
 
-# Maktspråk — inference service
+# Maktspråk, inference service
 
 FastAPI wrapper around `MartinBlomqvist/maktsprak_classifier_clean`
 (KB-BERT fine-tuned for Swedish parliamentary party classification).
@@ -17,7 +17,7 @@ Serves the live predict demo at maktsprak.se via the Next.js site's
 
 ## Endpoints
 
-- `POST /predict` — `{"text": "..."}` -> `{"probabilities": {"S": 0.31, ...}}`
-- `GET /health` — liveness check
+- `POST /predict`, `{"text": "..."}` -> `{"probabilities": {"S": 0.31, ...}}`
+- `GET /health`, liveness check
 
 Text sent here is not stored.

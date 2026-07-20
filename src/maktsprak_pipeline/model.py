@@ -55,7 +55,7 @@ def predict_party(
         texts:     List of raw speech strings to classify.
 
     Returns:
-        One dict per input text mapping party abbreviation → probability (0–1).
+        One dict per input text mapping party abbreviation → probability (0-1).
         Party order matches :data:`~config.PARTY_ORDER`.
     """
     device = next(model.parameters()).device
