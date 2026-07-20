@@ -12,8 +12,8 @@ pinned: false
 
 FastAPI wrapper around `MartinBlomqvist/maktsprak_classifier_clean`
 (KB-BERT fine-tuned for Swedish parliamentary party classification).
-Serves the live "Testa modellen" demo at maktsprak.streamlit.app /
-the Vercel site's `/api/predict` proxy. Not a general-purpose API.
+Serves the live predict demo at maktsprak.se via the Next.js site's
+`/api/predict` proxy. Not a general-purpose API.
 
 ## Endpoints
 

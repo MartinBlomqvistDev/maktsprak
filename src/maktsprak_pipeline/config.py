@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
 # Load .env (ignored when real environment variables are already set, e.g.
-# on Streamlit Cloud or in a CI environment).
+# on Cloud Run or in a CI environment).
 # ---------------------------------------------------------------------------
 load_dotenv()
 
@@ -70,7 +70,7 @@ X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_B
 
 # ---------------------------------------------------------------------------
 # Swedish parliamentary parties
-# Single canonical definition, imported by etl, model, and the Streamlit app.
+# Single canonical definition, imported by the ETL, the model, and the site build.
 # ---------------------------------------------------------------------------
 #: All valid Riksdag party abbreviations.
 VALID_PARTIES: frozenset[str] = frozenset({"C", "KD", "L", "M", "MP", "S", "SD", "V"})

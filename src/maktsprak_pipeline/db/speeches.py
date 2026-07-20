@@ -17,18 +17,6 @@ from .client import supabase, supabase_write
 logger = get_logger()
 
 # ---------------------------------------------------------------------------
-# Streamlit cache, applied conditionally so the module works outside Streamlit
-# ---------------------------------------------------------------------------
-try:
-    import streamlit as st
-    from streamlit.runtime.scriptrunner import get_script_run_ctx
-
-    _USE_STREAMLIT: bool = get_script_run_ctx() is not None
-except Exception:
-    _USE_STREAMLIT = False
-
-
-# ---------------------------------------------------------------------------
 # Read operations
 # ---------------------------------------------------------------------------
 
@@ -66,14 +54,7 @@ def fetch_latest_speech_date() -> str | None:
     return resp.data[0]["protocol_date"]
 
 
-if _USE_STREAMLIT:
-
-    @st.cache_data(ttl=3600)
-    def fetch_latest_speech_date_cached() -> str | None:
-        """Streamlit-cached wrapper around :func:`fetch_latest_speech_date`."""
-        return fetch_latest_speech_date()
-else:
-    fetch_latest_speech_date_cached = fetch_latest_speech_date
+fetch_latest_speech_date_cached = fetch_latest_speech_date
 
 
 def fetch_random_speeches(limit: int = 5) -> list[dict[str, Any]]:

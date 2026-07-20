@@ -125,6 +125,9 @@ export default function RiktmarkePage() {
         <p className="mt-4 text-sm text-ink-3">
           Slumpbaslinje för 8 partier: 0.125. KB-BERT klarade sina 320
           klassificeringar på drygt tre minuter lokalt, utan ett enda API-anrop.
+          På sitt fulla testset ligger modellen på 0.628 / 0.619; siffran här är
+          något lägre för att urvalet är balanserat och alla fick samma korta
+          fönster.
         </p>
       </section>
 

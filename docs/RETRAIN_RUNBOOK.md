@@ -113,7 +113,7 @@ AutoTokenizer.from_pretrained(_dir).push_to_hub(
     "MartinBlomqvist/maktsprak_classifier_clean")
 ```
 
-The Streamlit app picks it up on its next model load / redeploy.
+The Cloud Run inference service picks it up on its next model load / redeploy.
 
 ---
 

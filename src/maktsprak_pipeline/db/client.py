@@ -19,36 +19,19 @@ from ..logger import get_logger
 
 logger = get_logger()
 
-# ---------------------------------------------------------------------------
-# Streamlit secret detection
-# ---------------------------------------------------------------------------
-try:
-    import streamlit as st
-    from streamlit.runtime.scriptrunner import get_script_run_ctx
-
-    _USE_STREAMLIT: bool = get_script_run_ctx() is not None
-except Exception:
-    _USE_STREAMLIT = False
-
-
 def _resolve_credentials() -> tuple[str, str, str]:
-    """Return (url, anon_key, service_key) from Streamlit Secrets or env vars.
+    """Return (url, anon_key, service_key) from environment variables.
 
     Raises:
         EnvironmentError: If ``SUPABASE_URL`` or ``SUPABASE_KEY`` are missing.
     """
-    if _USE_STREAMLIT:
-        url = st.secrets["SUPABASE_URL"]
-        anon = st.secrets["SUPABASE_KEY"]
-        service = st.secrets.get("SUPABASE_SERVICE_KEY", anon)
-    else:
-        url = os.environ.get("SUPABASE_URL", "")
-        anon = os.environ.get("SUPABASE_KEY", "")
-        service = os.environ.get("SUPABASE_SERVICE_KEY", anon)
+    url = os.environ.get("SUPABASE_URL", "")
+    anon = os.environ.get("SUPABASE_KEY", "")
+    service = os.environ.get("SUPABASE_SERVICE_KEY", anon)
 
     if not url or not anon:
         raise OSError(
-            "SUPABASE_URL and SUPABASE_KEY must be set in .env or Streamlit Secrets. "
+            "SUPABASE_URL and SUPABASE_KEY must be set in .env. "
             "See .env.example for the full list of required variables."
         )
     return url, anon, service

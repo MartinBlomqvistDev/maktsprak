@@ -38,12 +38,9 @@ data/models/*
 /.env
 
 # ----------------------------------------------------
-# 3. STREAMLIT & CLOUD ARTEFAKTER
+# 3. CLOUD & BUILD ARTEFACTS
 # ----------------------------------------------------
 
-.streamlit/credentials.toml
-.streamlit/secrets.toml
-.streamlit/cache/
 
 # Temporära filer från molntjänster
 tmp/
