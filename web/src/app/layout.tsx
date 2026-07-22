@@ -33,10 +33,30 @@ const fragmentMono = Fragment_Mono({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "En AI-läsning av den svenska riksdagens språk: vad avslöjar retoriken om vem som talar?";
+
 export const metadata: Metadata = {
+  // metadataBase has to be set or Next resolves og:image against localhost, which
+  // silently ships a broken preview to every platform that scrapes the page.
+  metadataBase: new URL("https://maktsprak.se"),
   title: "Maktspråk / Protokollet",
-  description:
-    "En AI-läsning av den svenska riksdagens språk: vad avslöjar retoriken om vem som talar?",
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Maktspråk / Protokollet",
+    description: DESCRIPTION,
+    url: "https://maktsprak.se",
+    siteName: "Maktspråk",
+    locale: "sv_SE",
+    type: "website",
+    images: [{ url: "/og.png", width: 2400, height: 1260, alt: "Maktspråk" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Maktspråk / Protokollet",
+    description: DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
