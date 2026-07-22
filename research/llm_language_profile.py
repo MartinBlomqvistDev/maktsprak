@@ -98,6 +98,14 @@ TOPICS: list[str] = [
 SAMPLES_PER_CELL = 3
 TEMPERATURE = 0.7
 MAX_TOKENS = 400
+# Providers that mandate reasoning bill reasoning tokens against max_tokens, so the
+# visible answer needs a far larger budget there or it comes back cut off mid-word.
+MAX_TOKENS_REASONING = 2000
+# The prompt asks for four to six sentences. Anything materially shorter is a
+# truncation or a refusal, not a usable generation, and must never be cached or
+# scored: a 52-character stub classifies as confidently as a real speech.
+MIN_CHARS = 250
+MAX_ATTEMPTS = 3
 REQUEST_PAUSE_S = 0.5
 
 PARTIES = ["C", "KD", "L", "M", "MP", "S", "SD", "V"]
@@ -222,7 +230,11 @@ def _openrouter(model: str, prompt: str) -> str:
         timeout=120,
     )
     if resp.status_code == 400 and "reasoning" in resp.text.lower():
+        # This provider mandates reasoning. Dropping the flag alone is not enough:
+        # reasoning then draws from the same max_tokens budget and leaves only a
+        # dozen visible tokens, so raise the ceiling for the retry as well.
         body.pop("reasoning")
+        body["max_tokens"] = MAX_TOKENS_REASONING
         resp = requests.post(
             OPENROUTER_URL,
             headers={"Authorization": f"Bearer {OPENROUTER_KEY}"},
@@ -280,10 +292,25 @@ def generate_all(models=MODELS, topics=TOPICS) -> pd.DataFrame:
             if PROVIDER is None:
                 break
             prompt = (speech_prompt if kind == "speech" else neutral_prompt)(topic)
-            try:
-                text = _call(model, prompt)
-            except Exception as exc:  # a single failed call must not lose the batch
-                print(f"  [{i}/{len(todo)}] {model} / {topic} / {kind}: FAILED {exc}")
+            text = ""
+            for attempt in range(1, MAX_ATTEMPTS + 1):
+                try:
+                    text = _call(model, prompt)
+                except Exception as exc:  # a single failed call must not lose the batch
+                    print(f"  [{i}/{len(todo)}] {model} / {topic} / {kind}: FAILED {exc}")
+                    text = ""
+                if len(text) >= MIN_CHARS:
+                    break
+                print(
+                    f"  [{i}/{len(todo)}] {model} / {topic} / {kind}: "
+                    f"{len(text)} chars < {MIN_CHARS}, attempt {attempt}/{MAX_ATTEMPTS}"
+                )
+                text = ""
+                time.sleep(REQUEST_PAUSE_S)
+            if not text:
+                # Discarded, not cached: a short generation is a truncation, and
+                # caching it would silently poison the profile for this model.
+                print(f"  [{i}/{len(todo)}] {model} / {topic} / {kind}: DISCARDED")
                 continue
             row = {
                 "model": model,
@@ -311,25 +338,60 @@ def generate_all(models=MODELS, topics=TOPICS) -> pd.DataFrame:
 
 
 # %%
-def calibrate(n_per_party: int = 60, seed: int = 13) -> pd.DataFrame:
-    df = pd.read_parquet(CORPUS_PATH, columns=["protocol_date", "party", "text"])
-    df["year"] = pd.to_datetime(df["protocol_date"], errors="coerce").dt.year
-    unseen = df[(df["year"] <= 2014) & df["text"].notna() & (df["party"].isin(PARTIES))]
-    sample = (
-        unseen.groupby("party", group_keys=False)
-        .apply(lambda g: g.sample(min(n_per_party, len(g)), random_state=seed))
-        .reset_index(drop=True)
+def _normalise_speaker(name: str) -> str:
+    """Drop leading title words ("Ålderspresident ANDERS BJÖRCK") so the name
+    matches the form persisted in val_speakers.json."""
+    parts = str(name).strip().split()
+    while parts and not parts[0].isupper():
+        parts = parts[1:]
+    return " ".join(parts).upper()
+
+
+def _score(sample: pd.DataFrame) -> float:
+    correct = sum(
+        max(classify(row.text[:2000]).items(), key=lambda kv: kv[1])[0] == row.party
+        for row in sample.itertuples()
     )
-    preds, correct = [], 0
-    for row in sample.itertuples():
-        dist = classify(row.text[:2000])
-        pred = max(dist, key=dist.get)
-        preds.append(pred)
-        correct += pred == row.party
-    sample["pred"] = preds
-    acc = correct / len(sample)
-    print(f"Calibration on {len(sample)} unseen 2002-2014 speeches: argmax accuracy {acc:.1%}")
-    return sample
+    return correct / len(sample)
+
+
+def calibrate(n_per_party: int = 60, seed: int = 13) -> dict[str, float]:
+    """Score the instrument on two different held-out populations.
+
+    Reporting only the 2002-2014 number understates the instrument: that set is
+    two decades of vocabulary drift away, so it measures drift as much as skill.
+    The models here write *contemporary* text, so the number that matters is the
+    in-era one: speakers held out of training entirely, 2015 onward.
+
+    Returns:
+        Argmax accuracy for each population, keyed ``in_era`` and ``out_of_era``.
+    """
+    df = pd.read_parquet(CORPUS_PATH, columns=["protocol_date", "speaker", "party", "text"])
+    df["year"] = pd.to_datetime(df["protocol_date"], errors="coerce").dt.year
+    df = df[df["text"].notna() & df["party"].isin(PARTIES)]
+
+    def balanced(frame: pd.DataFrame) -> pd.DataFrame:
+        return frame.groupby("party", group_keys=False).apply(
+            lambda g: g.sample(min(n_per_party, len(g)), random_state=seed)
+        )
+
+    val_path = Path(CLASSIFIER_PATH) / "val_speakers.json"
+    held_out = set(json.loads(val_path.read_text(encoding="utf-8")))
+    df["_speaker"] = df["speaker"].map(_normalise_speaker)
+
+    in_era = balanced(df[(df["year"] >= 2015) & df["_speaker"].isin(held_out)])
+    out_of_era = balanced(df[df["year"] <= 2014])
+
+    scores = {"in_era": _score(in_era), "out_of_era": _score(out_of_era)}
+    print(
+        f"Calibration, held-out speakers 2015+ ({len(in_era)} balanced): "
+        f"argmax accuracy {scores['in_era']:.1%}"
+    )
+    print(
+        f"Calibration, unseen 2002-2014 ({len(out_of_era)} balanced): "
+        f"argmax accuracy {scores['out_of_era']:.1%} (drift, not skill)"
+    )
+    return scores
 
 
 # %% [markdown]
@@ -344,6 +406,17 @@ def calibrate(n_per_party: int = 60, seed: int = 13) -> pd.DataFrame:
 
 # %%
 def reference_distribution(n_per_party: int = 80, seed: int = 21) -> np.ndarray:
+    """Mean classifier output on party-balanced real speech: the instrument's own tilt.
+
+    The sample is drawn from the whole corpus, which mixes speakers the model
+    trained on with held-out ones. Restricting it to held-out speakers from 2015
+    onward is arguably stricter, so that was measured rather than assumed: the
+    baseline moves by at most 0.031 (on M), every other party by under 0.02, and
+    the conclusions are identical (still 12 of 14 leaning M, still none above
+    baseline on V or C). The looser sample is kept because it is the larger and
+    more representative one; see research/out/baseline_heldout.json for the
+    comparison.
+    """
     df = pd.read_parquet(CORPUS_PATH, columns=["party", "text"])
     df = df[df["text"].notna() & df["party"].isin(PARTIES)]
     balanced = df.groupby("party", group_keys=False).apply(
@@ -365,7 +438,10 @@ def reference_distribution(n_per_party: int = 80, seed: int = 21) -> np.ndarray:
 
 # %%
 def build_profiles(gens: pd.DataFrame, reference: np.ndarray, kind: str = "speech") -> pd.DataFrame:
-    sub = gens[(gens["kind"] == kind) & gens["text"].str.len().gt(20)].copy()
+    # Same floor as generation. A 20-char floor is not a guard: it happily admits
+    # truncated stubs, which classify as confidently as a real speech and silently
+    # skew the model's profile.
+    sub = gens[(gens["kind"] == kind) & gens["text"].str.len().ge(MIN_CHARS)].copy()
     if sub.empty:
         return pd.DataFrame()
     sub["vec"] = [as_vector(classify(t[:2000])) for t in sub["text"]]
