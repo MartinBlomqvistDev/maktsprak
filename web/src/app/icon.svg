@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Maktspråk">
+  <!--
+    Serif M struck through with the blue pencil rule. Colours are the site's own
+    tokens from globals.css, not approximations: paper #e9e6db, ink #211d18,
+    accent #2451a4, with the dark-mode trio from the same file.
+
+    The M is drawn as paths rather than <text>: an SVG favicon cannot rely on a
+    webfont, and system serifs differ enough per platform that the mark would
+    not be the same mark twice.
+  -->
+  <style>
+    :root {
+      --paper: #e9e6db;
+      --ink: #211d18;
+      --accent: #2451a4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #17140f;
+        --ink: #ece7da;
+        --accent: #7fa8e0;
+      }
+    }
+  </style>
+
+  <rect width="64" height="64" fill="var(--paper)" />
+
+  <g fill="var(--ink)">
+    <!-- stems -->
+    <rect x="14" y="12" width="7" height="30" />
+    <rect x="43" y="12" width="7" height="30" />
+    <!-- slab serifs, top and bottom of each stem -->
+    <rect x="11" y="12" width="13" height="3.5" />
+    <rect x="40" y="12" width="13" height="3.5" />
+    <rect x="11" y="38.5" width="13" height="3.5" />
+    <rect x="40" y="38.5" width="13" height="3.5" />
+    <!-- the V between the stems -->
+    <path d="M21 12 H28 L32 28 L36 12 H43 L35.5 40 H28.5 Z" />
+  </g>
+
+  <!-- the blue pencil rule -->
+  <rect x="11" y="47" width="42" height="3.5" fill="var(--accent)" />
+</svg>
