@@ -3,10 +3,31 @@ import { LlmHeatmap } from "@/components/LlmHeatmap";
 import { ProtokollMarker } from "@/components/ProtokollMarker";
 import { NEUTRAL, SPEECH, STUDY_META } from "@/lib/llm-study";
 
+const LLM_TITLE = "Vilket parti skriver språkmodellerna som? · Maktspråk / Protokollet";
+const LLM_DESCRIPTION =
+  "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Tolv av fjorton skriver mest som Moderaterna, ingen som Vänsterpartiet.";
+
 export const metadata: Metadata = {
-  title: "Vilket parti skriver språkmodellerna som? · Maktspråk / Protokollet",
-  description:
-    "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Tolv av fjorton skriver mest som Moderaterna, ingen som Vänsterpartiet.",
+  title: LLM_TITLE,
+  description: LLM_DESCRIPTION,
+  // Set explicitly: openGraph does not inherit a page's own title/description from
+  // the root layout, so without this the shared card falls back to the site-level
+  // copy and loses the finding.
+  openGraph: {
+    title: LLM_TITLE,
+    description: LLM_DESCRIPTION,
+    url: "https://maktsprak.se/llm",
+    siteName: "Maktspråk",
+    locale: "sv_SE",
+    type: "article",
+    images: [{ url: "/og.png", width: 2400, height: 1260, alt: "Maktspråk" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: LLM_TITLE,
+    description: LLM_DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 const NORDAN_URL = "https://www.nordan.ai/research/which-swedish-party-do-llms-vote-for";
@@ -59,7 +80,7 @@ export default function LlmPage() {
           <p>
             Inget parti nämns och ingen riktning antyds. Varje svar
             klassificerades sedan av samma KB-BERT-modell som driver den här
-            sajten. Totalt {STUDY_META.generations} texter, under tjugo kronor
+            sajten. Totalt {STUDY_META.generations} texter, ett trettiotal kronor
             i API-kostnad.
           </p>
         </div>
@@ -74,11 +95,12 @@ export default function LlmPage() {
             klassificeraren har egna böjelser. Tre kontroller hanterar det.
           </p>
           <p>
-            <strong>Kalibrering.</strong> Klassificeraren är tränad på
-            2015-2026. Anföranden från 2002-2014 har den aldrig sett. På{" "}
-            {STUDY_META.calibrationN} sådana träffar den rätt parti i 47,5
-            procent av fallen, mot 12,5 för slumpen. Instrumentet mäter något
-            verkligt även utanför sin träningsdata.
+            <strong>Kalibrering.</strong> Femton procent av politikerna hölls
+            helt utanför träningen. På {STUDY_META.calibrationN}{" "}
+            partibalanserade anföranden från just de talarna träffar
+            klassificeraren rätt parti i 59,2 procent av fallen, mot 12,5 för
+            slumpen. Instrumentet mäter alltså något verkligt på text det aldrig
+            sett.
           </p>
           <p>
             <strong>Baslinje.</strong> På en partibalanserad mängd verkliga
@@ -114,7 +136,7 @@ export default function LlmPage() {
           <p>
             Två saker står ut. <strong>Tolv av fjorton modeller skriver mer som
             Moderaterna</strong> än baslinjen, från Claude Opus 4.8 (+0.42) och
-            DeepSeek V4 Pro (+0.33) och nedåt. Och <strong>inte en enda av de
+            DeepSeek V4 Pro (+0.34) och nedåt. Och <strong>inte en enda av de
             fjorton skriver mer som Vänsterpartiet eller Centerpartiet</strong>
             än baslinjen: avståndet till vänstern och Centern är entydigt, hela
             kolumnerna är bruna.
@@ -122,15 +144,16 @@ export default function LlmPage() {
           <p>
             De största modellerna drar hårdast. Claude Opus 4.8 lägger 63
             procent av sin sannolikhetsmassa på Moderaterna, mot baslinjens 21.
-            DeepSeek ligger på 53.
+            DeepSeek ligger på 55.
           </p>
           <p>
             Två modeller bryter M-mönstret. Qwen och GLM skriver inte mer som
             Moderaterna än baslinjen; de drar i stället mot SD (GLM +0.28, Qwen
-            +0.25). Och Googles Gemini-modeller är de enda som drar mot
-            Liberalerna (Gemini 3.5 Flash +0.11, 3.1 Pro +0.07): de föreställer
-            sig en riksdagstalare som liberal snarare än moderat. Varför vet jag
-            inte.
+            +0.25). Räknat över alla åtta partierna drar tolv modeller mot M, sex
+            mot SD, sex mot S, sex mot MP, tre mot KD och en enda mot L (Grok 4.3
+            på +0.02, vilket är brus). Mot <strong>Vänsterpartiet och
+            Centerpartiet drar ingen alls</strong>: de är de enda partier som
+            inte en enda modell hamnar över baslinjen på.
           </p>
         </div>
       </section>
@@ -182,11 +205,11 @@ export default function LlmPage() {
             svensk riksdagstalare låter föreställningen som Moderaterna.
           </p>
           <p>
-            Mätningen är också liten: 22 till 24 anföranden per modell, en
-            promptfamilj, en klassificerare. Rätt sätt att läsa den är som en
-            första mätpunkt med öppen metod, inte som en dom. Koden, alla{" "}
+            Mätningen är också liten: 24 anföranden per modell, en promptfamilj,
+            en klassificerare. Rätt sätt att läsa den är som en första mätpunkt
+            med öppen metod, inte som en dom. Koden, alla{" "}
             {STUDY_META.generations} texterna och alla siffror finns öppet,
-            så den som vill kan göra om mätningen. Eller göra sönder den.
+            så den som vill kan göra om mätningen. Eller motbevisa den.
           </p>
         </div>
       </section>

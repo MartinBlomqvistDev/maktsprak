@@ -58,10 +58,10 @@ export default function MetodPage() {
           </p>
           <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-4">
             {[
-              ["Träningstalare", "821"],
-              ["Testtalare", "146"],
-              ["Träningsrader", "31 572"],
-              ["Testrader", "5 713"],
+              ["Undanhållna talare", "146"],
+              ["Andel av talarna", "15 %"],
+              ["Träningsperiod", "2015-2026"],
+              ["Anföranden i korpus", "75 148"],
             ].map(([label, value]) => (
               <div key={label} className="bg-card px-4 py-3">
                 <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">

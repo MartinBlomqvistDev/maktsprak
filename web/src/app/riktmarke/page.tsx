@@ -11,7 +11,7 @@ const LLM_URL = "https://maktsprak.se/llm";
 
 // Benchmark 2026-07-20: the DEPLOYED classifier vs six frontier LLMs on 320
 // speeches (2015-2026) by the 146 speakers held out of training. Split verified
-// clean: 0.559 on held-out speakers vs 0.995 on training speakers. Same 2000-char
+// clean: 0.591 on held-out speakers vs 0.995 on training speakers. Same 2000-char
 // input for everyone. LLM cost from actual tokens via OpenRouter.
 const ROWS: { name: string; acc: number; f1: number; cost: number; local?: boolean }[] = [
   { name: "GPT-5.5", acc: 0.762, f1: 0.76, cost: 3.73 },
@@ -125,9 +125,12 @@ export default function RiktmarkePage() {
         <p className="mt-4 text-sm text-ink-3">
           Slumpbaslinje för 8 partier: 0.125. KB-BERT klarade sina 320
           klassificeringar på drygt tre minuter lokalt, utan ett enda API-anrop.
-          På sitt fulla testset ligger modellen på 0.628 / 0.619; siffran här är
-          något lägre för att urvalet är balanserat och alla fick samma korta
-          fönster.
+          På sitt fulla testset ligger modellen på 0.628 i träffsäkerhet och
+          0.619 i macro-F1; siffrorna här är något lägre för att urvalet är
+          balanserat och alla fick samma korta fönster. Två modeller lämnade
+          enstaka svar som inte gick att tolka: Gemini fyra stycken, DeepSeek
+          tre, av sina 320 vardera. De räknas inte som fel utan är uteslutna ur
+          modellens nämnare, och därför står de på 316 respektive 317 svar.
         </p>
       </section>
 
