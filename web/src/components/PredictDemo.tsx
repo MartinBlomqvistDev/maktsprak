@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PredictionBars } from "./PredictionBars";
 
 type Status = "idle" | "loading" | "done" | "not-connected" | "error";
@@ -8,16 +8,33 @@ type Status = "idle" | "loading" | "done" | "not-connected" | "error";
 const PLACEHOLDER =
   "Klistra in ett citat, ett pressmeddelande eller en riksdagsreplik…";
 
+// The inference service scales to zero, so the first call after an idle spell
+// pays for a cold start: measured at 26 seconds against 0.2 warm. Without a word
+// of explanation that reads as a page that has hung, so the hint appears once the
+// wait is longer than a warm call could possibly be.
+const COLD_START_HINT_MS = 3500;
+
 export function PredictDemo() {
   const [text, setText] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [warmingUp, setWarmingUp] = useState(false);
   const [probs, setProbs] = useState<Partial<Record<string, number>> | null>(
     null
+  );
+  const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (hintTimer.current) clearTimeout(hintTimer.current);
+    },
+    []
   );
 
   async function handleSubmit() {
     if (!text.trim()) return;
     setStatus("loading");
+    setWarmingUp(false);
+    hintTimer.current = setTimeout(() => setWarmingUp(true), COLD_START_HINT_MS);
     try {
       const res = await fetch("/api/predict", {
         method: "POST",
@@ -37,6 +54,9 @@ export function PredictDemo() {
       setStatus("done");
     } catch {
       setStatus("error");
+    } finally {
+      if (hintTimer.current) clearTimeout(hintTimer.current);
+      setWarmingUp(false);
     }
   }
 
@@ -69,6 +89,14 @@ export function PredictDemo() {
           {status === "loading" ? "Analyserar…" : "Avkoda"}
         </button>
       </div>
+
+      {status === "loading" && warmingUp && (
+        <p className="mt-3 text-xs text-ink-3" aria-live="polite">
+          Modellen körs på en tjänst som stängs av när ingen använder den, så
+          första analysen väcker den. Det tar en halv minut. Nästa svar kommer
+          direkt.
+        </p>
+      )}
 
       {status === "done" && probs && (
         <div className="mt-6 border-t border-line pt-5">

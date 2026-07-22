@@ -1,0 +1,58 @@
+name: Keep inference warm
+
+# The inference service scales to zero, so the first prediction after an idle
+# spell pays a cold start: measured at 26 seconds against 0.2 warm. This knocks on
+# the door through the site's own proxy during Swedish waking hours, so a visitor
+# is unlikely to be the one who wakes it.
+#
+# Deliberately goes via maktsprak.se rather than the Cloud Run URL directly: that
+# URL is only known to the Vercel environment, and putting it in a public workflow
+# would expose /predict to anyone who reads this file.
+#
+# Cost is negligible. Each ping is one short prediction, and Cloud Run's always-free
+# tier is 2M requests and 180,000 vCPU-seconds a month; this uses a few thousand
+# requests and on the order of 20 vCPU-minutes.
+
+on:
+  schedule:
+    # Every 5 minutes, around the clock. Five is GitHub's shortest allowed interval.
+    #
+    # Round the clock rather than office hours, for three reasons: GitHub's scheduler
+    # is best effort and routinely runs late or skips under load, so a narrow window
+    # can be missed entirely; readers arrive from other timezones, and a post can
+    # circulate at any hour; and a 24h schedule has no UTC-to-local window to get
+    # wrong and no daylight-saving edge to maintain twice a year.
+    #
+    # Still comfortably free: ~8,600 requests a month against Cloud Run's 2M free
+    # tier, and roughly 2,600 vCPU-seconds against 180,000. Public repos get
+    # unlimited Actions minutes.
+    #
+    # It remains probabilistic, not a guarantee. The cold-start hint in PredictDemo
+    # is the safety net for the times GitHub does not deliver.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+# Never let two pings overlap, and never queue them up behind a slow cold start.
+concurrency:
+  group: keep-warm
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Warm the model
+        run: |
+          start=$(date +%s)
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 90 \
+            -X POST https://maktsprak.se/api/predict \
+            -H 'Content-Type: application/json' \
+            -d '{"text":"Uppvärmning av inferenstjänsten."}')
+          echo "predict -> HTTP $code in $(( $(date +%s) - start ))s"
+          # A cold start can outrun the timeout, and the site being briefly
+          # unreachable is not something to wake anyone over. Warn, do not fail:
+          # a red X on this workflow would be noise, not signal.
+          if [ "$code" != "200" ]; then
+            echo "::warning::keep-warm got HTTP $code"
+          fi

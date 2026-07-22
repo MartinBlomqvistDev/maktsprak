@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
 /**
- * Proxies to the FastAPI inference service (Phase 2 of the rebuild, a
- * `POST /predict` endpoint hosted on Hugging Face Spaces). Until that
- * service exists, this returns a clear, typed "not yet connected" response
- * rather than a fabricated prediction, the UI is designed to show this
- * state gracefully instead of erroring.
+ * Proxies to the FastAPI inference service, a `POST /predict` endpoint on Cloud
+ * Run. The upstream URL stays in the server environment and is never sent to the
+ * browser, so the service is only reachable through this route. Without the env
+ * var set this returns a typed "not yet connected" response rather than a
+ * fabricated prediction; the UI shows that state gracefully instead of erroring.
  */
 export async function POST(request: Request) {
   const inferenceUrl = process.env.INFERENCE_SERVICE_URL;
