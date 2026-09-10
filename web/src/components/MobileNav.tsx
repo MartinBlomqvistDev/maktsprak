@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface NavItem {
   href: string;
@@ -13,17 +13,13 @@ interface NavItem {
  * The navigation for viewports below `md`, where the inline nav is hidden.
  *
  * Client-side because the panel needs open state; the desktop nav stays a
- * server component. Closes on navigation, since Next keeps the layout mounted
- * across route changes and the panel would otherwise stay open over the new
- * page.
+ * server component. Each link closes the panel on click, since Next keeps the
+ * layout mounted across route changes and it would otherwise stay open over the
+ * new page.
  */
 export function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <div className="md:hidden">
@@ -47,6 +43,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
               key={item.href}
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
+              onClick={() => setOpen(false)}
               className="font-data block border-b border-line py-3.5 text-[11px] uppercase tracking-widest text-ink-2 transition-colors last:border-b-0 hover:text-accent aria-[current=page]:text-accent"
             >
               {item.label}
