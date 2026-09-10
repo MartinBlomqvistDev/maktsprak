@@ -240,3 +240,19 @@ body::before {
 }
 :root[data-theme="dark"] .redacted { background-color: var(--ink-3); }
 :root[data-theme="light"] .redacted { background-color: var(--ink); }
+
+/* Every page's <main> is `mx-auto max-w-3xl`, and `body` is a flex column. Auto
+   margins on the cross axis suppress flex stretching, so <main> was sized to its
+   own content instead of to the viewport: the LLM heatmap's `min-w-[640px]` grid
+   made it 688px wide on a 375px phone, and the whole page scrolled sideways
+   rather than the heatmap scrolling inside its own box. Width 100% restores the
+   stretch; `max-w-3xl` still caps it and the auto margins still centre it on
+   wider screens. `min-width: 0` keeps any future wide child scrolling in its own
+   container rather than pushing its parent open. */
+body > * {
+  min-width: 0;
+}
+
+body > main {
+  width: 100%;
+}

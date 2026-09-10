@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNav } from "./MobileNav";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
@@ -34,7 +35,10 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <ThemeToggle />
+        <div className="flex items-center gap-2.5">
+          <ThemeToggle />
+          <MobileNav items={NAV} />
+        </div>
       </div>
     </header>
   );
