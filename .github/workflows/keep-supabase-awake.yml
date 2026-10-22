@@ -1,0 +1,35 @@
+name: Keep Supabase awake
+
+# Supabase pauses a free project after seven days without enough activity, and
+# the homepage reads the speech count from it live. One small read a day keeps
+# the project counted as active. The anon key is read-only by row-level
+# security, and it lives in repository secrets so it never appears in this
+# public file.
+
+on:
+  schedule:
+    # Once a day. Off the hour, since GitHub's scheduler is busiest on it.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read one row
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 \
+            "$SUPABASE_URL/rest/v1/speeches?select=id&limit=1" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" || echo "000")
+          echo "supabase -> HTTP $code"
+          # Unlike keep-warm, a failure here matters: a paused project takes the
+          # homepage count with it. Fail loudly so the red X is a signal.
+          if [ "$code" != "200" ]; then
+            echo "::error::Supabase read returned HTTP $code"
+            exit 1
+          fi
