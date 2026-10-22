@@ -35,7 +35,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Växla mellan ljust och mörkt tema"
-      className="font-data flex items-center gap-2 rounded-full border border-line-2 px-3 py-1.5 text-[11px] uppercase tracking-widest text-ink-2 transition-colors hover:border-accent hover:text-accent"
+      className="label flex items-center gap-2 rounded-full border border-line-2 px-3 py-1.5 text-ink-2 transition-colors hover:border-accent hover:text-accent"
     >
       <span
         className="h-1.5 w-1.5 rounded-full bg-accent"

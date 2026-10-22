@@ -25,7 +25,7 @@ function fmt(v: number): string {
 export function LlmHeatmap({ rows, label }: { rows: ModelProfile[]; label: string }) {
   return (
     <figure>
-      <figcaption className="font-data mb-3 text-[11px] uppercase tracking-widest text-ink-3">
+      <figcaption className="label mb-3 text-ink-3">
         {label}
       </figcaption>
 
@@ -39,7 +39,7 @@ export function LlmHeatmap({ rows, label }: { rows: ModelProfile[]; label: strin
           {PARTY_ORDER.map((p) => (
             <div
               key={p.code}
-              className="font-data flex items-center justify-center gap-1.5 bg-card py-2 text-[11px] uppercase tracking-wider text-ink-2"
+              className="label flex items-center justify-center gap-1.5 bg-card py-2 text-ink-2"
             >
               <span
                 className="h-2 w-2 rounded-[2px]"
@@ -76,7 +76,7 @@ export function LlmHeatmap({ rows, label }: { rows: ModelProfile[]; label: strin
 
       {/* scale legend */}
       <div className="mt-3 flex items-center gap-3">
-        <span className="font-data text-[10px] uppercase tracking-widest text-ink-3">
+        <span className="label text-ink-3">
           Mindre än baslinjen
         </span>
         <span
@@ -87,7 +87,7 @@ export function LlmHeatmap({ rows, label }: { rows: ModelProfile[]; label: strin
           }}
           aria-hidden
         />
-        <span className="font-data text-[10px] uppercase tracking-widest text-ink-3">Mer</span>
+        <span className="label text-ink-3">Mer</span>
       </div>
     </figure>
   );

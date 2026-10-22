@@ -28,7 +28,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="mobile-nav"
-        className="font-data flex items-center gap-2 rounded-full border border-line-2 px-3 py-1.5 text-[11px] uppercase tracking-widest text-ink-2 transition-colors hover:border-accent hover:text-accent"
+        className="label flex items-center gap-2 rounded-full border border-line-2 px-3 py-1.5 text-ink-2 transition-colors hover:border-accent hover:text-accent"
       >
         {open ? "Stäng" : "Meny"}
       </button>
@@ -44,7 +44,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
               onClick={() => setOpen(false)}
-              className="font-data block border-b border-line py-3.5 text-[11px] uppercase tracking-widest text-ink-2 transition-colors last:border-b-0 hover:text-accent aria-[current=page]:text-accent"
+              className="label block border-b border-line py-3.5 text-ink-2 transition-colors last:border-b-0 hover:text-accent aria-[current=page]:text-accent"
             >
               {item.label}
             </Link>

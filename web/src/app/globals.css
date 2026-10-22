@@ -210,6 +210,14 @@ body::before {
   font-family: var(--font-data), ui-monospace, "SF Mono", monospace;
 }
 
+/* Small labels: column heads, kickers, nav. Set in the body face at a readable
+   size in sentence case; the mono face is kept for data and speech markers. */
+.label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
 .tabular {
   font-variant-numeric: tabular-nums;
 }
@@ -218,9 +226,7 @@ body::before {
 .anf-marker {
   font-family: var(--font-data), monospace;
   font-size: 0.8125rem;
-  letter-spacing: 0.02em;
   color: var(--ink-3);
-  text-transform: uppercase;
 }
 .anf-marker b {
   color: var(--ink-2);

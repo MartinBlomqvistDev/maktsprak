@@ -63,9 +63,9 @@ export function PredictDemo() {
   return (
     <div className="rounded-card border border-line bg-card p-5 sm:p-6">
       <div className="anf-marker mb-4">
-        <span className="tabular">ANF. LIVE</span>
+        <span className="tabular">Anf. live</span>
         <span className="text-line-2">·</span>
-        <b>TESTA MODELLEN</b>
+        <b>Testa modellen</b>
         <span className="h-px flex-1 bg-line" aria-hidden="true" />
       </div>
 
@@ -84,7 +84,7 @@ export function PredictDemo() {
         <button
           onClick={handleSubmit}
           disabled={status === "loading" || !text.trim()}
-          className="shrink-0 rounded-sm bg-accent px-5 py-2 font-data text-xs uppercase tracking-widest text-accent-ink transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="shrink-0 rounded-sm bg-accent px-5 py-2 label text-accent-ink transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {status === "loading" ? "Analyserar…" : "Avkoda"}
         </button>
@@ -100,7 +100,7 @@ export function PredictDemo() {
 
       {status === "done" && probs && (
         <div className="mt-6 border-t border-line pt-5">
-          <p className="mb-3 font-data text-[11px] uppercase tracking-widest text-ink-3">
+          <p className="mb-3 label text-ink-3">
             Läses som:
           </p>
           <PredictionBars probabilities={probs} />

@@ -11,9 +11,9 @@ export default function MetodPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
-        <span className="tabular">PROT. 2026/27:2</span>
+        <span className="tabular">Prot. 2026/27:2</span>
         <span className="text-line-2">·</span>
-        <span>METOD OCH VALIDERING</span>
+        <span>Metod och validering</span>
       </p>
       <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
         Varför siffran sjönk från 0,78 till 0,62.
@@ -26,7 +26,7 @@ export default function MetodPage() {
 
       {/* ---------------------------------------------------------- THE LEAK */}
       <section className="mt-16">
-        <ProtokollMarker n={1} name="PROBLEMET" />
+        <ProtokollMarker n={1} name="Problemet" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Att gissa parti från text är lätt att överskatta. Om samma
@@ -47,7 +47,7 @@ export default function MetodPage() {
 
       {/* ------------------------------------------------------------- FIX */}
       <section className="mt-14">
-        <ProtokollMarker n={2} name="LÖSNINGEN" />
+        <ProtokollMarker n={2} name="Lösningen" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Nuvarande validering är <strong>talar-oberoende</strong>: alla
@@ -64,7 +64,7 @@ export default function MetodPage() {
               ["Anföranden i korpus", "75 148"],
             ].map(([label, value]) => (
               <div key={label} className="bg-card px-4 py-3">
-                <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
+                <dt className="label text-ink-3">
                   {label}
                 </dt>
                 <dd className="tabular font-display mt-1 text-xl">{value}</dd>
@@ -76,18 +76,18 @@ export default function MetodPage() {
 
       {/* ---------------------------------------------------------- NUMBERS */}
       <section className="mt-14">
-        <ProtokollMarker n={3} name="SIFFRORNA" />
+        <ProtokollMarker n={3} name="Siffrorna" />
         <div className="mt-5 overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-line-2">
-                <th className="py-2.5 pr-4 font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="py-2.5 pr-4 label text-ink-3">
                   Modell
                 </th>
-                <th className="tabular py-2.5 pr-4 text-right font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="tabular py-2.5 pr-4 text-right label text-ink-3">
                   Träffsäkerhet
                 </th>
-                <th className="tabular py-2.5 text-right font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="tabular py-2.5 text-right label text-ink-3">
                   Macro-F1
                 </th>
               </tr>
@@ -138,7 +138,7 @@ export default function MetodPage() {
 
       {/* ----------------------------------------------------------- PARSER */}
       <section className="mt-14">
-        <ProtokollMarker n={4} name="DATAN" />
+        <ProtokollMarker n={4} name="Datan" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Riksdagens protokoll är tvåspaltiga PDF:er. En naiv textextraktion

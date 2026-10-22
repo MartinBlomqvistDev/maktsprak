@@ -37,9 +37,9 @@ export default function UtvecklingPage() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 pb-14 pt-16 sm:pt-20">
           <p className="anf-marker mb-6 !text-ink-3">
-            <span className="tabular">PROT. 2026/27:4</span>
+            <span className="tabular">Prot. 2026/27:4</span>
             <span className="text-line-2">·</span>
-            <span>SPRÅKET ÖVER TID</span>
+            <span>Språket över tid</span>
           </p>
           <h1 className="font-display max-w-3xl text-[2.2rem] leading-[1.1] tracking-tight sm:text-[3rem]">
             Samma kammare, ett nytt språk vartannat år
@@ -56,7 +56,7 @@ export default function UtvecklingPage() {
       {/* --------------------------------------------------------- SLIDER */}
       <section className="border-b border-line bg-paper-2">
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <ProtokollMarker n={1} name="ETT ÅR I TAGET" />
+          <ProtokollMarker n={1} name="Ett år i taget" />
           <p className="mt-4 mb-8 max-w-2xl text-ink-2">
             Dra i reglaget, eller tryck play. För varje år: de ord som är mest
             utmärkande jämfört med alla andra år (samma metod, Fightin&apos;
@@ -70,7 +70,7 @@ export default function UtvecklingPage() {
       {/* ---------------------------------------------------- TRAJECTORIES */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <ProtokollMarker n={2} name="FÖLJ ETT ORD GENOM ÅREN" />
+          <ProtokollMarker n={2} name="Följ ett ord genom åren" />
           <p className="mt-4 mb-8 max-w-2xl text-ink-2">
             Reglaget ovan visar vad som präglade varje år. Här är den andra
             rörelsen: enskilda ord över hela perioden. Vissa slår igenom och
@@ -78,12 +78,12 @@ export default function UtvecklingPage() {
             med mer debatt inte väger tyngre.
           </p>
 
-          <p className="font-data mb-3 flex items-center gap-2 text-[11px] uppercase tracking-widest text-ink-3">
+          <p className="label mb-3 flex items-center gap-2 text-ink-3">
             <span className="h-[3px] w-6 rounded-full bg-accent" /> På väg upp
           </p>
           <TrajectoryGrid terms={RISING_TERMS} direction="up" notes={RISING_NOTES} />
 
-          <p className="font-data mb-3 mt-8 flex items-center gap-2 text-[11px] uppercase tracking-widest text-ink-3">
+          <p className="label mb-3 mt-8 flex items-center gap-2 text-ink-3">
             <span className="h-[3px] w-6 rounded-full bg-crit" /> På väg ut
           </p>
           <TrajectoryGrid terms={FALLING_TERMS} direction="down" notes={FALLING_NOTES} />
@@ -93,7 +93,7 @@ export default function UtvecklingPage() {
       {/* ------------------------------------------------- PARTY MOVEMENT */}
       <section className="border-b border-line bg-paper-2">
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <ProtokollMarker n={3} name="PARTIERNAS RÖRELSE" />
+          <ProtokollMarker n={3} name="Partiernas rörelse" />
           <p className="mt-4 mb-8 max-w-2xl text-ink-2">
             Vem äger en fråga, och har det förändrats? Här är varje partis andel
             av sitt eget tal som handlar om en given fråga, år för år. Välj en
@@ -108,7 +108,7 @@ export default function UtvecklingPage() {
       {/* ----------------------------------------------------- DIVERGENCE */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <ProtokollMarker n={4} name="TALAR PARTIERNA MER LIKA?" />
+          <ProtokollMarker n={4} name="Talar partierna mer lika?" />
           <div className="mt-4 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <DivergenceChart />
             <p className="text-ink-2">

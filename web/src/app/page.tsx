@@ -18,9 +18,9 @@ export default function Home() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
           <p className="anf-marker mb-6 !text-ink-3">
-            <span className="tabular">PROT. 2026/27:1</span>
+            <span className="tabular">Prot. 2026/27:1</span>
             <span className="text-line-2">·</span>
-            <span>SPRÅKANALYS AV RIKSDAGENS PROTOKOLL</span>
+            <span>Språkanalys av riksdagens protokoll</span>
           </p>
 
           <h1 className="font-display max-w-4xl text-[2.4rem] leading-[1.08] tracking-tight sm:text-[3.4rem]">
@@ -53,20 +53,20 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-10">
           <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-end">
             <div>
-              <p className="font-data mb-3 text-[11px] uppercase tracking-widest text-ink-3">
+              <p className="label mb-3 text-ink-3">
                 Åtta partier, ett protokoll
               </p>
               <PartySpectrum />
             </div>
             <dl className="flex gap-8">
               <div>
-                <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
+                <dt className="label text-ink-3">
                   Anföranden
                 </dt>
                 <dd className="tabular font-display text-2xl">{speechCount}</dd>
               </div>
               <div>
-                <dt className="font-data text-[10px] uppercase tracking-widest text-ink-3">
+                <dt className="label text-ink-3">
                   Macro-F1, ohörda talare
                 </dt>
                 <dd className="tabular font-display text-2xl">0.619</dd>
@@ -80,7 +80,7 @@ export default function Home() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="max-w-2xl">
-            <ProtokollMarker n={1} name="EXTRAHERAR" />
+            <ProtokollMarker n={1} name="Extraherar" />
             <p className="mt-4 mb-10 text-ink-2">
               Varje vecka hämtas nya protokoll från Riksdagens öppna API.
               Tvåspaltiga PDF:er läses kolumnvis, sidhuvuden rensas bort och
@@ -88,7 +88,7 @@ export default function Home() {
               talare utan partibeteckning.
             </p>
 
-            <ProtokollMarker n={2} name="TRÄNADES" />
+            <ProtokollMarker n={2} name="Tränades" />
             <p className="mt-4 mb-10 text-ink-2">
               Modellen finjusterades en gång, på anföranden från 2015 och framåt.
               Den tränas alltså inte om vecka för vecka; det är korpusen som
@@ -98,7 +98,7 @@ export default function Home() {
               känner igen enskilda talare.
             </p>
 
-            <ProtokollMarker n={3} name="AVSLÖJAR" />
+            <ProtokollMarker n={3} name="Avslöjar" />
             <p className="mt-4 text-ink-2">
               Resultatet är ett verktyg som läser politisk text och visar
               vilket parti den mest liknar retoriskt, och en öppen

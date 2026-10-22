@@ -21,7 +21,7 @@ export function PartySpectrum({ withLabels = true }: { withLabels?: boolean }) {
         ))}
       </div>
       {withLabels && (
-        <div className="mt-1.5 flex justify-between font-data text-[10px] uppercase tracking-widest text-ink-3">
+        <div className="mt-1.5 flex justify-between label text-ink-3">
           {PARTY_ORDER.map((p) => (
             <span key={p.code}>{p.code}</span>
           ))}

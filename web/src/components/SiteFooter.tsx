@@ -2,7 +2,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-line bg-paper-2">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-8 text-xs text-ink-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-data uppercase tracking-widest">
+        <p className="label">
           Maktspråk / Protokollet
         </p>
         <p>

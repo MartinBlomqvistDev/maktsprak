@@ -36,9 +36,9 @@ export default function RiktmarkePage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
-        <span className="tabular">PROT. 2026/27:5</span>
+        <span className="tabular">Prot. 2026/27:5</span>
         <span className="text-line-2">·</span>
-        <span>MODELLJÄMFÖRELSE</span>
+        <span>Modelljämförelse</span>
       </p>
       <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
         Behövs en egen modell när GPT finns?
@@ -54,7 +54,7 @@ export default function RiktmarkePage() {
 
       {/* ---------------------------------------------------------- SETUP */}
       <section className="mt-16">
-        <ProtokollMarker n={1} name="UPPLÄGGET" />
+        <ProtokollMarker n={1} name="Upplägget" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             320 anföranden med känt parti, 40 per parti, alla hållna av de 146
@@ -72,21 +72,21 @@ export default function RiktmarkePage() {
 
       {/* --------------------------------------------------------- RESULT */}
       <section className="mt-14">
-        <ProtokollMarker n={2} name="RESULTATET" />
+        <ProtokollMarker n={2} name="Resultatet" />
         <div className="mt-5 overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-line-2">
-                <th className="py-2.5 pr-4 font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="py-2.5 pr-4 label text-ink-3">
                   Modell
                 </th>
-                <th className="py-2.5 pr-4 text-right font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="py-2.5 pr-4 text-right label text-ink-3">
                   Träffsäkerhet
                 </th>
-                <th className="py-2.5 pr-4 text-right font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="py-2.5 pr-4 text-right label text-ink-3">
                   Macro-F1
                 </th>
-                <th className="py-2.5 text-right font-data text-[11px] uppercase tracking-widest text-ink-3">
+                <th className="py-2.5 text-right label text-ink-3">
                   Kostnad / 1000
                 </th>
               </tr>
@@ -139,7 +139,7 @@ export default function RiktmarkePage() {
 
       {/* ------------------------------------------------------ HONEST READ */}
       <section className="mt-14">
-        <ProtokollMarker n={3} name="EN ÄRLIG LÄSNING" />
+        <ProtokollMarker n={3} name="En ärlig läsning" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Frontier-modellerna vinner på träffsäkerhet, hela vägen ner. GPT-5.5
@@ -158,7 +158,7 @@ export default function RiktmarkePage() {
 
       {/* -------------------------------------------------------- TRADEOFF */}
       <section className="mt-14">
-        <ProtokollMarker n={4} name="VAD DET FAKTISKT BETYDER" />
+        <ProtokollMarker n={4} name="Vad det faktiskt betyder" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Frågan är inte bara vem som är mest träffsäker, utan vad man byter

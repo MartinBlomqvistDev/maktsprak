@@ -39,9 +39,9 @@ export default function LlmPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
-        <span className="tabular">PROT. 2026/27:6</span>
+        <span className="tabular">Prot. 2026/27:6</span>
         <span className="text-line-2">·</span>
-        <span>SPRÅKMODELLERNA I TALARSTOLEN</span>
+        <span>Språkmodellerna i talarstolen</span>
       </p>
       <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
         Vilket parti skriver språkmodellerna som?
@@ -62,7 +62,7 @@ export default function LlmPage() {
 
       {/* ---------------------------------------------------------- SETUP */}
       <section className="mt-16">
-        <ProtokollMarker n={1} name="UPPLÄGGET" />
+        <ProtokollMarker n={1} name="Upplägget" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Fjorton modeller från tio leverantörer, samma leverantörer som i
@@ -88,7 +88,7 @@ export default function LlmPage() {
 
       {/* ----------------------------------------------------- INSTRUMENT */}
       <section className="mt-14">
-        <ProtokollMarker n={2} name="INSTRUMENTET ÄR INTE NEUTRALT" />
+        <ProtokollMarker n={2} name="Instrumentet är inte neutralt" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             En mätning är inte trovärdigare än sitt instrument, och
@@ -121,7 +121,7 @@ export default function LlmPage() {
 
       {/* --------------------------------------------------------- RESULT */}
       <section className="mt-14">
-        <ProtokollMarker n={3} name="RESULTATET" />
+        <ProtokollMarker n={3} name="Resultatet" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Varje cell visar hur mycket mer eller mindre modellen låter som
@@ -160,7 +160,7 @@ export default function LlmPage() {
 
       {/* -------------------------------------------------------- CONTROL */}
       <section className="mt-14">
-        <ProtokollMarker n={4} name="KONTROLLEN SOM BÄR RESULTATET" />
+        <ProtokollMarker n={4} name="Kontrollen som bär resultatet" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Be samma modeller skriva neutral sakprosa i stället för
@@ -195,7 +195,7 @@ export default function LlmPage() {
 
       {/* -------------------------------------------------------- CAVEATS */}
       <section className="mt-14">
-        <ProtokollMarker n={5} name="VAD DET INTE BETYDER" />
+        <ProtokollMarker n={5} name="Vad det inte betyder" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
             Att skriva som ett parti är inte att tycka som det.
@@ -216,7 +216,7 @@ export default function LlmPage() {
 
       {/* ----------------------------------------------------- DATA / CODE */}
       <section className="mt-14">
-        <ProtokollMarker n={6} name="DATA OCH KOD" />
+        <ProtokollMarker n={6} name="Data och kod" />
         <ul className="mt-5 space-y-3">
           {[
             ["Koden", "research/llm_language_profile.py i repot", REPO_URL],

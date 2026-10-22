@@ -3,7 +3,7 @@ import { partyByCode } from "@/lib/parties";
 interface ProtokollMarkerProps {
   /** Speech number, mirroring the Riksdag's "Anf. N" convention. */
   n: number;
-  /** Speaker name, or a section label like "METOD" / "BENCHMARK". */
+  /** Speaker name, or a section label like "Metod" / "Resultatet". */
   name: string;
   /** Party code, if this marker represents an actual speaker. */
   party?: string;
@@ -18,7 +18,7 @@ export function ProtokollMarker({ n, name, party }: ProtokollMarkerProps) {
   const p = party ? partyByCode(party) : undefined;
   return (
     <div className="flex items-center gap-3 anf-marker">
-      <span className="tabular">ANF. {n}</span>
+      <span className="tabular">Anf. {n}</span>
       <span aria-hidden="true" className="text-line-2">
         ·
       </span>

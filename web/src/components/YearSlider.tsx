@@ -96,7 +96,7 @@ export function YearSlider() {
         <button
           type="button"
           onClick={togglePlay}
-          className="font-data shrink-0 whitespace-nowrap rounded-[var(--radius)] bg-accent px-4 py-2 text-[11px] uppercase tracking-widest text-accent-ink transition-opacity hover:opacity-90"
+          className="label shrink-0 whitespace-nowrap rounded-[var(--radius)] bg-accent px-4 py-2 text-accent-ink transition-opacity hover:opacity-90"
         >
           {playing ? "❚❚ Pausa" : "► Spela upp"}
         </button>
@@ -111,7 +111,7 @@ export function YearSlider() {
             className="w-full accent-[var(--accent)]"
             aria-label="Välj år"
           />
-          <div className="font-data mt-1.5 flex justify-between text-[10px] uppercase tracking-widest text-ink-3">
+          <div className="label mt-1.5 flex justify-between text-ink-3">
             <span>{YEARS[0]}</span>
             <span>{YEARS[YEARS.length - 1]}</span>
           </div>

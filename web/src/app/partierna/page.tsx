@@ -17,9 +17,9 @@ export default function PartiernaPage() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 pb-14 pt-16 sm:pt-20">
           <p className="anf-marker mb-6 !text-ink-3">
-            <span className="tabular">PROT. 2026/27:3</span>
+            <span className="tabular">Prot. 2026/27:3</span>
             <span className="text-line-2">·</span>
-            <span>RETORISKA FINGERAVTRYCK</span>
+            <span>Retoriska fingeravtryck</span>
           </p>
           <h1 className="font-display max-w-3xl text-[2.2rem] leading-[1.1] tracking-tight sm:text-[3rem]">
             Varje parti har ett sätt att argumentera
@@ -37,7 +37,7 @@ export default function PartiernaPage() {
       {/* --------------------------------------------------------- CARDS */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <ProtokollMarker n={1} name="FINGERAVTRYCK PER PARTI" />
+          <ProtokollMarker n={1} name="Fingeravtryck per parti" />
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PARTY_ORDER.map((p) => (
               <PartyFingerprintCard

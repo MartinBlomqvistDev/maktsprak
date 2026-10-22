@@ -18,7 +18,7 @@ export function SiteHeader() {
           <span className="font-display text-xl tracking-tight">
             Maktspråk
           </span>
-          <span className="font-data hidden text-[10px] uppercase tracking-[0.2em] text-ink-3 sm:inline">
+          <span className="label hidden text-ink-3 sm:inline">
             / Protokollet
           </span>
         </Link>
@@ -28,7 +28,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-data text-[11px] uppercase tracking-widest text-ink-2 transition-colors hover:text-accent"
+              className="label text-ink-2 transition-colors hover:text-accent"
             >
               {item.label}
             </Link>

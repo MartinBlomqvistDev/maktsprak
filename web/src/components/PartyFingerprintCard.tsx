@@ -30,7 +30,7 @@ export function PartyFingerprintCard({
           style={{ backgroundColor: party ? `var(${party.colorVar})` : undefined }}
         />
         <span className="font-display text-lg">{party?.name ?? code}</span>
-        <span className="font-data ml-auto text-[11px] uppercase tracking-widest text-ink-3">
+        <span className="label ml-auto text-ink-3">
           {code}
         </span>
       </div>

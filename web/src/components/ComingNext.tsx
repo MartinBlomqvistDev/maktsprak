@@ -23,7 +23,7 @@ export function ComingNext({
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
-        <span className="tabular">PROT. 2026/27:{protNr}</span>
+        <span className="tabular">Prot. 2026/27:{protNr}</span>
         <span className="text-line-2">·</span>
         <span>{section}</span>
       </p>
@@ -33,7 +33,7 @@ export function ComingNext({
       <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">{lede}</p>
 
       <section className="mt-14">
-        <ProtokollMarker n={protNr * 10} name="UNDER ARBETE" />
+        <ProtokollMarker n={protNr * 10} name="Under arbete" />
         <ul className="mt-5 space-y-3">
           {planned.map((item) => (
             <li key={item} className="flex gap-3 text-ink-2">
