@@ -1,0 +1,204 @@
+{
+  "files": [
+    {
+      "session": "2002/03",
+      "file": "anforande-200203.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200203.json.zip",
+      "bytes": 19550241,
+      "sha256": "760146787c8fb15badd8b448202fe55bd33e32da88c5fe491d5a8b5b3a12285e",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2003/04",
+      "file": "anforande-200304.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200304.json.zip",
+      "bytes": 21076147,
+      "sha256": "b7780e2c80c62eb265f9b8abb6582a564d4061d2101d620b037850445c335c8f",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2004/05",
+      "file": "anforande-200405.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200405.json.zip",
+      "bytes": 24750773,
+      "sha256": "5bc4cf7e00db8f42f25ef6b37e8aa9a4abc6a309295aa9f51f6f1de92320b15b",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2005/06",
+      "file": "anforande-200506.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200506.json.zip",
+      "bytes": 22180778,
+      "sha256": "c24b261ba7569da09d5eb19cf2a295d8d999de9ddb404a68a12e1f514bfb1cf5",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2006/07",
+      "file": "anforande-200607.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200607.json.zip",
+      "bytes": 22121767,
+      "sha256": "06e393339076613a8a2fde3413fe2d84246f266cd973ff858d660503ccb8ecaf",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2007/08",
+      "file": "anforande-200708.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200708.json.zip",
+      "bytes": 25347849,
+      "sha256": "b10c9ce81646a60d31d32d3e3554936aeb68c23f84599df224f2d46a928f6ac3",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2008/09",
+      "file": "anforande-200809.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200809.json.zip",
+      "bytes": 22358748,
+      "sha256": "f036fa0da6c11e6d3eb3cd1bad7bf30eec1e0ada4c06aaae224432114fba56ac",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2009/10",
+      "file": "anforande-200910.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-200910.json.zip",
+      "bytes": 18994075,
+      "sha256": "9f366f842399ab53bd37e0f03949871e596f32474f7d2ecca6468a5078f85ca1",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2010/11",
+      "file": "anforande-201011.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201011.json.zip",
+      "bytes": 18891997,
+      "sha256": "c8dcb9d55bfe54db983e75c67dd67d241851285d6f8c020aafe039fa77fc216b",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2011/12",
+      "file": "anforande-201112.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201112.json.zip",
+      "bytes": 19354606,
+      "sha256": "e683c4891098aef5ee409b1731aa015cf5b3e5bfab11d2214f54b2c450c8f490",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2012/13",
+      "file": "anforande-201213.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201213.json.zip",
+      "bytes": 20600827,
+      "sha256": "ea00112b8050a8364ee7423c32252bdedd90ad66c22b9d9720d896e6edb4f02f",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2013/14",
+      "file": "anforande-201314.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201314.json.zip",
+      "bytes": 23206327,
+      "sha256": "5721ceb7cd38caf712e2e37ea440e1b5c1c965adceb6f18ca623675e24012f18",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2014/15",
+      "file": "anforande-201415.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201415.json.zip",
+      "bytes": 20443785,
+      "sha256": "04db54703ae4c378638491ce4f49d8cdbfa716a382713c660ac0297189742ea5",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2015/16",
+      "file": "anforande-201516.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201516.json.zip",
+      "bytes": 21544551,
+      "sha256": "aaaa0ec6719c6feada87127c9e69dd7b29b01f1fcdb9f4ad8ef9cbd7ed304432",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2016/17",
+      "file": "anforande-201617.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201617.json.zip",
+      "bytes": 19820596,
+      "sha256": "c5e6d16af5f157833ce611f5f3e6632ff0c7d7314a4373e6f59d1b4bae6d6920",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2017/18",
+      "file": "anforande-201718.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201718.json.zip",
+      "bytes": 20406769,
+      "sha256": "eb023fc8850cce8ae6b84bb99a9f077882482506bb89d20b83f0f5e0f00f3d08",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2018/19",
+      "file": "anforande-201819.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201819.json.zip",
+      "bytes": 14437788,
+      "sha256": "53ec861c62b2f50941bf273ba6920170234bb5512fe8c53cc14fd73006c72355",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2019/20",
+      "file": "anforande-201920.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-201920.json.zip",
+      "bytes": 16408057,
+      "sha256": "755a07c958035a9ebd6c85a7e5f7e15f400e24adc74cc53b40802d270efe3cb9",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2020/21",
+      "file": "anforande-202021.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202021.json.zip",
+      "bytes": 24971362,
+      "sha256": "c4154a43643fe1f7092e54156026a9978beccf1ecf03c47552cdddd49c62f5ec",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2021/22",
+      "file": "anforande-202122.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202122.json.zip",
+      "bytes": 20291471,
+      "sha256": "3b154be605bf16e938d7d514e1f48e83b083793cbee7ebaf619d5198a625c8d7",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2022/23",
+      "file": "anforande-202223.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202223.json.zip",
+      "bytes": 19110784,
+      "sha256": "cedf05fd4f61c7b8ef9b983c91c0231df29dc0b49850e1d0bc9c3394a4905ad0",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2023/24",
+      "file": "anforande-202324.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202324.json.zip",
+      "bytes": 24127724,
+      "sha256": "3c35f0c453085093e464fe8f04d9299b9753357649101dc629fac15b81476d24",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2024/25",
+      "file": "anforande-202425.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202425.json.zip",
+      "bytes": 22887182,
+      "sha256": "a5a60a1a4fd3c21ec5e13ab0ae9544ee16bd144382d7436c3d3375cdb99a0e6c",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2025/26",
+      "file": "anforande-202526.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202526.json.zip",
+      "bytes": 23910749,
+      "sha256": "6d3e0bb56427d28b3fe4f3b6c1ebccad9ba4679398219cd3012060630c23f28f",
+      "fetched": "2026-11-20"
+    },
+    {
+      "session": "2026/27",
+      "file": "anforande-202627.json.zip",
+      "url": "https://data.riksdagen.se/dataset/anforande/anforande-202627.json.zip",
+      "bytes": 909935,
+      "sha256": "46d41cecc643432c915fd6f3a224c8dcc7dd6e211561b04301ad39db9ae1948d",
+      "fetched": "2026-11-20"
+    }
+  ]
+}

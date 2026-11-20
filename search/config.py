@@ -30,6 +30,20 @@ class _Frozen(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
 
 
+class Source(_Frozen):
+    """Where the Riksdag's speech datasets are fetched from.
+
+    Attributes:
+        dataset_url: The dataset address, with a ``{session}`` placeholder.
+        first_session: The earliest session in scope, for example ``2002/03``.
+        last_session: The latest session in scope.
+    """
+
+    dataset_url: str
+    first_session: str
+    last_session: str
+
+
 class DataPaths(_Frozen):
     """Gitignored bulk data, resolved against the data root.
 
@@ -58,6 +72,7 @@ class TrackedPaths(_Frozen):
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute."""
 
+    source: Source
     data: DataPaths
     tracked: TrackedPaths
 

@@ -44,6 +44,7 @@ ci = [
     # search/ and tests/search/
     "pydantic>=2.9,<3.0",
     "pyyaml>=6.0,<7.0",
+    "httpx>=0.27,<1.0",
 ]
 dev = [
     "pytest>=7.4,<9.0",
@@ -79,6 +80,11 @@ ignore = [
     "B008",   # function call in a default argument (FastAPI Depends, argparse defaults)
     "SIM108", # ternary operator — sometimes less readable
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# The numbered pipeline scripts put the repository root on sys.path before
+# they import from search/, so those imports cannot be at the top of the file.
+"search/pipeline/*.py" = ["E402"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src", "search"]

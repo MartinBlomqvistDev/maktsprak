@@ -10,6 +10,10 @@ from pydantic import ValidationError
 from search.config import DATA_ROOT_ENV, REPO_ROOT, load_settings
 
 VALID_YAML = (
+    "source:\n"
+    "  dataset_url: https://example.org/anforande-{session}.json.zip\n"
+    '  first_session: "2002/03"\n'
+    '  last_session: "2003/04"\n'
     "data:\n"
     "  raw_anforanden: data/raw_anforanden\n"
     "  search: data/search\n"
