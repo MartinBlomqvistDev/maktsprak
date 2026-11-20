@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
+from typing import TYPE_CHECKING
 
-import pandas as pd
 import pytest
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 # ---------------------------------------------------------------------------
 # Sample Riksdag XML
@@ -51,6 +54,10 @@ def sample_speech_text() -> str:
 @pytest.fixture
 def sample_speeches_df() -> pd.DataFrame:
     """Return a minimal speeches DataFrame for NLP tests."""
+    # Imported here so that tests/search can load this conftest in an
+    # environment that has no pandas.
+    import pandas as pd
+
     return pd.DataFrame(
         {
             "id": ["HD0972_1", "HD0972_2"],

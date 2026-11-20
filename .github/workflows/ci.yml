@@ -32,10 +32,10 @@ jobs:
           pip install -e ".[ci]"
 
       - name: Ruff — lint
-        run: ruff check src/ tests/
+        run: ruff check src/ tests/ search/
 
       - name: Ruff — format check
-        run: ruff format --check src/ tests/
+        run: ruff format --check src/ tests/ search/
 
       - name: Pytest
         env:

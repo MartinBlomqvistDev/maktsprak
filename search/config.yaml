@@ -1,0 +1,14 @@
+# Settings for search/. Read by search/config.py, which rejects unknown keys.
+
+# Bulk data, gitignored. These paths resolve against the data root: the
+# repository root, or MAKTSPRAK_DATA_ROOT when it is set. In a git worktree,
+# point it at the main checkout, where the corpus is.
+data:
+  raw_anforanden: data/raw_anforanden
+  search: data/search
+  legacy_corpus: data/parquet/speeches_full.parquet
+
+# Tracked output: results and manifests as JSON. These paths always resolve
+# against the repository the code runs from.
+tracked:
+  reports: data/reports/search

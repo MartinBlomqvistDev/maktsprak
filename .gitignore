@@ -79,3 +79,11 @@ PLAN.md
 
 # never track streamlit secrets or any local streamlit artefact
 .streamlit/
+
+# ----------------------------------------------------
+# 6. SEARCH (search/)
+# ----------------------------------------------------
+.venv-search/
+data/raw_anforanden/
+data/search/
+# data/reports/search/*.json (results and manifests) stays tracked.
