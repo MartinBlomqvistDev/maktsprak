@@ -211,4 +211,27 @@ The evaluation itself does not run in CI.
 
 ## Addenda
 
-None yet.
+### 2026-11-20: the corpus starts with the 2003/04 session
+
+Reading the source ahead of the reconciliation turned up a systematic
+difference in one session. The Riksdag publishes 2002/03 as text broken at the
+width of the printed column: words are hyphenated across lines, and nothing
+marks where a paragraph ends. The JSON, HTML and text datasets are alike in
+this. Of the 12 479 records in that session, 12 345 are speeches by the eight
+parties, and 109 073 of their lines end in a hyphen.
+
+Quoting that text would mean deciding by rule how each of those words is put
+back together, with no source to check the result against. I decided the same
+day to leave the session out. Three things above change:
+
+- **Scope.** The corpus runs from the 2003/04 session to the latest one. Its
+  first speech is dated 2003-09-16.
+- **The coverage rule.** The 99% applies to the sessions in scope.
+- **Outcome A.** It reads "2003-2026" where it says "2002-2026".
+
+The same reading showed that a speech record also carries paragraphs that are
+the record's own: applause, the note that a debate was closed, an interjection
+by somebody else. They are set aside when the corpus is built and are never
+part of a passage or a quotation.
+
+The figures are in `data/reports/search/anforanden_build.json`.
