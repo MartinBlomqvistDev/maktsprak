@@ -86,4 +86,5 @@ PLAN.md
 .venv-search/
 data/raw_anforanden/
 data/search/
+data/reports/search/*.part
 # data/reports/search/*.json (results and manifests) stays tracked.
