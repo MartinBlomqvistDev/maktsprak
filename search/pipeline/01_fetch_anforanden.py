@@ -24,6 +24,7 @@ import httpx
 from search.cli import add_data_root_argument, configure_logging, settings_from
 from search.config import Settings
 from search.corpus.fetch import (
+    MANIFEST_NAME,
     Manifest,
     fetch_datasets,
     load_manifest,
@@ -33,12 +34,23 @@ from search.corpus.fetch import (
 
 logger = logging.getLogger("fetch_anforanden")
 
-MANIFEST_NAME = "anforanden_manifest.json"
 TIMEOUT_SECONDS = 120.0
 
 
 async def run(settings: Settings, sessions: list[str], force: bool) -> Manifest:
-    """Fetch *sessions* and write the updated manifest."""
+    """Fetch *sessions* and write the updated manifest.
+
+    The manifest is written after every file that arrives, so a run that fails
+    or is interrupted leaves it describing every file on disk.
+
+    Args:
+        settings: The loaded settings.
+        sessions: The session labels to fetch.
+        force: Fetch again even when the file is already on disk.
+
+    Returns:
+        The manifest as written.
+    """
     manifest_path = settings.tracked.reports / MANIFEST_NAME
     async with httpx.AsyncClient(timeout=TIMEOUT_SECONDS, follow_redirects=True) as client:
         manifest = await fetch_datasets(
@@ -48,6 +60,7 @@ async def run(settings: Settings, sessions: list[str], force: bool) -> Manifest:
             known=load_manifest(manifest_path),
             client=client,
             force=force,
+            on_fetched=lambda current: write_manifest(current, manifest_path),
         )
     write_manifest(manifest, manifest_path)
     return manifest
