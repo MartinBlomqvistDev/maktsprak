@@ -253,6 +253,36 @@ class JudgeSettings(_Frozen):
     seed: int
 
 
+class BaselineSettings(_Frozen):
+    """The BM25 baseline's tuning grid and bootstrap.
+
+    Attributes:
+        k1: The values of ``k1`` tried with each analyzer.
+        b: The values of ``b`` tried with each analyzer.
+        resamples: How many bootstrap resamples behind each interval.
+        bootstrap_seed: Decides the resamples.
+    """
+
+    k1: tuple[float, ...]
+    b: tuple[float, ...]
+    resamples: int = Field(gt=0)
+    bootstrap_seed: int
+
+    @field_validator("k1")
+    @classmethod
+    def _k1_not_negative(cls, values: tuple[float, ...]) -> tuple[float, ...]:
+        if not values or any(value < 0 for value in values):
+            raise ValueError("k1 needs at least one value, none below 0.")
+        return values
+
+    @field_validator("b")
+    @classmethod
+    def _b_within_bounds(cls, values: tuple[float, ...]) -> tuple[float, ...]:
+        if not values or any(not 0 <= value <= 1 for value in values):
+            raise ValueError("b needs at least one value, each from 0 to 1.")
+        return values
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -267,6 +297,7 @@ class Settings(_Frozen):
         questions: How the question sets are drawn and written.
         generation: The language model that writes the questions.
         judge: The judge and its calibration.
+        baseline: The BM25 baseline's tuning grid and bootstrap.
     """
 
     source: Source
@@ -279,6 +310,7 @@ class Settings(_Frozen):
     questions: QuestionSettings
     generation: GenerationSettings
     judge: JudgeSettings
+    baseline: BaselineSettings
 
     @model_validator(mode="after")
     def _judge_is_priced(self) -> Settings:

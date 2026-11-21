@@ -66,6 +66,11 @@ VALID_YAML = (
     "  effort: low\n"
     "  max_tokens: 4000\n"
     "  seed: 14\n"
+    "baseline:\n"
+    "  k1: [0.9, 1.2]\n"
+    "  b: [0.5, 0.75]\n"
+    "  resamples: 1000\n"
+    "  bootstrap_seed: 15\n"
 )
 
 
@@ -459,3 +464,19 @@ class TestEvaluationSettings:
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert [place for place, _ in error_places(raised.value)] == [("judge", "effort")]
+
+    @pytest.mark.parametrize(
+        ("key", "line"),
+        [("b", "  b: [0.5, 1.5]\n"), ("b", "  b: []\n"), ("k1", "  k1: [-0.1]\n")],
+    )
+    def test_a_bm25_value_out_of_bounds_raises(self, data_root, key, line):
+        config = data_root / "config.yaml"
+        config.write_text(with_line_replaced(key, line, "baseline"), encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("baseline", key)]
+
+    def test_the_shipped_grid_holds_lucenes_defaults(self, data_root):
+        baseline = load_settings(data_root=data_root).baseline
+        assert 1.2 in baseline.k1 and 0.75 in baseline.b
+        assert baseline.resamples == 10_000

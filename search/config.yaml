@@ -109,3 +109,11 @@ judge:
   effort: low
   max_tokens: 4000
   seed: 20261123
+
+# The BM25 baseline (step 12): the values of k1 and b tried with each analyzer
+# on the development split, and the bootstrap behind the intervals.
+baseline:
+  k1: [0.6, 0.9, 1.2, 1.5, 1.8]
+  b: [0.3, 0.45, 0.6, 0.75, 0.9]
+  resamples: 10000
+  bootstrap_seed: 20261124
