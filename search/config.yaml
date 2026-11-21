@@ -99,3 +99,13 @@ generation:
     claude-opus-5-5: {input: 4.0, output: 20.0}
     claude-sonnet-5-5: {input: 2.0, output: 10.0}
     claude-haiku-5-5: {input: 0.10, output: 0.50}
+
+# The judge (step 11): the language model that grades how well a passage
+# answers a question on the scale 0, 1, 2, and its calibration against Martin's
+# own grades. seed draws the pilot questions of the 100 calibration pairs. The
+# judge's prices are those of the generation section.
+judge:
+  model: claude-opus-5-5
+  effort: low
+  max_tokens: 4000
+  seed: 20261123

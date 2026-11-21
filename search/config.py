@@ -237,6 +237,22 @@ class GenerationSettings(_Frozen):
         return self
 
 
+class JudgeSettings(_Frozen):
+    """The judge and its calibration.
+
+    Attributes:
+        model: The model id; its price is read from the generation section.
+        effort: How much the model thinks.
+        max_tokens: The most output tokens of one answer, thinking included.
+        seed: Decides the pilot questions of the calibration pairs and their order.
+    """
+
+    model: str
+    effort: Literal["low", "medium", "high", "xhigh", "max"]
+    max_tokens: int = Field(gt=0)
+    seed: int
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -250,6 +266,7 @@ class Settings(_Frozen):
         links: Defaults for the deep-link check.
         questions: How the question sets are drawn and written.
         generation: The language model that writes the questions.
+        judge: The judge and its calibration.
     """
 
     source: Source
@@ -261,6 +278,13 @@ class Settings(_Frozen):
     links: LinkSettings
     questions: QuestionSettings
     generation: GenerationSettings
+    judge: JudgeSettings
+
+    @model_validator(mode="after")
+    def _judge_is_priced(self) -> Settings:
+        if self.judge.model not in self.generation.prices:
+            raise ValueError(f"The judge's model {self.judge.model} has no price in the settings.")
+        return self
 
 
 def resolve_data_root(data_root: Path | None = None) -> Path:

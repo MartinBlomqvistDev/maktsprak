@@ -1,0 +1,707 @@
+{
+  "pilot_run": "pilot-2",
+  "seed": 20261123,
+  "analyzer": "stem-stop",
+  "pairs": [
+    {
+      "pair_id": "pair-001",
+      "question_id": "pilot-natural-0006",
+      "question": "Varför behövs en särskild yrkesinriktad eftergymnasial utbildningsform när högskolans utbildningar blir alltmer teoretiska och forskningsinriktade?",
+      "passage_id": "GW0977-115:0-3",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-002",
+      "question_id": "pilot-stance-0009",
+      "question": "Vilka argument har förts fram för att sänka skatten på lön genom ytterligare ett jobbskatteavdrag riktat till låg- och medelinkomsttagare?",
+      "passage_id": "GV0977-56:0-2",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-003",
+      "question_id": "pilot-natural-0014",
+      "question": "Varför räcker inte nollvisionen för att minska antalet dödsolyckor på arbetsplatser, och behövs det tydliga mål för varje år?",
+      "passage_id": "H70930-55:0-4",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-004",
+      "question_id": "pilot-natural-0002",
+      "question": "Borde de nordiska länderna gemensamt skicka soldater tidigare till konflikter för att förhindra massmord på civila?",
+      "passage_id": "HD0957-131:0-1",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-005",
+      "question_id": "pilot-stance-0009",
+      "question": "Vilka argument har förts fram för att sänka skatten på lön genom ytterligare ett jobbskatteavdrag riktat till låg- och medelinkomsttagare?",
+      "passage_id": "HB0949-1:5-8",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-006",
+      "question_id": "pilot-stance-0002",
+      "question": "Vilka argument har förts fram för att anta en fortsatt utvecklad svensk strategi för hållbar utveckling?",
+      "passage_id": "GR0977-171:0-2",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-007",
+      "question_id": "pilot-natural-0009",
+      "question": "Vad kan göras för att få fler bönder att odla ekologiskt och minska övergödningen av Östersjön?",
+      "passage_id": "H20966-46:0-4",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-008",
+      "question_id": "pilot-natural-0011",
+      "question": "Är det bättre för Sveriges välstånd att satsa på frihandel och öppna gränser än att skydda inhemsk produktion med tullar?",
+      "passage_id": "H209104-5:0-4",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-009",
+      "question_id": "pilot-natural-0018",
+      "question": "Kan man lita på att vacciner är säkra, och har människor i Sverige tvingats att vaccinera sig?",
+      "passage_id": "H90927-5:8-10",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-010",
+      "question_id": "pilot-natural-0001",
+      "question": "Skulle det drabba kvinnor hårdare om sjuk- och föräldraförsäkringen privatiserades i stället för att vara skattefinansierad?",
+      "passage_id": "H30929-75:5-8",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-011",
+      "question_id": "pilot-stance-0007",
+      "question": "Vilka argument har förts fram mot att ta bort nationella prov i skolan för att minska lärarnas administrativa arbete?",
+      "passage_id": "H50971-13:0-5",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-012",
+      "question_id": "pilot-stance-0005",
+      "question": "Vilka argument har förts fram för ökade statliga satsningar på kommunerna och extratjänster i välfärden för att ge arbetslösa jobb, utbildning eller praktik?",
+      "passage_id": "H009126-1:16-18",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-013",
+      "question_id": "pilot-natural-0003",
+      "question": "Varför har mobbning och trakasserier i skolan blivit så vanligt, och har det med lärarnas minskade befogenheter att göra?",
+      "passage_id": "GR09123-73:0-2",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-014",
+      "question_id": "pilot-natural-0017",
+      "question": "Hur påverkas det svenska utlandsbiståndet när kostnaderna för att ta emot flyktingar från Ukraina dras från biståndsbudgeten?",
+      "passage_id": "HA0944-47:0-0",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-015",
+      "question_id": "pilot-natural-0010",
+      "question": "Vilken roll vill Sverige att EU ska ta i klimatfrågan inför det nya globala klimatavtalet i Paris?",
+      "passage_id": "H10970-4:6-8",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-016",
+      "question_id": "pilot-natural-0017",
+      "question": "Hur påverkas det svenska utlandsbiståndet när kostnaderna för att ta emot flyktingar från Ukraina dras från biståndsbudgeten?",
+      "passage_id": "HA0963-27:0-3",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-017",
+      "question_id": "pilot-natural-0002",
+      "question": "Borde de nordiska länderna gemensamt skicka soldater tidigare till konflikter för att förhindra massmord på civila?",
+      "passage_id": "GS0951-27:11-12",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-018",
+      "question_id": "pilot-natural-0010",
+      "question": "Vilken roll vill Sverige att EU ska ta i klimatfrågan inför det nya globala klimatavtalet i Paris?",
+      "passage_id": "H10970-2:25-29",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-019",
+      "question_id": "pilot-stance-0006",
+      "question": "Vilka argument har förts fram för att alla kommuner ska vara skyldiga att ta emot asylsökande och att staten tar större ansvar för boenden?",
+      "passage_id": "GX0989-1:15-18",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-020",
+      "question_id": "pilot-natural-0015",
+      "question": "Borde EU redan nu satsa på forskning om etiskt säker AI för att klara välfärden i framtiden?",
+      "passage_id": "H709131-13:0-3",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-021",
+      "question_id": "pilot-natural-0004",
+      "question": "När är det motiverat att staten äger företag i stället för att låta privata aktörer sköta verksamheten?",
+      "passage_id": "H30929-104:8-11",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-022",
+      "question_id": "pilot-natural-0018",
+      "question": "Kan man lita på att vacciner är säkra, och har människor i Sverige tvingats att vaccinera sig?",
+      "passage_id": "HC0940-12:4-7",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-023",
+      "question_id": "pilot-natural-0002",
+      "question": "Borde de nordiska länderna gemensamt skicka soldater tidigare till konflikter för att förhindra massmord på civila?",
+      "passage_id": "GS0998-32:0-3",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-024",
+      "question_id": "pilot-natural-0003",
+      "question": "Varför har mobbning och trakasserier i skolan blivit så vanligt, och har det med lärarnas minskade befogenheter att göra?",
+      "passage_id": "GT0969-36:3-5",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-025",
+      "question_id": "pilot-stance-0006",
+      "question": "Vilka argument har förts fram för att alla kommuner ska vara skyldiga att ta emot asylsökande och att staten tar större ansvar för boenden?",
+      "passage_id": "H009124-148:7-9",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-026",
+      "question_id": "pilot-natural-0017",
+      "question": "Hur påverkas det svenska utlandsbiståndet när kostnaderna för att ta emot flyktingar från Ukraina dras från biståndsbudgeten?",
+      "passage_id": "H909113-8:5-6",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-027",
+      "question_id": "pilot-stance-0008",
+      "question": "Vilka argument har förts fram mot att avskaffa den återkommande kontrollen vart femte år av tillstånd att inneha skjutvapen?",
+      "passage_id": "H80971-49:15-20",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-028",
+      "question_id": "pilot-natural-0012",
+      "question": "Varför ska barn och unga själva få bestämma vem de gifter sig med i stället för sina föräldrar?",
+      "passage_id": "H60980-2:5-7",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-029",
+      "question_id": "pilot-stance-0003",
+      "question": "Vilka argument har förts fram mot att Sverige ska gå med i försvarsalliansen Nato och överge sin militära alliansfrihet?",
+      "passage_id": "H20950-2:2-4",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-030",
+      "question_id": "pilot-natural-0014",
+      "question": "Varför räcker inte nollvisionen för att minska antalet dödsolyckor på arbetsplatser, och behövs det tydliga mål för varje år?",
+      "passage_id": "H70915-25:3-7",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-031",
+      "question_id": "pilot-stance-0002",
+      "question": "Vilka argument har förts fram för att anta en fortsatt utvecklad svensk strategi för hållbar utveckling?",
+      "passage_id": "GT09142-171:0-4",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-032",
+      "question_id": "pilot-stance-0002",
+      "question": "Vilka argument har förts fram för att anta en fortsatt utvecklad svensk strategi för hållbar utveckling?",
+      "passage_id": "H30935-12:0-5",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-033",
+      "question_id": "pilot-natural-0016",
+      "question": "Borde alla som är över 18 år och begår brott få fullt straff, och inte bara de som begår grova brott?",
+      "passage_id": "H809143-10:4-6",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-034",
+      "question_id": "pilot-stance-0003",
+      "question": "Vilka argument har förts fram mot att Sverige ska gå med i försvarsalliansen Nato och överge sin militära alliansfrihet?",
+      "passage_id": "HA0979-94:0-3",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-035",
+      "question_id": "pilot-natural-0015",
+      "question": "Borde EU redan nu satsa på forskning om etiskt säker AI för att klara välfärden i framtiden?",
+      "passage_id": "HA0983-44:9-12",
+      "source": "bm25_4"
+    },
+    {
+      "pair_id": "pair-036",
+      "question_id": "pilot-natural-0017",
+      "question": "Hur påverkas det svenska utlandsbiståndet när kostnaderna för att ta emot flyktingar från Ukraina dras från biståndsbudgeten?",
+      "passage_id": "HA0943-80:9-11",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-037",
+      "question_id": "pilot-natural-0012",
+      "question": "Varför ska barn och unga själva få bestämma vem de gifter sig med i stället för sina föräldrar?",
+      "passage_id": "GR0991-157:0-3",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-038",
+      "question_id": "pilot-stance-0002",
+      "question": "Vilka argument har förts fram för att anta en fortsatt utvecklad svensk strategi för hållbar utveckling?",
+      "passage_id": "GZ0994-123:8-10",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-039",
+      "question_id": "pilot-stance-0007",
+      "question": "Vilka argument har förts fram mot att ta bort nationella prov i skolan för att minska lärarnas administrativa arbete?",
+      "passage_id": "H50953-116:6-10",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-040",
+      "question_id": "pilot-natural-0004",
+      "question": "När är det motiverat att staten äger företag i stället för att låta privata aktörer sköta verksamheten?",
+      "passage_id": "GR0963-35:0-2",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-041",
+      "question_id": "pilot-stance-0009",
+      "question": "Vilka argument har förts fram för att sänka skatten på lön genom ytterligare ett jobbskatteavdrag riktat till låg- och medelinkomsttagare?",
+      "passage_id": "HC0918-21:0-1",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-042",
+      "question_id": "pilot-stance-0008",
+      "question": "Vilka argument har förts fram mot att avskaffa den återkommande kontrollen vart femte år av tillstånd att inneha skjutvapen?",
+      "passage_id": "H80971-53:0-2",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-043",
+      "question_id": "pilot-natural-0018",
+      "question": "Kan man lita på att vacciner är säkra, och har människor i Sverige tvingats att vaccinera sig?",
+      "passage_id": "H80968-46:0-3",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-044",
+      "question_id": "pilot-stance-0007",
+      "question": "Vilka argument har förts fram mot att ta bort nationella prov i skolan för att minska lärarnas administrativa arbete?",
+      "passage_id": "H50971-12:5-9",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-045",
+      "question_id": "pilot-stance-0008",
+      "question": "Vilka argument har förts fram mot att avskaffa den återkommande kontrollen vart femte år av tillstånd att inneha skjutvapen?",
+      "passage_id": "H30949-83:6-10",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-046",
+      "question_id": "pilot-natural-0011",
+      "question": "Är det bättre för Sveriges välstånd att satsa på frihandel och öppna gränser än att skydda inhemsk produktion med tullar?",
+      "passage_id": "GX0985-177:0-1",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-047",
+      "question_id": "pilot-natural-0019",
+      "question": "Varför är vissa emot att det ska bli enklare för unga att ändra kön, och vad borde göras med vården i stället?",
+      "passage_id": "HB0957-98:0-2",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-048",
+      "question_id": "pilot-natural-0011",
+      "question": "Är det bättre för Sveriges välstånd att satsa på frihandel och öppna gränser än att skydda inhemsk produktion med tullar?",
+      "passage_id": "H30965-63:0-3",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-049",
+      "question_id": "pilot-stance-0010",
+      "question": "Vilka argument har förts fram mot att ta bort skolledningens uttryckliga ansvar för skolans undervisning om sex, samlevnad och relationer?",
+      "passage_id": "GW0962-31:0-3",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-050",
+      "question_id": "pilot-natural-0006",
+      "question": "Varför behövs en särskild yrkesinriktad eftergymnasial utbildningsform när högskolans utbildningar blir alltmer teoretiska och forskningsinriktade?",
+      "passage_id": "GR09127-65:3-6",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-051",
+      "question_id": "pilot-stance-0009",
+      "question": "Vilka argument har förts fram för att sänka skatten på lön genom ytterligare ett jobbskatteavdrag riktat till låg- och medelinkomsttagare?",
+      "passage_id": "H10912-240:0-2",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-052",
+      "question_id": "pilot-natural-0016",
+      "question": "Borde alla som är över 18 år och begår brott få fullt straff, och inte bara de som begår grova brott?",
+      "passage_id": "H90929-55:0-2",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-053",
+      "question_id": "pilot-natural-0013",
+      "question": "Varför är det så svårt att nå målet om en vardag utan farliga kemikalier i Sverige?",
+      "passage_id": "H60957-148:17-21",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-054",
+      "question_id": "pilot-natural-0012",
+      "question": "Varför ska barn och unga själva få bestämma vem de gifter sig med i stället för sina föräldrar?",
+      "passage_id": "H30954-11:0-2",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-055",
+      "question_id": "pilot-stance-0008",
+      "question": "Vilka argument har förts fram mot att avskaffa den återkommande kontrollen vart femte år av tillstånd att inneha skjutvapen?",
+      "passage_id": "H809143-67:18-21",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-056",
+      "question_id": "pilot-natural-0016",
+      "question": "Borde alla som är över 18 år och begår brott få fullt straff, och inte bara de som begår grova brott?",
+      "passage_id": "H809127-12:0-1",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-057",
+      "question_id": "pilot-stance-0003",
+      "question": "Vilka argument har förts fram mot att Sverige ska gå med i försvarsalliansen Nato och överge sin militära alliansfrihet?",
+      "passage_id": "H809111-75:12-14",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-058",
+      "question_id": "pilot-natural-0004",
+      "question": "När är det motiverat att staten äger företag i stället för att låta privata aktörer sköta verksamheten?",
+      "passage_id": "H50936-10:6-9",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-059",
+      "question_id": "pilot-stance-0006",
+      "question": "Vilka argument har förts fram för att alla kommuner ska vara skyldiga att ta emot asylsökande och att staten tar större ansvar för boenden?",
+      "passage_id": "H209116-198:2-5",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-060",
+      "question_id": "pilot-natural-0001",
+      "question": "Skulle det drabba kvinnor hårdare om sjuk- och föräldraförsäkringen privatiserades i stället för att vara skattefinansierad?",
+      "passage_id": "GR0947-32:5-5",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-061",
+      "question_id": "pilot-stance-0010",
+      "question": "Vilka argument har förts fram mot att ta bort skolledningens uttryckliga ansvar för skolans undervisning om sex, samlevnad och relationer?",
+      "passage_id": "HD0947-49:4-7",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-062",
+      "question_id": "pilot-stance-0006",
+      "question": "Vilka argument har förts fram för att alla kommuner ska vara skyldiga att ta emot asylsökande och att staten tar större ansvar för boenden?",
+      "passage_id": "GT0971-13:0-3",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-063",
+      "question_id": "pilot-natural-0019",
+      "question": "Varför är vissa emot att det ska bli enklare för unga att ändra kön, och vad borde göras med vården i stället?",
+      "passage_id": "HB09100-18:8-11",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-064",
+      "question_id": "pilot-natural-0002",
+      "question": "Borde de nordiska länderna gemensamt skicka soldater tidigare till konflikter för att förhindra massmord på civila?",
+      "passage_id": "GV0973-29:0-4",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-065",
+      "question_id": "pilot-natural-0009",
+      "question": "Vad kan göras för att få fler bönder att odla ekologiskt och minska övergödningen av Östersjön?",
+      "passage_id": "H20970-76:17-20",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-066",
+      "question_id": "pilot-natural-0018",
+      "question": "Kan man lita på att vacciner är säkra, och har människor i Sverige tvingats att vaccinera sig?",
+      "passage_id": "HC0940-14:0-3",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-067",
+      "question_id": "pilot-natural-0007",
+      "question": "Borde lagen mot diskriminering även omfatta attityden att man inte ska tro att man är bättre än andra?",
+      "passage_id": "HA0938-52:6-9",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-068",
+      "question_id": "pilot-natural-0003",
+      "question": "Varför har mobbning och trakasserier i skolan blivit så vanligt, och har det med lärarnas minskade befogenheter att göra?",
+      "passage_id": "GT0969-14:0-0",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-069",
+      "question_id": "pilot-natural-0013",
+      "question": "Varför är det så svårt att nå målet om en vardag utan farliga kemikalier i Sverige?",
+      "passage_id": "GZ09130-141:0-1",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-070",
+      "question_id": "pilot-natural-0015",
+      "question": "Borde EU redan nu satsa på forskning om etiskt säker AI för att klara välfärden i framtiden?",
+      "passage_id": "H80946-9:14-19",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-071",
+      "question_id": "pilot-natural-0019",
+      "question": "Varför är vissa emot att det ska bli enklare för unga att ändra kön, och vad borde göras med vården i stället?",
+      "passage_id": "HB09100-108:0-2",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-072",
+      "question_id": "pilot-natural-0007",
+      "question": "Borde lagen mot diskriminering även omfatta attityden att man inte ska tro att man är bättre än andra?",
+      "passage_id": "GZ09129-215:36-39",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-073",
+      "question_id": "pilot-stance-0003",
+      "question": "Vilka argument har förts fram mot att Sverige ska gå med i försvarsalliansen Nato och överge sin militära alliansfrihet?",
+      "passage_id": "GV09120-33:3-5",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-074",
+      "question_id": "pilot-natural-0010",
+      "question": "Vilken roll vill Sverige att EU ska ta i klimatfrågan inför det nya globala klimatavtalet i Paris?",
+      "passage_id": "H40913-139:3-4",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-075",
+      "question_id": "pilot-natural-0010",
+      "question": "Vilken roll vill Sverige att EU ska ta i klimatfrågan inför det nya globala klimatavtalet i Paris?",
+      "passage_id": "H10954-46:9-10",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-076",
+      "question_id": "pilot-stance-0010",
+      "question": "Vilka argument har förts fram mot att ta bort skolledningens uttryckliga ansvar för skolans undervisning om sex, samlevnad och relationer?",
+      "passage_id": "GX09111-34:12-13",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-077",
+      "question_id": "pilot-natural-0011",
+      "question": "Är det bättre för Sveriges välstånd att satsa på frihandel och öppna gränser än att skydda inhemsk produktion med tullar?",
+      "passage_id": "H209105-148:0-2",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-078",
+      "question_id": "pilot-natural-0006",
+      "question": "Varför behövs en särskild yrkesinriktad eftergymnasial utbildningsform när högskolans utbildningar blir alltmer teoretiska och forskningsinriktade?",
+      "passage_id": "H109120-62:0-2",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-079",
+      "question_id": "pilot-natural-0004",
+      "question": "När är det motiverat att staten äger företag i stället för att låta privata aktörer sköta verksamheten?",
+      "passage_id": "GU0964-8:11-12",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-080",
+      "question_id": "pilot-natural-0007",
+      "question": "Borde lagen mot diskriminering även omfatta attityden att man inte ska tro att man är bättre än andra?",
+      "passage_id": "GX0995-116:6-7",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-081",
+      "question_id": "pilot-natural-0001",
+      "question": "Skulle det drabba kvinnor hårdare om sjuk- och föräldraförsäkringen privatiserades i stället för att vara skattefinansierad?",
+      "passage_id": "H30935-71:5-7",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-082",
+      "question_id": "pilot-natural-0009",
+      "question": "Vad kan göras för att få fler bönder att odla ekologiskt och minska övergödningen av Östersjön?",
+      "passage_id": "GY0925-132:0-4",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-083",
+      "question_id": "pilot-stance-0005",
+      "question": "Vilka argument har förts fram för ökade statliga satsningar på kommunerna och extratjänster i välfärden för att ge arbetslösa jobb, utbildning eller praktik?",
+      "passage_id": "H30936-35:4-7",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-084",
+      "question_id": "pilot-natural-0016",
+      "question": "Borde alla som är över 18 år och begår brott få fullt straff, och inte bara de som begår grova brott?",
+      "passage_id": "H90929-34:7-8",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-085",
+      "question_id": "pilot-natural-0006",
+      "question": "Varför behövs en särskild yrkesinriktad eftergymnasial utbildningsform när högskolans utbildningar blir alltmer teoretiska och forskningsinriktade?",
+      "passage_id": "GS0913-85:14-17",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-086",
+      "question_id": "pilot-natural-0001",
+      "question": "Skulle det drabba kvinnor hårdare om sjuk- och föräldraförsäkringen privatiserades i stället för att vara skattefinansierad?",
+      "passage_id": "GY0936-66:10-12",
+      "source": "bm25_4"
+    },
+    {
+      "pair_id": "pair-087",
+      "question_id": "pilot-natural-0009",
+      "question": "Vad kan göras för att få fler bönder att odla ekologiskt och minska övergödningen av Östersjön?",
+      "passage_id": "GZ0961-108:3-4",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-088",
+      "question_id": "pilot-natural-0019",
+      "question": "Varför är vissa emot att det ska bli enklare för unga att ändra kön, och vad borde göras med vården i stället?",
+      "passage_id": "HB0972-109:0-3",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-089",
+      "question_id": "pilot-natural-0015",
+      "question": "Borde EU redan nu satsa på forskning om etiskt säker AI för att klara välfärden i framtiden?",
+      "passage_id": "H60924-24:15-18",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-090",
+      "question_id": "pilot-natural-0012",
+      "question": "Varför ska barn och unga själva få bestämma vem de gifter sig med i stället för sina föräldrar?",
+      "passage_id": "GU09127-25:3-5",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-091",
+      "question_id": "pilot-stance-0005",
+      "question": "Vilka argument har förts fram för ökade statliga satsningar på kommunerna och extratjänster i välfärden för att ge arbetslösa jobb, utbildning eller praktik?",
+      "passage_id": "H50956-1:11-13",
+      "source": "bm25_3"
+    },
+    {
+      "pair_id": "pair-092",
+      "question_id": "pilot-natural-0013",
+      "question": "Varför är det så svårt att nå målet om en vardag utan farliga kemikalier i Sverige?",
+      "passage_id": "GW0978-12:0-3",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-093",
+      "question_id": "pilot-stance-0007",
+      "question": "Vilka argument har förts fram mot att ta bort nationella prov i skolan för att minska lärarnas administrativa arbete?",
+      "passage_id": "H409121-72:0-1",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-094",
+      "question_id": "pilot-natural-0003",
+      "question": "Varför har mobbning och trakasserier i skolan blivit så vanligt, och har det med lärarnas minskade befogenheter att göra?",
+      "passage_id": "GX09100-14:5-7",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-095",
+      "question_id": "pilot-stance-0005",
+      "question": "Vilka argument har förts fram för ökade statliga satsningar på kommunerna och extratjänster i välfärden för att ge arbetslösa jobb, utbildning eller praktik?",
+      "passage_id": "H10921-111:3-5",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-096",
+      "question_id": "pilot-natural-0013",
+      "question": "Varför är det så svårt att nå målet om en vardag utan farliga kemikalier i Sverige?",
+      "passage_id": "H40972-125:4-8",
+      "source": "written_from"
+    },
+    {
+      "pair_id": "pair-097",
+      "question_id": "pilot-natural-0014",
+      "question": "Varför räcker inte nollvisionen för att minska antalet dödsolyckor på arbetsplatser, och behövs det tydliga mål för varje år?",
+      "passage_id": "H70930-53:0-3",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-098",
+      "question_id": "pilot-stance-0010",
+      "question": "Vilka argument har förts fram mot att ta bort skolledningens uttryckliga ansvar för skolans undervisning om sex, samlevnad och relationer?",
+      "passage_id": "H809107-103:8-10",
+      "source": "bm25_2"
+    },
+    {
+      "pair_id": "pair-099",
+      "question_id": "pilot-natural-0007",
+      "question": "Borde lagen mot diskriminering även omfatta attityden att man inte ska tro att man är bättre än andra?",
+      "passage_id": "GX0995-103:8-9",
+      "source": "bm25_1"
+    },
+    {
+      "pair_id": "pair-100",
+      "question_id": "pilot-natural-0014",
+      "question": "Varför räcker inte nollvisionen för att minska antalet dödsolyckor på arbetsplatser, och behövs det tydliga mål för varje år?",
+      "passage_id": "H60988-200:8-11",
+      "source": "bm25_3"
+    }
+  ]
+}

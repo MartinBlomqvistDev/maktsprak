@@ -61,6 +61,11 @@ VALID_YAML = (
     "  batch_discount: 0.5\n"
     "  prices:\n"
     "    claude-opus-5-5: {input: 4.0, output: 20.0}\n"
+    "judge:\n"
+    "  model: claude-opus-5-5\n"
+    "  effort: low\n"
+    "  max_tokens: 4000\n"
+    "  seed: 14\n"
 )
 
 
@@ -438,3 +443,19 @@ class TestEvaluationSettings:
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert "has no price" in str(raised.value)
+
+    def test_a_judge_model_without_a_price_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_line_replaced("model", "  model: claude-haiku-5-5\n", "judge")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "judge's model" in str(raised.value)
+
+    def test_an_unknown_effort_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_line_replaced("effort", "  effort: extreme\n", "judge")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("judge", "effort")]
