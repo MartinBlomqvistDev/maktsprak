@@ -1,0 +1,41 @@
+{
+  "paragraphs": 1934335,
+  "words": 107234571,
+  "characters": 660319322,
+  "tokenizers": [
+    {
+      "name": "swedish_wordpiece",
+      "model_type": "WordPiece",
+      "source": "local file party_classifier/tokenizer.json, the tokenizer of KB/bert-base-swedish-cased",
+      "serialised_sha256": "253b3d0c7a773c2f3621ae77d938e67aaac8770f61114e7aaab9428492c1641a",
+      "vocab_size": 50325,
+      "total_tokens": 127733855,
+      "tokens_per_word": 1.1912,
+      "tokens_per_paragraph": {
+        "median": 62,
+        "p90": 109,
+        "p99": 161,
+        "maximum": 1179,
+        "over_input_limit": 2
+      }
+    },
+    {
+      "name": "xlm_roberta_sentencepiece",
+      "model_type": "Unigram",
+      "source": "huggingface.co/xlm-roberta-base, tokenizer.json",
+      "serialised_sha256": "4d8a79a67ac852eb6c52fb5e09bbf720f0e221ff242e8f83ebe4238c0a4c8a43",
+      "vocab_size": 250002,
+      "total_tokens": 152412126,
+      "tokens_per_word": 1.4213,
+      "tokens_per_paragraph": {
+        "median": 74,
+        "p90": 130,
+        "p99": 191,
+        "maximum": 1359,
+        "over_input_limit": 2
+      }
+    }
+  ],
+  "unavailable": {},
+  "note": "These are tokenizer families. No embedding model has been chosen, and a model's own tokenizer gives its own count. Words are whitespace-separated, as in the build report. Token counts leave out special tokens and are made paragraph by paragraph, without truncation or padding."
+}

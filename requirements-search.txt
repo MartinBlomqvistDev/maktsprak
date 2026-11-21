@@ -13,3 +13,4 @@ pyarrow>=18.0
 
 pytest>=7.4,<9.0
 ruff>=0.4
+tokenizers>=0.20,<1.0
