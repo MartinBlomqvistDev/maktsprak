@@ -307,3 +307,123 @@ the speeches and takes its label from that year: 2018-2026 today, and
 The figures are in `data/reports/search/`: `reconciliation.json` for the
 reconciliation, `anforanden_build.json` for what each rule set aside,
 `deep_links.json` for the links and `passages.json` for the periods.
+
+### 2026-11-21: the question sets, and how BM25 and the judge are set up
+
+The question sets are written. Their hashes are recorded here before any system
+is scored on them, together with the sessions of the interpellation set and the
+choices the sections above left open.
+
+| Set | Questions | Development | Test | SHA-256 |
+|---|---|---|---|---|
+| Natural | 300 | 120 | 180 | `a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418` |
+| Keyword | 300 | 120 | 180 | `90cbb69a0efc64e7dd893ac2448d90f42e67ffcda7a795f21c3deab4477b9d41` |
+| Interpellations | 1 387 | 555 | 832 | `7241d388ac2123287b305b1ae758ed783b5f2c3a937e7d097b66a865ea18f34a` |
+| Filtered | 100 | 40 | 60 | `2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92` |
+| Unanswerable | 150 | 60 | 90 | `39d2ca9b16d0e5b22cc0c0f003f05f90cf2d06b0ada814a76b7bdc74c676ece1` |
+| Stance | 50 | 20 | 30 | `75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934` |
+
+The sets are in `data/reports/search/questions/`, one JSON Lines file each.
+`questions_manifest.json` beside them records the seed, the prompts' hashes,
+the cost and how the requests ended.
+
+**How the generated sets were written.** Claude Opus 5.5
+(`claude-opus-5-5`) wrote them at low effort, from the prompts in
+`search/eval/prompts/`. The requests went through Anthropic's message batches
+and cost 2.52 USD. The model, the prompt's hash and the date are stored with
+each question. The prompts were
+tried first on 30 passages of a draw of their own, with its own seed, in two
+runs costing 0.64 USD together. No passage of that pilot could be drawn for the
+sets.
+
+- **The draw.** Every passage is sorted by the year of its speech, its party,
+  its length band and a random key; the bands are the terciles of passage
+  length, cut at 173 and 211 words. A systematic sample from that order, with
+  seed 20261121, gave 450 places: 300 for natural questions, 100 for filtered
+  and 50 for stance questions, spread over the order in proportion. In each set,
+  two of every five places in that order belong to the development split. That
+  was fixed before any question was written.
+- **Replacement.** When the model found no question a voter would reasonably
+  ask of a passage, the place moved to the next passage of the same year, party
+  and length band. A place could try up to twelve passages. An answer that
+  broke a rule got one more request about the same passage, and a second
+  failure also moved the place on. Of the 490 requests that count, after the
+  correction described below, 450 filled a place, 29 found no question in the
+  passage, 7 broke a rule of form and 4 reused a rare word. They asked about
+  481 passages.
+- **Rare words.** A word is rare when fewer than one passage in a thousand
+  holds its stem: fewer than 563.9 of the 563 909, by Snowball's Swedish
+  stemmer. The request listed the passage's rare words, and code checked the
+  question for them after stemming. The rule above names the natural questions;
+  it also applied to the filtered and the stance questions, which are natural
+  questions of a set form.
+- **Keyword questions** are two to four single words, written in the same
+  request as the natural question from the same passage.
+- **Filtered questions** were written like the natural ones, from 100 passages
+  of their own. Every other one is searched under its party, the rest under its
+  period.
+- **Stance questions** ask for the arguments against X, "Vilka argument har
+  förts fram mot X?", or for X, "Vilka argument har förts fram för X?",
+  following the side the passage takes. The table above gives only the first,
+  as an example.
+- **Unanswerable questions:** 50 off topic, 25 naming a member who never sat in
+  the Riksdag, 25 about Sverigedemokraterna in a year from 2003 to 2009, and 50
+  about a year from 2028 to 2035. Code checked what can be checked: each name
+  against every speaker in the corpus, each year named in a question.
+- **One model.** A request the model declined would have gone to no other
+  model, so one model wrote every generated question. None was declined.
+
+**A defect in the keyword check, corrected before the sets were assembled.**
+The check first counted a hyphenated word such as "a-kassan" or
+"EU-medborgare" as two words. It turned away 47 answers that broke no rule, and
+some of the places involved moved on to other passages because of it. The check
+now counts a word the way the corpus does, as a run of characters between
+whitespace. The run sent 538 requests for the questions written from a passage.
+Every logged answer was judged again with the corrected check, and the waves
+were run again against the log, each request taking the logged answer to the
+same request. No new request was needed. 490 of the 538 count, and 21 places
+now hold a passage they had moved on from. In one place, natural-0086, the
+answer that counts came from a second request that did not name the rare word
+"skattefria" the first answer had reused, because that first answer had been
+turned away for its keywords. It reuses no rare word and passes every check.
+
+**The interpellation set.** The sessions are 2007/08, 2011/12 and 2022/23,
+one drawn with seed 20261121 from each period's sessions whose two calendar
+years both lie in that period. A debate is known by its heading, which names
+the interpellation by session and number. The Riksdag's `rel_dok_id` cannot
+serve: in 2014/15 and 2015/16 several debates of one day share one value, and
+some debates have none. The question is the heading's text after its first
+" om ". In each session two of every five debates, in a random order, belong to
+the development split.
+
+**The review.** The 50 questions are drawn with seed 20261122 from the four
+sets written from a passage, in proportion to their size: 20 natural, 20
+keyword, 7 filtered and 3 stance questions. A question is approved when I
+answer yes to both questions. For keyword questions, a reasonable question
+means reasonable search terms, and an answer means that the passage is a good
+hit for them. 85% is 43 of 50. The outcome will be in
+`data/reports/search/review_generation_1.json`.
+
+**BM25 on the development split.** Four analyzers stem or do not, and drop
+Snowball's 114 Swedish stop words or keep them. Each is tried with `k1` at 0.6,
+0.9, 1.2, 1.5 and 1.8 and `b` at 0.3, 0.45, 0.6, 0.75 and 0.9. The
+configuration with the highest recall@10 on the natural questions of the
+development split is chosen. A tie goes to the higher MRR@10, then to the
+configuration nearest Lucene's defaults (`k1` 1.2, `b` 0.75), then to the
+analyzer listed first in `search/index/analyzer.py`. That configuration is the
+BM25 of every comparison.
+
+**The judge.** Claude Opus 5.5 at low effort, with the prompt
+`search/eval/prompts/judge.md` (SHA-256
+`c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168`), grades
+how well a passage answers a question: 2 when it answers it, 1 when it is about
+the question's topic but does not answer it, 0 when it is about something else.
+The 100 pairs for my own grades come from the pilot's questions, which belong
+to no set, so the calibration touches neither split. 25 questions are drawn
+with seed 20261123, and each is paired with the passage it was written from and
+with the three other passages BM25 ranks highest, with stemming, with the stop
+words dropped and at Lucene's defaults. The
+judge grades them without seeing my grades. The kappa that decides is Cohen's,
+unweighted, over the three grades: at 0.6 or more the judge's grades are used.
+The linear-weighted kappa, and the kappa of grade 2 against the other two, are
+reported and decide nothing.
