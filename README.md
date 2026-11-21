@@ -17,7 +17,7 @@ Every headline number here is one a validation leak would have inflated. I found
 | **Model** | KB-BERT, 8-way party classification, **0.628 acc / 0.619 macro-F1** speaker-independent. Trained once on 2015-onward debates; the pre-2015 corpus powers the drift analytics, not the model |
 | **Serving** | FastAPI on Cloud Run, scale-to-zero |
 | **Site** | Next.js on Vercel, static precomputed JSON |
-| **Tests** | 211, green, on every push |
+| **Tests** | 1 049, green, on every push |
 
 ---
 
@@ -173,7 +173,7 @@ cp .env.example .env                                # SUPABASE_URL, SUPABASE_KEY
 ```
 
 ```bash
-pytest tests/ -v                                    # 211 tests, no credentials needed
+pytest tests/ -v                                    # 1 049 tests, no credentials needed
 python scripts/rebuild_corpus.py --jobs 12          # rebuild the corpus, offline
 python scripts/build_site_data.py                   # precompute the site's JSON
 python -m src.maktsprak_pipeline.main               # one incremental ETL pass
@@ -210,7 +210,7 @@ research/                   # LLM studies that reuse the classifier as an instru
 inference_service/          # FastAPI + Dockerfile, deployed to Cloud Run
 web/                        # Next.js site (Vercel)
 notebooks/retrain_colab.ipynb
-tests/                      # 211 tests
+tests/                      # 1 049 tests
 ```
 
 ---
