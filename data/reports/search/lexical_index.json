@@ -1,0 +1,62 @@
+{
+  "stemmer": "PyStemmer 3.1.0",
+  "stopwords_sha256": "2ba8cabba9bde9bebeed7eba0e58f2651c15f8a192d7900a0c98c373055b74d7",
+  "indexes": [
+    {
+      "analyzer": {
+        "stem": true,
+        "stopwords": true
+      },
+      "passages": 563909,
+      "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+      "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+      "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+      "terms": 291875,
+      "postings": 44585287,
+      "tokens": 56111189,
+      "mean_passage_terms": 99.504
+    },
+    {
+      "analyzer": {
+        "stem": true,
+        "stopwords": false
+      },
+      "passages": 563909,
+      "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+      "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+      "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+      "terms": 291918,
+      "postings": 63155219,
+      "tokens": 107296356,
+      "mean_passage_terms": 190.272
+    },
+    {
+      "analyzer": {
+        "stem": false,
+        "stopwords": true
+      },
+      "passages": 563909,
+      "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+      "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+      "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+      "terms": 455480,
+      "postings": 46993031,
+      "tokens": 56111189,
+      "mean_passage_terms": 99.504
+    },
+    {
+      "analyzer": {
+        "stem": false,
+        "stopwords": false
+      },
+      "passages": 563909,
+      "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+      "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+      "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+      "terms": 455594,
+      "postings": 65815447,
+      "tokens": 107296356,
+      "mean_passage_terms": 190.272
+    }
+  ]
+}

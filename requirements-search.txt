@@ -10,6 +10,12 @@ pydantic>=2.9,<3.0
 pyyaml>=6.0,<7.0
 httpx>=0.27,<1.0
 pyarrow>=18.0
+numpy>=1.25
+
+# The lexical index stems Swedish with Snowball. PyStemmer is the same stemmer
+# in C and only makes the build faster; without it snowballstemmer runs alone.
+snowballstemmer>=2.2,<4.0
+PyStemmer>=2.2
 
 pytest>=7.4,<9.0
 ruff>=0.4
