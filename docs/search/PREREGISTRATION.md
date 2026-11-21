@@ -235,3 +235,75 @@ by somebody else. They are set aside when the corpus is built and are never
 part of a passage or a quotation.
 
 The figures are in `data/reports/search/anforanden_build.json`.
+
+### 2026-11-21: the reconciliation, and what the corpus stores
+
+The coverage rule was applied. The sessions in scope run from 2003/04 to
+2026/27. In them, 286 323 of the 287 608 speeches in the existing corpus have
+a counterpart in the new one: a coverage of 0.9955, against the 0.99 required.
+The reconciliation was run four times as the corpus build was corrected. Every
+run met the rule. Out of 287 608, the runs paired 286 325 on 2026-11-20, then
+286 326, 286 323 and 286 323 on 2026-11-21. The report holds the last run.
+
+The other way round, 286 323 of the 300 210 new speeches in protocols dated
+within the span of the older corpus have a counterpart. Pairs are made only
+within one protocol, and 12 413 of the 13 887 new speeches without one lie in
+94 protocols that the older corpus lacks.
+
+The pre-registration gave "differ systematically" no measure. It was judged
+after the runs, and no bound was set afterwards. The judgement rests on two
+figures over the paired speeches:
+
+- **The speakers' words.** 46 359 of the 101 830 999 tokens in the new
+  speeches are missing from the older text, so the older text holds almost
+  every word of the new speeches.
+- **What the older text holds beyond the new.** 4 283 956 of the 106 068 596
+  tokens in the older speeches have no counterpart in the new speech's
+  paragraphs. With the paragraphs set aside as the record's own counted too,
+  4 115 331 have none. Beyond common words such as "av", "för" and "och", the
+  commonest of these tokens include party letters, digits, "res", "utskottet"
+  and "frånvarande", words found in vote lists and the order of business. I
+  take this surplus to be protocol text that the PDF parser kept inside a
+  speech, a defect of the older corpus.
+
+I judged that the texts do not differ systematically, and the work goes on.
+
+Coverage cannot show whether a new speech is complete. A new speech is paired
+when at least 0.6 of its pairs of adjacent tokens are found in the older text,
+so a speech that had lost its end would still pair. A speech would lose its end
+if one of the ten rules that close a speech fired on the speaker's own
+sentence. In `anforanden_build.json` those rules are `closing_note`,
+`concurrence`, `leave_of_absence`, `chair_narration`, `chamber_narration`,
+`committee_narration`, `demand_narration`, `document_read`, `election` and
+`vote`. Between them they close 15 220 speeches. After the closing text, the
+rule `after_closing` set aside 4 909 paragraphs.
+
+When the corpus was built, a language model read every distinct closing text
+and every distinct paragraph that `after_closing` set aside, apart from lists
+of names. Those, such as the members who concurred in a speech or the name
+lines after a closing, were checked by pattern. By that reading, none of the
+closing texts or paragraphs holds words the speaker spoke. Reading them is a
+job beyond the three named above, and I have not checked its readings against
+my own.
+
+Each quotation links to `https://data.riksdagen.se/anforande/<speech id>/html`,
+the Riksdag's page for that one speech. The Riksdag's own data gives a speech
+the address of its protocol page with `#anf<number>`. That page was fetched for
+one speech in each of the 24 sessions, and 23 of the 24 held neither the anchor
+nor the speech's text. Of 50 sampled speeches, 49 had a page at the chosen
+address that passed every judgement in the report. Two of the judgements are
+that the page names the speech and that it holds the opening words of each of
+the speech's paragraphs in order. The address of the other, H109118-59,
+answered with the speech's open-data XML record, which holds the text but not
+the heading that names the speech. How many addresses answer this way is not
+known.
+
+The corpus starts in 2003, so the first period of the breakdown is 2003-2009;
+the second stays 2010-2017. The last runs from 2018 to the latest year among
+the speeches and takes its label from that year: 2018-2026 today, and
+2018-2027 once the corpus holds a speech from 2027. The last session in scope,
+2026/27, runs until September 2027.
+
+The figures are in `data/reports/search/`: `reconciliation.json` for the
+reconciliation, `anforanden_build.json` for what each rule set aside,
+`deep_links.json` for the links and `passages.json` for the periods.
