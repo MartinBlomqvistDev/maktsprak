@@ -1,0 +1,99 @@
+{
+  "generation": 1,
+  "seed": 20261121,
+  "model": "claude-opus-5-5",
+  "effort": "low",
+  "prompts": {
+    "after_index": "e6694c141f4145e97d8785410d85ebb08e31b21645588bff36fcbb5e5df0aa9b",
+    "natural": "6605943d83cb491212090fbd5e90cce84b7e5aa71df9065e654f2a80c71648d9",
+    "off_topic": "6039c14738fc2f71ac4ad482188d0d600d8d63e50361458207eb467cb67670eb",
+    "sd_before_2010": "8054243e9c03fd2c241ae9922b5f756e0877527a2634a425303784e52ce3ce2e",
+    "stance": "c25db90a1cf9ac23e3060ae0e361fceeee2756dced3f1185c5815ef66fe76604",
+    "unknown_speaker": "c41b49d87779f228b0bc858a8d099355c06ea76bfed3f9f8723a404e40b85f45"
+  },
+  "rare_share": 0.001,
+  "rare_below": 563.909,
+  "length_band_edges": [
+    173,
+    211
+  ],
+  "slots": {
+    "filtered": 100,
+    "natural": 300,
+    "stance": 50
+  },
+  "filled": {
+    "filtered": 100,
+    "natural": 300,
+    "stance": 50
+  },
+  "requests_made": 538,
+  "attempts": {
+    "filled": 450,
+    "invalid": 7,
+    "rare": 4,
+    "unusable": 29
+  },
+  "outcomes_changed": 47,
+  "passages_changed": 21,
+  "passages_tried": 481,
+  "unanswerable_turned_away": {
+    "off_topic": {},
+    "unknown_speaker": {},
+    "sd_before_2010": {},
+    "after_index": {
+      "the years are not from 2028 to 2035": 1
+    }
+  },
+  "interpellation_sessions": [
+    "2007/08",
+    "2011/12",
+    "2022/23"
+  ],
+  "interpellation_left_out": {},
+  "cost_usd": 2.5193,
+  "sets": {
+    "natural": {
+      "file": "natural.jsonl",
+      "questions": 300,
+      "dev": 120,
+      "test": 180,
+      "sha256": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418"
+    },
+    "keyword": {
+      "file": "keyword.jsonl",
+      "questions": 300,
+      "dev": 120,
+      "test": 180,
+      "sha256": "90cbb69a0efc64e7dd893ac2448d90f42e67ffcda7a795f21c3deab4477b9d41"
+    },
+    "interpellation": {
+      "file": "interpellation.jsonl",
+      "questions": 1387,
+      "dev": 555,
+      "test": 832,
+      "sha256": "7241d388ac2123287b305b1ae758ed783b5f2c3a937e7d097b66a865ea18f34a"
+    },
+    "filtered": {
+      "file": "filtered.jsonl",
+      "questions": 100,
+      "dev": 40,
+      "test": 60,
+      "sha256": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92"
+    },
+    "unanswerable": {
+      "file": "unanswerable.jsonl",
+      "questions": 150,
+      "dev": 60,
+      "test": 90,
+      "sha256": "39d2ca9b16d0e5b22cc0c0f003f05f90cf2d06b0ada814a76b7bdc74c676ece1"
+    },
+    "stance": {
+      "file": "stance.jsonl",
+      "questions": 50,
+      "dev": 20,
+      "test": 30,
+      "sha256": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934"
+    }
+  }
+}
