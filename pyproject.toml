@@ -67,7 +67,7 @@ where = ["."]
 
 [tool.setuptools.package-data]
 "src.maktsprak_pipeline.nlp" = ["resources/*.txt"]
-"search" = ["*.yaml", "index/*.txt"]
+"search" = ["*.yaml", "index/*.txt", "eval/*.html", "eval/prompts/*.md"]
 
 # ---------------------------------------------------------------------------
 # Ruff — linter + formatter

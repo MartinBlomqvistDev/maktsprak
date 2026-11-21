@@ -15,9 +15,10 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from typing import Literal
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 REPO_ROOT: Path = Path(__file__).resolve().parents[1]
 CONFIG_FILE: Path = Path(__file__).resolve().with_name("config.yaml")
@@ -79,9 +80,11 @@ class TrackedPaths(_Frozen):
 
     Attributes:
         reports: Results and manifests as JSON.
+        questions: The question sets of the evaluation, as JSON Lines.
     """
 
     reports: Path
+    questions: Path
 
 
 class PassageSettings(_Frozen):
@@ -154,6 +157,86 @@ class LinkSettings(_Frozen):
     max_requests: int = Field(gt=0)
 
 
+UnanswerableKind = Literal["off_topic", "unknown_speaker", "sd_before_2010", "after_index"]
+
+
+class QuestionSettings(_Frozen):
+    """How the question sets are drawn and written.
+
+    Attributes:
+        seed: Decides the draw of passages and the split.
+        pilot_seed: Decides the pilot's passages, apart from the real draw.
+        review_seed: Decides which questions the review draws.
+        sizes: How many questions each generated set gets that is written from a passage.
+        pilot_sizes: How many passages the pilot tries each prompt on.
+        unanswerable: How many questions of each kind the unanswerable set keeps.
+        unanswerable_asked: How many questions of each kind the model is asked for.
+        pilot_unanswerable_asked: How many of each kind the pilot asks for.
+        rare_share: A stem held by fewer than this share of the passages is rare.
+        max_passages_per_slot: The most passages one slot tries.
+        interpellation_sessions_per_period: How many sessions per period the
+            interpellation set draws.
+        pilot_budget_usd: The most the pilot may cost, all runs together.
+    """
+
+    seed: int
+    pilot_seed: int
+    review_seed: int
+    sizes: dict[Literal["natural", "filtered", "stance"], int]
+    pilot_sizes: dict[Literal["natural", "filtered", "stance"], int]
+    unanswerable: dict[UnanswerableKind, int]
+    unanswerable_asked: dict[UnanswerableKind, int]
+    pilot_unanswerable_asked: int = Field(gt=0)
+    rare_share: float = Field(gt=0, lt=1)
+    max_passages_per_slot: int = Field(gt=0)
+    interpellation_sessions_per_period: int = Field(gt=0)
+    pilot_budget_usd: float = Field(gt=0)
+
+    @field_validator("sizes", "pilot_sizes", "unanswerable", "unanswerable_asked")
+    @classmethod
+    def _counts_are_positive(cls, counts: dict[str, int]) -> dict[str, int]:
+        if any(count < 1 for count in counts.values()):
+            raise ValueError("Every count must be at least one.")
+        return counts
+
+
+class Prices(_Frozen):
+    """List prices of one model, in US dollars per million tokens.
+
+    Attributes:
+        input: The price of an input token.
+        output: The price of an output token.
+    """
+
+    input: float = Field(ge=0)
+    output: float = Field(ge=0)
+
+
+class GenerationSettings(_Frozen):
+    """The language model that writes the questions, and what it costs.
+
+    Attributes:
+        model: The model id.
+        effort: How much the model thinks: ``low``, ``medium``, ``high``,
+            ``xhigh`` or ``max``.
+        max_tokens: The most output tokens of one answer, thinking included.
+        batch_discount: The share taken off the price in a message batch.
+        prices: List prices by model id; the model in use must be listed.
+    """
+
+    model: str
+    effort: Literal["low", "medium", "high", "xhigh", "max"]
+    max_tokens: int = Field(gt=0)
+    batch_discount: float = Field(ge=0, lt=1)
+    prices: dict[str, Prices]
+
+    @model_validator(mode="after")
+    def _model_is_priced(self) -> GenerationSettings:
+        if self.model not in self.prices:
+            raise ValueError(f"The model {self.model} has no price in the settings.")
+        return self
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -165,6 +248,8 @@ class Settings(_Frozen):
         passages: How speeches are packed into passages.
         reconcile: How the corpus is reconciled against the older corpus.
         links: Defaults for the deep-link check.
+        questions: How the question sets are drawn and written.
+        generation: The language model that writes the questions.
     """
 
     source: Source
@@ -174,6 +259,8 @@ class Settings(_Frozen):
     passages: PassageSettings
     reconcile: ReconcileSettings
     links: LinkSettings
+    questions: QuestionSettings
+    generation: GenerationSettings
 
 
 def resolve_data_root(data_root: Path | None = None) -> Path:

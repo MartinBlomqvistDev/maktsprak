@@ -23,6 +23,7 @@ VALID_YAML = (
     "  party_classifier: data/models/party_classifier\n"
     "tracked:\n"
     "  reports: data/reports/search\n"
+    "  questions: data/reports/search/questions\n"
     "passages:\n"
     "  target_words: 200\n"
     "  trial_targets: [120, 320]\n"
@@ -40,21 +41,52 @@ VALID_YAML = (
     "links:\n"
     "  seed: 2026\n"
     "  max_requests: 60\n"
+    "questions:\n"
+    "  seed: 11\n"
+    "  pilot_seed: 12\n"
+    "  review_seed: 13\n"
+    "  sizes: {natural: 30, filtered: 10, stance: 5}\n"
+    "  pilot_sizes: {natural: 2, stance: 1}\n"
+    "  unanswerable: {off_topic: 5, unknown_speaker: 2, sd_before_2010: 2, after_index: 5}\n"
+    "  unanswerable_asked: {off_topic: 6, unknown_speaker: 3, sd_before_2010: 3, after_index: 6}\n"
+    "  pilot_unanswerable_asked: 2\n"
+    "  rare_share: 0.001\n"
+    "  max_passages_per_slot: 12\n"
+    "  interpellation_sessions_per_period: 1\n"
+    "  pilot_budget_usd: 1.0\n"
+    "generation:\n"
+    "  model: claude-opus-5-5\n"
+    "  effort: low\n"
+    "  max_tokens: 8000\n"
+    "  batch_discount: 0.5\n"
+    "  prices:\n"
+    "    claude-opus-5-5: {input: 4.0, output: 20.0}\n"
 )
 
 
-def without_key(key: str) -> str:
-    """The valid settings without the row that starts with ``  key:``."""
+def _key_rows(key: str, section: str | None) -> tuple[list[str], list[bool]]:
+    """The rows of the valid settings, and which of them hold ``  key:``, in *section* if given."""
     rows = VALID_YAML.splitlines(keepends=True)
-    assert sum(row.startswith(f"  {key}:") for row in rows) == 1
-    return "".join(row for row in rows if not row.startswith(f"  {key}:"))
+    current = ""
+    marks = []
+    for row in rows:
+        if not row.startswith(" "):
+            current = row.split(":")[0]
+        marks.append(row.startswith(f"  {key}:") and section in (None, current))
+    assert sum(marks) == 1
+    return rows, marks
 
 
-def with_line_replaced(key: str, line: str) -> str:
-    """The valid settings with the row that starts with ``  key:`` replaced by ``line``."""
-    rows = VALID_YAML.splitlines(keepends=True)
-    assert sum(row.startswith(f"  {key}:") for row in rows) == 1
-    return "".join(line if row.startswith(f"  {key}:") else row for row in rows)
+def without_key(key: str, section: str | None = None) -> str:
+    """The valid settings without the row ``  key:``, looked for in *section* if given."""
+    rows, marks = _key_rows(key, section)
+    return "".join(row for row, marked in zip(rows, marks, strict=True) if not marked)
+
+
+def with_line_replaced(key: str, line: str, section: str | None = None) -> str:
+    """The valid settings with the row ``  key:`` replaced by ``line``, in *section* if given."""
+    rows, marks = _key_rows(key, section)
+    return "".join(line if marked else row for row, marked in zip(rows, marks, strict=True))
 
 
 def error_places(error: ValidationError) -> list[tuple[tuple[int | str, ...], str]]:
@@ -325,7 +357,8 @@ class TestValidation:
 
     def test_a_missing_links_section_raises(self, data_root):
         config = data_root / "config.yaml"
-        config.write_text(VALID_YAML.split("links:")[0], encoding="utf-8")
+        before, after = VALID_YAML.split("links:")
+        config.write_text(before + "questions:" + after.split("questions:")[1], encoding="utf-8")
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert error_places(raised.value) == [(("links",), "missing")]
@@ -333,7 +366,7 @@ class TestValidation:
     @pytest.mark.parametrize("key", ["seed", "max_requests"])
     def test_a_missing_link_key_raises(self, data_root, key):
         config = data_root / "config.yaml"
-        config.write_text(without_key(key), encoding="utf-8")
+        config.write_text(without_key(key, "links"), encoding="utf-8")
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert error_places(raised.value) == [(("links", key), "missing")]
@@ -359,3 +392,49 @@ class TestValidation:
         settings = load_settings(data_root=data_root)
         with pytest.raises(ValidationError):
             settings.data.search = data_root  # type: ignore[misc]
+
+
+class TestEvaluationSettings:
+    def test_the_question_settings_are_read(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(VALID_YAML, encoding="utf-8")
+        questions = load_settings(config_file=config, data_root=data_root).questions
+        assert (questions.seed, questions.pilot_seed, questions.review_seed) == (11, 12, 13)
+        assert questions.sizes == {"natural": 30, "filtered": 10, "stance": 5}
+        assert questions.rare_share == 0.001
+
+    def test_the_shipped_sizes_are_the_pre_registered_ones(self, data_root):
+        questions = load_settings(data_root=data_root).questions
+        assert questions.sizes == {"natural": 300, "filtered": 100, "stance": 50}
+        assert sum(questions.unanswerable.values()) == 150
+        assert all(
+            questions.unanswerable_asked[kind] >= count
+            for kind, count in questions.unanswerable.items()
+        )
+
+    def test_the_tracked_questions_stay_in_the_repository(self, data_root):
+        settings = load_settings(data_root=data_root)
+        assert settings.tracked.questions == REPO_ROOT / "data" / "reports" / "search" / "questions"
+
+    def test_a_count_below_one_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = VALID_YAML.replace("{natural: 30, filtered: 10, stance: 5}", "{natural: 0}")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("questions", "sizes")]
+
+    def test_an_unknown_set_in_the_sizes_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = VALID_YAML.replace("{natural: 30, filtered: 10, stance: 5}", "{essay: 3}")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError):
+            load_settings(config_file=config, data_root=data_root)
+
+    def test_a_generation_model_without_a_price_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_line_replaced("model", "  model: claude-haiku-5-5\n", "generation")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "has no price" in str(raised.value)

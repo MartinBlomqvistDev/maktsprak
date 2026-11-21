@@ -1,0 +1,5 @@
+# The question sets and the prompts behind them are recorded by their hashes in
+# docs/search/PREREGISTRATION.md, byte for byte, so every checkout keeps their
+# Unix line ends.
+data/reports/search/questions/* text eol=lf
+search/eval/prompts/*.md text eol=lf

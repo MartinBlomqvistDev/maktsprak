@@ -27,6 +27,7 @@ data:
 # against the repository the code runs from.
 tracked:
   reports: data/reports/search
+  questions: data/reports/search/questions
 
 # Packing speeches into passages, the unit the indexes hold. A passage is a run
 # of whole paragraphs from one speech, packed towards target_words. The trial
@@ -61,3 +62,40 @@ reconcile:
 links:
   seed: 2026
   max_requests: 60
+
+# The question sets of the evaluation (step 10). Their sizes and the split are
+# fixed in docs/search/PREREGISTRATION.md; the seeds, the rare-word share and
+# the rest are recorded in the addendum that carries the sets' hashes.
+#
+# sizes are the generated sets drawn from passages; a filtered question is a
+# natural question written from its own passage. A stem is rare when fewer than
+# rare_share of all passages hold it. A slot tries at most max_passages_per_slot
+# passages of its stratum. The pilot tries the prompts on pilot_sizes passages of
+# its own draw, one passage per slot, for at most pilot_budget_usd. review_seed
+# draws the 50 questions of the review.
+questions:
+  seed: 20261121
+  pilot_seed: 20261120
+  review_seed: 20261122
+  sizes: {natural: 300, filtered: 100, stance: 50}
+  pilot_sizes: {natural: 20, stance: 10}
+  unanswerable: {off_topic: 50, unknown_speaker: 25, sd_before_2010: 25, after_index: 50}
+  unanswerable_asked: {off_topic: 60, unknown_speaker: 35, sd_before_2010: 35, after_index: 60}
+  pilot_unanswerable_asked: 8
+  rare_share: 0.001
+  max_passages_per_slot: 12
+  interpellation_sessions_per_period: 1
+  pilot_budget_usd: 1.0
+
+# The language model that writes the questions, and the list prices used to
+# account for what it costs, in US dollars per million tokens (Anthropic's list,
+# as of 2026-11-03). A message batch costs batch_discount less.
+generation:
+  model: claude-opus-5-5
+  effort: low
+  max_tokens: 8000
+  batch_discount: 0.5
+  prices:
+    claude-opus-5-5: {input: 4.0, output: 20.0}
+    claude-sonnet-5-5: {input: 2.0, output: 10.0}
+    claude-haiku-5-5: {input: 0.10, output: 0.50}

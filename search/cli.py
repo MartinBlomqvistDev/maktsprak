@@ -30,4 +30,5 @@ def settings_from(args: argparse.Namespace) -> Settings:
 def configure_logging() -> None:
     """Send progress messages to the terminal, one plain line each."""
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    logging.getLogger("httpx").setLevel(logging.WARNING)
+    for noisy in ("httpx", "httpx2"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
