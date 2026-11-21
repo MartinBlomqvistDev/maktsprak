@@ -7,6 +7,13 @@ source:
   first_session: "2002/03"
   last_session: "2026/27"
 
+# The sessions the corpus covers, from first_session to source.last_session.
+# 2002/03 is fetched and counted, and left out: its text is broken at the width
+# of the printed column, with no mark for where a paragraph ends. The decision
+# is the addendum of 2026-11-20 in docs/search/PREREGISTRATION.md.
+corpus:
+  first_session: "2003/04"
+
 # Bulk data, gitignored. These paths resolve against the data root: the
 # repository root, or MAKTSPRAK_DATA_ROOT when it is set. In a git worktree,
 # point it at the main checkout, where the corpus is.
@@ -14,8 +21,43 @@ data:
   raw_anforanden: data/raw_anforanden
   search: data/search
   legacy_corpus: data/parquet/speeches_full.parquet
+  party_classifier: data/models/party_classifier
 
 # Tracked output: results and manifests as JSON. These paths always resolve
 # against the repository the code runs from.
 tracked:
   reports: data/reports/search
+
+# Packing speeches into passages, the unit the indexes hold. A passage is a run
+# of whole paragraphs from one speech, packed towards target_words. The trial
+# targets are only counted in the packing report; no files are written for them.
+passages:
+  target_words: 200
+  trial_targets: [120, 320]
+
+# Reconciling the speech corpus against the older corpus parsed from the
+# protocol PDFs (step 03). coverage_threshold is the stop rule fixed before the
+# first run: the new source must cover this share of the older speeches. Two
+# speeches are the same when they share at least min_shared_tokens tokens and
+# the older text holds at least min_sequence_share of the new text's pairs of
+# adjacent tokens. missing_tokens and surplus_tokens are the sizes above which a
+# pair counts as missing words or as carrying a surplus. The listed_* values cap
+# the lists in the tracked report.
+reconcile:
+  coverage_threshold: 0.99
+  edge_tokens: 8
+  min_sequence_share: 0.6
+  min_shared_tokens: 5
+  missing_tokens: 5
+  surplus_tokens: 20
+  listed_ids: 60
+  listed_deviations: 50
+  listed_missing: 25
+  listed_tokens: 30
+
+# The deep-link check (check_deep_links.py). Both values are the defaults of the
+# command-line options --seed and --max-requests. The 50 speeches it samples need 50
+# requests, so 60 leaves room for retries.
+links:
+  seed: 2026
+  max_requests: 60
