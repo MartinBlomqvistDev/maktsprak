@@ -1,0 +1,650 @@
+{
+  "inputs_sha256": "74eba01601ecbe046ad82430194732e653ccaf2701f10b569837b2f2a5591f02",
+  "source_records": 316611,
+  "speeches": 301358,
+  "excluded": {
+    "hard_wrapped_source": 12345,
+    "outside_the_eight_parties": 2902,
+    "test_record": 6
+  },
+  "excluded_party_labels": {
+    "(none)": 1190,
+    "-": 490,
+    "TREDJE VICE TALMANNEN": 369,
+    "TALMANNEN": 345,
+    "FÖRSTE VICE TALMANNEN": 244,
+    "ANDRE VICE TALMANNEN": 237,
+    "HANS MAJESTÄT KONUNGEN": 12,
+    "TJÄNSTGÖRANDE ÅLDERSPRESIDENTEN": 10,
+    "ÅLDERSPRESIDENTEN": 4,
+    "Andre vice talmannen": 1
+  },
+  "hyphenated_line_ends_in_wrapped": 109073,
+  "set_aside": {
+    "after_closing": 4909,
+    "chair_narration": 83,
+    "chamber_narration": 8,
+    "closing_note": 9444,
+    "committee_narration": 2,
+    "concurrence": 5317,
+    "demand_narration": 1,
+    "document_read": 17,
+    "election": 11,
+    "field_code": 62978,
+    "heading": 4349,
+    "heading_line_break": 279,
+    "heading_pieces": 95,
+    "heading_with_subtitle": 34,
+    "insertion": 33758,
+    "interjection_span": 47,
+    "interjection_unclosed": 1,
+    "leave_of_absence": 336,
+    "page_footer": 3,
+    "title_fragment": 31,
+    "title_misprint": 1,
+    "unbracketed_interjection": 1,
+    "vote": 1
+  },
+  "flagged": {
+    "lost_emphasis_boundary": [
+      "GR09104-117",
+      "GR09105-128",
+      "GR09109-113",
+      "GR09112-1",
+      "GR09112-2",
+      "GR09120-33",
+      "GR09120-68",
+      "GR09129-3",
+      "GR09131-72",
+      "GR0914-91",
+      "GR0917-67",
+      "GR0918-18",
+      "GR0933-8",
+      "GR0934-88",
+      "GR0934-89",
+      "GR0935-17",
+      "GR0935-45",
+      "GR0936-19",
+      "GR0938-38",
+      "GR0952-4",
+      "GR0954-89",
+      "GR0956-1",
+      "GR0957-10",
+      "GR0958-90",
+      "GR0981-12",
+      "GR0987-103",
+      "GR0988-158",
+      "GR0990-48",
+      "GR0994-70",
+      "GR0996-213",
+      "GR0998-27",
+      "GS09108-7",
+      "GS09113-81",
+      "GS09117-40",
+      "GS09118-63",
+      "GS09125-70",
+      "GS09125-8",
+      "GS09126-196",
+      "GS09130-18",
+      "GS09135-233",
+      "GS09136-29",
+      "GS09141-90",
+      "GS0917-73",
+      "GS0925-88",
+      "GS0927-153",
+      "GS0929-147",
+      "GS0929-55",
+      "GS0935-110",
+      "GS0949-201",
+      "GS0950-171",
+      "GS0955-12",
+      "GS0961-165",
+      "GS0963-133",
+      "GS0963-53",
+      "GS0969-129",
+      "GS097-14",
+      "GS0976-52",
+      "GS0978-13",
+      "GS0989-14",
+      "GS0992-90",
+      "GS0999-234",
+      "GT09102-163",
+      "GT09124-75",
+      "GT09127-18",
+      "GT0913-34",
+      "GT0913-90",
+      "GT09132-185",
+      "GT09137-13",
+      "GT09139-49",
+      "GT09140-88",
+      "GT0926-74",
+      "GT0937-149",
+      "GT0946-46",
+      "GT0961-42",
+      "GT0961-43",
+      "GT0961-44",
+      "GT0961-45",
+      "GT0979-6",
+      "GT0989-21",
+      "GT0997-107",
+      "GT0997-108",
+      "GT0997-109",
+      "GT0997-110",
+      "GU09113-1",
+      "GU09124-17",
+      "GU09132-55",
+      "GU0914-166",
+      "GU0917-392",
+      "GU0973-110",
+      "GU0974-71",
+      "GU0977-53",
+      "GU0979-128",
+      "GU0988-148",
+      "GU0988-43",
+      "GV09100-2",
+      "GV0911-57",
+      "GV09112-147",
+      "GV09127-1",
+      "GV09138-24",
+      "GV09141-47",
+      "GV0915-1",
+      "GV0921-1",
+      "GV0923-20",
+      "GV0928-140",
+      "GV0935-21",
+      "GV0935-22",
+      "GV0935-53",
+      "GV0938-134",
+      "GV0944-17",
+      "GV0946-44",
+      "GV0962-99",
+      "GV0974-23",
+      "GV0985-72",
+      "GV0995-23",
+      "GW09114-65",
+      "GW09131-63",
+      "GW0919-8",
+      "GW0922-3",
+      "GW0932-78",
+      "GW0940-35",
+      "GW0943-17",
+      "GW0949-82",
+      "GW0970-91",
+      "GW0987-14",
+      "GX09111-87",
+      "GX09121-2",
+      "GX09125-58",
+      "GX09126-53",
+      "GX09129-9",
+      "GX0913-177",
+      "GX09139-230",
+      "GX0918-99",
+      "GX0947-216",
+      "GX0976-6",
+      "GX0989-64",
+      "GX0991-1",
+      "GX0994-30",
+      "GY09100-36",
+      "GY09104-72",
+      "GY09110-15",
+      "GY09110-18",
+      "GY09113-138",
+      "GY09114-98",
+      "GY0941-125",
+      "GY0960-115",
+      "GZ09129-124",
+      "GZ09133-42",
+      "GZ0929-40",
+      "GZ0940-12",
+      "GZ0947-62",
+      "GZ0950-85",
+      "GZ0952-47",
+      "GZ0985-96",
+      "GZ0994-5",
+      "H009101-113",
+      "H009105-98",
+      "H009124-95",
+      "H00920-55",
+      "H00939-1",
+      "H00942-220",
+      "H00944-22",
+      "H00967-63",
+      "H00968-105",
+      "H00977-136",
+      "H00979-15",
+      "H109107-1",
+      "H109129-60",
+      "H10917-97",
+      "H10938-34",
+      "H10944-192",
+      "H10946-55",
+      "H10953-115",
+      "H10958-96",
+      "H10970-170",
+      "H10970-190",
+      "H10970-234",
+      "H10975-128"
+    ]
+  },
+  "speeches_with_notes": 43606,
+  "headings": 28442,
+  "dropped_headings": {
+    "Svar på interpellationer": 480,
+    "Frågestund": 160,
+    "Statsministerns frågestund": 54,
+    "Svar på interpellation": 37,
+    "Partiledardebatt": 27,
+    "situationen inom": 27,
+    "Studiestöd": 24,
+    "Återrapportering från Europeiska rådets möte": 23,
+    "Företagens rapportering om hållbarhet och mångfaldspolicy": 23,
+    "Rättsväsendet": 22,
+    "Associationsrätt": 22,
+    "Cykelfrågor": 19,
+    "Gymnasieskolan": 18,
+    "Näringsliv": 18,
+    "Migration": 17,
+    "Ekonomisk trygghet vid ålderdom": 17,
+    "Hälsovård, sjukvård och social omsorg": 17,
+    "Allmän miljö- och naturvård": 17,
+    "Kommunikationer": 17,
+    "Förskolan": 17
+  },
+  "paragraphs": 1934335,
+  "words": 107234571,
+  "words_per_speech": {
+    "mean": 355.8,
+    "median": 262.0,
+    "p90": 719.0,
+    "max": 6453.0
+  },
+  "speeches_by_party": {
+    "C": 26473,
+    "KD": 26084,
+    "L": 27754,
+    "M": 61708,
+    "MP": 26856,
+    "S": 87394,
+    "SD": 18563,
+    "V": 26526
+  },
+  "sessions": [
+    {
+      "session": "2002/03",
+      "source_records": 12479,
+      "speeches": 0,
+      "excluded": {
+        "hard_wrapped_source": 12345,
+        "outside_the_eight_parties": 134
+      },
+      "layouts": {
+        "wrapped": 12345
+      },
+      "first_date": null,
+      "last_date": null,
+      "paragraphs": 0,
+      "words": 0
+    },
+    {
+      "session": "2003/04",
+      "source_records": 13607,
+      "speeches": 13523,
+      "excluded": {
+        "outside_the_eight_parties": 84
+      },
+      "layouts": {
+        "lines": 13523
+      },
+      "first_date": "2003-09-16",
+      "last_date": "2004-06-19",
+      "paragraphs": 76338,
+      "words": 4545283
+    },
+    {
+      "session": "2004/05",
+      "source_records": 15960,
+      "speeches": 15832,
+      "excluded": {
+        "outside_the_eight_parties": 128
+      },
+      "layouts": {
+        "lines": 15832
+      },
+      "first_date": "2004-09-14",
+      "last_date": "2005-06-18",
+      "paragraphs": 90031,
+      "words": 5365928
+    },
+    {
+      "session": "2005/06",
+      "source_records": 13927,
+      "speeches": 13757,
+      "excluded": {
+        "outside_the_eight_parties": 170
+      },
+      "layouts": {
+        "lines": 13757
+      },
+      "first_date": "2005-09-13",
+      "last_date": "2006-06-17",
+      "paragraphs": 81616,
+      "words": 4912449
+    },
+    {
+      "session": "2006/07",
+      "source_records": 14119,
+      "speeches": 14008,
+      "excluded": {
+        "outside_the_eight_parties": 111
+      },
+      "layouts": {
+        "lines": 14008
+      },
+      "first_date": "2006-10-02",
+      "last_date": "2007-09-13",
+      "paragraphs": 81945,
+      "words": 4859787
+    },
+    {
+      "session": "2007/08",
+      "source_records": 15820,
+      "speeches": 15718,
+      "excluded": {
+        "outside_the_eight_parties": 102
+      },
+      "layouts": {
+        "lines": 15718
+      },
+      "first_date": "2007-09-18",
+      "last_date": "2008-09-11",
+      "paragraphs": 99031,
+      "words": 5642926
+    },
+    {
+      "session": "2008/09",
+      "source_records": 13615,
+      "speeches": 13523,
+      "excluded": {
+        "outside_the_eight_parties": 92
+      },
+      "layouts": {
+        "lines": 13523
+      },
+      "first_date": "2008-09-16",
+      "last_date": "2009-09-10",
+      "paragraphs": 90949,
+      "words": 5061448
+    },
+    {
+      "session": "2009/10",
+      "source_records": 11275,
+      "speeches": 11171,
+      "excluded": {
+        "outside_the_eight_parties": 104
+      },
+      "layouts": {
+        "lines": 11171
+      },
+      "first_date": "2009-09-15",
+      "last_date": "2010-06-18",
+      "paragraphs": 77127,
+      "words": 4373494
+    },
+    {
+      "session": "2010/11",
+      "source_records": 11492,
+      "speeches": 11421,
+      "excluded": {
+        "outside_the_eight_parties": 71
+      },
+      "layouts": {
+        "lines": 11421
+      },
+      "first_date": "2010-10-04",
+      "last_date": "2011-09-08",
+      "paragraphs": 74414,
+      "words": 4239496
+    },
+    {
+      "session": "2011/12",
+      "source_records": 11578,
+      "speeches": 11484,
+      "excluded": {
+        "outside_the_eight_parties": 94
+      },
+      "layouts": {
+        "lines": 11484
+      },
+      "first_date": "2011-09-15",
+      "last_date": "2012-09-13",
+      "paragraphs": 78234,
+      "words": 4375958
+    },
+    {
+      "session": "2012/13",
+      "source_records": 12139,
+      "speeches": 12057,
+      "excluded": {
+        "outside_the_eight_parties": 82
+      },
+      "layouts": {
+        "lines": 12057
+      },
+      "first_date": "2012-09-18",
+      "last_date": "2013-09-12",
+      "paragraphs": 83149,
+      "words": 4685633
+    },
+    {
+      "session": "2013/14",
+      "source_records": 14095,
+      "speeches": 14012,
+      "excluded": {
+        "outside_the_eight_parties": 83
+      },
+      "layouts": {
+        "lines": 14012
+      },
+      "first_date": "2013-09-17",
+      "last_date": "2014-06-27",
+      "paragraphs": 95628,
+      "words": 5251029
+    },
+    {
+      "session": "2014/15",
+      "source_records": 13013,
+      "speeches": 12928,
+      "excluded": {
+        "outside_the_eight_parties": 85
+      },
+      "layouts": {
+        "html": 12928
+      },
+      "first_date": "2014-09-29",
+      "last_date": "2015-09-10",
+      "paragraphs": 82071,
+      "words": 4404994
+    },
+    {
+      "session": "2015/16",
+      "source_records": 13777,
+      "speeches": 13702,
+      "excluded": {
+        "outside_the_eight_parties": 75
+      },
+      "layouts": {
+        "html": 13702
+      },
+      "first_date": "2015-09-15",
+      "last_date": "2016-09-08",
+      "paragraphs": 86139,
+      "words": 4638455
+    },
+    {
+      "session": "2016/17",
+      "source_records": 12725,
+      "speeches": 12637,
+      "excluded": {
+        "outside_the_eight_parties": 88
+      },
+      "layouts": {
+        "html": 12637
+      },
+      "first_date": "2016-09-13",
+      "last_date": "2017-09-07",
+      "paragraphs": 79504,
+      "words": 4245381
+    },
+    {
+      "session": "2017/18",
+      "source_records": 12473,
+      "speeches": 12343,
+      "excluded": {
+        "outside_the_eight_parties": 130
+      },
+      "layouts": {
+        "html": 12343
+      },
+      "first_date": "2017-09-12",
+      "last_date": "2018-08-30",
+      "paragraphs": 82472,
+      "words": 4464966
+    },
+    {
+      "session": "2018/19",
+      "source_records": 9387,
+      "speeches": 9288,
+      "excluded": {
+        "outside_the_eight_parties": 99
+      },
+      "layouts": {
+        "html": 9288
+      },
+      "first_date": "2018-09-24",
+      "last_date": "2019-09-05",
+      "paragraphs": 56466,
+      "words": 3049024
+    },
+    {
+      "session": "2019/20",
+      "source_records": 10457,
+      "speeches": 10321,
+      "excluded": {
+        "outside_the_eight_parties": 136
+      },
+      "layouts": {
+        "html": 10321
+      },
+      "first_date": "2019-09-10",
+      "last_date": "2020-09-03",
+      "paragraphs": 65308,
+      "words": 3511376
+    },
+    {
+      "session": "2020/21",
+      "source_records": 15205,
+      "speeches": 15009,
+      "excluded": {
+        "outside_the_eight_parties": 196
+      },
+      "layouts": {
+        "html": 15009
+      },
+      "first_date": "2020-09-08",
+      "last_date": "2021-09-13",
+      "paragraphs": 101001,
+      "words": 5525585
+    },
+    {
+      "session": "2021/22",
+      "source_records": 12222,
+      "speeches": 12062,
+      "excluded": {
+        "outside_the_eight_parties": 154,
+        "test_record": 6
+      },
+      "layouts": {
+        "html": 12068
+      },
+      "first_date": "2021-09-14",
+      "last_date": "2022-09-21",
+      "paragraphs": 84955,
+      "words": 4535230
+    },
+    {
+      "session": "2022/23",
+      "source_records": 12480,
+      "speeches": 12373,
+      "excluded": {
+        "outside_the_eight_parties": 107
+      },
+      "layouts": {
+        "html": 12373
+      },
+      "first_date": "2022-09-26",
+      "last_date": "2023-08-31",
+      "paragraphs": 75310,
+      "words": 4026767
+    },
+    {
+      "session": "2023/24",
+      "source_records": 15358,
+      "speeches": 15195,
+      "excluded": {
+        "outside_the_eight_parties": 163
+      },
+      "layouts": {
+        "html": 15195
+      },
+      "first_date": "2023-09-12",
+      "last_date": "2024-09-05",
+      "paragraphs": 95287,
+      "words": 5129905
+    },
+    {
+      "session": "2024/25",
+      "source_records": 14207,
+      "speeches": 14049,
+      "excluded": {
+        "outside_the_eight_parties": 158
+      },
+      "layouts": {
+        "html": 14049
+      },
+      "first_date": "2024-09-10",
+      "last_date": "2025-09-04",
+      "paragraphs": 92781,
+      "words": 4946595
+    },
+    {
+      "session": "2025/26",
+      "source_records": 14596,
+      "speeches": 14356,
+      "excluded": {
+        "outside_the_eight_parties": 240
+      },
+      "layouts": {
+        "html": 14356
+      },
+      "first_date": "2025-09-09",
+      "last_date": "2026-08-13",
+      "paragraphs": 100884,
+      "words": 5257128
+    },
+    {
+      "session": "2026/27",
+      "source_records": 605,
+      "speeches": 589,
+      "excluded": {
+        "outside_the_eight_parties": 16
+      },
+      "layouts": {
+        "html": 589
+      },
+      "first_date": "2026-09-28",
+      "last_date": "2026-11-18",
+      "paragraphs": 3695,
+      "words": 185734
+    }
+  ]
+}
