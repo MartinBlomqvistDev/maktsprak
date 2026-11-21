@@ -1,0 +1,165 @@
+{
+  "inputs_sha256": "74eba01601ecbe046ad82430194732e653ccaf2701f10b569837b2f2a5591f02",
+  "target_words": 200,
+  "speeches": 301358,
+  "passages": 563909,
+  "passages_per_speech": {
+    "mean": 1.87,
+    "median": 1.0,
+    "p90": 4,
+    "max": 32
+  },
+  "words_per_passage": {
+    "min": 1,
+    "p10": 130,
+    "median": 192.0,
+    "mean": 190.2,
+    "p90": 251,
+    "p99": 293,
+    "max": 970
+  },
+  "size_bands": {
+    "under_50_words": {
+      "passages": 3970,
+      "share": 0.00704
+    },
+    "over_320_words": {
+      "passages": 125,
+      "share": 0.000222
+    },
+    "over_512_words": {
+      "passages": 1,
+      "share": 2e-6
+    }
+  },
+  "passages_by_party": {
+    "C": {
+      "passages": 52011,
+      "words": 9911615
+    },
+    "KD": {
+      "passages": 50539,
+      "words": 9633349
+    },
+    "L": {
+      "passages": 53969,
+      "words": 10306200
+    },
+    "M": {
+      "passages": 114046,
+      "words": 21688639
+    },
+    "MP": {
+      "passages": 51416,
+      "words": 9759188
+    },
+    "S": {
+      "passages": 152625,
+      "words": 28758583
+    },
+    "SD": {
+      "passages": 35892,
+      "words": 6823407
+    },
+    "V": {
+      "passages": 53411,
+      "words": 10353590
+    }
+  },
+  "passages_by_period": {
+    "2003-2009": {
+      "passages": 168975,
+      "words": 32031339
+    },
+    "2010-2017": {
+      "passages": 189167,
+      "words": 36179996
+    },
+    "2018-2026": {
+      "passages": 205767,
+      "words": 39023236
+    }
+  },
+  "largest_passages": [
+    {
+      "passage_id": "HD0949-128:1-1",
+      "words": 970,
+      "paragraphs": 1
+    },
+    {
+      "passage_id": "HD0965-47:3-3",
+      "words": 446,
+      "paragraphs": 1
+    },
+    {
+      "passage_id": "GS0965-129:1-1",
+      "words": 388,
+      "paragraphs": 1
+    },
+    {
+      "passage_id": "GT0936-3:11-12",
+      "words": 386,
+      "paragraphs": 2
+    },
+    {
+      "passage_id": "H20946-4:4-6",
+      "words": 373,
+      "paragraphs": 3
+    },
+    {
+      "passage_id": "GY09120-22:4-5",
+      "words": 365,
+      "paragraphs": 2
+    },
+    {
+      "passage_id": "H509104-54:2-4",
+      "words": 365,
+      "paragraphs": 3
+    },
+    {
+      "passage_id": "GU0975-107:7-8",
+      "words": 364,
+      "paragraphs": 2
+    },
+    {
+      "passage_id": "GS0991-2:7-8",
+      "words": 360,
+      "paragraphs": 2
+    },
+    {
+      "passage_id": "GT093-4:11-12",
+      "words": 358,
+      "paragraphs": 2
+    }
+  ],
+  "trial_targets": [
+    {
+      "target_words": 120,
+      "passages": 898469,
+      "median_words": 119.0
+    },
+    {
+      "target_words": 320,
+      "passages": 412397,
+      "median_words": 275.0
+    }
+  ],
+  "cover": {
+    "build_report": {
+      "speeches": 301358,
+      "paragraphs": 1934335,
+      "words": 107234571
+    },
+    "read": {
+      "speeches": 301358,
+      "paragraphs": 1934335,
+      "words": 107234571
+    },
+    "in_passages": {
+      "speeches": 301358,
+      "paragraphs": 1934335,
+      "words": 107234571
+    },
+    "exact": true
+  }
+}
