@@ -117,3 +117,23 @@ baseline:
   b: [0.3, 0.45, 0.6, 0.75, 0.9]
   resamples: 10000
   bootstrap_seed: 20261124
+
+# The answer step (step 14), as the addendum of 2026-11-22 in
+# docs/search/PREREGISTRATION.md fixes it. The selector picks paragraphs from
+# the ten passages BM25 ranks highest; on the development split BM25 runs as
+# its tuning set it (data/reports/search/bm25_tuning_dev.json). The page's
+# language model may cost monthly_budget_usd in a calendar month before the
+# baseline answers. The rounds on the development split and the judge's grades
+# of them may cost dev_budget_usd together. The model's prices are those of the
+# generation section.
+answer:
+  model: claude-opus-5-5
+  effort: low
+  max_tokens: 8000
+  analyzer: stem-nostop
+  k1: 1.2
+  b: 0.9
+  monthly_budget_usd: 2.0
+  dev_budget_usd: 38.0
+  resamples: 10000
+  bootstrap_seed: 20261125

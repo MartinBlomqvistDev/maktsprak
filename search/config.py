@@ -283,6 +283,36 @@ class BaselineSettings(_Frozen):
         return values
 
 
+class AnswerSettings(_Frozen):
+    """The answer step: the selector's model, the retrieval of its candidates, and the budgets.
+
+    Attributes:
+        model: The selector's model id; its price is read from the generation section.
+        effort: How much the model thinks; a round may set another.
+        max_tokens: The most output tokens of one answer, thinking included.
+        analyzer: The analyzer of the BM25 index the candidates come from.
+        k1: BM25's ``k1`` for the candidates.
+        b: BM25's ``b`` for the candidates.
+        monthly_budget_usd: What the page's language model may cost in a
+            calendar month before the baseline answers.
+        dev_budget_usd: What the rounds on the development split and the
+            judge's grades of them may cost together.
+        resamples: How many bootstrap resamples behind each interval.
+        bootstrap_seed: Decides the resamples.
+    """
+
+    model: str
+    effort: Literal["low", "medium", "high", "xhigh", "max"]
+    max_tokens: int = Field(gt=0)
+    analyzer: Literal["stem-stop", "stem-nostop", "nostem-stop", "nostem-nostop"]
+    k1: float = Field(ge=0)
+    b: float = Field(ge=0, le=1)
+    monthly_budget_usd: float = Field(gt=0)
+    dev_budget_usd: float = Field(gt=0)
+    resamples: int = Field(gt=0)
+    bootstrap_seed: int
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -298,6 +328,7 @@ class Settings(_Frozen):
         generation: The language model that writes the questions.
         judge: The judge and its calibration.
         baseline: The BM25 baseline's tuning grid and bootstrap.
+        answer: The answer step.
     """
 
     source: Source
@@ -311,11 +342,20 @@ class Settings(_Frozen):
     generation: GenerationSettings
     judge: JudgeSettings
     baseline: BaselineSettings
+    answer: AnswerSettings
 
     @model_validator(mode="after")
     def _judge_is_priced(self) -> Settings:
         if self.judge.model not in self.generation.prices:
             raise ValueError(f"The judge's model {self.judge.model} has no price in the settings.")
+        return self
+
+    @model_validator(mode="after")
+    def _selector_is_priced(self) -> Settings:
+        if self.answer.model not in self.generation.prices:
+            raise ValueError(
+                f"The selector's model {self.answer.model} has no price in the settings."
+            )
         return self
 
 

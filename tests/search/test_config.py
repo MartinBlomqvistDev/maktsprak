@@ -71,6 +71,17 @@ VALID_YAML = (
     "  b: [0.5, 0.75]\n"
     "  resamples: 1000\n"
     "  bootstrap_seed: 15\n"
+    "answer:\n"
+    "  model: claude-opus-5-5\n"
+    "  effort: low\n"
+    "  max_tokens: 8000\n"
+    "  analyzer: stem-nostop\n"
+    "  k1: 1.2\n"
+    "  b: 0.9\n"
+    "  monthly_budget_usd: 2.0\n"
+    "  dev_budget_usd: 38.0\n"
+    "  resamples: 1000\n"
+    "  bootstrap_seed: 16\n"
 )
 
 
@@ -480,3 +491,27 @@ class TestEvaluationSettings:
         baseline = load_settings(data_root=data_root).baseline
         assert 1.2 in baseline.k1 and 0.75 in baseline.b
         assert baseline.resamples == 10_000
+
+
+class TestAnswerSettings:
+    def test_the_shipped_selector_is_the_one_the_addendum_fixes(self, data_root):
+        answer = load_settings(data_root=data_root).answer
+        assert (answer.model, answer.effort) == ("claude-opus-5-5", "low")
+        assert (answer.analyzer, answer.k1, answer.b) == ("stem-nostop", 1.2, 0.9)
+        assert answer.monthly_budget_usd == 2.0 and answer.resamples == 10_000
+
+    def test_a_selector_model_without_a_price_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_line_replaced("model", "  model: claude-haiku-5-5\n", "answer")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "selector's model" in str(raised.value)
+
+    def test_an_unknown_analyzer_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_line_replaced("analyzer", "  analyzer: stem-only\n", "answer")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("answer", "analyzer")]
