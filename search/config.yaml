@@ -117,3 +117,70 @@ baseline:
   b: [0.3, 0.45, 0.6, 0.75, 0.9]
   resamples: 10000
   bootstrap_seed: 20261124
+
+# The vector leg and the hybrid (steps 06, 07 and 13). The candidates and the
+# rules that choose between them are fixed in the addendum of 2026-11-21 in
+# docs/search/PREREGISTRATION.md. The candidates are listed lightest to operate
+# first, which is the order a near tie goes to: within tie_margin of the best
+# recall@10, the first listed wins. The prompts are the ones each model card
+# gives. A local model reads at most max_tokens of a passage. An API model is
+# routed to one provider in one precision, at its listed price in US dollars per
+# million input tokens as of 2026-11-21, and can win only if embedding the whole
+# corpus costs at most api_budget_usd. A run through the API stops before it
+# spends more than run_cap_usd unless its command line raises the cap.
+#
+# The subset of step A holds every gold speech of the development split and is
+# filled up to subset_size passages with speeches drawn with subset_seed. Each
+# ranking of the hybrid holds window passages; the RRF constant k is tuned over
+# rrf_k, and a tie goes to the value nearest rrf_k_preferred.
+vectors:
+  candidates:
+    - name: bekko-a25m
+      kind: sentence_transformers
+      model: hotchpotch/bekko-embedding-v1-a25m
+      revision: 44f0b8af0f487acd0ccf1a7cb7ae7a29a6dfc09c
+      dimension: 384
+      query_prompt: ""
+      document_prompt: ""
+      max_tokens: 1024
+      licensed: true
+    - name: saga-embed
+      kind: sentence_transformers
+      model: SagaEmbed/saga-embed_v1
+      revision: 5f5975288b821c190ab9e51134cea45516199816
+      dimension: 1024
+      query_prompt: "task: retrieval | query: "
+      document_prompt: "title: none | text: "
+      max_tokens: 512
+      licensed: false
+    - name: arctic-l-v2
+      kind: sentence_transformers
+      model: Snowflake/snowflake-arctic-embed-l-v2.0
+      revision: ac6544c8a46e00af67e330e85a9028c66b8cfd9a
+      dimension: 1024
+      query_prompt: "query: "
+      document_prompt: ""
+      max_tokens: 1024
+      licensed: true
+    - name: qwen3-8b
+      kind: openrouter
+      model: qwen/qwen3-embedding-8b
+      revision: 1d8ad4ca9b3dd8059ad90a75d4983776a23d44af
+      dimension: 1024
+      query_prompt: "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:"
+      document_prompt: ""
+      provider: nebius
+      quantization: bf16
+      price_per_million_usd: 0.01
+      licensed: true
+  tie_margin: 0.01
+  api_budget_usd: 10.0
+  run_cap_usd: 1.0
+  subset_seed: 20261125
+  subset_size: 60000
+  shard_rows: 4096
+  window: 1000
+  rrf_k: [10, 20, 30, 60, 100]
+  rrf_k_preferred: 60
+  api_batch_inputs: 64
+  api_concurrency: 4

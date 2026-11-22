@@ -283,6 +283,120 @@ class BaselineSettings(_Frozen):
         return values
 
 
+EmbedderKind = Literal["sentence_transformers", "openrouter"]
+
+
+class CandidateSettings(_Frozen):
+    """One embedding model that the comparison of step 13 tries.
+
+    Attributes:
+        name: A short name for the candidate, used for its directories on disk.
+        kind: How the model runs: on this machine through sentence-transformers,
+            or through OpenRouter's API.
+        model: The model's id on Hugging Face for a local model, or at
+            OpenRouter for an API model.
+        revision: The commit of the model's weights on Hugging Face.
+        dimension: The size of the vectors the comparison uses.
+        query_prompt: The text put before a question, as the model card gives it.
+        document_prompt: The text put before a passage, as the model card gives it.
+        max_tokens: The most tokens of a passage a local model reads.
+        provider: The provider OpenRouter is told to use, for an API model.
+        quantization: The precision that provider serves the model in.
+        price_per_million_usd: The listed price of a million input tokens, for
+            an API model.
+        licensed: Whether the model's licence allows it to run on the site.
+    """
+
+    name: str = Field(pattern=r"^[a-z0-9][a-z0-9.-]*$")
+    kind: EmbedderKind
+    model: str
+    revision: str
+    dimension: int = Field(gt=0)
+    query_prompt: str
+    document_prompt: str
+    max_tokens: int | None = Field(default=None, gt=0)
+    provider: str | None = None
+    quantization: str | None = None
+    price_per_million_usd: float | None = Field(default=None, ge=0)
+    licensed: bool
+
+    @model_validator(mode="after")
+    def _fields_fit_the_kind(self) -> CandidateSettings:
+        api_fields = (self.provider, self.quantization, self.price_per_million_usd)
+        if self.kind == "openrouter":
+            if any(value is None for value in api_fields) or self.max_tokens is not None:
+                raise ValueError(
+                    f"{self.name}: an API model needs a provider, a quantization and a "
+                    "price, and no token limit of its own."
+                )
+        elif self.max_tokens is None or any(value is not None for value in api_fields):
+            raise ValueError(
+                f"{self.name}: a local model needs a token limit, and no provider, "
+                "quantization or price."
+            )
+        return self
+
+
+class VectorSettings(_Frozen):
+    """The vector leg: the candidates, the subset they are compared on, and the hybrid.
+
+    Attributes:
+        candidates: The embedding models, the lightest to operate first, which is
+            the order a near tie goes to.
+        tie_margin: A candidate this close to the best recall@10 counts as tied with it.
+        api_budget_usd: The most that embedding the whole corpus may cost for an
+            API model to win.
+        run_cap_usd: A run through the API stops before it spends more than this,
+            unless its command line raises the cap.
+        subset_seed: Decides the speeches drawn into the subset.
+        subset_size: The size the subset is filled up to, in passages.
+        shard_rows: How many passages one shard of vectors holds.
+        window: How many passages each of the two rankings of the hybrid holds.
+        rrf_k: The values of the RRF constant tried in the tuning.
+        rrf_k_preferred: A tie in the tuning goes to the value of ``k`` nearest this.
+        api_batch_inputs: How many texts one request to the API carries.
+        api_concurrency: How many requests to the API are in flight at once.
+    """
+
+    candidates: tuple[CandidateSettings, ...]
+    tie_margin: float = Field(ge=0, lt=1)
+    api_budget_usd: float = Field(gt=0)
+    run_cap_usd: float = Field(gt=0)
+    subset_seed: int
+    subset_size: int = Field(gt=0)
+    shard_rows: int = Field(gt=0)
+    window: int = Field(gt=0)
+    rrf_k: tuple[float, ...]
+    rrf_k_preferred: float = Field(gt=0)
+    api_batch_inputs: int = Field(gt=0)
+    api_concurrency: int = Field(gt=0)
+
+    @field_validator("rrf_k")
+    @classmethod
+    def _rrf_k_positive(cls, values: tuple[float, ...]) -> tuple[float, ...]:
+        if not values or any(value <= 0 for value in values):
+            raise ValueError("rrf_k needs at least one value, each above 0.")
+        return values
+
+    @model_validator(mode="after")
+    def _candidates_named_once(self) -> VectorSettings:
+        names = [candidate.name for candidate in self.candidates]
+        if not names or len(set(names)) != len(names):
+            raise ValueError("The candidates need at least one entry, each name once.")
+        return self
+
+    def candidate(self, name: str) -> CandidateSettings:
+        """Return the candidate called *name*.
+
+        Raises:
+            KeyError: If no candidate has that name.
+        """
+        for candidate in self.candidates:
+            if candidate.name == name:
+                return candidate
+        raise KeyError(f"No candidate is called {name!r}.")
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -298,6 +412,7 @@ class Settings(_Frozen):
         generation: The language model that writes the questions.
         judge: The judge and its calibration.
         baseline: The BM25 baseline's tuning grid and bootstrap.
+        vectors: The vector leg and the hybrid.
     """
 
     source: Source
@@ -311,6 +426,7 @@ class Settings(_Frozen):
     generation: GenerationSettings
     judge: JudgeSettings
     baseline: BaselineSettings
+    vectors: VectorSettings
 
     @model_validator(mode="after")
     def _judge_is_priced(self) -> Settings:
