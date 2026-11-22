@@ -427,3 +427,115 @@ judge grades them without seeing my grades. The kappa that decides is Cohen's,
 unweighted, over the three grades: at 0.6 or more the judge's grades are used.
 The linear-weighted kappa, and the kappa of grade 2 against the other two, are
 reported and decide nothing.
+
+### 2026-11-22: the answer step, before it is built
+
+This addendum fixes what the sections above leave open about the answer step:
+the model that selects, the questions it answers, how its quotations are
+graded, and what it takes for selection by a language model to beat the
+baseline selector. It is committed before any code of the answer step is
+written.
+
+**The selector.** Claude Opus 5.5 (`claude-opus-5-5`) selects the paragraphs,
+at low effort in the first round. The selector that is measured is the one the
+page runs. When the page's monthly budget for the model is spent, the page
+answers with the baseline selector and says so. The model answers in structured
+output: whether the candidates answer the question, and at most four
+selections, each a candidate's passage id with the first and last of its
+paragraphs, numbered from 1 within the passage. It returns nothing else, no
+reason and no words of its own.
+
+**The questions.** The answer step is run on the natural, filtered and stance
+questions, each written from a passage that answers it, and on the unanswerable
+ones. That is 180 answerable and 60 unanswerable questions on the development
+split, and 270 and 90 on the test split. The keyword questions are left out:
+they are search terms, and the judge's calibration holds none of them. So are
+the interpellations, whose question is the heading of a debate.
+
+**The candidates.** Each question gets the ten passages that BM25 ranks
+highest, under its filter when it has one. Both selectors get the same ten. The
+rounds on the development split run on BM25 as the tuning set it: with
+stemming, no stop words dropped, `k1` 1.2 and `b` 0.9 (`stem-nostop` in
+`data/reports/search/bm25_tuning_dev.json`). They run before comparison 1 has
+decided the retrieval, since the API credit set aside for them must be used by
+2026-11-25. The run on the test split uses the retrieval that comparison 1 puts
+in production, with the prompt unchanged. The test split stays closed until
+that run.
+
+**The baseline selector** quotes the first candidate, from the first to the last
+of its paragraphs that hold a word of the question outside Snowball's stop
+words, compared after stemming. When no paragraph holds one, it quotes the whole
+passage. It abstains when that passage scores below a share of the most the
+question's terms can score, which is `k1` + 1 times the sum of their idf. A
+term the index lacks counts with the idf of a term no passage holds. The share
+is the value with the highest balanced accuracy on the development split, and a
+tie goes to the lowest. Before the run on the test split it is chosen again the
+same way, with the candidates of the retrieval in production. The prompt is not
+tuned again, so this favours the baseline.
+
+**Quote precision.** A quotation is a selection that the assembler accepts: its
+paragraphs as the corpus holds them, separated by a blank line. The judge
+grades every quotation given to an answerable question with the model, effort
+and prompt it had for the calibration pairs: Claude Opus 5.5 at low effort, and
+`search/eval/prompts/judge.md` unchanged (SHA-256
+`c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168`). Quote
+precision is the share of a selector's quotations that the judge grades 2. A
+quotation given to an unanswerable question is not graded and counts as a
+failure to abstain. Each pair of question and text is graded once, and the
+grade serves every selector and round that gives that quotation.
+
+The judge's grades count only if its kappa reaches 0.6 against my grades of the
+100 calibration pairs, which I have not yet given. If it falls short, the
+grades of the development rounds decide nothing. The round that goes to the
+test run is then chosen on balanced accuracy alone, and an addendum fixes how
+the quotations of the test run are graded by hand before that run.
+
+On the development split the judge also grades the ten candidates of every
+answerable question, so that an abstention can be told apart from a miss of the
+retrieval. Those grades are description.
+
+**Abstention.** A selector abstains when its answer holds no quotation. It
+abstains needlessly when it abstains on an answerable question, whatever its
+candidates hold, so a miss of the retrieval counts against both selectors
+alike. Balanced accuracy is the mean of two shares: the unanswerable questions
+on which a selector abstains, and the answerable ones on which it does not.
+
+**Beating the baseline.** Selection by a language model beats the baseline
+selector when both of these hold on the test split, each under the paired
+bootstrap with 10 000 resamples:
+
+1. The difference in quote precision, language model minus baseline, has a 95%
+   interval whose lower bound is above 0. Each resample draws from the
+   answerable questions, and each selector's precision is computed over its
+   quotations on the questions drawn.
+2. The difference in balanced accuracy has a 95% interval whose lower bound is
+   above 0. Each resample draws from the answerable and the unanswerable
+   questions separately, so that it keeps the size of each.
+
+The two shares behind balanced accuracy are reported beside it and decide
+nothing alone. The launch rule is read on the point estimates of the test run.
+
+**Selection errors.** The assembler accepts a selection only if its passage is
+among the question's candidates, its range lies within the passage with the
+first paragraph no later than the last, it overlaps no selection accepted
+before it, and it is among the first four. An output that does not have the
+form above, or carries any other field, is rejected whole. So are the
+selections of an answer marked unanswerable. Every rejected selection is a
+selection error. A request that fails, is refused or is cut off is sent once
+more. If it fails again, the baseline selector answers the question, as the
+page would, and the report counts it.
+
+**Rounds.** The answer step gets at most three rounds on the development split.
+A round may change the prompt and the effort. The model, the candidates and the
+cap of four quotations stay as they are. Each round is recorded with its
+prompt's hash. The prompt that goes to the test run is the one whose round has
+the highest mean of quote precision and balanced accuracy on the development
+split, and a tie goes to the later round.
+
+**Party balance** is counted per selector: the parties of the quotations given
+to answerable questions, against the parties of all the candidates of those
+questions.
+
+The requests of the development rounds and of the judge go through Anthropic's
+message batches. On the page, each question's request is sent on its own, with
+the same parameters.
