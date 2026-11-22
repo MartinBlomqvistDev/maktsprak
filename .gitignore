@@ -84,6 +84,7 @@ PLAN.md
 # 6. SEARCH (search/)
 # ----------------------------------------------------
 .venv-search/
+.venv-embed/
 data/raw_anforanden/
 data/search/
 data/reports/search/*.part
