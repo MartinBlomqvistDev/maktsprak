@@ -1,0 +1,18 @@
+# The slim image of the storage spike (search_service/spike/Dockerfile), and
+# the part of the full image it shares. Pinned, so that every store is measured
+# with the same libraries.
+lancedb==0.41.0
+lance-namespace==0.13.0
+numpy==2.4.6
+pyarrow==26.0.1
+pydantic==2.14.4
+PyYAML==6.0.4
+snowballstemmer==3.1.1
+PyStemmer==3.1.0
+fastapi==0.165.0
+starlette==1.10.0
+uvicorn==0.54.0
+
+# A query model run by ONNX Runtime (query_model.py), without torch.
+onnxruntime==1.32.0
+tokenizers==0.23.3
