@@ -427,3 +427,187 @@ judge grades them without seeing my grades. The kappa that decides is Cohen's,
 unweighted, over the three grades: at 0.6 or more the judge's grades are used.
 The linear-weighted kappa, and the kappa of grade 2 against the other two, are
 reported and decide nothing.
+
+### 2026-11-21: the embedding candidates, the subset they are compared on, and the hybrid
+
+The vector work began on 2026-11-21, and the candidates were fixed the same day,
+before any passage was embedded. They were checked against the Scandinavian
+Embedding Benchmark and against the prices listed that day.
+
+The addendum was committed on 2026-11-22. Before that, bekko-embedding-v1-a25m
+was the only candidate that had run. Three trial runs of the code embedded 512,
+512 and 300 passages with it on 2026-11-21, after the candidates were fixed.
+They also embedded 22 questions, 20 of them from the development split. The best
+passage was read for two of the questions. The measurements of the storage
+options have embedded 100 questions of the development split with it, to compare
+its runtimes and precisions. No run scored a search against the questions'
+answers. After the trial runs, the text gained the figures for memory, the check
+before the test split and the precision of each model. The candidates, the
+way the subset is drawn and the rule that compares them stayed as they were.
+
+**The benchmark.** The Scandinavian Embedding Benchmark is now part of MTEB, as
+`MTEB(Scandinavian, v1)`. Its results were read from MTEB's results dataset,
+`mteb/results`, at revision `dfe159b89b95b84787cd2a896e578991820545f4` (Parquet
+export `d9ec6baf92aaa634a81d7ac0d916bad2864e42a0`). Two of the benchmark's
+seven retrieval tasks are Swedish, SwednRetrieval and SweFaqRetrieval. The
+models were ranked by the mean of those two, with the mean of all seven beside
+it. `search/pipeline/check_embedding_candidates.py` reproduces the table, and
+its report is `data/reports/search/embedding_candidates.json`.
+
+**Size classes.** A small model has under 150 million parameters. A large one
+is the largest that can still embed a question inside the search service. The
+storage rule gives the service 2 GiB of memory and one vCPU, and the model
+shares that memory with the index. A model of 0.6 billion parameters takes
+1.12 GiB in 16-bit floats, which leaves room for the index only if its vectors
+are compressed. For the corpus's 563 909 passages, 1 024 dimensions take
+2.15 GiB as float32, 1.08 GiB as float16 and 0.54 GiB as int8. That puts the
+ceiling at about 0.6 billion parameters. Apart from saga-embed_v1, every open
+model ahead of snowflake-arctic-embed-l-v2.0 on Swedish retrieval has from 1.7
+to 14 billion parameters, so none of them can run that way. One of them,
+Qwen3-Embedding-8B, is the API candidate.
+
+**The candidates.** Retrieval scores are the benchmark's own, on the Swedish
+tasks and on all seven.
+
+| Class | Model | Revision | Parameters | Dimensions | Licence | Swedish | All |
+|---|---|---|---|---|---|---|---|
+| Small multilingual | `hotchpotch/bekko-embedding-v1-a25m` | `44f0b8af0f487acd0ccf1a7cb7ae7a29a6dfc09c` | 123 M | 384 | MIT | 0.770 | 0.673 |
+| Swedish | `SagaEmbed/saga-embed_v1` | `5f5975288b821c190ab9e51134cea45516199816` | 395 M | 1 024 | none stated | 0.848 | 0.723 |
+| Large multilingual | `Snowflake/snowflake-arctic-embed-l-v2.0` | `ac6544c8a46e00af67e330e85a9028c66b8cfd9a` | 568 M | 1 024 | Apache-2.0 | 0.796 | 0.654 |
+| API | `qwen/qwen3-embedding-8b` through OpenRouter, served by Nebius in bf16 | weights `1d8ad4ca9b3dd8059ad90a75d4983776a23d44af` | 8 B | 1 024 of 4 096 | Apache-2.0 | 0.810 | 0.712 |
+
+MTEB evaluated earlier commits of all four models. By the hashes Hugging Face
+lists, each pinned revision holds the same weight and tokenizer files as the one
+MTEB evaluated. The later commits changed the model cards, added a list of
+Matryoshka sizes to arctic-embed's configuration, and added files the
+measurement does not load. Which commit Nebius serves Qwen3-Embedding-8B from
+cannot be checked from outside.
+
+- **Small.** bekko-embedding-v1-a25m has the best Swedish retrieval of the
+  models under 150 million parameters. Its smaller sibling,
+  bekko-embedding-v1-a8m, has 0.720, and multilingual-e5-small 0.692.
+- **Swedish.** saga-embed_v1 was trained for embedding in the Scandinavian
+  languages, and its model card names AI Sweden's ModernBERT as its base. Of
+  the 186 models with results on both Swedish tasks it is third. The next model
+  trained for these languages, EmbeddingGemma-Scandi-300m, has 0.549. KBLab's
+  sentence-bert-swedish-cased has no result on the two tasks. The model card of
+  saga-embed_v1 names no licence, and the licence rule below covers that.
+- **Large.** snowflake-arctic-embed-l-v2.0 leads the multilingual models from
+  150 million to 0.6 billion parameters. Next come jina-embeddings-v3 at 0.790,
+  whose licence allows only non-commercial use, and bge-m3 at 0.788.
+- **API.** Anthropic offers no embedding model, so the API model comes from
+  another provider and is paid with my own key. The rule lets it win only if
+  embedding the whole corpus fits 10 USD, and decision D6 caps all embedding at
+  the same 10 USD. Six API models score higher than Qwen3-Embedding-8B on
+  Swedish retrieval, and none of them fits:
+  - gemini-embedding-001 (0.853) costs 0.15 USD per million tokens. Even at one
+    token per word, the corpus's 107 234 571 words would cost 16.09 USD. Google's
+    batch price of 0.075 USD fits only if the corpus comes to under 133.3 million
+    tokens. Google publishes no tokenizer for the model, so that cannot be
+    counted before paying, and the project holds no key with Google.
+  - voyage-finance-2 (0.837) and voyage-multilingual-2 (0.827) cost 0.12 USD.
+    Their published tokenizer counts the corpus at 230 054 800 tokens, which is
+    27.61 USD.
+  - voyage-3.5 (0.821) and voyage-3 (0.812) cost 0.06 USD. Their published
+    tokenizer counts 212 071 882 tokens, which is 12.72 USD, or 8.53 USD with
+    Voyage's batch discount of 33%, on an account the project does not have.
+    The procedure below embeds the subset and then the whole corpus at three
+    passage sizes, which would come to about 26.5 USD even at the batch price.
+  - text-embedding-3-large (0.819) costs 0.13 USD, so even one token per word
+    would cost 13.94 USD.
+
+  Qwen3-Embedding-8B's own tokenizer counts the same 212 071 882 tokens. At
+  0.01 USD per million through OpenRouter, the whole corpus costs 2.12 USD and
+  the whole procedure about 6.6 USD. Its weights are open, so the same
+  model can be run elsewhere if the service changes.
+
+The prices are those listed on 2026-11-21 by OpenRouter, Google and Voyage. The
+report gives the source of each.
+
+**How each candidate is run.**
+
+- Each uses the prompts its model card gives, and none is tuned. bekko uses no
+  prompt. saga-embed_v1 puts `task: retrieval | query: ` before a question and
+  `title: none | text: ` before a passage. arctic-embed puts `query: ` before a
+  question. Qwen3 puts `Instruct: Given a web search query, retrieve relevant
+  passages that answer the query`, a line feed and `Query:` before a question.
+- A passage is embedded as its paragraphs joined by line feeds, the same text
+  that BM25 indexes.
+- The local models compute in float32. Qwen3 runs in bf16, the precision its
+  provider serves.
+- Vectors are normalised and compared by cosine, and the search is exact.
+- A local model reads at most 1 024 tokens of a passage, or its own configured
+  limit where that is lower: saga-embed_v1 reads 512. Qwen3 reads the whole
+  passage; the longest has 1 836 of its tokens. Each run's manifest counts the
+  passages that were cut.
+- Qwen3 is measured at 1 024 of its 4 096 dimensions: the first 1 024,
+  normalised again, which its Matryoshka training allows. At 4 096 dimensions
+  the corpus's vectors would take 8.6 GiB as float32, and even as int8 they
+  would exceed the 2 GiB of the storage rule. The local models keep their own
+  sizes.
+
+**The subset.** It holds every speech that answers a question of the
+development split in the natural, keyword, interpellation, filtered or stance
+set: 5 095 speeches with 10 231 passages. Speeches drawn at random fill it up
+to about 60 000 passages, and the draw gave 60 189. It uses seed 20261125 and
+takes whole speeches within each pair of year and party, so that each pair gets
+its share of the corpus's passages. The test split is not read. The subset's
+passage ids are hashed into `data/reports/search/vector_subset.json` before any
+vector is scored.
+
+**The comparison.** Each candidate's vectors search the subset on their own,
+and the highest recall@10 on the natural questions of the development split
+wins. Among the candidates within 0.01 of it, the lightest to operate is
+chosen, in this order: bekko-embedding-v1-a25m, saga-embed_v1,
+snowflake-arctic-embed-l-v2.0, Qwen3-Embedding-8B. The local models are ordered
+by size. The API model comes last, because with it every search would depend
+on an outside service and a paid key. BM25 is run on the subset beside them and
+decides nothing.
+
+**The licence rule.** A model is chosen only if its licence allows it to run on
+the site. saga-embed_v1 is measured all the same. If it comes first and its
+author has granted no licence by the time the choice is made, the choice passes
+to the other candidates under the same rule, and the report says so.
+
+**After the choice.** The chosen model embeds the whole corpus in passages of
+200 words, then of 120 and of 320, packed by the same rule. On the development
+split, the hybrid is tuned over the three passage sizes and the RRF constant
+`k` at 10, 20, 30, 60 and 100. A passage scores the sum, over the two rankings,
+of `1 / (k + rank)`, where rank counts from 1 and each ranking holds the 1 000
+best passages under the question's filter. Inside the hybrid, BM25 is built at
+the passage size being tried, with the configuration tuned on 2026-11-21:
+stemming without stop words, `k1` 1.2 and `b` 0.9. The highest recall@10 on the
+natural questions wins. A tie goes to the higher MRR@10, then to 200 words,
+then to the `k` nearest 60, and between two equally near, to the smaller. In
+the comparisons, BM25 stays the one tuned at 200 words, and the vectors alone
+are the hybrid's own vector ranking.
+
+**What is measured and what runs.** Every comparison in this phase searches
+float32 vectors exactly, so it measures what each model can reach. The service
+may embed and search differently. It may embed the question in lower precision
+or through another runtime, such as ONNX, and its question vectors then differ
+from the ones measured here. Vectors of 1 024 dimensions fit the storage rule
+only if the service holds them compressed, as float16 or int8, or in an
+approximate index. A local model's weights have to fit beside them.
+
+**The check before the test split.** The tuned configuration is therefore
+checked in a build of the service before the test split is opened. The build
+embeds the questions exactly as the service will, with the same runtime,
+precision and processor architecture. It searches the passages' vectors in the
+format and index the service will use. The rule for an approximate index
+applies to the whole build. Its recall@10 against the exact float32 search must
+be at least 0.97, over the questions of the development split, each searched
+with any filter it carries. The build must also meet the storage rule. More
+than one build may be tried. If every build fails, the passage size the tuning
+ranked next is checked the same way, with its best `k`. If every passage size
+fails, the choice passes to the next candidate under the comparison's rule, and
+that candidate is tuned and checked in turn. An addendum records each such
+change before the test split is opened, and decides what runs if every
+candidate fails. Passages added later are embedded the way the checked
+ones were.
+
+**The run on the test split.** It is made once, on the whole corpus, after the
+check above has passed and an addendum has recorded the tuned configuration
+with the hash of its report. The script refuses to run without that record and
+refuses to run a second time. The paired bootstrap uses the seed of the BM25
+baseline, 20261124.
