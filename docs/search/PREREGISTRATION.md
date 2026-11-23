@@ -539,3 +539,48 @@ questions.
 The requests of the development rounds and of the judge go through Anthropic's
 message batches. On the page, each question's request is sent on its own, with
 the same parameters.
+
+### 2026-11-23: three models in the first round
+
+This addendum changes two things in the addendum of 2026-11-22: the model that
+selects, and what a round may change. It is committed before any paid request
+of the answer step. Until now only the baseline selector has run, on the
+development split. It calls no model.
+
+**Three models in round 1.** Claude Opus 5.5 (`claude-opus-5-5`), Claude
+Sonnet 5.5 (`claude-sonnet-5-5`) and Claude Haiku 5.5 (`claude-haiku-5-5`) each
+answer the 240 questions of the development split. They get the same prompt,
+the same candidates and the same parameters: low effort, at most 8 000 output
+tokens, and thinking left at each model's default. That default is adaptive
+thinking, and Opus 5.5 cannot turn it off, so thinking is on for all three. The
+same effort need not mean the same depth in two models, and what is measured is
+each model at that setting.
+
+**The choice of model.** A model's score is the mean of its quote precision and
+its balanced accuracy. A model qualifies if its score is at most 0.01 below the
+highest score and its quote precision at most 0.01 below the highest quote
+precision. The cheapest model that qualifies is chosen. By list price, Haiku
+5.5 is the cheapest and Opus 5.5 the most expensive. The condition on precision
+keeps a cheaper model from winning on fewer needless abstentions while it
+quotes worse. The judge grades every model's quotations as the addendum of
+2026-11-22 sets out. It is shown the question and the quotation only, so it
+cannot tell which model chose a quotation.
+
+The chosen model runs on the test split and on the page, since the selector
+that is measured must be the one the page runs. Each model's score, the two
+shares behind its balanced accuracy, its party balance and its cost per
+question are reported. Beyond the choice, they are description.
+
+**Rounds 2 and 3** run only the chosen model and change only the prompt. The
+effort stays low. Among that model's rounds, round 1 included, the prompt that
+goes to the test run is picked by the rule of 2026-11-22.
+
+**If the judge falls short** of a kappa of 0.6, quote precision is not measured
+on the development split, and nothing then shows that a cheaper model quotes as
+well as Opus 5.5. Round 1 then runs Opus 5.5 alone, as the addendum of
+2026-11-22 has it.
+
+**Why.** The page's budget for the model is 2 USD a month. At list price, a
+question costs about 0.04 USD with Opus 5.5, 0.02 with Sonnet 5.5 and 0.001
+with Haiku 5.5. The budget therefore answers roughly 50, 100 and 2 000
+questions a month before the baseline takes over.
