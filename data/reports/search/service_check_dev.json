@@ -1,0 +1,98 @@
+{
+  "tuned": {
+    "candidate": "qwen3-8b",
+    "target_words": 200,
+    "k": 10.0
+  },
+  "split": "dev",
+  "store": "numpy-1024-float32-qwen3-8b",
+  "recall_floor": 0.97,
+  "phases": {
+    "hybrid": {
+      "questions": 855,
+      "missing": 0,
+      "recall_10": 0.994035,
+      "lowest": 0.9,
+      "below_one": 51,
+      "identical": 643
+    },
+    "vector": {
+      "questions": 855,
+      "missing": 0,
+      "recall_10": 0.991111,
+      "lowest": 0.9,
+      "below_one": 76,
+      "identical": 535
+    },
+    "lexical": {
+      "questions": 855,
+      "missing": 0,
+      "recall_10": 1.0,
+      "lowest": 1.0,
+      "below_one": 0,
+      "identical": 855
+    }
+  },
+  "with_own_vectors": {
+    "hybrid": {
+      "questions": 855,
+      "missing": 0,
+      "recall_10": 0.999532,
+      "lowest": 0.9,
+      "below_one": 4,
+      "identical": 845
+    },
+    "vector": {
+      "questions": 855,
+      "missing": 0,
+      "recall_10": 1.0,
+      "lowest": 1.0,
+      "below_one": 0,
+      "identical": 854
+    }
+  },
+  "storage": {
+    "budget": {
+      "p95_ms": 500.0,
+      "cold_start_s": 8.0,
+      "memory_gib": 4.0
+    },
+    "p95_ms": 168.28,
+    "cold_start_s": 4.979,
+    "memory_peak_gib": 3.154,
+    "survived": true,
+    "within_budget": true
+  },
+  "queries": {
+    "questions": 855,
+    "waiting": {
+      "quantiles_s": {
+        "p50": 1.251,
+        "p90": 4.156,
+        "p95": 5.611,
+        "p99": 8.253
+      },
+      "max_s": 13.792,
+      "within": {
+        "1": 0.4444,
+        "2": 0.6456,
+        "3": 0.7754,
+        "5": 0.9287,
+        "10": 0.9953
+      },
+      "retried": 0
+    },
+    "closeness": {
+      "min": 0.999668,
+      "p1": 0.999806,
+      "median": 0.999905
+    }
+  },
+  "sources_sha256": {
+    "service_storage.json": "f6a40b89f826410621f650c195a15254ef2110a6e151756a2c8657cad5dd383c",
+    "service_recall.json": "228b074e9a8306b389fae47bb001aece635c8273bfd43e77077df12d91ff3685",
+    "service_recall.jsonl": "7bb79e4e334f77cb62ffa64548c0ed96cc1f4b8b1d23814d44957b9dd7640b75",
+    "service_queries_dev.json": "d888b866b8739c8f03196acd4751fd77d5c7a3700f530f9433cc8e2b5318c40f"
+  },
+  "passed": true
+}
