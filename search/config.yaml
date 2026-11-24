@@ -121,7 +121,9 @@ baseline:
 # The answer step (step 14), as the addendum of 2026-11-22 in
 # docs/search/PREREGISTRATION.md fixes it. The selector picks paragraphs from
 # the ten passages BM25 ranks highest; on the development split BM25 runs as
-# its tuning set it (data/reports/search/bm25_tuning_dev.json). The page's
+# its tuning set it (data/reports/search/bm25_tuning_dev.json). Under the
+# addendum of 2026-11-24 on the hybrid's candidates, the hybrid ranks the ten
+# instead, with this BM25 inside it and the vectors section's model. The page's
 # language model may cost monthly_budget_usd in a calendar month before the
 # baseline answers. The rounds on the development split and the judge's grades
 # of them may cost dev_budget_usd together. The model's prices are those of the

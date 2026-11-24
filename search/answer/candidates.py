@@ -1,12 +1,19 @@
-"""The candidates a selector chooses from: the passages BM25 ranks highest for a question.
+"""The candidates a selector chooses from: the passages ranked highest for a question.
 
 Both selectors get the same candidates, the ten passages ranked highest, under
-the question's filter when it has one. The index is used only if it was built
-from the corpus on disk: :func:`check_index` compares the index's manifest with
-the passage table and with the hashes of both files, and refuses an index built
-from anything else. A passage's position in the index is its row in
-``passages.parquet``, so an index built from another passages file would put
-the right score under the wrong passage.
+the question's filter when it has one. BM25 ranked them for the rounds on the
+development split and the first run on the test split. Under the addendum of
+2026-11-24 on the hybrid's candidates, the hybrid ranks them: BM25 and the
+vectors each rank the best passages under the filter, and reciprocal rank
+fusion merges the two (:func:`fuse_candidates`). A candidate always carries its
+BM25 score for the question, which the baseline abstains by.
+
+The index is used only if it was built from the corpus on disk:
+:func:`check_index` compares the index's manifest with the passage table and
+with the hashes of both files, and refuses an index built from anything else. A
+passage's position in the index is its row in ``passages.parquet``, so an index
+built from another passages file would put the right score under the wrong
+passage.
 """
 
 from __future__ import annotations
@@ -21,6 +28,7 @@ import pyarrow.parquet as pq
 from search.answer.models import Candidate, Speech
 from search.corpus.table import PassageTable
 from search.eval.generation import passage_span
+from search.index.fuse import reciprocal_rank_fusion
 from search.index.lexical import (
     Bm25Params,
     Hit,
@@ -124,6 +132,41 @@ def rank_passages(
         At most *limit* hits; fewer when fewer passages hold a term of the question.
     """
     return index.search(query, params, limit=limit, allowed=allowed)
+
+
+def fuse_candidates(
+    index: LexicalIndex,
+    query: str,
+    params: Bm25Params,
+    lexical: Sequence[int],
+    vector: Sequence[int],
+    k: float,
+    limit: int = CANDIDATES,
+) -> list[Hit]:
+    """The passages the hybrid ranks highest for a question, best first.
+
+    The two rankings are merged by reciprocal rank fusion with constant *k*.
+    Each passage keeps the score BM25 gives it for the question, so a passage
+    that only the vectors found, and that holds none of the question's terms,
+    scores 0.
+
+    Args:
+        index: The BM25 index.
+        query: The question, as written.
+        params: ``k1`` and ``b``.
+        lexical: BM25's passages for the question, best first, under its filter.
+        vector: The vectors' passages for it, best first, under the same filter.
+        k: The RRF constant.
+        limit: How many passages.
+
+    Returns:
+        At most *limit* hits, each with its BM25 score.
+    """
+    scores = index.scores(query, params)
+    return [
+        Hit(passage=hit.passage, score=float(scores[hit.passage]))
+        for hit in reciprocal_rank_fusion((lexical, vector), k, limit)
+    ]
 
 
 def build_candidates(

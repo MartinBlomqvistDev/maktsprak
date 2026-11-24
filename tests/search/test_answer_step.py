@@ -14,9 +14,10 @@ from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
 
+import numpy as np
 import pytest
 
-from search.answer.candidates import load_speeches, rank_passages
+from search.answer.candidates import fuse_candidates, load_speeches, rank_passages
 from search.answer.selector import load_selector_prompt
 from search.config import Settings, load_settings
 from search.corpus.table import load_passage_table
@@ -24,6 +25,8 @@ from search.eval.generation import append_log
 from search.eval.llm import Completion, Usage
 from search.eval.questions import EvalQuestion, Provenance
 from search.index.analyzer import Analyzer
+from search.index.embed import Answered, HashEmbedder
+from search.index.embed import Usage as EmbeddingUsage
 from search.index.lexical import (
     Bm25Params,
     IndexManifest,
@@ -34,6 +37,7 @@ from search.index.lexical import (
     passage_texts,
     tokenize_corpus,
 )
+from search.index.vector import VectorIndex
 from tests.search.corpus_kit import write_corpus
 from tests.search.test_answer import CORPUS, ENERGY
 
@@ -494,6 +498,202 @@ class TestTheTestRun:
         monkeypatch.setattr(step, "committed_preregistration", lambda: step.TEST_ADDENDUM)
         with pytest.raises(SystemExit, match="beyond its cap"):
             step.run_test(settings, MANIFEST, 0.0001)
+
+
+#: Stands in for the embedding model, for the passages and the questions alike.
+EMBEDDER = HashEmbedder(16)
+
+
+class TestTheHybrid:
+    """The addendum of 2026-11-24 on the hybrid's candidates, with stand-ins for the vectors."""
+
+    @pytest.fixture
+    def hybrid(self, settings, monkeypatch):
+        """A hybrid in production, the corpus's vectors, and a stand-in for the API.
+
+        A question that begins "Vem vann" waits longer for its vector than the page does.
+        """
+        reports = settings.tracked.reports
+        words = settings.passages.target_words
+        tuning = {
+            "candidate": "qwen3-8b",
+            "window": settings.vectors.window,
+            "chosen": {"target_words": words, "k": 10.0},
+        }
+        tuning_path = reports / step.HYBRID_TUNING_REPORT
+        tuning_path.write_text(json.dumps(tuning), encoding="utf-8")
+        tuning_sha256 = step.file_text_sha256(tuning_path)
+        retrieval = {
+            "production": "hybrid",
+            "tuning_sha256": tuning_sha256,
+            "candidate": "qwen3-8b",
+            "target_words": words,
+            "k": 10.0,
+            "bm25": {"analyzer": "stem-nostop", "k1": 1.2, "b": 0.9},
+        }
+        (reports / step.RETRIEVAL_TEST_REPORT).write_text(json.dumps(retrieval), encoding="utf-8")
+        registered = "\n".join((step.TEST_ADDENDUM, step.HYBRID_ADDENDUM, tuning_sha256))
+        monkeypatch.setattr(step, "committed_preregistration", lambda: registered)
+
+        search = settings.data.search
+        texts = [
+            text
+            for _, text in passage_texts(search / step.SPEECHES_NAME, search / step.PASSAGES_NAME)
+        ]
+        index = VectorIndex(EMBEDDER.embed(texts, "document"), np.arange(len(texts)))
+        monkeypatch.setattr(step, "load_hybrid_index", lambda *_: (index, "v" * 64))
+        asked: list[list[str]] = []
+
+        def ask(settings, embedding, texts, env_file):
+            asked.append(list(texts))
+            answered = [
+                Answered(seconds=31.0 if text.startswith("Vem vann") else 1.2, attempts=1)
+                for text in texts
+            ]
+            usage = EmbeddingUsage(texts=len(texts), requests=len(texts), cost_usd=0.00001)
+            return EMBEDDER.embed(texts, "query"), answered, usage, ("Nebius",)
+
+        monkeypatch.setattr(step, "ask_for_vectors", ask)
+        return SimpleNamespace(index=index, asked=asked, registered=registered)
+
+    def test_the_candidates_are_the_hybrids_and_a_late_vector_gets_bm25s_ten(
+        self, settings, hybrid
+    ):
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        run, records = step.read_candidates(settings, "dev", step.HYBRID)
+        assert isinstance(run, step.HybridCandidatesRun)
+        assert (run.embedding, run.rrf_k, run.window) == ("qwen3-8b", 10.0, settings.vectors.window)
+        assert run.bm25_alone == ("unanswerable-0001",)
+        by_id = {record.question_id: record for record in records}
+        assert by_id["unanswerable-0001"].candidates == ()
+
+        index, _, table = step.load_retrieval(settings)
+        params = Bm25Params(k1=1.2, b=0.9)
+        for question in (QUESTIONS[0], QUESTIONS[3]):
+            lexical = [
+                hit.passage for hit in rank_passages(index, question.text, params, None, 1000)
+            ]
+            vector = EMBEDDER.embed([question.text], "query")[0]
+            by_vector = [hit.passage for hit in hybrid.index.search(vector, 1000)]
+            expected = fuse_candidates(index, question.text, params, lexical, by_vector, 10.0)
+            got = by_id[question.question_id].candidates
+            assert [item.passage_id for item in got] == [
+                table.passage_ids[hit.passage] for hit in expected
+            ]
+            assert [item.score for item in got] == [hit.score for hit in expected]
+        after_index = by_id["unanswerable-0002"].candidates
+        assert len(after_index) == len(table) and 0.0 in {item.score for item in after_index}
+        assert not step.work_dir(settings).exists()
+
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        assert len(hybrid.asked) == 1
+        record = json.loads(
+            (step.work_dir(settings, "dev", step.HYBRID) / step.QUERY_RECORD_NAME).read_text(
+                encoding="utf-8"
+            )
+        )
+        assert record["question_ids"] == [question.question_id for question in QUESTIONS]
+        assert record["seconds"]["unanswerable-0001"] == 31.0
+
+    def test_it_waits_for_its_addendum_and_a_hybrid_in_production(
+        self, settings, hybrid, monkeypatch
+    ):
+        without = hybrid.registered.replace(step.HYBRID_ADDENDUM, "")
+        monkeypatch.setattr(step, "committed_preregistration", lambda: without)
+        for run in (
+            lambda: step.make_hybrid_candidates(settings, MANIFEST, "dev", None),
+            lambda: step.run_hybrid_baseline(settings),
+            lambda: step.run_hybrid_test(settings, MANIFEST, 5.0, None),
+        ):
+            with pytest.raises(SystemExit, match="addendum on the hybrid's candidates"):
+                run()
+        monkeypatch.setattr(step, "committed_preregistration", lambda: step.HYBRID_ADDENDUM)
+        with pytest.raises(SystemExit, match="not the tuning the pre-registration records"):
+            step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        monkeypatch.setattr(step, "committed_preregistration", lambda: hybrid.registered)
+        path = settings.tracked.reports / step.RETRIEVAL_TEST_REPORT
+        retrieval = json.loads(path.read_text("utf-8"))
+        path.write_text(json.dumps({**retrieval, "production": "bm25"}), encoding="utf-8")
+        with pytest.raises(SystemExit, match="did not put this hybrid in production"):
+            step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        assert hybrid.asked == []
+
+    def test_the_threshold_is_chosen_again_from_the_hybrids_candidates(self, settings, hybrid):
+        with pytest.raises(SystemExit, match="candidates --hybrid"):
+            step.run_hybrid_baseline(settings)
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        step.run_hybrid_baseline(settings)
+        choice = step.read_threshold(settings, step.HYBRID)
+        assert (choice.answerable, choice.unanswerable, choice.without_candidates) == (2, 2, 1)
+        with pytest.raises(SystemExit, match="Run the baseline command first"):
+            step.read_threshold(settings)
+
+    def test_the_test_split_is_answered_once_more_and_the_first_run_is_left_alone(
+        self, settings, hybrid, monkeypatch
+    ):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        agree(settings, accepted=False)
+        batches = FakeBatches(selector_reply)
+        monkeypatch.setattr(step, "run_batch", batches)
+        step.run_round(settings, 1, OPUS)
+        with pytest.raises(SystemExit, match="the first run on the test split comes first"):
+            step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+        step.run_test(settings, MANIFEST, 5.0)
+        first_dir = step.work_dir(settings, step.TEST_SPLIT)
+        before = {path: path.read_bytes() for path in first_dir.rglob("*") if path.is_file()}
+        first_report = (settings.tracked.reports / step.TEST_RUN_REPORT).read_bytes()
+        with pytest.raises(SystemExit, match="baseline --hybrid"):
+            step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        step.run_hybrid_baseline(settings)
+        with pytest.raises(SystemExit, match="beyond its cap"):
+            step.run_hybrid_test(settings, MANIFEST, 0.0001, None)
+        with pytest.raises(SystemExit, match="its threshold stays"):
+            step.run_hybrid_baseline(settings)
+        step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+
+        test_ids = {question.question_id for question in TEST_QUESTIONS}
+        assert batches.models[-1] == {OPUS}
+        assert set(batches.batches[-1]) <= test_ids
+        for selector in ("baseline", "selector"):
+            answers = step.read_answers(settings, selector, step.TEST_SPLIT, step.HYBRID)
+            assert set(answers) == test_ids
+        report = json.loads(
+            (settings.tracked.reports / step.HYBRID_TEST_RUN_REPORT).read_text("utf-8")
+        )
+        first = json.loads(first_report)
+        for key in ("model", "round", "prompt_sha256", "effort", "max_tokens"):
+            assert report[key] == first[key]
+        assert report["threshold"] == step.read_threshold(settings, step.HYBRID).threshold
+        assert report["retrieval"]["embedding"] == "qwen3-8b"
+        assert report["retrieval"]["bm25_alone"] == ["unanswerable-0101"]
+        assert set(report["answers_sha256"]) == {"baseline", "selector"}
+        text = json.dumps(report)
+        assert not any(word in text for word in ("abstention", "precision", "accuracy"))
+        assert {
+            path: path.read_bytes() for path in first_dir.rglob("*") if path.is_file()
+        } == before
+        assert (settings.tracked.reports / step.TEST_RUN_REPORT).read_bytes() == first_report
+        assert len(hybrid.asked) == 2
+        with pytest.raises(SystemExit, match="once"):
+            step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+        with pytest.raises(SystemExit, match="no round runs after it"):
+            step.run_round(settings, 2, OPUS)
+
+    def test_a_different_round_than_the_first_runs_is_refused(self, settings, hybrid, monkeypatch):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        agree(settings, accepted=False)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(selector_reply))
+        step.run_round(settings, 1, OPUS)
+        step.run_test(settings, MANIFEST, 5.0)
+        path = settings.tracked.reports / step.TEST_RUN_REPORT
+        first = json.loads(path.read_text("utf-8"))
+        path.write_text(json.dumps({**first, "prompt_sha256": "0" * 64}), encoding="utf-8")
+        with pytest.raises(SystemExit, match="would differ from the first run"):
+            step.run_hybrid_test(settings, MANIFEST, 5.0, None)
 
 
 def test_the_candidates_are_the_ones_bm25_ranks(settings):

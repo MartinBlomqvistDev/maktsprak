@@ -19,6 +19,7 @@ from search.answer.candidates import (
     StaleIndexError,
     build_candidates,
     check_index,
+    fuse_candidates,
     load_speeches,
     rank_passages,
 )
@@ -180,6 +181,48 @@ class TestCandidates:
         speeches = {**corpus.speeches, "H209100-1": short}
         with pytest.raises(StaleIndexError):
             build_candidates(hits, corpus.table, speeches)
+
+
+class TestFusedCandidates:
+    QUESTION = "Vattenkraften räcker inte"
+
+    def rankings(self, corpus: Corpus) -> tuple[int, int, list[int]]:
+        """The energy and school passages, and BM25's ranking, which holds only the first."""
+        energy, school = (corpus.table.passage_ids.index(key) for key in (ENERGY, SCHOOL))
+        lexical = [hit.passage for hit in rank_passages(corpus.index, self.QUESTION, PARAMS)]
+        assert lexical == [energy]
+        return energy, school, lexical
+
+    def test_the_rankings_are_fused_and_each_passage_keeps_its_bm25_score(self, corpus):
+        energy, school, lexical = self.rankings(corpus)
+        hits = fuse_candidates(corpus.index, self.QUESTION, PARAMS, lexical, [school, energy], 10)
+        scores = corpus.index.scores(self.QUESTION, PARAMS)
+        assert [(hit.passage, hit.score) for hit in hits] == [
+            (energy, float(scores[energy])),
+            (school, 0.0),
+        ]
+        assert hits[0].score > 0
+
+    def test_the_fused_ranking_stops_at_the_limit(self, corpus):
+        energy, school, lexical = self.rankings(corpus)
+        hits = fuse_candidates(
+            corpus.index, self.QUESTION, PARAMS, lexical, [school, energy], 10, limit=1
+        )
+        assert [hit.passage for hit in hits] == [energy]
+
+    def test_a_passage_only_the_vectors_found_can_lead_and_score_0(self, corpus):
+        energy, school, lexical = self.rankings(corpus)
+        green = corpus.table.passage_ids.index(GREEN)
+        vector = [school, green, energy]
+        hits = fuse_candidates(corpus.index, self.QUESTION, PARAMS, lexical, vector, 10)
+        assert [hit.passage for hit in hits] == [energy, school, green]
+        hits = fuse_candidates(corpus.index, self.QUESTION, PARAMS, [], vector, 10)
+        energy_score = float(corpus.index.scores(self.QUESTION, PARAMS)[energy])
+        assert [(hit.passage, hit.score) for hit in hits] == [
+            (school, 0.0),
+            (green, 0.0),
+            (energy, energy_score),
+        ]
 
 
 class TestAssembler:

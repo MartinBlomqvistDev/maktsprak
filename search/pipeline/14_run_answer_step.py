@@ -26,14 +26,30 @@ Commands, in order:
   what ran and computes nothing from it: the answers stay sealed. It needs
   ``--max-usd`` and ``--confirm``.
 
+With ``--hybrid``, three of the commands follow the addendum of 2026-11-24 on
+the hybrid's candidates, and keep everything they write apart from the rest:
+
+- ``candidates --hybrid`` asks for each question's vector one question per
+  request, as the page asks, and ranks each question's candidates with the
+  hybrid that comparison 1 put in production. A question whose vector took
+  longer than the page waits gets BM25's ten. It needs ``--confirm``.
+- ``baseline --hybrid`` chooses the baseline's threshold again on the
+  development split, from the hybrid's candidates.
+- ``test-run --hybrid`` answers the test split once more, from the hybrid's
+  candidates, with the model, the prompt, the effort and the output limit of
+  the first run on the test split, whose answers it never reads. The answers
+  are not sealed, but the record holds only what ran. It needs ``--max-usd``
+  and ``--confirm``.
+
 Nothing runs before the question sets' hashes and the addenda on the answer
 step stand in the pre-registration as committed at ``HEAD``, and nothing paid
 runs before the judge's agreement with the hand grades is known. Only
-``test-run`` reads the test split, once, after the addendum on the test run is
-committed, and no round runs after it. The paid commands on the development
-split stop before a batch that could take what the rounds and the judge have
-spent beyond ``answer.dev_budget_usd``, or beyond ``--max-usd`` when that is
-lower; the test run stops at its own ``--max-usd``.
+``test-run`` reads the test split: once from BM25's candidates, after the
+addendum on the test run is committed, and once from the hybrid's, after the
+addendum on them is. No round runs after either. The paid commands on the
+development split stop before a batch that could take what the rounds and the
+judge have spent beyond ``answer.dev_budget_usd``, or beyond ``--max-usd`` when
+that is lower; a run on the test split stops at its own ``--max-usd``.
 
 Usage::
 
@@ -45,6 +61,9 @@ Usage::
     python search/pipeline/14_run_answer_step.py judge --confirm
     python search/pipeline/14_run_answer_step.py report
     python search/pipeline/14_run_answer_step.py test-run --max-usd 11 --confirm
+    python search/pipeline/14_run_answer_step.py candidates --hybrid --confirm
+    python search/pipeline/14_run_answer_step.py baseline --hybrid
+    python search/pipeline/14_run_answer_step.py test-run --hybrid --max-usd 7 --confirm
 """
 
 from __future__ import annotations
@@ -60,9 +79,11 @@ from collections import Counter
 from collections.abc import Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
+from typing import Literal
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+import numpy as np
 from pydantic import BaseModel, ConfigDict
 
 from search.answer.assemble import assemble
@@ -70,6 +91,7 @@ from search.answer.candidates import (
     CANDIDATES,
     build_candidates,
     check_index,
+    fuse_candidates,
     load_speeches,
     rank_passages,
 )
@@ -85,7 +107,7 @@ from search.answer.selector import (
     load_selector_prompt,
 )
 from search.cli import add_data_root_argument, configure_logging, settings_from
-from search.config import REPO_ROOT, Settings
+from search.config import REPO_ROOT, Prices, Settings
 from search.corpus.store import PASSAGES_NAME, SPEECHES_NAME, write_report
 from search.corpus.table import PassageTable, load_passage_table
 from search.eval.answer_metrics import (
@@ -105,6 +127,8 @@ from search.eval.answer_metrics import (
 from search.eval.assemble import MANIFEST_NAME, QuestionsManifest
 from search.eval.baseline import FilterMasks
 from search.eval.generation import append_log, load_prompt, read_log
+from search.eval.hybrid import QueryVectors, lexical_hits, vector_hits
+from search.eval.hybrid import text_sha256 as file_text_sha256
 from search.eval.llm import Completion, cost_usd, load_key, run_batch
 from search.eval.questions import EvalQuestion, read_question_set, split_of
 from search.eval.quote_judge import (
@@ -119,7 +143,23 @@ from search.eval.quote_judge import (
 )
 from search.eval.runner import now
 from search.index.analyzer import ANALYZERS
-from search.index.lexical import Bm25Params, IndexManifest, LexicalIndex, lexical_dir
+from search.index.embed import (
+    Answered,
+    OpenRouterEmbedder,
+    build_embedder,
+    load_openrouter_key,
+    save_array,
+)
+from search.index.embed import Usage as EmbeddingUsage
+from search.index.lexical import (
+    Bm25Params,
+    Hit,
+    IndexManifest,
+    LexicalIndex,
+    file_sha256,
+    lexical_dir,
+)
+from search.index.vector import VectorIndex, index_path, load_vector_index
 
 logger = logging.getLogger("answer_step")
 
@@ -141,6 +181,30 @@ MAX_ROUNDS = 3
 TEST_SPLIT = "test"
 TEST_ADDENDUM = "### 2026-11-24: the test run of the answer step, graded by hand"
 TEST_RUN_REPORT = "answer_test_run.json"
+
+#: The addendum that answers the test split again, from the hybrid's candidates,
+#: and the record of that run. What comes from the hybrid's candidates lives
+#: below its own directory.
+HYBRID_ADDENDUM = (
+    "### 2026-11-24: the answer step on the hybrid's candidates, run again on the test split"
+)
+HYBRID_TEST_RUN_REPORT = "answer_test_run_hybrid.json"
+HYBRID = "hybrid"
+
+#: Where the candidates come from: BM25 alone, or the hybrid.
+Retrieval = Literal["bm25", "hybrid"]
+
+#: The hybrid's tuning on the development split, and the retrieval run on the
+#: test split that put it in production.
+HYBRID_TUNING_REPORT = "hybrid_tuning_dev.json"
+RETRIEVAL_TEST_REPORT = "retrieval_test.json"
+
+#: The questions' vectors as the page asks for them, and their record.
+QUERY_VECTORS_NAME = "query_vectors.npy"
+QUERY_RECORD_NAME = "query_vectors.json"
+
+#: How long the page waits for a question's vector before it answers from BM25 alone.
+VECTOR_WAIT_S = 30.0
 
 #: The models of round 1, and the one that runs alone if the judge's kappa falls short.
 ROUND_ONE_MODELS = ("claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5")
@@ -228,6 +292,72 @@ class CandidatesRun(BaseModel):
     created: datetime
 
 
+class HybridCandidatesRun(CandidatesRun):
+    """What the hybrid's candidates were ranked with: BM25 as above, the vectors and the fusion.
+
+    Attributes:
+        embedding: The embedding model, by its name in the settings.
+        target_words: The passage size of the vectors.
+        rrf_k: The RRF constant.
+        window: How many passages each of the two rankings holds.
+        tuning_sha256: The hash of the tuning's report, as the addendum on the
+            tuned configuration records it.
+        vectors_sha256: The hash of the vector index's matrix, from its manifest.
+        query_vectors_sha256: The hash of the questions' vectors.
+        bm25_alone: The questions whose vector took longer than the page waits,
+            which got BM25's ten.
+    """
+
+    embedding: str
+    target_words: int
+    rrf_k: float
+    window: int
+    tuning_sha256: str
+    vectors_sha256: str
+    query_vectors_sha256: str
+    bm25_alone: tuple[str, ...]
+
+
+class QueryVectorsRecord(BaseModel):
+    """The questions' vectors, asked for one question per request, as the page asks for them.
+
+    Attributes:
+        embedding: The embedding model, by its name in the settings.
+        model: Its id at OpenRouter.
+        revision: The commit of its weights.
+        provider: The provider the requests were routed to, without fallback.
+        quantization: The precision that provider serves it in.
+        question_ids: The questions, in the order of the vectors.
+        vectors_sha256: The hash of the vectors' file.
+        seconds: How long each question waited for its vector, by question.
+        attempts: How many requests each question needed, by question.
+        requests: How many requests were sent.
+        tokens: The input tokens the API counted.
+        cost_usd: What the requests cost.
+        providers: The providers that answered, as the API named them.
+        started: When the first request was sent.
+        finished: When the last vector came.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    embedding: str
+    model: str
+    revision: str
+    provider: str
+    quantization: str
+    question_ids: tuple[str, ...]
+    vectors_sha256: str
+    seconds: dict[str, float]
+    attempts: dict[str, int]
+    requests: int
+    tokens: int
+    cost_usd: float
+    providers: tuple[str, ...]
+    started: datetime
+    finished: datetime
+
+
 class ThresholdChoice(BaseModel):
     """The baseline selector's threshold, chosen by balanced accuracy.
 
@@ -272,11 +402,8 @@ class RoundRecord(BaseModel):
     created: datetime
 
 
-class SealedRun(BaseModel):
-    """The one run of the answer step on the test split: what ran, and nothing it measured.
-
-    The run's results stay sealed until the retrieval run on the test split
-    has been made, so this record holds no metric.
+class HeldOutRun(BaseModel):
+    """A run of the answer step on the test split: what ran, and nothing it measured.
 
     Attributes:
         model: The model that selected.
@@ -305,6 +432,28 @@ class SealedRun(BaseModel):
     answers_sha256: dict[str, str]
     cost_usd: float
     created: datetime
+
+
+class SealedRun(HeldOutRun):
+    """The first run of the answer step on the test split, from BM25's candidates.
+
+    Its results stayed sealed until the retrieval run on the test split had been
+    made, so this record holds no metric.
+    """
+
+
+class HybridTestRun(HeldOutRun):
+    """The second run of the answer step on the test split, from the hybrid's candidates.
+
+    It was made after the retrieval run on the test split, so it is not sealed.
+    Like the first, the record holds no metric: the comparisons are computed
+    with the hand grades.
+
+    Attributes:
+        retrieval: What the test questions' candidates were ranked with.
+    """
+
+    retrieval: HybridCandidatesRun
 
 
 class AnsweredQuestion(BaseModel):
@@ -488,12 +637,21 @@ def held_out_questions(settings: Settings) -> list[EvalQuestion]:
     return split_questions(settings, TEST_SPLIT)
 
 
+def questions_of(settings: Settings, split: str) -> list[EvalQuestion]:
+    """The questions of the development split, or of the test split."""
+    return dev_questions(settings) if split == "dev" else held_out_questions(settings)
+
+
 # --- Files ------------------------------------------------------------------------
 
 
-def work_dir(settings: Settings, split: str = "dev") -> Path:
-    """Where the step's bulk data lives: the candidates, answers, completions and grades."""
-    return settings.data.search / "answer" / split
+def work_dir(settings: Settings, split: str = "dev", retrieval: Retrieval = "bm25") -> Path:
+    """Where the step's bulk data lives: the candidates, answers, completions and grades.
+
+    What comes from the hybrid's candidates lives apart, below ``hybrid``.
+    """
+    base = settings.data.search / "answer"
+    return base / split if retrieval == "bm25" else base / HYBRID / split
 
 
 def run_name(number: int, model: str) -> str:
@@ -506,9 +664,11 @@ def round_dir(settings: Settings, name: str) -> Path:
     return work_dir(settings) / ROUNDS_DIR / name
 
 
-def answers_path(settings: Settings, name: str, split: str = "dev") -> Path:
+def answers_path(
+    settings: Settings, name: str, split: str = "dev", retrieval: Retrieval = "bm25"
+) -> Path:
     """The answers of one selector or round: ``baseline``, a round's name or ``selector``."""
-    return work_dir(settings, split) / ANSWERS_DIR / f"{name}.jsonl"
+    return work_dir(settings, split, retrieval) / ANSWERS_DIR / f"{name}.jsonl"
 
 
 def write_lines(path: Path, entries: Sequence[BaseModel]) -> None:
@@ -522,20 +682,24 @@ def write_lines(path: Path, entries: Sequence[BaseModel]) -> None:
 
 
 def read_candidates(
-    settings: Settings, split: str = "dev"
+    settings: Settings, split: str = "dev", retrieval: Retrieval = "bm25"
 ) -> tuple[CandidatesRun, list[QuestionCandidates]]:
     """The recorded candidates and what they were ranked with."""
-    directory = work_dir(settings, split)
+    directory = work_dir(settings, split, retrieval)
     run_path = directory / RUN_NAME
     if not run_path.is_file():
-        raise SystemExit("No candidates yet. Run the candidates command first.")
-    run = CandidatesRun.model_validate_json(run_path.read_text(encoding="utf-8"))
+        command = "candidates" if retrieval == "bm25" else "candidates --hybrid"
+        raise SystemExit(f"No candidates yet. Run the {command} command first.")
+    kind = CandidatesRun if retrieval == "bm25" else HybridCandidatesRun
+    run = kind.model_validate_json(run_path.read_text(encoding="utf-8"))
     return run, read_log(directory / CANDIDATES_NAME, QuestionCandidates)
 
 
-def read_answers(settings: Settings, name: str, split: str = "dev") -> dict[str, Answer]:
+def read_answers(
+    settings: Settings, name: str, split: str = "dev", retrieval: Retrieval = "bm25"
+) -> dict[str, Answer]:
     """The answers of one selector or round, by question."""
-    path = answers_path(settings, name, split)
+    path = answers_path(settings, name, split, retrieval)
     if not path.is_file():
         raise SystemExit(f"{path} does not exist.")
     return {line.question_id: line.answer for line in read_log(path, AnsweredQuestion)}
@@ -600,17 +764,14 @@ def bm25_params(settings: Settings) -> Bm25Params:
     return Bm25Params(k1=settings.answer.k1, b=settings.answer.b)
 
 
-def make_candidates(settings: Settings, manifest: QuestionsManifest, split: str = "dev") -> None:
-    """Rank each question's candidates and record them."""
-    check_tuned(settings)
-    index, index_manifest, table = load_retrieval(settings)
-    params = bm25_params(settings)
-    masks = FilterMasks(table)
-    questions = dev_questions(settings) if split == "dev" else held_out_questions(settings)
-    hits = {
-        question.question_id: rank_passages(index, question.text, params, masks.of(question))
-        for question in questions
-    }
+def record_candidates(
+    settings: Settings,
+    questions: Sequence[EvalQuestion],
+    hits: Mapping[str, Sequence[Hit]],
+    table: PassageTable,
+    directory: Path,
+) -> list[QuestionCandidates]:
+    """Turn each question's hits into candidates, and write them to *directory*."""
     speeches = load_speeches(
         settings.data.search / SPEECHES_NAME,
         {table.anf_ids[hit.passage] for question_hits in hits.values() for hit in question_hits},
@@ -625,9 +786,25 @@ def make_candidates(settings: Settings, manifest: QuestionsManifest, split: str 
         )
         for question in questions
     ]
-    directory = work_dir(settings, split)
     write_lines(directory / CANDIDATES_NAME, records)
-    run = CandidatesRun(
+    counts = Counter(len(record.candidates) for record in records)
+    logger.info(
+        "%d questions; candidates per question: %s",
+        len(records),
+        dict(sorted(counts.items())),
+    )
+    return records
+
+
+def bm25_run(
+    settings: Settings,
+    manifest: QuestionsManifest,
+    index_manifest: IndexManifest,
+    params: Bm25Params,
+    questions: int,
+) -> CandidatesRun:
+    """What BM25 ranked the candidates with."""
+    return CandidatesRun(
         analyzer=settings.answer.analyzer,
         k1=params.k1,
         b=params.b,
@@ -637,15 +814,26 @@ def make_candidates(settings: Settings, manifest: QuestionsManifest, split: str 
         passages_sha256=index_manifest.passages_sha256,
         speeches_sha256=index_manifest.speeches_sha256,
         sets_sha256={name: manifest.sets[name].sha256 for name in ANSWER_SETS},
-        questions=len(records),
+        questions=questions,
         created=now(),
     )
-    write_report(run, directory / RUN_NAME)
-    counts = Counter(len(record.candidates) for record in records)
-    logger.info(
-        "%d questions; candidates per question: %s",
-        len(records),
-        dict(sorted(counts.items())),
+
+
+def make_candidates(settings: Settings, manifest: QuestionsManifest, split: str = "dev") -> None:
+    """Rank each question's candidates with BM25 and record them."""
+    check_tuned(settings)
+    index, index_manifest, table = load_retrieval(settings)
+    params = bm25_params(settings)
+    masks = FilterMasks(table)
+    questions = questions_of(settings, split)
+    hits = {
+        question.question_id: rank_passages(index, question.text, params, masks.of(question))
+        for question in questions
+    }
+    directory = work_dir(settings, split)
+    records = record_candidates(settings, questions, hits, table, directory)
+    write_report(
+        bm25_run(settings, manifest, index_manifest, params, len(records)), directory / RUN_NAME
     )
 
 
@@ -681,21 +869,21 @@ def baseline_selector(
     return BaselineSelector(index, params, threshold), choice
 
 
-def read_threshold(settings: Settings) -> ThresholdChoice:
-    """The baseline's recorded threshold."""
-    path = work_dir(settings) / THRESHOLD_NAME
+def read_threshold(settings: Settings, retrieval: Retrieval = "bm25") -> ThresholdChoice:
+    """The baseline's threshold, as recorded on the development split."""
+    path = work_dir(settings, "dev", retrieval) / THRESHOLD_NAME
     if not path.is_file():
-        raise SystemExit("No baseline yet. Run the baseline command first.")
+        command = "baseline" if retrieval == "bm25" else "baseline --hybrid"
+        raise SystemExit(f"No threshold yet. Run the {command} command first.")
     return ThresholdChoice.model_validate_json(path.read_text(encoding="utf-8"))
 
 
-def run_baseline(settings: Settings) -> None:
-    """Choose the baseline's threshold, then answer every question with it."""
-    _, records = read_candidates(settings)
-    selector, choice = baseline_selector(settings, records)
-    write_report(choice, work_dir(settings) / THRESHOLD_NAME)
+def baseline_answers(
+    settings: Settings, selector: BaselineSelector, records: Sequence[QuestionCandidates]
+) -> list[AnsweredQuestion]:
+    """The baseline's answer to each question, assembled from the corpus."""
     speeches = speeches_for(settings, records)
-    answers = [
+    return [
         AnsweredQuestion(
             question_id=record.question_id,
             answer=assemble(
@@ -704,6 +892,14 @@ def run_baseline(settings: Settings) -> None:
         )
         for record in records
     ]
+
+
+def run_baseline(settings: Settings) -> None:
+    """Choose the baseline's threshold, then answer every question with it."""
+    _, records = read_candidates(settings)
+    selector, choice = baseline_selector(settings, records)
+    write_report(choice, work_dir(settings) / THRESHOLD_NAME)
+    answers = baseline_answers(settings, selector, records)
     write_lines(answers_path(settings, "baseline"), answers)
     abstained = sum(line.answer.abstained for line in answers)
     logger.info(
@@ -883,7 +1079,10 @@ def check_round(settings: Settings, number: int, model: str, prompt_sha256: str)
     """
     if not 1 <= number <= MAX_ROUNDS:
         raise SystemExit(f"The addendum allows rounds 1 to {MAX_ROUNDS}.")
-    if answers_path(settings, "selector", TEST_SPLIT).is_file():
+    if any(
+        answers_path(settings, "selector", TEST_SPLIT, retrieval).is_file()
+        for retrieval in ("bm25", HYBRID)
+    ):
         raise SystemExit("The test split has been run, and no round runs after it.")
     check_round_settings(settings)
     check_judge_known(settings)
@@ -1077,7 +1276,284 @@ def run_round(settings: Settings, number: int, model: str, cap_usd: float | None
     )
 
 
+# --- The hybrid's candidates ------------------------------------------------------
+
+
+class HybridConfiguration(BaseModel):
+    """The hybrid that comparison 1 put in production, as the tuning chose it.
+
+    Attributes:
+        embedding: The embedding model, by its name in the settings.
+        target_words: The passage size.
+        k: The RRF constant.
+        window: How many passages each of the two rankings holds.
+        tuning_sha256: The hash of the tuning's report.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    embedding: str
+    target_words: int
+    k: float
+    window: int
+    tuning_sha256: str
+
+
+def check_hybrid_registered() -> None:
+    """Stop unless the addendum on the hybrid's candidates stands in the pre-registration."""
+    if HYBRID_ADDENDUM not in committed_preregistration():
+        raise SystemExit(
+            f"The addendum on the hybrid's candidates is not in {PREREGISTRATION} at HEAD."
+        )
+
+
+def hybrid_configuration(settings: Settings) -> HybridConfiguration:
+    """The hybrid that comparison 1 put in production, from the tracked reports.
+
+    Raises:
+        SystemExit: If the tuning's report is not the one the pre-registration
+            records by its hash, if the retrieval run on the test split did not
+            put this hybrid in production with the BM25 the answer step uses, or
+            if the hybrid's passages are not the corpus's own, which the answer
+            step quotes from.
+    """
+    tuning_path = settings.tracked.reports / HYBRID_TUNING_REPORT
+    test_path = settings.tracked.reports / RETRIEVAL_TEST_REPORT
+    for path in (tuning_path, test_path):
+        if not path.is_file():
+            raise SystemExit(f"{path} does not exist.")
+    tuning_sha256 = file_text_sha256(tuning_path)
+    if tuning_sha256 not in committed_preregistration():
+        raise SystemExit(f"{HYBRID_TUNING_REPORT} is not the tuning the pre-registration records.")
+    tuning = json.loads(tuning_path.read_text(encoding="utf-8"))
+    test = json.loads(test_path.read_text(encoding="utf-8"))
+    chosen = tuning["chosen"]
+    if test.get("production") != HYBRID or test.get("tuning_sha256") != tuning_sha256:
+        raise SystemExit(
+            "The retrieval run on the test split did not put this hybrid in production."
+        )
+    ran = (test["candidate"], test["target_words"], test["k"])
+    if ran != (tuning["candidate"], chosen["target_words"], chosen["k"]):
+        raise SystemExit("The retrieval run on the test split ran another hybrid than the tuning.")
+    answer, bm25 = settings.answer, test["bm25"]
+    if (bm25["analyzer"], bm25["k1"], bm25["b"]) != (answer.analyzer, answer.k1, answer.b):
+        raise SystemExit("The hybrid's BM25 is not the one the answer step is set to.")
+    if chosen["target_words"] != settings.passages.target_words:
+        raise SystemExit("The hybrid's passages are not the corpus's own, which are quoted from.")
+    if tuning["window"] != settings.vectors.window:
+        raise SystemExit("The settings' window is not the one the hybrid was tuned with.")
+    return HybridConfiguration(
+        embedding=tuning["candidate"],
+        target_words=chosen["target_words"],
+        k=chosen["k"],
+        window=tuning["window"],
+        tuning_sha256=tuning_sha256,
+    )
+
+
+def load_hybrid_index(
+    settings: Settings, config: HybridConfiguration, table: PassageTable
+) -> tuple[VectorIndex, str]:
+    """The vectors of the corpus's passages, and the hash of their matrix.
+
+    Raises:
+        ValueError: If the index does not match its manifest or the passages file.
+    """
+    index, manifest = load_vector_index(
+        index_path(settings.data.search, f"full-{config.target_words}", config.embedding),
+        table.passage_ids,
+    )
+    return index, manifest.vectors_sha256
+
+
+def ask_for_vectors(
+    settings: Settings, embedding: str, texts: Sequence[str], env_file: Path | None
+) -> tuple[np.ndarray, list[Answered], EmbeddingUsage, tuple[str, ...]]:
+    """Ask the API for each text's vector, one text per request over one connection.
+
+    This is how the page asks for a question's vector, so the waits recorded
+    are the ones its questions would have.
+
+    Returns:
+        The vectors in the order of *texts*, how each was answered, what the
+        requests used, and the providers that answered.
+    """
+    candidate = settings.vectors.candidate(embedding)
+    key = load_openrouter_key(env_file or settings.data.search.parents[1] / ".env")
+    embedder = build_embedder(
+        candidate, key=key, cap_usd=settings.vectors.run_cap_usd, batch_inputs=1, concurrency=1
+    )
+    if not isinstance(embedder, OpenRouterEmbedder):
+        raise SystemExit(f"{embedding} does not run through the API, as the page's model does.")
+    vectors, answered = embedder.embed_singly(texts, "query")
+    return vectors, answered, embedder.take_usage(), tuple(sorted(embedder.providers))
+
+
+def question_vectors(
+    settings: Settings,
+    config: HybridConfiguration,
+    questions: Sequence[EvalQuestion],
+    split: str,
+    env_file: Path | None,
+) -> tuple[QueryVectors, QueryVectorsRecord]:
+    """Each question's vector, as the page asks for it: asked for once, then read back.
+
+    Raises:
+        SystemExit: If the recorded vectors are of other questions or another
+            model, or their file no longer matches its hash.
+    """
+    directory = work_dir(settings, split, HYBRID)
+    record_path = directory / QUERY_RECORD_NAME
+    vectors_path = directory / QUERY_VECTORS_NAME
+    ids = [question.question_id for question in questions]
+    if record_path.is_file():
+        record = QueryVectorsRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
+        if list(record.question_ids) != ids or record.embedding != config.embedding:
+            raise SystemExit(f"{record_path} holds other questions' vectors, or another model's.")
+        if file_sha256(vectors_path) != record.vectors_sha256:
+            raise SystemExit(f"{vectors_path} no longer matches its hash.")
+        return QueryVectors.of(ids, np.load(vectors_path, allow_pickle=False)), record
+
+    candidate = settings.vectors.candidate(config.embedding)
+    logger.info("Asking for %d question vectors one by one", len(ids))
+    started = now()
+    vectors, answered, usage, providers = ask_for_vectors(
+        settings, config.embedding, [question.text for question in questions], env_file
+    )
+    finished = now()
+    directory.mkdir(parents=True, exist_ok=True)
+    record = QueryVectorsRecord(
+        embedding=config.embedding,
+        model=candidate.model,
+        revision=candidate.revision,
+        provider=str(candidate.provider),
+        quantization=str(candidate.quantization),
+        question_ids=tuple(ids),
+        vectors_sha256=save_array(vectors_path, np.asarray(vectors, dtype=np.float32)),
+        seconds={qid: round(one.seconds, 4) for qid, one in zip(ids, answered, strict=True)},
+        attempts={qid: one.attempts for qid, one in zip(ids, answered, strict=True)},
+        requests=usage.requests,
+        tokens=usage.tokens,
+        cost_usd=round(usage.cost_usd, 6),
+        providers=providers,
+        started=started,
+        finished=finished,
+    )
+    write_report(record, record_path)
+    logger.info(
+        "%d vectors in %d requests, %.6f USD; the longest wait %.1f s",
+        len(ids),
+        record.requests,
+        record.cost_usd,
+        max(record.seconds.values(), default=0.0),
+    )
+    return QueryVectors.of(ids, np.load(vectors_path, allow_pickle=False)), record
+
+
+def make_hybrid_candidates(
+    settings: Settings, manifest: QuestionsManifest, split: str, env_file: Path | None
+) -> None:
+    """Rank each question's candidates with the hybrid and record them.
+
+    A question gets the ten passages the hybrid ranks highest under its filter,
+    each with its BM25 score. A question whose vector came later than the page
+    waits gets BM25's ten, as the page gives it.
+    """
+    check_hybrid_registered()
+    check_tuned(settings)
+    config = hybrid_configuration(settings)
+    index, index_manifest, table = load_retrieval(settings)
+    vector_index, vectors_sha256 = load_hybrid_index(settings, config, table)
+    params = bm25_params(settings)
+    masks = FilterMasks(table)
+    questions = questions_of(settings, split)
+    vectors, query_record = question_vectors(settings, config, questions, split, env_file)
+    late = {qid for qid, seconds in query_record.seconds.items() if seconds > VECTOR_WAIT_S}
+    timely = [question for question in questions if question.question_id not in late]
+    words = lexical_hits(index, params, masks, timely, config.window)
+    by_vector = vector_hits(vector_index, masks, timely, vectors, config.window)
+    hits: dict[str, list[Hit]] = {
+        question.question_id: fuse_candidates(
+            index, question.text, params, lexical, vector, config.k
+        )
+        for question, lexical, vector in zip(timely, words, by_vector, strict=True)
+    }
+    for question in questions:
+        if question.question_id in late:
+            hits[question.question_id] = rank_passages(
+                index, question.text, params, masks.of(question)
+            )
+    directory = work_dir(settings, split, HYBRID)
+    records = record_candidates(settings, questions, hits, table, directory)
+    run = HybridCandidatesRun(
+        **bm25_run(settings, manifest, index_manifest, params, len(records)).model_dump(),
+        embedding=config.embedding,
+        target_words=config.target_words,
+        rrf_k=config.k,
+        window=config.window,
+        tuning_sha256=config.tuning_sha256,
+        vectors_sha256=vectors_sha256,
+        query_vectors_sha256=query_record.vectors_sha256,
+        bm25_alone=tuple(sorted(late)),
+    )
+    write_report(run, directory / RUN_NAME)
+    logger.info(
+        "%d of %d questions waited longer than %g s for their vector and got BM25's ten",
+        len(late),
+        len(questions),
+        VECTOR_WAIT_S,
+    )
+
+
+def run_hybrid_baseline(settings: Settings) -> None:
+    """Choose the baseline's threshold again on the development split, from the hybrid's candidates.
+
+    The rule is the one of 2026-11-22: the highest balanced accuracy, and a tie
+    to the lowest value. Once the run on the test split from the hybrid's
+    candidates has begun, the threshold stays.
+    """
+    check_hybrid_registered()
+    if (work_dir(settings, TEST_SPLIT, HYBRID) / ROUND_NAME).is_file():
+        raise SystemExit(
+            "The run on the test split from the hybrid's candidates has begun; its threshold stays."
+        )
+    _, records = read_candidates(settings, "dev", HYBRID)
+    _, choice = baseline_selector(settings, records)
+    write_report(choice, work_dir(settings, "dev", HYBRID) / THRESHOLD_NAME)
+    logger.info(
+        "Threshold %.4f, balanced accuracy %.3f, from the hybrid's candidates",
+        choice.threshold,
+        choice.balanced_accuracy,
+    )
+
+
 # --- The test run --------------------------------------------------------------------
+
+
+def run_cost(settings: Settings, directory: Path, price: Prices) -> float:
+    """What the batches of one run on the test split have cost so far."""
+    return sum(
+        cost_usd(completion.usage, price, _discount(settings))
+        for path in sorted(directory.glob("completions_*.jsonl"))
+        for completion in read_log(path, Completion)
+    )
+
+
+def held_out_round(directory: Path, chosen: RoundRecord) -> RoundRecord:
+    """A test run's record: read back, or begun now with the chosen round's settings."""
+    record_path = directory / ROUND_NAME
+    if record_path.is_file():
+        return RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
+    record = RoundRecord(
+        number=chosen.number,
+        model=chosen.model,
+        effort=chosen.effort,
+        max_tokens=chosen.max_tokens,
+        prompt_sha256=chosen.prompt_sha256,
+        created=now(),
+    )
+    write_report(record, record_path)
+    return record
 
 
 def check_test_budget(
@@ -1086,12 +1562,7 @@ def check_test_budget(
     """Stop unless the test run has a cap, and this batch could stay within it."""
     if cap_usd is None:
         raise SystemExit("The test run needs a cap: pass --max-usd.")
-    price = settings.generation.prices[model]
-    so_far = sum(
-        cost_usd(completion.usage, price, _discount(settings))
-        for path in sorted(directory.glob("completions_*.jsonl"))
-        for completion in read_log(path, Completion)
-    )
+    so_far = run_cost(settings, directory, settings.generation.prices[model])
     if so_far + high_estimate > cap_usd:
         raise SystemExit(
             f"The test run has spent {so_far:.2f} USD; this batch could cost up to "
@@ -1128,46 +1599,18 @@ def run_test(settings: Settings, manifest: QuestionsManifest, cap_usd: float | N
     baseline = BaselineSelector(index, bm25_params(settings), threshold=threshold.threshold)
     baseline_path = answers_path(settings, "baseline", TEST_SPLIT)
     if not baseline_path.is_file():
-        speeches = speeches_for(settings, records)
-        lines = [
-            AnsweredQuestion(
-                question_id=record.question_id,
-                answer=assemble(
-                    baseline.select(record.question, record.candidates),
-                    record.candidates,
-                    speeches,
-                ),
-            )
-            for record in records
-        ]
-        write_lines(baseline_path, lines)
+        write_lines(baseline_path, baseline_answers(settings, baseline, records))
 
     price = settings.generation.prices[chosen.model]
     selector = ClaudeSelector(prompt, chosen.model, chosen.effort, chosen.max_tokens, price)
-    record_path = directory / ROUND_NAME
-    if record_path.is_file():
-        record = RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
-    else:
-        record = RoundRecord(
-            number=chosen.number,
-            model=chosen.model,
-            effort=chosen.effort,
-            max_tokens=chosen.max_tokens,
-            prompt_sha256=chosen.prompt_sha256,
-            created=now(),
-        )
-        write_report(record, record_path)
+    record = held_out_round(directory, chosen)
     answers = answer_all(
         settings, selector, baseline, records, directory, record, cap_usd, TEST_SPLIT
     )
     write_lines(selector_path, answers)
 
-    record = RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
-    cost = sum(
-        cost_usd(completion.usage, price, _discount(settings))
-        for path in sorted(directory.glob("completions_*.jsonl"))
-        for completion in read_log(path, Completion)
-    )
+    record = RoundRecord.model_validate_json((directory / ROUND_NAME).read_text(encoding="utf-8"))
+    cost = run_cost(settings, directory, price)
     sealed = SealedRun(
         model=chosen.model,
         round=name,
@@ -1187,6 +1630,96 @@ def run_test(settings: Settings, manifest: QuestionsManifest, cap_usd: float | N
     write_report(sealed, settings.tracked.reports / TEST_RUN_REPORT)
     logger.info(
         "The test split is answered and sealed: %d questions with the prompt of %s, %.2f USD",
+        len(answers),
+        name,
+        cost,
+    )
+
+
+def run_hybrid_test(
+    settings: Settings, manifest: QuestionsManifest, cap_usd: float | None, env_file: Path | None
+) -> None:
+    """Answer the test split once more, from the hybrid's candidates.
+
+    The addendum on the hybrid's candidates sets this run out. The model, the
+    prompt, the effort and the output limit are those of the first run on the
+    test split; its record is read for them, and its answers are never read.
+    The baseline's threshold is the one chosen again on the development split
+    from the hybrid's candidates. Only what ran is recorded.
+    """
+    check_hybrid_registered()
+    directory = work_dir(settings, TEST_SPLIT, HYBRID)
+    selector_path = answers_path(settings, "selector", TEST_SPLIT, HYBRID)
+    if selector_path.is_file():
+        raise SystemExit(
+            "The test split has been answered from the hybrid's candidates once, "
+            "which is all the addendum allows."
+        )
+    first_path = settings.tracked.reports / TEST_RUN_REPORT
+    if not first_path.is_file():
+        raise SystemExit(
+            f"{first_path} does not exist; the first run on the test split comes first."
+        )
+    first = SealedRun.model_validate_json(first_path.read_text(encoding="utf-8"))
+    check_round_settings(settings)
+    check_judge_known(settings)
+    chosen = dev_choice(settings)
+    name = run_name(chosen.number, chosen.model)
+    if (chosen.model, name, chosen.prompt_sha256, chosen.effort, chosen.max_tokens) != (
+        first.model,
+        first.round,
+        first.prompt_sha256,
+        first.effort,
+        first.max_tokens,
+    ):
+        raise SystemExit(
+            "This run would differ from the first run on the test split in its model, "
+            "its prompt, its effort or its output limit."
+        )
+    prompt = load_selector_prompt(round_dir(settings, name))
+    if prompt.sha256 != chosen.prompt_sha256:
+        raise SystemExit(f"The copy of {name}'s prompt no longer matches its hash.")
+    threshold = read_threshold(settings, HYBRID)
+
+    if not (directory / RUN_NAME).is_file():
+        make_hybrid_candidates(settings, manifest, TEST_SPLIT, env_file)
+    retrieval, records = read_candidates(settings, TEST_SPLIT, HYBRID)
+    index, _, _ = load_retrieval(settings)
+    baseline = BaselineSelector(index, bm25_params(settings), threshold=threshold.threshold)
+    baseline_path = answers_path(settings, "baseline", TEST_SPLIT, HYBRID)
+    if not baseline_path.is_file():
+        write_lines(baseline_path, baseline_answers(settings, baseline, records))
+
+    price = settings.generation.prices[chosen.model]
+    selector = ClaudeSelector(prompt, chosen.model, chosen.effort, chosen.max_tokens, price)
+    record = held_out_round(directory, chosen)
+    answers = answer_all(
+        settings, selector, baseline, records, directory, record, cap_usd, TEST_SPLIT
+    )
+    write_lines(selector_path, answers)
+
+    record = RoundRecord.model_validate_json((directory / ROUND_NAME).read_text(encoding="utf-8"))
+    cost = run_cost(settings, directory, price)
+    report = HybridTestRun(
+        model=chosen.model,
+        round=name,
+        prompt_sha256=chosen.prompt_sha256,
+        effort=chosen.effort,
+        max_tokens=chosen.max_tokens,
+        threshold=threshold.threshold,
+        retrieval=retrieval,
+        batches=record.batches,
+        answers_sha256={
+            "baseline": hashlib.sha256(baseline_path.read_bytes()).hexdigest(),
+            "selector": hashlib.sha256(selector_path.read_bytes()).hexdigest(),
+        },
+        cost_usd=round(cost, 4),
+        created=now(),
+    )
+    write_report(report, settings.tracked.reports / HYBRID_TEST_RUN_REPORT)
+    logger.info(
+        "The test split is answered from the hybrid's candidates: %d questions with the "
+        "prompt of %s, %.2f USD",
         len(answers),
         name,
         cost,
@@ -1569,11 +2102,21 @@ def main() -> None:
         "--env-file",
         type=Path,
         default=None,
-        help="The .env file that holds ANTHROPIC_API_KEY. Defaults to .env in the data root.",
+        help="The .env file that holds the API keys. Defaults to .env in the data root.",
     )
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("candidates", help="Rank and record each question's candidates.")
-    commands.add_parser("baseline", help="Choose the threshold and answer with the baseline.")
+    hybrid_help = "From the hybrid's candidates, as the addendum on them sets out."
+    candidates = commands.add_parser(
+        "candidates", help="Rank and record each question's candidates."
+    )
+    candidates.add_argument("--hybrid", action="store_true", help=hybrid_help)
+    candidates.add_argument(
+        "--confirm", action="store_true", help="Required with --hybrid: this calls the API."
+    )
+    baseline = commands.add_parser(
+        "baseline", help="Choose the threshold and answer with the baseline."
+    )
+    baseline.add_argument("--hybrid", action="store_true", help=hybrid_help)
     commands.add_parser("estimate", help="Print what a round of each model and the judge cost.")
     cap_help = "A cap in USD, below the budget, on what the rounds and the judge spend together."
     paid_round = commands.add_parser("round", help="Answer with one model.")
@@ -1587,14 +2130,20 @@ def main() -> None:
     commands.add_parser("report", help="Write the metrics and the comparisons.")
     test_run = commands.add_parser("test-run", help="Answer the test split once, and seal it.")
     test_run.add_argument("--max-usd", type=float, required=True, help="The test run's cap in USD.")
+    test_run.add_argument("--hybrid", action="store_true", help=hybrid_help)
     test_run.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     args = parser.parse_args()
 
     configure_logging()
     settings = settings_from(args)
     manifest = check_registered(settings)
-    if args.command == "candidates":
+    if args.command == "candidates" and args.hybrid:
+        _confirmed(args, "Ranking with the hybrid")
+        make_hybrid_candidates(settings, manifest, "dev", args.env_file)
+    elif args.command == "candidates":
         make_candidates(settings, manifest)
+    elif args.command == "baseline" and args.hybrid:
+        run_hybrid_baseline(settings)
     elif args.command == "baseline":
         run_baseline(settings)
     elif args.command == "estimate":
@@ -1610,7 +2159,10 @@ def main() -> None:
     elif args.command == "test-run":
         _confirmed(args, "The test run")
         load_key(args.env_file or settings.data.search.parents[1] / ".env")
-        run_test(settings, manifest, args.max_usd)
+        if args.hybrid:
+            run_hybrid_test(settings, manifest, args.max_usd, args.env_file)
+        else:
+            run_test(settings, manifest, args.max_usd)
     else:
         make_report(settings)
 
