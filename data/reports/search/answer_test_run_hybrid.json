@@ -1,0 +1,43 @@
+{
+  "model": "claude-opus-5-5",
+  "round": "round-3-opus-5-5",
+  "prompt_sha256": "2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27",
+  "effort": "low",
+  "max_tokens": 8000,
+  "threshold": 0.21485483586282447,
+  "retrieval": {
+    "analyzer": "stem-nostop",
+    "k1": 1.2,
+    "b": 0.9,
+    "limit": 10,
+    "passages": 563909,
+    "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+    "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+    "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+    "sets_sha256": {
+      "natural": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+      "filtered": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+      "stance": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934",
+      "unanswerable": "39d2ca9b16d0e5b22cc0c0f003f05f90cf2d06b0ada814a76b7bdc74c676ece1"
+    },
+    "questions": 360,
+    "created": "2026-11-24T20:40:29Z",
+    "embedding": "qwen3-8b",
+    "target_words": 200,
+    "rrf_k": 10.0,
+    "window": 1000,
+    "tuning_sha256": "2c0f2962dbd8388f52a631a77c76ac0abd1bb73d7e1bb01fda908c1a790251f1",
+    "vectors_sha256": "847f55a347fa4f530c765d4b403d41cb3e19243f901864477187635b1541e844",
+    "query_vectors_sha256": "831553fd4d67d6b316b4c6d5d6b32baf2490989b65bf2c65f3f9a35a0bd910af",
+    "bm25_alone": []
+  },
+  "batches": {
+    "first": "msgbatch_01JzXwGyb9idVT8VW3PueDYk"
+  },
+  "answers_sha256": {
+    "baseline": "9ce86681abb332a54e6e94f860b2618ac9f8e16f545dd6ed4588d216f0fe11e9",
+    "selector": "eec1fd3f6e943003065bc64d39ebd94b92991585ab9791f29846d29e8b317994"
+  },
+  "cost_usd": 5.396,
+  "created": "2026-11-24T20:44:09Z"
+}
