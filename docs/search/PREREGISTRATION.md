@@ -427,3 +427,37 @@ judge grades them without seeing my grades. The kappa that decides is Cohen's,
 unweighted, over the three grades: at 0.6 or more the judge's grades are used.
 The linear-weighted kappa, and the kappa of grade 2 against the other two, are
 reported and decide nothing.
+
+### 2026-11-24: the outcomes of the review and of the judge's calibration
+
+**The review.** I approved 47 of the 50 questions. That is 0.94, above the
+rule's 0.85, so the questions are not generated again. By set: 18 of 20
+natural, 20 of 20 keyword, 6 of 7 filtered and 3 of 3 stance questions. Three
+were not approved. In natural-0271 the passage only states what the question
+takes for granted. In natural-0032 the passage answers the question in part.
+The third, filtered-0039, is not a reasonable question: its "inte" does not
+belong there. The three stay in their sets, and the hashes above still hold:
+the rule applies to the generation as a whole.
+
+The browser view I reviewed in could neither keep the answers nor hand them
+over. I named the three questions I did not approve and gave my reasons, and
+`data/reports/search/review_generation_1.json` was written from that list. The
+form now warns when the browser cannot keep the answers, and always shows them
+as text.
+
+**The judge's calibration.** The judge graded the 100 pairs on 2026-11-21, for
+0.69 USD. My grades were complete on 2026-11-24 and came through the form's own
+download. I did not see the judge's grades before then. Cohen's unweighted
+kappa over the three grades is 0.321, below 0.6, so the judge's grades are not
+used. Quote precision and pooled relevance rest on manual judgements alone, as
+the section on metrics says. The linear-weighted kappa is 0.355, and the kappa
+of grade 2 against the other two is 0.303. Neither decides anything.
+
+The judge and I gave the same grade to 66 of the 100 pairs. In 31 of the other
+34 I gave a 2 and the judge a 1, and in the remaining 3 I gave a 1 and the
+judge a 2. I gave a 2 to 80 pairs, the judge to 52. Both of us gave a 0 to the
+same two pairs, and to no others.
+
+The grades of every pair, with the statistics, are in
+`data/reports/search/judge_agreement.json`. The judge's answers, with its
+reasons, are in `judge_calibration_verdicts.json`.
