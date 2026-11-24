@@ -636,3 +636,42 @@ inference service gets, uses well under one of them.
 
 I decided this before the embedding comparison ran, so the bound cannot
 follow from its result.
+
+### 2026-11-24: the tuned configuration, and the check before the test split
+
+The tuning on the development split chose passages of 200 words and an RRF
+constant `k` of 10, with qwen3-8b. It reached recall@10 0.600 and MRR@10 0.347
+on the 120 natural questions, alone at the top of the grid. Its report is
+`data/reports/search/hybrid_tuning_dev.json`, and the SHA-256 of its text is
+2c0f2962dbd8388f52a631a77c76ac0abd1bb73d7e1bb01fda908c1a790251f1. Ten is the
+smallest `k` in the grid, and at 200 and 320 words every larger `k` scored
+lower. The grid stays as registered.
+
+The check ran in a build of the service. It holds the corpus's vectors from
+qwen3-8b as a float32 matrix and searches them exactly beside the tuned BM25,
+as ADR-001 decided, in a container with one vCPU and 4 GiB. The build got each
+question's vector the way the service will: one question per request to
+OpenRouter, routed to Nebius in bf16 without fallback. All 855 questions of
+the development split that the evaluation searched went to the build, each with
+the filter it carries. The build's ten best held on average 0.994 of the exact
+float32 search's ten best, against a floor of 0.97. When the exact search uses
+the vectors the build asked for, it agrees with the build to 0.9995, and the two
+vector legs return the same ten passages for every question. The difference
+lies in the API's answers. Asked for one question at a time, it returns vectors
+that differ slightly from those it returned to the evaluation's requests of 64;
+the lowest cosine between the two was 0.999668. Under the storage spike's
+workload the build had a p95 of 168 ms, a slowest cold start of 5.0 s and a
+peak of 3.15 GiB. The check passed, and its figures are in
+`data/reports/search/service_check_dev.json`.
+
+A question waits for its vector before it is searched. Over the 855 requests on
+the afternoon of 2026-11-24, the median wait was 1.25 s, the 95th percentile
+5.6 s and the longest 13.8 s. The service waits for the vector. If none has
+come within 30 s, it answers from BM25 alone and says so. A shorter limit would
+send so many questions to BM25 alone that the service would no longer be the
+build that was checked. At 3 s, 22.5 percent of these questions would have gone
+there. I set the limit after seeing these waits, before the test split was
+opened.
+
+The test run embeds the test questions in requests of 64, as the evaluation
+embedded those of the development split.
