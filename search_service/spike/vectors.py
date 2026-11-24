@@ -4,7 +4,8 @@ No embedding model has been chosen yet, so the stores are filled with synthetic
 vectors: unit vectors drawn from a seeded generator. They cost what real vectors
 of the same shape and format cost to store, load and scan. They have none of the
 structure of real embeddings, so nothing is read from them about what a search
-finds.
+finds. Once a model is chosen, a store can hold the real vectors of a vector
+index instead, written chunk by chunk the same way.
 
 A vector is stored in one of three formats: float32; float16; or int8 with one
 scale per dimension, so that a component is its code times the scale of its
@@ -60,6 +61,35 @@ def synthetic_chunks(rows: int, dim: int, seed: int, chunk_rows: int) -> Iterato
         yield _unit_rows(generator.standard_normal((size, dim), dtype=np.float32))
 
 
+def source_chunks(source: np.ndarray, chunk_rows: int) -> Iterator[np.ndarray]:
+    """Yield the rows of a real matrix of vectors a chunk at a time, as float32.
+
+    Args:
+        source: One vector per passage, in the passages' order, usually memory-mapped.
+        chunk_rows: How many vectors one chunk holds; the last may hold fewer.
+
+    Yields:
+        Arrays of shape ``(chunk, dim)``.
+    """
+    for start in range(0, len(source), chunk_rows):
+        yield np.array(source[start : start + chunk_rows], dtype=np.float32)
+
+
+def _chunks(
+    rows: int, dim: int, seed: int, chunk_rows: int, source: np.ndarray | None
+) -> Iterator[np.ndarray]:
+    """The vectors to store: the real ones of *source*, or the synthetic ones of *seed*.
+
+    Raises:
+        ValueError: If *source* does not hold *rows* vectors of *dim* dimensions.
+    """
+    if source is None:
+        return synthetic_chunks(rows, dim, seed, chunk_rows)
+    if source.shape != (rows, dim):
+        raise ValueError(f"The source holds {source.shape}, not {rows} vectors of {dim}.")
+    return source_chunks(source, chunk_rows)
+
+
 def query_vector(seed: int, dim: int) -> np.ndarray:
     """The synthetic vector of one query, as a float32 unit vector.
 
@@ -75,7 +105,9 @@ def query_vector(seed: int, dim: int) -> np.ndarray:
     return vector / np.linalg.norm(vector)
 
 
-def int8_scales(rows: int, dim: int, seed: int, chunk_rows: int) -> np.ndarray:
+def int8_scales(
+    rows: int, dim: int, seed: int, chunk_rows: int, source: np.ndarray | None = None
+) -> np.ndarray:
     """The scale of each dimension that maps its largest absolute component to 127.
 
     Args:
@@ -83,12 +115,13 @@ def int8_scales(rows: int, dim: int, seed: int, chunk_rows: int) -> np.ndarray:
         dim: The dimension.
         seed: The seed of the vectors.
         chunk_rows: The size of their chunks.
+        source: Real vectors to scale instead of the synthetic ones.
 
     Returns:
         A float32 array of shape ``(dim,)``.
     """
     peak = np.zeros(dim, dtype=np.float32)
-    for block in synthetic_chunks(rows, dim, seed, chunk_rows):
+    for block in _chunks(rows, dim, seed, chunk_rows, source):
         np.maximum(peak, np.abs(block).max(axis=0), out=peak)
     return np.where(peak > 0, peak / INT8_LIMIT, 1.0).astype(np.float32)
 
@@ -128,17 +161,25 @@ def scales_name(dim: int) -> str:
 
 
 def write_vectors(
-    directory: Path, rows: int, dim: int, fmt: VectorFormat, seed: int, chunk_rows: int
+    directory: Path,
+    rows: int,
+    dim: int,
+    fmt: VectorFormat,
+    seed: int,
+    chunk_rows: int,
+    source: np.ndarray | None = None,
 ) -> Path:
-    """Write the synthetic vectors of *rows* passages to a ``.npy`` file in *directory*.
+    """Write the vectors of *rows* passages to a ``.npy`` file in *directory*.
 
     Args:
         directory: Where to write; created if missing.
         rows: How many vectors.
         dim: The dimension.
         fmt: The format.
-        seed: The seed.
+        seed: The seed of the synthetic vectors.
         chunk_rows: The size of a chunk.
+        source: Real vectors, one per passage in the passages' order, written
+            instead of the synthetic ones.
 
     Returns:
         The file written. For int8 the scales are written beside it.
@@ -146,12 +187,12 @@ def write_vectors(
     directory.mkdir(parents=True, exist_ok=True)
     scales = None
     if fmt == "int8":
-        scales = int8_scales(rows, dim, seed, chunk_rows)
+        scales = int8_scales(rows, dim, seed, chunk_rows, source)
         np.save(directory / scales_name(dim), scales)
     path = directory / vectors_name(dim, fmt)
     matrix = np.lib.format.open_memmap(path, mode="w+", dtype=_DTYPES[fmt], shape=(rows, dim))
     start = 0
-    for block in synthetic_chunks(rows, dim, seed, chunk_rows):
+    for block in _chunks(rows, dim, seed, chunk_rows, source):
         matrix[start : start + len(block)] = encode(block, fmt, scales)
         start += len(block)
     matrix.flush()

@@ -8,7 +8,7 @@ from datetime import date
 import numpy as np
 import pytest
 
-from search.index.lexical import LexicalIndex, lexical_dir
+from search.index.lexical import LexicalIndex, file_sha256, lexical_dir, passage_ids_sha256
 from search.parties import PARTY_ORDER
 from search_service.spike.contracts import PartyViewRequest, SearchFilter, SearchRequest
 from search_service.spike.inputs import (
@@ -18,7 +18,7 @@ from search_service.spike.inputs import (
     read_bm25_choice,
     read_passage_columns,
 )
-from search_service.spike.numpy_store import NumpyStore, build_numpy_store
+from search_service.spike.numpy_store import NumpyStore, build_numpy_store, real_vectors
 from search_service.spike.vectors import VectorMatrix, query_vector, top_positions
 from tests.search_service.spike_kit import CHOSEN, SPEECHES, kit_settings, write_spike_corpus
 
@@ -195,3 +195,87 @@ def test_the_store_and_the_matrix_agree_on_the_vectors(built):
     directory, _ = built
     matrix = VectorMatrix.load(directory, 8, "float32", chunk_rows=5)
     assert len(matrix) == 12
+
+
+def write_index(directory, ids, matrix):
+    """A vector index as search/index/vector.py writes it, with the manifest fields read back."""
+    directory.mkdir()
+    np.save(directory / "vectors.npy", matrix)
+    np.save(directory / "positions.npy", np.arange(len(ids), dtype=np.int64))
+    manifest = {
+        "rows": len(ids),
+        "dimension": matrix.shape[1],
+        "vectors_sha256": file_sha256(directory / "vectors.npy"),
+        "positions_sha256": file_sha256(directory / "positions.npy"),
+        "inputs": {"passage_ids_sha256": passage_ids_sha256(ids)},
+    }
+    (directory / "index.json").write_text(json.dumps(manifest), encoding="utf-8")
+    return directory
+
+
+class TestRealVectors:
+    """A store of real vectors, from an index whose loading is stood in for."""
+
+    @pytest.fixture
+    def real(self, corpus, tmp_path):
+        files = CorpusFiles.under(corpus.search_dir, corpus.tuning)
+        ids = list(read_passage_columns(files.passages).passage_ids)
+        matrix = np.random.default_rng(7).standard_normal((len(ids), 8)).astype(np.float32)
+        matrix /= np.linalg.norm(matrix, axis=1, keepdims=True)
+        index = write_index(tmp_path / "index", ids, matrix)
+        queries = tmp_path / "queries"
+        queries.mkdir()
+        np.save(queries / "queries.npy", np.stack([matrix[3], matrix[3], matrix[5]]))
+        texts = {"query_ids": ["q1", "q2", "q3"], "texts": ["fråga ett", "fråga ett", "fråga tre"]}
+        (queries / "query_texts.json").write_text(json.dumps(texts), encoding="utf-8")
+        directory = tmp_path / "store"
+        manifest = build_numpy_store(
+            directory,
+            files,
+            [(8, "float32")],
+            kit_settings().vectors,
+            vectors_from=index,
+            queries_from=queries,
+        )
+        return directory, manifest, ids, matrix, index
+
+    def test_the_store_holds_the_real_vectors_of_its_passages(self, real):
+        directory, manifest, _, matrix, index = real
+        np.testing.assert_array_equal(np.load(directory / "vectors-8-float32.npy"), matrix)
+        assert manifest.vectors_source_sha256 == file_sha256(index / "vectors.npy")
+        assert manifest.query_vectors == 2
+
+    def test_an_index_of_other_passages_or_altered_files_is_refused(self, real):
+        _, _, ids, matrix, index = real
+        with pytest.raises(ValueError, match="other passages"):
+            real_vectors(write_index(index.parent / "other", ids[::-1], matrix), ids)
+        np.save(index / "vectors.npy", matrix * 2)
+        with pytest.raises(ValueError, match="does not match"):
+            real_vectors(index, ids)
+
+    def test_a_question_is_searched_with_its_own_vector(self, real):
+        directory, _, ids, _, _ = real
+        store = NumpyStore(directory, 8, "float32", kit_settings().search)
+        first = store.search(SearchRequest(text="fråga ett", vector_seed=0, mode="vector"))
+        third = store.search(SearchRequest(text="fråga tre", vector_seed=0, mode="vector"))
+        assert first.hits[0].passage_id == ids[3]
+        assert third.hits[0].passage_id == ids[5]
+
+    def test_a_question_the_store_holds_no_vector_for_is_refused(self, real):
+        store = NumpyStore(real[0], 8, "float32", kit_settings().search)
+        with pytest.raises(ValueError, match="no vector"):
+            store.search(SearchRequest(text="en okänd fråga", vector_seed=0, mode="vector"))
+
+    def test_real_vectors_take_one_shape_and_the_questions(self, corpus, tmp_path):
+        files = CorpusFiles.under(corpus.search_dir, corpus.tuning)
+        wrong = [([(8, "float32"), (8, "int8")], tmp_path), ([(8, "float32")], None)]
+        for shapes, queries in wrong:
+            with pytest.raises(ValueError, match="one shape"):
+                build_numpy_store(
+                    tmp_path / "store",
+                    files,
+                    shapes,
+                    kit_settings().vectors,
+                    vectors_from=tmp_path,
+                    queries_from=queries,
+                )

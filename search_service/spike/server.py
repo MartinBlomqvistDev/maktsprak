@@ -138,8 +138,11 @@ def process_age() -> float | None:
 
 
 def store_directory(stores_dir: Path, spec: StoreSpec) -> Path:
-    """Where a store lives: the numpy stores share one directory, a LanceDB store has its own."""
-    return stores_dir / (STORE_DIR_NAME if spec.kind == "numpy" else spec.name)
+    """Where a store lives: the numpy stores of synthetic vectors share one directory, and a
+    store of real vectors or a LanceDB store has its own."""
+    if spec.kind == "numpy" and not spec.real:
+        return stores_dir / STORE_DIR_NAME
+    return stores_dir / spec.name
 
 
 def open_store(stores_dir: Path, spec: StoreSpec, settings: SpikeSettings) -> Store:

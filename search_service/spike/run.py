@@ -36,12 +36,14 @@ Runs on the host and drives Docker:
    their first measurement with the reason. ``--memory`` measures under
    another memory limit, into a report and records named after it, and
    ``--rewrite`` adds to a report what a later version derives from it.
+   ``--settings`` reads another settings file beside ``spike.yaml``, here and in
+   every container, into a report and records named after it.
 
 The containers run without swap, so memory beyond the limit cannot be hidden on disk.
 
 Usage::
 
-    python -m search_service.spike.run [--data-root DIR] [--image] [--build]
+    python -m search_service.spike.run [--data-root DIR] [--settings FILE] [--image] [--build]
         [--reference] [--only NAME ...] [--skip-models] [--memory 4g]
         [--hf-cache DIR] [--resume [--remeasure NAME ... --reason TEXT]]
         [--rewrite]
@@ -112,11 +114,13 @@ from search_service.spike.report import (
     verdict,
 )
 from search_service.spike.settings import (
+    SETTINGS_ENV,
     AnnParams,
     ReferenceSettings,
     SpikeSettings,
     StoreSpec,
     load_spike_settings,
+    settings_file,
     variant_name,
 )
 from search_service.spike.workload import Workload, WorkloadQuery, build_workload
@@ -296,6 +300,7 @@ def build_stores(
             "-v", f"{settings.runs.volume}:/stores",
             "-e", "HF_HUB_OFFLINE=1",
             "-e", "TRANSFORMERS_OFFLINE=1",
+            *settings_env(),
             settings.runs.images.full,
             "python", "-m", "search_service.spike.build",
             "--search-dir", "/data/search",
@@ -344,6 +349,12 @@ def image_for(settings: SpikeSettings, subject: Subject) -> str:
     return settings.runs.images.slim
 
 
+def settings_env() -> list[str]:
+    """The flag that gives a container this run's settings file, when it is not ``spike.yaml``."""
+    name = os.environ.get(SETTINGS_ENV)
+    return ["-e", f"{SETTINGS_ENV}={name}"] if name else []
+
+
 def create_container(settings: SpikeSettings, subject: Subject) -> str:
     """Create, without starting, the container that serves *subject*; return its id."""
     limits = settings.container
@@ -356,6 +367,7 @@ def create_container(settings: SpikeSettings, subject: Subject) -> str:
         "-v", f"{settings.runs.volume}:/stores:ro",
         "-e", "SPIKE_STORES=/stores",
         "-e", "TOKENIZERS_PARALLELISM=false",
+        *settings_env(),
     ]  # fmt: skip
     if subject.store is not None:
         command += ["-e", f"SPIKE_STORE={subject.store.name}"]
@@ -1020,8 +1032,15 @@ def with_memory(settings: SpikeSettings, memory: str) -> SpikeSettings:
     )
 
 
-def output_names(memory: str | None) -> tuple[str, str]:
-    """The names of the report and of the records: the main ones, or ones after a memory limit."""
+def output_names(memory: str | None, settings_name: str | None = None) -> tuple[str, str]:
+    """The names of the report and of the records.
+
+    They are the main ones, or ones after the settings file when it is not
+    ``spike.yaml``, each with the memory limit after it when one is given.
+    """
+    if settings_name:
+        stem = Path(settings_name).stem + (f"_memory_{memory}" if memory else "")
+        return f"{stem}.json", f"{stem}.jsonl"
     if memory is None:
         return REPORT_NAME, SEARCHES_NAME
     return f"storage_spike_memory_{memory}.json", f"searches_memory_{memory}.jsonl"
@@ -1047,6 +1066,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """Read the command line."""
     parser = argparse.ArgumentParser(description="Measure the stores of the storage spike.")
     parser.add_argument("--data-root", type=Path, default=None, help="Where the bulk data lives.")
+    parser.add_argument(
+        "--settings",
+        default=None,
+        help=(
+            "Read this settings file beside spike.yaml instead, here and in every container; "
+            "the report and the records are named after it."
+        ),
+    )
     parser.add_argument("--image", action="store_true", help="Build the images first.")
     parser.add_argument(
         "--build", action="store_true", help="Build the stores and prepare the models first."
@@ -1132,10 +1159,13 @@ def main(argv: list[str] | None = None) -> int:
     global CLI
     CLI = DockerCli(command=tuple(shlex.split(args.docker_command)), wsl=args.wsl_paths)
     search_settings = load_settings(data_root=args.data_root)
+    if args.settings:
+        settings_file(args.settings)
+        os.environ[SETTINGS_ENV] = args.settings
     settings = load_spike_settings()
     if args.memory is not None:
         settings = with_memory(settings, args.memory)
-    report_name, searches_name = output_names(args.memory)
+    report_name, searches_name = output_names(args.memory, args.settings)
     if args.rewrite:
         return rewrite_report(search_settings.tracked.reports / report_name)
     hf_cache = args.hf_cache or default_hf_cache()

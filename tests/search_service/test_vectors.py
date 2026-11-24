@@ -10,6 +10,7 @@ from search_service.spike.vectors import (
     encode,
     int8_scales,
     query_vector,
+    scales_name,
     synthetic_chunks,
     top_positions,
     write_vectors,
@@ -128,3 +129,20 @@ class TestVectorMatrix:
 def test_an_int8_matrix_needs_its_scales():
     with pytest.raises(ValueError, match="scale"):
         VectorMatrix(np.zeros((2, 4), dtype=np.int8), None, 2)
+
+
+class TestRealVectors:
+    def test_real_vectors_are_written_as_they_are_given(self, tmp_path):
+        source = np.random.default_rng(3).standard_normal((40, 6)).astype(np.float32)
+        path = write_vectors(tmp_path, 40, 6, "float32", seed=1, chunk_rows=16, source=source)
+        np.testing.assert_array_equal(np.load(path), source)
+
+    def test_the_int8_scales_come_from_the_real_vectors(self, tmp_path):
+        source = np.random.default_rng(4).standard_normal((40, 6)).astype(np.float32)
+        write_vectors(tmp_path, 40, 6, "int8", seed=1, chunk_rows=16, source=source)
+        scales = np.load(tmp_path / scales_name(6))
+        np.testing.assert_allclose(scales, np.abs(source).max(axis=0) / 127, rtol=1e-6)
+
+    def test_a_source_of_another_shape_is_refused(self, tmp_path):
+        with pytest.raises(ValueError, match="source"):
+            write_vectors(tmp_path, 40, 6, "float32", 1, 16, source=np.zeros((39, 6), np.float32))

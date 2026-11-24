@@ -104,3 +104,11 @@ class TestFilters:
     def test_a_vector_seed_is_stable_and_differs_by_question(self):
         assert vector_seed("natural-0001", 1) == vector_seed("natural-0001", 1)
         assert vector_seed("natural-0001", 1) != vector_seed("natural-0002", 1)
+
+
+def test_without_drawn_filters_a_question_keeps_its_own_filter_or_none(corpus, columns):
+    settings = kit_settings().workload.model_copy(update={"draw_filters": False})
+    workload = build_workload(settings, corpus.reports_dir / "questions", columns)
+    kinds = {query.filter_kind for query in (*workload.warmup, *workload.queries)}
+    assert kinds <= {"own", "none"}
+    assert all(query.filter.empty for query in workload.queries if query.filter_kind == "none")

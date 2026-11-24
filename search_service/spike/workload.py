@@ -193,6 +193,8 @@ def build_workload(
     weights = [settings.filters[kind] for kind in kinds]
 
     def drawn(question: EvalQuestion) -> WorkloadQuery:
+        if not settings.draw_filters:
+            return _query(question, SearchFilter(), "none", settings.seed)
         kind = rng.choices(kinds, weights)[0]
         return _query(question, draw.draw(kind), kind, settings.seed)
 

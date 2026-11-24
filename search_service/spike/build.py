@@ -2,7 +2,9 @@
 
 Every numpy store shares one directory, ``numpy/``: its BM25 index, text and
 filter fields once, and one vector file per numpy store selected. Each LanceDB
-store is a directory of its own, named after the store. With ``--models``, every
+store is a directory of its own, named after the store, and so is a numpy store
+of real vectors, which also holds the vector of every question it is to be
+searched with. With ``--models``, every
 query model the Hugging Face cache holds is prepared under ``models/`` in every
 runtime and precision, and checked on the questions in ``--check-texts``; what
 became of each variant is written to ``models/preparation.json``. ``run.py
@@ -145,7 +147,26 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("--models needs --check-texts, the questions each model is checked on.")
         return 2
 
-    shapes = [(spec.dim, spec.format) for spec in specs if spec.kind == "numpy"]
+    for spec in specs:
+        if spec.kind != "numpy" or not spec.real:
+            continue
+        started = time.perf_counter()
+        manifest = build_numpy_store(
+            args.out / spec.name,
+            files,
+            [(spec.dim, spec.format)],
+            settings.vectors,
+            vectors_from=args.search_dir / str(spec.vectors_from),
+            queries_from=args.search_dir / str(spec.queries_from),
+        )
+        logger.info(
+            "%s: %d passages of real vectors, %d questions, %.0f s",
+            spec.name,
+            manifest.passages,
+            manifest.query_vectors,
+            time.perf_counter() - started,
+        )
+    shapes = [(spec.dim, spec.format) for spec in specs if spec.kind == "numpy" and not spec.real]
     if shapes:
         started = time.perf_counter()
         manifest = build_numpy_store(
@@ -164,7 +185,9 @@ def main(argv: list[str] | None = None) -> int:
         for spec in lance_specs:
             manifest = build_lance_store(args.out / spec.name, files, spec, settings, args.limit)
             logger.info("%s: %d passages, %s", spec.name, manifest.passages, manifest.seconds)
-    if args.models:
+    if args.models and not settings.query_models.models:
+        logger.info("The settings name no query model, so the models already prepared stay.")
+    elif args.models:
         texts = json.loads(args.check_texts.read_text(encoding="utf-8"))
         if not texts:
             logger.error("%s holds no questions to check the models on.", args.check_texts)

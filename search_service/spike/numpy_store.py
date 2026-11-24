@@ -73,6 +73,16 @@ PERSON_NAME = "person.npy"
 PERSONS_NAME = "persons.json"
 PASSAGE_IDS_STEM = "passage_ids"
 TEXT_STEM = "text"
+QUERY_VECTORS_NAME = "query_vectors.npy"
+QUERY_TEXTS_NAME = "query_texts.json"
+#: The files a check of the service writes the questions' vectors to, as
+#: ``search/pipeline/14_check_service.py`` writes them.
+SOURCE_QUERIES_NAME = "queries.npy"
+SOURCE_TEXTS_NAME = "query_texts.json"
+#: The files of a vector index, as ``search/index/vector.py`` writes them.
+INDEX_MANIFEST_NAME = "index.json"
+INDEX_VECTORS_NAME = "vectors.npy"
+INDEX_POSITIONS_NAME = "positions.npy"
 
 
 class VectorFile(BaseModel):
@@ -108,6 +118,10 @@ class NumpyStoreManifest(BaseModel):
         chunk_rows: The size of their chunks.
         vectors: The vector files.
         bytes: The size of each part of the store on disk, by part.
+        vectors_source_sha256: The hash of the real vectors' file, when the
+            store holds real vectors instead of synthetic ones.
+        query_vectors: How many distinct questions the store holds a vector for.
+        query_vectors_sha256: The hash of the questions' vectors as they were given.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -123,6 +137,9 @@ class NumpyStoreManifest(BaseModel):
     chunk_rows: int
     vectors: tuple[VectorFile, ...]
     bytes: dict[str, int]
+    vectors_source_sha256: str | None = None
+    query_vectors: int | None = None
+    query_vectors_sha256: str | None = None
 
 
 def _size(paths: list[Path]) -> int:
@@ -153,12 +170,77 @@ def _copy_lexical(files: CorpusFiles, target: Path, expected: dict[str, object])
         shutil.copyfile(files.lexical / name, target / name)
 
 
+def real_vectors(source: Path, passage_ids: list[str]) -> tuple[np.ndarray, str]:
+    """The vectors of a vector index, one per passage in the passages' order.
+
+    The index's files are read and checked as :mod:`search.index.vector` checks
+    them, without importing it: it imports the client of the embedding API,
+    which the spike's images do not hold.
+
+    Args:
+        source: The index's directory, as :mod:`search.index.vector` writes it.
+        passage_ids: The store's passage ids, in order.
+
+    Returns:
+        The matrix, memory-mapped, and the hash of its file.
+
+    Raises:
+        ValueError: If a file does not match the index's manifest, or the index
+            does not hold a vector for every passage of the store, in its order.
+    """
+    manifest = json.loads((source / INDEX_MANIFEST_NAME).read_text(encoding="utf-8"))
+    for name, field in (
+        (INDEX_VECTORS_NAME, "vectors_sha256"),
+        (INDEX_POSITIONS_NAME, "positions_sha256"),
+    ):
+        if file_sha256(source / name) != manifest[field]:
+            raise ValueError(f"{name} in {source} does not match the index's manifest.")
+    vectors = np.load(source / INDEX_VECTORS_NAME, mmap_mode="r", allow_pickle=False)
+    positions = np.load(source / INDEX_POSITIONS_NAME, allow_pickle=False)
+    rows = len(passage_ids)
+    if len(vectors) != rows or not np.array_equal(positions, np.arange(rows)):
+        raise ValueError(f"{source} does not hold one vector for every passage, in order.")
+    if manifest["inputs"]["passage_ids_sha256"] != passage_ids_sha256(passage_ids):
+        raise ValueError(f"{source} holds the vectors of other passages than the store's.")
+    return vectors, str(manifest["vectors_sha256"])
+
+
+def copy_query_vectors(source: Path, directory: Path, dim: int) -> tuple[int, str]:
+    """Copy the questions' vectors into the store, one per distinct question.
+
+    Args:
+        source: The directory the check of the service wrote them to.
+        directory: The store's directory.
+        dim: The store's dimension.
+
+    Returns:
+        How many distinct questions, and the hash of the vectors as given.
+
+    Raises:
+        ValueError: If the vectors and the questions do not fit together.
+    """
+    given = np.load(source / SOURCE_QUERIES_NAME, allow_pickle=False)
+    texts = json.loads((source / SOURCE_TEXTS_NAME).read_text(encoding="utf-8"))["texts"]
+    if given.shape != (len(texts), dim):
+        raise ValueError(f"{source} holds {given.shape} vectors for {len(texts)} questions.")
+    first: dict[str, int] = {}
+    for row, text in enumerate(texts):
+        first.setdefault(text, row)
+    np.save(directory / QUERY_VECTORS_NAME, given[list(first.values())].astype(np.float32))
+    (directory / QUERY_TEXTS_NAME).write_text(
+        json.dumps(list(first), ensure_ascii=False), encoding="utf-8", newline="\n"
+    )
+    return len(first), file_sha256(source / SOURCE_QUERIES_NAME)
+
+
 def build_numpy_store(
     directory: Path,
     files: CorpusFiles,
     shapes: list[tuple[int, VectorFormat]],
     vectors: VectorSettings,
     limit: int | None = None,
+    vectors_from: Path | None = None,
+    queries_from: Path | None = None,
 ) -> NumpyStoreManifest:
     """Build a numpy store of the passages, with one vector file per shape.
 
@@ -172,10 +254,24 @@ def build_numpy_store(
         shapes: The ``(dimension, format)`` of each vector file.
         vectors: How the synthetic vectors are drawn.
         limit: Keep only the first *limit* passages; ``None`` keeps all.
+        vectors_from: A vector index whose real vectors the store holds instead
+            of synthetic ones; it takes one shape and every passage.
+        queries_from: The questions' vectors, as the check of the service wrote
+            them; given with *vectors_from*.
 
     Returns:
         The store's manifest, also written as ``store.json``.
+
+    Raises:
+        ValueError: If real vectors are asked for with more than one shape, a
+            limit, or without the questions' vectors.
     """
+    if (vectors_from is None) != (queries_from is None) or (
+        vectors_from is not None and (len(shapes) != 1 or limit is not None)
+    ):
+        raise ValueError(
+            "A store of real vectors holds one shape of every passage, with the questions' vectors."
+        )
     directory.mkdir(parents=True, exist_ok=True)
     columns = read_passage_columns(files.passages, limit)
     rows = len(columns)
@@ -217,11 +313,18 @@ def build_numpy_store(
             ),
         )
 
+    real, real_sha256 = None, None
+    if vectors_from is not None:
+        real, real_sha256 = real_vectors(vectors_from, list(columns.passage_ids))
     written = []
     for dim, fmt in shapes:
-        path = write_vectors(directory, rows, dim, fmt, vectors.seed, vectors.chunk_rows)
+        path = write_vectors(directory, rows, dim, fmt, vectors.seed, vectors.chunk_rows, real)
         extra = [directory / scales_name(dim)] if fmt == "int8" else []
         written.append(VectorFile(dim=dim, format=fmt, file=path.name, bytes=_size([path, *extra])))
+
+    query_count, queries_sha256 = None, None
+    if queries_from is not None:
+        query_count, queries_sha256 = copy_query_vectors(queries_from, directory, shapes[0][0])
 
     lexical_files = list((directory / LEXICAL_NAME).iterdir())
     manifest = NumpyStoreManifest(
@@ -235,6 +338,9 @@ def build_numpy_store(
         vector_seed=vectors.seed,
         chunk_rows=vectors.chunk_rows,
         vectors=tuple(written),
+        vectors_source_sha256=real_sha256,
+        query_vectors=query_count,
+        query_vectors_sha256=queries_sha256,
         bytes={
             "lexical": _size(lexical_files),
             "text": _size([directory / "text.bin", directory / "text.offsets.npy"]),
@@ -287,6 +393,12 @@ class NumpyStore:
         self.passage_ids = StringBlob.open(directory / PASSAGE_IDS_STEM)
         self.texts = StringBlob.open(directory / TEXT_STEM)
         self.vectors = VectorMatrix.load(directory, dim, fmt, self.manifest.chunk_rows)
+        self.question_rows: dict[str, int] | None = None
+        self.question_vectors: np.ndarray | None = None
+        if (directory / QUERY_TEXTS_NAME).is_file():
+            questions = json.loads((directory / QUERY_TEXTS_NAME).read_text(encoding="utf-8"))
+            self.question_rows = {text: row for row, text in enumerate(questions)}
+            self.question_vectors = np.load(directory / QUERY_VECTORS_NAME, allow_pickle=False)
         lengths = {
             self.lexical.passages,
             len(self.parties),
@@ -341,17 +453,29 @@ class NumpyStore:
         rows = self.vectors.search(query, self.settings.depth, allowed, self.settings.gather_below)
         return rows.tolist()
 
-    def query(self, vector_seed: int, vector: np.ndarray | None) -> np.ndarray:
-        """The question's vector: the one given, or the synthetic one of its seed.
+    def query(
+        self, vector_seed: int, vector: np.ndarray | None, text: str | None = None
+    ) -> np.ndarray:
+        """The question's vector: the one given, the store's own for its text, or the synthetic one.
+
+        A store of real vectors holds the vector of every question it is to be
+        searched with, as the service asks for it, and never searches with a
+        synthetic one.
 
         Raises:
-            ValueError: If the vector given does not have the store's dimension.
+            ValueError: If the vector given does not have the store's dimension,
+                or a store of real vectors holds no vector for the question.
         """
-        if vector is None:
-            return query_vector(vector_seed, self.dim)
-        if vector.shape != (self.dim,):
-            raise ValueError(f"The store holds {self.dim} dimensions, not {vector.shape}.")
-        return vector.astype(np.float32, copy=False)
+        if vector is not None:
+            if vector.shape != (self.dim,):
+                raise ValueError(f"The store holds {self.dim} dimensions, not {vector.shape}.")
+            return vector.astype(np.float32, copy=False)
+        if self.question_rows is not None and self.question_vectors is not None:
+            row = self.question_rows.get(text or "")
+            if row is None:
+                raise ValueError(f"The store holds no vector for the question {text!r}.")
+            return self.question_vectors[row]
+        return query_vector(vector_seed, self.dim)
 
     def search(self, request: SearchRequest, vector: np.ndarray | None = None) -> SearchResponse:
         """Search the store.
@@ -374,7 +498,8 @@ class NumpyStore:
         lexical_done = perf_counter()
         nearest: list[int] = []
         if count and request.mode != "lexical":
-            nearest = self._vector_leg(self.query(request.vector_seed, vector), allowed)
+            query = self.query(request.vector_seed, vector, request.text)
+            nearest = self._vector_leg(query, allowed)
         vector_done = perf_counter()
         legs = [leg for leg in (lexical, nearest) if leg]
         ranked = rrf(legs, self.settings.rrf_k, self.settings.hits)
@@ -414,7 +539,7 @@ class NumpyStore:
         base = self.mask(request.filter)
         lexical_scores = self.lexical.scores(request.text, self.params)
         lexical_done = perf_counter()
-        vector_scores = self.vectors.scores(self.query(request.vector_seed, vector))
+        vector_scores = self.vectors.scores(self.query(request.vector_seed, vector, request.text))
         vector_done = perf_counter()
         hits: dict[str, Hit | None] = {}
         depth = self.settings.depth

@@ -8,12 +8,15 @@ import pytest
 from pydantic import ValidationError
 
 from search_service.spike.settings import (
+    SETTINGS_ENV,
+    SPIKE_FILE,
     AnnParams,
     ProbeSettings,
     QueryModelSettings,
     ReferenceSettings,
     StoreSpec,
     load_spike_settings,
+    settings_file,
     variant_name,
 )
 
@@ -176,3 +179,54 @@ class TestReference:
         for several in ("0-3", "1,2", ""):
             with pytest.raises(ValidationError):
                 ReferenceSettings.model_validate({**reference.model_dump(), "pinned_cpu": several})
+
+
+class TestRealVectors:
+    def test_real_vectors_come_with_the_questions_vectors(self):
+        with pytest.raises(ValidationError, match="come together"):
+            StoreSpec(name="r", kind="numpy", dim=4, format="float32", vectors_from="index/r")
+
+    def test_only_a_numpy_store_is_built_from_real_vectors(self):
+        with pytest.raises(ValidationError, match="only a numpy store"):
+            StoreSpec(
+                name="r", kind="lance", dim=4, format="float32", vectors_from="i", queries_from="q"
+            )
+
+    @pytest.mark.parametrize("path", ["../index", "index/../other", ".hidden", "/index"])
+    def test_a_source_lies_below_the_search_data_directory(self, path):
+        with pytest.raises(ValidationError):
+            StoreSpec(
+                name="r", kind="numpy", dim=4, format="float32", vectors_from=path, queries_from="q"
+            )
+
+    def test_a_store_of_real_vectors_says_so(self):
+        spec = StoreSpec(
+            name="r", kind="numpy", dim=4, format="float32", vectors_from="i/r", queries_from="q"
+        )
+        assert spec.real
+        assert not StoreSpec(name="s", kind="numpy", dim=4, format="float32").real
+
+
+class TestSettingsFiles:
+    def test_a_settings_file_lies_beside_spike_yaml(self):
+        assert settings_file(None) == SPIKE_FILE
+        assert settings_file("service_recall.yaml") == SPIKE_FILE.with_name("service_recall.yaml")
+        for name in ("../spike.yaml", "spike.yml", "spike"):
+            with pytest.raises(ValueError):
+                settings_file(name)
+
+    def test_the_environment_names_the_file_every_part_reads(self, monkeypatch):
+        monkeypatch.setenv(SETTINGS_ENV, "service_recall.yaml")
+        assert load_spike_settings().workload.draw_filters is False
+        monkeypatch.delenv(SETTINGS_ENV)
+        assert load_spike_settings().workload.draw_filters is True
+
+    @pytest.mark.parametrize("name", ["service_storage.yaml", "service_recall.yaml"])
+    def test_the_service_check_holds_the_tuned_configuration_in_4_gib(self, name):
+        settings = load_spike_settings(settings_file(name))
+        assert (settings.budget.memory_gib, settings.container.memory) == (4, "4g")
+        assert (settings.search.rrf_k, settings.search.depth) == (10, 1000)
+        assert [(spec.name, spec.real) for spec in settings.stores] == [
+            ("numpy-1024-float32-qwen3-8b", True)
+        ]
+        assert settings.query_models.models == ()

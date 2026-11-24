@@ -100,6 +100,16 @@ class TestServer:
         lance = settings.store("lance-8-float16")
         assert store_directory(tmp_path, lance) == tmp_path / "lance-8-float16"
 
+    def test_a_store_of_real_vectors_has_a_directory_of_its_own(self, tmp_path):
+        real = (
+            kit_settings()
+            .store("numpy-8-int8")
+            .model_copy(
+                update={"name": "numpy-8-real", "vectors_from": "index", "queries_from": "queries"}
+            )
+        )
+        assert store_directory(tmp_path, real) == tmp_path / "numpy-8-real"
+
 
 class TestServerWithAModel:
     @pytest.fixture

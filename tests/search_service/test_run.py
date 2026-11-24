@@ -480,3 +480,22 @@ class TestMemory:
             "storage_spike_memory_4g.json",
             "searches_memory_4g.jsonl",
         )
+
+
+class TestSettingsFile:
+    def test_a_settings_file_names_the_report_and_the_records(self):
+        assert run.output_names(None) == ("storage_spike.json", "searches.jsonl")
+        assert run.output_names(None, "service_recall.yaml") == (
+            "service_recall.json",
+            "service_recall.jsonl",
+        )
+        assert run.output_names("4g", "service_recall.yaml") == (
+            "service_recall_memory_4g.json",
+            "service_recall_memory_4g.jsonl",
+        )
+
+    def test_a_container_reads_the_settings_file_the_run_reads(self, monkeypatch):
+        monkeypatch.delenv("SPIKE_SETTINGS", raising=False)
+        assert run.settings_env() == []
+        monkeypatch.setenv("SPIKE_SETTINGS", "service_recall.yaml")
+        assert run.settings_env() == ["-e", "SPIKE_SETTINGS=service_recall.yaml"]

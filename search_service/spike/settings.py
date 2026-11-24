@@ -1,7 +1,8 @@
-"""Settings of the storage spike, read from ``spike.yaml``."""
+"""Settings of the storage spike, read from ``spike.yaml`` or a file beside it."""
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Literal
 
@@ -9,6 +10,13 @@ import yaml
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 SPIKE_FILE: Path = Path(__file__).resolve().with_name("spike.yaml")
+
+#: Names another settings file beside ``spike.yaml``, which every part of the
+#: spike then reads instead: the builder, the server and the runner.
+SETTINGS_ENV = "SPIKE_SETTINGS"
+
+#: A path below the search-data directory: no part of it starts with a dot, so none is ``..``.
+DATA_PATH_PATTERN = r"^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$"
 
 VectorFormat = Literal["float32", "float16", "int8"]
 StoreKind = Literal["numpy", "lance"]
@@ -187,6 +195,8 @@ class WorkloadSettings(_Frozen):
         filters: The weight of each kind of filter drawn for a question without one.
         party_view_questions: How many natural questions the view of the eight parties
             is measured on.
+        draw_filters: Whether a question without a filter of its own gets one
+            drawn; otherwise it is sent without a filter.
     """
 
     seed: int
@@ -195,6 +205,7 @@ class WorkloadSettings(_Frozen):
     warmup_queries: int = Field(ge=0)
     filters: dict[FilterKind, float]
     party_view_questions: int = Field(ge=0)
+    draw_filters: bool = True
 
     @field_validator("filters")
     @classmethod
@@ -275,6 +286,12 @@ class StoreSpec(_Frozen):
         format: How each vector is stored.
         index: LanceDB's vector index, or ``none`` for exact search.
         sweep: Further parameters an approximate index is measured with.
+        vectors_from: A vector index of :mod:`search.index.vector`, as a path
+            below the search-data directory, whose vectors the store holds
+            instead of synthetic ones; for a numpy store only.
+        queries_from: The questions' vectors as the service asks for them, as a
+            path below the search-data directory; given with ``vectors_from``,
+            and the store then searches each question with its own vector.
     """
 
     name: str = Field(pattern=r"^[a-z0-9-]+$")
@@ -283,6 +300,8 @@ class StoreSpec(_Frozen):
     format: VectorFormat
     index: VectorIndex = "none"
     sweep: tuple[AnnParams, ...] = ()
+    vectors_from: str | None = Field(default=None, pattern=DATA_PATH_PATTERN)
+    queries_from: str | None = Field(default=None, pattern=DATA_PATH_PATTERN)
 
     @model_validator(mode="after")
     def _check_combination(self) -> StoreSpec:
@@ -292,7 +311,19 @@ class StoreSpec(_Frozen):
             raise ValueError(f"{self.name}: LanceDB stores vectors as float16, float32 or float64.")
         if self.index == "none" and self.sweep:
             raise ValueError(f"{self.name}: only an approximate index has parameters to sweep.")
+        if (self.vectors_from is None) != (self.queries_from is None):
+            raise ValueError(
+                f"{self.name}: real vectors are searched with real questions, so "
+                "vectors_from and queries_from come together."
+            )
+        if self.vectors_from is not None and self.kind != "numpy":
+            raise ValueError(f"{self.name}: only a numpy store is built from real vectors.")
         return self
+
+    @property
+    def real(self) -> bool:
+        """Whether the store holds real vectors rather than synthetic ones."""
+        return self.vectors_from is not None
 
 
 class QueryModelSpec(_Frozen):
@@ -483,13 +514,28 @@ class SpikeSettings(_Frozen):
         raise KeyError(f"The settings name no store called {name!r}.")
 
 
-def load_spike_settings(path: Path = SPIKE_FILE) -> SpikeSettings:
+def settings_file(name: str | None = None) -> Path:
+    """The settings file called *name* beside ``spike.yaml``; ``spike.yaml`` itself without one.
+
+    Raises:
+        ValueError: If *name* is not the plain name of a YAML file.
+    """
+    if not name:
+        return SPIKE_FILE
+    if Path(name).name != name or not name.endswith(".yaml"):
+        raise ValueError(f"A settings file is named as it lies beside spike.yaml, not {name!r}.")
+    return SPIKE_FILE.with_name(name)
+
+
+def load_spike_settings(path: Path | None = None) -> SpikeSettings:
     """Read and check the spike's settings.
 
     Args:
-        path: The YAML file; ``spike.yaml`` beside this module by default.
+        path: The YAML file; without one, the file ``SPIKE_SETTINGS`` names
+            beside ``spike.yaml``, or ``spike.yaml`` itself.
 
     Returns:
         The settings.
     """
-    return SpikeSettings.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
+    chosen = path or settings_file(os.environ.get(SETTINGS_ENV))
+    return SpikeSettings.model_validate(yaml.safe_load(chosen.read_text(encoding="utf-8")))
