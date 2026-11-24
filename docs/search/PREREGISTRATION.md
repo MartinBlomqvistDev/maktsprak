@@ -882,3 +882,77 @@ opened.
 
 The test run embeds the test questions in requests of 64, as the evaluation
 embedded those of the development split.
+
+### 2026-11-24: the answer step on the hybrid's candidates, run again on the test split
+
+Retrieval was run on the test split on 2026-11-24, and comparison 1 put the
+hybrid in production: outcome A (`data/reports/search/retrieval_test.json`).
+The addendum of 2026-11-24 on the answer step's test run had settled that case
+in advance: the answer step would stay on BM25's candidates, since the test
+split allows it one run and no system is changed after its run. This addendum
+reverses that, and the answer step is run on the test split a second time, on
+the hybrid's candidates. That departs from three rules: the test split is run
+three times and no more, no system is changed after its run on the test split,
+and the answer step was to stay on BM25 whatever comparison 1 decided. The test
+split is now run four times.
+
+**Why.** That addendum moved the answer step's run ahead of comparison 1 so
+that it could be made on the API credit before 2026-11-25. The credit runs
+until 2026-11-28. Had the date been right, the run would have followed the
+addendum of 2026-11-22: it would have waited for comparison 1 and used the
+retrieval that comparison puts in production. Kept on BM25, the page would
+choose its quotations from BM25's ten passages while its list of results shows
+the hybrid's.
+
+**What I knew when I decided.** The first run is known only by its record,
+`data/reports/search/answer_test_run.json`, which holds its settings, the
+message batch, the SHA-256 of its answers and its cost, 5.30 USD. No figure has
+been computed from its answers, and I have graded none of their quotations. In
+the new run nothing is left to choose. The model, the prompt, the effort and
+the questions stay as they were. The candidates follow from comparison 1, and
+the baseline's threshold is chosen again by the rule of 2026-11-22.
+
+**The first run** decides nothing. It is kept, in line with the stop rule that
+keeps both results when a run is repeated, and its files are left as they are.
+The SHA-256 of its answers is
+`91c2cb55014f5bb306b228e1fa03e5cebb71ce6b04b86fd54fe74396f799320d` for the
+model and `c99feac638426381278ea727b972696dd97d38881708f43b3ea3ef86a33e4f41`
+for the baseline. I open it only after the comparisons and the launch rule of
+the new run have been computed with my grades. Its balanced accuracy and the
+two shares behind it are then reported as description, and its quotations are
+not graded.
+
+**The candidates.** On both splits and on the page, a question gets the ten
+passages the hybrid ranks highest under its filter. The hybrid is the one the
+tuning chose, as the addendum of 2026-11-24 on the tuned configuration records
+it: qwen3-8b at 200 words, merged with BM25 by reciprocal rank fusion with
+`k` 10. The addendum of 2026-11-21 on the embedding candidates fixed the rest:
+BM25 as tuned on 2026-11-21, and each ranking holding the 1 000 best passages
+under the filter. The vectors are searched exactly, as float32. Each question
+gets its vector the way the service will: one question per request to
+OpenRouter, routed to Nebius in bf16 without fallback. The retrieval run did
+not store the test questions' vectors, and the 150 unanswerable questions were
+never embedded. All 600 questions of the answer step are therefore embedded for
+it. If no vector has come within 30 s, the page answers from BM25 alone and
+says so, and the answer step then gets BM25's ten.
+
+**The baseline** quotes the hybrid's first candidate. As before, it abstains
+when that passage's BM25 score falls below a share of the most the question's
+terms can score. A passage that holds none of the question's terms scores 0.
+The share is chosen again on the development split, with the hybrid's
+candidates, before the new run.
+
+**The run.** Claude Opus 5.5 answers the 360 questions of the test split at low
+effort, with at most 8 000 output tokens and the prompt of round 3 unchanged
+(SHA-256 `2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27`),
+through a message batch. The baseline answers the same questions from the same
+candidates. The rounds on the development split are not run again, so the
+prompt is the one tuned on BM25's candidates. The run is made once. It is not
+sealed, since the retrieval run on the test split has been made. As before, no
+figure of retrieval is computed from the answer step's files.
+
+**Grading by hand** follows the addendum of 2026-11-24 on the answer step's
+test run and applies to the new run: the 100 answerable questions drawn with
+the seed 20261124, the pairs in an order drawn with the same seed, each showing
+only the question and the quotation. The comparisons and the launch rule are
+computed as the addendum of 2026-11-22 sets out.
