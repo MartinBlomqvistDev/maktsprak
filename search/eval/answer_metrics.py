@@ -20,12 +20,17 @@ resamples. :func:`precision_difference` resamples the answerable questions
 and computes each selector's precision over its quotations on the questions
 drawn; :func:`accuracy_difference` resamples the answerable and the
 unanswerable questions apart, so each keeps its size.
+
+The addendum of 2026-11-23 runs three models in round 1 and chooses one of
+them with :func:`choose_model`, unless the judge's kappa falls short of 0.6.
+The rounds after it are chosen among with :func:`choose_round`, or with
+:func:`choose_round_by_accuracy` when the kappa falls short.
 """
 
 from __future__ import annotations
 
 from collections import Counter
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 
 import numpy as np
 from pydantic import BaseModel, ConfigDict
@@ -35,6 +40,10 @@ from search.parties import PARTY_ORDER
 
 #: The grade that counts as answering the question.
 ANSWERS = 2
+
+#: How far below the best a model may come, in score and in quote precision,
+#: and still be chosen after round 1.
+MODEL_MARGIN = 0.01
 
 
 class QuoteOutcome(BaseModel):
@@ -295,3 +304,79 @@ def choose_round(rounds: Sequence[tuple[int, float, float]]) -> int:
     if not rounds:
         raise ValueError("There is no round to choose.")
     return max(rounds, key=lambda item: (round((item[1] + item[2]) / 2, 9), item[0]))[0]
+
+
+def choose_round_by_accuracy(rounds: Sequence[tuple[int, float]]) -> int:
+    """The round that goes to the test run when the judge's kappa falls short of 0.6.
+
+    Args:
+        rounds: Each round's number and balanced accuracy.
+
+    Returns:
+        The number of the round with the highest balanced accuracy, compared to
+        nine decimals; a tie goes to the later round.
+
+    Raises:
+        ValueError: If there is no round.
+    """
+    if not rounds:
+        raise ValueError("There is no round to choose.")
+    return max(rounds, key=lambda item: (round(item[1], 9), item[0]))[0]
+
+
+def choose_model(
+    scores: Mapping[str, tuple[float | None, float]],
+    by_price: Sequence[str],
+    margin: float = MODEL_MARGIN,
+) -> str:
+    """The model that goes on after round 1, as the addendum of 2026-11-23 sets out.
+
+    A model's score is the mean of its quote precision and its balanced
+    accuracy. A model qualifies if its score is at most *margin* below the
+    highest score and its quote precision at most *margin* below the highest
+    precision, and the cheapest that qualifies is chosen. A model that gives
+    no quotation to any of the answerable questions has no precision, so it
+    cannot qualify. The addendum leaves open the case in which no model
+    qualifies, and then no model is chosen. Values are compared to nine
+    decimals, as in :func:`choose_round`.
+
+    Args:
+        scores: Each model's quote precision, ``None`` when it gave no quotation
+            to any of the answerable questions, and its balanced accuracy.
+        by_price: The models from the cheapest to the most expensive.
+        margin: How far below the best a model may come.
+
+    Returns:
+        The chosen model.
+
+    Raises:
+        ValueError: If a model has no place in *by_price*, no model has a
+            quote precision, or no model qualifies.
+    """
+    missing = set(scores) - set(by_price)
+    if missing:
+        raise ValueError(f"No price order for {sorted(missing)}.")
+    rated: dict[str, tuple[float, float]] = {}
+    for model in by_price:
+        precision, accuracy = scores.get(model, (None, 0.0))
+        if precision is not None:
+            rated[model] = (precision, accuracy)
+    if not rated:
+        raise ValueError("No model gave a quotation to any of the answerable questions.")
+
+    def score(model: str) -> float:
+        return round(sum(rated[model]) / 2, 9)
+
+    def within(best: float, value: float) -> bool:
+        return round(best - value, 9) <= margin
+
+    top_score = max(score(model) for model in rated)
+    top_precision = max(precision for precision, _ in rated.values())
+    qualified = [
+        model
+        for model in rated
+        if within(top_score, score(model)) and within(top_precision, rated[model][0])
+    ]
+    if not qualified:
+        raise ValueError("No model qualifies, a case the addendum of 2026-11-23 leaves open.")
+    return qualified[0]

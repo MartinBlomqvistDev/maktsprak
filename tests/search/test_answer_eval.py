@@ -13,7 +13,9 @@ from search.eval.answer_metrics import (
     QuoteOutcome,
     abstention,
     accuracy_difference,
+    choose_model,
     choose_round,
+    choose_round_by_accuracy,
     party_shares,
     precision_difference,
     quote_precision,
@@ -199,3 +201,44 @@ class TestMetrics:
         assert choose_round([(1, 0.8, 0.8), (2, 0.9, 0.7)]) == 2
         with pytest.raises(ValueError):
             choose_round([])
+
+    def test_without_the_judge_the_highest_balanced_accuracy_goes_on(self):
+        assert choose_round_by_accuracy([(1, 0.7), (2, 0.8), (3, 0.75)]) == 2
+        assert choose_round_by_accuracy([(1, 0.8), (2, 0.8)]) == 2
+        with pytest.raises(ValueError):
+            choose_round_by_accuracy([])
+
+
+PRICE_ORDER = ["haiku", "sonnet", "opus"]
+
+
+class TestChoiceOfModel:
+    def test_equal_models_go_to_the_cheapest(self):
+        scores = {model: (0.9, 0.8) for model in PRICE_ORDER}
+        assert choose_model(scores, PRICE_ORDER) == "haiku"
+
+    def test_a_cheaper_model_exactly_001_below_on_both_still_qualifies(self):
+        scores = {"haiku": (0.84, 0.85), "sonnet": (0.85, 0.86), "opus": (0.85, 0.86)}
+        assert choose_model(scores, PRICE_ORDER) == "haiku"
+
+    def test_a_cheaper_model_that_quotes_worse_does_not_qualify(self):
+        scores = {"haiku": (0.84, 0.85), "opus": (0.90, 0.80)}
+        assert choose_model(scores, PRICE_ORDER) == "opus"
+
+    def test_a_cheaper_model_more_than_001_below_the_best_score_does_not_qualify(self):
+        scores = {"haiku": (0.90, 0.77), "sonnet": (0.90, 0.80), "opus": (0.90, 0.80)}
+        assert choose_model(scores, PRICE_ORDER) == "sonnet"
+
+    def test_no_model_is_chosen_when_none_qualifies(self):
+        scores = {"haiku": (0.84, 0.88), "sonnet": (0.88, 0.82), "opus": (0.92, 0.77)}
+        with pytest.raises(ValueError, match="No model qualifies"):
+            choose_model(scores, PRICE_ORDER)
+
+    def test_a_model_without_quotations_is_never_chosen(self):
+        assert choose_model({"haiku": (None, 0.5), "opus": (0.7, 0.6)}, PRICE_ORDER) == "opus"
+        with pytest.raises(ValueError, match="No model gave a quotation"):
+            choose_model({"haiku": (None, 0.5)}, PRICE_ORDER)
+
+    def test_every_model_needs_a_place_in_the_price_order(self):
+        with pytest.raises(ValueError, match="No price order"):
+            choose_model({"fable": (0.9, 0.9)}, PRICE_ORDER)

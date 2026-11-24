@@ -7,29 +7,36 @@ Commands, in order:
   one, and records them. The index must match the corpus on disk.
 - ``baseline`` chooses the baseline selector's threshold by balanced accuracy
   and answers every question with it.
-- ``estimate`` prints what a round of the language model, and the judge's
-  grades still to give, would cost. It calls nothing.
-- ``round`` answers every question with the language model as one message
-  batch, sends a failed request once more, and lets the baseline answer where
-  it fails again. The round is recorded with its prompt's hash and its effort.
-  It needs ``--confirm``.
+- ``estimate`` prints what a round of each model, and the judge's grades still
+  to give, would cost. It calls nothing.
+- ``round`` answers every question with one model as one message batch, sends
+  a failed request once more, and lets the baseline answer where it fails
+  again. The round is recorded with its model, its prompt's hash and its
+  effort. Round 1 runs Opus 5.5, Sonnet 5.5 and Haiku 5.5 with the same
+  prompt, or Opus 5.5 alone if the judge's kappa fell short of 0.6. Rounds 2
+  and 3 run only the model chosen after round 1, each with a prompt of its
+  own. It needs ``--confirm``.
 - ``judge`` grades every quotation given to an answerable question, and every
   candidate of one, that has no grade yet. It needs ``--confirm``.
-- ``report`` computes each selector's metrics and the comparisons with the
-  baseline from what is recorded, and writes them among the tracked reports.
+- ``report`` computes each selector's metrics, the comparisons with the
+  baseline and the choice of model from what is recorded, and writes them
+  among the tracked reports.
 
-Nothing runs before the question sets' hashes and the addendum on the answer
-step stand in the pre-registration as committed at ``HEAD``. Only the
+Nothing runs before the question sets' hashes and the addenda on the answer
+step stand in the pre-registration as committed at ``HEAD``, and nothing paid
+runs before the judge's agreement with the hand grades is known. Only the
 development split is read; the test split stays closed until comparison 1 has
 decided the retrieval. The paid commands stop before a batch that could take
-what the rounds and the judge have spent beyond ``answer.dev_budget_usd``.
+what the rounds and the judge have spent beyond ``answer.dev_budget_usd``, or
+beyond ``--max-usd`` when that is lower.
 
 Usage::
 
     python search/pipeline/14_run_answer_step.py candidates
     python search/pipeline/14_run_answer_step.py baseline
-    python search/pipeline/14_run_answer_step.py estimate --effort low
-    python search/pipeline/14_run_answer_step.py round --number 1 --effort low --confirm
+    python search/pipeline/14_run_answer_step.py estimate
+    python search/pipeline/14_run_answer_step.py round --number 1 --model claude-haiku-5-5 \\
+        --confirm
     python search/pipeline/14_run_answer_step.py judge --confirm
     python search/pipeline/14_run_answer_step.py report
 """
@@ -81,7 +88,9 @@ from search.eval.answer_metrics import (
     QuoteOutcome,
     abstention,
     accuracy_difference,
+    choose_model,
     choose_round,
+    choose_round_by_accuracy,
     party_shares,
     precision_difference,
     quote_precision,
@@ -113,11 +122,22 @@ PREREGISTRATION = "docs/search/PREREGISTRATION.md"
 #: The heading of the addendum that fixes the answer step.
 ADDENDUM = "### 2026-11-22: the answer step, before it is built"
 
+#: The heading of the addendum that runs three models in round 1.
+MODELS_ADDENDUM = "### 2026-11-23: three models in the first round"
+
 #: The sets the answer step is run on, as the addendum names them.
 ANSWER_SETS = ("natural", "filtered", "stance", "unanswerable")
 
 #: The rounds the addendum allows on the development split.
 MAX_ROUNDS = 3
+
+#: The models of round 1, and the one that runs alone if the judge's kappa falls short.
+ROUND_ONE_MODELS = ("claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5")
+WITHOUT_THE_JUDGE = "claude-opus-5-5"
+
+#: The effort and the most output tokens every round runs with, as the addenda fix them.
+REGISTERED_EFFORT = "low"
+REGISTERED_MAX_TOKENS = 8000
 
 TUNING_REPORT = "bm25_tuning_dev.json"
 AGREEMENT_REPORT = "judge_agreement.json"
@@ -259,12 +279,15 @@ class SelectorSummary(BaseModel):
     """How one selector, or one round, did on the development split.
 
     Attributes:
-        name: ``baseline`` or ``round-<n>``.
+        name: ``baseline`` or a round's name, such as ``round-1-opus-5-5``.
+        model: The round's model.
         effort: The round's effort.
         prompt_sha256: The round's prompt.
         abstention: Balanced accuracy and its shares.
         quote_precision: The share of quotations on answerable questions graded
             2, or ``None`` while some of them still wait for the judge.
+        score: The mean of quote precision and balanced accuracy, or ``None``
+            without a quote precision.
         quotes: How many quotations on answerable questions.
         pending_grades: How many of them still wait for the judge.
         ungraded: How many of them have no grade.
@@ -272,6 +295,7 @@ class SelectorSummary(BaseModel):
         rejected: The rejected selections, by reason.
         fallbacks: The questions the baseline answered, by reason.
         cost_usd: What the round's requests cost.
+        cost_per_question_usd: That cost over every question of the split.
         parties: The share of each party among the quotations on answerable questions.
         launch_rule: Whether each part of the launch rule holds on the point estimates.
     """
@@ -279,10 +303,12 @@ class SelectorSummary(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
 
     name: str
+    model: str | None = None
     effort: str | None = None
     prompt_sha256: str | None = None
     abstention: Abstention
     quote_precision: float | None
+    score: float | None
     quotes: int
     pending_grades: int
     ungraded: int
@@ -290,6 +316,7 @@ class SelectorSummary(BaseModel):
     rejected: dict[str, int]
     fallbacks: dict[str, int]
     cost_usd: float
+    cost_per_question_usd: float
     parties: dict[str, float]
     launch_rule: dict[str, bool]
 
@@ -327,8 +354,11 @@ class AnswerReport(BaseModel):
             answerable questions.
         answerable_with_a_grade_2: How many answerable questions have at least
             one candidate the judge grades 2, and how many have a graded candidate.
-        leading_round: The round with the highest mean of quote precision and
-            balanced accuracy so far.
+        chosen_model: The model chosen after round 1, or ``None`` before round 1
+            is answered by each of its models and graded.
+        leading_round: Among the chosen model's rounds, the one with the highest
+            mean of quote precision and balanced accuracy so far, or the highest
+            balanced accuracy if the judge's kappa fell short.
         cost_usd: What the rounds and the judge have cost, by part.
         resamples: The bootstrap resamples behind each interval.
         bootstrap_seed: The seed of the resamples.
@@ -346,6 +376,7 @@ class AnswerReport(BaseModel):
     comparisons: tuple[Comparison, ...]
     candidate_parties: dict[str, float]
     answerable_with_a_grade_2: tuple[int, int]
+    chosen_model: str | None
     leading_round: int | None
     cost_usd: dict[str, float]
     resamples: int
@@ -367,7 +398,7 @@ def committed_preregistration() -> str:
 
 
 def check_registered(settings: Settings) -> QuestionsManifest:
-    """Stop unless the sets match their hashes, and the hashes and the addendum are committed.
+    """Stop unless the sets match their hashes, and the hashes and the addenda are committed.
 
     Returns:
         The manifest of the question sets.
@@ -379,6 +410,8 @@ def check_registered(settings: Settings) -> QuestionsManifest:
     registered = committed_preregistration()
     if ADDENDUM not in registered:
         raise SystemExit(f"The addendum on the answer step is not in {PREREGISTRATION} at HEAD.")
+    if MODELS_ADDENDUM not in registered:
+        raise SystemExit(f"The addendum on three models is not in {PREREGISTRATION} at HEAD.")
     for name in ANSWER_SETS:
         record = manifest.sets[name]
         actual = hashlib.sha256((settings.tracked.questions / record.file).read_bytes()).hexdigest()
@@ -407,13 +440,18 @@ def work_dir(settings: Settings) -> Path:
     return settings.data.search / "answer" / "dev"
 
 
-def round_dir(settings: Settings, number: int) -> Path:
+def run_name(number: int, model: str) -> str:
+    """A round's name: its number and its model, as in ``round-1-opus-5-5``."""
+    return f"round-{number}-{model.removeprefix('claude-')}"
+
+
+def round_dir(settings: Settings, name: str) -> Path:
     """Where one round's record, prompt and completions live."""
-    return work_dir(settings) / ROUNDS_DIR / f"round-{number}"
+    return work_dir(settings) / ROUNDS_DIR / name
 
 
 def answers_path(settings: Settings, name: str) -> Path:
-    """The answers of one selector or round, ``baseline`` or ``round-<n>``."""
+    """The answers of one selector or round: ``baseline`` or a round's name."""
     return work_dir(settings) / ANSWERS_DIR / f"{name}.jsonl"
 
 
@@ -445,14 +483,29 @@ def read_answers(settings: Settings, name: str) -> dict[str, Answer]:
     return {line.question_id: line.answer for line in read_log(path, AnsweredQuestion)}
 
 
+def by_price(settings: Settings, models: Sequence[str]) -> list[str]:
+    """The models from the cheapest to the most expensive, by list price."""
+    prices = settings.generation.prices
+    return sorted(models, key=lambda model: (prices[model].input, prices[model].output))
+
+
+def round_records(settings: Settings) -> list[RoundRecord]:
+    """Every round begun, answered or not: by number, and within a number by price."""
+    records = [
+        RoundRecord.model_validate_json(path.read_text(encoding="utf-8"))
+        for path in (work_dir(settings) / ROUNDS_DIR).glob(f"*/{ROUND_NAME}")
+    ]
+    order = by_price(settings, ROUND_ONE_MODELS)
+    return sorted(records, key=lambda record: (record.number, order.index(record.model)))
+
+
 def recorded_rounds(settings: Settings) -> list[RoundRecord]:
     """The rounds with answers, in order."""
-    rounds = []
-    for number in range(1, MAX_ROUNDS + 1):
-        record_path = round_dir(settings, number) / ROUND_NAME
-        if record_path.is_file() and answers_path(settings, f"round-{number}").is_file():
-            rounds.append(RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8")))
-    return rounds
+    return [
+        record
+        for record in round_records(settings)
+        if answers_path(settings, run_name(record.number, record.model)).is_file()
+    ]
 
 
 # --- Candidates and the baseline -------------------------------------------------
@@ -612,17 +665,18 @@ def _discount(settings: Settings) -> float:
 
 
 def spent(settings: Settings) -> dict[str, float]:
-    """What the rounds and the judge have cost so far, by part."""
-    price = settings.generation.prices[settings.answer.model]
+    """What the rounds and the judge have cost so far, by part, each round at its model's price."""
     parts: dict[str, float] = {}
-    for number in range(1, MAX_ROUNDS + 1):
+    for record in round_records(settings):
+        name = run_name(record.number, record.model)
+        price = settings.generation.prices[record.model]
         total = sum(
             cost_usd(completion.usage, price, _discount(settings))
-            for path in sorted(round_dir(settings, number).glob("completions_*.jsonl"))
+            for path in sorted(round_dir(settings, name).glob("completions_*.jsonl"))
             for completion in read_log(path, Completion)
         )
         if total:
-            parts[f"round-{number}"] = round(total, 4)
+            parts[name] = round(total, 4)
     grades = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
     if grades:
         parts["judge"] = round(sum(grade.cost_usd for grade in grades), 4)
@@ -660,13 +714,13 @@ def batch_costs(
 
 
 def round_costs(
-    settings: Settings, requests: Mapping[str, Mapping[str, object]]
+    settings: Settings, model: str, requests: Mapping[str, Mapping[str, object]]
 ) -> tuple[float, tuple[float, ...]]:
-    """The mean input tokens of a round's requests, and their cost at each assumed output."""
+    """The mean input tokens of a round's requests, and their cost on *model* at each output."""
     overhead = judge_overhead_words()
     tokens = [estimate_tokens(request_words(params), overhead) for params in requests.values()]
     mean = sum(tokens) / len(tokens) if tokens else 0.0
-    return mean, batch_costs(settings, settings.answer.model, tokens, SELECTOR_OUTPUT)
+    return mean, batch_costs(settings, model, tokens, SELECTOR_OUTPUT)
 
 
 def judge_costs(settings: Settings, pairs: Sequence[GradingPair]) -> tuple[float, ...]:
@@ -675,10 +729,19 @@ def judge_costs(settings: Settings, pairs: Sequence[GradingPair]) -> tuple[float
     return batch_costs(settings, settings.judge.model, tokens, JUDGE_OUTPUT)
 
 
-def check_budget(settings: Settings, high_estimate: float) -> None:
-    """Stop if the batch could take the spending beyond the development budget."""
+def check_budget(settings: Settings, high_estimate: float, cap_usd: float | None = None) -> None:
+    """Stop if the batch could take the spending beyond the development budget.
+
+    Args:
+        settings: The settings, whose ``answer.dev_budget_usd`` is the budget.
+        high_estimate: What the batch could cost, at the high assumption of output.
+        cap_usd: A lower cap on the spending of the rounds and the judge
+            together, as a command was given it, or ``None`` for the budget alone.
+    """
     so_far = sum(spent(settings).values())
     cap = settings.answer.dev_budget_usd
+    if cap_usd is not None:
+        cap = min(cap, cap_usd)
     if so_far + high_estimate > cap:
         raise SystemExit(
             f"Spent {so_far:.2f} USD; this batch could cost up to {high_estimate:.2f} USD, "
@@ -686,18 +749,129 @@ def check_budget(settings: Settings, high_estimate: float) -> None:
         )
 
 
+# --- The models and the judge's agreement ------------------------------------------
+
+
+def judge_accepted(settings: Settings) -> bool | None:
+    """Whether the judge's kappa reached the threshold, or ``None`` before it is known."""
+    path = settings.tracked.reports / AGREEMENT_REPORT
+    if not path.is_file():
+        return None
+    return bool(json.loads(path.read_text(encoding="utf-8"))["agreement"]["accepted"])
+
+
+def check_judge_known(settings: Settings) -> None:
+    """Stop while the judge's agreement with the hand grades is not known: nothing paid runs."""
+    if judge_accepted(settings) is None:
+        raise SystemExit(
+            f"The judge's agreement is not known yet ({AGREEMENT_REPORT} is missing), "
+            "and nothing paid runs before it is."
+        )
+
+
+def check_round_settings(settings: Settings) -> None:
+    """Stop unless the configured effort and output limit are the ones the addenda fix."""
+    answer = settings.answer
+    if (answer.effort, answer.max_tokens) != (REGISTERED_EFFORT, REGISTERED_MAX_TOKENS):
+        raise SystemExit(
+            f"Every round runs at {REGISTERED_EFFORT} effort with at most "
+            f"{REGISTERED_MAX_TOKENS} output tokens; the settings say {answer.effort} "
+            f"and {answer.max_tokens}."
+        )
+
+
+def round_one_models(settings: Settings) -> list[str]:
+    """The models of round 1, cheapest first: all three, or Opus 5.5 alone without the judge."""
+    if judge_accepted(settings) is False:
+        return [WITHOUT_THE_JUDGE]
+    return by_price(settings, ROUND_ONE_MODELS)
+
+
+def chosen_model(
+    settings: Settings, records: Sequence[QuestionCandidates], log: Sequence[QuoteGrade]
+) -> str | None:
+    """The model that goes on after round 1, or ``None`` before it can be chosen.
+
+    It can be chosen once the judge's agreement is known, each model of round 1
+    has answered, and, when the judge's kappa reached 0.6, every quotation of
+    round 1 on an answerable question has had its grade.
+    """
+    accepted = judge_accepted(settings)
+    if accepted is None:
+        return None
+    models = round_one_models(settings)
+    answered = {record.model for record in recorded_rounds(settings) if record.number == 1}
+    if not set(models) <= answered:
+        return None
+    if not accepted:
+        return WITHOUT_THE_JUDGE
+    grades = grades_by_key(log)
+    scores: dict[str, tuple[float | None, float]] = {}
+    for model in models:
+        answers = read_answers(settings, run_name(1, model))
+        if pending(quote_pairs(records, answers), log):
+            return None
+        outcomes = outcomes_of(records, answers, grades)
+        scores[model] = (quote_precision(outcomes), abstention(outcomes).balanced_accuracy)
+    return choose_model(scores, models)
+
+
+def check_round(settings: Settings, number: int, model: str, prompt_sha256: str) -> None:
+    """Stop unless the addenda let *model* run round *number* with this prompt.
+
+    Round 1 runs each of its models with one and the same prompt. Rounds 2 and
+    3 run only the model chosen after round 1, each after the round before it
+    and with a prompt that model has not run.
+    """
+    if not 1 <= number <= MAX_ROUNDS:
+        raise SystemExit(f"The addendum allows rounds 1 to {MAX_ROUNDS}.")
+    check_round_settings(settings)
+    check_judge_known(settings)
+    begun = round_records(settings)
+    if number == 1:
+        if model not in ROUND_ONE_MODELS:
+            raise SystemExit(f"Round 1 runs only {', '.join(ROUND_ONE_MODELS)}.")
+        if model not in round_one_models(settings):
+            raise SystemExit(
+                f"The judge's kappa fell short of 0.6, so round 1 runs {WITHOUT_THE_JUDGE} alone."
+            )
+        others = [record for record in begun if record.number == 1 and record.model != model]
+        if any(record.prompt_sha256 != prompt_sha256 for record in others):
+            raise SystemExit("Round 1 runs every model with the same prompt, and it has changed.")
+        return
+    _, records = read_candidates(settings)
+    log = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
+    chosen = chosen_model(settings, records, log)
+    if chosen is None:
+        raise SystemExit(
+            "The model is not chosen yet: each model of round 1 must answer, and its "
+            "quotations be graded, first."
+        )
+    if model != chosen:
+        raise SystemExit(f"Rounds 2 and 3 run only the chosen model, {chosen}.")
+    if not answers_path(settings, run_name(number - 1, model)).is_file():
+        raise SystemExit(f"{run_name(number - 1, model)} has no answers yet.")
+    for record in begun:
+        if (
+            record.number != number
+            and record.model == model
+            and record.prompt_sha256 == prompt_sha256
+        ):
+            raise SystemExit(f"{run_name(record.number, model)} already ran this prompt.")
+
+
 # --- The language model's rounds ------------------------------------------------
 
 
-def claude_selector(settings: Settings, effort: str) -> ClaudeSelector:
-    """The language model's selector at an effort, with the prompt as it stands."""
+def claude_selector(settings: Settings, model: str) -> ClaudeSelector:
+    """One model's selector, with the prompt as it stands and the configured effort."""
     answer = settings.answer
     return ClaudeSelector(
         load_selector_prompt(),
-        answer.model,
-        effort,
+        model,
+        answer.effort,
         answer.max_tokens,
-        settings.generation.prices[answer.model],
+        settings.generation.prices[model],
     )
 
 
@@ -718,13 +892,14 @@ def _batch(
     record: RoundRecord,
     attempt: str,
     requests: Mapping[str, Mapping[str, object]],
+    cap_usd: float | None = None,
 ) -> tuple[RoundRecord, list[Completion]]:
     """Run one batch of a round, or pick up the one already submitted, and log its completions."""
     log = directory / f"completions_{attempt}.jsonl"
     if log.is_file():
         return record, read_log(log, Completion)
     if attempt not in record.batches:
-        check_budget(settings, round_costs(settings, requests)[1][-1])
+        check_budget(settings, round_costs(settings, record.model, requests)[1][-1], cap_usd)
     current = record
 
     def remember(batch_id: str) -> None:
@@ -740,44 +915,39 @@ def _batch(
     return current, ordered
 
 
-def run_round(settings: Settings, number: int, effort: str) -> None:
-    """Answer every question with the language model, as one round."""
-    if not 1 <= number <= MAX_ROUNDS:
-        raise SystemExit(f"The addendum allows rounds 1 to {MAX_ROUNDS}.")
-    if number > 1 and not answers_path(settings, f"round-{number - 1}").is_file():
-        raise SystemExit(f"Round {number - 1} has no answers yet.")
-    if answers_path(settings, f"round-{number}").is_file():
-        raise SystemExit(f"Round {number} is already answered.")
+def run_round(settings: Settings, number: int, model: str, cap_usd: float | None = None) -> None:
+    """Answer every question with one model, as one round, under *cap_usd* if given."""
+    name = run_name(number, model)
+    if answers_path(settings, name).is_file():
+        raise SystemExit(f"{name} is already answered.")
+    selector = claude_selector(settings, model)
+    check_round(settings, number, model, selector.prompt.sha256)
     _, records = read_candidates(settings)
     index, _, _ = load_retrieval(settings)
     baseline = BaselineSelector(
         index, bm25_params(settings), threshold=read_threshold(settings).threshold
     )
-    selector = claude_selector(settings, effort)
-    directory = round_dir(settings, number)
+    directory = round_dir(settings, name)
     record_path = directory / ROUND_NAME
     if record_path.is_file():
         record = RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
-        if (record.prompt_sha256, record.effort) != (selector.prompt.sha256, effort):
-            raise SystemExit(f"Round {number} began with another prompt or effort.")
+        if (record.prompt_sha256, record.effort) != (selector.prompt.sha256, selector.effort):
+            raise SystemExit(f"{name} began with another prompt or effort.")
     else:
-        for earlier in recorded_rounds(settings):
-            if (earlier.prompt_sha256, earlier.effort) == (selector.prompt.sha256, effort):
-                raise SystemExit(f"Round {earlier.number} already ran this prompt at this effort.")
         directory.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(PROMPT_DIR / f"{PROMPT_NAME}.md", directory / f"{PROMPT_NAME}.md")
         record = RoundRecord(
             number=number,
-            model=settings.answer.model,
-            effort=effort,
-            max_tokens=settings.answer.max_tokens,
+            model=model,
+            effort=selector.effort,
+            max_tokens=selector.max_tokens,
             prompt_sha256=selector.prompt.sha256,
             created=now(),
         )
         write_report(record, record_path)
 
     requests = round_requests(selector, records)
-    record, first = _batch(settings, directory, record, "first", requests)
+    record, first = _batch(settings, directory, record, "first", requests, cap_usd)
     sent = {completion.custom_id: [completion] for completion in first}
     again = {
         question_id: params
@@ -785,7 +955,7 @@ def run_round(settings: Settings, number: int, effort: str) -> None:
         if question_id not in sent or failed(sent[question_id][-1])
     }
     if again:
-        record, second = _batch(settings, directory, record, "again", again)
+        record, second = _batch(settings, directory, record, "again", again, cap_usd)
         for completion in second:
             sent.setdefault(completion.custom_id, []).append(completion)
 
@@ -809,13 +979,13 @@ def run_round(settings: Settings, number: int, effort: str) -> None:
                 answer=assemble(selected, item.candidates, speeches),
             )
         )
-    write_lines(answers_path(settings, f"round-{number}"), answers)
+    write_lines(answers_path(settings, name), answers)
     fallbacks = sum(line.answer.selected.fallback is not None for line in answers)
     rejected = sum(len(line.answer.rejected) for line in answers)
     logger.info(
-        "Round %d: %d questions, %d answered by the baseline after two failures, "
+        "%s: %d questions, %d answered by the baseline after two failures, "
         "%d rejected selections; spent so far %s",
-        number,
+        name,
         len(answers),
         fallbacks,
         rejected,
@@ -834,7 +1004,7 @@ def candidate_text(candidate: Candidate) -> str:
 def answer_names(settings: Settings) -> list[str]:
     """The selectors and rounds with answers: the baseline, then each round."""
     names = ["baseline"] if answers_path(settings, "baseline").is_file() else []
-    return names + [f"round-{record.number}" for record in recorded_rounds(settings)]
+    return names + [run_name(record.number, record.model) for record in recorded_rounds(settings)]
 
 
 def candidate_pairs(records: Sequence[QuestionCandidates]) -> list[GradingPair]:
@@ -869,8 +1039,9 @@ def grading_pairs(settings: Settings, records: Sequence[QuestionCandidates]) -> 
     return pairs
 
 
-def run_judge(settings: Settings) -> None:
-    """Grade every pair without a grade, sending a failed one once more."""
+def run_judge(settings: Settings, cap_usd: float | None = None) -> None:
+    """Grade every pair without a grade, sending a failed one once more, under *cap_usd*."""
+    check_judge_known(settings)
     _, records = read_candidates(settings)
     prompt = load_prompt("judge")
     check_judge_prompt(prompt)
@@ -883,7 +1054,7 @@ def run_judge(settings: Settings) -> None:
         todo = pending(pairs, read_log(log_path, QuoteGrade))
         if not todo:
             break
-        check_budget(settings, judge_costs(settings, todo)[-1])
+        check_budget(settings, judge_costs(settings, todo)[-1], cap_usd)
         requests = grading_requests(todo, prompt, judge.model, judge.effort, judge.max_tokens)
 
         def remember(batch_id: str, attempt: str = attempt, count: int = len(todo)) -> None:
@@ -956,12 +1127,15 @@ def summarize(
     shares = abstention(outcomes)
     precision = quote_precision(outcomes) if pending_grades == 0 else None
     answerable = [outcome for outcome in outcomes if outcome.answerable]
+    cost = sum(outcome.cost_usd for outcome in outcomes)
     return SelectorSummary(
         name=name,
+        model=record.model if record else None,
         effort=record.effort if record else None,
         prompt_sha256=record.prompt_sha256 if record else None,
         abstention=shares,
         quote_precision=None if precision is None else round(precision, 6),
+        score=None if precision is None else round((precision + shares.balanced_accuracy) / 2, 6),
         quotes=sum(len(outcome.quotes) for outcome in answerable),
         pending_grades=pending_grades,
         ungraded=ungraded(outcomes),
@@ -974,7 +1148,8 @@ def summarize(
         fallbacks=dict(
             sorted(Counter(outcome.fallback for outcome in outcomes if outcome.fallback).items())
         ),
-        cost_usd=round(sum(outcome.cost_usd for outcome in outcomes), 4),
+        cost_usd=round(cost, 4),
+        cost_per_question_usd=round(cost / len(outcomes), 6),
         parties=party_shares(quote.party for outcome in answerable for quote in outcome.quotes),
         launch_rule={
             "abstains_on_90_percent_of_unanswerable": shares.abstains_unanswerable >= 0.90,
@@ -984,12 +1159,32 @@ def summarize(
     )
 
 
-def judge_accepted(settings: Settings) -> bool | None:
-    """Whether the judge's kappa reached the threshold, or ``None`` before it is known."""
-    path = settings.tracked.reports / AGREEMENT_REPORT
-    if not path.is_file():
+def leading_round(
+    summaries: Sequence[SelectorSummary],
+    rounds: Mapping[str, RoundRecord],
+    chosen: str | None,
+    accepted: bool | None,
+) -> int | None:
+    """Among the chosen model's rounds, the one that would go to the test run so far."""
+    if chosen is None:
         return None
-    return bool(json.loads(path.read_text(encoding="utf-8"))["agreement"]["accepted"])
+    mine = [
+        (rounds[summary.name].number, summary)
+        for summary in summaries
+        if summary.name in rounds and rounds[summary.name].model == chosen
+    ]
+    if not mine:
+        return None
+    if accepted is False:
+        return choose_round_by_accuracy(
+            [(number, summary.abstention.balanced_accuracy) for number, summary in mine]
+        )
+    graded = [
+        (number, summary.quote_precision, summary.abstention.balanced_accuracy)
+        for number, summary in mine
+        if summary.quote_precision is not None
+    ]
+    return choose_round(graded) if graded else None
 
 
 def _rounded(values: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -1003,7 +1198,7 @@ def make_report(settings: Settings) -> None:
     log = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
     grades = grades_by_key(log)
     answer = settings.answer
-    rounds = {f"round-{record.number}": record for record in recorded_rounds(settings)}
+    rounds = {run_name(record.number, record.model): record for record in recorded_rounds(settings)}
     names = answer_names(settings)
     answers = {name: read_answers(settings, name) for name in names}
     outcomes = {name: outcomes_of(records, answers[name], grades) for name in names}
@@ -1044,18 +1239,15 @@ def make_report(settings: Settings) -> None:
         if record.answerable
     ]
     graded = [values for values in candidate_grades if any(value is not None for value in values)]
-    leading = [
-        (rounds[summary.name].number, summary.quote_precision, summary.abstention.balanced_accuracy)
-        for summary in summaries
-        if summary.name in rounds and summary.quote_precision is not None
-    ]
+    accepted = judge_accepted(settings)
+    chosen = chosen_model(settings, records, log)
     report = AnswerReport(
         split="dev",
         sets_sha256=run.sets_sha256,
         retrieval=run,
         threshold=threshold,
         judge_prompt_sha256=load_prompt("judge").sha256,
-        judge_accepted=judge_accepted(settings),
+        judge_accepted=accepted,
         selectors=summaries,
         comparisons=tuple(comparisons),
         candidate_parties=party_shares(
@@ -1068,7 +1260,8 @@ def make_report(settings: Settings) -> None:
             sum(any(value == 2 for value in values) for values in graded),
             len(graded),
         ),
-        leading_round=choose_round(leading) if leading else None,
+        chosen_model=chosen,
+        leading_round=leading_round(summaries, rounds, chosen, accepted),
         cost_usd=spent(settings),
         resamples=answer.resamples,
         bootstrap_seed=answer.bootstrap_seed,
@@ -1084,7 +1277,7 @@ def make_report(settings: Settings) -> None:
     )
     for summary in summaries:
         logger.info(
-            "%-9s balanced accuracy %.3f (abstains on %.2f of unanswerable, answers %.2f of "
+            "%-18s balanced accuracy %.3f (abstains on %.2f of unanswerable, answers %.2f of "
             "answerable), quote precision %s, %d quotes, %d waiting for the judge",
             summary.name,
             summary.abstention.balanced_accuracy,
@@ -1094,25 +1287,29 @@ def make_report(settings: Settings) -> None:
             summary.quotes,
             summary.pending_grades,
         )
+    if chosen is not None:
+        logger.info("Chosen after round 1: %s", chosen)
 
 
 # --- The command line ----------------------------------------------------------------
 
 
-def print_estimate(settings: Settings, effort: str) -> None:
-    """Print what a round at *effort* and the judge's pending pairs would cost."""
+def print_estimate(settings: Settings) -> None:
+    """Print what a round of each model and the judge's pending pairs would cost."""
     _, records = read_candidates(settings)
-    requests = round_requests(claude_selector(settings, effort), records)
-    mean_tokens, costs = round_costs(settings, requests)
-    logger.info(
-        "A round at %s effort: %d requests, about %.0f input tokens each; in a batch "
-        "%.2f / %.2f / %.2f USD at %d / %d / %d output tokens per request",
-        effort,
-        len(requests),
-        mean_tokens,
-        *costs,
-        *SELECTOR_OUTPUT,
-    )
+    for model in by_price(settings, ROUND_ONE_MODELS):
+        requests = round_requests(claude_selector(settings, model), records)
+        mean_tokens, costs = round_costs(settings, model, requests)
+        logger.info(
+            "A round of %s at %s effort: %d requests, about %.0f input tokens each; in a "
+            "batch %.2f / %.2f / %.2f USD at %d / %d / %d output tokens per request",
+            model,
+            settings.answer.effort,
+            len(requests),
+            mean_tokens,
+            *costs,
+            *SELECTOR_OUTPUT,
+        )
     pairs = grading_pairs(settings, records)
     todo = pending(pairs, read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade))
     logger.info(
@@ -1143,14 +1340,15 @@ def main() -> None:
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("candidates", help="Rank and record each question's candidates.")
     commands.add_parser("baseline", help="Choose the threshold and answer with the baseline.")
-    efforts = ["low", "medium", "high", "xhigh", "max"]
-    estimate = commands.add_parser("estimate", help="Print what a round and the judge would cost.")
-    estimate.add_argument("--effort", choices=efforts, default=None)
-    paid_round = commands.add_parser("round", help="Answer with the language model.")
+    commands.add_parser("estimate", help="Print what a round of each model and the judge cost.")
+    cap_help = "A cap in USD, below the budget, on what the rounds and the judge spend together."
+    paid_round = commands.add_parser("round", help="Answer with one model.")
     paid_round.add_argument("--number", type=int, required=True)
-    paid_round.add_argument("--effort", choices=efforts, default=None)
+    paid_round.add_argument("--model", choices=ROUND_ONE_MODELS, required=True)
+    paid_round.add_argument("--max-usd", type=float, default=None, help=cap_help)
     paid_round.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     judge = commands.add_parser("judge", help="Grade the pairs without a grade.")
+    judge.add_argument("--max-usd", type=float, default=None, help=cap_help)
     judge.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     commands.add_parser("report", help="Write the metrics and the comparisons.")
     args = parser.parse_args()
@@ -1158,21 +1356,20 @@ def main() -> None:
     configure_logging()
     settings = settings_from(args)
     manifest = check_registered(settings)
-    effort = getattr(args, "effort", None) or settings.answer.effort
     if args.command == "candidates":
         make_candidates(settings, manifest)
     elif args.command == "baseline":
         run_baseline(settings)
     elif args.command == "estimate":
-        print_estimate(settings, effort)
+        print_estimate(settings)
     elif args.command == "round":
         _confirmed(args, "A round")
         load_key(args.env_file or settings.data.search.parents[1] / ".env")
-        run_round(settings, args.number, effort)
+        run_round(settings, args.number, args.model, args.max_usd)
     elif args.command == "judge":
         _confirmed(args, "The judge")
         load_key(args.env_file or settings.data.search.parents[1] / ".env")
-        run_judge(settings)
+        run_judge(settings, args.max_usd)
     else:
         make_report(settings)
 
