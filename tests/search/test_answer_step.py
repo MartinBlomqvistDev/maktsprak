@@ -695,6 +695,93 @@ class TestTheHybrid:
         with pytest.raises(SystemExit, match="would differ from the first run"):
             step.run_hybrid_test(settings, MANIFEST, 5.0, None)
 
+    def test_the_hand_grades_give_the_report_and_only_then_the_first_run_is_opened(
+        self, settings, hybrid, monkeypatch, tmp_path
+    ):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        agree(settings, accepted=False)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(selector_reply))
+        step.run_round(settings, 1, OPUS)
+        step.run_test(settings, MANIFEST, 5.0)
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        step.run_hybrid_baseline(settings)
+        step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+        monkeypatch.setattr(step, "HAND_QUESTIONS", 1)
+        committed: set[str] = set()
+
+        def require_committed(path):
+            if path.name not in committed:
+                raise SystemExit(f"{path.name} must be committed as it stands first.")
+
+        monkeypatch.setattr(step, "require_committed", require_committed)
+        reports = settings.tracked.reports
+
+        step.run_hand_form(settings)
+        draw = json.loads((reports / step.HAND_DRAW_REPORT).read_text("utf-8"))
+        assert draw["questions"] == ["natural-0101"] and draw["pairs"]
+        page = (step.hand_dir(settings) / f"{step.HAND_FORM_KEY}.html").read_text("utf-8")
+        assert all(item["pair_id"] in page for item in draw["pairs"])
+        step.run_hand_form(settings)
+        assert json.loads((reports / step.HAND_DRAW_REPORT).read_text("utf-8")) == draw
+
+        answers = tmp_path / "answers.json"
+        graded = [{"question_id": item["pair_id"], "grade": 2} for item in draw["pairs"]]
+        answers.write_text(
+            json.dumps({"form": step.HAND_FORM_KEY, "answers": graded}), encoding="utf-8"
+        )
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_test_report(settings, answers)
+        committed.add(step.HAND_DRAW_REPORT)
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_sealed_description(settings)
+        step.run_test_report(settings, answers)
+
+        report = json.loads((reports / step.TEST_REPORT).read_text("utf-8"))
+        assert (report["drawn_questions"], report["graded_pairs"]) == (1, len(draw["pairs"]))
+        assert report["grades"] == {"0": 0, "1": 0, "2": len(draw["pairs"])}
+        baseline, selector = report["selectors"]
+        assert (baseline["name"], selector["name"]) == ("baseline", "selector")
+        assert selector["quote_precision"] == 1.0 and selector["graded_quotes"] >= 1
+        assert (selector["abstention"]["answerable"], selector["abstention"]["unanswerable"]) == (
+            1,
+            1,
+        )
+        assert report["retrieval"]["embedding"] == "qwen3-8b"
+        assert report["runs"] == ("selector" if report["beats_baseline"] else "baseline")
+        assert (step.hand_dir(settings) / f"{step.HAND_FORM_KEY}.json").is_file()
+        lines = (reports / step.TEST_QUESTIONS_REPORT).read_text("utf-8").splitlines()
+        assert len(lines) == 2 * len(TEST_QUESTIONS)
+        assert not (reports / step.SEALED_REPORT).exists()
+
+        committed.add(step.TEST_REPORT)
+        step.run_sealed_description(settings)
+        sealed = json.loads((reports / step.SEALED_REPORT).read_text("utf-8"))
+        assert set(sealed["abstention"]) == {"baseline", "selector"}
+        assert sealed["run"] == json.loads((reports / step.TEST_RUN_REPORT).read_text("utf-8"))
+        assert "precision" not in json.dumps(sealed)
+
+    def test_answers_that_miss_a_pair_are_refused(self, settings, hybrid, monkeypatch, tmp_path):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        agree(settings, accepted=False)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(selector_reply))
+        step.run_round(settings, 1, OPUS)
+        step.run_test(settings, MANIFEST, 5.0)
+        step.make_hybrid_candidates(settings, MANIFEST, "dev", None)
+        step.run_hybrid_baseline(settings)
+        step.run_hybrid_test(settings, MANIFEST, 5.0, None)
+        monkeypatch.setattr(step, "HAND_QUESTIONS", 1)
+        monkeypatch.setattr(step, "require_committed", lambda path: None)
+        step.run_hand_form(settings)
+        answers = tmp_path / "answers.json"
+        answers.write_text(
+            json.dumps({"form": step.HAND_FORM_KEY, "answers": []}), encoding="utf-8"
+        )
+        with pytest.raises(SystemExit, match="Without a grade"):
+            step.run_test_report(settings, answers)
+        assert not (settings.tracked.reports / step.TEST_REPORT).exists()
+
 
 def test_the_candidates_are_the_ones_bm25_ranks(settings):
     step.make_candidates(settings, MANIFEST)

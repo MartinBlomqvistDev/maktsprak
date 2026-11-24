@@ -41,6 +41,17 @@ the hybrid's candidates, and keep everything they write apart from the rest:
   are not sealed, but the record holds only what ran. It needs ``--max-usd``
   and ``--confirm``.
 
+The judge's kappa fell short of 0.6, so the quotations of that run are graded
+by hand, and three commands follow it, none of them paid:
+
+- ``hand-form`` draws 100 answerable questions of the test split with the seed
+  20261124, records the draw, and writes the form that shows each quotation
+  either selector gave them, once, in an order drawn with the same seed.
+- ``test-report`` reads the grades the form handed over, once the draw's record
+  is committed, and computes the comparisons and the launch rule.
+- ``open-sealed`` opens the first run on the test split, once the test report
+  is committed, and describes how its selectors abstain.
+
 Nothing runs before the question sets' hashes and the addenda on the answer
 step stand in the pre-registration as committed at ``HEAD``, and nothing paid
 runs before the judge's agreement with the hand grades is known. Only
@@ -64,6 +75,9 @@ Usage::
     python search/pipeline/14_run_answer_step.py candidates --hybrid --confirm
     python search/pipeline/14_run_answer_step.py baseline --hybrid
     python search/pipeline/14_run_answer_step.py test-run --hybrid --max-usd 7 --confirm
+    python search/pipeline/14_run_answer_step.py hand-form
+    python search/pipeline/14_run_answer_step.py test-report --answers bedomning-testdelen.json
+    python search/pipeline/14_run_answer_step.py open-sealed
 """
 
 from __future__ import annotations
@@ -127,8 +141,19 @@ from search.eval.answer_metrics import (
 from search.eval.assemble import MANIFEST_NAME, QuestionsManifest
 from search.eval.baseline import FilterMasks
 from search.eval.generation import append_log, load_prompt, read_log
-from search.eval.hybrid import QueryVectors, lexical_hits, vector_hits
+from search.eval.hand_grades import (
+    HAND_QUESTIONS,
+    HAND_SEED,
+    HandDraw,
+    draw_questions,
+    hand_form,
+    name_pairs,
+    order_pairs,
+    read_hand_grades,
+)
+from search.eval.hybrid import QueryVectors, lexical_hits, require_committed, vector_hits
 from search.eval.hybrid import text_sha256 as file_text_sha256
+from search.eval.judge import GRADES
 from search.eval.llm import Completion, cost_usd, load_key, run_batch
 from search.eval.questions import EvalQuestion, read_question_set, split_of
 from search.eval.quote_judge import (
@@ -205,6 +230,16 @@ QUERY_RECORD_NAME = "query_vectors.json"
 
 #: How long the page waits for a question's vector before it answers from BM25 alone.
 VECTOR_WAIT_S = 30.0
+
+#: Grading the run from the hybrid's candidates by hand: the draw's record, the
+#: form's name and directory, the reports, and the selectors in report order.
+HAND_DRAW_REPORT = "answer_test_hand_draw.json"
+HAND_FORM_KEY = "bedomning-testdelen"
+HAND_DIR = "hand"
+TEST_REPORT = "answer_test.json"
+TEST_QUESTIONS_REPORT = "answer_test_questions.jsonl"
+SEALED_REPORT = "answer_test_sealed.json"
+SELECTORS = ("baseline", "selector")
 
 #: The models of round 1, and the one that runs alone if the judge's kappa falls short.
 ROUND_ONE_MODELS = ("claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5")
@@ -576,6 +611,102 @@ class AnswerReport(BaseModel):
     cost_usd: dict[str, float]
     resamples: int
     bootstrap_seed: int
+
+
+class HandSummary(BaseModel):
+    """How one selector did on the test split, with its quotations graded by hand.
+
+    Attributes:
+        name: ``baseline`` or ``selector``.
+        abstention: Balanced accuracy and its shares, on every question of the split.
+        quote_precision: The share of its quotations on the drawn questions graded
+            2, or ``None`` when it gave none.
+        graded_quotes: Its quotations on the drawn questions.
+        quotes: Its quotations on every answerable question.
+        quotes_unanswerable: Its quotations on unanswerable questions.
+        rejected: The rejected selections, by reason.
+        fallbacks: The questions the baseline answered in its place, by reason.
+        cost_usd: What its requests cost.
+        cost_per_question_usd: That cost over every question of the split.
+        parties: The share of each party among its quotations on answerable questions.
+        launch_rule: Whether each part of the launch rule holds on the point estimates.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    name: str
+    abstention: Abstention
+    quote_precision: float | None
+    graded_quotes: int
+    quotes: int
+    quotes_unanswerable: int
+    rejected: dict[str, int]
+    fallbacks: dict[str, int]
+    cost_usd: float
+    cost_per_question_usd: float
+    parties: dict[str, float]
+    launch_rule: dict[str, bool]
+
+
+class AnswerTestReport(BaseModel):
+    """The answer step on the test split, from the hybrid's candidates, graded by hand.
+
+    Attributes:
+        split: The split run.
+        run_sha256: The hash of the run's record.
+        draw_sha256: The hash of the draw's record.
+        grades_sha256: The hash of the answers the form handed over.
+        retrieval: What the candidates were ranked with.
+        threshold: The baseline's threshold.
+        drawn_questions: How many answerable questions were drawn.
+        graded_pairs: How many pairs of question and quotation were graded.
+        grades: How many pairs got each grade.
+        selectors: The baseline, then the language model.
+        comparison: The language model against the baseline, with paired intervals.
+        beats_baseline: Whether the lower bound of both intervals lies above 0.
+        runs: The selector that runs: the language model if it beats the baseline.
+        launch: Whether the launch rule holds for the selector that runs.
+        candidate_parties: The share of each party among the candidates of the
+            answerable questions.
+        resamples: The bootstrap resamples behind each interval.
+        bootstrap_seed: The seed of the resamples.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    split: str
+    run_sha256: str
+    draw_sha256: str
+    grades_sha256: str
+    retrieval: HybridCandidatesRun
+    threshold: float
+    drawn_questions: int
+    graded_pairs: int
+    grades: dict[str, int]
+    selectors: tuple[HandSummary, ...]
+    comparison: Comparison
+    beats_baseline: bool
+    runs: str
+    launch: bool
+    candidate_parties: dict[str, float]
+    resamples: int
+    bootstrap_seed: int
+
+
+class SealedDescription(BaseModel):
+    """The first run on the test split, opened after the report on the second: description.
+
+    Attributes:
+        report_sha256: The hash of the test report, committed before the run was opened.
+        run: The first run's record.
+        abstention: Each selector's balanced accuracy and the two shares behind it.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    report_sha256: str
+    run: SealedRun
+    abstention: dict[str, Abstention]
 
 
 # --- The registration -------------------------------------------------------------
@@ -1884,12 +2015,21 @@ def summarize(
         cost_usd=round(cost, 4),
         cost_per_question_usd=round(cost / len(outcomes), 6),
         parties=party_shares(quote.party for outcome in answerable for quote in outcome.quotes),
-        launch_rule={
-            "abstains_on_90_percent_of_unanswerable": shares.abstains_unanswerable >= 0.90,
-            "needless_abstention_at_most_15_percent": shares.needless_abstention <= 0.15,
-            "quote_precision_at_least_085": precision is not None and precision >= 0.85,
-        },
+        launch_rule=launch_rule(shares, precision),
     )
+
+
+def launch_rule(shares: Abstention, precision: float | None) -> dict[str, bool]:
+    """Each part of the launch rule, read on the point estimates.
+
+    The shares are compared to nine decimals, so that a share exactly at a
+    limit is not put past it by the rounding of floats.
+    """
+    return {
+        "abstains_on_90_percent_of_unanswerable": round(shares.abstains_unanswerable, 9) >= 0.90,
+        "needless_abstention_at_most_15_percent": round(shares.needless_abstention, 9) <= 0.15,
+        "quote_precision_at_least_085": precision is not None and round(precision, 9) >= 0.85,
+    }
 
 
 def leading_round(
@@ -2058,6 +2198,258 @@ def make_report(settings: Settings) -> None:
         logger.info("Chosen after round 1: %s", chosen)
 
 
+# --- Grading the test run by hand ------------------------------------------------------
+
+
+def hybrid_test_answers(
+    settings: Settings,
+) -> tuple[HybridTestRun, str, list[QuestionCandidates], dict[str, dict[str, Answer]]]:
+    """The run from the hybrid's candidates: its record, the record's hash, its candidates, answers.
+
+    Raises:
+        SystemExit: If the record is missing, or an answers file is not the one it names.
+    """
+    path = settings.tracked.reports / HYBRID_TEST_RUN_REPORT
+    if not path.is_file():
+        raise SystemExit(
+            f"{path} does not exist; the run from the hybrid's candidates comes first."
+        )
+    run = HybridTestRun.model_validate_json(path.read_text(encoding="utf-8"))
+    answers: dict[str, dict[str, Answer]] = {}
+    for name in SELECTORS:
+        answers_file = answers_path(settings, name, TEST_SPLIT, HYBRID)
+        if not answers_file.is_file():
+            raise SystemExit(f"{answers_file} does not exist.")
+        if hashlib.sha256(answers_file.read_bytes()).hexdigest() != run.answers_sha256[name]:
+            raise SystemExit(f"{answers_file} is not the file the run's record names.")
+        answers[name] = read_answers(settings, name, TEST_SPLIT, HYBRID)
+    _, records = read_candidates(settings, TEST_SPLIT, HYBRID)
+    return run, file_text_sha256(path), records, answers
+
+
+def make_hand_draw(settings: Settings) -> tuple[HandDraw, list[GradingPair]]:
+    """Draw the questions graded by hand, and order the pairs of their quotations."""
+    run, run_sha256, records, answers = hybrid_test_answers(settings)
+    drawn = draw_questions(
+        (record.question_id for record in records if record.answerable), HAND_SEED, HAND_QUESTIONS
+    )
+    chosen = [record for record in records if record.question_id in set(drawn)]
+    ordered = order_pairs(
+        (pair for name in SELECTORS for pair in quote_pairs(chosen, answers[name])), HAND_SEED
+    )
+    draw = HandDraw(
+        seed=HAND_SEED,
+        run_sha256=run_sha256,
+        answers_sha256=dict(run.answers_sha256),
+        questions=tuple(drawn),
+        pairs=name_pairs(ordered),
+    )
+    return draw, ordered
+
+
+def hand_dir(settings: Settings) -> Path:
+    """Where the form and the answers it handed over are kept."""
+    return work_dir(settings, TEST_SPLIT, HYBRID) / HAND_DIR
+
+
+def run_hand_form(settings: Settings) -> None:
+    """Draw the questions whose quotations are graded by hand, record the draw, write the form.
+
+    The draw follows from the seed, so a second call writes the same form. A
+    recorded draw that differs from it stops the call.
+    """
+    check_hybrid_registered()
+    draw, ordered = make_hand_draw(settings)
+    path = settings.tracked.reports / HAND_DRAW_REPORT
+    if path.is_file() and HandDraw.model_validate_json(path.read_text(encoding="utf-8")) != draw:
+        raise SystemExit(f"{path} records another draw, and the draw is made once.")
+    write_report(draw, path)
+    form = hand_dir(settings) / f"{HAND_FORM_KEY}.html"
+    form.parent.mkdir(parents=True, exist_ok=True)
+    form.write_text(hand_form(ordered, draw.pairs, HAND_FORM_KEY), encoding="utf-8", newline="\n")
+    logger.info(
+        "%d questions drawn and %d pairs to grade; the form is %s",
+        len(draw.questions),
+        len(draw.pairs),
+        form,
+    )
+
+
+def hand_summary(name: str, outcomes: Sequence[QuestionOutcome], drawn: set[str]) -> HandSummary:
+    """One selector's metrics on the test split, with quote precision on the drawn questions."""
+    shares = abstention(outcomes)
+    graded = [outcome for outcome in outcomes if outcome.question_id in drawn]
+    precision = quote_precision(graded)
+    answerable = [outcome for outcome in outcomes if outcome.answerable]
+    cost = sum(outcome.cost_usd for outcome in outcomes)
+    return HandSummary(
+        name=name,
+        abstention=shares,
+        quote_precision=None if precision is None else round(precision, 6),
+        graded_quotes=sum(len(outcome.quotes) for outcome in graded),
+        quotes=sum(len(outcome.quotes) for outcome in answerable),
+        quotes_unanswerable=sum(
+            len(outcome.quotes) for outcome in outcomes if not outcome.answerable
+        ),
+        rejected=dict(
+            sorted(Counter(reason for outcome in outcomes for reason in outcome.rejected).items())
+        ),
+        fallbacks=dict(
+            sorted(Counter(outcome.fallback for outcome in outcomes if outcome.fallback).items())
+        ),
+        cost_usd=round(cost, 4),
+        cost_per_question_usd=round(cost / len(outcomes), 6),
+        parties=party_shares(quote.party for outcome in answerable for quote in outcome.quotes),
+        launch_rule=launch_rule(shares, precision),
+    )
+
+
+def run_test_report(settings: Settings, answers_file: Path) -> None:
+    """Compute the comparisons and the launch rule of the test run with the hand grades.
+
+    The draw's record must be committed as it stands, so the pairs were fixed
+    before the grades were read. Quote precision is computed over each
+    selector's quotations on the drawn questions, and its paired bootstrap
+    resamples them; balanced accuracy is computed on every question of the test
+    split. The language model beats the baseline when the lower bound of both
+    intervals lies above 0, and the launch rule is read on the point estimates
+    of the selector that runs.
+    """
+    check_hybrid_registered()
+    draw_path = settings.tracked.reports / HAND_DRAW_REPORT
+    require_committed(draw_path)
+    recorded = HandDraw.model_validate_json(draw_path.read_text(encoding="utf-8"))
+    draw, _ = make_hand_draw(settings)
+    if draw != recorded:
+        raise SystemExit("The run's answers no longer give the recorded draw.")
+    try:
+        hand = read_hand_grades(answers_file, draw, HAND_FORM_KEY)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+
+    run, run_sha256, records, answers = hybrid_test_answers(settings)
+    drawn = set(draw.questions)
+    outcomes = {name: outcomes_of(records, answers[name], hand) for name in SELECTORS}
+    summaries = tuple(hand_summary(name, outcomes[name], drawn) for name in SELECTORS)
+    graded = {
+        name: [outcome for outcome in outcomes[name] if outcome.question_id in drawn]
+        for name in SELECTORS
+    }
+    answer = settings.answer
+    precision: tuple[float, float, float] | None = None
+    if all(summary.graded_quotes for summary in summaries):
+        precision = _rounded(
+            precision_difference(
+                graded["selector"], graded["baseline"], answer.bootstrap_seed, answer.resamples
+            )
+        )
+    accuracy = _rounded(
+        accuracy_difference(
+            outcomes["selector"], outcomes["baseline"], answer.bootstrap_seed, answer.resamples
+        )
+    )
+    beats = precision is not None and precision[1] > 0 and accuracy[1] > 0
+    runs = "selector" if beats else "baseline"
+    running = next(summary for summary in summaries if summary.name == runs)
+    report = AnswerTestReport(
+        split=TEST_SPLIT,
+        run_sha256=run_sha256,
+        draw_sha256=file_text_sha256(draw_path),
+        grades_sha256=hashlib.sha256(answers_file.read_bytes()).hexdigest(),
+        retrieval=run.retrieval,
+        threshold=run.threshold,
+        drawn_questions=len(draw.questions),
+        graded_pairs=len(draw.pairs),
+        grades={str(grade): sum(value == grade for value in hand.values()) for grade in GRADES},
+        selectors=summaries,
+        comparison=Comparison(
+            name="selector", quote_precision=precision, balanced_accuracy=accuracy
+        ),
+        beats_baseline=beats,
+        runs=runs,
+        launch=all(running.launch_rule.values()),
+        candidate_parties=party_shares(
+            candidate.party
+            for record in records
+            if record.answerable
+            for candidate in record.candidates
+        ),
+        resamples=answer.resamples,
+        bootstrap_seed=answer.bootstrap_seed,
+    )
+    write_report(report, settings.tracked.reports / TEST_REPORT)
+    lines = [
+        json.dumps(
+            {"run": name, "drawn": outcome.question_id in drawn, **outcome.model_dump(mode="json")},
+            ensure_ascii=False,
+        )
+        for name in SELECTORS
+        for outcome in outcomes[name]
+    ]
+    (settings.tracked.reports / TEST_QUESTIONS_REPORT).write_text(
+        "\n".join(lines) + "\n", encoding="utf-8", newline="\n"
+    )
+    kept = hand_dir(settings) / f"{HAND_FORM_KEY}.json"
+    if answers_file.resolve() != kept.resolve():
+        kept.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(answers_file, kept)
+    for summary in summaries:
+        logger.info(
+            "%-8s balanced accuracy %.3f (abstains on %.2f of unanswerable, answers %.2f of "
+            "answerable), quote precision %s over %d graded quotes",
+            summary.name,
+            summary.abstention.balanced_accuracy,
+            summary.abstention.abstains_unanswerable,
+            summary.abstention.answers_answerable,
+            "n/a" if summary.quote_precision is None else f"{summary.quote_precision:.3f}",
+            summary.graded_quotes,
+        )
+    logger.info(
+        "The language model %s the baseline; %s runs, and the launch rule %s",
+        "beats" if beats else "does not beat",
+        runs,
+        "holds" if report.launch else "does not hold",
+    )
+
+
+def run_sealed_description(settings: Settings) -> None:
+    """Open the first run on the test split, and describe how its selectors abstain.
+
+    The addendum on the hybrid's candidates opens the first run only after the
+    comparisons and the launch rule of the second have been computed with the
+    hand grades, so the test report must be committed as it stands first. The
+    first run decides nothing: the balanced accuracy and the two shares behind
+    it are description, and its quotations are not graded.
+    """
+    check_hybrid_registered()
+    report_path = settings.tracked.reports / TEST_REPORT
+    require_committed(report_path)
+    first_path = settings.tracked.reports / TEST_RUN_REPORT
+    first = SealedRun.model_validate_json(first_path.read_text(encoding="utf-8"))
+    for name in SELECTORS:
+        path = answers_path(settings, name, TEST_SPLIT)
+        if hashlib.sha256(path.read_bytes()).hexdigest() != first.answers_sha256[name]:
+            raise SystemExit(f"{path} is not the file the sealed record names.")
+    _, records = read_candidates(settings, TEST_SPLIT)
+    shares = {
+        name: abstention(outcomes_of(records, read_answers(settings, name, TEST_SPLIT), {}))
+        for name in SELECTORS
+    }
+    description = SealedDescription(
+        report_sha256=file_text_sha256(report_path), run=first, abstention=shares
+    )
+    write_report(description, settings.tracked.reports / SEALED_REPORT)
+    for name in SELECTORS:
+        logger.info(
+            "First run, %-8s balanced accuracy %.3f (abstains on %.2f of unanswerable, "
+            "answers %.2f of answerable)",
+            name,
+            shares[name].balanced_accuracy,
+            shares[name].abstains_unanswerable,
+            shares[name].answers_answerable,
+        )
+
+
 # --- The command line ----------------------------------------------------------------
 
 
@@ -2132,6 +2524,16 @@ def main() -> None:
     test_run.add_argument("--max-usd", type=float, required=True, help="The test run's cap in USD.")
     test_run.add_argument("--hybrid", action="store_true", help=hybrid_help)
     test_run.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
+    commands.add_parser("hand-form", help="Draw the questions graded by hand and write the form.")
+    test_report = commands.add_parser(
+        "test-report", help="Compute the test run's comparisons with the hand grades."
+    )
+    test_report.add_argument(
+        "--answers", type=Path, required=True, help="The answers the form handed over, as JSON."
+    )
+    commands.add_parser(
+        "open-sealed", help="Describe the first run on the test split, after the test report."
+    )
     args = parser.parse_args()
 
     configure_logging()
@@ -2163,6 +2565,12 @@ def main() -> None:
             run_hybrid_test(settings, manifest, args.max_usd, args.env_file)
         else:
             run_test(settings, manifest, args.max_usd)
+    elif args.command == "hand-form":
+        run_hand_form(settings)
+    elif args.command == "test-report":
+        run_test_report(settings, args.answers)
+    elif args.command == "open-sealed":
+        run_sealed_description(settings)
     else:
         make_report(settings)
 

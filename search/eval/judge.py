@@ -344,6 +344,53 @@ def agreement(martin: Mapping[str, int], judge: Mapping[str, int | None]) -> Agr
     )
 
 
+#: The instructions above the pairs of a grading form. The calibration's form
+#: and the form that grades a test run's quotations by hand share them, so the
+#: test run is graded on the calibration's scale and instructions.
+GRADING_INTRO = (
+    "Ge varje par ett betyg. 2: utdraget besvarar frågan; det ger en ståndpunkt, ett "
+    "argument, ett förslag eller en uppgift som frågan efterfrågar. 1: utdraget handlar "
+    "om frågans ämne men besvarar inte frågan. 0: utdraget handlar om något annat. Bedöm "
+    "bara det som står i utdraget, oavsett om du håller med talaren. Samma fråga kan "
+    "komma tillbaka med andra utdrag. Svaren sparas i webbläsaren medan du arbetar. När "
+    "du är klar, kopiera eller ladda ned svaren och lämna dem i sessionen."
+)
+
+#: The answer field of a grading form, as the page's script reads it.
+GRADE_FIELDS_JS = '[{name: "grade", parse: (value) => Number(value)}]'
+
+
+def grading_article(number: int, total: int, item_id: str, question: str, text: str) -> str:
+    """One pair as a grading form shows it: the question, the excerpt and the three grades.
+
+    Args:
+        number: The pair's place on the form, from 1.
+        total: How many pairs the form holds.
+        item_id: The pair's key in the form's answers.
+        question: The question.
+        text: The excerpt, its paragraphs separated by a blank line.
+
+    Returns:
+        The pair as HTML.
+    """
+    paragraphs = "".join(f"<p>{html.escape(paragraph)}</p>" for paragraph in text.split("\n\n"))
+    boxes = "".join(
+        f'<label><input type="radio" name="{item_id}:grade" value="{grade}"> '
+        f"{html.escape(GRADE_LABELS[grade])}</label><br>"
+        for grade in sorted(GRADES, reverse=True)
+    )
+    return (
+        "<article>"
+        f'<div class="meta">Par {number} av {total}</div>'
+        f'<div class="question">{html.escape(question)}</div>'
+        f"<blockquote>{paragraphs}</blockquote>"
+        f"<fieldset><legend>Hur väl besvarar utdraget frågan?</legend>{boxes}</fieldset>"
+        f'<textarea name="{item_id}:comment" rows="1" '
+        'placeholder="Kommentar (frivillig)"></textarea>'
+        "</article>"
+    )
+
+
 def calibration_form(
     pairs: Sequence[JudgePair], passages: Mapping[str, str], storage_key: str
 ) -> str:
@@ -357,41 +404,16 @@ def calibration_form(
     Returns:
         One self-contained HTML page.
     """
-    articles = []
-    for number, pair in enumerate(pairs, start=1):
-        paragraphs = "".join(
-            f"<p>{html.escape(paragraph)}</p>"
-            for paragraph in passages[pair.passage_id].split("\n\n")
-        )
-        boxes = "".join(
-            f'<label><input type="radio" name="{pair.pair_id}:grade" value="{grade}"> '
-            f"{html.escape(GRADE_LABELS[grade])}</label><br>"
-            for grade in sorted(GRADES, reverse=True)
-        )
-        articles.append(
-            "<article>"
-            f'<div class="meta">Par {number} av {len(pairs)}</div>'
-            f'<div class="question">{html.escape(pair.question)}</div>'
-            f"<blockquote>{paragraphs}</blockquote>"
-            f"<fieldset><legend>Hur väl besvarar utdraget frågan?</legend>{boxes}</fieldset>"
-            f'<textarea name="{pair.pair_id}:comment" rows="1" '
-            'placeholder="Kommentar (frivillig)"></textarea>'
-            "</article>"
-        )
-    intro = (
-        "Ge varje par ett betyg. 2: utdraget besvarar frågan; det ger en ståndpunkt, ett "
-        "argument, ett förslag eller en uppgift som frågan efterfrågar. 1: utdraget handlar "
-        "om frågans ämne men besvarar inte frågan. 0: utdraget handlar om något annat. Bedöm "
-        "bara det som står i utdraget, oavsett om du håller med talaren. Samma fråga kan "
-        "komma tillbaka med andra utdrag. Svaren sparas i webbläsaren medan du arbetar. När "
-        "du är klar, kopiera eller ladda ned svaren och lämna dem i sessionen."
-    )
+    articles = [
+        grading_article(number, len(pairs), pair.pair_id, pair.question, passages[pair.passage_id])
+        for number, pair in enumerate(pairs, start=1)
+    ]
     return render_page(
         title_count=len(pairs),
-        intro=intro,
+        intro=GRADING_INTRO,
         articles=articles,
         item_ids=[pair.pair_id for pair in pairs],
         storage_key=storage_key,
-        fields_js='[{name: "grade", parse: (value) => Number(value)}]',
+        fields_js=GRADE_FIELDS_JS,
         heading="Kalibrering av domaren",
     )
