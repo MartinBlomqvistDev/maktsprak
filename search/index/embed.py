@@ -26,6 +26,7 @@ import importlib
 import json
 import math
 import os
+import time
 from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
@@ -356,6 +357,20 @@ class _Account:
     providers: set[str] = field(default_factory=set)
 
 
+@dataclass(frozen=True)
+class Answered:
+    """How the API answered one text sent alone.
+
+    Attributes:
+        seconds: From sending the first request to the vector, waits between
+            attempts included.
+        attempts: How many requests it took.
+    """
+
+    seconds: float
+    attempts: int
+
+
 class OpenRouterEmbedder:
     """A model behind OpenRouter's embeddings API, routed to one provider in one precision.
 
@@ -505,16 +520,61 @@ class OpenRouterEmbedder:
             for start in range(0, len(inputs), self.batch_inputs)
         ]
         vectors, account = asyncio.run(self._embed_all(batches))
+        self._record(len(texts), account)
+        return vectors
+
+    async def _embed_singly(
+        self, inputs: Sequence[str]
+    ) -> tuple[np.ndarray, list[Answered], _Account]:
+        account = _Account()
+        headers = {"Authorization": f"Bearer {self._key}"}
+        rows: list[np.ndarray] = []
+        answered: list[Answered] = []
+        async with httpx.AsyncClient(
+            transport=self.transport, headers=headers, timeout=120.0
+        ) as client:
+            for text in inputs:
+                before = account.requests
+                started = time.perf_counter()
+                rows.append(await self._send(client, [text], account))
+                answered.append(
+                    Answered(
+                        seconds=time.perf_counter() - started,
+                        attempts=account.requests - before,
+                    )
+                )
+        return np.concatenate(rows, axis=0), answered, account
+
+    def embed_singly(self, texts: Sequence[str], role: Role) -> tuple[np.ndarray, list[Answered]]:
+        """Embed *texts* one request each, in order, over one connection.
+
+        A service that answers one question at a time asks for its vectors this
+        way, so the times recorded are the ones its questions would wait.
+
+        Args:
+            texts: The texts, without the prompt.
+            role: Which prompt goes before each.
+
+        Returns:
+            The vectors in the order of *texts*, and how each was answered.
+        """
+        prompt = self.spec.prompt(role)
+        vectors, answered, account = asyncio.run(
+            self._embed_singly([prompt + text for text in texts])
+        )
+        self._record(len(texts), account)
+        return vectors, answered
+
+    def _record(self, texts: int, account: _Account) -> None:
         self.providers |= account.providers
         self._usage = self._usage.plus(
             Usage(
-                texts=len(texts),
+                texts=texts,
                 requests=account.requests,
                 tokens=account.tokens,
                 cost_usd=account.cost_usd,
             )
         )
-        return vectors
 
     def take_usage(self) -> Usage:
         """Return what was used since the last call, and start a new account."""

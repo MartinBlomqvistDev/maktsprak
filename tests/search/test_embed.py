@@ -355,6 +355,27 @@ class TestOpenRouterEmbedder:
             embedder.embed(["a", "b", "c"], "document")
         assert embedder.spent_usd == pytest.approx(1.2)
 
+    def test_texts_sent_singly_keep_their_order_and_count_their_attempts(self):
+        sent = []
+
+        def handler(request):
+            body = json.loads(request.content)
+            sent.append(body["input"])
+            if body["input"] == ["Q:b"] and sent.count(["Q:b"]) == 1:
+                return httpx.Response(429, json={"error": "slow down"})
+            value = {"Q:a": 1.0, "Q:b": 2.0, "Q:c": 3.0}[body["input"][0]]
+            data = [{"index": 0, "embedding": encoded([value, 1.0, 0.0, 0.0])}]
+            return httpx.Response(200, json={"data": data, "usage": {"prompt_tokens": 3}})
+
+        embedder = api(handler)
+        vectors, answered = embedder.embed_singly(["a", "b", "c"], "query")
+        assert sent == [["Q:a"], ["Q:b"], ["Q:b"], ["Q:c"]]
+        np.testing.assert_allclose(vectors[:, 0] / vectors[:, 1], [1, 2, 3], atol=1e-5)
+        assert [one.attempts for one in answered] == [1, 2, 1]
+        assert all(one.seconds >= 0 for one in answered)
+        usage = embedder.take_usage()
+        assert (usage.texts, usage.requests, usage.tokens) == (3, 4, 9)
+
 
 class TestBuild:
     def test_an_api_model_needs_a_key(self):
