@@ -97,3 +97,8 @@ class TestForm:
         assert all(item.question_id in page for item in items)
         assert "__" not in page.replace("__proto__", "")
         assert "Stycke ett." in page
+
+    def test_the_answers_leave_as_text_without_a_dialog(self, items):
+        page = review_form(items, "granskning-test")
+        assert 'id="dump"' in page and 'id="nosave"' in page
+        assert "prompt(" not in page and "confirm(" not in page
