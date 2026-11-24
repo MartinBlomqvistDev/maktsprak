@@ -296,6 +296,19 @@ def test_steps_06_07_and_13_run_from_the_subset_to_the_test_split(world):
     assert len(tuning["grid"]) == 6 and tuning["candidate"] == "small"
     assert [size["target_words"] for size in tuning["sizes"]] == [200, 120, 320]
 
+    with pytest.raises(SystemExit, match="step 14"):
+        evaluate.run_test(settings, None)
+    chosen = tuning["chosen"]
+    tuned = {"candidate": "small", "target_words": chosen["target_words"], "k": chosen["k"]}
+    check = reports / "service_check_dev.json"
+    for written, refusal in (
+        ({"tuned": tuned, "passed": False}, "did not pass"),
+        ({"tuned": {**tuned, "k": chosen["k"] + 1}, "passed": True}, "another configuration"),
+    ):
+        check.write_text(json.dumps(written), encoding="utf-8")
+        with pytest.raises(SystemExit, match=refusal):
+            evaluate.run_test(settings, None)
+    check.write_text(json.dumps({"tuned": tuned, "passed": True}), encoding="utf-8")
     evaluate.run_test(settings, None)
     result = json.loads((reports / "retrieval_test.json").read_text(encoding="utf-8"))
     assert [c["system"] for c in result["comparisons"]] == ["hybrid", "vectors", "vectors"]

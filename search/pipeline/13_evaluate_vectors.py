@@ -10,7 +10,9 @@ Three commands, run in this order, each refusing to run before its turn:
   development split, with the chosen model over the whole corpus. It runs only
   once the comparison's report is committed.
 - ``test`` is the one run on the test split. It runs only with ``--confirm``,
-  once an addendum records the tuning's report by its hash, and never twice.
+  once an addendum records the tuning's report by its hash and the committed
+  check of the service (step 14) has passed for the tuned configuration, and
+  never twice.
 
 Usage::
 
@@ -104,6 +106,7 @@ COMPARISON_QUESTIONS = "vector_comparison_dev_questions.jsonl"
 TUNING_REPORT = "hybrid_tuning_dev.json"
 TEST_REPORT = "retrieval_test.json"
 TEST_QUESTIONS = "retrieval_test_questions.jsonl"
+SERVICE_CHECK_REPORT = "service_check_dev.json"
 
 
 class _Frozen(BaseModel):
@@ -528,6 +531,31 @@ def run_tune(settings: Settings) -> None:
     )
 
 
+def require_service_check(settings: Settings, tuning: TuningReport) -> None:
+    """Stop unless the committed check of the service passed for the tuned configuration.
+
+    Raises:
+        SystemExit: If the check's report is missing or not committed as it
+            stands, checked another configuration, or did not pass.
+    """
+    path = settings.tracked.reports / SERVICE_CHECK_REPORT
+    if not path.is_file():
+        raise SystemExit(f"{path} does not exist. Check the service with step 14 first.")
+    require_committed(path)
+    check = json.loads(path.read_text(encoding="utf-8"))
+    tuned = {
+        "candidate": tuning.candidate,
+        "target_words": tuning.chosen.target_words,
+        "k": tuning.chosen.k,
+    }
+    if check.get("tuned") != tuned:
+        raise SystemExit(
+            f"{SERVICE_CHECK_REPORT} checked another configuration than the tuned one."
+        )
+    if check.get("passed") is not True:
+        raise SystemExit("The check of the service did not pass, so the test split stays closed.")
+
+
 def embed_test_questions(
     settings: Settings, candidate: str, questions: list[EvalQuestion], env_file: Path | None
 ) -> tuple[QueryVectors, dict[str, float | int | str]]:
@@ -567,6 +595,7 @@ def run_test(settings: Settings, env_file: Path | None) -> None:
     tuning_sha256 = text_sha256(tuning_path)
     require_registered([tuning_sha256], "the tuning's report")
     tuning = TuningReport.model_validate_json(tuning_path.read_text(encoding="utf-8"))
+    require_service_check(settings, tuning)
     if tuning.candidate != chosen_candidate(settings):
         raise SystemExit("The tuning's model is not the one the comparison chose.")
     chosen = tuning.chosen
