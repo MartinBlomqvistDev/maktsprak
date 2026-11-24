@@ -584,3 +584,53 @@ well as Opus 5.5. Round 1 then runs Opus 5.5 alone, as the addendum of
 question costs about 0.04 USD with Opus 5.5, 0.02 with Sonnet 5.5 and 0.001
 with Haiku 5.5. The budget therefore answers roughly 50, 100 and 2 000
 questions a month before the baseline takes over.
+
+### 2026-11-24: the test run of the answer step, graded by hand
+
+The judge's kappa against my grades of the 100 calibration pairs is 0.321,
+below 0.6. Under the addendum of 2026-11-22, the judge's grades of the
+development rounds therefore decide nothing, the round that goes to the test
+run is chosen on balanced accuracy alone, and I grade the quotations of the
+test run by hand. Under the addendum of 2026-11-23, round 1 ran Claude Opus 5.5
+alone. Rounds 1 and 3 share the highest balanced accuracy on the development
+split, 0.922, and the tie goes to the later round, so the test run uses the
+prompt of round 3 (SHA-256
+`2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27`).
+
+This addendum fixes how the test run is graded, and it moves the run ahead of
+comparison 1, so that it can be made on the API credit before 2026-11-25. It
+is committed before the answer step reads the test split.
+
+**The candidates.** On the test split and on the page, the answer step's
+candidates are the ten passages BM25 ranks highest under the question's
+filter, as tuned on 2026-11-21: stemming, no stop words dropped, `k1` 1.2 and
+`b` 0.9, at 200 words. This holds whatever comparison 1 decides for the list
+of results, so the page runs the system that was measured. If comparison 1
+puts the hybrid in production, the answer step stays on BM25, since the test
+split allows the answer step one run and no system is changed after its run.
+The baseline's threshold stays the one chosen on the development split, whose
+candidates are the same.
+
+**The run.** Claude Opus 5.5 answers each test question at low effort with the
+prompt of round 3, unchanged, through a message batch. The baseline selector
+answers the same questions from the same candidates.
+
+**The seal.** The addendum on the embedding candidates checks the hybrid's
+configuration before the test split is opened. The answer step's run comes
+before that check, so its results stay sealed until the retrieval run on the
+test split has been made. Until then nothing is computed from them and I grade
+nothing. No figure of retrieval, such as recall@10 or the rank of a gold
+passage, is ever computed from the answer step's files; the retrieval run
+ranks the test questions itself.
+
+**Grading by hand.** I grade the quotations given to 100 answerable questions
+of the test split, drawn at random with the seed 20261124. Every quotation
+that either selector gives to a drawn question is graded, each pair of
+question and text once, on the scale and with the instructions of the 100
+calibration pairs. The pairs come in an order drawn with the same seed, and
+each shows only the question and the quotation, so I cannot tell which
+selector chose it. Quote precision is the share of a selector's quotations on
+the drawn questions that I grade 2, and the paired bootstrap for it resamples
+the drawn questions. Balanced accuracy needs no grade and is computed on every
+question of the test split. The comparisons and the launch rule are otherwise
+computed as the addendum of 2026-11-22 sets out.
