@@ -1,0 +1,2943 @@
+{
+  "benchmark": "MTEB(Scandinavian, v1)",
+  "results_revision": "dfe159b89b95b84787cd2a896e578991820545f4",
+  "parquet_revision": "d9ec6baf92aaa634a81d7ac0d916bad2864e42a0",
+  "parquet_sha256": {
+    "0000.parquet": "c994ad1d6b175245129221a7cdef8c282fd340532ac8e99a0fcb87cd2c309685",
+    "0001.parquet": "8913ad6cba8068c746a5286d483f24aca1580c8eb6f6364390180f280e059807",
+    "0002.parquet": "ff725ce5f8afa3ad245c634f48bf40f4147c08c1289862d4e278627d811fd199",
+    "0003.parquet": "354fcf124203412bea64a5708f4da1aec585259e34853edf3335ef2b405c0d84"
+  },
+  "retrieval_tasks": [
+    "DanFeverRetrieval",
+    "NorQuadRetrieval",
+    "SNLRetrieval",
+    "SwednRetrieval",
+    "SweFaqRetrieval",
+    "TV2Nordretrieval",
+    "TwitterHjerneRetrieval"
+  ],
+  "swedish_tasks": [
+    "SwednRetrieval",
+    "SweFaqRetrieval"
+  ],
+  "ranking": [
+    {
+      "model": "codefuse-ai/F2LLM-v2-14B",
+      "revision": "e42037a37e12999db44ce8e1a0e63c366c273f6a",
+      "swedish_retrieval": 0.85713,
+      "retrieval": 0.752006,
+      "tasks": {
+        "DanFeverRetrieval": 0.38641,
+        "NorQuadRetrieval": 0.33847,
+        "SNLRetrieval": 0.98967,
+        "SweFaqRetrieval": 0.86816,
+        "SwednRetrieval": 0.8461,
+        "TV2Nordretrieval": 0.96329,
+        "TwitterHjerneRetrieval": 0.87194
+      }
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "revision": "1",
+      "swedish_retrieval": 0.852715,
+      "retrieval": 0.771979,
+      "tasks": {
+        "DanFeverRetrieval": 0.41701,
+        "NorQuadRetrieval": 0.33929,
+        "SNLRetrieval": 0.99074,
+        "SweFaqRetrieval": 0.84745,
+        "SwednRetrieval": 0.85798,
+        "TV2Nordretrieval": 0.97117,
+        "TwitterHjerneRetrieval": 0.98021
+      }
+    },
+    {
+      "model": "nicher92/saga-embed_v1",
+      "revision": "3be07ac3d7c3e00e4402ae9285b23fcf8fda6735",
+      "swedish_retrieval": 0.84815,
+      "retrieval": 0.722689,
+      "tasks": {
+        "DanFeverRetrieval": 0.38854,
+        "NorQuadRetrieval": 0.25756,
+        "SNLRetrieval": 0.97588,
+        "SweFaqRetrieval": 0.85061,
+        "SwednRetrieval": 0.84569,
+        "TV2Nordretrieval": 0.95894,
+        "TwitterHjerneRetrieval": 0.7816
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-8B",
+      "revision": "5ac7d57351026337281e8e6a23e05cce16e79415",
+      "swedish_retrieval": 0.843145,
+      "retrieval": 0.740527,
+      "tasks": {
+        "DanFeverRetrieval": 0.38658,
+        "NorQuadRetrieval": 0.3232,
+        "SNLRetrieval": 0.98717,
+        "SweFaqRetrieval": 0.85258,
+        "SwednRetrieval": 0.83371,
+        "TV2Nordretrieval": 0.9564,
+        "TwitterHjerneRetrieval": 0.84405
+      }
+    },
+    {
+      "model": "mongodb/voyage-finance-2",
+      "revision": "1",
+      "swedish_retrieval": 0.837095,
+      "retrieval": 0.749486,
+      "tasks": {
+        "DanFeverRetrieval": 0.39834,
+        "NorQuadRetrieval": 0.34644,
+        "SNLRetrieval": 0.96386,
+        "SweFaqRetrieval": 0.84393,
+        "SwednRetrieval": 0.83026,
+        "TV2Nordretrieval": 0.97839,
+        "TwitterHjerneRetrieval": 0.88518
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-4B",
+      "revision": "e04d1a04f4a0e154bf43969d3dcc596bbd92b1f8",
+      "swedish_retrieval": 0.82868,
+      "retrieval": 0.726384,
+      "tasks": {
+        "DanFeverRetrieval": 0.38522,
+        "NorQuadRetrieval": 0.2958,
+        "SNLRetrieval": 0.98228,
+        "SweFaqRetrieval": 0.84047,
+        "SwednRetrieval": 0.81689,
+        "TV2Nordretrieval": 0.94693,
+        "TwitterHjerneRetrieval": 0.8171
+      }
+    },
+    {
+      "model": "mongodb/voyage-multilingual-2",
+      "revision": "1",
+      "swedish_retrieval": 0.82714,
+      "retrieval": 0.745576,
+      "tasks": {
+        "DanFeverRetrieval": 0.39741,
+        "NorQuadRetrieval": 0.33834,
+        "SNLRetrieval": 0.96568,
+        "SweFaqRetrieval": 0.8384,
+        "SwednRetrieval": 0.81588,
+        "TV2Nordretrieval": 0.9768,
+        "TwitterHjerneRetrieval": 0.88652
+      }
+    },
+    {
+      "model": "ai-sage/Giga-Embeddings-instruct-10B-A1.8B-0826",
+      "revision": "025be2d75c0f5d978c4945749e8125f12cf6e9d9",
+      "swedish_retrieval": 0.82214,
+      "retrieval": 0.722673,
+      "tasks": {
+        "DanFeverRetrieval": 0.40669,
+        "NorQuadRetrieval": 0.30411,
+        "SNLRetrieval": 0.97707,
+        "SweFaqRetrieval": 0.82408,
+        "SwednRetrieval": 0.8202,
+        "TV2Nordretrieval": 0.94414,
+        "TwitterHjerneRetrieval": 0.78242
+      }
+    },
+    {
+      "model": "mongodb/voyage-3.5 (output_dtype=int8)",
+      "revision": "1",
+      "swedish_retrieval": 0.82136,
+      "retrieval": 0.74119,
+      "tasks": {
+        "DanFeverRetrieval": 0.3984,
+        "NorQuadRetrieval": 0.33751,
+        "SNLRetrieval": 0.98109,
+        "SweFaqRetrieval": 0.81594,
+        "SwednRetrieval": 0.82678,
+        "TV2Nordretrieval": 0.97605,
+        "TwitterHjerneRetrieval": 0.85256
+      }
+    },
+    {
+      "model": "mongodb/voyage-3.5",
+      "revision": "1",
+      "swedish_retrieval": 0.82126,
+      "retrieval": 0.741333,
+      "tasks": {
+        "DanFeverRetrieval": 0.39876,
+        "NorQuadRetrieval": 0.33774,
+        "SNLRetrieval": 0.98102,
+        "SweFaqRetrieval": 0.81585,
+        "SwednRetrieval": 0.82667,
+        "TV2Nordretrieval": 0.97602,
+        "TwitterHjerneRetrieval": 0.85327
+      }
+    },
+    {
+      "model": "openai/text-embedding-3-large",
+      "revision": "3",
+      "swedish_retrieval": 0.818935,
+      "retrieval": 0.733831,
+      "tasks": {
+        "DanFeverRetrieval": 0.3993,
+        "NorQuadRetrieval": 0.3508,
+        "SNLRetrieval": 0.9721,
+        "SweFaqRetrieval": 0.81588,
+        "SwednRetrieval": 0.82199,
+        "TV2Nordretrieval": 0.95186,
+        "TwitterHjerneRetrieval": 0.82489
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-1.7B",
+      "revision": "3766d46e7a68545ed6190c15330983f9b39ab718",
+      "swedish_retrieval": 0.814065,
+      "retrieval": 0.707946,
+      "tasks": {
+        "DanFeverRetrieval": 0.38036,
+        "NorQuadRetrieval": 0.25471,
+        "SNLRetrieval": 0.96453,
+        "SweFaqRetrieval": 0.83029,
+        "SwednRetrieval": 0.79784,
+        "TV2Nordretrieval": 0.93491,
+        "TwitterHjerneRetrieval": 0.79298
+      }
+    },
+    {
+      "model": "mongodb/voyage-3",
+      "revision": "1",
+      "swedish_retrieval": 0.812115,
+      "retrieval": 0.736247,
+      "tasks": {
+        "DanFeverRetrieval": 0.39419,
+        "NorQuadRetrieval": 0.31444,
+        "SNLRetrieval": 0.98008,
+        "SweFaqRetrieval": 0.80562,
+        "SwednRetrieval": 0.81861,
+        "TV2Nordretrieval": 0.97433,
+        "TwitterHjerneRetrieval": 0.86646
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-8B",
+      "revision": "4e423935c619ae4df87b646a3ce949610c66241c",
+      "swedish_retrieval": 0.810105,
+      "retrieval": 0.712201,
+      "tasks": {
+        "DanFeverRetrieval": 0.39702,
+        "NorQuadRetrieval": 0.26378,
+        "SNLRetrieval": 0.97306,
+        "SweFaqRetrieval": 0.78075,
+        "SwednRetrieval": 0.83946,
+        "TV2Nordretrieval": 0.94935,
+        "TwitterHjerneRetrieval": 0.78199
+      }
+    },
+    {
+      "model": "infly/inf-retriever-v1",
+      "revision": "cb70ca7c31dfa866b2eff2dad229c144d8ddfd91",
+      "swedish_retrieval": 0.802155,
+      "retrieval": 0.708574,
+      "tasks": {
+        "DanFeverRetrieval": 0.39681,
+        "NorQuadRetrieval": 0.25087,
+        "SNLRetrieval": 0.97091,
+        "SweFaqRetrieval": 0.78841,
+        "SwednRetrieval": 0.8159,
+        "TV2Nordretrieval": 0.94413,
+        "TwitterHjerneRetrieval": 0.79299
+      }
+    },
+    {
+      "model": "Linq-AI-Research/Linq-Embed-Mistral",
+      "revision": "0c1a0b0589177079acc552433cad51d7c9132379",
+      "swedish_retrieval": 0.797275,
+      "retrieval": 0.661916,
+      "tasks": {
+        "DanFeverRetrieval": 0.40677,
+        "NorQuadRetrieval": 0.30078,
+        "SNLRetrieval": 0.97496,
+        "SweFaqRetrieval": 0.79889,
+        "SwednRetrieval": 0.79566,
+        "TV2Nordretrieval": 0.94794,
+        "TwitterHjerneRetrieval": 0.40841
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-l-v2.0",
+      "revision": "edc2df7b6c25794b340229ca082e7c78782e6374",
+      "swedish_retrieval": 0.795735,
+      "retrieval": 0.65388,
+      "tasks": {
+        "DanFeverRetrieval": 0.40674,
+        "NorQuadRetrieval": 0.23319,
+        "SNLRetrieval": 0.9607,
+        "SweFaqRetrieval": 0.78745,
+        "SwednRetrieval": 0.80402,
+        "TV2Nordretrieval": 0.93983,
+        "TwitterHjerneRetrieval": 0.44523
+      }
+    },
+    {
+      "model": "GritLM/GritLM-7B",
+      "revision": "13f00a0e36500c80ce12870ea513846a066004af",
+      "swedish_retrieval": 0.792315,
+      "retrieval": 0.66491,
+      "tasks": {
+        "DanFeverRetrieval": 0.40485,
+        "NorQuadRetrieval": 0.31191,
+        "SNLRetrieval": 0.97119,
+        "SweFaqRetrieval": 0.78282,
+        "SwednRetrieval": 0.80181,
+        "TV2Nordretrieval": 0.94913,
+        "TwitterHjerneRetrieval": 0.43266
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v3",
+      "revision": "215a6e121fa0183376388ac6b1ae230326bfeaed",
+      "swedish_retrieval": 0.790255,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.18631,
+        "SNLRetrieval": 0.94647,
+        "SweFaqRetrieval": 0.78262,
+        "SwednRetrieval": 0.79789,
+        "TV2Nordretrieval": 0.94259,
+        "TwitterHjerneRetrieval": 0.73015
+      }
+    },
+    {
+      "model": "Cohere/Cohere-embed-multilingual-v3.0",
+      "revision": "1",
+      "swedish_retrieval": 0.78973,
+      "retrieval": 0.70475,
+      "tasks": {
+        "DanFeverRetrieval": 0.4136,
+        "NorQuadRetrieval": 0.26131,
+        "SNLRetrieval": 0.95769,
+        "SweFaqRetrieval": 0.77907,
+        "SwednRetrieval": 0.80039,
+        "TV2Nordretrieval": 0.95365,
+        "TwitterHjerneRetrieval": 0.76754
+      }
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+      "swedish_retrieval": 0.788035,
+      "retrieval": 0.640409,
+      "tasks": {
+        "DanFeverRetrieval": 0.40766,
+        "NorQuadRetrieval": 0.22528,
+        "SNLRetrieval": 0.95317,
+        "SweFaqRetrieval": 0.76568,
+        "SwednRetrieval": 0.81039,
+        "TV2Nordretrieval": 0.94245,
+        "TwitterHjerneRetrieval": 0.37823
+      }
+    },
+    {
+      "model": "GritLM/GritLM-8x7B",
+      "revision": "7f089b13e3345510281733ca1e6ff871b5b4bc76",
+      "swedish_retrieval": 0.78775,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.29183,
+        "SNLRetrieval": 0.9601,
+        "SweFaqRetrieval": 0.78164,
+        "SwednRetrieval": 0.79386,
+        "TV2Nordretrieval": 0.94187,
+        "TwitterHjerneRetrieval": 0.79321
+      }
+    },
+    {
+      "model": "Salesforce/SFR-Embedding-2_R",
+      "revision": "91762139d94ed4371a9fa31db5551272e0b83818",
+      "swedish_retrieval": 0.78546,
+      "retrieval": 0.696247,
+      "tasks": {
+        "DanFeverRetrieval": 0.40025,
+        "NorQuadRetrieval": 0.22323,
+        "SNLRetrieval": 0.96403,
+        "SweFaqRetrieval": 0.78058,
+        "SwednRetrieval": 0.79034,
+        "TV2Nordretrieval": 0.9413,
+        "TwitterHjerneRetrieval": 0.774
+      }
+    },
+    {
+      "model": "OrdalieTech/Solon-embeddings-large-0.1",
+      "revision": "9f6465f6ea2f6d10c6294bc15d84edf87d47cdef",
+      "swedish_retrieval": 0.78192,
+      "retrieval": 0.692163,
+      "tasks": {
+        "DanFeverRetrieval": 0.4042,
+        "NorQuadRetrieval": 0.23599,
+        "SNLRetrieval": 0.94033,
+        "SweFaqRetrieval": 0.76839,
+        "SwednRetrieval": 0.79545,
+        "TV2Nordretrieval": 0.94666,
+        "TwitterHjerneRetrieval": 0.75412
+      }
+    },
+    {
+      "model": "mongodb/voyage-3.5 (output_dtype=binary)",
+      "revision": "1",
+      "swedish_retrieval": 0.781565,
+      "retrieval": 0.718609,
+      "tasks": {
+        "DanFeverRetrieval": 0.39207,
+        "NorQuadRetrieval": 0.29588,
+        "SNLRetrieval": 0.97078,
+        "SweFaqRetrieval": 0.78822,
+        "SwednRetrieval": 0.77491,
+        "TV2Nordretrieval": 0.96649,
+        "TwitterHjerneRetrieval": 0.84191
+      }
+    },
+    {
+      "model": "mongodb/voyage-large-2-instruct",
+      "revision": "1",
+      "swedish_retrieval": 0.780885,
+      "retrieval": 0.692116,
+      "tasks": {
+        "DanFeverRetrieval": 0.39473,
+        "NorQuadRetrieval": 0.23627,
+        "SNLRetrieval": 0.91298,
+        "SweFaqRetrieval": 0.78084,
+        "SwednRetrieval": 0.78093,
+        "TV2Nordretrieval": 0.94403,
+        "TwitterHjerneRetrieval": 0.79503
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-0.6B",
+      "revision": "54b4e2dc74e01be7126d4cf5f016af6b21edc563",
+      "swedish_retrieval": 0.7791,
+      "retrieval": 0.675411,
+      "tasks": {
+        "DanFeverRetrieval": 0.37844,
+        "NorQuadRetrieval": 0.21268,
+        "SNLRetrieval": 0.95113,
+        "SweFaqRetrieval": 0.80177,
+        "SwednRetrieval": 0.75643,
+        "TV2Nordretrieval": 0.91395,
+        "TwitterHjerneRetrieval": 0.71348
+      }
+    },
+    {
+      "model": "manu/bge-m3-custom-fr",
+      "revision": "ed3ef88678ba83ddf4c0fab71a93cb90d89a9078",
+      "swedish_retrieval": 0.77398,
+      "retrieval": 0.623529,
+      "tasks": {
+        "DanFeverRetrieval": 0.39085,
+        "NorQuadRetrieval": 0.21719,
+        "SNLRetrieval": 0.94469,
+        "SweFaqRetrieval": 0.77212,
+        "SwednRetrieval": 0.77584,
+        "TV2Nordretrieval": 0.9493,
+        "TwitterHjerneRetrieval": 0.31471
+      }
+    },
+    {
+      "model": "intfloat/multilingual-e5-large-instruct",
+      "revision": "baa7be480a7de1539afce709c8f13f833a510e0a",
+      "swedish_retrieval": 0.77316,
+      "retrieval": 0.638816,
+      "tasks": {
+        "DanFeverRetrieval": 0.40644,
+        "NorQuadRetrieval": 0.25005,
+        "SNLRetrieval": 0.95886,
+        "SweFaqRetrieval": 0.76529,
+        "SwednRetrieval": 0.78103,
+        "TV2Nordretrieval": 0.94149,
+        "TwitterHjerneRetrieval": 0.36855
+      }
+    },
+    {
+      "model": "hotchpotch/bekko-embedding-v1-a25m",
+      "revision": "aede922b27c1751d091b1e26c86dc82446a46cb4",
+      "swedish_retrieval": 0.769825,
+      "retrieval": 0.672561,
+      "tasks": {
+        "DanFeverRetrieval": 0.40424,
+        "NorQuadRetrieval": 0.21602,
+        "SNLRetrieval": 0.95989,
+        "SweFaqRetrieval": 0.72156,
+        "SwednRetrieval": 0.81809,
+        "TV2Nordretrieval": 0.95286,
+        "TwitterHjerneRetrieval": 0.63527
+      }
+    },
+    {
+      "model": "Lajavaness/bilingual-embedding-large",
+      "revision": "e83179d7a66e8aed1b3015e98bb5ae234ed89598",
+      "swedish_retrieval": 0.76916,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.24624,
+        "SNLRetrieval": 0.91432,
+        "SweFaqRetrieval": 0.74614,
+        "SwednRetrieval": 0.79218,
+        "TV2Nordretrieval": 0.93999,
+        "TwitterHjerneRetrieval": 0.73114
+      }
+    },
+    {
+      "model": "Salesforce/SFR-Embedding-Mistral",
+      "revision": "938c560d1c236aa563b2dbdf084f28ab28bccb11",
+      "swedish_retrieval": 0.76878,
+      "retrieval": 0.695344,
+      "tasks": {
+        "DanFeverRetrieval": 0.40123,
+        "NorQuadRetrieval": 0.26016,
+        "SNLRetrieval": 0.97175,
+        "SweFaqRetrieval": 0.75944,
+        "SwednRetrieval": 0.77812,
+        "TV2Nordretrieval": 0.93609,
+        "TwitterHjerneRetrieval": 0.76062
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-4B",
+      "revision": "636cd9bf47d976946cdbb2b0c3ca0cb2f8eea5ff",
+      "swedish_retrieval": 0.76487,
+      "retrieval": 0.684026,
+      "tasks": {
+        "DanFeverRetrieval": 0.3983,
+        "NorQuadRetrieval": 0.23278,
+        "SNLRetrieval": 0.96588,
+        "SweFaqRetrieval": 0.72729,
+        "SwednRetrieval": 0.80245,
+        "TV2Nordretrieval": 0.93571,
+        "TwitterHjerneRetrieval": 0.72577
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v5-omni-nano",
+      "revision": "2b230c93c996e091a45b95af4e3315dd07605ee3",
+      "swedish_retrieval": 0.763885,
+      "retrieval": 0.684681,
+      "tasks": {
+        "DanFeverRetrieval": 0.40826,
+        "NorQuadRetrieval": 0.23833,
+        "SNLRetrieval": 0.95657,
+        "SweFaqRetrieval": 0.74475,
+        "SwednRetrieval": 0.78302,
+        "TV2Nordretrieval": 0.92169,
+        "TwitterHjerneRetrieval": 0.74015
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v5-text-small",
+      "revision": "dd76d535f5447ca3897a9c893fb1e612ead98192",
+      "swedish_retrieval": 0.763255,
+      "retrieval": null,
+      "tasks": {
+        "DanFeverRetrieval": 0.40206,
+        "NorQuadRetrieval": 0.23475,
+        "SNLRetrieval": 0.95792,
+        "SweFaqRetrieval": 0.7487,
+        "SwednRetrieval": 0.77781,
+        "TV2Nordretrieval": 0.92574
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v5-omni-small",
+      "revision": "dfdcc361ec47c69a5afcd81e4bd148abb9d0568e",
+      "swedish_retrieval": 0.76317,
+      "retrieval": 0.680414,
+      "tasks": {
+        "DanFeverRetrieval": 0.40234,
+        "NorQuadRetrieval": 0.23561,
+        "SNLRetrieval": 0.95778,
+        "SweFaqRetrieval": 0.74817,
+        "SwednRetrieval": 0.77817,
+        "TV2Nordretrieval": 0.92538,
+        "TwitterHjerneRetrieval": 0.71545
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-330M",
+      "revision": "b0e8e19bdf603b9826422852572c0d18d482c414",
+      "swedish_retrieval": 0.76246,
+      "retrieval": 0.654437,
+      "tasks": {
+        "DanFeverRetrieval": 0.38048,
+        "NorQuadRetrieval": 0.19981,
+        "SNLRetrieval": 0.93355,
+        "SweFaqRetrieval": 0.79352,
+        "SwednRetrieval": 0.7314,
+        "TV2Nordretrieval": 0.8967,
+        "TwitterHjerneRetrieval": 0.6456
+      }
+    },
+    {
+      "model": "mongodb/voyage-3-lite",
+      "revision": "1",
+      "swedish_retrieval": 0.75869,
+      "retrieval": 0.682393,
+      "tasks": {
+        "DanFeverRetrieval": 0.38909,
+        "NorQuadRetrieval": 0.24666,
+        "SNLRetrieval": 0.9445,
+        "SweFaqRetrieval": 0.76314,
+        "SwednRetrieval": 0.75424,
+        "TV2Nordretrieval": 0.95257,
+        "TwitterHjerneRetrieval": 0.72655
+      }
+    },
+    {
+      "model": "nvidia/NV-Embed-v1",
+      "revision": "570834afd5fef5bf3a3c2311a2b6e0a66f6f4f2c",
+      "swedish_retrieval": 0.75841,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.25381,
+        "SNLRetrieval": 0.96575,
+        "SweFaqRetrieval": 0.79607,
+        "SwednRetrieval": 0.72075,
+        "TV2Nordretrieval": 0.92726,
+        "TwitterHjerneRetrieval": 0.45521
+      }
+    },
+    {
+      "model": "intfloat/multilingual-e5-base",
+      "revision": "d13f1b27baf31030b7fd040960d60d909913633f",
+      "swedish_retrieval": 0.751585,
+      "retrieval": 0.630917,
+      "tasks": {
+        "DanFeverRetrieval": 0.40416,
+        "NorQuadRetrieval": 0.21858,
+        "SNLRetrieval": 0.94206,
+        "SweFaqRetrieval": 0.75276,
+        "SwednRetrieval": 0.75041,
+        "TV2Nordretrieval": 0.92682,
+        "TwitterHjerneRetrieval": 0.42163
+      }
+    },
+    {
+      "model": "Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "revision": "e26182b2122f4435e8b3ebecbf363990f409b45b",
+      "swedish_retrieval": 0.750065,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.25403,
+        "SNLRetrieval": 0.93256,
+        "SweFaqRetrieval": 0.75112,
+        "SwednRetrieval": 0.74901,
+        "TV2Nordretrieval": 0.90931,
+        "TwitterHjerneRetrieval": 0.68635
+      }
+    },
+    {
+      "model": "Alibaba-NLP/gte-multilingual-base",
+      "revision": "7fc06782350c1a83f88b15dd4b38ef853d3b8503",
+      "swedish_retrieval": 0.74789,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.2158,
+        "SNLRetrieval": 0.92961,
+        "SweFaqRetrieval": 0.7163,
+        "SwednRetrieval": 0.77948,
+        "TV2Nordretrieval": 0.9413
+      }
+    },
+    {
+      "model": "microsoft/harrier-oss-v1-0.6b",
+      "revision": "f9b9dc8d367d443f2479d27aa5d8d2850c0774ee",
+      "swedish_retrieval": 0.74637,
+      "retrieval": 0.662489,
+      "tasks": {
+        "DanFeverRetrieval": 0.39004,
+        "NorQuadRetrieval": 0.20595,
+        "SNLRetrieval": 0.96695,
+        "SweFaqRetrieval": 0.70986,
+        "SwednRetrieval": 0.78288,
+        "TV2Nordretrieval": 0.93834,
+        "TwitterHjerneRetrieval": 0.6434
+      }
+    },
+    {
+      "model": "infly/inf-retriever-v1-1.5b",
+      "revision": "c9c05c2dd50707a486966ba81703021ae2094a06",
+      "swedish_retrieval": 0.74364,
+      "retrieval": 0.659721,
+      "tasks": {
+        "DanFeverRetrieval": 0.38637,
+        "NorQuadRetrieval": 0.19504,
+        "SNLRetrieval": 0.94916,
+        "SweFaqRetrieval": 0.74537,
+        "SwednRetrieval": 0.74191,
+        "TV2Nordretrieval": 0.89561,
+        "TwitterHjerneRetrieval": 0.70459
+      }
+    },
+    {
+      "model": "mongodb/voyage-large-2",
+      "revision": "1",
+      "swedish_retrieval": 0.740575,
+      "retrieval": 0.620259,
+      "tasks": {
+        "DanFeverRetrieval": 0.37931,
+        "NorQuadRetrieval": 0.13079,
+        "SNLRetrieval": 0.87843,
+        "SweFaqRetrieval": 0.75505,
+        "SwednRetrieval": 0.7261,
+        "TV2Nordretrieval": 0.8774,
+        "TwitterHjerneRetrieval": 0.59473
+      }
+    },
+    {
+      "model": "nvidia/NV-Embed-v2",
+      "revision": "7604d305b621f14095a1aa23d351674c2859553a",
+      "swedish_retrieval": 0.74044,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.22686,
+        "SNLRetrieval": 0.94686,
+        "SweFaqRetrieval": 0.78503,
+        "SwednRetrieval": 0.69585,
+        "TV2Nordretrieval": 0.92099,
+        "TwitterHjerneRetrieval": 0.45574
+      }
+    },
+    {
+      "model": "openai/text-embedding-3-small",
+      "revision": "3",
+      "swedish_retrieval": 0.738015,
+      "retrieval": 0.665084,
+      "tasks": {
+        "DanFeverRetrieval": 0.39186,
+        "NorQuadRetrieval": 0.23345,
+        "SNLRetrieval": 0.92507,
+        "SweFaqRetrieval": 0.74101,
+        "SwednRetrieval": 0.73502,
+        "TV2Nordretrieval": 0.92035,
+        "TwitterHjerneRetrieval": 0.70883
+      }
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "revision": "07163b72af1488142a360786df853f237b1a3ca1",
+      "swedish_retrieval": 0.737995,
+      "retrieval": 0.619134,
+      "tasks": {
+        "DanFeverRetrieval": 0.40757,
+        "NorQuadRetrieval": 0.23653,
+        "SNLRetrieval": 0.95674,
+        "SweFaqRetrieval": 0.72518,
+        "SwednRetrieval": 0.75081,
+        "TV2Nordretrieval": 0.92306,
+        "TwitterHjerneRetrieval": 0.33405
+      }
+    },
+    {
+      "model": "Lajavaness/bilingual-embedding-base",
+      "revision": "0bfc54bb2aa2666dd84715289c7ef58a95eb4d8d",
+      "swedish_retrieval": 0.735495,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.21402,
+        "SNLRetrieval": 0.92415,
+        "SweFaqRetrieval": 0.72983,
+        "SwednRetrieval": 0.74116,
+        "TV2Nordretrieval": 0.92081,
+        "TwitterHjerneRetrieval": 0.64751
+      }
+    },
+    {
+      "model": "hotchpotch/bekko-embedding-v1-a8m",
+      "revision": "a8cedb6b46fad5df6f10e1c94750ff62e298fbd2",
+      "swedish_retrieval": 0.720075,
+      "retrieval": 0.638839,
+      "tasks": {
+        "DanFeverRetrieval": 0.40515,
+        "NorQuadRetrieval": 0.18475,
+        "SNLRetrieval": 0.94332,
+        "SweFaqRetrieval": 0.67353,
+        "SwednRetrieval": 0.76662,
+        "TV2Nordretrieval": 0.93127,
+        "TwitterHjerneRetrieval": 0.56723
+      }
+    },
+    {
+      "model": "microsoft/harrier-oss-v1-270m",
+      "revision": "31de22b673913c7d658c0f03f792d77c2dcf8ebd",
+      "swedish_retrieval": 0.715765,
+      "retrieval": 0.643239,
+      "tasks": {
+        "DanFeverRetrieval": 0.38645,
+        "NorQuadRetrieval": 0.19809,
+        "SNLRetrieval": 0.96667,
+        "SweFaqRetrieval": 0.67714,
+        "SwednRetrieval": 0.75439,
+        "TV2Nordretrieval": 0.91867,
+        "TwitterHjerneRetrieval": 0.60126
+      }
+    },
+    {
+      "model": "deepvk/USER-bge-m3",
+      "revision": "0cc6cfe48e260fb0474c753087a69369e88709ae",
+      "swedish_retrieval": 0.71224,
+      "retrieval": 0.582181,
+      "tasks": {
+        "DanFeverRetrieval": 0.39462,
+        "NorQuadRetrieval": 0.19537,
+        "SNLRetrieval": 0.91829,
+        "SweFaqRetrieval": 0.69726,
+        "SwednRetrieval": 0.72722,
+        "TV2Nordretrieval": 0.92864,
+        "TwitterHjerneRetrieval": 0.21387
+      }
+    },
+    {
+      "model": "Cohere/Cohere-embed-multilingual-light-v3.0",
+      "revision": "1",
+      "swedish_retrieval": 0.70417,
+      "retrieval": 0.631217,
+      "tasks": {
+        "DanFeverRetrieval": 0.41454,
+        "NorQuadRetrieval": 0.14617,
+        "SNLRetrieval": 0.93749,
+        "SweFaqRetrieval": 0.70955,
+        "SwednRetrieval": 0.69879,
+        "TV2Nordretrieval": 0.90515,
+        "TwitterHjerneRetrieval": 0.60683
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-160M",
+      "revision": "9eb35007d12e8624e6bf3e9e35d2255b5269597f",
+      "swedish_retrieval": 0.70196,
+      "retrieval": 0.605277,
+      "tasks": {
+        "DanFeverRetrieval": 0.37177,
+        "NorQuadRetrieval": 0.16128,
+        "SNLRetrieval": 0.88388,
+        "SweFaqRetrieval": 0.73614,
+        "SwednRetrieval": 0.66778,
+        "TV2Nordretrieval": 0.84359,
+        "TwitterHjerneRetrieval": 0.5725
+      }
+    },
+    {
+      "model": "Lajavaness/bilingual-embedding-small",
+      "revision": "ed4a1dd814de0db81d4a4e287c296a03194463e3",
+      "swedish_retrieval": 0.69848,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.18098,
+        "SNLRetrieval": 0.87527,
+        "SweFaqRetrieval": 0.69932,
+        "SwednRetrieval": 0.69764,
+        "TV2Nordretrieval": 0.89483,
+        "TwitterHjerneRetrieval": 0.38095
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-0.6B",
+      "revision": "b22da495047858cce924d27d76261e96be6febc0",
+      "swedish_retrieval": 0.694225,
+      "retrieval": 0.618454,
+      "tasks": {
+        "DanFeverRetrieval": 0.37818,
+        "NorQuadRetrieval": 0.16097,
+        "SNLRetrieval": 0.9291,
+        "SweFaqRetrieval": 0.6769,
+        "SwednRetrieval": 0.71155,
+        "TV2Nordretrieval": 0.87208,
+        "TwitterHjerneRetrieval": 0.6004
+      }
+    },
+    {
+      "model": "intfloat/multilingual-e5-small",
+      "revision": "fd1525a9fd15316a2d503bf26ab031a61d056e98",
+      "swedish_retrieval": 0.69219,
+      "retrieval": 0.622566,
+      "tasks": {
+        "DanFeverRetrieval": 0.39601,
+        "NorQuadRetrieval": 0.1747,
+        "SNLRetrieval": 0.91732,
+        "SweFaqRetrieval": 0.71192,
+        "SwednRetrieval": 0.67246,
+        "TV2Nordretrieval": 0.90379,
+        "TwitterHjerneRetrieval": 0.58176
+      }
+    },
+    {
+      "model": "Alibaba-NLP/gte-Qwen1.5-7B-instruct",
+      "revision": "07d27e5226328010336563bc1b564a5e3436a298",
+      "swedish_retrieval": 0.68421,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.19528,
+        "SNLRetrieval": 0.83483,
+        "SweFaqRetrieval": 0.69123,
+        "SwednRetrieval": 0.67719,
+        "TV2Nordretrieval": 0.88375,
+        "TwitterHjerneRetrieval": 0.64255
+      }
+    },
+    {
+      "model": "Alibaba-NLP/gte-Qwen2-1.5B-instruct",
+      "revision": "c6c1b92f4a3e1b92b326ad29dd3c8433457df8dd",
+      "swedish_retrieval": 0.68413,
+      "retrieval": 0.633071,
+      "tasks": {
+        "DanFeverRetrieval": 0.38222,
+        "NorQuadRetrieval": 0.19823,
+        "SNLRetrieval": 0.94248,
+        "SweFaqRetrieval": 0.69316,
+        "SwednRetrieval": 0.6751,
+        "TV2Nordretrieval": 0.87023,
+        "TwitterHjerneRetrieval": 0.67008
+      }
+    },
+    {
+      "model": "NovaSearch/jasper_en_vision_language_v1",
+      "revision": "d6330ce98f8a0d741e781df845904c9484f00efa",
+      "swedish_retrieval": 0.6813,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.19257,
+        "SNLRetrieval": 0.90738,
+        "SweFaqRetrieval": 0.66939,
+        "SwednRetrieval": 0.69321,
+        "TV2Nordretrieval": 0.8821,
+        "TwitterHjerneRetrieval": 0.34564
+      }
+    },
+    {
+      "model": "HIT-TMG/KaLM-embedding-multilingual-mini-v1",
+      "revision": "8a82a0cd2b322b91723e252486f7cce6fd8ac9d3",
+      "swedish_retrieval": 0.67103,
+      "retrieval": 0.56795,
+      "tasks": {
+        "DanFeverRetrieval": 0.3659,
+        "NorQuadRetrieval": 0.1867,
+        "SNLRetrieval": 0.95214,
+        "SweFaqRetrieval": 0.64769,
+        "SwednRetrieval": 0.69437,
+        "TV2Nordretrieval": 0.8959,
+        "TwitterHjerneRetrieval": 0.23295
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-m-v2.0",
+      "revision": "f2a7d59d80dfda5b1d14f096f3ce88bb6bf9ebdc",
+      "swedish_retrieval": 0.667535,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.16274,
+        "SNLRetrieval": 0.93832,
+        "SweFaqRetrieval": 0.66325,
+        "SwednRetrieval": 0.67182,
+        "TV2Nordretrieval": 0.87174,
+        "TwitterHjerneRetrieval": 0.23334
+      }
+    },
+    {
+      "model": "hotchpotch/bekko-static-embedding-v1",
+      "revision": "c18167b8f244c1bc6de21ce9b710bac8a29c4615",
+      "swedish_retrieval": 0.656955,
+      "retrieval": 0.59232,
+      "tasks": {
+        "DanFeverRetrieval": 0.39639,
+        "NorQuadRetrieval": 0.16199,
+        "SNLRetrieval": 0.913,
+        "SweFaqRetrieval": 0.59775,
+        "SwednRetrieval": 0.71616,
+        "TV2Nordretrieval": 0.90316,
+        "TwitterHjerneRetrieval": 0.45779
+      }
+    },
+    {
+      "model": "codefuse-ai/F2LLM-v2-80M",
+      "revision": "35baae5091e26211dbe628f1723448c146fafdf2",
+      "swedish_retrieval": 0.656685,
+      "retrieval": 0.564723,
+      "tasks": {
+        "DanFeverRetrieval": 0.36669,
+        "NorQuadRetrieval": 0.15154,
+        "SNLRetrieval": 0.83694,
+        "SweFaqRetrieval": 0.71202,
+        "SwednRetrieval": 0.60135,
+        "TV2Nordretrieval": 0.81769,
+        "TwitterHjerneRetrieval": 0.46683
+      }
+    },
+    {
+      "model": "mongodb/voyage-2",
+      "revision": "1",
+      "swedish_retrieval": 0.635685,
+      "retrieval": 0.59029,
+      "tasks": {
+        "DanFeverRetrieval": 0.37931,
+        "NorQuadRetrieval": 0.13079,
+        "SNLRetrieval": 0.87843,
+        "SweFaqRetrieval": 0.64783,
+        "SwednRetrieval": 0.62354,
+        "TV2Nordretrieval": 0.8774,
+        "TwitterHjerneRetrieval": 0.59473
+      }
+    },
+    {
+      "model": "ibm-granite/granite-embedding-278m-multilingual",
+      "revision": "84e3546b88b0cb69f8078608a1df558020bcbf1f",
+      "swedish_retrieval": 0.624235,
+      "retrieval": 0.557557,
+      "tasks": {
+        "DanFeverRetrieval": 0.37392,
+        "NorQuadRetrieval": 0.15626,
+        "SNLRetrieval": 0.9171,
+        "SweFaqRetrieval": 0.64278,
+        "SwednRetrieval": 0.60569,
+        "TV2Nordretrieval": 0.85738,
+        "TwitterHjerneRetrieval": 0.34977
+      }
+    },
+    {
+      "model": "mteb/baseline-bm25s",
+      "revision": "0_1_10",
+      "swedish_retrieval": 0.62129,
+      "retrieval": 0.541883,
+      "tasks": {
+        "DanFeverRetrieval": 0.38513,
+        "NorQuadRetrieval": 0.11363,
+        "SNLRetrieval": 0.8946,
+        "SweFaqRetrieval": 0.53546,
+        "SwednRetrieval": 0.70712,
+        "TV2Nordretrieval": 0.89769,
+        "TwitterHjerneRetrieval": 0.25955
+      }
+    },
+    {
+      "model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+      "revision": "79f2382ceacceacdf38563d7c5d16b9ff8d725d6",
+      "swedish_retrieval": 0.60582,
+      "retrieval": 0.503794,
+      "tasks": {
+        "DanFeverRetrieval": 0.37559,
+        "NorQuadRetrieval": 0.16399,
+        "SNLRetrieval": 0.62481,
+        "SweFaqRetrieval": 0.60365,
+        "SwednRetrieval": 0.60799,
+        "TV2Nordretrieval": 0.78372,
+        "TwitterHjerneRetrieval": 0.36681
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Arabic-all-nli-triplet-Matryoshka",
+      "revision": "1ca467cc576bd76666a4d21b24ee43afa914dd10",
+      "swedish_retrieval": 0.589665,
+      "retrieval": 0.485021,
+      "tasks": {
+        "DanFeverRetrieval": 0.37169,
+        "NorQuadRetrieval": 0.14721,
+        "SNLRetrieval": 0.58125,
+        "SweFaqRetrieval": 0.60169,
+        "SwednRetrieval": 0.57764,
+        "TV2Nordretrieval": 0.78342,
+        "TwitterHjerneRetrieval": 0.33225
+      }
+    },
+    {
+      "model": "McGill-NLP/LLM2Vec-Mistral-7B-Instruct-v2-mntp-supervised",
+      "revision": "0ae69bdd5816105778b971c3138e8f8a18eaa3ae",
+      "swedish_retrieval": 0.57844,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.12112,
+        "SNLRetrieval": 0.904,
+        "SweFaqRetrieval": 0.61865,
+        "SwednRetrieval": 0.53823,
+        "TV2Nordretrieval": 0.82171,
+        "TwitterHjerneRetrieval": 0.18225
+      }
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "revision": "b322e09026e4ea05f42beadf4d661fb4e101d311",
+      "swedish_retrieval": 0.56163,
+      "retrieval": 0.470704,
+      "tasks": {
+        "DanFeverRetrieval": 0.37076,
+        "NorQuadRetrieval": 0.12009,
+        "SNLRetrieval": 0.85987,
+        "SweFaqRetrieval": 0.59194,
+        "SwednRetrieval": 0.53132,
+        "TV2Nordretrieval": 0.73562,
+        "TwitterHjerneRetrieval": 0.08533
+      }
+    },
+    {
+      "model": "nomic-ai/nomic-embed-text-v1-unsupervised",
+      "revision": "b53d557b15ae63852847c222d336c1609eced93c",
+      "swedish_retrieval": 0.554755,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.11304,
+        "SNLRetrieval": 0.84059,
+        "SweFaqRetrieval": 0.55288,
+        "SwednRetrieval": 0.55663,
+        "TV2Nordretrieval": 0.79204,
+        "TwitterHjerneRetrieval": 0.14506
+      }
+    },
+    {
+      "model": "NovaSearch/stella_en_1.5B_v5",
+      "revision": "d03be74b361d4eb24f42a2fe5bd2e29917df4604",
+      "swedish_retrieval": 0.55339,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.16105,
+        "SNLRetrieval": 0.63831,
+        "SweFaqRetrieval": 0.54013,
+        "SwednRetrieval": 0.56665,
+        "TV2Nordretrieval": 0.85561,
+        "TwitterHjerneRetrieval": 0.45019
+      }
+    },
+    {
+      "model": "emillykkejensen/EmbeddingGemma-Scandi-300m",
+      "revision": "9f3307b9f601db564a9190cb475324d128dcfe86",
+      "swedish_retrieval": 0.54918,
+      "retrieval": 0.545216,
+      "tasks": {
+        "DanFeverRetrieval": 0.39106,
+        "NorQuadRetrieval": 0.16555,
+        "SNLRetrieval": 0.84422,
+        "SweFaqRetrieval": 0.54392,
+        "SwednRetrieval": 0.55444,
+        "TV2Nordretrieval": 0.83109,
+        "TwitterHjerneRetrieval": 0.48623
+      }
+    },
+    {
+      "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "revision": "bf3bf13ab40c3157080a7ab344c831b9ad18b5eb",
+      "swedish_retrieval": 0.548455,
+      "retrieval": 0.435077,
+      "tasks": {
+        "DanFeverRetrieval": 0.36872,
+        "NorQuadRetrieval": 0.13807,
+        "SNLRetrieval": 0.5212,
+        "SweFaqRetrieval": 0.56936,
+        "SwednRetrieval": 0.52755,
+        "TV2Nordretrieval": 0.73343,
+        "TwitterHjerneRetrieval": 0.18721
+      }
+    },
+    {
+      "model": "Cohere/Cohere-embed-english-v3.0",
+      "revision": "1",
+      "swedish_retrieval": 0.54817,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.11795,
+        "SNLRetrieval": 0.85419,
+        "SweFaqRetrieval": 0.58489,
+        "SwednRetrieval": 0.51145,
+        "TV2Nordretrieval": 0.73617,
+        "TwitterHjerneRetrieval": 0.41637
+      }
+    },
+    {
+      "model": "Gameselo/STS-multilingual-mpnet-base-v2",
+      "revision": "449f917af30f590fc31f9ffb226c94f21a2f47b8",
+      "swedish_retrieval": 0.54723,
+      "retrieval": 0.450473,
+      "tasks": {
+        "DanFeverRetrieval": 0.34713,
+        "NorQuadRetrieval": 0.1066,
+        "SNLRetrieval": 0.45577,
+        "SweFaqRetrieval": 0.55968,
+        "SwednRetrieval": 0.53478,
+        "TV2Nordretrieval": 0.74894,
+        "TwitterHjerneRetrieval": 0.40041
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Arabic-labse-Matryoshka",
+      "revision": "ee6d5e33c78ed582ade47fd452a74ea52aa5bfe2",
+      "swedish_retrieval": 0.54662,
+      "retrieval": 0.465067,
+      "tasks": {
+        "DanFeverRetrieval": 0.3586,
+        "NorQuadRetrieval": 0.13526,
+        "SNLRetrieval": 0.59586,
+        "SweFaqRetrieval": 0.55292,
+        "SwednRetrieval": 0.54032,
+        "TV2Nordretrieval": 0.79348,
+        "TwitterHjerneRetrieval": 0.27903
+      }
+    },
+    {
+      "model": "intfloat/e5-large",
+      "revision": "4dc6d853a804b9c8886ede6dda8a073b7dc08a81",
+      "swedish_retrieval": 0.54447,
+      "retrieval": 0.46573,
+      "tasks": {
+        "DanFeverRetrieval": 0.36786,
+        "NorQuadRetrieval": 0.10764,
+        "SNLRetrieval": 0.85686,
+        "SweFaqRetrieval": 0.57012,
+        "SwednRetrieval": 0.51882,
+        "TV2Nordretrieval": 0.75223,
+        "TwitterHjerneRetrieval": 0.08658
+      }
+    },
+    {
+      "model": "emillykkejensen/mmBERTscandi-base-embedding",
+      "revision": "82d74c7a5d8e1ddf31b132865df2d16b2b0294ee",
+      "swedish_retrieval": 0.530935,
+      "retrieval": 0.460499,
+      "tasks": {
+        "DanFeverRetrieval": 0.28965,
+        "NorQuadRetrieval": 0.12825,
+        "SNLRetrieval": 0.47919,
+        "SweFaqRetrieval": 0.52658,
+        "SwednRetrieval": 0.53529,
+        "TV2Nordretrieval": 0.7884,
+        "TwitterHjerneRetrieval": 0.47613
+      }
+    },
+    {
+      "model": "omarelshehy/arabic-english-sts-matryoshka",
+      "revision": "763d116fbe8bf7883c64635c862feeaa3768bb64",
+      "swedish_retrieval": 0.52498,
+      "retrieval": 0.412201,
+      "tasks": {
+        "DanFeverRetrieval": 0.33187,
+        "NorQuadRetrieval": 0.13734,
+        "SNLRetrieval": 0.39222,
+        "SweFaqRetrieval": 0.46855,
+        "SwednRetrieval": 0.58141,
+        "TV2Nordretrieval": 0.80029,
+        "TwitterHjerneRetrieval": 0.17373
+      }
+    },
+    {
+      "model": "ibm-granite/granite-embedding-107m-multilingual",
+      "revision": "47db56afe692f731540413c67dd818ff492277e7",
+      "swedish_retrieval": 0.521435,
+      "retrieval": 0.479949,
+      "tasks": {
+        "DanFeverRetrieval": 0.36429,
+        "NorQuadRetrieval": 0.13968,
+        "SNLRetrieval": 0.85676,
+        "SweFaqRetrieval": 0.54044,
+        "SwednRetrieval": 0.50243,
+        "TV2Nordretrieval": 0.78543,
+        "TwitterHjerneRetrieval": 0.17061
+      }
+    },
+    {
+      "model": "sentence-transformers/static-similarity-mrl-multilingual-v1",
+      "revision": "7264ea07c5365a11d7e6d87dbb6195889a13054f",
+      "swedish_retrieval": 0.52025,
+      "retrieval": 0.456857,
+      "tasks": {
+        "DanFeverRetrieval": 0.35965,
+        "NorQuadRetrieval": 0.10414,
+        "SNLRetrieval": 0.67234,
+        "SweFaqRetrieval": 0.50084,
+        "SwednRetrieval": 0.53966,
+        "TV2Nordretrieval": 0.77317,
+        "TwitterHjerneRetrieval": 0.2482
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Arabic-MiniLM-L12-v2-all-nli-triplet",
+      "revision": "6916465c43b984e955aa6dc72851474f0128f428",
+      "swedish_retrieval": 0.517135,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.11742,
+        "SNLRetrieval": 0.46952,
+        "SweFaqRetrieval": 0.53844,
+        "SwednRetrieval": 0.49583,
+        "TV2Nordretrieval": 0.7354,
+        "TwitterHjerneRetrieval": 0.27171
+      }
+    },
+    {
+      "model": "minishlab/potion-multilingual-128M",
+      "revision": "38ebd7f10f71e67fa8db898290f92b82e9cfff2a",
+      "swedish_retrieval": 0.51094,
+      "retrieval": 0.451174,
+      "tasks": {
+        "DanFeverRetrieval": 0.33949,
+        "NorQuadRetrieval": 0.12137,
+        "SNLRetrieval": 0.56047,
+        "SweFaqRetrieval": 0.49858,
+        "SwednRetrieval": 0.5233,
+        "TV2Nordretrieval": 0.74291,
+        "TwitterHjerneRetrieval": 0.3721
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-l",
+      "revision": "9a9e5834d2e89cdd8bb72b64111dde496e4fe78c",
+      "swedish_retrieval": 0.506935,
+      "retrieval": 0.452359,
+      "tasks": {
+        "DanFeverRetrieval": 0.35909,
+        "NorQuadRetrieval": 0.11445,
+        "SNLRetrieval": 0.85947,
+        "SweFaqRetrieval": 0.5403,
+        "SwednRetrieval": 0.47357,
+        "TV2Nordretrieval": 0.74571,
+        "TwitterHjerneRetrieval": 0.07392
+      }
+    },
+    {
+      "model": "Haon-Chen/speed-embedding-7b-instruct",
+      "revision": "c167e9a8144b397622ce47b85d9edcdeecef3d3f",
+      "swedish_retrieval": 0.503105,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.09579,
+        "SNLRetrieval": 0.1849,
+        "SweFaqRetrieval": 0.55861,
+        "SwednRetrieval": 0.4476,
+        "TV2Nordretrieval": 0.7685,
+        "TwitterHjerneRetrieval": 0.15067
+      }
+    },
+    {
+      "model": "intfloat/e5-base-v2",
+      "revision": "1c644c92ad3ba1efdad3f1451a637716616a20e8",
+      "swedish_retrieval": 0.50253,
+      "retrieval": 0.485936,
+      "tasks": {
+        "DanFeverRetrieval": 0.36714,
+        "NorQuadRetrieval": 0.10448,
+        "SNLRetrieval": 0.81381,
+        "SweFaqRetrieval": 0.54395,
+        "SwednRetrieval": 0.46111,
+        "TV2Nordretrieval": 0.71478,
+        "TwitterHjerneRetrieval": 0.39628
+      }
+    },
+    {
+      "model": "sentence-transformers/LaBSE",
+      "revision": "e34fab64a3011d2176c99545a93d5cbddc9a91b7",
+      "swedish_retrieval": 0.50237,
+      "retrieval": 0.42228,
+      "tasks": {
+        "DanFeverRetrieval": 0.34537,
+        "NorQuadRetrieval": 0.10589,
+        "SNLRetrieval": 0.59321,
+        "SweFaqRetrieval": 0.50059,
+        "SwednRetrieval": 0.50415,
+        "TV2Nordretrieval": 0.76295,
+        "TwitterHjerneRetrieval": 0.1438
+      }
+    },
+    {
+      "model": "nomic-ai/nomic-embed-text-v1",
+      "revision": "0759316f275aa0cb93a5b830973843ca66babcf5",
+      "swedish_retrieval": 0.50147,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.08546,
+        "SNLRetrieval": 0.78127,
+        "SweFaqRetrieval": 0.51474,
+        "SwednRetrieval": 0.4882,
+        "TV2Nordretrieval": 0.74479,
+        "TwitterHjerneRetrieval": 0.13513
+      }
+    },
+    {
+      "model": "thenlper/gte-large",
+      "revision": "4bef63f39fcc5e2d6b0aae83089f307af4970164",
+      "swedish_retrieval": 0.497345,
+      "retrieval": 0.464937,
+      "tasks": {
+        "DanFeverRetrieval": 0.35829,
+        "NorQuadRetrieval": 0.11053,
+        "SNLRetrieval": 0.84279,
+        "SweFaqRetrieval": 0.52988,
+        "SwednRetrieval": 0.46481,
+        "TV2Nordretrieval": 0.71494,
+        "TwitterHjerneRetrieval": 0.23332
+      }
+    },
+    {
+      "model": "manu/sentence_croissant_alpha_v0.4",
+      "revision": "0ce6372e6a3c21134dcf26dcde13cca869c767fc",
+      "swedish_retrieval": 0.49478,
+      "retrieval": 0.431256,
+      "tasks": {
+        "DanFeverRetrieval": 0.34682,
+        "NorQuadRetrieval": 0.12829,
+        "SNLRetrieval": 0.77189,
+        "SweFaqRetrieval": 0.51001,
+        "SwednRetrieval": 0.47955,
+        "TV2Nordretrieval": 0.69763,
+        "TwitterHjerneRetrieval": 0.0846
+      }
+    },
+    {
+      "model": "manu/sentence_croissant_alpha_v0.3",
+      "revision": "4ac16754f3d81aba76cc32955dc9ee4122df96eb",
+      "swedish_retrieval": 0.492475,
+      "retrieval": 0.433891,
+      "tasks": {
+        "DanFeverRetrieval": 0.35352,
+        "NorQuadRetrieval": 0.1325,
+        "SNLRetrieval": 0.7775,
+        "SweFaqRetrieval": 0.49597,
+        "SwednRetrieval": 0.48898,
+        "TV2Nordretrieval": 0.71415,
+        "TwitterHjerneRetrieval": 0.07462
+      }
+    },
+    {
+      "model": "BAAI/bge-large-en-v1.5",
+      "revision": "d4aa6901d3a41ba39fb536a557fa166f842b0e09",
+      "swedish_retrieval": 0.490565,
+      "retrieval": 0.45022,
+      "tasks": {
+        "DanFeverRetrieval": 0.36269,
+        "NorQuadRetrieval": 0.11708,
+        "SNLRetrieval": 0.84491,
+        "SweFaqRetrieval": 0.51776,
+        "SwednRetrieval": 0.46337,
+        "TV2Nordretrieval": 0.69847,
+        "TwitterHjerneRetrieval": 0.14726
+      }
+    },
+    {
+      "model": "NbAiLab/nb-sbert-base",
+      "revision": "b95656350a076aeafd2d23763660f80655408cc6",
+      "swedish_retrieval": 0.48884,
+      "retrieval": 0.48307,
+      "tasks": {
+        "DanFeverRetrieval": 0.34853,
+        "NorQuadRetrieval": 0.19738,
+        "SNLRetrieval": 0.66742,
+        "SweFaqRetrieval": 0.49976,
+        "SwednRetrieval": 0.47792,
+        "TV2Nordretrieval": 0.73067,
+        "TwitterHjerneRetrieval": 0.45981
+      }
+    },
+    {
+      "model": "intfloat/e5-small",
+      "revision": "e272f3049e853b47cb5ca3952268c6662abda68f",
+      "swedish_retrieval": 0.488405,
+      "retrieval": 0.434031,
+      "tasks": {
+        "DanFeverRetrieval": 0.35307,
+        "NorQuadRetrieval": 0.08881,
+        "SNLRetrieval": 0.74853,
+        "SweFaqRetrieval": 0.54187,
+        "SwednRetrieval": 0.43494,
+        "TV2Nordretrieval": 0.67946,
+        "TwitterHjerneRetrieval": 0.19154
+      }
+    },
+    {
+      "model": "Cohere/Cohere-embed-english-light-v3.0",
+      "revision": "1",
+      "swedish_retrieval": 0.48761,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.09788,
+        "SNLRetrieval": 0.76794,
+        "SweFaqRetrieval": 0.53766,
+        "SwednRetrieval": 0.43756,
+        "TV2Nordretrieval": 0.72488,
+        "TwitterHjerneRetrieval": 0.32422
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-s",
+      "revision": "d3c1d2d433dd0fdc8e9ca01331a5f225639e798f",
+      "swedish_retrieval": 0.48447,
+      "retrieval": 0.44422,
+      "tasks": {
+        "DanFeverRetrieval": 0.35983,
+        "NorQuadRetrieval": 0.09985,
+        "SNLRetrieval": 0.78009,
+        "SweFaqRetrieval": 0.52066,
+        "SwednRetrieval": 0.44828,
+        "TV2Nordretrieval": 0.72155,
+        "TwitterHjerneRetrieval": 0.17928
+      }
+    },
+    {
+      "model": "intfloat/e5-base",
+      "revision": "b533fe4636f4a2507c08ddab40644d20b0006d6a",
+      "swedish_retrieval": 0.484155,
+      "retrieval": 0.43529,
+      "tasks": {
+        "DanFeverRetrieval": 0.35648,
+        "NorQuadRetrieval": 0.08113,
+        "SNLRetrieval": 0.77153,
+        "SweFaqRetrieval": 0.55021,
+        "SwednRetrieval": 0.4181,
+        "TV2Nordretrieval": 0.70177,
+        "TwitterHjerneRetrieval": 0.16781
+      }
+    },
+    {
+      "model": "manu/sentence_croissant_alpha_v0.2",
+      "revision": "4610b8cea65d7dd59e0b04af50753933fe5b29b2",
+      "swedish_retrieval": 0.483445,
+      "retrieval": 0.40956,
+      "tasks": {
+        "DanFeverRetrieval": 0.33874,
+        "NorQuadRetrieval": 0.11745,
+        "SNLRetrieval": 0.6947,
+        "SweFaqRetrieval": 0.50715,
+        "SwednRetrieval": 0.45974,
+        "TV2Nordretrieval": 0.67641,
+        "TwitterHjerneRetrieval": 0.07273
+      }
+    },
+    {
+      "model": "thenlper/gte-small",
+      "revision": "17e1f347d17fe144873b1201da91788898c639cd",
+      "swedish_retrieval": 0.48163,
+      "retrieval": 0.420463,
+      "tasks": {
+        "DanFeverRetrieval": 0.33982,
+        "NorQuadRetrieval": 0.08074,
+        "SNLRetrieval": 0.74515,
+        "SweFaqRetrieval": 0.53912,
+        "SwednRetrieval": 0.42414,
+        "TV2Nordretrieval": 0.68074,
+        "TwitterHjerneRetrieval": 0.13353
+      }
+    },
+    {
+      "model": "thenlper/gte-base",
+      "revision": "c078288308d8dee004ab72c6191778064285ec0c",
+      "swedish_retrieval": 0.47509,
+      "retrieval": 0.421794,
+      "tasks": {
+        "DanFeverRetrieval": 0.35274,
+        "NorQuadRetrieval": 0.09153,
+        "SNLRetrieval": 0.78368,
+        "SweFaqRetrieval": 0.5236,
+        "SwednRetrieval": 0.42658,
+        "TV2Nordretrieval": 0.69577,
+        "TwitterHjerneRetrieval": 0.07866
+      }
+    },
+    {
+      "model": "HIT-TMG/KaLM-embedding-multilingual-mini-instruct-v1",
+      "revision": "45e42c89990c40aca042659133fc8b13c28634b5",
+      "swedish_retrieval": 0.473215,
+      "retrieval": 0.488164,
+      "tasks": {
+        "DanFeverRetrieval": 0.34238,
+        "NorQuadRetrieval": 0.14348,
+        "SNLRetrieval": 0.8434,
+        "SweFaqRetrieval": 0.51861,
+        "SwednRetrieval": 0.42782,
+        "TV2Nordretrieval": 0.79919,
+        "TwitterHjerneRetrieval": 0.34227
+      }
+    },
+    {
+      "model": "WhereIsAI/UAE-Large-V1",
+      "revision": "369c368f70f16a613f19f5598d4f12d9f44235d4",
+      "swedish_retrieval": 0.47233,
+      "retrieval": 0.435587,
+      "tasks": {
+        "DanFeverRetrieval": 0.35363,
+        "NorQuadRetrieval": 0.11625,
+        "SNLRetrieval": 0.84092,
+        "SweFaqRetrieval": 0.50435,
+        "SwednRetrieval": 0.44031,
+        "TV2Nordretrieval": 0.66249,
+        "TwitterHjerneRetrieval": 0.13116
+      }
+    },
+    {
+      "model": "BAAI/bge-base-en-v1.5",
+      "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+      "swedish_retrieval": 0.472155,
+      "retrieval": 0.455599,
+      "tasks": {
+        "DanFeverRetrieval": 0.35653,
+        "NorQuadRetrieval": 0.09884,
+        "SNLRetrieval": 0.78584,
+        "SweFaqRetrieval": 0.51153,
+        "SwednRetrieval": 0.43278,
+        "TV2Nordretrieval": 0.68857,
+        "TwitterHjerneRetrieval": 0.3151
+      }
+    },
+    {
+      "model": "BAAI/bge-small-en-v1.5",
+      "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+      "swedish_retrieval": 0.468445,
+      "retrieval": 0.425911,
+      "tasks": {
+        "DanFeverRetrieval": 0.34152,
+        "NorQuadRetrieval": 0.08375,
+        "SNLRetrieval": 0.73008,
+        "SweFaqRetrieval": 0.53644,
+        "SwednRetrieval": 0.40045,
+        "TV2Nordretrieval": 0.61668,
+        "TwitterHjerneRetrieval": 0.27246
+      }
+    },
+    {
+      "model": "intfloat/e5-small-v2",
+      "revision": "dca8b1a9dae0d4575df2bf423a5edb485a431236",
+      "swedish_retrieval": 0.46511,
+      "retrieval": 0.438539,
+      "tasks": {
+        "DanFeverRetrieval": 0.34757,
+        "NorQuadRetrieval": 0.09559,
+        "SNLRetrieval": 0.7265,
+        "SweFaqRetrieval": 0.52833,
+        "SwednRetrieval": 0.40189,
+        "TV2Nordretrieval": 0.6652,
+        "TwitterHjerneRetrieval": 0.30469
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-m",
+      "revision": "cc17beacbac32366782584c8752220405a0f3f40",
+      "swedish_retrieval": 0.458965,
+      "retrieval": 0.422097,
+      "tasks": {
+        "DanFeverRetrieval": 0.36617,
+        "NorQuadRetrieval": 0.1007,
+        "SNLRetrieval": 0.78863,
+        "SweFaqRetrieval": 0.4745,
+        "SwednRetrieval": 0.44343,
+        "TV2Nordretrieval": 0.70075,
+        "TwitterHjerneRetrieval": 0.0805
+      }
+    },
+    {
+      "model": "avsolatorio/GIST-large-Embedding-v0",
+      "revision": "7831200e2f7819b994490c091cf3258a2b821f0c",
+      "swedish_retrieval": 0.45853,
+      "retrieval": 0.42543,
+      "tasks": {
+        "DanFeverRetrieval": 0.33607,
+        "NorQuadRetrieval": 0.09338,
+        "SNLRetrieval": 0.81531,
+        "SweFaqRetrieval": 0.49274,
+        "SwednRetrieval": 0.42432,
+        "TV2Nordretrieval": 0.66556,
+        "TwitterHjerneRetrieval": 0.15063
+      }
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "revision": "990580e27d329c7408b3741ecff85876e128e203",
+      "swedish_retrieval": 0.45006,
+      "retrieval": 0.424984,
+      "tasks": {
+        "DanFeverRetrieval": 0.3473,
+        "NorQuadRetrieval": 0.11326,
+        "SNLRetrieval": 0.8202,
+        "SweFaqRetrieval": 0.48204,
+        "SwednRetrieval": 0.41808,
+        "TV2Nordretrieval": 0.6386,
+        "TwitterHjerneRetrieval": 0.15541
+      }
+    },
+    {
+      "model": "shibing624/text2vec-base-multilingual",
+      "revision": "6633dc49e554de7105458f8f2e96445c6598e9d1",
+      "swedish_retrieval": 0.445075,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.08487,
+        "SNLRetrieval": 0.35419,
+        "SweFaqRetrieval": 0.48122,
+        "SwednRetrieval": 0.40893,
+        "TV2Nordretrieval": 0.65762,
+        "TwitterHjerneRetrieval": 0.18691
+      }
+    },
+    {
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "b0753ae76394dd36bcfb912a46018088bca48be0",
+      "swedish_retrieval": 0.442095,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.07371,
+        "SNLRetrieval": 0.69245,
+        "SweFaqRetrieval": 0.49241,
+        "SwednRetrieval": 0.39178,
+        "TV2Nordretrieval": 0.65181,
+        "TwitterHjerneRetrieval": 0.06737
+      }
+    },
+    {
+      "model": "avsolatorio/NoInstruct-small-Embedding-v0",
+      "revision": "b38747000553d8268915c95a55fc87e707c9aadd",
+      "swedish_retrieval": 0.439505,
+      "retrieval": 0.384679,
+      "tasks": {
+        "DanFeverRetrieval": 0.31911,
+        "NorQuadRetrieval": 0.07963,
+        "SNLRetrieval": 0.68936,
+        "SweFaqRetrieval": 0.50151,
+        "SwednRetrieval": 0.3775,
+        "TV2Nordretrieval": 0.61006,
+        "TwitterHjerneRetrieval": 0.11558
+      }
+    },
+    {
+      "model": "abhinand/MedEmbed-small-v0.1",
+      "revision": "40a5850d046cfdb56154e332b4d7099b63e8d50e",
+      "swedish_retrieval": 0.435165,
+      "retrieval": 0.389361,
+      "tasks": {
+        "DanFeverRetrieval": 0.32225,
+        "NorQuadRetrieval": 0.07494,
+        "SNLRetrieval": 0.71228,
+        "SweFaqRetrieval": 0.51838,
+        "SwednRetrieval": 0.35195,
+        "TV2Nordretrieval": 0.57773,
+        "TwitterHjerneRetrieval": 0.168
+      }
+    },
+    {
+      "model": "dwzhu/e5-base-4k",
+      "revision": "1b5664b8cb2bccd8c309429b7bfe5864402e8fbc",
+      "swedish_retrieval": 0.4329,
+      "retrieval": 0.356437,
+      "tasks": {
+        "DanFeverRetrieval": 0.30315,
+        "NorQuadRetrieval": 0.0763,
+        "SNLRetrieval": 0.54991,
+        "SweFaqRetrieval": 0.49628,
+        "SwednRetrieval": 0.36952,
+        "TV2Nordretrieval": 0.63547,
+        "TwitterHjerneRetrieval": 0.06443
+      }
+    },
+    {
+      "model": "avsolatorio/GIST-Embedding-v0",
+      "revision": "bf6b2e55e92f510a570ad4d7d2da2ec8cd22590c",
+      "swedish_retrieval": 0.432085,
+      "retrieval": 0.407931,
+      "tasks": {
+        "DanFeverRetrieval": 0.33758,
+        "NorQuadRetrieval": 0.08324,
+        "SNLRetrieval": 0.777,
+        "SweFaqRetrieval": 0.47793,
+        "SwednRetrieval": 0.38624,
+        "TV2Nordretrieval": 0.65554,
+        "TwitterHjerneRetrieval": 0.13799
+      }
+    },
+    {
+      "model": "avsolatorio/GIST-small-Embedding-v0",
+      "revision": "d6c4190f9e01b9994dc7cac99cf2f2b85cfb57bc",
+      "swedish_retrieval": 0.42577,
+      "retrieval": 0.38398,
+      "tasks": {
+        "DanFeverRetrieval": 0.30658,
+        "NorQuadRetrieval": 0.06123,
+        "SNLRetrieval": 0.69217,
+        "SweFaqRetrieval": 0.48847,
+        "SwednRetrieval": 0.36307,
+        "TV2Nordretrieval": 0.6255,
+        "TwitterHjerneRetrieval": 0.15084
+      }
+    },
+    {
+      "model": "Mihaiii/Ivysaur",
+      "revision": "65914d976f45beb4bda7485c39d88865b4ce6554",
+      "swedish_retrieval": 0.40604,
+      "retrieval": 0.377287,
+      "tasks": {
+        "DanFeverRetrieval": 0.33265,
+        "NorQuadRetrieval": 0.06673,
+        "SNLRetrieval": 0.68262,
+        "SweFaqRetrieval": 0.46904,
+        "SwednRetrieval": 0.34304,
+        "TV2Nordretrieval": 0.63415,
+        "TwitterHjerneRetrieval": 0.11278
+      }
+    },
+    {
+      "model": "ibm-granite/granite-embedding-125m-english",
+      "revision": "e48d3a5b47eaa18e3fe07d4676e187fd80f32730",
+      "swedish_retrieval": 0.39942,
+      "retrieval": 0.385996,
+      "tasks": {
+        "DanFeverRetrieval": 0.33033,
+        "NorQuadRetrieval": 0.10967,
+        "SNLRetrieval": 0.80805,
+        "SweFaqRetrieval": 0.4413,
+        "SwednRetrieval": 0.35754,
+        "TV2Nordretrieval": 0.59593,
+        "TwitterHjerneRetrieval": 0.05915
+      }
+    },
+    {
+      "model": "sentence-transformers/all-MiniLM-L12-v2",
+      "revision": "a05860a77cef7b37e0048a7864658139bc18a854",
+      "swedish_retrieval": 0.39092,
+      "retrieval": null,
+      "tasks": {
+        "SNLRetrieval": 0.51458,
+        "SweFaqRetrieval": 0.46596,
+        "SwednRetrieval": 0.31588,
+        "TV2Nordretrieval": 0.50731,
+        "TwitterHjerneRetrieval": 0.06623
+      }
+    },
+    {
+      "model": "sentence-transformers/all-mpnet-base-v2",
+      "revision": "84f2bcc00d77236f9e89c8a360a00fb1139bf47d",
+      "swedish_retrieval": 0.387725,
+      "retrieval": null,
+      "tasks": {
+        "SNLRetrieval": 0.62121,
+        "SweFaqRetrieval": 0.47261,
+        "SwednRetrieval": 0.30284,
+        "TV2Nordretrieval": 0.42007,
+        "TwitterHjerneRetrieval": 0.14888
+      }
+    },
+    {
+      "model": "infgrad/stella-base-en-v2",
+      "revision": "c9e80ff9892d80b39dc54e30a7873f91ea161034",
+      "swedish_retrieval": 0.37725,
+      "retrieval": 0.372614,
+      "tasks": {
+        "DanFeverRetrieval": 0.33021,
+        "NorQuadRetrieval": 0.06531,
+        "SNLRetrieval": 0.75082,
+        "SweFaqRetrieval": 0.40917,
+        "SwednRetrieval": 0.34533,
+        "TV2Nordretrieval": 0.61038,
+        "TwitterHjerneRetrieval": 0.09708
+      }
+    },
+    {
+      "model": "emillykkejensen/Qwen3-Embedding-Scandi-0.6B",
+      "revision": "cf1e7ba36ebd3d605549d8f02930a18e17b54513",
+      "swedish_retrieval": 0.371015,
+      "retrieval": 0.354294,
+      "tasks": {
+        "DanFeverRetrieval": 0.32349,
+        "NorQuadRetrieval": 0.09929,
+        "SNLRetrieval": 0.21461,
+        "SweFaqRetrieval": 0.5263,
+        "SwednRetrieval": 0.21573,
+        "TV2Nordretrieval": 0.70558,
+        "TwitterHjerneRetrieval": 0.39506
+      }
+    },
+    {
+      "model": "avsolatorio/GIST-all-MiniLM-L6-v2",
+      "revision": "ea89dfad053bba14677bb784a4269898abbdce44",
+      "swedish_retrieval": 0.363855,
+      "retrieval": 0.319381,
+      "tasks": {
+        "DanFeverRetrieval": 0.30261,
+        "NorQuadRetrieval": 0.05047,
+        "SNLRetrieval": 0.54078,
+        "SweFaqRetrieval": 0.41832,
+        "SwednRetrieval": 0.30939,
+        "TV2Nordretrieval": 0.55283,
+        "TwitterHjerneRetrieval": 0.06127
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-m-long",
+      "revision": "89d0f6ab196eead40b90cb6f9fefec01a908d2d1",
+      "swedish_retrieval": 0.35472,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.09117,
+        "SNLRetrieval": 0.67039,
+        "SweFaqRetrieval": 0.38149,
+        "SwednRetrieval": 0.32795,
+        "TV2Nordretrieval": 0.49332,
+        "TwitterHjerneRetrieval": 0.11559
+      }
+    },
+    {
+      "model": "Mihaiii/Wartortle",
+      "revision": "14caca5253414d38a7d28b62d1b7c30ef3293a87",
+      "swedish_retrieval": 0.351455,
+      "retrieval": 0.309994,
+      "tasks": {
+        "DanFeverRetrieval": 0.33609,
+        "NorQuadRetrieval": 0.04974,
+        "SNLRetrieval": 0.48882,
+        "SweFaqRetrieval": 0.40653,
+        "SwednRetrieval": 0.29638,
+        "TV2Nordretrieval": 0.56976,
+        "TwitterHjerneRetrieval": 0.02264
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-m-v1.5",
+      "revision": "97eab2e17fcb7ccb8bb94d6e547898fa1a6a0f47",
+      "swedish_retrieval": 0.348535,
+      "retrieval": 0.350877,
+      "tasks": {
+        "DanFeverRetrieval": 0.34662,
+        "NorQuadRetrieval": 0.08774,
+        "SNLRetrieval": 0.72174,
+        "SweFaqRetrieval": 0.38078,
+        "SwednRetrieval": 0.31629,
+        "TV2Nordretrieval": 0.55581,
+        "TwitterHjerneRetrieval": 0.04716
+      }
+    },
+    {
+      "model": "Snowflake/snowflake-arctic-embed-xs",
+      "revision": "742da4f66e1823b5b4dbe6c320a1375a1fd85f9e",
+      "swedish_retrieval": 0.34688,
+      "retrieval": 0.323451,
+      "tasks": {
+        "DanFeverRetrieval": 0.32867,
+        "NorQuadRetrieval": 0.06448,
+        "SNLRetrieval": 0.61729,
+        "SweFaqRetrieval": 0.41384,
+        "SwednRetrieval": 0.27992,
+        "TV2Nordretrieval": 0.49092,
+        "TwitterHjerneRetrieval": 0.06904
+      }
+    },
+    {
+      "model": "McGill-NLP/LLM2Vec-Mistral-7B-Instruct-v2-mntp-unsup-simcse",
+      "revision": "2c055a5d77126c0d3dc6cd8ffa30e2908f4f45f8",
+      "swedish_retrieval": 0.344855,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.0604,
+        "SNLRetrieval": 0.39759,
+        "SweFaqRetrieval": 0.39639,
+        "SwednRetrieval": 0.29332,
+        "TV2Nordretrieval": 0.71692,
+        "TwitterHjerneRetrieval": 0.06807
+      }
+    },
+    {
+      "model": "KennethEnevoldsen/dfm-sentence-encoder-large",
+      "revision": "132c53391e7a780dc6a2f9a03724d0158fe7122c",
+      "swedish_retrieval": 0.343535,
+      "retrieval": 0.373353,
+      "tasks": {
+        "DanFeverRetrieval": 0.37185,
+        "NorQuadRetrieval": 0.10725,
+        "SNLRetrieval": 0.21585,
+        "SweFaqRetrieval": 0.43807,
+        "SwednRetrieval": 0.249,
+        "TV2Nordretrieval": 0.80813,
+        "TwitterHjerneRetrieval": 0.42332
+      }
+    },
+    {
+      "model": "ibm-granite/granite-embedding-30m-english",
+      "revision": "eddbb57470f896b5f8e2bfcb823d8f0e2d2024a5",
+      "swedish_retrieval": 0.34184,
+      "retrieval": 0.338351,
+      "tasks": {
+        "DanFeverRetrieval": 0.31134,
+        "NorQuadRetrieval": 0.08361,
+        "SNLRetrieval": 0.65947,
+        "SweFaqRetrieval": 0.39227,
+        "SwednRetrieval": 0.29141,
+        "TV2Nordretrieval": 0.57299,
+        "TwitterHjerneRetrieval": 0.05737
+      }
+    },
+    {
+      "model": "Mihaiii/Venusaur",
+      "revision": "0dc817f0addbb7bab8feeeeaded538f9ffeb3419",
+      "swedish_retrieval": 0.341235,
+      "retrieval": 0.316243,
+      "tasks": {
+        "DanFeverRetrieval": 0.32973,
+        "NorQuadRetrieval": 0.0709,
+        "SNLRetrieval": 0.55019,
+        "SweFaqRetrieval": 0.39346,
+        "SwednRetrieval": 0.28901,
+        "TV2Nordretrieval": 0.51073,
+        "TwitterHjerneRetrieval": 0.06968
+      }
+    },
+    {
+      "model": "Mihaiii/Bulbasaur",
+      "revision": "6876f839e18ae36224049a41194a431953f08747",
+      "swedish_retrieval": 0.332705,
+      "retrieval": 0.297374,
+      "tasks": {
+        "DanFeverRetrieval": 0.33349,
+        "NorQuadRetrieval": 0.06267,
+        "SNLRetrieval": 0.48269,
+        "SweFaqRetrieval": 0.41064,
+        "SwednRetrieval": 0.25477,
+        "TV2Nordretrieval": 0.42163,
+        "TwitterHjerneRetrieval": 0.11573
+      }
+    },
+    {
+      "model": "minishlab/potion-base-8M",
+      "revision": "dcbec7aa2d52fc76754ac6291803feedd8c619ce",
+      "swedish_retrieval": 0.33231,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.07378,
+        "SNLRetrieval": 0.51837,
+        "SweFaqRetrieval": 0.37593,
+        "SwednRetrieval": 0.28869,
+        "TV2Nordretrieval": 0.49613,
+        "TwitterHjerneRetrieval": 0.02069
+      }
+    },
+    {
+      "model": "brahmairesearch/slx-v0.1",
+      "revision": "688c83fd1a7f34b25575a2bc26cfd87c11b4ce71",
+      "swedish_retrieval": 0.331095,
+      "retrieval": 0.27515,
+      "tasks": {
+        "DanFeverRetrieval": 0.28514,
+        "NorQuadRetrieval": 0.04283,
+        "SNLRetrieval": 0.49668,
+        "SweFaqRetrieval": 0.41075,
+        "SwednRetrieval": 0.25144,
+        "TV2Nordretrieval": 0.3411,
+        "TwitterHjerneRetrieval": 0.09811
+      }
+    },
+    {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "8b3219a92973c328a8e22fadcfa821b5dc75636a",
+      "swedish_retrieval": 0.331095,
+      "retrieval": 0.27515,
+      "tasks": {
+        "DanFeverRetrieval": 0.28514,
+        "NorQuadRetrieval": 0.04283,
+        "SNLRetrieval": 0.49668,
+        "SweFaqRetrieval": 0.41075,
+        "SwednRetrieval": 0.25144,
+        "TV2Nordretrieval": 0.3411,
+        "TwitterHjerneRetrieval": 0.09811
+      }
+    },
+    {
+      "model": "Mihaiii/Squirtle",
+      "revision": "5b991da48a9286637a256d4a35aab87a1a57b78a",
+      "swedish_retrieval": 0.32913,
+      "retrieval": 0.29458,
+      "tasks": {
+        "DanFeverRetrieval": 0.3297,
+        "NorQuadRetrieval": 0.06021,
+        "SNLRetrieval": 0.4698,
+        "SweFaqRetrieval": 0.38514,
+        "SwednRetrieval": 0.27312,
+        "TV2Nordretrieval": 0.51984,
+        "TwitterHjerneRetrieval": 0.02425
+      }
+    },
+    {
+      "model": "minishlab/M2V_base_glove_subword",
+      "revision": "5f4f5ca159b7321a8b39739bba0794fa0debddf4",
+      "swedish_retrieval": 0.31938,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.06524,
+        "SNLRetrieval": 0.50038,
+        "SweFaqRetrieval": 0.371,
+        "SwednRetrieval": 0.26776,
+        "TV2Nordretrieval": 0.49087,
+        "TwitterHjerneRetrieval": 0.01785
+      }
+    },
+    {
+      "model": "NovaSearch/stella_en_400M_v5",
+      "revision": "1bb50bc7bb726810eac2140e62155b88b0df198f",
+      "swedish_retrieval": 0.314725,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.12212,
+        "SNLRetrieval": 0.47506,
+        "SweFaqRetrieval": 0.30993,
+        "SwednRetrieval": 0.31952,
+        "TV2Nordretrieval": 0.62602,
+        "TwitterHjerneRetrieval": 0.27671
+      }
+    },
+    {
+      "model": "Mihaiii/gte-micro-v4",
+      "revision": "78e1a4b348f8524c3ab2e3e3475788f5adb8c98f",
+      "swedish_retrieval": 0.299355,
+      "retrieval": 0.271733,
+      "tasks": {
+        "DanFeverRetrieval": 0.31669,
+        "NorQuadRetrieval": 0.04883,
+        "SNLRetrieval": 0.45541,
+        "SweFaqRetrieval": 0.37633,
+        "SwednRetrieval": 0.22238,
+        "TV2Nordretrieval": 0.32902,
+        "TwitterHjerneRetrieval": 0.15347
+      }
+    },
+    {
+      "model": "minishlab/potion-base-4M",
+      "revision": "81b1802ada41afcd0987a37dc15e569c9fa76f04",
+      "swedish_retrieval": 0.29585,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.06669,
+        "SNLRetrieval": 0.45462,
+        "SweFaqRetrieval": 0.35234,
+        "SwednRetrieval": 0.23936,
+        "TV2Nordretrieval": 0.43946,
+        "TwitterHjerneRetrieval": 0.02081
+      }
+    },
+    {
+      "model": "sdadas/mmlw-roberta-large",
+      "revision": "b8058066a8de32d0737b3cd82d8b4f4108745af9",
+      "swedish_retrieval": 0.288745,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.04055,
+        "SNLRetrieval": 0.62013,
+        "SweFaqRetrieval": 0.34036,
+        "SwednRetrieval": 0.23713,
+        "TV2Nordretrieval": 0.5522,
+        "TwitterHjerneRetrieval": 0.22679
+      }
+    },
+    {
+      "model": "minishlab/M2V_base_output",
+      "revision": "02460ae401a22b09d2c6652e23371398329551e2",
+      "swedish_retrieval": 0.28762,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.06777,
+        "SNLRetrieval": 0.45352,
+        "SweFaqRetrieval": 0.33765,
+        "SwednRetrieval": 0.23759,
+        "TV2Nordretrieval": 0.45537,
+        "TwitterHjerneRetrieval": 0.02043
+      }
+    },
+    {
+      "model": "jinaai/jina-embedding-b-en-v1",
+      "revision": "aa0645035294a8c0607ce5bb700aba982cdff32c",
+      "swedish_retrieval": 0.28088,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.06837,
+        "SNLRetrieval": 0.6119,
+        "SweFaqRetrieval": 0.30855,
+        "SwednRetrieval": 0.25321,
+        "TV2Nordretrieval": 0.48892,
+        "TwitterHjerneRetrieval": 0.04187
+      }
+    },
+    {
+      "model": "sdadas/mmlw-roberta-base",
+      "revision": "0ac7f23f6c96af601fa6a17852bd08d5136d6365",
+      "swedish_retrieval": 0.25985,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.02983,
+        "SNLRetrieval": 0.60121,
+        "SweFaqRetrieval": 0.31951,
+        "SwednRetrieval": 0.20019,
+        "TV2Nordretrieval": 0.44492,
+        "TwitterHjerneRetrieval": 0.22752
+      }
+    },
+    {
+      "model": "sergeyzh/LaBSE-ru-turbo",
+      "revision": "1940b046c6b5e125df11722b899130329d0a46da",
+      "swedish_retrieval": 0.258895,
+      "retrieval": 0.283396,
+      "tasks": {
+        "DanFeverRetrieval": 0.30972,
+        "NorQuadRetrieval": 0.06776,
+        "SNLRetrieval": 0.57748,
+        "SweFaqRetrieval": 0.28944,
+        "SwednRetrieval": 0.22835,
+        "TV2Nordretrieval": 0.4755,
+        "TwitterHjerneRetrieval": 0.03552
+      }
+    },
+    {
+      "model": "Mihaiii/gte-micro",
+      "revision": "6fd2397cb9dfa7c901aedf9a2a44d3c888ccafdd",
+      "swedish_retrieval": 0.258735,
+      "retrieval": 0.181676,
+      "tasks": {
+        "DanFeverRetrieval": 0.29844,
+        "NorQuadRetrieval": 0.0193,
+        "SNLRetrieval": 0.21765,
+        "SweFaqRetrieval": 0.32834,
+        "SwednRetrieval": 0.18913,
+        "TV2Nordretrieval": 0.09693,
+        "TwitterHjerneRetrieval": 0.12194
+      }
+    },
+    {
+      "model": "sdadas/mmlw-e5-large",
+      "revision": "5c143fb045ebed664fd85b43fc45155999eb110f",
+      "swedish_retrieval": 0.255655,
+      "retrieval": 0.343284,
+      "tasks": {
+        "DanFeverRetrieval": 0.28051,
+        "NorQuadRetrieval": 0.0392,
+        "SNLRetrieval": 0.72126,
+        "SweFaqRetrieval": 0.27667,
+        "SwednRetrieval": 0.23464,
+        "TV2Nordretrieval": 0.60641,
+        "TwitterHjerneRetrieval": 0.2443
+      }
+    },
+    {
+      "model": "jinaai/jina-embedding-s-en-v1",
+      "revision": "c1fed70aa4823a640f1a7150a276e4d3b08dce08",
+      "swedish_retrieval": 0.25317,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.04721,
+        "SNLRetrieval": 0.54007,
+        "SweFaqRetrieval": 0.2796,
+        "SwednRetrieval": 0.22674,
+        "TV2Nordretrieval": 0.48319,
+        "TwitterHjerneRetrieval": 0.03467
+      }
+    },
+    {
+      "model": "andersborges/model2vecdk-stem",
+      "revision": "cb576c78dcc1b729e4612645f61db59929d69e61",
+      "swedish_retrieval": 0.24152,
+      "retrieval": 0.286541,
+      "tasks": {
+        "DanFeverRetrieval": 0.28023,
+        "NorQuadRetrieval": 0.07001,
+        "SNLRetrieval": 0.34352,
+        "SweFaqRetrieval": 0.2984,
+        "SwednRetrieval": 0.18464,
+        "TV2Nordretrieval": 0.57337,
+        "TwitterHjerneRetrieval": 0.25562
+      }
+    },
+    {
+      "model": "andersborges/model2vecdk",
+      "revision": "cb576c78dcc1b729e4612645f61db59929d69e61",
+      "swedish_retrieval": 0.239085,
+      "retrieval": 0.271013,
+      "tasks": {
+        "DanFeverRetrieval": 0.26455,
+        "NorQuadRetrieval": 0.0706,
+        "SNLRetrieval": 0.30301,
+        "SweFaqRetrieval": 0.28305,
+        "SwednRetrieval": 0.19512,
+        "TV2Nordretrieval": 0.57023,
+        "TwitterHjerneRetrieval": 0.21053
+      }
+    },
+    {
+      "model": "ai-forever/ru-en-RoSBERTa",
+      "revision": "89fb1651989adbb1cfcfdedafd7d102951ad0555",
+      "swedish_retrieval": 0.233125,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.06789,
+        "SNLRetrieval": 0.59083,
+        "SweFaqRetrieval": 0.263,
+        "SwednRetrieval": 0.20325,
+        "TV2Nordretrieval": 0.41151,
+        "TwitterHjerneRetrieval": 0.03846
+      }
+    },
+    {
+      "model": "cointegrated/LaBSE-en-ru",
+      "revision": "cf0714e606d4af551e14ad69a7929cd6b0da7f7e",
+      "swedish_retrieval": 0.23194,
+      "retrieval": 0.25344,
+      "tasks": {
+        "DanFeverRetrieval": 0.29084,
+        "NorQuadRetrieval": 0.06082,
+        "SNLRetrieval": 0.36106,
+        "SweFaqRetrieval": 0.22833,
+        "SwednRetrieval": 0.23555,
+        "TV2Nordretrieval": 0.50457,
+        "TwitterHjerneRetrieval": 0.09291
+      }
+    },
+    {
+      "model": "KennethEnevoldsen/dfm-sentence-encoder-medium",
+      "revision": "701bce95d499fa97610d57e8823c54fd1fb79930",
+      "swedish_retrieval": 0.22787,
+      "retrieval": 0.286394,
+      "tasks": {
+        "DanFeverRetrieval": 0.3098,
+        "NorQuadRetrieval": 0.0885,
+        "SNLRetrieval": 0.21845,
+        "SweFaqRetrieval": 0.27361,
+        "SwednRetrieval": 0.18213,
+        "TV2Nordretrieval": 0.51689,
+        "TwitterHjerneRetrieval": 0.41538
+      }
+    },
+    {
+      "model": "sdadas/mmlw-e5-base",
+      "revision": "f10628ed55b5ec400502aff439bd714a6da0af30",
+      "swedish_retrieval": 0.22611,
+      "retrieval": 0.295667,
+      "tasks": {
+        "DanFeverRetrieval": 0.27531,
+        "NorQuadRetrieval": 0.02858,
+        "SNLRetrieval": 0.69139,
+        "SweFaqRetrieval": 0.26249,
+        "SwednRetrieval": 0.18973,
+        "TV2Nordretrieval": 0.43695,
+        "TwitterHjerneRetrieval": 0.18522
+      }
+    },
+    {
+      "model": "minishlab/potion-base-2M",
+      "revision": "86db093558fbced2072b929eb1690bce5272bd4b",
+      "swedish_retrieval": 0.221775,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.05004,
+        "SNLRetrieval": 0.33715,
+        "SweFaqRetrieval": 0.28364,
+        "SwednRetrieval": 0.15991,
+        "TV2Nordretrieval": 0.32413,
+        "TwitterHjerneRetrieval": 0.01783
+      }
+    },
+    {
+      "model": "aari1995/German_Semantic_STS_V2",
+      "revision": "22912542b0ec7a7ef369837e28ffe6352a27afc9",
+      "swedish_retrieval": 0.214215,
+      "retrieval": 0.207504,
+      "tasks": {
+        "DanFeverRetrieval": 0.2785,
+        "NorQuadRetrieval": 0.06223,
+        "SNLRetrieval": 0.29254,
+        "SweFaqRetrieval": 0.23987,
+        "SwednRetrieval": 0.18856,
+        "TV2Nordretrieval": 0.35013,
+        "TwitterHjerneRetrieval": 0.0407
+      }
+    },
+    {
+      "model": "rasgaard/m2v-dfm-large",
+      "revision": "387897cfb09992e6d45ea9cd7b28b9fcf119e23a",
+      "swedish_retrieval": 0.21327,
+      "retrieval": 0.320316,
+      "tasks": {
+        "DanFeverRetrieval": 0.34364,
+        "NorQuadRetrieval": 0.07951,
+        "SNLRetrieval": 0.33759,
+        "SweFaqRetrieval": 0.25183,
+        "SwednRetrieval": 0.17471,
+        "TV2Nordretrieval": 0.72039,
+        "TwitterHjerneRetrieval": 0.33454
+      }
+    },
+    {
+      "model": "deepfile/embedder-100p",
+      "revision": "aa02f08f11517977fbcdc94dc9dbf9a1ca152d9b",
+      "swedish_retrieval": 0.20106,
+      "retrieval": 0.231541,
+      "tasks": {
+        "DanFeverRetrieval": 0.26673,
+        "NorQuadRetrieval": 0.07557,
+        "SNLRetrieval": 0.52137,
+        "SweFaqRetrieval": 0.20839,
+        "SwednRetrieval": 0.19373,
+        "TV2Nordretrieval": 0.31784,
+        "TwitterHjerneRetrieval": 0.03716
+      }
+    },
+    {
+      "model": "deepvk/USER-base",
+      "revision": "436a489a2087d61aa670b3496a9915f84e46c861",
+      "swedish_retrieval": 0.199305,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.04527,
+        "SNLRetrieval": 0.50375,
+        "SweFaqRetrieval": 0.21062,
+        "SwednRetrieval": 0.18799,
+        "TV2Nordretrieval": 0.41838,
+        "TwitterHjerneRetrieval": 0.01922
+      }
+    },
+    {
+      "model": "sdadas/mmlw-e5-small",
+      "revision": "ff1298cb6d997f18b794d2f3d73cad2ba2ad739a",
+      "swedish_retrieval": 0.195525,
+      "retrieval": 0.232134,
+      "tasks": {
+        "DanFeverRetrieval": 0.2595,
+        "NorQuadRetrieval": 0.01971,
+        "SNLRetrieval": 0.43954,
+        "SweFaqRetrieval": 0.23752,
+        "SwednRetrieval": 0.15353,
+        "TV2Nordretrieval": 0.43499,
+        "TwitterHjerneRetrieval": 0.08015
+      }
+    },
+    {
+      "model": "sergeyzh/rubert-tiny-turbo",
+      "revision": "8ce0cf757446ce9bb2d5f5a4ac8103c7a1049054",
+      "swedish_retrieval": 0.180455,
+      "retrieval": 0.138031,
+      "tasks": {
+        "DanFeverRetrieval": 0.23901,
+        "NorQuadRetrieval": 0.01128,
+        "SNLRetrieval": 0.17314,
+        "SweFaqRetrieval": 0.24028,
+        "SwednRetrieval": 0.12063,
+        "TV2Nordretrieval": 0.16505,
+        "TwitterHjerneRetrieval": 0.01683
+      }
+    },
+    {
+      "model": "consciousAI/cai-lunaris-text-embeddings",
+      "revision": "8332c464d13505968ff7a6e2213f36fd8730b4c7",
+      "swedish_retrieval": 0.16369,
+      "retrieval": 0.164371,
+      "tasks": {
+        "DanFeverRetrieval": 0.21968,
+        "NorQuadRetrieval": 0.02909,
+        "SNLRetrieval": 0.31301,
+        "SweFaqRetrieval": 0.18939,
+        "SwednRetrieval": 0.13799,
+        "TV2Nordretrieval": 0.22761,
+        "TwitterHjerneRetrieval": 0.03383
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Arabic-mpnet-base-all-nli-triplet",
+      "revision": "2628cb641e040f44328195fadcdfb58e6d5cffa7",
+      "swedish_retrieval": 0.161985,
+      "retrieval": 0.124856,
+      "tasks": {
+        "DanFeverRetrieval": 0.18179,
+        "NorQuadRetrieval": 0.01658,
+        "SNLRetrieval": 0.11975,
+        "SweFaqRetrieval": 0.2217,
+        "SwednRetrieval": 0.10227,
+        "TV2Nordretrieval": 0.21229,
+        "TwitterHjerneRetrieval": 0.01961
+      }
+    },
+    {
+      "model": "bigscience/sgpt-bloom-7b1-msmarco",
+      "revision": "dc579f3d2d5a0795eba2049e16c3e36c74007ad3",
+      "swedish_retrieval": 0.15032,
+      "retrieval": 0.18966,
+      "tasks": {
+        "DanFeverRetrieval": 0.24059,
+        "NorQuadRetrieval": 0.02794,
+        "SNLRetrieval": 0.3342,
+        "SweFaqRetrieval": 0.16893,
+        "SwednRetrieval": 0.13171,
+        "TV2Nordretrieval": 0.30843,
+        "TwitterHjerneRetrieval": 0.11582
+      }
+    },
+    {
+      "model": "FacebookAI/xlm-roberta-large",
+      "revision": "c23d21b0620b635a76227c604d44e43a9f0ee389",
+      "swedish_retrieval": 0.145885,
+      "retrieval": 0.100847,
+      "tasks": {
+        "DanFeverRetrieval": 0.10954,
+        "NorQuadRetrieval": 0.02014,
+        "SNLRetrieval": 0.01678,
+        "SweFaqRetrieval": 0.19988,
+        "SwednRetrieval": 0.09189,
+        "TV2Nordretrieval": 0.06113,
+        "TwitterHjerneRetrieval": 0.20657
+      }
+    },
+    {
+      "model": "cointegrated/rubert-tiny",
+      "revision": "5441c5ea8026d4f6d7505ec004845409f1259fb1",
+      "swedish_retrieval": 0.10881,
+      "retrieval": 0.08155,
+      "tasks": {
+        "DanFeverRetrieval": 0.13971,
+        "NorQuadRetrieval": 0.00992,
+        "SNLRetrieval": 0.11136,
+        "SweFaqRetrieval": 0.16235,
+        "SwednRetrieval": 0.05527,
+        "TV2Nordretrieval": 0.07167,
+        "TwitterHjerneRetrieval": 0.02057
+      }
+    },
+    {
+      "model": "minishlab/M2V_base_glove",
+      "revision": "38ebd7f10f71e67fa8db898290f92b82e9cfff2b",
+      "swedish_retrieval": 0.104715,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.0357,
+        "SNLRetrieval": 0.36348,
+        "SweFaqRetrieval": 0.12165,
+        "SwednRetrieval": 0.08778,
+        "TV2Nordretrieval": 0.2381,
+        "TwitterHjerneRetrieval": 0.00825
+      }
+    },
+    {
+      "model": "silma-ai/silma-embeddding-matryoshka-v0.1",
+      "revision": "a520977a9542ebdb8a7206df6b7ff6977f1886ea",
+      "swedish_retrieval": 0.103615,
+      "retrieval": 0.099299,
+      "tasks": {
+        "DanFeverRetrieval": 0.15765,
+        "NorQuadRetrieval": 0.01473,
+        "SNLRetrieval": 0.09748,
+        "SweFaqRetrieval": 0.13608,
+        "SwednRetrieval": 0.07115,
+        "TV2Nordretrieval": 0.18102,
+        "TwitterHjerneRetrieval": 0.03698
+      }
+    },
+    {
+      "model": "DeepPavlov/distilrubert-small-cased-conversational",
+      "revision": "e348066b4a7279b97138038299bddc6580a9169a",
+      "swedish_retrieval": 0.10136,
+      "retrieval": 0.067843,
+      "tasks": {
+        "DanFeverRetrieval": 0.16004,
+        "NorQuadRetrieval": 0.01597,
+        "SNLRetrieval": 0.03683,
+        "SweFaqRetrieval": 0.1773,
+        "SwednRetrieval": 0.02542,
+        "TV2Nordretrieval": 0.04631,
+        "TwitterHjerneRetrieval": 0.01303
+      }
+    },
+    {
+      "model": "DeepPavlov/rubert-base-cased-sentence",
+      "revision": "78b5122d6365337dd4114281b0d08cd1edbb3bc8",
+      "swedish_retrieval": 0.09602,
+      "retrieval": 0.080534,
+      "tasks": {
+        "DanFeverRetrieval": 0.15803,
+        "NorQuadRetrieval": 0.02454,
+        "SNLRetrieval": 0.05959,
+        "SweFaqRetrieval": 0.14108,
+        "SwednRetrieval": 0.05096,
+        "TV2Nordretrieval": 0.09391,
+        "TwitterHjerneRetrieval": 0.03563
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Arabert-all-nli-triplet-Matryoshka",
+      "revision": "d0361a36f6fe69febfc8550d0918abab174f6f30",
+      "swedish_retrieval": 0.089925,
+      "retrieval": 0.087579,
+      "tasks": {
+        "DanFeverRetrieval": 0.19234,
+        "NorQuadRetrieval": 0.01046,
+        "SNLRetrieval": 0.11019,
+        "SweFaqRetrieval": 0.09878,
+        "SwednRetrieval": 0.08107,
+        "TV2Nordretrieval": 0.10239,
+        "TwitterHjerneRetrieval": 0.01782
+      }
+    },
+    {
+      "model": "izhx/udever-bloom-1b1",
+      "revision": "7bf1ee29878cb040b2708a691aa4b61f27eaa252",
+      "swedish_retrieval": 0.084585,
+      "retrieval": null,
+      "tasks": {
+        "DanFeverRetrieval": 0.18836,
+        "NorQuadRetrieval": 0.00802,
+        "SweFaqRetrieval": 0.1084,
+        "SwednRetrieval": 0.06077,
+        "TV2Nordretrieval": 0.12305,
+        "TwitterHjerneRetrieval": 0.10372
+      }
+    },
+    {
+      "model": "cointegrated/rubert-tiny2",
+      "revision": "dad72b8f77c5eef6995dd3e4691b758ba56b90c3",
+      "swedish_retrieval": 0.07978,
+      "retrieval": 0.081949,
+      "tasks": {
+        "DanFeverRetrieval": 0.1525,
+        "NorQuadRetrieval": 0.00968,
+        "SNLRetrieval": 0.1477,
+        "SweFaqRetrieval": 0.11375,
+        "SwednRetrieval": 0.04581,
+        "TV2Nordretrieval": 0.0834,
+        "TwitterHjerneRetrieval": 0.0208
+      }
+    },
+    {
+      "model": "Jaume/gemma-2b-embeddings",
+      "revision": "86431f65d7c3f66b2af096c61e614a2958f191f1",
+      "swedish_retrieval": 0.06696,
+      "retrieval": 0.075409,
+      "tasks": {
+        "DanFeverRetrieval": 0.12776,
+        "NorQuadRetrieval": 0.02663,
+        "SNLRetrieval": 0.00718,
+        "SweFaqRetrieval": 0.11239,
+        "SwednRetrieval": 0.02153,
+        "TV2Nordretrieval": 0.2011,
+        "TwitterHjerneRetrieval": 0.03127
+      }
+    },
+    {
+      "model": "malenia1/ternary-weight-embedding",
+      "revision": "a1208fb7f646647bb62639fd2e1eb6cc2ef3738e",
+      "swedish_retrieval": 0.06505,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.00682,
+        "SNLRetrieval": 0.09373,
+        "SweFaqRetrieval": 0.10145,
+        "SwednRetrieval": 0.02865,
+        "TV2Nordretrieval": 0.01141,
+        "TwitterHjerneRetrieval": 0.01895
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v2-small-en",
+      "revision": "796cff318cdd4e5fbe8b7303a1ef8cbec36996ef",
+      "swedish_retrieval": 0.05811,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.00498,
+        "SNLRetrieval": 0.02412,
+        "SweFaqRetrieval": 0.09889,
+        "SwednRetrieval": 0.01733,
+        "TV2Nordretrieval": 0.01155,
+        "TwitterHjerneRetrieval": 0.0254
+      }
+    },
+    {
+      "model": "Omartificial-Intelligence-Space/Marbert-all-nli-triplet-Matryoshka",
+      "revision": "ecf3274e164f057c4a3dd70691cae0265d87a9d0",
+      "swedish_retrieval": 0.057195,
+      "retrieval": 0.046714,
+      "tasks": {
+        "DanFeverRetrieval": 0.11179,
+        "NorQuadRetrieval": 0.00768,
+        "SNLRetrieval": 0.04614,
+        "SweFaqRetrieval": 0.0798,
+        "SwednRetrieval": 0.03459,
+        "TV2Nordretrieval": 0.0277,
+        "TwitterHjerneRetrieval": 0.0193
+      }
+    },
+    {
+      "model": "FacebookAI/xlm-roberta-base",
+      "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+      "swedish_retrieval": 0.050395,
+      "retrieval": 0.064721,
+      "tasks": {
+        "DanFeverRetrieval": 0.09021,
+        "NorQuadRetrieval": 0.01184,
+        "SNLRetrieval": 0.00685,
+        "SweFaqRetrieval": 0.08612,
+        "SwednRetrieval": 0.01467,
+        "TV2Nordretrieval": 0.05278,
+        "TwitterHjerneRetrieval": 0.19058
+      }
+    },
+    {
+      "model": "ai-forever/sbert_large_nlu_ru",
+      "revision": "af977d5dfa46a3635e29bf0ef383f2df2a08d47a",
+      "swedish_retrieval": 0.046585,
+      "retrieval": 0.03165,
+      "tasks": {
+        "DanFeverRetrieval": 0.07923,
+        "NorQuadRetrieval": 0.00346,
+        "SNLRetrieval": 0.01486,
+        "SweFaqRetrieval": 0.07373,
+        "SwednRetrieval": 0.01944,
+        "TV2Nordretrieval": 0.01642,
+        "TwitterHjerneRetrieval": 0.01441
+      }
+    },
+    {
+      "model": "ai-forever/sbert_large_mt_nlu_ru",
+      "revision": "05300876c2b83f46d3ddd422a7f17e45cf633bb0",
+      "swedish_retrieval": 0.046455,
+      "retrieval": 0.039316,
+      "tasks": {
+        "DanFeverRetrieval": 0.09719,
+        "NorQuadRetrieval": 0.00822,
+        "SNLRetrieval": 0.03764,
+        "SweFaqRetrieval": 0.0701,
+        "SwednRetrieval": 0.02281,
+        "TV2Nordretrieval": 0.01881,
+        "TwitterHjerneRetrieval": 0.02044
+      }
+    },
+    {
+      "model": "DeepPavlov/rubert-base-cased",
+      "revision": "4036cab694767a299f2b9e6492909664d9414229",
+      "swedish_retrieval": 0.04386,
+      "retrieval": 0.051086,
+      "tasks": {
+        "DanFeverRetrieval": 0.10078,
+        "NorQuadRetrieval": 0.00704,
+        "SNLRetrieval": 0.07111,
+        "SweFaqRetrieval": 0.07165,
+        "SwednRetrieval": 0.01607,
+        "TV2Nordretrieval": 0.01534,
+        "TwitterHjerneRetrieval": 0.07561
+      }
+    },
+    {
+      "model": "deepvk/deberta-v1-base",
+      "revision": "bdd30b0e19757e6940c92c7aff19e8fc0a60dff4",
+      "swedish_retrieval": 0.030045,
+      "retrieval": 0.023239,
+      "tasks": {
+        "DanFeverRetrieval": 0.05606,
+        "NorQuadRetrieval": 0.00637,
+        "SNLRetrieval": 0.01883,
+        "SweFaqRetrieval": 0.04889,
+        "SwednRetrieval": 0.0112,
+        "TV2Nordretrieval": 0.01056,
+        "TwitterHjerneRetrieval": 0.01076
+      }
+    },
+    {
+      "model": "izhx/udever-bloom-560m",
+      "revision": "b2a723e355946ec5a5c5fbed3459766627ded2bb",
+      "swedish_retrieval": 0.02373,
+      "retrieval": null,
+      "tasks": {
+        "DanFeverRetrieval": 0.10923,
+        "NorQuadRetrieval": 0.00549,
+        "SweFaqRetrieval": 0.03281,
+        "SwednRetrieval": 0.01465,
+        "TV2Nordretrieval": 0.01817,
+        "TwitterHjerneRetrieval": 0.00444
+      }
+    },
+    {
+      "model": "jinaai/jina-embeddings-v2-base-en",
+      "revision": "6e85f575bc273f1fd840a658067d0157933c83f0",
+      "swedish_retrieval": 0.01317,
+      "retrieval": null,
+      "tasks": {
+        "NorQuadRetrieval": 0.00337,
+        "SNLRetrieval": 0.003,
+        "SweFaqRetrieval": 0.01977,
+        "SwednRetrieval": 0.00657,
+        "TV2Nordretrieval": 0.43919,
+        "TwitterHjerneRetrieval": 0.00602
+      }
+    },
+    {
+      "model": "mteb/baseline-random-encoder",
+      "revision": "1",
+      "swedish_retrieval": 0.00442,
+      "retrieval": 0.00827,
+      "tasks": {
+        "DanFeverRetrieval": 0.00406,
+        "NorQuadRetrieval": 0.00396,
+        "SNLRetrieval": 0.00411,
+        "SweFaqRetrieval": 0.00579,
+        "SwednRetrieval": 0.00305,
+        "TV2Nordretrieval": 0.0014,
+        "TwitterHjerneRetrieval": 0.03552
+      }
+    }
+  ],
+  "revisions": [
+    {
+      "candidate": "bekko-a25m",
+      "model": "hotchpotch/bekko-embedding-v1-a25m",
+      "pinned": "44f0b8af0f487acd0ccf1a7cb7ae7a29a6dfc09c",
+      "evaluated": "aede922b27c1751d091b1e26c86dc82446a46cb4",
+      "same_files": [
+        "model.safetensors",
+        "tokenizer.json"
+      ],
+      "differing_files": [
+        "README.md"
+      ]
+    },
+    {
+      "candidate": "saga-embed",
+      "model": "SagaEmbed/saga-embed_v1",
+      "pinned": "5f5975288b821c190ab9e51134cea45516199816",
+      "evaluated": "3be07ac3d7c3e00e4402ae9285b23fcf8fda6735",
+      "same_files": [
+        "2_Dense/model.safetensors",
+        "3_Dense/model.safetensors",
+        "4_Dense/model.safetensors",
+        "model.safetensors",
+        "tokenizer.json"
+      ],
+      "differing_files": [
+        "README.md"
+      ]
+    },
+    {
+      "candidate": "arctic-l-v2",
+      "model": "Snowflake/snowflake-arctic-embed-l-v2.0",
+      "pinned": "ac6544c8a46e00af67e330e85a9028c66b8cfd9a",
+      "evaluated": "edc2df7b6c25794b340229ca082e7c78782e6374",
+      "same_files": [
+        "model.safetensors",
+        "tokenizer.json"
+      ],
+      "differing_files": [
+        "README.md",
+        "config.json",
+        "onnx/model_O4.onnx",
+        "sentencepiece.bpe.model"
+      ]
+    },
+    {
+      "candidate": "qwen3-8b",
+      "model": "Qwen/Qwen3-Embedding-8B",
+      "pinned": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "evaluated": "4e423935c619ae4df87b646a3ce949610c66241c",
+      "same_files": [
+        "model-00001-of-00004.safetensors",
+        "model-00002-of-00004.safetensors",
+        "model-00003-of-00004.safetensors",
+        "model-00004-of-00004.safetensors",
+        "tokenizer.json"
+      ],
+      "differing_files": [
+        "LICENSE",
+        "README.md"
+      ]
+    }
+  ],
+  "corpus_passages": 563909,
+  "corpus_words": 107234571,
+  "api_models": [
+    {
+      "model": "google/gemini-embedding-001",
+      "swedish_retrieval": 0.852715,
+      "price_per_million_usd": 0.15,
+      "batch_price_per_million_usd": 0.075,
+      "tokenizer": null,
+      "corpus_tokens": null,
+      "corpus_cost_usd": null,
+      "batch_corpus_cost_usd": null,
+      "one_token_per_word_cost_usd": 16.0852,
+      "price_source": "https://aistudio.google.com/docs/pricing",
+      "candidate": null
+    },
+    {
+      "model": "mongodb/voyage-finance-2",
+      "swedish_retrieval": 0.837095,
+      "price_per_million_usd": 0.12,
+      "batch_price_per_million_usd": 0.0804,
+      "tokenizer": "MongoDB/voyage-finance-2@5354e8ce3b4b879a476df11ddabf3c4ec8a55571",
+      "corpus_tokens": 230054800,
+      "corpus_cost_usd": 27.6066,
+      "batch_corpus_cost_usd": 18.4964,
+      "one_token_per_word_cost_usd": 12.8681,
+      "price_source": "https://docs.voyageai.com/docs/pricing",
+      "candidate": null
+    },
+    {
+      "model": "mongodb/voyage-multilingual-2",
+      "swedish_retrieval": 0.82714,
+      "price_per_million_usd": 0.12,
+      "batch_price_per_million_usd": 0.0804,
+      "tokenizer": "MongoDB/voyage-multilingual-2@b1cca9fa964524e1bf88ae532eff6d78b4d9c03f",
+      "corpus_tokens": 230054800,
+      "corpus_cost_usd": 27.6066,
+      "batch_corpus_cost_usd": 18.4964,
+      "one_token_per_word_cost_usd": 12.8681,
+      "price_source": "https://docs.voyageai.com/docs/pricing",
+      "candidate": null
+    },
+    {
+      "model": "mongodb/voyage-3.5",
+      "swedish_retrieval": 0.82126,
+      "price_per_million_usd": 0.06,
+      "batch_price_per_million_usd": 0.0402,
+      "tokenizer": "MongoDB/voyage-3.5@47c5de6b4f45822930dc3beae47ef9d50ec490ff",
+      "corpus_tokens": 212071882,
+      "corpus_cost_usd": 12.7243,
+      "batch_corpus_cost_usd": 8.5253,
+      "one_token_per_word_cost_usd": 6.4341,
+      "price_source": "https://docs.voyageai.com/docs/pricing",
+      "candidate": null
+    },
+    {
+      "model": "openai/text-embedding-3-large",
+      "swedish_retrieval": 0.818935,
+      "price_per_million_usd": 0.13,
+      "batch_price_per_million_usd": null,
+      "tokenizer": null,
+      "corpus_tokens": null,
+      "corpus_cost_usd": null,
+      "batch_corpus_cost_usd": null,
+      "one_token_per_word_cost_usd": 13.9405,
+      "price_source": "https://openrouter.ai/api/v1/embeddings/models",
+      "candidate": null
+    },
+    {
+      "model": "mongodb/voyage-3",
+      "swedish_retrieval": 0.812115,
+      "price_per_million_usd": 0.06,
+      "batch_price_per_million_usd": 0.0402,
+      "tokenizer": "MongoDB/voyage-3@5d7d7779cf11f3f2d235a99579bc510536e91cbb",
+      "corpus_tokens": 212071882,
+      "corpus_cost_usd": 12.7243,
+      "batch_corpus_cost_usd": 8.5253,
+      "one_token_per_word_cost_usd": 6.4341,
+      "price_source": "https://docs.voyageai.com/docs/pricing",
+      "candidate": null
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-8B",
+      "swedish_retrieval": 0.810105,
+      "price_per_million_usd": 0.01,
+      "batch_price_per_million_usd": null,
+      "tokenizer": "Qwen/Qwen3-Embedding-8B@1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "corpus_tokens": 212071882,
+      "corpus_cost_usd": 2.1207,
+      "batch_corpus_cost_usd": null,
+      "one_token_per_word_cost_usd": 1.0723,
+      "price_source": "https://openrouter.ai/api/v1/embeddings/models",
+      "candidate": "qwen3-8b"
+    }
+  ],
+  "api_candidates": {
+    "qwen3-8b": {
+      "model": "Qwen/Qwen3-Embedding-8B",
+      "swedish_retrieval": 0.810105,
+      "price_per_million_usd": 0.01,
+      "batch_price_per_million_usd": null,
+      "tokenizer": "Qwen/Qwen3-Embedding-8B@1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "corpus_tokens": 212071882,
+      "corpus_cost_usd": 2.1207,
+      "batch_corpus_cost_usd": null,
+      "one_token_per_word_cost_usd": 1.0723,
+      "price_source": "https://openrouter.ai/api/v1/embeddings/models",
+      "candidate": "qwen3-8b"
+    }
+  },
+  "prices_listed_on": "2026-11-21"
+}

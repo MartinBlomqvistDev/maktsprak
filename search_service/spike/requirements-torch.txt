@@ -1,0 +1,9 @@
+# What the full image of the storage spike adds to requirements.txt. torch is
+# installed before these, from PyTorch's index of builds without CUDA. The
+# query models run by torch use the versions phase 3 embeds the passages with;
+# onnx exports and quantizes them for ONNX Runtime.
+transformers==5.24.0
+sentence-transformers==5.7.0
+safetensors==0.8.0
+huggingface_hub==2.4.0
+onnx==1.23.2

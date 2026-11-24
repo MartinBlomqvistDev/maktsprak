@@ -1,0 +1,117 @@
+# The check before the test split, its storage rule: the configuration the
+# tuning chose (qwen3-8b, passages of 200 words, RRF constant 10) in a build of
+# the search service. Read by settings.py when SPIKE_SETTINGS names this file;
+# run.py --settings service_storage.yaml does so here and in every container,
+# and writes service_storage.json and spike/service_storage.jsonl.
+#
+# Everything is as in spike.yaml except what this check changes: the budget's
+# memory and the container's are 4 GiB, as the addendum of 2026-11-22 gives the
+# service; the hybrid fuses with the tuned constant; and the one store holds
+# the corpus's real vectors from qwen3-8b, searched with each question's vector
+# as the API gave it to search/pipeline/14_check_service.py, one request per
+# question as the service asks. The model runs behind the API, outside the
+# container, so no query model is measured.
+budget:
+  p95_ms: 500
+  cold_start_s: 8
+  memory_gib: 4
+
+container:
+  cpus: "1"
+  memory: 4g
+  threads:
+    OMP_NUM_THREADS: "1"
+    OPENBLAS_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+    LANCE_CPU_THREADS: "1"
+
+# Unused by a store of real vectors, which holds no synthetic ones; kept so the
+# chunks are read in blocks of the same size.
+vectors:
+  seed: 20261126
+  chunk_rows: 16384
+
+search:
+  depth: 1000
+  hits: 10
+  rrf_k: 10
+  gather_below: 0.2
+
+# lance and probe are unused here; they are spike.yaml's, since the settings
+# require them.
+lance:
+  fts:
+    language: Swedish
+    stem: true
+    remove_stop_words: false
+    ascii_folding: false
+    lower_case: true
+    max_token_length: null
+    with_position: false
+  scalar_indexes: {party: BITMAP, day: BTREE, person_id: BTREE}
+  metric: dot
+
+probe:
+  seed: 20261128
+  common_tokens: 5000
+  drawn_tokens: 15000
+  passage_step: 28
+  one_word_queries: [kärnkraft, skatt, skolan, pensionärer, och]
+  hits_per_query: 400
+  k1_grid: [0.5, 2.5, 0.05]
+  b_grid: [0.0, 1.0, 0.025]
+  questions: 40
+
+# The spike's own workload, so the store is held to the storage rule under the
+# same searches as the stores of the ADR.
+workload:
+  seed: 20261127
+  sets: [natural, keyword, filtered, stance]
+  warmup_set: interpellation
+  warmup_queries: 30
+  filters: {party: 0.35, period: 0.35, speaker: 0.15, party_period: 0.15}
+  party_view_questions: 50
+
+runs:
+  cold_starts: 3
+  port: 18080
+  images: {slim: maktsprak-spike-slim, full: maktsprak-spike}
+  volume: maktsprak-spike-stores
+  leg_queries: 100
+  sweep_queries: 100
+  phase_limit_s: 600
+  ready_timeout_s: 180
+  request_timeout_s: 120
+
+stores:
+  - name: numpy-1024-float32-qwen3-8b
+    kind: numpy
+    dim: 1024
+    format: float32
+    vectors_from: vectors/index/full-200/qwen3-8b
+    queries_from: service_check/qwen3-8b
+
+query_models:
+  runtimes:
+    torch: [fp32, bf16]
+    onnx: [fp32, int8]
+  onnx: {opset: 18, threads: 1}
+  check_texts: 100
+  models: []
+
+# Unused here; spike.yaml's, since the settings require it.
+reference:
+  image: maktsprak-inference-reference
+  model: MartinBlomqvist/maktsprak_classifier_clean
+  revision: 29e45730dd0ee942341f007f96322f02322a1936
+  port: 7860
+  text: "Uppvärmning av inferenstjänsten."
+  cold_starts: 3
+  warm_requests: 20
+  cloud_run_cold_s: 26
+  cloud_run_warm_s: 0.2
+  cloud_run_source: .github/workflows/keep-warm.yml
+  cloud_run_cpu: "1"
+  cloud_run_memory: 2Gi
+  cloud_run_startup_cpu_boost: true
+  pinned_cpu: "2"

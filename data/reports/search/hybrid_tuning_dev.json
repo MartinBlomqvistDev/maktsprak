@@ -1,0 +1,129 @@
+{
+  "candidate": "qwen3-8b",
+  "tuned_on": "natural",
+  "questions": 120,
+  "bm25": {
+    "analyzer": "stem-nostop",
+    "k1": 1.2,
+    "b": 0.9
+  },
+  "window": 1000,
+  "sizes": [
+    {
+      "target_words": 200,
+      "passages": 563909,
+      "vectors_recall_10": 0.633333,
+      "bm25_recall_10": 0.333333
+    },
+    {
+      "target_words": 120,
+      "passages": 898469,
+      "vectors_recall_10": 0.558333,
+      "bm25_recall_10": 0.233333
+    },
+    {
+      "target_words": 320,
+      "passages": 412397,
+      "vectors_recall_10": 0.575,
+      "bm25_recall_10": 0.275
+    }
+  ],
+  "grid": [
+    {
+      "target_words": 200,
+      "k": 10.0,
+      "recall_10": 0.6,
+      "mrr_10": 0.346501
+    },
+    {
+      "target_words": 200,
+      "k": 20.0,
+      "recall_10": 0.566667,
+      "mrr_10": 0.32795
+    },
+    {
+      "target_words": 200,
+      "k": 30.0,
+      "recall_10": 0.558333,
+      "mrr_10": 0.321941
+    },
+    {
+      "target_words": 200,
+      "k": 60.0,
+      "recall_10": 0.566667,
+      "mrr_10": 0.30748
+    },
+    {
+      "target_words": 200,
+      "k": 100.0,
+      "recall_10": 0.566667,
+      "mrr_10": 0.306726
+    },
+    {
+      "target_words": 120,
+      "k": 10.0,
+      "recall_10": 0.466667,
+      "mrr_10": 0.278016
+    },
+    {
+      "target_words": 120,
+      "k": 20.0,
+      "recall_10": 0.508333,
+      "mrr_10": 0.255466
+    },
+    {
+      "target_words": 120,
+      "k": 30.0,
+      "recall_10": 0.5,
+      "mrr_10": 0.248072
+    },
+    {
+      "target_words": 120,
+      "k": 60.0,
+      "recall_10": 0.508333,
+      "mrr_10": 0.24708
+    },
+    {
+      "target_words": 120,
+      "k": 100.0,
+      "recall_10": 0.5,
+      "mrr_10": 0.242265
+    },
+    {
+      "target_words": 320,
+      "k": 10.0,
+      "recall_10": 0.566667,
+      "mrr_10": 0.307923
+    },
+    {
+      "target_words": 320,
+      "k": 20.0,
+      "recall_10": 0.558333,
+      "mrr_10": 0.293737
+    },
+    {
+      "target_words": 320,
+      "k": 30.0,
+      "recall_10": 0.55,
+      "mrr_10": 0.286951
+    },
+    {
+      "target_words": 320,
+      "k": 60.0,
+      "recall_10": 0.516667,
+      "mrr_10": 0.276571
+    },
+    {
+      "target_words": 320,
+      "k": 100.0,
+      "recall_10": 0.508333,
+      "mrr_10": 0.273621
+    }
+  ],
+  "chosen": {
+    "target_words": 200,
+    "k": 10.0,
+    "recall_10": 0.6,
+    "mrr_10": 0.346501
+  }
+}

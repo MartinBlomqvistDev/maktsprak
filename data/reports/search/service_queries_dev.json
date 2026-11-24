@@ -1,0 +1,47 @@
+{
+  "tuned": {
+    "candidate": "qwen3-8b",
+    "target_words": 200,
+    "k": 10.0
+  },
+  "inputs": "full-200",
+  "questions": 855,
+  "query_ids_sha256": "9586d53d7740e628ce110b2bb0397561e440626f7a3228787274ea7fe2bad31a",
+  "vectors_sha256": "288facde7cce4cfe7b98327917110728de7fb1c6524e7b8669ed946f6a83f5ef",
+  "started": "2026-11-24T12:56:35+00:00",
+  "finished": "2026-11-24T13:23:26+00:00",
+  "requests": 855,
+  "tokens": 32327,
+  "cost_usd": 0.000323,
+  "providers": [
+    "Nebius"
+  ],
+  "provider": "nebius",
+  "quantization": "bf16",
+  "waiting": {
+    "quantiles_s": {
+      "p50": 1.251,
+      "p90": 4.156,
+      "p95": 5.611,
+      "p99": 8.253
+    },
+    "max_s": 13.792,
+    "within": {
+      "1": 0.4444,
+      "2": 0.6456,
+      "3": 0.7754,
+      "5": 0.9287,
+      "10": 0.9953
+    },
+    "retried": 0
+  },
+  "closeness": {
+    "min": 0.999668,
+    "p1": 0.999806,
+    "median": 0.999905
+  },
+  "software": {
+    "numpy": "2.4.6",
+    "httpx": "0.28.1"
+  }
+}

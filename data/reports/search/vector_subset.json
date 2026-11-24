@@ -1,0 +1,33 @@
+{
+  "seed": 20261125,
+  "size": 60000,
+  "passages": 60189,
+  "passage_ids_sha256": "eeaa20bb7d7a6f135a2f29991d69cb0dd8d25c2462c8393857780f0ad771baf6",
+  "gold_speeches": 5095,
+  "gold_passages": 10231,
+  "drawn_speeches": 26662,
+  "drawn_passages": 49958,
+  "passages_file_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+  "questions_sha256": {
+    "natural": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+    "keyword": "90cbb69a0efc64e7dd893ac2448d90f42e67ffcda7a795f21c3deab4477b9d41",
+    "interpellation": "7241d388ac2123287b305b1ae758ed783b5f2c3a937e7d097b66a865ea18f34a",
+    "filtered": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+    "stance": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934"
+  },
+  "by_period": {
+    "2003-2009": 19724,
+    "2010-2017": 19825,
+    "2018-2026": 20640
+  },
+  "by_party": {
+    "C": 5583,
+    "KD": 5346,
+    "L": 5805,
+    "M": 12717,
+    "MP": 5031,
+    "S": 16768,
+    "SD": 3368,
+    "V": 5571
+  }
+}

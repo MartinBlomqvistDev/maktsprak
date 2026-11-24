@@ -1,0 +1,180 @@
+{
+  "lancedb": "0.41.0",
+  "stemmer": "PyStemmer 3.1.0",
+  "fts": {
+    "language": "Swedish",
+    "stem": true,
+    "remove_stop_words": false,
+    "ascii_folding": false,
+    "lower_case": true,
+    "max_token_length": null,
+    "with_position": false
+  },
+  "sampled_passages": 20140,
+  "stemming": {
+    "words": 19829,
+    "common": 5000,
+    "unmatched": 0,
+    "differing": 0,
+    "examples": []
+  },
+  "folding": {
+    "rows": [
+      "får",
+      "far",
+      "här",
+      "har",
+      "ön",
+      "on",
+      "säl",
+      "sal"
+    ],
+    "folded": {
+      "får": [
+        "far",
+        "får"
+      ],
+      "far": [
+        "far",
+        "får"
+      ],
+      "här": [
+        "har",
+        "här"
+      ],
+      "har": [
+        "har",
+        "här"
+      ],
+      "ön": [
+        "on",
+        "ön"
+      ],
+      "on": [
+        "on",
+        "ön"
+      ],
+      "säl": [
+        "sal",
+        "säl"
+      ],
+      "sal": [
+        "sal",
+        "säl"
+      ]
+    },
+    "unfolded": {
+      "får": [
+        "får"
+      ],
+      "far": [
+        "far"
+      ],
+      "här": [
+        "här"
+      ],
+      "har": [
+        "har"
+      ],
+      "ön": [
+        "ön"
+      ],
+      "on": [
+        "on"
+      ],
+      "säl": [
+        "säl"
+      ],
+      "sal": [
+        "sal"
+      ]
+    }
+  },
+  "stop_words": {
+    "snowball_words": 114,
+    "dropped_by_lancedb": 109,
+    "kept_by_lancedb": [
+      "ej",
+      "icke",
+      "ingen",
+      "inte",
+      "utan"
+    ],
+    "other_words_checked": 4887,
+    "other_words_dropped": []
+  },
+  "long_words": {
+    "limit_bytes": 40,
+    "corpus_words_over": 3,
+    "corpus_passages_over": 3,
+    "longest": "försvarsunderrättelseinhämtningssammanhangen",
+    "found_at_default": false,
+    "found_without_limit": true
+  },
+  "one_word": [
+    {
+      "word": "kärnkraft",
+      "term": "kärnkraft",
+      "document_frequency": 314,
+      "hits": 314,
+      "k1": 1.2,
+      "b": 0.75,
+      "max_deviation": 1.3638445506281016e-7,
+      "implied_idf": 4.159529,
+      "lucene_idf": 4.159529
+    },
+    {
+      "word": "skatt",
+      "term": "skatt",
+      "document_frequency": 971,
+      "hits": 400,
+      "k1": 1.2,
+      "b": 0.75,
+      "max_deviation": 1.4897381550582622e-7,
+      "implied_idf": 3.031672,
+      "lucene_idf": 3.031672
+    },
+    {
+      "word": "skolan",
+      "term": "skolan",
+      "document_frequency": 871,
+      "hits": 400,
+      "k1": 1.2,
+      "b": 0.75,
+      "max_deviation": 1.51452033136934e-7,
+      "implied_idf": 3.140297,
+      "lucene_idf": 3.140297
+    },
+    {
+      "word": "pensionärer",
+      "term": "pensionär",
+      "document_frequency": 199,
+      "hits": 199,
+      "k1": 1.2,
+      "b": 0.75,
+      "max_deviation": 1.3542322974124943e-7,
+      "implied_idf": 4.614698,
+      "lucene_idf": 4.614699
+    },
+    {
+      "word": "och",
+      "term": "och",
+      "document_frequency": 19717,
+      "hits": 400,
+      "k1": 1.2,
+      "b": 0.75,
+      "max_deviation": 1.2902410251314222e-7,
+      "implied_idf": 0.021251,
+      "lucene_idf": 0.021251
+    }
+  ],
+  "questions": {
+    "questions": 40,
+    "k1": 1.2,
+    "b": 0.75,
+    "agree_counted_once": 17,
+    "agree_counted_each_time": 40,
+    "questions_with_a_repeated_term": 23
+  },
+  "int8_vectors": "ValueError: Invalid input, Column vector has element type Int8 and the query vector is Float32"
+}

@@ -1,0 +1,194 @@
+{
+  "run": {
+    "embedder": {
+      "name": "qwen3-8b",
+      "kind": "openrouter",
+      "model": "qwen/qwen3-embedding-8b",
+      "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "dimension": 1024,
+      "query_prompt": "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:",
+      "document_prompt": "",
+      "max_tokens": null,
+      "provider": "nebius",
+      "quantization": "bf16"
+    },
+    "inputs": {
+      "name": "subset-200",
+      "target_words": 200,
+      "passages": 60189,
+      "passage_ids_sha256": "eeaa20bb7d7a6f135a2f29991d69cb0dd8d25c2462c8393857780f0ad771baf6",
+      "positions_sha256": "958262214f217e10af7084a46b0158b1ff6fc3e75687a9720bc2e16ac31c15f7",
+      "texts_sha256": "b54603ef2182623f192f61f9a768796807fbe9a4344cc9d8ca38890cc2bebf3d",
+      "queries": 855,
+      "query_ids_sha256": "9586d53d7740e628ce110b2bb0397561e440626f7a3228787274ea7fe2bad31a",
+      "source": {
+        "anforanden.parquet": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+        "passages.parquet": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+        "natural.jsonl": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+        "keyword.jsonl": "90cbb69a0efc64e7dd893ac2448d90f42e67ffcda7a795f21c3deab4477b9d41",
+        "interpellation.jsonl": "7241d388ac2123287b305b1ae758ed783b5f2c3a937e7d097b66a865ea18f34a",
+        "filtered.jsonl": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+        "stance.jsonl": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934"
+      },
+      "created": "2026-11-21T21:29:21Z"
+    },
+    "shard_rows": 4096,
+    "shards": [
+      {
+        "number": 0,
+        "first": 0,
+        "rows": 4096,
+        "sha256": "9e056d51a7ecb0da50160dfa170953143ba150a089e0e2df8cf04dfb93bc61d0"
+      },
+      {
+        "number": 1,
+        "first": 4096,
+        "rows": 4096,
+        "sha256": "b58a325161dc74c30c6669894a873cc16701b20ee2252a686fc8987c99b95fce"
+      },
+      {
+        "number": 2,
+        "first": 8192,
+        "rows": 4096,
+        "sha256": "06fa59b504a8b092475beae0b9e337aaba4a6461aec453b4ef0efdad3370045a"
+      },
+      {
+        "number": 3,
+        "first": 12288,
+        "rows": 4096,
+        "sha256": "73e3fe7e1ade6e2717cccf3303675a8026d4a4c0c2ba3cd7a8b3dceaf9e44975"
+      },
+      {
+        "number": 4,
+        "first": 16384,
+        "rows": 4096,
+        "sha256": "4b3c9e5923f7383c4527300492f3b6c3fb534986b7223ebb9ee6b9f0ef9524c3"
+      },
+      {
+        "number": 5,
+        "first": 20480,
+        "rows": 4096,
+        "sha256": "1fa2c4ea08acf56ce96f1f76efeb75e0d448d353e1e64e3704ea58b0928d699e"
+      },
+      {
+        "number": 6,
+        "first": 24576,
+        "rows": 4096,
+        "sha256": "40a1d305bdbfb5f9298cb54882b34d1e95cdbc2f005b0ef1031741f44221d9d3"
+      },
+      {
+        "number": 7,
+        "first": 28672,
+        "rows": 4096,
+        "sha256": "9dd94863eef617d60f06a4332b1f02cbb07df27b441762e2581608f0f1194250"
+      },
+      {
+        "number": 8,
+        "first": 32768,
+        "rows": 4096,
+        "sha256": "95c1b29fede7b2e8e67db632e0c6cfb5bd0ffeef5e35aee7b13c4314d2fd3678"
+      },
+      {
+        "number": 9,
+        "first": 36864,
+        "rows": 4096,
+        "sha256": "85bcaf41aa2931ef72ee549f350ebb17ce2b3fc10836546425f41d6106cef357"
+      },
+      {
+        "number": 10,
+        "first": 40960,
+        "rows": 4096,
+        "sha256": "ced6e818b7fe141fbebba6e860e30c9d612aac10661d3071a707075a68c75d31"
+      },
+      {
+        "number": 11,
+        "first": 45056,
+        "rows": 4096,
+        "sha256": "f33e5e11a44a34ddae1fbd8c5f34d52a1e98b220a3c3a687a4cc38d9cb5c8c28"
+      },
+      {
+        "number": 12,
+        "first": 49152,
+        "rows": 4096,
+        "sha256": "340c50e532776dd4bce1f49f78e282055c932708e6bb6add80bc39fbaa584592"
+      },
+      {
+        "number": 13,
+        "first": 53248,
+        "rows": 4096,
+        "sha256": "aa716ce0255f9a685ded1a00edbe9995f3ba6e6f283304dd9b9e4515626f3505"
+      },
+      {
+        "number": 14,
+        "first": 57344,
+        "rows": 2845,
+        "sha256": "d1a3b7a8ded74f25817f76fd2c0e5dacca3c2a676d1005ca2570377e3754c4e0"
+      }
+    ],
+    "queries": {
+      "rows": 855,
+      "query_ids_sha256": "9586d53d7740e628ce110b2bb0397561e440626f7a3228787274ea7fe2bad31a",
+      "sha256": "54f32039d5ced72e24e216c9dca2728f9edee8a51461dd7520e2ffb7a80b3649"
+    },
+    "usage": {
+      "texts": 61044,
+      "truncated": 0,
+      "requests": 955,
+      "tokens": 22887457,
+      "cost_usd": 0.22887457
+    },
+    "effective_max_tokens": null,
+    "device": null,
+    "precision": null,
+    "providers": [
+      "Nebius"
+    ],
+    "dimensions_cut_client_side": 0,
+    "software": {
+      "numpy": "2.4.6",
+      "httpx": "0.28.1"
+    },
+    "started": "2026-11-22T11:02:16Z",
+    "updated": "2026-11-22T11:50:32Z"
+  },
+  "index": {
+    "embedder": {
+      "name": "qwen3-8b",
+      "kind": "openrouter",
+      "model": "qwen/qwen3-embedding-8b",
+      "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "dimension": 1024,
+      "query_prompt": "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:",
+      "document_prompt": "",
+      "max_tokens": null,
+      "provider": "nebius",
+      "quantization": "bf16"
+    },
+    "inputs": {
+      "name": "subset-200",
+      "target_words": 200,
+      "passages": 60189,
+      "passage_ids_sha256": "eeaa20bb7d7a6f135a2f29991d69cb0dd8d25c2462c8393857780f0ad771baf6",
+      "positions_sha256": "958262214f217e10af7084a46b0158b1ff6fc3e75687a9720bc2e16ac31c15f7",
+      "texts_sha256": "b54603ef2182623f192f61f9a768796807fbe9a4344cc9d8ca38890cc2bebf3d",
+      "queries": 855,
+      "query_ids_sha256": "9586d53d7740e628ce110b2bb0397561e440626f7a3228787274ea7fe2bad31a",
+      "source": {
+        "anforanden.parquet": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+        "passages.parquet": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+        "natural.jsonl": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+        "keyword.jsonl": "90cbb69a0efc64e7dd893ac2448d90f42e67ffcda7a795f21c3deab4477b9d41",
+        "interpellation.jsonl": "7241d388ac2123287b305b1ae758ed783b5f2c3a937e7d097b66a865ea18f34a",
+        "filtered.jsonl": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+        "stance.jsonl": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934"
+      },
+      "created": "2026-11-21T21:29:21Z"
+    },
+    "run_manifest_sha256": "012eec4323dfe53d00a5f552afb2def91f42b0e0fe47bd74f1d5df2211c74d07",
+    "rows": 60189,
+    "dimension": 1024,
+    "vectors_sha256": "e7ef4da236d44206bd164d8b35c8bea25edc6fcfdc65d7278a4dae2d46af1d73",
+    "positions_sha256": "dbdcc5ce64805d68cbab5112fdfeb095ca2c9a62238ebba1df5e12cd377b0ac3",
+    "built": "2026-11-23T11:21:09Z"
+  }
+}

@@ -82,6 +82,39 @@ VALID_YAML = (
     "  dev_budget_usd: 38.0\n"
     "  resamples: 1000\n"
     "  bootstrap_seed: 16\n"
+    "vectors:\n"
+    "  candidates:\n"
+    "    - name: small\n"
+    "      kind: sentence_transformers\n"
+    "      model: org/small\n"
+    "      revision: abc\n"
+    "      dimension: 8\n"
+    '      query_prompt: "query: "\n'
+    '      document_prompt: ""\n'
+    "      max_tokens: 64\n"
+    "      licensed: true\n"
+    "    - name: remote\n"
+    "      kind: openrouter\n"
+    "      model: org/remote\n"
+    "      revision: def\n"
+    "      dimension: 16\n"
+    '      query_prompt: ""\n'
+    '      document_prompt: ""\n'
+    "      provider: someone\n"
+    "      quantization: bf16\n"
+    "      price_per_million_usd: 0.01\n"
+    "      licensed: true\n"
+    "  tie_margin: 0.01\n"
+    "  api_budget_usd: 10.0\n"
+    "  run_cap_usd: 1.0\n"
+    "  subset_seed: 16\n"
+    "  subset_size: 100\n"
+    "  shard_rows: 4\n"
+    "  window: 50\n"
+    "  rrf_k: [10, 60]\n"
+    "  rrf_k_preferred: 60\n"
+    "  api_batch_inputs: 8\n"
+    "  api_concurrency: 2\n"
 )
 
 
@@ -515,3 +548,128 @@ class TestAnswerSettings:
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert [place for place, _ in error_places(raised.value)] == [("answer", "analyzer")]
+
+
+def _candidate_rows(name: str) -> tuple[int, int]:
+    """Where the candidate called *name* starts and ends among the rows of the valid settings."""
+    rows = VALID_YAML.splitlines(keepends=True)
+    start = rows.index(f"    - name: {name}\n")
+    end = start + 1
+    while end < len(rows) and rows[end].startswith("      "):
+        end += 1
+    return start, end
+
+
+def with_candidate_line(name: str, key: str, line: str | None) -> str:
+    """The valid settings with one row of a candidate replaced, or dropped when *line* is None."""
+    rows = VALID_YAML.splitlines(keepends=True)
+    start, end = _candidate_rows(name)
+    for number in range(start, end):
+        if rows[number].lstrip(" -").startswith(f"{key}:"):
+            rows[number] = "" if line is None else line
+            return "".join(rows)
+    raise AssertionError(f"{name} has no row {key}.")
+
+
+class TestVectorSettings:
+    def test_the_vector_settings_are_read(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(VALID_YAML, encoding="utf-8")
+        vectors = load_settings(config_file=config, data_root=data_root).vectors
+        assert [candidate.name for candidate in vectors.candidates] == ["small", "remote"]
+        assert vectors.candidate("remote").price_per_million_usd == 0.01
+        assert vectors.candidate("small").query_prompt == "query: "
+        assert (vectors.subset_seed, vectors.subset_size, vectors.shard_rows) == (16, 100, 4)
+        assert vectors.rrf_k == (10, 60)
+
+    def test_an_unknown_candidate_name_raises(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(VALID_YAML, encoding="utf-8")
+        vectors = load_settings(config_file=config, data_root=data_root).vectors
+        with pytest.raises(KeyError):
+            vectors.candidate("absent")
+
+    def test_the_shipped_candidates_are_the_addendums_in_its_order(self, data_root):
+        vectors = load_settings(data_root=data_root).vectors
+        assert [(c.name, c.kind, c.model) for c in vectors.candidates] == [
+            ("bekko-a25m", "sentence_transformers", "hotchpotch/bekko-embedding-v1-a25m"),
+            ("saga-embed", "sentence_transformers", "SagaEmbed/saga-embed_v1"),
+            ("arctic-l-v2", "sentence_transformers", "Snowflake/snowflake-arctic-embed-l-v2.0"),
+            ("qwen3-8b", "openrouter", "qwen/qwen3-embedding-8b"),
+        ]
+        assert [c.dimension for c in vectors.candidates] == [384, 1024, 1024, 1024]
+        assert [c.licensed for c in vectors.candidates] == [True, False, True, True]
+
+    def test_the_shipped_prompts_are_the_model_cards(self, data_root):
+        vectors = load_settings(data_root=data_root).vectors
+        assert vectors.candidate("saga-embed").query_prompt == "task: retrieval | query: "
+        assert vectors.candidate("saga-embed").document_prompt == "title: none | text: "
+        assert vectors.candidate("arctic-l-v2").query_prompt == "query: "
+        assert vectors.candidate("qwen3-8b").query_prompt == (
+            "Instruct: Given a web search query, retrieve relevant passages that answer "
+            "the query\nQuery:"
+        )
+        assert all(c.document_prompt in ("", "title: none | text: ") for c in vectors.candidates)
+
+    def test_the_shipped_rules_are_the_addendums(self, data_root):
+        vectors = load_settings(data_root=data_root).vectors
+        assert (vectors.tie_margin, vectors.api_budget_usd) == (0.01, 10.0)
+        assert (vectors.subset_seed, vectors.subset_size) == (20261125, 60000)
+        assert vectors.rrf_k == (10, 20, 30, 60, 100)
+        assert vectors.rrf_k_preferred == 60
+        assert vectors.window == 1000
+
+    @pytest.mark.parametrize("key", ["provider", "quantization", "price_per_million_usd"])
+    def test_an_api_model_without_its_terms_raises(self, data_root, key):
+        config = data_root / "config.yaml"
+        config.write_text(with_candidate_line("remote", key, None), encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "an API model needs" in str(raised.value)
+
+    def test_a_local_model_without_a_token_limit_raises(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(with_candidate_line("small", "max_tokens", None), encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "a local model needs" in str(raised.value)
+
+    def test_a_local_model_with_a_price_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_candidate_line(
+            "small", "max_tokens", "      max_tokens: 64\n      price_per_million_usd: 0.1\n"
+        )
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "a local model needs" in str(raised.value)
+
+    def test_a_candidate_named_twice_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_candidate_line("remote", "name", "    - name: small\n")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert "each name once" in str(raised.value)
+
+    def test_an_unknown_kind_raises(self, data_root):
+        config = data_root / "config.yaml"
+        text = with_candidate_line("small", "kind", "      kind: onnx\n")
+        config.write_text(text, encoding="utf-8")
+        with pytest.raises(ValidationError):
+            load_settings(config_file=config, data_root=data_root)
+
+    @pytest.mark.parametrize("line", ["  rrf_k: []\n", "  rrf_k: [0, 60]\n"])
+    def test_an_rrf_constant_not_above_zero_raises(self, data_root, line):
+        config = data_root / "config.yaml"
+        config.write_text(with_line_replaced("rrf_k", line, "vectors"), encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("vectors", "rrf_k")]
+
+    def test_a_missing_vectors_section_raises(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(VALID_YAML.split("vectors:\n")[0], encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert error_places(raised.value) == [(("vectors",), "missing")]
