@@ -1,0 +1,261 @@
+{
+  "split": "dev",
+  "sets_sha256": {
+    "natural": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+    "filtered": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+    "stance": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934",
+    "unanswerable": "39d2ca9b16d0e5b22cc0c0f003f05f90cf2d06b0ada814a76b7bdc74c676ece1"
+  },
+  "retrieval": {
+    "analyzer": "stem-nostop",
+    "k1": 1.2,
+    "b": 0.9,
+    "limit": 10,
+    "passages": 563909,
+    "passage_ids_sha256": "925e11aec2d9285aa3f596a5448d87234311a63bcc4b9ea76f4e96f2a9806bac",
+    "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+    "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+    "sets_sha256": {
+      "natural": "a2dedbf93034594e1a24b733dd6f88d6352cad8814590e55127bb492530e2418",
+      "filtered": "2a65b555cac6c9f40ff40daecb03655f68d533f6577fd063b37a8b6b4e33fb92",
+      "stance": "75b1be3bc981b8527502f6408790fab2121eabf108326ce2146f3ef3ea0be934",
+      "unanswerable": "39d2ca9b16d0e5b22cc0c0f003f05f90cf2d06b0ada814a76b7bdc74c676ece1"
+    },
+    "questions": 240,
+    "created": "2026-11-22T10:28:39Z"
+  },
+  "threshold": {
+    "threshold": 0.3484475555047613,
+    "balanced_accuracy": 0.652778,
+    "answerable": 180,
+    "unanswerable": 60,
+    "without_candidates": 0
+  },
+  "judge_prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+  "judge_accepted": false,
+  "selectors": [
+    {
+      "name": "baseline",
+      "model": null,
+      "effort": null,
+      "prompt_sha256": null,
+      "abstention": {
+        "balanced_accuracy": 0.6527777777777778,
+        "abstains_unanswerable": 0.7666666666666667,
+        "answers_answerable": 0.5388888888888889,
+        "needless_abstention": 0.46111111111111114,
+        "answerable": 180,
+        "unanswerable": 60
+      },
+      "quote_precision": 0.525773,
+      "score": 0.589275,
+      "quotes": 97,
+      "pending_grades": 0,
+      "ungraded": 0,
+      "quotes_unanswerable": 14,
+      "rejected": {},
+      "fallbacks": {},
+      "cost_usd": 0.0,
+      "cost_per_question_usd": 0.0,
+      "parties": {
+        "V": 0.13402061855670103,
+        "MP": 0.1134020618556701,
+        "S": 0.23711340206185566,
+        "C": 0.10309278350515463,
+        "L": 0.12371134020618557,
+        "KD": 0.10309278350515463,
+        "M": 0.12371134020618557,
+        "SD": 0.061855670103092786
+      },
+      "launch_rule": {
+        "abstains_on_90_percent_of_unanswerable": false,
+        "needless_abstention_at_most_15_percent": false,
+        "quote_precision_at_least_085": false
+      }
+    },
+    {
+      "name": "round-1-opus-5-5",
+      "model": "claude-opus-5-5",
+      "effort": "low",
+      "prompt_sha256": "8aae5dbadd16eb346d2a3dbd7cef1c54879bbb35974de246784f5dfcd1b51dbc",
+      "abstention": {
+        "balanced_accuracy": 0.9222222222222223,
+        "abstains_unanswerable": 0.9833333333333333,
+        "answers_answerable": 0.8611111111111112,
+        "needless_abstention": 0.13888888888888884,
+        "answerable": 180,
+        "unanswerable": 60
+      },
+      "quote_precision": 0.829522,
+      "score": 0.875872,
+      "quotes": 481,
+      "pending_grades": 0,
+      "ungraded": 0,
+      "quotes_unanswerable": 2,
+      "rejected": {},
+      "fallbacks": {},
+      "cost_usd": 3.5307,
+      "cost_per_question_usd": 0.014711,
+      "parties": {
+        "V": 0.13305613305613306,
+        "MP": 0.08316008316008316,
+        "S": 0.25363825363825365,
+        "C": 0.08316008316008316,
+        "L": 0.09563409563409564,
+        "KD": 0.09355509355509356,
+        "M": 0.18711018711018712,
+        "SD": 0.07068607068607069
+      },
+      "launch_rule": {
+        "abstains_on_90_percent_of_unanswerable": true,
+        "needless_abstention_at_most_15_percent": true,
+        "quote_precision_at_least_085": false
+      }
+    },
+    {
+      "name": "round-2-opus-5-5",
+      "model": "claude-opus-5-5",
+      "effort": "low",
+      "prompt_sha256": "e3bab62b7bdc68fd92b3c45defb177fb6d770671a49c3e752555207bc6100f24",
+      "abstention": {
+        "balanced_accuracy": 0.9166666666666666,
+        "abstains_unanswerable": 0.9833333333333333,
+        "answers_answerable": 0.85,
+        "needless_abstention": 0.15000000000000002,
+        "answerable": 180,
+        "unanswerable": 60
+      },
+      "quote_precision": 0.851528,
+      "score": 0.884098,
+      "quotes": 458,
+      "pending_grades": 0,
+      "ungraded": 0,
+      "quotes_unanswerable": 2,
+      "rejected": {
+        "unknown_passage": 4
+      },
+      "fallbacks": {},
+      "cost_usd": 3.5718,
+      "cost_per_question_usd": 0.014882,
+      "parties": {
+        "V": 0.12663755458515283,
+        "MP": 0.08951965065502183,
+        "S": 0.2445414847161572,
+        "C": 0.08078602620087336,
+        "L": 0.09606986899563319,
+        "KD": 0.09388646288209607,
+        "M": 0.19213973799126638,
+        "SD": 0.07641921397379912
+      },
+      "launch_rule": {
+        "abstains_on_90_percent_of_unanswerable": true,
+        "needless_abstention_at_most_15_percent": false,
+        "quote_precision_at_least_085": true
+      }
+    },
+    {
+      "name": "round-3-opus-5-5",
+      "model": "claude-opus-5-5",
+      "effort": "low",
+      "prompt_sha256": "2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27",
+      "abstention": {
+        "balanced_accuracy": 0.9222222222222223,
+        "abstains_unanswerable": 0.9833333333333333,
+        "answers_answerable": 0.8611111111111112,
+        "needless_abstention": 0.13888888888888884,
+        "answerable": 180,
+        "unanswerable": 60
+      },
+      "quote_precision": 0.931138,
+      "score": 0.92668,
+      "quotes": 334,
+      "pending_grades": 0,
+      "ungraded": 0,
+      "quotes_unanswerable": 2,
+      "rejected": {},
+      "fallbacks": {},
+      "cost_usd": 3.5297,
+      "cost_per_question_usd": 0.014707,
+      "parties": {
+        "V": 0.1347305389221557,
+        "MP": 0.08383233532934131,
+        "S": 0.2245508982035928,
+        "C": 0.08682634730538923,
+        "L": 0.09580838323353294,
+        "KD": 0.09281437125748503,
+        "M": 0.20359281437125748,
+        "SD": 0.07784431137724551
+      },
+      "launch_rule": {
+        "abstains_on_90_percent_of_unanswerable": true,
+        "needless_abstention_at_most_15_percent": true,
+        "quote_precision_at_least_085": true
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "round-1-opus-5-5",
+      "quote_precision": [
+        0.303749,
+        0.206593,
+        0.400413
+      ],
+      "balanced_accuracy": [
+        0.269444,
+        0.205556,
+        0.338889
+      ]
+    },
+    {
+      "name": "round-2-opus-5-5",
+      "quote_precision": [
+        0.325755,
+        0.226774,
+        0.421384
+      ],
+      "balanced_accuracy": [
+        0.263889,
+        0.197222,
+        0.333333
+      ]
+    },
+    {
+      "name": "round-3-opus-5-5",
+      "quote_precision": [
+        0.405365,
+        0.305926,
+        0.502308
+      ],
+      "balanced_accuracy": [
+        0.269444,
+        0.205556,
+        0.338889
+      ]
+    }
+  ],
+  "candidate_parties": {
+    "V": 0.11333333333333333,
+    "MP": 0.08388888888888889,
+    "S": 0.26611111111111113,
+    "C": 0.07333333333333333,
+    "L": 0.11277777777777778,
+    "KD": 0.07777777777777778,
+    "M": 0.18611111111111112,
+    "SD": 0.08666666666666667
+  },
+  "answerable_with_a_grade_2": [
+    149,
+    180
+  ],
+  "chosen_model": "claude-opus-5-5",
+  "leading_round": 3,
+  "cost_usd": {
+    "round-1-opus-5-5": 3.5307,
+    "round-2-opus-5-5": 3.5718,
+    "round-3-opus-5-5": 3.5297,
+    "judge": 7.49
+  },
+  "resamples": 10000,
+  "bootstrap_seed": 20261125
+}

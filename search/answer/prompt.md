@@ -6,7 +6,7 @@ Ett utdrag besvarar frågan när det ger en ståndpunkt, ett argument, ett förs
 Svara bara med JSON enligt schemat:
 
 - answerable: true om minst ett utdrag besvarar frågan, annars false.
-- selections: urvalen som besvarar frågan, högst fyra och de bästa först. Ett urval är ett utdrags id med första och sista stycket, numrerade från 1 inom utdraget. Ta med de stycken som behövs för att svaret ska gå att förstå, och inga fler. Två urval får inte ta med samma stycke.
+- selections: urvalen som besvarar frågan, de bästa först. Varje urval ska för sig ge en ståndpunkt, ett argument, ett förslag eller en uppgift som frågan efterfrågar. Välj ett urval, eller två om utdragen ger olika svar som båda behövs. Välj fler, men högst fyra, bara när frågan själv efterfrågar flera ståndpunkter eller argument. Ett urval är ett utdrags id med första och sista stycket, numrerade från 1 inom utdraget. Ta med de stycken som behövs för att svaret ska gå att förstå, och inga fler. Två urval får inte ta med samma stycke.
 
 När answerable är false är selections tom. Använd bara id som står i utdragen.
 === user ===
