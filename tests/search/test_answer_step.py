@@ -98,6 +98,28 @@ QUESTIONS = [
 ]
 
 
+TEST_QUESTIONS = [
+    EvalQuestion(
+        question_id="natural-0101",
+        question_set="natural",
+        split="test",
+        text="Vill partierna bygga ut kärnkraften?",
+        gold=("H209100-1",),
+        passage_id=ENERGY,
+        provenance=PROVENANCE,
+    ),
+    EvalQuestion(
+        question_id="unanswerable-0101",
+        question_set="unanswerable",
+        split="test",
+        text="Vem vann matchen i går?",
+        gold=(),
+        kind="off_topic",
+        provenance=PROVENANCE,
+    ),
+]
+
+
 @pytest.fixture
 def settings(tmp_path: Path, monkeypatch) -> Settings:
     """Settings whose bulk data and reports live in *tmp_path*, over the synthetic corpus."""
@@ -131,6 +153,7 @@ def settings(tmp_path: Path, monkeypatch) -> Settings:
     )
     agree(settings, accepted=True)
     monkeypatch.setattr(step, "dev_questions", lambda _: QUESTIONS)
+    monkeypatch.setattr(step, "held_out_questions", lambda _: TEST_QUESTIONS)
     return settings
 
 
@@ -424,6 +447,53 @@ class TestTheStep:
         report = json.loads((settings.tracked.reports / step.REPORT).read_text("utf-8"))
         [baseline] = report["selectors"]
         assert baseline["quote_precision"] is None and baseline["pending_grades"] > 0
+
+
+class TestTheTestRun:
+    @pytest.fixture
+    def chosen(self, settings, monkeypatch):
+        """The development split run with Opus alone, as when the judge falls short."""
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        agree(settings, accepted=False)
+        batches = FakeBatches(selector_reply)
+        monkeypatch.setattr(step, "run_batch", batches)
+        step.run_round(settings, 1, OPUS)
+        return batches
+
+    def test_it_waits_for_its_addendum(self, settings, chosen, monkeypatch):
+        monkeypatch.setattr(step, "committed_preregistration", lambda: "")
+        with pytest.raises(SystemExit, match="addendum on the test run"):
+            step.run_test(settings, MANIFEST, 5.0)
+
+    def test_it_runs_once_with_the_chosen_prompt_and_measures_nothing(
+        self, settings, chosen, monkeypatch
+    ):
+        monkeypatch.setattr(step, "committed_preregistration", lambda: step.TEST_ADDENDUM)
+        step.run_test(settings, MANIFEST, 5.0)
+        assert chosen.models[-1] == {OPUS}
+        assert set(chosen.batches[-1]) <= {question.question_id for question in TEST_QUESTIONS}
+        for selector in ("baseline", "selector"):
+            answers = step.read_answers(settings, selector, step.TEST_SPLIT)
+            assert set(answers) == {question.question_id for question in TEST_QUESTIONS}
+        sealed = json.loads((settings.tracked.reports / step.TEST_RUN_REPORT).read_text("utf-8"))
+        first = json.loads(
+            (step.round_dir(settings, step.run_name(1, OPUS)) / step.ROUND_NAME).read_text("utf-8")
+        )
+        assert sealed["round"] == "round-1-opus-5-5" and sealed["model"] == OPUS
+        assert sealed["prompt_sha256"] == first["prompt_sha256"]
+        assert set(sealed["answers_sha256"]) == {"baseline", "selector"}
+        text = json.dumps(sealed)
+        assert not any(word in text for word in ("abstention", "precision", "accuracy"))
+        with pytest.raises(SystemExit, match="run once"):
+            step.run_test(settings, MANIFEST, 5.0)
+        with pytest.raises(SystemExit, match="no round runs after it"):
+            step.run_round(settings, 2, OPUS)
+
+    def test_it_stops_at_its_cap(self, settings, chosen, monkeypatch):
+        monkeypatch.setattr(step, "committed_preregistration", lambda: step.TEST_ADDENDUM)
+        with pytest.raises(SystemExit, match="beyond its cap"):
+            step.run_test(settings, MANIFEST, 0.0001)
 
 
 def test_the_candidates_are_the_ones_bm25_ranks(settings):

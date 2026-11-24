@@ -1,4 +1,4 @@
-"""Step 14: run the answer step on the development split.
+"""Step 14: run the answer step on the development split, and once on the test split.
 
 Commands, in order:
 
@@ -21,14 +21,19 @@ Commands, in order:
 - ``report`` computes each selector's metrics, the comparisons with the
   baseline and the choice of model from what is recorded, and writes them
   among the tracked reports.
+- ``test-run`` answers the test split once with the model and the prompt the
+  development split chose, and the baseline with its threshold. It records
+  what ran and computes nothing from it: the answers stay sealed. It needs
+  ``--max-usd`` and ``--confirm``.
 
 Nothing runs before the question sets' hashes and the addenda on the answer
 step stand in the pre-registration as committed at ``HEAD``, and nothing paid
-runs before the judge's agreement with the hand grades is known. Only the
-development split is read; the test split stays closed until comparison 1 has
-decided the retrieval. The paid commands stop before a batch that could take
-what the rounds and the judge have spent beyond ``answer.dev_budget_usd``, or
-beyond ``--max-usd`` when that is lower.
+runs before the judge's agreement with the hand grades is known. Only
+``test-run`` reads the test split, once, after the addendum on the test run is
+committed, and no round runs after it. The paid commands on the development
+split stop before a batch that could take what the rounds and the judge have
+spent beyond ``answer.dev_budget_usd``, or beyond ``--max-usd`` when that is
+lower; the test run stops at its own ``--max-usd``.
 
 Usage::
 
@@ -39,6 +44,7 @@ Usage::
         --confirm
     python search/pipeline/14_run_answer_step.py judge --confirm
     python search/pipeline/14_run_answer_step.py report
+    python search/pipeline/14_run_answer_step.py test-run --max-usd 11 --confirm
 """
 
 from __future__ import annotations
@@ -130,6 +136,11 @@ ANSWER_SETS = ("natural", "filtered", "stance", "unanswerable")
 
 #: The rounds the addendum allows on the development split.
 MAX_ROUNDS = 3
+
+#: The split the test run reads, once, and the addendum it waits for.
+TEST_SPLIT = "test"
+TEST_ADDENDUM = "### 2026-11-24: the test run of the answer step, graded by hand"
+TEST_RUN_REPORT = "answer_test_run.json"
 
 #: The models of round 1, and the one that runs alone if the judge's kappa falls short.
 ROUND_ONE_MODELS = ("claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5")
@@ -258,6 +269,41 @@ class RoundRecord(BaseModel):
     max_tokens: int
     prompt_sha256: str
     batches: dict[str, str] = {}
+    created: datetime
+
+
+class SealedRun(BaseModel):
+    """The one run of the answer step on the test split: what ran, and nothing it measured.
+
+    The run's results stay sealed until the retrieval run on the test split
+    has been made, so this record holds no metric.
+
+    Attributes:
+        model: The model that selected.
+        round: The development round whose prompt ran.
+        prompt_sha256: That prompt's hash.
+        effort: The model's effort.
+        max_tokens: The most output tokens of one answer.
+        threshold: The baseline's threshold, chosen on the development split.
+        retrieval: What the test questions' candidates were ranked with.
+        batches: The message batches, by attempt.
+        answers_sha256: The hash of each answers file, by selector.
+        cost_usd: What the requests cost.
+        created: When the run ended.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    model: str
+    round: str
+    prompt_sha256: str
+    effort: str
+    max_tokens: int
+    threshold: float
+    retrieval: CandidatesRun
+    batches: dict[str, str]
+    answers_sha256: dict[str, str]
+    cost_usd: float
     created: datetime
 
 
@@ -422,22 +468,32 @@ def check_registered(settings: Settings) -> QuestionsManifest:
     return manifest
 
 
-def dev_questions(settings: Settings) -> list[EvalQuestion]:
-    """The development split's questions of the four sets, set by set."""
+def split_questions(settings: Settings, split: str) -> list[EvalQuestion]:
+    """One split's questions of the four sets, set by set."""
     questions: list[EvalQuestion] = []
     for name in ANSWER_SETS:
         questions.extend(
-            split_of(read_question_set(settings.tracked.questions / f"{name}.jsonl"), "dev")
+            split_of(read_question_set(settings.tracked.questions / f"{name}.jsonl"), split)
         )
     return questions
+
+
+def dev_questions(settings: Settings) -> list[EvalQuestion]:
+    """The development split's questions of the four sets."""
+    return split_questions(settings, "dev")
+
+
+def held_out_questions(settings: Settings) -> list[EvalQuestion]:
+    """The test split's questions of the four sets, read only by the test run."""
+    return split_questions(settings, TEST_SPLIT)
 
 
 # --- Files ------------------------------------------------------------------------
 
 
-def work_dir(settings: Settings) -> Path:
+def work_dir(settings: Settings, split: str = "dev") -> Path:
     """Where the step's bulk data lives: the candidates, answers, completions and grades."""
-    return settings.data.search / "answer" / "dev"
+    return settings.data.search / "answer" / split
 
 
 def run_name(number: int, model: str) -> str:
@@ -450,9 +506,9 @@ def round_dir(settings: Settings, name: str) -> Path:
     return work_dir(settings) / ROUNDS_DIR / name
 
 
-def answers_path(settings: Settings, name: str) -> Path:
-    """The answers of one selector or round: ``baseline`` or a round's name."""
-    return work_dir(settings) / ANSWERS_DIR / f"{name}.jsonl"
+def answers_path(settings: Settings, name: str, split: str = "dev") -> Path:
+    """The answers of one selector or round: ``baseline``, a round's name or ``selector``."""
+    return work_dir(settings, split) / ANSWERS_DIR / f"{name}.jsonl"
 
 
 def write_lines(path: Path, entries: Sequence[BaseModel]) -> None:
@@ -465,9 +521,11 @@ def write_lines(path: Path, entries: Sequence[BaseModel]) -> None:
     )
 
 
-def read_candidates(settings: Settings) -> tuple[CandidatesRun, list[QuestionCandidates]]:
+def read_candidates(
+    settings: Settings, split: str = "dev"
+) -> tuple[CandidatesRun, list[QuestionCandidates]]:
     """The recorded candidates and what they were ranked with."""
-    directory = work_dir(settings)
+    directory = work_dir(settings, split)
     run_path = directory / RUN_NAME
     if not run_path.is_file():
         raise SystemExit("No candidates yet. Run the candidates command first.")
@@ -475,9 +533,9 @@ def read_candidates(settings: Settings) -> tuple[CandidatesRun, list[QuestionCan
     return run, read_log(directory / CANDIDATES_NAME, QuestionCandidates)
 
 
-def read_answers(settings: Settings, name: str) -> dict[str, Answer]:
+def read_answers(settings: Settings, name: str, split: str = "dev") -> dict[str, Answer]:
     """The answers of one selector or round, by question."""
-    path = answers_path(settings, name)
+    path = answers_path(settings, name, split)
     if not path.is_file():
         raise SystemExit(f"{path} does not exist.")
     return {line.question_id: line.answer for line in read_log(path, AnsweredQuestion)}
@@ -542,13 +600,13 @@ def bm25_params(settings: Settings) -> Bm25Params:
     return Bm25Params(k1=settings.answer.k1, b=settings.answer.b)
 
 
-def make_candidates(settings: Settings, manifest: QuestionsManifest) -> None:
+def make_candidates(settings: Settings, manifest: QuestionsManifest, split: str = "dev") -> None:
     """Rank each question's candidates and record them."""
     check_tuned(settings)
     index, index_manifest, table = load_retrieval(settings)
     params = bm25_params(settings)
     masks = FilterMasks(table)
-    questions = dev_questions(settings)
+    questions = dev_questions(settings) if split == "dev" else held_out_questions(settings)
     hits = {
         question.question_id: rank_passages(index, question.text, params, masks.of(question))
         for question in questions
@@ -567,7 +625,7 @@ def make_candidates(settings: Settings, manifest: QuestionsManifest) -> None:
         )
         for question in questions
     ]
-    directory = work_dir(settings)
+    directory = work_dir(settings, split)
     write_lines(directory / CANDIDATES_NAME, records)
     run = CandidatesRun(
         analyzer=settings.answer.analyzer,
@@ -825,6 +883,8 @@ def check_round(settings: Settings, number: int, model: str, prompt_sha256: str)
     """
     if not 1 <= number <= MAX_ROUNDS:
         raise SystemExit(f"The addendum allows rounds 1 to {MAX_ROUNDS}.")
+    if answers_path(settings, "selector", TEST_SPLIT).is_file():
+        raise SystemExit("The test split has been run, and no round runs after it.")
     check_round_settings(settings)
     check_judge_known(settings)
     begun = round_records(settings)
@@ -893,13 +953,18 @@ def _batch(
     attempt: str,
     requests: Mapping[str, Mapping[str, object]],
     cap_usd: float | None = None,
+    split: str = "dev",
 ) -> tuple[RoundRecord, list[Completion]]:
     """Run one batch of a round, or pick up the one already submitted, and log its completions."""
     log = directory / f"completions_{attempt}.jsonl"
     if log.is_file():
         return record, read_log(log, Completion)
     if attempt not in record.batches:
-        check_budget(settings, round_costs(settings, record.model, requests)[1][-1], cap_usd)
+        high = round_costs(settings, record.model, requests)[1][-1]
+        if split == "dev":
+            check_budget(settings, high, cap_usd)
+        else:
+            check_test_budget(settings, directory, record.model, high, cap_usd)
     current = record
 
     def remember(batch_id: str) -> None:
@@ -913,6 +978,57 @@ def _batch(
     ordered = [completions[custom_id] for custom_id in requests if custom_id in completions]
     append_log(log, ordered)
     return current, ordered
+
+
+def answer_all(
+    settings: Settings,
+    selector: ClaudeSelector,
+    baseline: BaselineSelector,
+    records: Sequence[QuestionCandidates],
+    directory: Path,
+    record: RoundRecord,
+    cap_usd: float | None,
+    split: str = "dev",
+) -> list[AnsweredQuestion]:
+    """Answer each question: one batch, a failed request once more, then the baseline.
+
+    Returns:
+        Every question's answer, assembled from the corpus, in the order of *records*.
+    """
+    requests = round_requests(selector, records)
+    record, first = _batch(settings, directory, record, "first", requests, cap_usd, split)
+    sent = {completion.custom_id: [completion] for completion in first}
+    again = {
+        question_id: params
+        for question_id, params in requests.items()
+        if question_id not in sent or failed(sent[question_id][-1])
+    }
+    if again:
+        record, second = _batch(settings, directory, record, "again", again, cap_usd, split)
+        for completion in second:
+            sent.setdefault(completion.custom_id, []).append(completion)
+
+    speeches = speeches_for(settings, records)
+    answers = []
+    for item in records:
+        if not item.candidates:
+            selected = selector.select(item.question, item.candidates)
+        else:
+            completions = sent.get(item.question_id) or [
+                Completion(custom_id=item.question_id, error="no result")
+            ]
+            selected = selector.read(completions, _discount(settings))
+            if selected.output is None:
+                selected = fall_back(
+                    selected, baseline.select(item.question, item.candidates), "failed"
+                )
+        answers.append(
+            AnsweredQuestion(
+                question_id=item.question_id,
+                answer=assemble(selected, item.candidates, speeches),
+            )
+        )
+    return answers
 
 
 def run_round(settings: Settings, number: int, model: str, cap_usd: float | None = None) -> None:
@@ -946,39 +1062,7 @@ def run_round(settings: Settings, number: int, model: str, cap_usd: float | None
         )
         write_report(record, record_path)
 
-    requests = round_requests(selector, records)
-    record, first = _batch(settings, directory, record, "first", requests, cap_usd)
-    sent = {completion.custom_id: [completion] for completion in first}
-    again = {
-        question_id: params
-        for question_id, params in requests.items()
-        if question_id not in sent or failed(sent[question_id][-1])
-    }
-    if again:
-        record, second = _batch(settings, directory, record, "again", again, cap_usd)
-        for completion in second:
-            sent.setdefault(completion.custom_id, []).append(completion)
-
-    speeches = speeches_for(settings, records)
-    answers = []
-    for item in records:
-        if not item.candidates:
-            selected = selector.select(item.question, item.candidates)
-        else:
-            completions = sent.get(item.question_id) or [
-                Completion(custom_id=item.question_id, error="no result")
-            ]
-            selected = selector.read(completions, _discount(settings))
-            if selected.output is None:
-                selected = fall_back(
-                    selected, baseline.select(item.question, item.candidates), "failed"
-                )
-        answers.append(
-            AnsweredQuestion(
-                question_id=item.question_id,
-                answer=assemble(selected, item.candidates, speeches),
-            )
-        )
+    answers = answer_all(settings, selector, baseline, records, directory, record, cap_usd)
     write_lines(answers_path(settings, name), answers)
     fallbacks = sum(line.answer.selected.fallback is not None for line in answers)
     rejected = sum(len(line.answer.rejected) for line in answers)
@@ -990,6 +1074,122 @@ def run_round(settings: Settings, number: int, model: str, cap_usd: float | None
         fallbacks,
         rejected,
         spent(settings),
+    )
+
+
+# --- The test run --------------------------------------------------------------------
+
+
+def check_test_budget(
+    settings: Settings, directory: Path, model: str, high_estimate: float, cap_usd: float | None
+) -> None:
+    """Stop unless the test run has a cap, and this batch could stay within it."""
+    if cap_usd is None:
+        raise SystemExit("The test run needs a cap: pass --max-usd.")
+    price = settings.generation.prices[model]
+    so_far = sum(
+        cost_usd(completion.usage, price, _discount(settings))
+        for path in sorted(directory.glob("completions_*.jsonl"))
+        for completion in read_log(path, Completion)
+    )
+    if so_far + high_estimate > cap_usd:
+        raise SystemExit(
+            f"The test run has spent {so_far:.2f} USD; this batch could cost up to "
+            f"{high_estimate:.2f} USD, beyond its cap of {cap_usd:.2f} USD."
+        )
+
+
+def run_test(settings: Settings, manifest: QuestionsManifest, cap_usd: float | None) -> None:
+    """Answer the test split once, with the chosen model and prompt, and seal the answers.
+
+    Nothing the run measures is computed or logged. The answers stay sealed
+    until the retrieval run on the test split has been made, as the addendum on
+    the test run sets out; only what ran is recorded.
+    """
+    if TEST_ADDENDUM not in committed_preregistration():
+        raise SystemExit(f"The addendum on the test run is not in {PREREGISTRATION} at HEAD.")
+    selector_path = answers_path(settings, "selector", TEST_SPLIT)
+    if selector_path.is_file():
+        raise SystemExit("The test split has been run once, which is all the addenda allow.")
+    check_round_settings(settings)
+    check_judge_known(settings)
+    chosen = dev_choice(settings)
+    name = run_name(chosen.number, chosen.model)
+    prompt = load_selector_prompt(round_dir(settings, name))
+    if prompt.sha256 != chosen.prompt_sha256:
+        raise SystemExit(f"The copy of {name}'s prompt no longer matches its hash.")
+
+    directory = work_dir(settings, TEST_SPLIT)
+    if not (directory / RUN_NAME).is_file():
+        make_candidates(settings, manifest, TEST_SPLIT)
+    retrieval, records = read_candidates(settings, TEST_SPLIT)
+    threshold = read_threshold(settings)
+    index, _, _ = load_retrieval(settings)
+    baseline = BaselineSelector(index, bm25_params(settings), threshold=threshold.threshold)
+    baseline_path = answers_path(settings, "baseline", TEST_SPLIT)
+    if not baseline_path.is_file():
+        speeches = speeches_for(settings, records)
+        lines = [
+            AnsweredQuestion(
+                question_id=record.question_id,
+                answer=assemble(
+                    baseline.select(record.question, record.candidates),
+                    record.candidates,
+                    speeches,
+                ),
+            )
+            for record in records
+        ]
+        write_lines(baseline_path, lines)
+
+    price = settings.generation.prices[chosen.model]
+    selector = ClaudeSelector(prompt, chosen.model, chosen.effort, chosen.max_tokens, price)
+    record_path = directory / ROUND_NAME
+    if record_path.is_file():
+        record = RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
+    else:
+        record = RoundRecord(
+            number=chosen.number,
+            model=chosen.model,
+            effort=chosen.effort,
+            max_tokens=chosen.max_tokens,
+            prompt_sha256=chosen.prompt_sha256,
+            created=now(),
+        )
+        write_report(record, record_path)
+    answers = answer_all(
+        settings, selector, baseline, records, directory, record, cap_usd, TEST_SPLIT
+    )
+    write_lines(selector_path, answers)
+
+    record = RoundRecord.model_validate_json(record_path.read_text(encoding="utf-8"))
+    cost = sum(
+        cost_usd(completion.usage, price, _discount(settings))
+        for path in sorted(directory.glob("completions_*.jsonl"))
+        for completion in read_log(path, Completion)
+    )
+    sealed = SealedRun(
+        model=chosen.model,
+        round=name,
+        prompt_sha256=chosen.prompt_sha256,
+        effort=chosen.effort,
+        max_tokens=chosen.max_tokens,
+        threshold=threshold.threshold,
+        retrieval=retrieval,
+        batches=record.batches,
+        answers_sha256={
+            "baseline": hashlib.sha256(baseline_path.read_bytes()).hexdigest(),
+            "selector": hashlib.sha256(selector_path.read_bytes()).hexdigest(),
+        },
+        cost_usd=round(cost, 4),
+        created=now(),
+    )
+    write_report(sealed, settings.tracked.reports / TEST_RUN_REPORT)
+    logger.info(
+        "The test split is answered and sealed: %d questions with the prompt of %s, %.2f USD",
+        len(answers),
+        name,
+        cost,
     )
 
 
@@ -1191,13 +1391,21 @@ def _rounded(values: tuple[float, float, float]) -> tuple[float, float, float]:
     return (round(values[0], 6), round(values[1], 6), round(values[2], 6))
 
 
-def make_report(settings: Settings) -> None:
-    """Compute every selector's metrics and the comparisons, and write the tracked reports."""
-    run, records = read_candidates(settings)
-    threshold = read_threshold(settings)
-    log = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
+def dev_summaries(
+    settings: Settings, records: Sequence[QuestionCandidates], log: Sequence[QuoteGrade]
+) -> tuple[
+    dict[str, RoundRecord],
+    dict[str, list[QuestionOutcome]],
+    dict[str, int],
+    tuple[SelectorSummary, ...],
+]:
+    """Each selector's and round's outcomes and metrics on the development split.
+
+    Returns:
+        The rounds by name, the outcomes by name, how many quotations of each
+        still wait for the judge, and the summaries, the baseline first.
+    """
     grades = grades_by_key(log)
-    answer = settings.answer
     rounds = {run_name(record.number, record.model): record for record in recorded_rounds(settings)}
     names = answer_names(settings)
     answers = {name: read_answers(settings, name) for name in names}
@@ -1206,6 +1414,32 @@ def make_report(settings: Settings) -> None:
     summaries = tuple(
         summarize(name, outcomes[name], rounds.get(name), waiting[name]) for name in names
     )
+    return rounds, outcomes, waiting, summaries
+
+
+def dev_choice(settings: Settings) -> RoundRecord:
+    """The round whose model and prompt go to the test run, as the addenda choose it."""
+    _, records = read_candidates(settings)
+    log = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
+    chosen = chosen_model(settings, records, log)
+    if chosen is None:
+        raise SystemExit("No model is chosen on the development split yet.")
+    rounds, _, _, summaries = dev_summaries(settings, records, log)
+    number = leading_round(summaries, rounds, chosen, judge_accepted(settings))
+    if number is None:
+        raise SystemExit(f"No round of {chosen} can be chosen yet.")
+    return rounds[run_name(number, chosen)]
+
+
+def make_report(settings: Settings) -> None:
+    """Compute every selector's metrics and the comparisons, and write the tracked reports."""
+    run, records = read_candidates(settings)
+    threshold = read_threshold(settings)
+    log = read_log(work_dir(settings) / JUDGE_DIR / GRADES_NAME, QuoteGrade)
+    grades = grades_by_key(log)
+    answer = settings.answer
+    rounds, outcomes, waiting, summaries = dev_summaries(settings, records, log)
+    names = [summary.name for summary in summaries]
 
     comparisons = []
     for name in names:
@@ -1351,6 +1585,9 @@ def main() -> None:
     judge.add_argument("--max-usd", type=float, default=None, help=cap_help)
     judge.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     commands.add_parser("report", help="Write the metrics and the comparisons.")
+    test_run = commands.add_parser("test-run", help="Answer the test split once, and seal it.")
+    test_run.add_argument("--max-usd", type=float, required=True, help="The test run's cap in USD.")
+    test_run.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     args = parser.parse_args()
 
     configure_logging()
@@ -1370,6 +1607,10 @@ def main() -> None:
         _confirmed(args, "The judge")
         load_key(args.env_file or settings.data.search.parents[1] / ".env")
         run_judge(settings, args.max_usd)
+    elif args.command == "test-run":
+        _confirmed(args, "The test run")
+        load_key(args.env_file or settings.data.search.parents[1] / ".env")
+        run_test(settings, manifest, args.max_usd)
     else:
         make_report(settings)
 
