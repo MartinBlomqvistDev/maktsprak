@@ -611,3 +611,28 @@ check above has passed and an addendum has recorded the tuned configuration
 with the hash of its report. The script refuses to run without that record and
 refuses to run a second time. The paired bootstrap uses the seed of the BM25
 baseline, 20261124.
+
+### 2026-11-22: the search service's memory, before the embedding comparison
+
+The storage rule gives the search service 2 GiB, the memory of the inference
+service's instance on Cloud Run. That figure was set before anything had
+counted the query model, which shares the memory with the index. The storage
+spike measured both (`docs/search/adr-001-index-store.md`). With vectors of
+1 024 dimensions, the only exact store within 2 GiB holds them as int8, at a
+p95 of 470 ms. No local model of that size could be measured beside it. Kept at
+2 GiB, the rule would choose the embedding model by its memory before the
+comparison has measured how well it retrieves.
+
+From this addendum on, the service runs with one vCPU and 4 GiB, the most Cloud
+Run allows for one vCPU, and the storage rule's bound on memory is 4 GiB. The
+rest of the rule stands: a search p95 of 500 ms warm and a cold start of 8 s,
+measured in a container with one vCPU. The storage decision holds under both
+bounds.
+
+The memory costs nothing at this page's traffic. A service billed by request
+gets 360 000 GiB-seconds a month free, by Cloud Run's price page on 2026-11-22,
+which at 4 GiB is 25 hours of instance time. A ping every five minutes, as the
+inference service gets, uses well under one of them.
+
+I decided this before the embedding comparison ran, so the bound cannot
+follow from its result.

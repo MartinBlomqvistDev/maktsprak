@@ -1,0 +1,238 @@
+# The storage spike behind docs/search/adr-001-index-store.md. Read by
+# search_service/spike/settings.py, which rejects unknown keys.
+
+# The storage rule of the pre-registration: the simplest store whose search
+# stays within these bounds in a container with one vCPU.
+budget:
+  p95_ms: 500
+  cold_start_s: 8
+  memory_gib: 2
+
+# The container every measurement runs in, as docker run takes the limits.
+# threads pins the thread pools of numpy's BLAS and LanceDB's compute threads
+# to the one CPU, as the service's own image would. LanceDB's IO threads keep
+# their default: pinned to one as well, they made its searches slower, and the
+# report keeps that run among its superseded runs.
+container:
+  cpus: "1"
+  memory: 2g
+  threads:
+    OMP_NUM_THREADS: "1"
+    OPENBLAS_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+    LANCE_CPU_THREADS: "1"
+
+# Synthetic vectors: unit vectors drawn from a seeded generator, chunk by
+# chunk. A chunk depends only on the seed, the dimension and its number, so a
+# store of either kind holds the same vectors.
+vectors:
+  seed: 20261126
+  chunk_rows: 16384
+
+# One search: each leg ranks depth passages under the filter, as deep as the
+# rankings the hybrid is tuned with, reciprocal rank fusion with the constant
+# rrf_k merges the two rankings, and the best hits come back with their text. A
+# numpy store scores only the passages a filter allows when they are fewer than
+# gather_below of all; otherwise it scores every passage and masks the rest.
+search:
+  depth: 1000
+  hits: 10
+  rrf_k: 60
+  gather_below: 0.2
+
+# LanceDB's full-text index, set up to match the BM25 analyzer the tuning
+# chose: Snowball's Swedish stemmer, stop words kept, letters such as å and ä
+# kept apart from a and o, no token dropped for its length. Every vector index
+# uses the dot product, which is the cosine for unit vectors.
+lance:
+  fts:
+    language: Swedish
+    stem: true
+    remove_stop_words: false
+    ascii_folding: false
+    lower_case: true
+    max_token_length: null
+    with_position: false
+  scalar_indexes: {party: BITMAP, day: BTREE, person_id: BTREE}
+  metric: dot
+
+# The check of LanceDB's full-text search against its documentation
+# (probe_fts.py). Stemming: the commonest common_tokens words of the corpus and
+# drawn_tokens more drawn at random are grouped by LanceDB's stems and by
+# Snowball's. BM25: every passage_step-th passage is indexed both ways, and k1
+# and b are fitted on one-word queries over the grids, given as first, last
+# and step. questions natural questions of the development split are then
+# scored both ways.
+probe:
+  seed: 20261128
+  common_tokens: 5000
+  drawn_tokens: 15000
+  passage_step: 28
+  one_word_queries: [kärnkraft, skatt, skolan, pensionärer, och]
+  hits_per_query: 400
+  k1_grid: [0.5, 2.5, 0.05]
+  b_grid: [0.0, 1.0, 0.025]
+  questions: 40
+
+# The questions sent: the development split of these sets, never the test
+# split. A question without a filter of its own gets one, drawn with these
+# weights. warmup_queries questions of warmup_set go first and are not
+# counted. The view of the eight parties is measured on party_view_questions
+# natural questions.
+workload:
+  seed: 20261127
+  sets: [natural, keyword, filtered, stance]
+  warmup_set: interpellation
+  warmup_queries: 30
+  filters: {party: 0.35, period: 0.35, speaker: 0.15, party_period: 0.15}
+  party_view_questions: 50
+
+# How each store is measured: cold starts with the page cache dropped before
+# each, then the warm runs in the container of the last cold start. Each leg
+# alone is measured on the first leg_queries searches, and each point of a
+# sweep on the first sweep_queries. A phase stops once it has run for
+# phase_limit_s, and the report says how many searches it holds. The slim
+# image holds no torch and serves every store, alone or with a model run by
+# ONNX Runtime; the full image adds torch, serves a model run by torch, and
+# builds the stores and the models.
+runs:
+  cold_starts: 3
+  port: 18080
+  images: {slim: maktsprak-spike-slim, full: maktsprak-spike}
+  volume: maktsprak-spike-stores
+  leg_queries: 100
+  sweep_queries: 100
+  phase_limit_s: 600
+  ready_timeout_s: 180
+  request_timeout_s: 120
+
+# The stores measured. A numpy store is option B and a lance store option A.
+# index names LanceDB's vector index; without one, LanceDB searches the vectors
+# exactly, as a numpy store always does. sweep lists further search parameters
+# an approximate index is measured with, beyond LanceDB's defaults. LanceDB
+# refuses an HNSW search whose ef is below the number of rows asked for, so
+# every ef is at least the depth.
+stores:
+  - {name: numpy-384-float32, kind: numpy, dim: 384, format: float32}
+  - {name: numpy-384-float16, kind: numpy, dim: 384, format: float16}
+  - {name: numpy-384-int8, kind: numpy, dim: 384, format: int8}
+  - {name: numpy-1024-float32, kind: numpy, dim: 1024, format: float32}
+  - {name: numpy-1024-float16, kind: numpy, dim: 1024, format: float16}
+  - {name: numpy-1024-int8, kind: numpy, dim: 1024, format: int8}
+  - {name: lance-384-float32, kind: lance, dim: 384, format: float32}
+  - {name: lance-384-float16, kind: lance, dim: 384, format: float16}
+  - {name: lance-1024-float32, kind: lance, dim: 1024, format: float32}
+  - {name: lance-1024-float16, kind: lance, dim: 1024, format: float16}
+  - name: lance-384-float32-ivfpq
+    kind: lance
+    dim: 384
+    format: float32
+    index: IVF_PQ
+    sweep: [{nprobes: 20}, {nprobes: 20, refine_factor: 10}, {nprobes: 50, refine_factor: 10}]
+  - name: lance-1024-float32-ivfpq
+    kind: lance
+    dim: 1024
+    format: float32
+    index: IVF_PQ
+    sweep: [{nprobes: 20}, {nprobes: 20, refine_factor: 10}, {nprobes: 50, refine_factor: 10}]
+  - name: lance-384-float32-hnswsq
+    kind: lance
+    dim: 384
+    format: float32
+    index: IVF_HNSW_SQ
+    sweep: [{ef: 1500}, {ef: 3000}]
+  - name: lance-1024-float32-hnswsq
+    kind: lance
+    dim: 1024
+    format: float32
+    index: IVF_HNSW_SQ
+    sweep: [{ef: 1500}, {ef: 3000}]
+
+# The query models. A service with a local model embeds each question itself,
+# so the model's weights share the container's memory with the store, loading
+# it adds to the cold start and embedding the question adds to every search.
+# These are the local candidates of phase 3's draft addendum, at the revisions
+# it pins, with the prompt each model card gives for a question. Each is
+# measured in two runtimes: torch, with sentence-transformers as phase 3
+# embeds with, in float32 and bfloat16; and onnx, the model exported to ONNX
+# and run by ONNX Runtime with the tokenizers library and without torch, in
+# float32 and with its weights quantized to int8. int8 is quantized from the
+# float32 export, so onnx lists fp32 first. onnx.threads sizes ONNX Runtime's
+# pools to the one CPU. Each variant is checked against sentence-transformers
+# in float32 on check_texts questions of the workload, then measured alone,
+# then with every store of its dimension that was within the budget alone, if
+# it was within the budget alone too. The weights are read from the Hugging
+# Face cache on this machine and are never downloaded by the spike. The API
+# candidate runs outside the container and is not measured here.
+query_models:
+  runtimes:
+    torch: [fp32, bf16]
+    onnx: [fp32, int8]
+  onnx: {opset: 18, threads: 1}
+  check_texts: 100
+  models:
+    - name: bekko-a25m
+      model: hotchpotch/bekko-embedding-v1-a25m
+      revision: 44f0b8af0f487acd0ccf1a7cb7ae7a29a6dfc09c
+      dim: 384
+      query_prompt: ""
+      max_tokens: 1024
+    - name: saga-embed
+      model: SagaEmbed/saga-embed_v1
+      revision: 5f5975288b821c190ab9e51134cea45516199816
+      dim: 1024
+      query_prompt: "task: retrieval | query: "
+      max_tokens: 512
+    - name: arctic-l-v2
+      model: Snowflake/snowflake-arctic-embed-l-v2.0
+      revision: ac6544c8a46e00af67e330e85a9028c66b8cfd9a
+      dim: 1024
+      query_prompt: "query: "
+      max_tokens: 1024
+
+# The inference service's image (inference_service/), rebuilt with the same
+# base, torch, requirements and app, its weights saved from the Hugging Face
+# cache on this machine instead of downloaded, and started cold under the same
+# limits as the spike's containers. The repository records that service's cold
+# start on Cloud Run (cloud_run_cold_s, in cloud_run_source), so the ratio of
+# the two puts a factor on the cold starts measured here. Its container gets
+# no thread settings, since its image sets none. Every request sends the text
+# the keep-warm workflow sends.
+#
+# The service's configuration on Cloud Run, read on 2026-11-22: every revision
+# has one CPU and 2 GiB, the limits of the spike's containers, and startup CPU
+# boost. By Google's page on CPU limits, the boost gives an instance of one CPU
+# two while it starts and for 10 seconds after, which a container here never
+# gets. The only revision since the weights were baked in was created on
+# 2026-07-17, the day they were; the 26 s were written down on 2026-07-22, and
+# when they were measured is not recorded.
+#
+# No revision names an execution environment, so Cloud Run chose the first
+# generation (gVisor) or the second (a microVM) by the features the service
+# uses, and the configuration does not say which. By Google's page on the two,
+# the first has fast cold starts and the second longer ones for some services.
+# The factor therefore holds for the search service only if it runs in the
+# same generation as the inference service, and its deployment names its
+# generation.
+#
+# The container gets the limits alone: a process in it sees every CPU of
+# Docker's virtual machine and gets one CPU's time from the quota. pinned_cpu
+# repeats the cold starts with the container pinned to that one CPU as well, so
+# that a process sees one CPU. How many CPUs the service sees on Cloud Run is
+# not recorded, so the report gives a factor for each, with how many threads
+# the service ran and how often the quota held it back.
+reference:
+  image: maktsprak-inference-reference
+  model: MartinBlomqvist/maktsprak_classifier_clean
+  revision: 29e45730dd0ee942341f007f96322f02322a1936
+  port: 7860
+  text: "Uppvärmning av inferenstjänsten."
+  cold_starts: 3
+  warm_requests: 20
+  cloud_run_cold_s: 26
+  cloud_run_warm_s: 0.2
+  cloud_run_source: .github/workflows/keep-warm.yml
+  cloud_run_cpu: "1"
+  cloud_run_memory: 2Gi
+  cloud_run_startup_cpu_boost: true
+  pinned_cpu: "2"
