@@ -1,0 +1,68 @@
+name: Check the search
+
+# Once a day, ask the search behind maktsprak.se/fraga a fixed question and fail
+# if the speech it should find is not among the ten results. keep-warm only
+# warns, since a cold start or a slow ping is no reason to wake anyone; this one
+# fails, because a search that no longer finds a speech it found when it was
+# built is broken in a way nobody would otherwise notice.
+#
+# The question is one of the page's examples. Its expected speech, H10939-52, is
+# the first result both of the hybrid and of BM25 alone, so the check holds when
+# the question's vector comes too late and the service answers from BM25. If the
+# index is rebuilt and the speech drops out of the ten, pick a new expected
+# speech that the hybrid and BM25 alone both rank among their ten.
+#
+# Like keep-warm, it goes through the site's own proxy, and it asks for a search
+# alone: no language model is called and nothing is taken from the page's budget.
+
+on:
+  schedule:
+    # 06:17 UTC every day. Off the hour, since GitHub's scheduler is busiest then.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: fraga-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Ask the fixed question
+        env:
+          QUESTION: "Vad har sagts om att avveckla kärnkraften?"
+          EXPECTED: "H10939-52"
+        run: |
+          body=$(jq -cn --arg q "$QUESTION" '{question: $q, filters: {}, mode: "search"}')
+          # The first request may wake the service; one more attempt after a
+          # pause covers a cold start that outruns the timeout.
+          code="000"
+          for attempt in 1 2; do
+            code=$(curl -s -o response.ndjson -w '%{http_code}' --max-time 120 \
+              -X POST https://maktsprak.se/api/fraga \
+              -H 'Content-Type: application/json' -d "$body" || echo "000")
+            echo "attempt $attempt: HTTP $code"
+            if [ "$code" = "200" ]; then break; fi
+            sleep 30
+          done
+          if [ "$code" != "200" ]; then
+            echo "::error::/api/fraga answered HTTP $code twice"
+            exit 1
+          fi
+          line=$(head -n 1 response.ndjson)
+          if [ "$(echo "$line" | jq -r '.type')" != "search" ]; then
+            echo "::error::the first line is not a search line"
+            exit 1
+          fi
+          retrieval=$(echo "$line" | jq -r '.retrieval')
+          rank=$(echo "$line" | jq --arg id "$EXPECTED" '[.hits[].anf_id] | index($id)')
+          echo "retrieval: $retrieval; $EXPECTED at position $rank (from 0)"
+          if [ "$rank" = "null" ]; then
+            echo "::error::$EXPECTED is not among the ten results"
+            exit 1
+          fi
+          if [ "$retrieval" != "hybrid" ]; then
+            echo "::warning::the question's vector did not come in time, and BM25 answered alone"
+          fi

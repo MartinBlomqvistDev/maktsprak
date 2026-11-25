@@ -5,6 +5,12 @@ name: Keep inference warm
 # the door through the site's own proxy during Swedish waking hours, so a visitor
 # is unlikely to be the one who wakes it.
 #
+# The search service behind /fraga scales to zero too, and the second step wakes
+# it the same way. It asks for a search alone: the answer step is not run, so no
+# language model is called and nothing is taken from the page's monthly budget.
+# The one outside call is for the question's vector, which costs a fraction of a
+# cent a month at this rate.
+#
 # Deliberately goes via maktsprak.se rather than the Cloud Run URL directly: that
 # URL is only known to the Vercel environment, and putting it in a public workflow
 # would expose /predict to anyone who reads this file.
@@ -40,7 +46,8 @@ concurrency:
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    # Two steps of at most 90 seconds each, with room for the runner itself.
+    timeout-minutes: 4
     steps:
       - name: Warm the model
         run: |
@@ -61,4 +68,18 @@ jobs:
           # warning below stays truthful.
           if [ "$code" != "200" ]; then
             echo "::warning::keep-warm got HTTP $code"
+          fi
+
+      - name: Warm the search
+        run: |
+          start=$(date +%s)
+          # mode "search" runs the search alone, without the answer step.
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 90 \
+            -X POST https://maktsprak.se/api/fraga \
+            -H 'Content-Type: application/json' \
+            -d '{"question":"Uppvärmning av sökningen.","filters":{},"mode":"search"}' || echo "000")
+          echo "fraga -> HTTP $code in $(( $(date +%s) - start ))s"
+          # Warn, do not fail, for the reasons the step above gives.
+          if [ "$code" != "200" ]; then
+            echo "::warning::keep-warm got HTTP $code from /api/fraga"
           fi
