@@ -1,0 +1,1708 @@
+{
+  "model": "claude-opus-5-5",
+  "effort": "low",
+  "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+  "cost_usd": 0.6885,
+  "verdicts": [
+    {
+      "pair_id": "pair-001",
+      "grade": 2,
+      "reason": "Talaren säger uttryckligen att formen behövs eftersom högskolans utbildningar akademiseras alltmer. Därför krävs en samlad form för yrkesutbildningar med viss högskolestatus. Det besvarar frågan, men argumentet är kortfattat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1055,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00642,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-002",
+      "grade": 1,
+      "reason": "Talaren stöder att jobbskatteavdraget förstärks och prioriterar det framför att avskaffa värnskatten. Hen hänvisar också till en rapport om att skattesänkningarna har gynnat låg- och medelinkomsttagare. Men egentliga argument för ett ytterligare jobbskatteavdrag ges knappt, utöver en allmän princip om sänkta skatter.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1114,
+        "output_tokens": 150,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007456,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-003",
+      "grade": 2,
+      "reason": "Talaren säger att nollvisionen och den nuvarande strategin inte fungerar eftersom det saknas konkreta mål per år för att minska dödsfallen. Talaren menar att regeringens ledning och styrning kräver detaljerade mål och en strategi för att nå dem. Därmed besvaras båda delarna av frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1159,
+        "output_tokens": 128,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007196,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-004",
+      "grade": 1,
+      "reason": "Utdraget handlar om att skicka svenska soldater/officerare utomlands i nordiskt samarbete (Grönland), men inte om att ingripa tidigare i konflikter för att förhindra massmord på civila. Det berör ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 789,
+        "output_tokens": 107,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005296,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-005",
+      "grade": 2,
+      "reason": "Utdraget anger argument för ett åttonde jobbskatteavdrag riktat till låg- och medelinkomsttagare. Det ska återupprätta arbetslinjen mot bidragslinjen, låta de som arbetar behålla mer av sin lön och göra det lönsamt att gå från bidrag till arbete. Exemplen med konkreta belopp stöder argumenten.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1129,
+        "output_tokens": 145,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007416,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-006",
+      "grade": 1,
+      "reason": "Utdraget handlar om hållbar utveckling men gäller EU:s strategi och ett protokoll i EU-fördraget, inte argument för en fortsatt utvecklad svensk strategi.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1052,
+        "output_tokens": 81,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005828,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-007",
+      "grade": 1,
+      "reason": "Utdraget handlar om ekologisk produktion och kritiserar regeringens otydlighet. Talaren antyder att skatter och pålagor, som bränsleskatt och handelsgödselskatt, försvårar för bönderna. Det ger inget konkret svar på hur fler ska odla ekologiskt, och övergödningen av Östersjön tas inte upp.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1254,
+        "output_tokens": 139,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007796,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-008",
+      "grade": 1,
+      "reason": "Talaren förespråkar frihandel och öppna gränser och kritiserar tullar på solenergiteknik, men argumenterar utifrån klimat och teknikspridning, inte Sveriges välstånd i allmänhet. Utdraget berör ämnet och ger en delvis relevant ståndpunkt men besvarar inte frågan om välstånd fullt ut.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1263,
+        "output_tokens": 140,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007852,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-009",
+      "grade": 2,
+      "reason": "Utdraget besvarar säkerhetsdelen: biverkningar är oftast milda, ingen har avlidit av vaccinet efter 14 miljoner doser. Tvångsdelen tas inte upp, men en central del av frågan besvaras.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1014,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006036,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-010",
+      "grade": 1,
+      "reason": "Utdraget handlar om föräldraförsäkringen, kvotering, vårdnadsbidrag och valfrihet ur ett jämställdhetsperspektiv. Det tar dock inte upp en privatisering av sjuk- och föräldraförsäkringen eller om en sådan skulle drabba kvinnor hårdare.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1234,
+        "output_tokens": 127,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007476,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-011",
+      "grade": 2,
+      "reason": "Talaren kritiserar uttryckligen att man tar bort nationella prov för att minska administrationen och anför argument: det finns andra administrativa bördor att ta bort, och kunskapsresultat behöver samlas in för att följa elevernas utveckling. Det besvarar frågan, om än kortfattat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1252,
+        "output_tokens": 119,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007388,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-012",
+      "grade": 1,
+      "reason": "Utdraget nämner extratjänster i välfärden och utbildningskontrakt som förslag mot arbetslösheten, men det är bara en uppräkning. Något argument för statliga satsningar på kommunerna eller för extratjänster utvecklas inte.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1054,
+        "output_tokens": 102,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006256,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-013",
+      "grade": 2,
+      "reason": "Talaren kopplar mobbning och trakasserier till att lärare och rektorer saknar befogenheter och står maktlösa, och efterlyser ökade befogenheter. Därmed besvaras frågans andra del, även om orsakerna till ökningen inte förklaras närmare.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 911,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005844,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-014",
+      "grade": 2,
+      "reason": "Utdraget beskriver att avräkning av stöd till Ukraina från biståndsbudgeten drabbar fattiga länder och biståndsorganisationer. Det gäller stöd till Ukraina generellt, inte specifikt mottagandet av flyktingar, men konsekvensen för biståndet beskrivs ändå tydligt och svarar i stort sett på frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 943,
+        "output_tokens": 143,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006632,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-015",
+      "grade": 2,
+      "reason": "Talaren (MP) anser att Sverige ska vara pådrivande, att EU måste kliva fram och sätta ribban inför Paris, och föreslår tre bindande mål för utsläpp, förnybar energi och energibesparingar. Det besvarar vilken roll Sverige vill att EU ska ta.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1023,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006492,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-016",
+      "grade": 2,
+      "reason": "Utdraget beskriver att biståndet drogs ned för att finansiera mottagandet av ukrainska flyktingar, att dessa flyktingar aldrig kom och att neddragningarna trots beslut om återföring fick stora konsekvenser för biståndet. Det besvarar frågan, om än övergripande.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1349,
+        "output_tokens": 121,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007816,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-017",
+      "grade": 1,
+      "reason": "Utdraget handlar om fredsfrämjande insatser och ansvaret att förhindra massmord på civila, och nämner regionala organisationer som Nato och EU. Det tar dock inte ställning till ett gemensamt nordiskt agerande eller till att skicka soldater tidigare.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 836,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005604,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-018",
+      "grade": 2,
+      "reason": "Utdraget säger uttryckligen att Sverige vill att EU driver en ambitiös politik även efter 2020 och tar fortsatt ledarskap i arbetet för en ny global klimatöverenskommelse i Paris 2015. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1125,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00666,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-019",
+      "grade": 2,
+      "reason": "Utdraget ger argument: EBO leder till trångboddhet och sociala påfrestningar, boendet är avgörande för jobbetablering. Det föreslår lagstiftning om att alla kommuner ska ansvara för mottagande (lex Vellinge) och att staten tar större ansvar genom ankomstboende och ordnat boende.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1109,
+        "output_tokens": 130,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007036,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-020",
+      "grade": 2,
+      "reason": "Talaren stöder att EU tar fram en gemensam hållning för säker, etisk och ansvarsfull AI, med ökade investeringar, och kopplar AI till att stärka välfärden. Utdraget tar alltså ställning för EU-satsningar på etiskt säker AI med välfärden som motiv. Forskning nämns dock inte uttryckligen, och fokus ligger på investeringar och regelverk, så svaret är inte helt direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1009,
+        "output_tokens": 169,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007416,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-021",
+      "grade": 2,
+      "reason": "Talaren kritiserar statliga bolag som konkurrerar med privata aktörer på öppna marknader (Infranord, Swedesurvey) och kräver motivering. Det ger en ståndpunkt om när statligt ägande inte är motiverat, och därmed indirekt ett kriterium: verksamhet som lika gärna kan skötas av privata aktörer bör inte vara statlig. Talaren säger dock inte uttryckligen när statligt ägande är motiverat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1046,
+        "output_tokens": 177,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007724,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-022",
+      "grade": 2,
+      "reason": "Utdraget besvarar båda delarna av frågan. Talaren säger att vaccinering har varit frivillig och att ingen har fått vaccin mot sin vilja. Talaren menar också att rigorösa godkännandeprocesser gör att vacciner är säkra och att befolkningen kan lita på dem.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1176,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007104,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-023",
+      "grade": 2,
+      "reason": "Talaren argumenterar för tidigt ingripande med hänvisning till Rwanda och föreslår uttryckligen att de nordiska länderna tillsammans bör kunna sätta trupp på plats. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 965,
+        "output_tokens": 97,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.0058,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-024",
+      "grade": 1,
+      "reason": "Utdraget tar upp mobbning och pekar ut lärarnas befogenheter och kunskap som avgörande för att minska den. Det kopplar alltså befogenheter till förekomsten av mobbning. Det förklarar dock inte varför mobbningen har blivit vanligare, och det påstår inte att befogenheterna har minskat. Frågan besvaras därför delvis men inte direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 976,
+        "output_tokens": 150,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006904,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-025",
+      "grade": 2,
+      "reason": "Utdraget argumenterar för att staten ska ta större ansvar och att Sverige som helhet, inte enskilda kommuner, ska ta emot flyktingar. Det föreslår en solidaritetsbonus för att avlasta de kommuner som tar störst ansvar. Någon tvingande skyldighet för alla kommuner nämns dock inte, och boendefrågan berörs bara indirekt via bostadspolitiken. Utdraget besvarar ändå frågans kärna om fördelat ansvar och statens roll.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1126,
+        "output_tokens": 194,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.008384,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-026",
+      "grade": 2,
+      "reason": "Utdraget besvarar frågan direkt. Det beskriver hur avräkningarna påverkar biståndet: Sida måste skjuta fram eller omprioritera utbetalningar, och omprioriteringarna får effekt. Talaren påpekar samtidigt att ramen ökat och att verksamhet kan få stöd igen senare. Avräkningarnas storlek beror på antalet flyktingar.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1134,
+        "output_tokens": 155,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007636,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-027",
+      "grade": 2,
+      "reason": "Utdraget anför argument mot att avskaffa de tidsbegränsade licenserna: vapnen är särskilt stöldbegärliga och farliga, och därför behövs kontinuerlig uppföljning och kontroll av att förutsättningarna för tillstånd är uppfyllda.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1095,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00664,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-028",
+      "grade": 1,
+      "reason": "Utdraget handlar om barnäktenskap, äktenskapsförord och föräldrars inflytande (mahr), alltså om ämnet. Det argumenterar dock inte för varför unga själva ska få välja vem de gifter sig med i stället för föräldrarna.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1053,
+        "output_tokens": 106,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006332,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-029",
+      "grade": 2,
+      "reason": "Talaren tar ställning mot Natomedlemskap och argumenterar för det: förespråkarna saknar trovärdighet eftersom de avskaffat värnplikten och rustat ned försvaret, argumenten för medlemskap övertygar inte och den militära alliansfriheten tjänar landet väl. Utdraget ger alltså argument mot medlemskap, även om resonemanget är tunt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1006,
+        "output_tokens": 151,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007044,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-030",
+      "grade": 2,
+      "reason": "Talaren visar att dödsolyckorna ökar trots nollvisionen och lyfter fram att Arbetsmiljöverket saknar konkreta årliga mål för att minska dödsfallen. Det besvarar i stort sett frågan, även om talaren inte uttryckligen kräver årliga mål.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1239,
+        "output_tokens": 119,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007336,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-031",
+      "grade": 2,
+      "reason": "Talaren yrkar bifall till betänkandet om vidareutvecklad strategi och motiverar det: hållbar utveckling står i regeringsformen, solidaritet mellan generationer och länder, långsiktighet samt sambandet mellan ekonomi, social rättvisa och miljö. Det är argument för strategin.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1136,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007024,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-032",
+      "grade": 1,
+      "reason": "Utdraget handlar om den maritima strategin och sjöfartens klimatpåverkan, med hållbar utveckling som visionens grund. Det ger dock inga argument för att anta en fortsatt utvecklad nationell strategi för hållbar utveckling. Ämnet berörs alltså bara perifert.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1289,
+        "output_tokens": 120,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007556,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-033",
+      "grade": 2,
+      "reason": "Talaren anger tydligt att Sverigedemokraterna vill avskaffa straffrabatten helt för alla mellan 18 och 21 år, alltså inte bara vid grova brott. Det besvarar frågan med en tydlig ståndpunkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1021,
+        "output_tokens": 102,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006124,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-034",
+      "grade": 2,
+      "reason": "Talaren tar ställning mot Nato-medlemskap och anför vissa skäl: 200 år av alliansfrihet har tjänat Sverige väl och Nato är en kärnvapenallians. Argumenten är dock tunna och utvecklas inte, men de besvarar frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1090,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.0066,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-035",
+      "grade": 1,
+      "reason": "Utdraget handlar om EU:s etiska ramverk för AI och nämner ökade investeringar, men tar inte uttryckligen ställning till om EU redan nu bör satsa på forskning om etiskt säker AI med koppling till välfärden. Det berör ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1174,
+        "output_tokens": 118,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007056,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-036",
+      "grade": 2,
+      "reason": "Utdraget beskriver effekten: notan skickas till världens fattigaste, avräkningarna var så höga att kommunerna riskerade att bli största biståndsmottagare, och pengarna går till administration i stället för fattigdomsbekämpning. Det ger också MP:s förslag att minimera avräkningarna. Detta besvarar frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1149,
+        "output_tokens": 133,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007256,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-037",
+      "grade": 1,
+      "reason": "Utdraget handlar om barnäktenskap och tvång, men talaren argumenterar för att likställa alla äktenskap under 18 år med tvång, inte för varför unga själva ska få välja partner i stället för föräldrarna. Det berör ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1164,
+        "output_tokens": 112,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006896,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-038",
+      "grade": 1,
+      "reason": "Utdraget argumenterar för en hållbar strategi för svensk sjöfart, inte för en övergripande nationell strategi för hållbar utveckling. Det berör ordet hållbarhet men inte frågans ämne, en svensk strategi för hållbar utveckling.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1139,
+        "output_tokens": 107,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006696,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-039",
+      "grade": 1,
+      "reason": "Utdraget handlar om nationella prov och lärares administrativa arbete. Det beskriver dock åtgärder för att minska bördan, som frivilliga prov och digitalisering, och för inte fram argument mot att ta bort proven. Det ligger på ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1231,
+        "output_tokens": 115,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007224,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-040",
+      "grade": 1,
+      "reason": "Utdraget handlar om privata aktörer kontra offentlig drift och lyfter privata monopol och svårigheter med upphandling som problem. Det gäller dock entreprenader inom offentlig verksamhet, inte statligt ägande av företag, och anger inte när statligt ägande är motiverat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1116,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006804,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-041",
+      "grade": 2,
+      "reason": "Talaren argumenterar för fler och större jobbskatteavdrag: det ska löna sig att arbeta även för låginkomsttagare, att gå från bidrag till arbete och marginaleffekterna ska bort. Det besvarar frågan om argument, om än kortfattat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 840,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00554,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-042",
+      "grade": 2,
+      "reason": "Talaren (L) argumenterar mot att avskaffa femårsomprövningen. Utan den skulle man efter ett år kunna ha två pistoler hemma för alltid utan att vara aktiv i en förening, utan att visa skjutskicklighet och utan att delta i sporten. Det är ett argument av det slag frågan efterfrågar.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1042,
+        "output_tokens": 132,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006808,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-043",
+      "grade": 1,
+      "reason": "Utdraget handlar om vaccination i Sverige men gäller vaccinationstakt och kapacitet. Det säger inget om huruvida vaccinerna är säkra eller om någon har tvingats att vaccinera sig.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 886,
+        "output_tokens": 91,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005364,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-044",
+      "grade": 1,
+      "reason": "Utdraget handlar om nationella prov och lärares administration. Det redovisar dock regeringens åtgärder för att minska bördan: frivilliga prov i årskurs 6, färre prov i gymnasiet och digitalisering. Det framförs inga argument mot att ta bort nationella prov. Möjligen antyds digitalisering som alternativ, men det formuleras inte som ett argument mot borttagning.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1275,
+        "output_tokens": 154,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00818,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-045",
+      "grade": 1,
+      "reason": "Utdraget handlar om vapenlagstiftningen och tar upp digital ansökan, förvaringskrav och införseltillstånd, men inte den återkommande femårskontrollen av vapentillstånd. Det allmänna resonemanget om att motverka illegala vapen rör ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1272,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007568,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-046",
+      "grade": 1,
+      "reason": "Talaren diskuterar frihandel kontra protektionism, bland annat EU:s tull på brasiliansk etanol, och antyder kritik mot tullar. Utdraget består dock mest av retoriska frågor och tar ingen tydlig ställning till vad som är bäst för Sveriges välstånd.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 823,
+        "output_tokens": 119,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005672,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-047",
+      "grade": 2,
+      "reason": "Utdraget förklarar varför SD är emot: ökat antal unga med könsdysfori och psykiatrisk samsjuklighet, att många växer ur diagnosen och att unga riskerar att inte få rätt vård. Det antyder att unga med psykiska problem behöver annan vård, men ger inget konkret förslag om vad som borde göras med vården. Första delen av frågan besvaras alltså tydligt, den andra bara implicit.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 984,
+        "output_tokens": 165,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007236,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-048",
+      "grade": 2,
+      "reason": "Talaren tar tydlig ställning för frihandel och öppenhet som grund för Sveriges välstånd och vill riva handelshinder. Argumenten gäller exportberoende, resurshushållning och teknikspridning. Tullar nämns inte uttryckligen, men ståndpunkten besvarar frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1028,
+        "output_tokens": 122,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006552,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-049",
+      "grade": 1,
+      "reason": "Utdraget handlar om sex- och samlevnadsundervisningen men talaren försvarar snarare regleringen och för inte fram argument mot att ta bort skolledningens ansvar. Skolledningens ansvar nämns inte.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1025,
+        "output_tokens": 94,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00598,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-050",
+      "grade": 1,
+      "reason": "Utdraget handlar om gymnasial lärlingsutbildning och yrkesutbildning. Eftergymnasial yrkesutbildning nämns bara i förbigående. Det förklarar inte varför en särskild yrkesinriktad eftergymnasial utbildningsform behövs i förhållande till en alltmer teoretisk högskola. Det berör ämnet yrkesutbildning men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1530,
+        "output_tokens": 159,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.0093,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-051",
+      "grade": 1,
+      "reason": "Utdraget nämner jobbskatteavdraget och anger kort argumentet att det ska löna sig att jobba för både män och kvinnor. Det mesta handlar dock om Socialdemokraternas skiftande hållning och om politiken i Halland. Argumentationen för ett ytterligare avdrag till låg- och medelinkomsttagare är därmed tunn.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 889,
+        "output_tokens": 140,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006356,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-052",
+      "grade": 2,
+      "reason": "Talaren säger uttryckligen att alla brott som begås av gärningsmän över 18 år ska leda till fulla påföljder, inte bara grova brott. Det besvarar frågan direkt med en tydlig ståndpunkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1130,
+        "output_tokens": 94,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.0064,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-053",
+      "grade": 1,
+      "reason": "Utdraget handlar om målet om en giftfri vardag och efterlyser en verktygslåda av åtgärder. Det antyder att problemet går över departements- och myndighetsgränser och att stuprörstänkande hindrar, men det förklarar inte uttryckligen varför målet är svårt att nå.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1043,
+        "output_tokens": 118,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006532,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-054",
+      "grade": 2,
+      "reason": "Talaren motiverar uttryckligen varför: barn är egna individer med egna rättigheter, föräldrarna äger dem inte, och rätten att själv välja livskamrat är en grundläggande rättighet. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1054,
+        "output_tokens": 99,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006196,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-055",
+      "grade": 1,
+      "reason": "Utdraget handlar om vapenlagstiftning: införseltillstånd, europeiskt skjutvapenpass, ljuddämpare och vapengarderob. Det tar inte upp den återkommande femårskontrollen av vapentillstånd och ger inga argument mot att avskaffa den. Ämnet är närliggande men frågan besvaras inte.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1256,
+        "output_tokens": 136,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007744,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-056",
+      "grade": 1,
+      "reason": "Frågan gäller om alla över 18 år ska få fullt straff, alltså straffrabatt för unga vuxna. Utdraget handlar om mängdrabatt vid flera brott, inte om åldersbaserad straffreduktion. Det rör straffrabatter i allmänhet men inte frågans egentliga ämne.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 883,
+        "output_tokens": 125,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006032,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-057",
+      "grade": 1,
+      "reason": "Talaren förespråkar en Nato-option, men återger regeringens argument mot den: att man vill undvika tvära kast och inte underminera den militära alliansfriheten. Argumenten gäller en Nato-option och inte direkt medlemskap, och de redovisas kortfattat och kritiskt. Utdraget besvarar därför frågan bara delvis.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 985,
+        "output_tokens": 138,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.0067,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-058",
+      "grade": 1,
+      "reason": "Utdraget diskuterar statligt ägande, att det måste motiveras över tid och att statliga företag riskerar att snedvrida konkurrensen mot privata aktörer. Det ifrågasätter alltså ägandet men anger inga kriterier för när statligt ägande är motiverat. Ämnet är relevant, men frågan besvaras bara delvis.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1076,
+        "output_tokens": 137,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007044,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-059",
+      "grade": 1,
+      "reason": "Utdraget nämner att Vänsterpartiet länge förespråkat krav på att alla kommuner ska ta emot asylsökande och ett större statligt ansvar för anläggningsboenden. Det ramar in detta som en del av snabbare etablering av nyanlända, men ger inga egentliga argument för förslagen.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1039,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006636,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-060",
+      "grade": 2,
+      "reason": "Talaren menar att en skattefinansierad sjuk- och föräldraförsäkring omfördelar från män till kvinnor, eftersom män bidrar mer genom högre inkomster och kvinnor är mer beroende av försäkringarna. Därmed skulle en privatisering drabba kvinnor hårdare, vilket besvarar frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 930,
+        "output_tokens": 133,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00638,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-061",
+      "grade": 2,
+      "reason": "Utdraget redovisar konkreta argument mot att ta bort rektorns ansvar: RFSU:s kritik att det kan leda till godtycklig implementering och att sexualundervisningen blir beroende av enskilda lärares prioriteringar, samt att hela skolan behöver ansvaret via rektorn.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1104,
+        "output_tokens": 121,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006836,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-062",
+      "grade": 2,
+      "reason": "Talaren argumenterar för att alla kommuner ska ta emot asylsökande eftersom det ökar förutsättningarna för bra boenden. Hon pekar också på att kommuners nej tvingar Migrationsverket att vända sig till privata hyresvärdar. Det besvarar kommundelen. Den statliga delen berörs bara indirekt, genom stöd till Migrationsverket att ställa krav på hyresvärdar.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1202,
+        "output_tokens": 163,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.008068,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-063",
+      "grade": 2,
+      "reason": "Utdraget förklarar motståndet: unga kan senare ångra sig, unga vuxna vittnar om att de inte fick rätt vård, och försiktighetsprincipen bör råda. Det anger också vad som bör göras med vården: en grundlig översyn av transvården, en stärkt psykiatri och bup, ökad kompetens och kortare köer. Båda delarna av frågan besvaras.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1100,
+        "output_tokens": 151,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00742,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-064",
+      "grade": 1,
+      "reason": "Utdraget beskriver massmorden i Darfur, att världssamfundets insatser har varit för svaga och att det svensknorska ingenjörskompaniet stoppades. Det handlar alltså om frågans ämne, men talaren föreslår inte att de nordiska länderna gemensamt ska skicka soldater tidigare för att förhindra massmord.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1165,
+        "output_tokens": 135,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00736,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-065",
+      "grade": 1,
+      "reason": "Utdraget handlar om övergödning av Östersjön och nämner musselodling, ersättning till bönder för kantzoner och fånggrödor samt stöd till grannländer. Det säger dock ingenting om att få fler bönder att odla ekologiskt, så det täcker bara en del av ämnet.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1203,
+        "output_tokens": 117,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007152,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-066",
+      "grade": 2,
+      "reason": "Utdraget besvarar tydligt frågans första del. Talaren hävdar att vaccinerna är säkra, att de har genomgått kliniska faser och fortsatt övervakas, och att de har räddat liv. Frågan om tvång i Sverige berörs däremot inte. Eftersom utdraget ändå ger en tydlig ståndpunkt med argument i en central del av frågan räcker det för högsta betyg.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1173,
+        "output_tokens": 158,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007852,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-067",
+      "grade": 0,
+      "reason": "Frågan gäller om diskrimineringslagen bör omfatta attityden att inte tro sig vara bättre än andra (jantelagsliknande). Utdraget handlar om religionsfrihet och diskriminering av troende elever. Det berör diskrimineringsområdet i allmänhet men inte den efterfrågade attityden, och ordet 'tro' används i religiös betydelse.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1067,
+        "output_tokens": 146,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007188,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-068",
+      "grade": 2,
+      "reason": "Talaren förklarar varför mobbning och trakasserier har blivit vanliga: en medveten värdeneutral skolpolitik under flera årtionden. Hen kopplar det uttryckligen till att lärarnas befogenheter att skapa ordning avvecklades, vilket besvarar båda delarna av frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 992,
+        "output_tokens": 123,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006428,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-069",
+      "grade": 1,
+      "reason": "Utdraget handlar om giftfri vardag och bisfenol A och nämner kort att inbyggda intressekonflikter gör det svårt att utvidga förbud. Det ger en viss förklaring till svårigheten, men den är knapphändig och gäller främst bisfenol A.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 920,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00588,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-070",
+      "grade": 2,
+      "reason": "Talaren säger uttryckligen att forskning för etiskt säker AI behöver startas redan nu och att kommissionen måste ta fasta på det. Hon motiverar det med att AI och digitalisering är nödvändiga för att klara välfärdsåtagandena. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1163,
+        "output_tokens": 118,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007012,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-071",
+      "grade": 1,
+      "reason": "Talaren försvarar enklare ändring av juridiskt kön och bemöter motståndarnas argument om social transition, men förklarar inte varför vissa är emot. Vården nämns bara allmänt (evidensbaserad, mer återhållsamma riktlinjer), utan förslag på vad som borde göras i stället.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1094,
+        "output_tokens": 123,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006836,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-072",
+      "grade": 1,
+      "reason": "Utdraget handlar om diskrimineringslagen och om huruvida bristande tillgänglighet ska räknas som diskriminering. Det tar inte upp frågan om lagen bör omfatta attityden att man inte ska tro att man är bättre än andra. Det rör alltså diskrimineringsämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1155,
+        "output_tokens": 130,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00722,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-073",
+      "grade": 2,
+      "reason": "Utdraget innehåller ett argument mot Natomedlemskap: att neutraliteten och alliansfriheten ger unika möjligheter att agera i konflikthärdar. I övrigt kräver talaren mest besked av regeringen, men argumentet besvarar frågan, om än kortfattat.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1178,
+        "output_tokens": 116,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007032,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-074",
+      "grade": 2,
+      "reason": "Utdraget anger att EU ska vara en stark, tydlig och pådrivande kraft och återta sin ledande roll, men det gäller arbetet efter Parisavtalet (ratificering, nationella åtgärdsplaner), inte inför avtalet. Ståndpunkten om EU:s roll ligger nära frågan och besvarar den i allt väsentligt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1171,
+        "output_tokens": 140,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007484,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-075",
+      "grade": 2,
+      "reason": "Talaren säger att Sverige och EU ska vara den konstruktiva kraft som leder världen mot ett nytt globalt klimatavtal i Paris. Det besvarar frågan om vilken roll EU ska ta, även om resten av utdraget handlar om val och kol.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1055,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00638,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-076",
+      "grade": 1,
+      "reason": "Utdraget handlar om lärarutbildningen och nämner bristande kunskaper i sex och samlevnad, men tar inte upp skolledningens uttryckliga ansvar eller argument mot att ta bort det. Ämnet berörs, men frågan besvaras inte.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1292,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007328,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-077",
+      "grade": 2,
+      "reason": "Talaren tar tydlig ställning för öppenhet och fri rörlighet framför inhemsk produktion och tullar. Argumentet är att tullar och kvoter begränsar och fördummar, medan öppenhet leder till framgång och välfärd. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1142,
+        "output_tokens": 115,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006868,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-078",
+      "grade": 1,
+      "reason": "Utdraget handlar om yrkeshögskolan och nämner att behovet av yrkesinriktad utbildning växer, att efterfrågan är stor och att den leder till arbete. Det kopplar dock inte detta till högskolans teoretiska inriktning, och anförandets kärna är en fråga om hur ansökningar prioriteras. Därför besvaras frågan bara ytligt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 886,
+        "output_tokens": 147,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006484,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-079",
+      "grade": 2,
+      "reason": "Utdraget anger tydligt när statligt ägande är motiverat: vid naturliga monopol som infrastrukturnät, där staten då kan sätta pris och utbud i stället för att ett privat monopol uppstår. Det nämner också fall där statligt ägande reglerar marknader så att alla får tillgång till grundläggande tjänster som kollektivtrafik, post och betaltjänster.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 928,
+        "output_tokens": 149,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006692,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-080",
+      "grade": 2,
+      "reason": "Talaren förespråkar att jantelagens attityder, alltså att man inte ska tro att man är något, ska ses över som grund för diskriminering inom diskrimineringslagstiftningen. Han kritiserar också att utskottet nöjer sig med opinionsbildning. Det är en tydlig ståndpunkt i frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1066,
+        "output_tokens": 127,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006804,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-081",
+      "grade": 1,
+      "reason": "Utdraget berör jämställdhet, att kvinnor drabbas hårdare när välfärden inte fungerar och föräldraförsäkringens individualisering, men tar inte ställning till om en privatisering av sjuk- och föräldraförsäkringen i stället för skattefinansiering skulle drabba kvinnor hårdare.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1178,
+        "output_tokens": 128,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007272,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-082",
+      "grade": 1,
+      "reason": "Utdraget handlar om övergödning och jordbruk och argumenterar mot en handelsgödselskatt som medel. Det säger alltså vad som inte bör göras men ger inga konkreta förslag på vad som kan göras för att få fler bönder att odla ekologiskt eller minska övergödningen. Det rör ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1334,
+        "output_tokens": 137,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.008076,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-083",
+      "grade": 2,
+      "reason": "Utdraget ger argument för extratjänster: de ska tillsammans med andra insatser hjälpa långtidsarbetslösa till arbete, göra det möjligt att avveckla fas 3 och nå fler genom samverkan med kommunerna. Det besvarar frågan, även om ökade statliga pengar till kommunerna inte nämns uttryckligen.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1220,
+        "output_tokens": 138,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00764,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-084",
+      "grade": 1,
+      "reason": "Utdraget handlar om straffrabatten för 18–20-åringar och argumenterar för att den ska tas bort vid grova brott, eftersom 18-åringar är myndiga och ansvariga. Det tar dock inte ställning till om fullt straff ska gälla även för mindre allvarliga brott, vilket är frågans kärna.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 959,
+        "output_tokens": 129,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006416,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-085",
+      "grade": 2,
+      "reason": "Utdraget argumenterar för att utveckla eftergymnasial yrkesutbildning utanför högskolan (KY) med hänvisning till behovet hos dem som gått yrkesprogram och till arbetslivets snabba utveckling. Det ger alltså skäl för en särskild utbildningsform, men tar inte upp att högskolan blir alltmer teoretisk och forskningsinriktad. Svaret är därför delvis besvarande men ger ändå argument för varför formen behövs.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1107,
+        "output_tokens": 182,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.008068,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-086",
+      "grade": 1,
+      "reason": "Utdraget handlar om hur regeringens nedskärningar och utförsäkringar i sjuk- och föräldraförsäkringen drabbar kvinnor hårdare. Det tar dock inte upp en privatisering jämfört med skattefinansiering, som frågan gäller.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1231,
+        "output_tokens": 110,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007124,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-087",
+      "grade": 2,
+      "reason": "Utdraget föreslår konkreta åtgärder som besvarar frågan: ökat ekonomiskt stöd för ekologisk produktion, informationskampanjer och mer ekologisk upphandling. För att minska övergödningen nämns kantzoner, våtmarker, dammar och musselodlingar.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 999,
+        "output_tokens": 119,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006376,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-088",
+      "grade": 2,
+      "reason": "Utdraget förklarar motståndet: kraftig ökning av könsdysfori, många med psykiatrisk samsjuklighet och livslånga, oåterkalleliga följder som är svåra för unga att överblicka. Det säger också vad som bör göras i stället: utreda orsaken till ökningen samt kräva noggranna utredningar och evidensbaserad vård. Båda delarna av frågan besvaras.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 982,
+        "output_tokens": 156,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007048,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-089",
+      "grade": 2,
+      "reason": "Talaren säger uttryckligen att forskning för etiskt säker AI behöver startas redan nu, att AI är nödvändigt för att klara välfärdsåtagandena och att nästa kommission måste ta fasta på detta. Det besvarar frågan direkt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1195,
+        "output_tokens": 105,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00688,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-090",
+      "grade": 0,
+      "reason": "Utdraget handlar om namnlagen och efternamn vid samboskap och giftermål, inte om barns och ungas rätt att själva välja vem de gifter sig med.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1031,
+        "output_tokens": 72,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005564,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-091",
+      "grade": 2,
+      "reason": "Utdraget argumenterar för fler extratjänster i välfärden som en väg till jobb för utrikes födda arbetslösa, i form av jobb som inte kräver mycket utbildning. Det besvarar delvis frågan. Kommunsatsningar tas inte upp och argumentationen är kortfattad, men en tydlig ståndpunkt med motivering finns.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1142,
+        "output_tokens": 140,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007368,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-092",
+      "grade": 1,
+      "reason": "Utdraget konstaterar att målet Giftfri miljö är svårt att nå och beskriver det pågående arbetet, men förklarar inte varför det är svårt. Det handlar alltså om ämnet men besvarar inte frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1002,
+        "output_tokens": 95,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.005908,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-093",
+      "grade": 1,
+      "reason": "Talaren vill minska administrationen och har gått med på att göra två nationella prov frivilliga. Han varnar för att använda administrationen som skäl mot tidiga uppföljningar och stöd. Det är ett argument för tidiga uppföljningar av eleverna, inte uttryckligen ett argument mot att ta bort nationella prov. Det rör ämnet men besvarar frågan bara indirekt.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 814,
+        "output_tokens": 155,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006356,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-094",
+      "grade": 2,
+      "reason": "Talaren kopplar uttryckligen den stökiga situationen med mobbning och trakasserier till problematiken kring lärarnas befogenheter och föreslår att vuxenauktoriteten ska stärkas. Det besvarar frågan om sambandet med lärarnas befogenheter, även om utdraget inte förklarar orsakerna i detalj.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 918,
+        "output_tokens": 135,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006372,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-095",
+      "grade": 2,
+      "reason": "Utdraget argumenterar för satsningar på kommunerna och extratjänster i välfärden. Argumenten är att regeringen har vältrat över kostnader på kommunerna, så att de har svårt att ta emot dem som vill prova på jobb, och att människor ska få möjlighet till jobb, utbildning eller praktik på deltid eller heltid.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 945,
+        "output_tokens": 135,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00648,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-096",
+      "grade": 2,
+      "reason": "Talaren förklarar varför målet blir svårt att nå. Kemikalier har tagits fram för att underlätta och används i många produkter, och ämnen som högfluorerade ämnen är långlivade, ligger kvar i naturen och ackumuleras. Det besvarar frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1196,
+        "output_tokens": 111,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007004,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-097",
+      "grade": 1,
+      "reason": "Utdraget berör nollvisionen och menar att den misslyckats eftersom dödsolyckorna ökat. Det förklarar inte varför den inte räcker, utöver en allmän kritik om brist på substans och strategier, och tar inte upp årliga mål.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1224,
+        "output_tokens": 106,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.007016,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-098",
+      "grade": 1,
+      "reason": "Utdraget handlar om reformen av sex- och samlevnadsundervisningen till undervisning i sexualitet, samtycke och relationer och om varför den är viktig. Det tar inte upp skolledningens uttryckliga ansvar och ger inga argument mot att ta bort det ansvaret.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1101,
+        "output_tokens": 116,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.006724,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-099",
+      "grade": 1,
+      "reason": "Utdraget handlar om diskrimineringslagens omfattning och om attitydarbete, men tar inte upp om lagen ska omfatta attityden att man inte ska tro sig vara bättre än andra (jantelagen). Det säger bara att lagstiftning inte räcker och att attityder bör påverkas genom DO, skola och föräldrar.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 133,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00666,
+      "created": "2026-11-21T17:13:13Z"
+    },
+    {
+      "pair_id": "pair-100",
+      "grade": 1,
+      "reason": "Utdraget konstaterar att dödsolyckorna ökat trots nollvisionen och efterlyser krafttag och utvärdering. Det förklarar dock inte varför nollvisionen inte räcker och tar inte ställning till årliga delmål. Det handlar alltså om ämnet men besvarar bara delvis frågan.",
+      "model": "claude-opus-5-5",
+      "prompt_sha256": "c7361c709ba78f606ad8d70ebe460b2b238dfa4a5c600ee11141889f80803168",
+      "stop_reason": "end_turn",
+      "error": null,
+      "usage": {
+        "input_tokens": 1250,
+        "output_tokens": 127,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "cost_usd": 0.00754,
+      "created": "2026-11-21T17:13:13Z"
+    }
+  ]
+}
