@@ -1,0 +1,7 @@
+# What `gcloud builds submit` uploads from the repository root: the search
+# service's image needs search/ and search_service/ only. Everything else,
+# the data and .env included, stays on the machine.
+/*
+!/search/
+!/search_service/
+**/__pycache__/

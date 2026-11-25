@@ -427,6 +427,31 @@ class VectorSettings(_Frozen):
         raise KeyError(f"No candidate is called {name!r}.")
 
 
+class ServiceSettings(_Frozen):
+    """The search service: its package, and what one caller may ask.
+
+    Attributes:
+        package: The name of the package step 08 builds.
+        dataset: The dataset on Hugging Face the package is published as.
+        vector_wait_s: How long a question waits for its vector before the
+            service answers from BM25 alone.
+        question_chars: The most characters a question holds once trimmed.
+        rate_window_s: The window of the rate limit, in seconds.
+        searches_per_window: How many searches one caller may ask in a window.
+        answers_per_window: How many answers one caller may ask in a window.
+        embedding_cap_usd: What the embedding API may cost one instance.
+    """
+
+    package: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
+    dataset: str = Field(pattern=r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+    vector_wait_s: float = Field(gt=0)
+    question_chars: int = Field(gt=0)
+    rate_window_s: int = Field(gt=0)
+    searches_per_window: int = Field(gt=0)
+    answers_per_window: int = Field(gt=0)
+    embedding_cap_usd: float = Field(gt=0)
+
+
 class Settings(_Frozen):
     """Everything ``config.yaml`` holds, with paths made absolute.
 
@@ -444,6 +469,7 @@ class Settings(_Frozen):
         baseline: The BM25 baseline's tuning grid and bootstrap.
         answer: The answer step.
         vectors: The vector leg and the hybrid.
+        service: The search service.
     """
 
     source: Source
@@ -459,6 +485,7 @@ class Settings(_Frozen):
     baseline: BaselineSettings
     answer: AnswerSettings
     vectors: VectorSettings
+    service: ServiceSettings
 
     @model_validator(mode="after")
     def _judge_is_priced(self) -> Settings:
