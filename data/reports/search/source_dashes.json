@@ -1,0 +1,180 @@
+{
+  "manifest_sha256": "d2ca417329166eb08c8d335cb8e0dad25aba3afc05dc6e146510ca46668d3f92",
+  "sessions": [
+    {
+      "session": "2002/03",
+      "file": "anforande-200203.json.zip",
+      "records": 12479,
+      "with_en_dash": 0,
+      "spaced_hyphens": 8869
+    },
+    {
+      "session": "2003/04",
+      "file": "anforande-200304.json.zip",
+      "records": 13607,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11174
+    },
+    {
+      "session": "2004/05",
+      "file": "anforande-200405.json.zip",
+      "records": 15960,
+      "with_en_dash": 0,
+      "spaced_hyphens": 12872
+    },
+    {
+      "session": "2005/06",
+      "file": "anforande-200506.json.zip",
+      "records": 13927,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11797
+    },
+    {
+      "session": "2006/07",
+      "file": "anforande-200607.json.zip",
+      "records": 14119,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11204
+    },
+    {
+      "session": "2007/08",
+      "file": "anforande-200708.json.zip",
+      "records": 15820,
+      "with_en_dash": 0,
+      "spaced_hyphens": 12043
+    },
+    {
+      "session": "2008/09",
+      "file": "anforande-200809.json.zip",
+      "records": 13615,
+      "with_en_dash": 0,
+      "spaced_hyphens": 10965
+    },
+    {
+      "session": "2009/10",
+      "file": "anforande-200910.json.zip",
+      "records": 11275,
+      "with_en_dash": 0,
+      "spaced_hyphens": 9255
+    },
+    {
+      "session": "2010/11",
+      "file": "anforande-201011.json.zip",
+      "records": 11492,
+      "with_en_dash": 0,
+      "spaced_hyphens": 8854
+    },
+    {
+      "session": "2011/12",
+      "file": "anforande-201112.json.zip",
+      "records": 11578,
+      "with_en_dash": 0,
+      "spaced_hyphens": 9245
+    },
+    {
+      "session": "2012/13",
+      "file": "anforande-201213.json.zip",
+      "records": 12139,
+      "with_en_dash": 0,
+      "spaced_hyphens": 9252
+    },
+    {
+      "session": "2013/14",
+      "file": "anforande-201314.json.zip",
+      "records": 14095,
+      "with_en_dash": 0,
+      "spaced_hyphens": 13524
+    },
+    {
+      "session": "2014/15",
+      "file": "anforande-201415.json.zip",
+      "records": 13013,
+      "with_en_dash": 0,
+      "spaced_hyphens": 9916
+    },
+    {
+      "session": "2015/16",
+      "file": "anforande-201516.json.zip",
+      "records": 13777,
+      "with_en_dash": 0,
+      "spaced_hyphens": 10570
+    },
+    {
+      "session": "2016/17",
+      "file": "anforande-201617.json.zip",
+      "records": 12725,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11439
+    },
+    {
+      "session": "2017/18",
+      "file": "anforande-201718.json.zip",
+      "records": 12473,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11829
+    },
+    {
+      "session": "2018/19",
+      "file": "anforande-201819.json.zip",
+      "records": 9387,
+      "with_en_dash": 0,
+      "spaced_hyphens": 7285
+    },
+    {
+      "session": "2019/20",
+      "file": "anforande-201920.json.zip",
+      "records": 10457,
+      "with_en_dash": 0,
+      "spaced_hyphens": 8345
+    },
+    {
+      "session": "2020/21",
+      "file": "anforande-202021.json.zip",
+      "records": 15205,
+      "with_en_dash": 0,
+      "spaced_hyphens": 14141
+    },
+    {
+      "session": "2021/22",
+      "file": "anforande-202122.json.zip",
+      "records": 12222,
+      "with_en_dash": 0,
+      "spaced_hyphens": 11081
+    },
+    {
+      "session": "2022/23",
+      "file": "anforande-202223.json.zip",
+      "records": 12480,
+      "with_en_dash": 0,
+      "spaced_hyphens": 10692
+    },
+    {
+      "session": "2023/24",
+      "file": "anforande-202324.json.zip",
+      "records": 15358,
+      "with_en_dash": 0,
+      "spaced_hyphens": 12492
+    },
+    {
+      "session": "2024/25",
+      "file": "anforande-202425.json.zip",
+      "records": 14207,
+      "with_en_dash": 3442,
+      "spaced_hyphens": 6430
+    },
+    {
+      "session": "2025/26",
+      "file": "anforande-202526.json.zip",
+      "records": 14596,
+      "with_en_dash": 6614,
+      "spaced_hyphens": 534
+    },
+    {
+      "session": "2026/27",
+      "file": "anforande-202627.json.zip",
+      "records": 605,
+      "with_en_dash": 255,
+      "spaced_hyphens": 2
+    }
+  ]
+}

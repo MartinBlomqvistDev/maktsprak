@@ -1,0 +1,6677 @@
+{
+  "examples_sha256": "8688de1d4aeb8ebcdf842e5b7b3dec8da985dba97f910a2e9521089fc2d738ea",
+  "speeches": 256,
+  "totals": {
+    "sampled": 256,
+    "fetched": 256,
+    "never_requested": 0,
+    "retry_cut_by_budget": 0,
+    "names_speech": 255,
+    "first_opening_found": 256,
+    "every_opening_in_order": 254,
+    "passed": 253,
+    "neighbour_checked": 256,
+    "neighbour_rejected": 256,
+    "passed_neighbour_checked": 253
+  },
+  "passed_with_folded_dashes": 255,
+  "computed": 256,
+  "xml_records": 1,
+  "failed": [
+    "H90966-2",
+    "HA0999-25",
+    "HD09122-24"
+  ],
+  "checks": [
+    {
+      "anf_id": "GR0914-266",
+      "url": "https://data.riksdagen.se/anforande/GR0914-266/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0914-266",
+        "session": "2003/04",
+        "date": "2003-10-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0914-266/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0914-265",
+          "GR0914-267"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR0917-159",
+      "url": "https://data.riksdagen.se/anforande/GR0917-159/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0917-159",
+        "session": "2003/04",
+        "date": "2003-10-22",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0917-159/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0917-158",
+          "GR0917-160"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR0931-40",
+      "url": "https://data.riksdagen.se/anforande/GR0931-40/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0931-40",
+        "session": "2003/04",
+        "date": "2003-11-19",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0931-40/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0931-39",
+          "GR0931-41"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR0942-8",
+      "url": "https://data.riksdagen.se/anforande/GR0942-8/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0942-8",
+        "session": "2003/04",
+        "date": "2003-12-04",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0942-8/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0942-7",
+          "GR0942-9"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR0987-139",
+      "url": "https://data.riksdagen.se/anforande/GR0987-139/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0987-139",
+        "session": "2003/04",
+        "date": "2004-03-24",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0987-139/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0987-138",
+          "GR0987-140"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR0987-168",
+      "url": "https://data.riksdagen.se/anforande/GR0987-168/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR0987-168",
+        "session": "2003/04",
+        "date": "2004-03-24",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR0987-168/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR0987-167",
+          "GR0987-169"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR09124-4",
+      "url": "https://data.riksdagen.se/anforande/GR09124-4/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR09124-4",
+        "session": "2003/04",
+        "date": "2004-05-28",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR09124-4/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR09124-3",
+          "GR09124-5"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR09124-10",
+      "url": "https://data.riksdagen.se/anforande/GR09124-10/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR09124-10",
+        "session": "2003/04",
+        "date": "2004-05-28",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR09124-10/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR09124-9",
+          "GR09124-11"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GR09127-97",
+      "url": "https://data.riksdagen.se/anforande/GR09127-97/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GR09127-97",
+        "session": "2003/04",
+        "date": "2004-06-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GR09127-97/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GR09127-96",
+          "GR09127-98"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0913-28",
+      "url": "https://data.riksdagen.se/anforande/GS0913-28/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0913-28",
+        "session": "2004/05",
+        "date": "2004-10-13",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0913-28/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0913-27",
+          "GS0913-29"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0915-226",
+      "url": "https://data.riksdagen.se/anforande/GS0915-226/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0915-226",
+        "session": "2004/05",
+        "date": "2004-10-15",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0915-226/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0915-225",
+          "GS0915-227"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0935-112",
+      "url": "https://data.riksdagen.se/anforande/GS0935-112/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0935-112",
+        "session": "2004/05",
+        "date": "2004-11-23",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0935-112/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0935-111",
+          "GS0935-113"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0936-87",
+      "url": "https://data.riksdagen.se/anforande/GS0936-87/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0936-87",
+        "session": "2004/05",
+        "date": "2004-11-24",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0936-87/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0936-86",
+          "GS0936-88"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0947-224",
+      "url": "https://data.riksdagen.se/anforande/GS0947-224/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0947-224",
+        "session": "2004/05",
+        "date": "2004-12-09",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0947-224/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0947-223",
+          "GS0947-225"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0947-233",
+      "url": "https://data.riksdagen.se/anforande/GS0947-233/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0947-233",
+        "session": "2004/05",
+        "date": "2004-12-09",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0947-233/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0947-232",
+          "GS0947-234"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0951-2",
+      "url": "https://data.riksdagen.se/anforande/GS0951-2/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0951-2",
+        "session": "2004/05",
+        "date": "2004-12-15",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0951-2/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0951-1",
+          "GS0951-3"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0952-49",
+      "url": "https://data.riksdagen.se/anforande/GS0952-49/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0952-49",
+        "session": "2004/05",
+        "date": "2004-12-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0952-49/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0952-48",
+          "GS0952-50"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0952-63",
+      "url": "https://data.riksdagen.se/anforande/GS0952-63/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0952-63",
+        "session": "2004/05",
+        "date": "2004-12-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0952-63/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0952-62",
+          "GS0952-64"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS0959-7",
+      "url": "https://data.riksdagen.se/anforande/GS0959-7/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS0959-7",
+        "session": "2004/05",
+        "date": "2005-01-18",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS0959-7/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS0959-6",
+          "GS0959-8"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS09112-63",
+      "url": "https://data.riksdagen.se/anforande/GS09112-63/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS09112-63",
+        "session": "2004/05",
+        "date": "2005-04-26",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS09112-63/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS09112-62",
+          "GS09112-64"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS09113-44",
+      "url": "https://data.riksdagen.se/anforande/GS09113-44/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS09113-44",
+        "session": "2004/05",
+        "date": "2005-04-27",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS09113-44/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS09113-43",
+          "GS09113-45"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GS09119-61",
+      "url": "https://data.riksdagen.se/anforande/GS09119-61/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GS09119-61",
+        "session": "2004/05",
+        "date": "2005-05-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GS09119-61/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GS09119-60",
+          "GS09119-62"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0913-162",
+      "url": "https://data.riksdagen.se/anforande/GT0913-162/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0913-162",
+        "session": "2005/06",
+        "date": "2005-10-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0913-162/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0913-161",
+          "GT0913-163"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0931-120",
+      "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0931-120",
+        "session": "2005/06",
+        "date": "2005-11-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0931-119",
+          "GT0931-121"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0931-121",
+      "url": "https://data.riksdagen.se/anforande/GT0931-121/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0931-121",
+        "session": "2005/06",
+        "date": "2005-11-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0931-121/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0931-120",
+          "GT0931-122"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0931-123",
+      "url": "https://data.riksdagen.se/anforande/GT0931-123/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0931-123",
+        "session": "2005/06",
+        "date": "2005-11-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0931-123/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0931-122",
+          "GT0931-124"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0931-124",
+      "url": "https://data.riksdagen.se/anforande/GT0931-124/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0931-124",
+        "session": "2005/06",
+        "date": "2005-11-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0931-124/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0931-123",
+          "GT0931-125"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0931-126",
+      "url": "https://data.riksdagen.se/anforande/GT0931-126/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0931-126",
+        "session": "2005/06",
+        "date": "2005-11-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0931-126/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0931-125",
+          "GT0931-127"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0946-159",
+      "url": "https://data.riksdagen.se/anforande/GT0946-159/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0946-159",
+        "session": "2005/06",
+        "date": "2005-12-07",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0946-159/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0946-158",
+          "GT0946-160"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0948-76",
+      "url": "https://data.riksdagen.se/anforande/GT0948-76/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0948-76",
+        "session": "2005/06",
+        "date": "2005-12-09",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0948-76/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0948-75",
+          "GT0948-77"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0956-23",
+      "url": "https://data.riksdagen.se/anforande/GT0956-23/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0956-23",
+        "session": "2005/06",
+        "date": "2006-01-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0956-23/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0956-22",
+          "GT0956-24"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT0987-149",
+      "url": "https://data.riksdagen.se/anforande/GT0987-149/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT0987-149",
+        "session": "2005/06",
+        "date": "2006-03-15",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT0987-149/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT0987-148",
+          "GT0987-150"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09102-2",
+      "url": "https://data.riksdagen.se/anforande/GT09102-2/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09102-2",
+        "session": "2005/06",
+        "date": "2006-04-05",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09102-2/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09102-1",
+          "GT09102-3"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09120-124",
+      "url": "https://data.riksdagen.se/anforande/GT09120-124/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09120-124",
+        "session": "2005/06",
+        "date": "2006-05-10",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09120-124/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09120-123",
+          "GT09120-125"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09133-184",
+      "url": "https://data.riksdagen.se/anforande/GT09133-184/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09133-184",
+        "session": "2005/06",
+        "date": "2006-06-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09133-184/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09133-183",
+          "GT09133-185"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09133-196",
+      "url": "https://data.riksdagen.se/anforande/GT09133-196/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09133-196",
+        "session": "2005/06",
+        "date": "2006-06-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09133-196/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09133-195",
+          "GT09133-197"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09140-7",
+      "url": "https://data.riksdagen.se/anforande/GT09140-7/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09140-7",
+        "session": "2005/06",
+        "date": "2006-06-13",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09140-7/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09140-6",
+          "GT09140-8"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GT09144-53",
+      "url": "https://data.riksdagen.se/anforande/GT09144-53/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GT09144-53",
+        "session": "2005/06",
+        "date": "2006-06-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GT09144-53/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GT09144-52"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0918-211",
+      "url": "https://data.riksdagen.se/anforande/GU0918-211/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0918-211",
+        "session": "2006/07",
+        "date": "2006-11-09",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0918-211/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0918-210",
+          "GU0918-212"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0941-30",
+      "url": "https://data.riksdagen.se/anforande/GU0941-30/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0941-30",
+        "session": "2006/07",
+        "date": "2006-12-15",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0941-30/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0941-29",
+          "GU0941-31"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0948-5",
+      "url": "https://data.riksdagen.se/anforande/GU0948-5/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0948-5",
+        "session": "2006/07",
+        "date": "2007-01-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0948-5/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0948-4",
+          "GU0948-6"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0967-16",
+      "url": "https://data.riksdagen.se/anforande/GU0967-16/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0967-16",
+        "session": "2006/07",
+        "date": "2007-02-26",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0967-16/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0967-15",
+          "GU0967-17"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0974-165",
+      "url": "https://data.riksdagen.se/anforande/GU0974-165/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0974-165",
+        "session": "2006/07",
+        "date": "2007-03-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0974-165/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0974-164",
+          "GU0974-166"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0974-181",
+      "url": "https://data.riksdagen.se/anforande/GU0974-181/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0974-181",
+        "session": "2006/07",
+        "date": "2007-03-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0974-181/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0974-180",
+          "GU0974-182"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0979-83",
+      "url": "https://data.riksdagen.se/anforande/GU0979-83/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0979-83",
+        "session": "2006/07",
+        "date": "2007-03-21",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0979-83/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0979-82",
+          "GU0979-84"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0991-9",
+      "url": "https://data.riksdagen.se/anforande/GU0991-9/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0991-9",
+        "session": "2006/07",
+        "date": "2007-04-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0991-9/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0991-8",
+          "GU0991-10"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0997-23",
+      "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0997-23",
+        "session": "2006/07",
+        "date": "2007-04-24",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0997-22",
+          "GU0997-24"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU0999-61",
+      "url": "https://data.riksdagen.se/anforande/GU0999-61/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU0999-61",
+        "session": "2006/07",
+        "date": "2007-04-26",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU0999-61/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU0999-60",
+          "GU0999-62"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU09116-215",
+      "url": "https://data.riksdagen.se/anforande/GU09116-215/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU09116-215",
+        "session": "2006/07",
+        "date": "2007-05-30",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU09116-215/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU09116-214",
+          "GU09116-216"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU09126-56",
+      "url": "https://data.riksdagen.se/anforande/GU09126-56/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU09126-56",
+        "session": "2006/07",
+        "date": "2007-06-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU09126-56/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU09126-55",
+          "GU09126-57"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GU09130-124",
+      "url": "https://data.riksdagen.se/anforande/GU09130-124/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GU09130-124",
+        "session": "2006/07",
+        "date": "2007-06-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GU09130-124/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GU09130-123",
+          "GU09130-125"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0911-477",
+      "url": "https://data.riksdagen.se/anforande/GV0911-477/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0911-477",
+        "session": "2007/08",
+        "date": "2007-10-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0911-477/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0911-476",
+          "GV0911-478"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0912-493",
+      "url": "https://data.riksdagen.se/anforande/GV0912-493/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0912-493",
+        "session": "2007/08",
+        "date": "2007-10-18",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0912-493/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0912-492",
+          "GV0912-494"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0921-23",
+      "url": "https://data.riksdagen.se/anforande/GV0921-23/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0921-23",
+        "session": "2007/08",
+        "date": "2007-11-02",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0921-23/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0921-22",
+          "GV0921-24"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-115",
+      "url": "https://data.riksdagen.se/anforande/GV0944-115/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-115",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-115/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-114",
+          "GV0944-116"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-116",
+      "url": "https://data.riksdagen.se/anforande/GV0944-116/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-116",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-116/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-115",
+          "GV0944-117"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-117",
+      "url": "https://data.riksdagen.se/anforande/GV0944-117/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-117",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-117/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-116",
+          "GV0944-118"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-128",
+      "url": "https://data.riksdagen.se/anforande/GV0944-128/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-128",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-128/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-127",
+          "GV0944-129"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-131",
+      "url": "https://data.riksdagen.se/anforande/GV0944-131/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-131",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-131/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-130",
+          "GV0944-132"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0944-140",
+      "url": "https://data.riksdagen.se/anforande/GV0944-140/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0944-140",
+        "session": "2007/08",
+        "date": "2007-12-14",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0944-140/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0944-139",
+          "GV0944-141"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0947-81",
+      "url": "https://data.riksdagen.se/anforande/GV0947-81/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0947-81",
+        "session": "2007/08",
+        "date": "2007-12-19",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0947-81/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0947-80",
+          "GV0947-82"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0955-44",
+      "url": "https://data.riksdagen.se/anforande/GV0955-44/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0955-44",
+        "session": "2007/08",
+        "date": "2008-01-22",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0955-44/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0955-43",
+          "GV0955-45"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0969-5",
+      "url": "https://data.riksdagen.se/anforande/GV0969-5/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0969-5",
+        "session": "2007/08",
+        "date": "2008-02-21",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0969-5/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0969-4",
+          "GV0969-6"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0969-6",
+      "url": "https://data.riksdagen.se/anforande/GV0969-6/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0969-6",
+        "session": "2007/08",
+        "date": "2008-02-21",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0969-6/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0969-5",
+          "GV0969-7"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0987-239",
+      "url": "https://data.riksdagen.se/anforande/GV0987-239/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0987-239",
+        "session": "2007/08",
+        "date": "2008-04-02",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0987-239/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0987-238",
+          "GV0987-240"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0991-60",
+      "url": "https://data.riksdagen.se/anforande/GV0991-60/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0991-60",
+        "session": "2007/08",
+        "date": "2008-04-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0991-60/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0991-59",
+          "GV0991-61"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV0991-61",
+      "url": "https://data.riksdagen.se/anforande/GV0991-61/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV0991-61",
+        "session": "2007/08",
+        "date": "2008-04-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV0991-61/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV0991-60",
+          "GV0991-62"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09100-22",
+      "url": "https://data.riksdagen.se/anforande/GV09100-22/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09100-22",
+        "session": "2007/08",
+        "date": "2008-04-22",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09100-22/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09100-21",
+          "GV09100-23"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-9",
+      "url": "https://data.riksdagen.se/anforande/GV09107-9/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-9",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-9/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-8",
+          "GV09107-10"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-10",
+      "url": "https://data.riksdagen.se/anforande/GV09107-10/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-10",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-10/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-9",
+          "GV09107-11"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-17",
+      "url": "https://data.riksdagen.se/anforande/GV09107-17/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-17",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-17/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-16",
+          "GV09107-18"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-24",
+      "url": "https://data.riksdagen.se/anforande/GV09107-24/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-24",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-24/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-25"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-84",
+      "url": "https://data.riksdagen.se/anforande/GV09107-84/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-84",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-84/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-85"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GV09107-89",
+      "url": "https://data.riksdagen.se/anforande/GV09107-89/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GV09107-89",
+        "session": "2007/08",
+        "date": "2008-05-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GV09107-89/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GV09107-88",
+          "GV09107-90"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW0913-379",
+      "url": "https://data.riksdagen.se/anforande/GW0913-379/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW0913-379",
+        "session": "2008/09",
+        "date": "2008-10-15",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW0913-379/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW0913-378",
+          "GW0913-380"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW0969-73",
+      "url": "https://data.riksdagen.se/anforande/GW0969-73/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW0969-73",
+        "session": "2008/09",
+        "date": "2009-02-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW0969-73/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW0969-72",
+          "GW0969-74"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW0969-103",
+      "url": "https://data.riksdagen.se/anforande/GW0969-103/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW0969-103",
+        "session": "2008/09",
+        "date": "2009-02-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW0969-103/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW0969-102",
+          "GW0969-104"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW09109-3",
+      "url": "https://data.riksdagen.se/anforande/GW09109-3/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW09109-3",
+        "session": "2008/09",
+        "date": "2009-04-29",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW09109-3/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW09109-2",
+          "GW09109-4"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW09109-4",
+      "url": "https://data.riksdagen.se/anforande/GW09109-4/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW09109-4",
+        "session": "2008/09",
+        "date": "2009-04-29",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW09109-4/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW09109-3",
+          "GW09109-5"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW09109-7",
+      "url": "https://data.riksdagen.se/anforande/GW09109-7/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW09109-7",
+        "session": "2008/09",
+        "date": "2009-04-29",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW09109-7/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW09109-6",
+          "GW09109-8"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW09130-154",
+      "url": "https://data.riksdagen.se/anforande/GW09130-154/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW09130-154",
+        "session": "2008/09",
+        "date": "2009-06-11",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW09130-154/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW09130-153",
+          "GW09130-155"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GW09133-41",
+      "url": "https://data.riksdagen.se/anforande/GW09133-41/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GW09133-41",
+        "session": "2008/09",
+        "date": "2009-06-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GW09133-41/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GW09133-40",
+          "GW09133-42"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0917-5",
+      "url": "https://data.riksdagen.se/anforande/GX0917-5/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0917-5",
+        "session": "2009/10",
+        "date": "2009-10-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0917-5/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0917-4",
+          "GX0917-6"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0918-30",
+      "url": "https://data.riksdagen.se/anforande/GX0918-30/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0918-30",
+        "session": "2009/10",
+        "date": "2009-10-21",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0918-30/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0918-29",
+          "GX0918-31"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0919-7",
+      "url": "https://data.riksdagen.se/anforande/GX0919-7/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0919-7",
+        "session": "2009/10",
+        "date": "2009-10-22",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0919-7/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0919-6",
+          "GX0919-8"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0931-33",
+      "url": "https://data.riksdagen.se/anforande/GX0931-33/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0931-33",
+        "session": "2009/10",
+        "date": "2009-11-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0931-33/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0931-32",
+          "GX0931-34"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0959-74",
+      "url": "https://data.riksdagen.se/anforande/GX0959-74/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0959-74",
+        "session": "2009/10",
+        "date": "2010-01-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0959-74/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0959-73",
+          "GX0959-75"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX0966-17",
+      "url": "https://data.riksdagen.se/anforande/GX0966-17/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX0966-17",
+        "session": "2009/10",
+        "date": "2010-01-29",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX0966-17/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX0966-16",
+          "GX0966-18"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX09124-15",
+      "url": "https://data.riksdagen.se/anforande/GX09124-15/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX09124-15",
+        "session": "2009/10",
+        "date": "2010-05-24",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX09124-15/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX09124-14",
+          "GX09124-16"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX09139-129",
+      "url": "https://data.riksdagen.se/anforande/GX09139-129/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX09139-129",
+        "session": "2009/10",
+        "date": "2010-06-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX09139-129/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX09139-128",
+          "GX09139-130"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GX09139-161",
+      "url": "https://data.riksdagen.se/anforande/GX09139-161/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GX09139-161",
+        "session": "2009/10",
+        "date": "2010-06-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GX09139-161/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GX09139-160",
+          "GX09139-162"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY094-68",
+      "url": "https://data.riksdagen.se/anforande/GY094-68/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY094-68",
+        "session": "2010/11",
+        "date": "2010-10-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY094-68/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY094-67",
+          "GY094-69"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0910-270",
+      "url": "https://data.riksdagen.se/anforande/GY0910-270/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0910-270",
+        "session": "2010/11",
+        "date": "2010-11-04",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0910-270/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0910-269",
+          "GY0910-271"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0910-282",
+      "url": "https://data.riksdagen.se/anforande/GY0910-282/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0910-282",
+        "session": "2010/11",
+        "date": "2010-11-04",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0910-282/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0910-281",
+          "GY0910-283"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0938-143",
+      "url": "https://data.riksdagen.se/anforande/GY0938-143/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0938-143",
+        "session": "2010/11",
+        "date": "2010-12-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0938-143/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0938-142",
+          "GY0938-144"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0938-145",
+      "url": "https://data.riksdagen.se/anforande/GY0938-145/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0938-145",
+        "session": "2010/11",
+        "date": "2010-12-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0938-145/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0938-144",
+          "GY0938-146"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0938-146",
+      "url": "https://data.riksdagen.se/anforande/GY0938-146/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0938-146",
+        "session": "2010/11",
+        "date": "2010-12-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0938-146/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0938-145",
+          "GY0938-147"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0938-147",
+      "url": "https://data.riksdagen.se/anforande/GY0938-147/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0938-147",
+        "session": "2010/11",
+        "date": "2010-12-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0938-147/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0938-146",
+          "GY0938-148"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0938-156",
+      "url": "https://data.riksdagen.se/anforande/GY0938-156/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0938-156",
+        "session": "2010/11",
+        "date": "2010-12-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0938-156/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0938-155",
+          "GY0938-157"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0951-24",
+      "url": "https://data.riksdagen.se/anforande/GY0951-24/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0951-24",
+        "session": "2010/11",
+        "date": "2011-02-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0951-24/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0951-23",
+          "GY0951-25"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0955-59",
+      "url": "https://data.riksdagen.se/anforande/GY0955-59/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0955-59",
+        "session": "2010/11",
+        "date": "2011-02-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0955-59/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0955-58",
+          "GY0955-60"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0981-24",
+      "url": "https://data.riksdagen.se/anforande/GY0981-24/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0981-24",
+        "session": "2010/11",
+        "date": "2011-04-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0981-24/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0981-23",
+          "GY0981-25"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0981-31",
+      "url": "https://data.riksdagen.se/anforande/GY0981-31/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0981-31",
+        "session": "2010/11",
+        "date": "2011-04-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0981-31/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0981-30",
+          "GY0981-32"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0982-55",
+      "url": "https://data.riksdagen.se/anforande/GY0982-55/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0982-55",
+        "session": "2010/11",
+        "date": "2011-04-05",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0982-55/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0982-54",
+          "GY0982-56"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY0996-22",
+      "url": "https://data.riksdagen.se/anforande/GY0996-22/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY0996-22",
+        "session": "2010/11",
+        "date": "2011-05-04",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY0996-22/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY0996-21",
+          "GY0996-23"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY09111-27",
+      "url": "https://data.riksdagen.se/anforande/GY09111-27/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY09111-27",
+        "session": "2010/11",
+        "date": "2011-06-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY09111-27/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY09111-26",
+          "GY09111-28"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY09111-32",
+      "url": "https://data.riksdagen.se/anforande/GY09111-32/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY09111-32",
+        "session": "2010/11",
+        "date": "2011-06-08",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY09111-32/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY09111-31",
+          "GY09111-33"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY09117-104",
+      "url": "https://data.riksdagen.se/anforande/GY09117-104/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY09117-104",
+        "session": "2010/11",
+        "date": "2011-06-16",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY09117-104/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY09117-103",
+          "GY09117-105"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GY09120-38",
+      "url": "https://data.riksdagen.se/anforande/GY09120-38/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GY09120-38",
+        "session": "2010/11",
+        "date": "2011-06-21",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GY09120-38/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GY09120-37",
+          "GY09120-39"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GZ0940-33",
+      "url": "https://data.riksdagen.se/anforande/GZ0940-33/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GZ0940-33",
+        "session": "2011/12",
+        "date": "2011-12-01",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GZ0940-33/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GZ0940-32",
+          "GZ0940-34"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GZ0977-21",
+      "url": "https://data.riksdagen.se/anforande/GZ0977-21/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GZ0977-21",
+        "session": "2011/12",
+        "date": "2012-02-28",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GZ0977-21/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GZ0977-20",
+          "GZ0977-22"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GZ0987-92",
+      "url": "https://data.riksdagen.se/anforande/GZ0987-92/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GZ0987-92",
+        "session": "2011/12",
+        "date": "2012-03-22",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GZ0987-92/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GZ0987-91",
+          "GZ0987-93"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "GZ09112-119",
+      "url": "https://data.riksdagen.se/anforande/GZ09112-119/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "GZ09112-119",
+        "session": "2011/12",
+        "date": "2012-05-10",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/GZ09112-119/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "GZ09112-118",
+          "GZ09112-120"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H0094-14",
+      "url": "https://data.riksdagen.se/anforande/H0094-14/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H0094-14",
+        "session": "2012/13",
+        "date": "2012-09-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H0094-14/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H0094-13",
+          "H0094-15"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H00941-158",
+      "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H00941-158",
+        "session": "2012/13",
+        "date": "2012-12-11",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H00941-157",
+          "H00941-159"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H00968-55",
+      "url": "https://data.riksdagen.se/anforande/H00968-55/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H00968-55",
+        "session": "2012/13",
+        "date": "2013-02-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H00968-55/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H00968-54",
+          "H00968-56"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H1098-80",
+      "url": "https://data.riksdagen.se/anforande/H1098-80/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H1098-80",
+        "session": "2013/14",
+        "date": "2013-10-02",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H1098-80/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H1098-79",
+          "H1098-81"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10917-83",
+      "url": "https://data.riksdagen.se/anforande/H10917-83/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10917-83",
+        "session": "2013/14",
+        "date": "2013-10-23",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10917-83/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10917-82",
+          "H10917-84"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10939-52",
+      "url": "https://data.riksdagen.se/anforande/H10939-52/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10939-52",
+        "session": "2013/14",
+        "date": "2013-12-04",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10939-52/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10939-51",
+          "H10939-53"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10940-21",
+      "url": "https://data.riksdagen.se/anforande/H10940-21/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10940-21",
+        "session": "2013/14",
+        "date": "2013-12-05",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10940-21/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10940-20",
+          "H10940-22"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10971-18",
+      "url": "https://data.riksdagen.se/anforande/H10971-18/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10971-18",
+        "session": "2013/14",
+        "date": "2014-02-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10971-18/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10971-17",
+          "H10971-19"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10971-94",
+      "url": "https://data.riksdagen.se/anforande/H10971-94/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10971-94",
+        "session": "2013/14",
+        "date": "2014-02-20",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10971-94/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10971-93",
+          "H10971-95"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10982-74",
+      "url": "https://data.riksdagen.se/anforande/H10982-74/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10982-74",
+        "session": "2013/14",
+        "date": "2014-03-12",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10982-74/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10982-73",
+          "H10982-75"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10983-126",
+      "url": "https://data.riksdagen.se/anforande/H10983-126/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10983-126",
+        "session": "2013/14",
+        "date": "2014-03-13",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10983-126/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10983-125",
+          "H10983-127"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10983-127",
+      "url": "https://data.riksdagen.se/anforande/H10983-127/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10983-127",
+        "session": "2013/14",
+        "date": "2014-03-13",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10983-127/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10983-126",
+          "H10983-128"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H10986-19",
+      "url": "https://data.riksdagen.se/anforande/H10986-19/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H10986-19",
+        "session": "2013/14",
+        "date": "2014-03-19",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H10986-19/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H10986-18",
+          "H10986-20"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H109115-36",
+      "url": "https://data.riksdagen.se/anforande/H109115-36/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H109115-36",
+        "session": "2013/14",
+        "date": "2014-05-27",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H109115-36/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H109115-35",
+          "H109115-37"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H109121-56",
+      "url": "https://data.riksdagen.se/anforande/H109121-56/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H109121-56",
+        "session": "2013/14",
+        "date": "2014-06-09",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H109121-56/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H109121-55",
+          "H109121-57"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H109127-123",
+      "url": "https://data.riksdagen.se/anforande/H109127-123/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H109127-123",
+        "session": "2013/14",
+        "date": "2014-06-17",
+        "layout": "lines",
+        "url": "https://data.riksdagen.se/anforande/H109127-123/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H109127-122",
+          "H109127-124"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H209100-87",
+      "url": "https://data.riksdagen.se/anforande/H209100-87/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H209100-87",
+        "session": "2014/15",
+        "date": "2015-05-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H209100-87/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H209100-86",
+          "H209100-88"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H209113-85",
+      "url": "https://data.riksdagen.se/anforande/H209113-85/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H209113-85",
+        "session": "2014/15",
+        "date": "2015-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H209113-85/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H209113-84",
+          "H209113-86"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H209116-17",
+      "url": "https://data.riksdagen.se/anforande/H209116-17/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H209116-17",
+        "session": "2014/15",
+        "date": "2015-06-15",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H209116-17/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H209116-16",
+          "H209116-18"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H209116-22",
+      "url": "https://data.riksdagen.se/anforande/H209116-22/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H209116-22",
+        "session": "2014/15",
+        "date": "2015-06-15",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H209116-22/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H209116-21",
+          "H209116-23"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H30912-5",
+      "url": "https://data.riksdagen.se/anforande/H30912-5/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H30912-5",
+        "session": "2015/16",
+        "date": "2015-10-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H30912-5/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H30912-4",
+          "H30912-6"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40968-163",
+      "url": "https://data.riksdagen.se/anforande/H40968-163/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40968-163",
+        "session": "2016/17",
+        "date": "2017-02-15",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40968-163/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40968-162",
+          "H40968-164"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-48",
+      "url": "https://data.riksdagen.se/anforande/H40976-48/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-48",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-48/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-47",
+          "H40976-49"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-49",
+      "url": "https://data.riksdagen.se/anforande/H40976-49/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-49",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-49/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-48",
+          "H40976-50"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-50",
+      "url": "https://data.riksdagen.se/anforande/H40976-50/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-50",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-50/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-49",
+          "H40976-51"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-55",
+      "url": "https://data.riksdagen.se/anforande/H40976-55/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-55",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-55/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-54",
+          "H40976-56"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-56",
+      "url": "https://data.riksdagen.se/anforande/H40976-56/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-56",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-56/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-55",
+          "H40976-57"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-61",
+      "url": "https://data.riksdagen.se/anforande/H40976-61/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-61",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-61/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-60",
+          "H40976-62"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40976-66",
+      "url": "https://data.riksdagen.se/anforande/H40976-66/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40976-66",
+        "session": "2016/17",
+        "date": "2017-03-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40976-66/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40976-65",
+          "H40976-67"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40981-177",
+      "url": "https://data.riksdagen.se/anforande/H40981-177/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40981-177",
+        "session": "2016/17",
+        "date": "2017-03-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40981-177/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40981-176",
+          "H40981-178"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H40982-35",
+      "url": "https://data.riksdagen.se/anforande/H40982-35/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H40982-35",
+        "session": "2016/17",
+        "date": "2017-03-17",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H40982-35/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H40982-34",
+          "H40982-36"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50911-25",
+      "url": "https://data.riksdagen.se/anforande/H50911-25/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50911-25",
+        "session": "2017/18",
+        "date": "2017-09-27",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50911-25/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50911-24",
+          "H50911-26"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50932-18",
+      "url": "https://data.riksdagen.se/anforande/H50932-18/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50932-18",
+        "session": "2017/18",
+        "date": "2017-11-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50932-18/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50932-17",
+          "H50932-19"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50935-125",
+      "url": "https://data.riksdagen.se/anforande/H50935-125/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50935-125",
+        "session": "2017/18",
+        "date": "2017-11-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50935-125/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50935-124"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50939-137",
+      "url": "https://data.riksdagen.se/anforande/H50939-137/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50939-137",
+        "session": "2017/18",
+        "date": "2017-11-29",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50939-137/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50939-136",
+          "H50939-138"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50944-79",
+      "url": "https://data.riksdagen.se/anforande/H50944-79/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50944-79",
+        "session": "2017/18",
+        "date": "2017-12-06",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50944-79/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50944-78",
+          "H50944-80"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50971-49",
+      "url": "https://data.riksdagen.se/anforande/H50971-49/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50971-49",
+        "session": "2017/18",
+        "date": "2018-02-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50971-49/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50971-48",
+          "H50971-50"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50971-51",
+      "url": "https://data.riksdagen.se/anforande/H50971-51/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50971-51",
+        "session": "2017/18",
+        "date": "2018-02-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50971-51/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50971-50",
+          "H50971-52"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50972-42",
+      "url": "https://data.riksdagen.se/anforande/H50972-42/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50972-42",
+        "session": "2017/18",
+        "date": "2018-02-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50972-42/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50972-41",
+          "H50972-43"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50972-119",
+      "url": "https://data.riksdagen.se/anforande/H50972-119/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50972-119",
+        "session": "2017/18",
+        "date": "2018-02-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50972-119/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50972-118",
+          "H50972-120"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50972-132",
+      "url": "https://data.riksdagen.se/anforande/H50972-132/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50972-132",
+        "session": "2017/18",
+        "date": "2018-02-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50972-132/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50972-131",
+          "H50972-133"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H50996-6",
+      "url": "https://data.riksdagen.se/anforande/H50996-6/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H50996-6",
+        "session": "2017/18",
+        "date": "2018-04-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H50996-6/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H50996-5",
+          "H50996-7"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H509125-82",
+      "url": "https://data.riksdagen.se/anforande/H509125-82/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H509125-82",
+        "session": "2017/18",
+        "date": "2018-06-04",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H509125-82/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H509125-81",
+          "H509125-83"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H509131-211",
+      "url": "https://data.riksdagen.se/anforande/H509131-211/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H509131-211",
+        "session": "2017/18",
+        "date": "2018-06-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H509131-211/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H509131-210",
+          "H509131-212"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H509132-124",
+      "url": "https://data.riksdagen.se/anforande/H509132-124/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H509132-124",
+        "session": "2017/18",
+        "date": "2018-06-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H509132-124/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H509132-123",
+          "H509132-125"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H509137-11",
+      "url": "https://data.riksdagen.se/anforande/H509137-11/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H509137-11",
+        "session": "2017/18",
+        "date": "2018-06-25",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H509137-11/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H509137-10",
+          "H509137-12"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H60919-65",
+      "url": "https://data.riksdagen.se/anforande/H60919-65/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H60919-65",
+        "session": "2018/19",
+        "date": "2018-11-21",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H60919-65/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H60919-64",
+          "H60919-66"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H60931-39",
+      "url": "https://data.riksdagen.se/anforande/H60931-39/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H60931-39",
+        "session": "2018/19",
+        "date": "2018-12-17",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H60931-39/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H60931-38",
+          "H60931-40"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H60931-43",
+      "url": "https://data.riksdagen.se/anforande/H60931-43/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H60931-43",
+        "session": "2018/19",
+        "date": "2018-12-17",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H60931-43/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H60931-42",
+          "H60931-44"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H60933-70",
+      "url": "https://data.riksdagen.se/anforande/H60933-70/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H60933-70",
+        "session": "2018/19",
+        "date": "2018-12-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H60933-70/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H60933-69",
+          "H60933-71"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H60956-65",
+      "url": "https://data.riksdagen.se/anforande/H60956-65/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H60956-65",
+        "session": "2018/19",
+        "date": "2019-02-27",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H60956-65/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H60956-64",
+          "H60956-66"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H609103-183",
+      "url": "https://data.riksdagen.se/anforande/H609103-183/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H609103-183",
+        "session": "2018/19",
+        "date": "2019-06-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H609103-183/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H609103-182",
+          "H609103-184"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H609110-6",
+      "url": "https://data.riksdagen.se/anforande/H609110-6/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H609110-6",
+        "session": "2018/19",
+        "date": "2019-06-25",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H609110-6/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H609110-5",
+          "H609110-7"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H609110-125",
+      "url": "https://data.riksdagen.se/anforande/H609110-125/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H609110-125",
+        "session": "2018/19",
+        "date": "2019-06-25",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H609110-125/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H609110-124",
+          "H609110-126"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H70952-150",
+      "url": "https://data.riksdagen.se/anforande/H70952-150/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H70952-150",
+        "session": "2019/20",
+        "date": "2019-12-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H70952-150/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H70952-149",
+          "H70952-151"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H70952-151",
+      "url": "https://data.riksdagen.se/anforande/H70952-151/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H70952-151",
+        "session": "2019/20",
+        "date": "2019-12-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H70952-151/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H70952-150",
+          "H70952-152"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H709118-88",
+      "url": "https://data.riksdagen.se/anforande/H709118-88/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H709118-88",
+        "session": "2019/20",
+        "date": "2020-05-07",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H709118-88/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H709118-87",
+          "H709118-89"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H8098-65",
+      "url": "https://data.riksdagen.se/anforande/H8098-65/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H8098-65",
+        "session": "2020/21",
+        "date": "2020-09-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H8098-65/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H8098-64",
+          "H8098-66"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80929-12",
+      "url": "https://data.riksdagen.se/anforande/H80929-12/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80929-12",
+        "session": "2020/21",
+        "date": "2020-11-04",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80929-12/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80929-11",
+          "H80929-13"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80942-119",
+      "url": "https://data.riksdagen.se/anforande/H80942-119/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80942-119",
+        "session": "2020/21",
+        "date": "2020-11-26",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80942-119/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80942-118",
+          "H80942-120"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80964-85",
+      "url": "https://data.riksdagen.se/anforande/H80964-85/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80964-85",
+        "session": "2020/21",
+        "date": "2021-01-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80964-85/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80964-84",
+          "H80964-86"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80969-2",
+      "url": "https://data.riksdagen.se/anforande/H80969-2/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80969-2",
+        "session": "2020/21",
+        "date": "2021-01-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80969-2/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80969-1",
+          "H80969-3"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80971-15",
+      "url": "https://data.riksdagen.se/anforande/H80971-15/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80971-15",
+        "session": "2020/21",
+        "date": "2021-01-27",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80971-15/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80971-14",
+          "H80971-16"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-33",
+      "url": "https://data.riksdagen.se/anforande/H80987-33/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-33",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-33/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-32",
+          "H80987-34"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-34",
+      "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-34",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-33",
+          "H80987-35"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-35",
+      "url": "https://data.riksdagen.se/anforande/H80987-35/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-35",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-35/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-34",
+          "H80987-36"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-36",
+      "url": "https://data.riksdagen.se/anforande/H80987-36/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-36",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-36/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-35",
+          "H80987-37"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-46",
+      "url": "https://data.riksdagen.se/anforande/H80987-46/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-46",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-46/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-45",
+          "H80987-47"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H80987-56",
+      "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H80987-56",
+        "session": "2020/21",
+        "date": "2021-03-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H80987-55",
+          "H80987-57"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809100-60",
+      "url": "https://data.riksdagen.se/anforande/H809100-60/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809100-60",
+        "session": "2020/21",
+        "date": "2021-03-25",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809100-60/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809100-59",
+          "H809100-61"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809121-15",
+      "url": "https://data.riksdagen.se/anforande/H809121-15/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809121-15",
+        "session": "2020/21",
+        "date": "2021-05-07",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809121-15/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809121-14",
+          "H809121-16"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809123-11",
+      "url": "https://data.riksdagen.se/anforande/H809123-11/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809123-11",
+        "session": "2020/21",
+        "date": "2021-05-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809123-11/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809123-10",
+          "H809123-12"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809123-12",
+      "url": "https://data.riksdagen.se/anforande/H809123-12/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809123-12",
+        "session": "2020/21",
+        "date": "2021-05-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809123-12/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809123-11",
+          "H809123-13"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809142-34",
+      "url": "https://data.riksdagen.se/anforande/H809142-34/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809142-34",
+        "session": "2020/21",
+        "date": "2021-06-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809142-34/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809142-33",
+          "H809142-35"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809142-38",
+      "url": "https://data.riksdagen.se/anforande/H809142-38/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809142-38",
+        "session": "2020/21",
+        "date": "2021-06-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809142-38/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809142-37",
+          "H809142-39"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H809143-67",
+      "url": "https://data.riksdagen.se/anforande/H809143-67/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H809143-67",
+        "session": "2020/21",
+        "date": "2021-06-17",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H809143-67/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H809143-66",
+          "H809143-68"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H9096-105",
+      "url": "https://data.riksdagen.se/anforande/H9096-105/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H9096-105",
+        "session": "2021/22",
+        "date": "2021-09-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H9096-105/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H9096-104"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90914-47",
+      "url": "https://data.riksdagen.se/anforande/H90914-47/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90914-47",
+        "session": "2021/22",
+        "date": "2021-10-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90914-47/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90914-46",
+          "H90914-48"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90914-55",
+      "url": "https://data.riksdagen.se/anforande/H90914-55/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90914-55",
+        "session": "2021/22",
+        "date": "2021-10-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90914-55/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90914-54",
+          "H90914-56"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90941-235",
+      "url": "https://data.riksdagen.se/anforande/H90941-235/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90941-235",
+        "session": "2021/22",
+        "date": "2021-12-08",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90941-235/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90941-234",
+          "H90941-236"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90947-186",
+      "url": "https://data.riksdagen.se/anforande/H90947-186/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90947-186",
+        "session": "2021/22",
+        "date": "2021-12-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90947-186/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90947-185",
+          "H90947-187"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90958-50",
+      "url": "https://data.riksdagen.se/anforande/H90958-50/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90958-50",
+        "session": "2021/22",
+        "date": "2022-01-25",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90958-50/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90958-49",
+          "H90958-51"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90959-158",
+      "url": "https://data.riksdagen.se/anforande/H90959-158/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90959-158",
+        "session": "2021/22",
+        "date": "2022-01-26",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90959-158/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90959-157",
+          "H90959-159"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90962-32",
+      "url": "https://data.riksdagen.se/anforande/H90962-32/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90962-32",
+        "session": "2021/22",
+        "date": "2022-02-01",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90962-32/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90962-31",
+          "H90962-33"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90966-2",
+      "url": "https://data.riksdagen.se/anforande/H90966-2/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90966-2",
+        "session": "2021/22",
+        "date": "2022-02-15",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90966-2/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": false,
+        "passed": false,
+        "neighbour_anf_ids": [
+          "H90966-1",
+          "H90966-3"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": "Protokoll 2021/22:66 Tisdagen den 15 februariärendedebatt / Försvarspolitik Anf. 2 Roger Richthoff (SD)Fru talman! Jag instämmer i en hel del av det den förre talaren, Pål Jonson, sa här om det spända",
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90972-129",
+      "url": "https://data.riksdagen.se/anforande/H90972-129/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90972-129",
+        "session": "2021/22",
+        "date": "2022-02-24",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90972-129/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90972-128",
+          "H90972-130"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90991-67",
+      "url": "https://data.riksdagen.se/anforande/H90991-67/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90991-67",
+        "session": "2021/22",
+        "date": "2022-03-31",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90991-67/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90991-66",
+          "H90991-68"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90995-81",
+      "url": "https://data.riksdagen.se/anforande/H90995-81/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90995-81",
+        "session": "2021/22",
+        "date": "2022-04-07",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90995-81/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90995-80",
+          "H90995-82"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H90995-82",
+      "url": "https://data.riksdagen.se/anforande/H90995-82/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H90995-82",
+        "session": "2021/22",
+        "date": "2022-04-07",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H90995-82/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H90995-81",
+          "H90995-83"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909108-76",
+      "url": "https://data.riksdagen.se/anforande/H909108-76/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909108-76",
+        "session": "2021/22",
+        "date": "2022-05-05",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909108-76/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909108-75",
+          "H909108-77"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909112-115",
+      "url": "https://data.riksdagen.se/anforande/H909112-115/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909112-115",
+        "session": "2021/22",
+        "date": "2022-05-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909112-115/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909112-114",
+          "H909112-116"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909112-116",
+      "url": "https://data.riksdagen.se/anforande/H909112-116/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909112-116",
+        "session": "2021/22",
+        "date": "2022-05-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909112-116/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909112-115",
+          "H909112-117"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909112-118",
+      "url": "https://data.riksdagen.se/anforande/H909112-118/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909112-118",
+        "session": "2021/22",
+        "date": "2022-05-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909112-118/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909112-117",
+          "H909112-119"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909114-1",
+      "url": "https://data.riksdagen.se/anforande/H909114-1/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909114-1",
+        "session": "2021/22",
+        "date": "2022-05-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909114-1/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909114-2"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909114-2",
+      "url": "https://data.riksdagen.se/anforande/H909114-2/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909114-2",
+        "session": "2021/22",
+        "date": "2022-05-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909114-2/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909114-1",
+          "H909114-3"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909128-95",
+      "url": "https://data.riksdagen.se/anforande/H909128-95/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909128-95",
+        "session": "2021/22",
+        "date": "2022-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909128-95/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909128-94",
+          "H909128-96"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909128-138",
+      "url": "https://data.riksdagen.se/anforande/H909128-138/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909128-138",
+        "session": "2021/22",
+        "date": "2022-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909128-138/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909128-137",
+          "H909128-139"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909128-149",
+      "url": "https://data.riksdagen.se/anforande/H909128-149/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909128-149",
+        "session": "2021/22",
+        "date": "2022-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909128-149/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909128-148",
+          "H909128-150"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909128-158",
+      "url": "https://data.riksdagen.se/anforande/H909128-158/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909128-158",
+        "session": "2021/22",
+        "date": "2022-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909128-158/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909128-157",
+          "H909128-159"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909130-47",
+      "url": "https://data.riksdagen.se/anforande/H909130-47/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909130-47",
+        "session": "2021/22",
+        "date": "2022-06-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909130-47/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909130-46",
+          "H909130-48"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "H909138-40",
+      "url": "https://data.riksdagen.se/anforande/H909138-40/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "H909138-40",
+        "session": "2021/22",
+        "date": "2022-06-28",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/H909138-40/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "H909138-39",
+          "H909138-41"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0915-17",
+      "url": "https://data.riksdagen.se/anforande/HA0915-17/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0915-17",
+        "session": "2022/23",
+        "date": "2022-10-27",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0915-17/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0915-16",
+          "HA0915-18"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0932-83",
+      "url": "https://data.riksdagen.se/anforande/HA0932-83/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0932-83",
+        "session": "2022/23",
+        "date": "2022-12-06",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0932-83/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0932-82",
+          "HA0932-84"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0943-86",
+      "url": "https://data.riksdagen.se/anforande/HA0943-86/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0943-86",
+        "session": "2022/23",
+        "date": "2022-12-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0943-86/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0943-85",
+          "HA0943-87"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0973-20",
+      "url": "https://data.riksdagen.se/anforande/HA0973-20/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0973-20",
+        "session": "2022/23",
+        "date": "2023-03-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0973-20/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0973-19",
+          "HA0973-21"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0979-23",
+      "url": "https://data.riksdagen.se/anforande/HA0979-23/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0979-23",
+        "session": "2022/23",
+        "date": "2023-03-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0979-23/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0979-22",
+          "HA0979-24"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0979-38",
+      "url": "https://data.riksdagen.se/anforande/HA0979-38/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0979-38",
+        "session": "2022/23",
+        "date": "2023-03-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0979-38/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0979-37",
+          "HA0979-39"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0979-44",
+      "url": "https://data.riksdagen.se/anforande/HA0979-44/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0979-44",
+        "session": "2022/23",
+        "date": "2023-03-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0979-44/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0979-43",
+          "HA0979-45"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0979-47",
+      "url": "https://data.riksdagen.se/anforande/HA0979-47/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0979-47",
+        "session": "2022/23",
+        "date": "2023-03-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0979-47/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0979-46",
+          "HA0979-48"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0979-110",
+      "url": "https://data.riksdagen.se/anforande/HA0979-110/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0979-110",
+        "session": "2022/23",
+        "date": "2023-03-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0979-110/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0979-109",
+          "HA0979-111"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0984-161",
+      "url": "https://data.riksdagen.se/anforande/HA0984-161/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0984-161",
+        "session": "2022/23",
+        "date": "2023-03-30",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0984-161/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0984-160",
+          "HA0984-162"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0991-4",
+      "url": "https://data.riksdagen.se/anforande/HA0991-4/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0991-4",
+        "session": "2022/23",
+        "date": "2023-04-18",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0991-4/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0991-3",
+          "HA0991-5"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0992-94",
+      "url": "https://data.riksdagen.se/anforande/HA0992-94/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0992-94",
+        "session": "2022/23",
+        "date": "2023-04-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0992-94/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA0992-93",
+          "HA0992-95"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA0999-25",
+      "url": "https://data.riksdagen.se/anforande/HA0999-25/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA0999-25",
+        "session": "2022/23",
+        "date": "2023-04-27",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA0999-25/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": false,
+        "passed": false,
+        "neighbour_anf_ids": [
+          "HA0999-24"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": "Protokoll 2022/23:99 Torsdagen den 27 aprilärendedebatt / Polisfrågor Anf. 25 Martin Melin (L)Fru talman! Jag tänkte börja med att läsa upp några siffror: 2, 4, 4, 63.Tvåan är antalet skjutna och döda",
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA09102-96",
+      "url": "https://data.riksdagen.se/anforande/HA09102-96/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA09102-96",
+        "session": "2022/23",
+        "date": "2023-05-03",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA09102-96/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA09102-95",
+          "HA09102-97"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA09126-64",
+      "url": "https://data.riksdagen.se/anforande/HA09126-64/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA09126-64",
+        "session": "2022/23",
+        "date": "2023-06-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA09126-64/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA09126-63",
+          "HA09126-65"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA09126-68",
+      "url": "https://data.riksdagen.se/anforande/HA09126-68/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA09126-68",
+        "session": "2022/23",
+        "date": "2023-06-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA09126-68/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA09126-67",
+          "HA09126-69"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HA09128-114",
+      "url": "https://data.riksdagen.se/anforande/HA09128-114/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HA09128-114",
+        "session": "2022/23",
+        "date": "2023-06-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HA09128-114/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HA09128-113",
+          "HA09128-115"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB093-66",
+      "url": "https://data.riksdagen.se/anforande/HB093-66/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB093-66",
+        "session": "2023/24",
+        "date": "2023-09-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB093-66/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB093-65",
+          "HB093-67"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0934-24",
+      "url": "https://data.riksdagen.se/anforande/HB0934-24/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0934-24",
+        "session": "2023/24",
+        "date": "2023-11-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0934-24/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0934-23",
+          "HB0934-25"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0944-19",
+      "url": "https://data.riksdagen.se/anforande/HB0944-19/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0944-19",
+        "session": "2023/24",
+        "date": "2023-12-07",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0944-19/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0944-18",
+          "HB0944-20"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0983-82",
+      "url": "https://data.riksdagen.se/anforande/HB0983-82/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0983-82",
+        "session": "2023/24",
+        "date": "2024-03-12",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0983-82/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0983-81",
+          "HB0983-83"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0987-51",
+      "url": "https://data.riksdagen.se/anforande/HB0987-51/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0987-51",
+        "session": "2023/24",
+        "date": "2024-03-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0987-51/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0987-50",
+          "HB0987-52"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0987-60",
+      "url": "https://data.riksdagen.se/anforande/HB0987-60/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0987-60",
+        "session": "2023/24",
+        "date": "2024-03-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0987-60/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0987-59",
+          "HB0987-61"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB0995-69",
+      "url": "https://data.riksdagen.se/anforande/HB0995-69/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB0995-69",
+        "session": "2023/24",
+        "date": "2024-04-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB0995-69/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB0995-68",
+          "HB0995-70"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HB09103-19",
+      "url": "https://data.riksdagen.se/anforande/HB09103-19/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HB09103-19",
+        "session": "2023/24",
+        "date": "2024-04-22",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HB09103-19/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HB09103-18",
+          "HB09103-20"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC0973-101",
+      "url": "https://data.riksdagen.se/anforande/HC0973-101/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC0973-101",
+        "session": "2024/25",
+        "date": "2025-02-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC0973-101/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC0973-100",
+          "HC0973-102"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC0973-103",
+      "url": "https://data.riksdagen.se/anforande/HC0973-103/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC0973-103",
+        "session": "2024/25",
+        "date": "2025-02-19",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC0973-103/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC0973-102",
+          "HC0973-104"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC09114-71",
+      "url": "https://data.riksdagen.se/anforande/HC09114-71/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC09114-71",
+        "session": "2024/25",
+        "date": "2025-05-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC09114-71/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC09114-70",
+          "HC09114-72"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC09119-31",
+      "url": "https://data.riksdagen.se/anforande/HC09119-31/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC09119-31",
+        "session": "2024/25",
+        "date": "2025-05-20",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC09119-31/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC09119-30",
+          "HC09119-32"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC09129-13",
+      "url": "https://data.riksdagen.se/anforande/HC09129-13/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC09129-13",
+        "session": "2024/25",
+        "date": "2025-06-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC09129-13/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC09129-12",
+          "HC09129-14"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HC09134-6",
+      "url": "https://data.riksdagen.se/anforande/HC09134-6/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HC09134-6",
+        "session": "2024/25",
+        "date": "2025-06-17",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HC09134-6/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HC09134-5",
+          "HC09134-7"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD093-83",
+      "url": "https://data.riksdagen.se/anforande/HD093-83/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD093-83",
+        "session": "2025/26",
+        "date": "2025-09-10",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD093-83/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD093-82",
+          "HD093-84"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0920-37",
+      "url": "https://data.riksdagen.se/anforande/HD0920-37/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0920-37",
+        "session": "2025/26",
+        "date": "2025-10-16",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0920-37/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0920-36",
+          "HD0920-38"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0950-27",
+      "url": "https://data.riksdagen.se/anforande/HD0950-27/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0950-27",
+        "session": "2025/26",
+        "date": "2025-12-11",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0950-27/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0950-26",
+          "HD0950-28"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0950-28",
+      "url": "https://data.riksdagen.se/anforande/HD0950-28/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0950-28",
+        "session": "2025/26",
+        "date": "2025-12-11",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0950-28/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0950-27",
+          "HD0950-29"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0957-146",
+      "url": "https://data.riksdagen.se/anforande/HD0957-146/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0957-146",
+        "session": "2025/26",
+        "date": "2026-01-14",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0957-146/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0957-145",
+          "HD0957-147"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0969-81",
+      "url": "https://data.riksdagen.se/anforande/HD0969-81/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0969-81",
+        "session": "2025/26",
+        "date": "2026-02-05",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0969-81/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0969-80",
+          "HD0969-82"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD0982-89",
+      "url": "https://data.riksdagen.se/anforande/HD0982-89/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD0982-89",
+        "session": "2025/26",
+        "date": "2026-03-04",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD0982-89/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD0982-88",
+          "HD0982-90"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD09122-3",
+      "url": "https://data.riksdagen.se/anforande/HD09122-3/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD09122-3",
+        "session": "2025/26",
+        "date": "2026-05-21",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD09122-3/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD09122-2",
+          "HD09122-4"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD09122-24",
+      "url": "https://data.riksdagen.se/anforande/HD09122-24/html",
+      "computed": true,
+      "passed_with_folded_dashes": false,
+      "check": {
+        "anf_id": "HD09122-24",
+        "session": "2025/26",
+        "date": "2026-05-21",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD09122-24/html",
+        "status": 200,
+        "names_speech": false,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": false,
+        "neighbour_anf_ids": [
+          "HD09122-23",
+          "HD09122-25"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": true,
+        "page_excerpt": "5290381 HD09122 Protokoll 2025/26:122 Torsdagen den 21 maj 2025/26 122 2026-05-21 00:00:00 Offentlighetsprincipen med lättnadsregler för enskilda mindre huvudmän i skolväsendet ärendedebatt 757dff01-d",
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD09157-96",
+      "url": "https://data.riksdagen.se/anforande/HD09157-96/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD09157-96",
+        "session": "2025/26",
+        "date": "2026-08-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD09157-96/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD09157-95",
+          "HD09157-97"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    },
+    {
+      "anf_id": "HD09157-119",
+      "url": "https://data.riksdagen.se/anforande/HD09157-119/html",
+      "computed": true,
+      "passed_with_folded_dashes": true,
+      "check": {
+        "anf_id": "HD09157-119",
+        "session": "2025/26",
+        "date": "2026-08-13",
+        "layout": "html",
+        "url": "https://data.riksdagen.se/anforande/HD09157-119/html",
+        "status": 200,
+        "names_speech": true,
+        "first_opening_found": true,
+        "every_opening_in_order": true,
+        "passed": true,
+        "neighbour_anf_ids": [
+          "HD09157-118",
+          "HD09157-120"
+        ],
+        "neighbour_rejected": true,
+        "xml_record": false,
+        "page_excerpt": null,
+        "error": null
+      }
+    }
+  ],
+  "created": "2026-11-25T09:42:53Z"
+}
