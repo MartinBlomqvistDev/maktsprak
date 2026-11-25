@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
+import numpy as np
+
 from search.eval.questions import (
     EvalQuestion,
     Provenance,
@@ -312,6 +314,22 @@ TEST_STORES: tuple[StoreSpec, ...] = (
     StoreSpec(name="lance-8-float32", kind="lance", dim=8, format="float32"),
     StoreSpec(name="lance-8-float16", kind="lance", dim=8, format="float16"),
 )
+
+
+def write_index(directory: Path, ids: list[str], matrix: np.ndarray) -> Path:
+    """A vector index as search/index/vector.py writes it, with the manifest fields read back."""
+    directory.mkdir()
+    np.save(directory / "vectors.npy", matrix)
+    np.save(directory / "positions.npy", np.arange(len(ids), dtype=np.int64))
+    manifest = {
+        "rows": len(ids),
+        "dimension": matrix.shape[1],
+        "vectors_sha256": file_sha256(directory / "vectors.npy"),
+        "positions_sha256": file_sha256(directory / "positions.npy"),
+        "inputs": {"passage_ids_sha256": passage_ids_sha256(ids)},
+    }
+    (directory / "index.json").write_text(json.dumps(manifest), encoding="utf-8")
+    return directory
 
 
 def kit_settings() -> SpikeSettings:
