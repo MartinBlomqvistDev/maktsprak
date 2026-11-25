@@ -1,0 +1,121 @@
+{
+  "name": "full-200-qwen3-8b",
+  "created": "2026-11-25T09:10:18.296718Z",
+  "passages": 563909,
+  "speeches": 301358,
+  "first_date": "2003-09-16",
+  "last_date": "2026-11-18",
+  "retrieval": {
+    "analyzer": "stem-nostop",
+    "k1": 1.2,
+    "b": 0.9,
+    "target_words": 200,
+    "rrf_k": 10,
+    "depth": 1000,
+    "hits": 10,
+    "gather_below": 0.2,
+    "chunk_rows": 16384,
+    "vector_wait_s": 30.0
+  },
+  "embedding": {
+    "name": "qwen3-8b",
+    "model": "qwen/qwen3-embedding-8b",
+    "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+    "provider": "nebius",
+    "quantization": "bf16",
+    "dimension": 1024,
+    "query_prompt": "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:"
+  },
+  "answer": {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "max_tokens": 8000,
+    "prompt_sha256": "2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27",
+    "threshold": 0.21485483586282447,
+    "monthly_budget_usd": 2.0,
+    "input_price": 4.0,
+    "output_price": 20.0
+  },
+  "sources": {
+    "speeches_sha256": "28ed1dd90dfa055148cc89ce5a46958418bb55ff7ca8ae69d6dc7e68be9e9584",
+    "passages_sha256": "2f4247e5ab822fbe89d8881bb432807b3c47e3d585abf246b4fddbe812a200ae",
+    "vectors_sha256": "847f55a347fa4f530c765d4b403d41cb3e19243f901864477187635b1541e844",
+    "bm25_tuning_sha256": "775bc8189516a0e213f93ea33d6e0836b9c69209ab6baf3fa88f9749da048670",
+    "hybrid_tuning_sha256": "2c0f2962dbd8388f52a631a77c76ac0abd1bb73d7e1bb01fda908c1a790251f1",
+    "answer_run_sha256": "3affdc9e9f44e3882fb806cd0b95857a4878f6ec850eb76543d983d417b086ee"
+  },
+  "files": {
+    "speech_rows.npy": {
+      "bytes": 2255764,
+      "sha256": "b3443be83d042207e52274fc50ad9e147b537d6afcd54128ad79e7c268d1bdba"
+    },
+    "speeches.parquet": {
+      "bytes": 12978531,
+      "sha256": "d737b048f4b45fad7cc24007e361a2a24aa911dce6d59d8addd202a571c49e80"
+    },
+    "store/day.npy": {
+      "bytes": 2255764,
+      "sha256": "fd7792fb46884cf2404abca7d6ef8f07ad6688a13de33751546e2a7f522bd83b"
+    },
+    "store/lexical/doc_ids.npy": {
+      "bytes": 252621004,
+      "sha256": "a3ff6e929eb5099c6f83329e5840a51948c1cd91679399b2b7f7e409fb5967d2"
+    },
+    "store/lexical/doc_lengths.npy": {
+      "bytes": 2255764,
+      "sha256": "73218f5d6f630b23a0128eb8940316ae8250ff097b60ecc6a34acd53ed97e8d6"
+    },
+    "store/lexical/manifest.json": {
+      "bytes": 456,
+      "sha256": "3243bdd1aaf21d26e44280dbf72e9a1af17c28b7aefbb3176b18ce644aa3449e"
+    },
+    "store/lexical/term_ptr.npy": {
+      "bytes": 2335480,
+      "sha256": "c3513bef665bfff6801e639da1d352befc4b65bff02185f61c488df98226196b"
+    },
+    "store/lexical/terms.json": {
+      "bytes": 4958750,
+      "sha256": "e0986a8299bbf57592abdac044d01cb8393874de72f0cde71f2999aee92a6c58"
+    },
+    "store/lexical/tfs.npy": {
+      "bytes": 126310566,
+      "sha256": "b12ee998dc3595f84bc3a6ada9fa2ea4da00409dad2202f7650e44914c7d8b96"
+    },
+    "store/party.npy": {
+      "bytes": 564037,
+      "sha256": "c9fc65553d4f6d3fbc19674f5aa31527c1d86411fae8d6e83f55941d7bbc5795"
+    },
+    "store/passage_ids.bin": {
+      "bytes": 7746121,
+      "sha256": "ecd2e23cb718b3631342c714b3696a25d5c508df76ab99f8e9a447a63728f6d3"
+    },
+    "store/passage_ids.offsets.npy": {
+      "bytes": 4511408,
+      "sha256": "ee37d73bcc43aa2217dc8f4259a2a31bfe40bba71f11da1402d26f098be397df"
+    },
+    "store/person.npy": {
+      "bytes": 2255764,
+      "sha256": "4f92a4e1d649f82c10dfa7d3b4660832ee644d691f6319d7ce0d888727153ba6"
+    },
+    "store/persons.json": {
+      "bytes": 23458,
+      "sha256": "67468a8cc7412331597a8f511825d1c5a890f9b42b13bdbae7e153def33e1d91"
+    },
+    "store/store.json": {
+      "bytes": 890,
+      "sha256": "05c4efc7a1cecacfb1079b2b17d84ca53fe8bf2091566d070d34463a88574c50"
+    },
+    "store/text.bin": {
+      "bytes": 691934919,
+      "sha256": "288354feb352ee1a14db5b7266a0f0afb149da792cbd66ef000b40712c6e37e5"
+    },
+    "store/text.offsets.npy": {
+      "bytes": 4511408,
+      "sha256": "dbbd2d829a7a0079d28a32d98626830490cdf190ebb9e0dda9dba8600d41a4ec"
+    },
+    "store/vectors-1024-float32.npy": {
+      "bytes": 2309771392,
+      "sha256": "847f55a347fa4f530c765d4b403d41cb3e19243f901864477187635b1541e844"
+    }
+  }
+}
