@@ -565,6 +565,41 @@ class OpenRouterEmbedder:
         self._record(len(texts), account)
         return vectors, answered
 
+    def open_client(self, timeout_s: float = 120.0) -> httpx.AsyncClient:
+        """A client that holds the key, for :meth:`embed_one`; the caller closes it.
+
+        Args:
+            timeout_s: How long one request may take.
+
+        Returns:
+            The client.
+        """
+        return httpx.AsyncClient(
+            transport=self.transport,
+            headers={"Authorization": f"Bearer {self._key}"},
+            timeout=timeout_s,
+        )
+
+    async def embed_one(self, client: httpx.AsyncClient, text: str, role: Role) -> np.ndarray:
+        """Embed one text in one request, as the search service asks for a question's vector.
+
+        The request is the one :meth:`embed_singly` sends for each text, over a
+        client from :meth:`open_client` that the service keeps open between
+        questions.
+
+        Args:
+            client: The client.
+            text: The text, without the prompt.
+            role: Which prompt goes before it.
+
+        Returns:
+            The vector.
+        """
+        account = _Account()
+        vectors = await self._send(client, [self.spec.prompt(role) + text], account)
+        self._record(1, account)
+        return vectors[0]
+
     def _record(self, texts: int, account: _Account) -> None:
         self.providers |= account.providers
         self._usage = self._usage.plus(

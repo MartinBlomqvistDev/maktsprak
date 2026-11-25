@@ -423,3 +423,29 @@ def test_a_local_model_embeds_with_its_prompts():
     vectors = embedder.embed(["Ska kärnkraften byggas ut?", "Skolan behöver lärare."], "query")
     assert vectors.shape == (2, candidate.dimension)
     np.testing.assert_allclose(np.linalg.norm(vectors, axis=1), [1.0, 1.0], atol=1e-3)
+
+
+class TestEmbedOne:
+    def test_each_question_is_one_request_over_the_clients_connection(self):
+        import asyncio
+
+        seen = []
+
+        def handler(request):
+            body = json.loads(request.content)
+            seen.append((request.headers["authorization"], body))
+            data = [{"index": 0, "object": "embedding", "embedding": encoded([0, 3, 0, 4])}]
+            return httpx.Response(200, json={"data": data, "usage": {"prompt_tokens": 5}})
+
+        embedder = api(handler)
+
+        async def ask():
+            async with embedder.open_client() as client:
+                return [await embedder.embed_one(client, text, "query") for text in ("en", "två")]
+
+        first, _ = asyncio.run(ask())
+        assert [body["input"] for _, body in seen] == [["Q:en"], ["Q:två"]]
+        assert {authorization for authorization, _ in seen} == {"Bearer test-key"}
+        assert seen[0][1]["provider"]["allow_fallbacks"] is False
+        np.testing.assert_allclose(first, [0, 0.6, 0, 0.8], rtol=1e-6)
+        assert embedder.take_usage().requests == 2
