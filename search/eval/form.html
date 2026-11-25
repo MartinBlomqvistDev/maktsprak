@@ -5,9 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__HEADING__</title>
 <style>
-:root { --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6b6a65; --line: #dedbd2; --accent: #2f5d50; }
+:root {
+  --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6b6a65; --line: #dedbd2; --accent: #2f5d50; --warn: #b5562b;
+}
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #1b1c1a; --fg: #ecebe6; --muted: #a3a29b; --line: #3a3b37; --accent: #8cc2b0; }
+  :root {
+    --bg: #1b1c1a; --fg: #ecebe6; --muted: #a3a29b; --line: #3a3b37; --accent: #8cc2b0;
+    --warn: #e39a6f;
+  }
 }
 body { background: var(--bg); color: var(--fg); font: 16px/1.55 Georgia, serif; margin: 0; }
 main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
@@ -34,13 +39,25 @@ button {
   background: none; color: var(--accent); cursor: pointer;
 }
 #status { color: var(--muted); }
+.warn {
+  border: 2px solid var(--warn); border-radius: 4px; padding: .6rem .8rem;
+  font: 15px system-ui, sans-serif;
+}
+h2 { font-size: 1.15rem; margin: 2rem 0 .4rem; }
+#dump { width: 100%; box-sizing: border-box; height: 10rem; font: 12px ui-monospace, monospace; }
 </style>
 </head>
 <body>
 <main>
 <h1>__HEADING__: __COUNT__</h1>
 <p class="intro">__INTRO__</p>
+<p id="nosave" class="warn">Den här visningen kan inte spara svaren. Öppna filen i Chrome eller
+Edge innan du börjar.</p>
 __ARTICLES__
+<h2>Svaren som text</h2>
+<p class="intro">Om knapparna inte fungerar: klicka i rutan, tryck Ctrl+A och sedan Ctrl+C och
+klistra in svaren i sessionen.</p>
+<textarea id="dump" readonly></textarea>
 </main>
 <div class="bar">
 <button type="button" id="copy">Kopiera svaren</button>
@@ -73,13 +90,33 @@ function collect() {
   }
   return {answers, done};
 }
+function text() {
+  return JSON.stringify({form: KEY, answers: collect().answers}, null, 1);
+}
+function say(message) {
+  document.getElementById("status").textContent = message;
+}
+function unanswered() {
+  const {done} = collect();
+  return done < ITEMS.length ? ` (bara ${done} av ${ITEMS.length} besvarade)` : "";
+}
 function show() {
   const {done} = collect();
-  document.getElementById("status").textContent = `${done} av ${ITEMS.length} besvarade`;
+  say(`${done} av ${ITEMS.length} besvarade`);
+  document.getElementById("dump").value = text();
 }
 function store() {
   try { localStorage.setItem(KEY, JSON.stringify(collect().answers)); } catch (error) {}
   show();
+}
+function canStore() {
+  try {
+    localStorage.setItem(`${KEY}:test`, "1");
+    localStorage.removeItem(`${KEY}:test`);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 function restore() {
   let saved = null;
@@ -96,32 +133,34 @@ function restore() {
     if (note) note.value = entry.comment || "";
   }
 }
-function payload() {
-  const {answers, done} = collect();
-  const question = `Bara ${done} av ${ITEMS.length} är besvarade. Fortsätta ändå?`;
-  if (done < ITEMS.length && !confirm(question)) return null;
-  return JSON.stringify({form: KEY, answers}, null, 1);
-}
 document.addEventListener("change", store);
 document.addEventListener("input", store);
 document.getElementById("copy").addEventListener("click", async () => {
-  const text = payload();
-  if (!text) return;
   try {
-    await navigator.clipboard.writeText(text);
-    document.getElementById("status").textContent = "Svaren är kopierade";
+    await navigator.clipboard.writeText(text());
+    say("Svaren är kopierade" + unanswered());
   } catch (error) {
-    prompt("Kopiera texten nedan:", text);
+    const dump = document.getElementById("dump");
+    dump.value = text();
+    dump.focus();
+    dump.select();
+    let copied = false;
+    try { copied = document.execCommand("copy"); } catch (failure) {}
+    say(copied ? "Svaren är kopierade" + unanswered()
+      : "Kopiera svaren ur rutan längst ned med Ctrl+A och Ctrl+C");
   }
 });
 document.getElementById("save").addEventListener("click", () => {
-  const text = payload();
-  if (!text) return;
   const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([text], {type: "application/json"}));
+  link.href = URL.createObjectURL(new Blob([text()], {type: "application/json"}));
   link.download = KEY + ".json";
+  document.body.appendChild(link);
   link.click();
+  link.remove();
+  say(`${KEY}.json ska nu ligga i Hämtade filer. Annars: kopiera ur rutan längst ned.`);
 });
+// The warning stays unless the browser can keep the answers.
+document.getElementById("nosave").hidden = canStore();
 restore();
 show();
 </script>

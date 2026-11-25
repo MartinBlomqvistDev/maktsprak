@@ -1,0 +1,328 @@
+{
+  "generation": 1,
+  "reviewed": "2026-11-21",
+  "verdicts": [
+    {
+      "question_id": "natural-0292",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0265",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0242",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0255",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0109",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0113",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0255",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0271",
+      "reasonable": true,
+      "answered": false,
+      "comment": "Det konstaterar bara frågans utgångspunkt."
+    },
+    {
+      "question_id": "natural-0134",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0122",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0039",
+      "reasonable": false,
+      "answered": true,
+      "comment": "felaktigt \"inte\" i frågan."
+    },
+    {
+      "question_id": "natural-0253",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0009",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0154",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0266",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0299",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0071",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0205",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "stance-0017",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0117",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0207",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0177",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0224",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0197",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0024",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0052",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0019",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0071",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0059",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0098",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0199",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0189",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0259",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0231",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0135",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0201",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0143",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "stance-0012",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0224",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0145",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0173",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0087",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0032",
+      "reasonable": true,
+      "answered": false,
+      "comment": "Delvis."
+    },
+    {
+      "question_id": "keyword-0284",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0186",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "stance-0035",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0115",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "filtered-0051",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "natural-0088",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    },
+    {
+      "question_id": "keyword-0031",
+      "reasonable": true,
+      "answered": true,
+      "comment": ""
+    }
+  ],
+  "approved": 47,
+  "share": 0.94,
+  "threshold": 0.85,
+  "passed": true,
+  "by_set": {
+    "filtered": [
+      6,
+      7
+    ],
+    "keyword": [
+      20,
+      20
+    ],
+    "natural": [
+      18,
+      20
+    ],
+    "stance": [
+      3,
+      3
+    ]
+  }
+}
