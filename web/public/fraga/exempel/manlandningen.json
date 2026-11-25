@@ -1,0 +1,328 @@
+{
+  "id": "manlandningen",
+  "question": "Vad sa riksdagen om månlandningen 1969?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 6467,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H509131-211:0-2",
+        "anf_id": "H509131-211",
+        "rm": "2017/18",
+        "dok_nummer": 131,
+        "party": "MP",
+        "speaker": "Valter Mutt (MP)",
+        "date": "2018-06-13",
+        "title": "Svenskt deltagande i Förenta nationernas stabiliseringsinsats i Mali",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H509131-211/html",
+        "paragraphs": [
+          "Fru talman! Den vackraste flaggan jag vet är Förenta nationernas. Endast i förening kan nationerna på vårt lilla klot tackla gemensamma utmaningar såsom den globala uppvärmningen och dess olika följdverkningar.",
+          "Ett av mina starkaste barndomsminnen härrör från en sommarnatt 1969 då jag, tillsammans med en stor del av mänskligheten, i direktsändning följde den första månlandningen, och plötsligt dyker jorden upp, sedd från månen, på tv-skärmen: en blå liten kula ute i ett stort, mörkt universum. Med ens blev det väldigt tydligt för mig och många andra som såg på tv den sommarnatten att vi som bor på den här planeten delar ett gemensamt hem, hur vi än sedan drar upp gränser mellan nationer, kulturer, religioner, socioekonomiska grupper etcetera.",
+          "Fru talman! Och väktaren och vårdaren av vårt gemensamma hem är FN, som ju med sina fel och förtjänster är den enda allomfattande politiska världsorganisation vi har - någon annan står ju inte till förfogande. För ett litet, alliansfritt land som vårt är det helt avgörande med en världsordning grundad på samarbete och folkrätt, inte på konfrontation och den starkares rätt. För Sverige har det därför alltid, oavsett regering, varit självklart att ställa upp när FN kallar. Det finns också en uppenbar poäng i att små länder bidrar militärt så att inte världsorganisationens militära kapacitet blir alltför beroende av stormakternas stridskrafter."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "HB0995-69:0-4",
+        "anf_id": "HB0995-69",
+        "rm": "2023/24",
+        "dok_nummer": 95,
+        "party": "L",
+        "speaker": "Patrik Karlson (L)",
+        "date": "2024-04-10",
+        "title": "Mervärdesskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HB0995-69/html",
+        "paragraphs": [
+          "Herr talman! År 1969 ägde många stora händelser som det talas om än i dag rum runt om i världen. Till exempel arrangerades Woodstockfestivalen under tre legendariska dagar. Uppskattningsvis uppemot en halv miljon besökare fick uppleva ett flertal minnesvärda och bejublade framträdanden av storheter som Jimi Hendrix och Janis Joplin.",
+          "En annan stor händelse detta år var att tre astronauter klev ombord på rymdfarkosten Apollo 11 och genomförde rymdfärden som resulterade i att astronauten Neil Armstrong som den första människan någonsin landsteg på månen.",
+          "Frågan är ändå om inte den största händelsen under detta år var att mervärdesskatten - i folkmun kallad momsen - infördes i Sverige och ersatte den allmänna varuskatten.",
+          "Precis som sin föregångare är mervärdesskatten en skatt på konsumtion vars kostnad bärs av slutkonsumenten. En viktig skillnad mellan skatterna är dock att momsen beskattar varje led i produktions- och distributionskedjan utifrån det mervärde som tillförs - därav namnet - medan den allmänna varuskatten bara beskattade försäljningen i sista ledet till slutkonsumenten.",
+          "Ja, ni hör - detta om något var en revolutionerande och stor händelse."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "HA0973-20:0-3",
+        "anf_id": "HA0973-20",
+        "rm": "2022/23",
+        "dok_nummer": 73,
+        "party": "S",
+        "speaker": "Markus Selin (S)",
+        "date": "2023-03-10",
+        "title": "Svar på interpellation 2022/23:215 om Sveriges framtida stridsflyg",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA0973-20/html",
+        "paragraphs": [
+          "Herr talman! Jag tackar försvarsministern för inlägget. Det han belyste stämmer. Sverige har en unik kompetens när det gäller att bygga ubåtar, signaler, system och stridsflyg. Jag instämmer också i att till exempel en flygmotor i dagens Jas 39 Gripen bygger på en utländsk plattform, men den är ju utvecklad från en motor som skulle sitta i par i ett flygplan. Jag vill tillägga att den är utvecklad av svenska kvinnor och män och har till stora delar blivit en bättre produkt.",
+          "Jag tänkte försöka belysa andemeningen i hela debatten med några ord av en berömd amerikansk president. Jag har översatt det hela, herr talman, eftersom vi talar svenska här i kammaren.",
+          "\"Vi väljer att åka till månen. Vi väljer att åka till månen under det här decenniet och göra de här andra sakerna, inte för att de är lätta utan för att de är svåra, eftersom målet kommer att tjäna till att organisera och mäta det bästa av engagemang och färdigheter, eftersom den utmaningen är en som vi är villiga att acceptera, en vi inte är villiga att skjuta upp och en som vi tänker vinna.\"",
+          "Herr talman! Dessa ord kommer såklart från John F Kennedys tal på Rice University den 12 september 1962. Jag tycker att han i dessa rader fångar mitt budskap i synen på framtidens svenska stridsflyg. Vår kompetens får inte slumpas bort."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "H50911-25:0-3",
+        "anf_id": "H50911-25",
+        "rm": "2017/18",
+        "dok_nummer": 11,
+        "party": "L",
+        "speaker": "Barbro Westerholm (L)",
+        "date": "2017-09-27",
+        "title": "Vissa frågor om läkemedelsregistret",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H50911-25/html",
+        "paragraphs": [
+          "Herr talman! För att inte upprepa allt som sagts till förmån för läkemedelsregister och en nationell ordinationsdatabas eller vad vi nu ska kalla det tänkte jag gå antikrundan.",
+          "Vi började lägga upp läkemedelsbiverkningsregister i mitten av 60-talet, efter Neurosedynkatastrofen. Världshälsoorganisationen ordnade varje år möten med dem som var ansvariga för de här registren. År 1969 träffades vi på en restaurang i Genève och diskuterade om vi hade alla data vi behövde. Vi var överens om att det inte räckte med bara anmälningarna om biverkningar; vi måste också ha uppgifter om läkemedlens användning.",
+          "Jag åkte hem och sa: Vi behöver ett individbaserat läkemedelsregister. Jag prövade att få till ett i Stockholm. Det blev nej. Däremot blev det ett i Jämtland för 17 000 personer, en sjundedel av befolkningen där.",
+          "Varför blev det ett register där? Jo, där fanns det en kemlabbläkare, PA Hedman, som ville ha en dataanläggning för sina prover från kemlabb och behövde fylla den med mer uppgifter."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "H60919-65:0-3",
+        "anf_id": "H60919-65",
+        "rm": "2018/19",
+        "dok_nummer": 19,
+        "party": "KD",
+        "speaker": "Jimmy Loord (KD)",
+        "date": "2018-11-21",
+        "title": "En strategi för svensk rymdverksamhet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H60919-65/html",
+        "paragraphs": [
+          "Fru talman! \"Allt som går att uppfinna är redan uppfunnet.\" Detta är ett citat som har tillskrivits den i slutet av 1800-talet arbetande generaldirektören för USA:s patentverk, Charles H. Duell. Visserligen är det omtvistat om han verkligen uttryckte sig på det viset, men jag låter ändå citatet illustrera det faktum att forskning och utveckling i dag har fört oss längre fram än vad vi för 100 år sedan trodde var möjligt.",
+          "När vi blickar framåt kan vi bara konstatera att vi fortfarande kommer att slås med häpnad över vad vi kan åstadkomma. Jag läste att Kina nyligen visat upp en modell av sin nya rymdstation, Det himmelska palatset 2, och det finns ambitioner att år 2050 kolonisera månen. En månbas är också USA:s ambition, och slaget om månen är ett första steg för att sedan göra bemannade resor till planeten Mars.",
+          "Fru talman! Detta kan låta som science fiction för någon, men utvecklingen går snabbt framåt.",
+          "Rymdverksamheten blir allt viktigare för vårt moderna samhälle. I denna tid av utveckling är det viktigt och efterlängtat att vi nu antar en strategi för svensk rymdverksamhet. När utvecklingen som nu går snabbt framåt är det viktigt att vi som land inte missar chansen att hänga med i den."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "H809142-38:0-5",
+        "anf_id": "H809142-38",
+        "rm": "2020/21",
+        "dok_nummer": 142,
+        "party": "M",
+        "speaker": "Elisabeth Svantesson (M)",
+        "date": "2021-06-16",
+        "title": "Riktlinjer för den ekonomiska politiken och Vårändringsbudget för 2021 samt extra ändringsbudget - förstärkt nedsättning av arbetsgivaravgifterna för 19-23-åringar under juni-augusti 2021",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H809142-38/html",
+        "paragraphs": [
+          "Fru talman! Förra året sa finansministern här i kammaren att hon inte utesluter skatt på någonting. Det kanske blir skatt på badtofflor och månlandningar, raljerade hon. Jag tar beskattning av svenska folket lite mer allvarsamt än så.",
+          "Sverige är ett högt beskattat land. Många hårt arbetande människor betalar mycket i skatt. Många undrar också: Vad får jag då för pengarna? Vad får jag för de inbetalade pengarna? Hur fungerar egentligen tryggheten för mig? Kommer polisen när jag behöver den? Får jag vård i tid?",
+          "Fru talman! Det som bekymrar mig är att det inte finns några gränser för vad finansministern tänker fortsätta att höja skatterna med för svenska folket. Bara den senaste tiden har en mängd olika skatter varit på väg att införas.",
+          "Det handlar om skatt på hämtmat, skatt på kläder och skor, höjd energiskatt för industri och jordbruk, höjd fordonsskatt, höjd skatt på tjänstebilar och en ny bankskatt. En del av de skatterna, fru talman, drabbar hårt arbetande människor.",
+          "På sin egen kammare har också finansministern skrivit om ytterligare några skatter hon gärna vill införa under nästa mandatperiod. Det är höjd skatt på arbete och entreprenörskap, återinförd förmögenhetsskatt, kraftigt begränsat rut, minskade ränteavdrag och höjd skatt på ISK. Det är väldigt tydligt att det kraftigt ska begränsas. Det kommer att drabba småsparare. Sedan har hon en hel del kompisar i sitt parti som gärna vill återinföra fastighetsskatten.",
+          "Allt detta kommer att drabba vanligt folk eftersom Socialdemokraterna och regeringen inte har förmåga att pressa tillbaka arbetslösheten och minska utgifterna för staten. Min enkla fråga till finansministern är: Vilka förslag har finansministern för att minska statens utgifter och inte bara att försöka öka statens inkomster genom att höja skatten för vanligt folk?"
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "GT09144-53:0-4",
+        "anf_id": "GT09144-53",
+        "rm": "2005/06",
+        "dok_nummer": 144,
+        "party": "S",
+        "speaker": "Statsminister GÖRAN PERSSON (s)",
+        "date": "2006-06-17",
+        "title": "Information från regeringen om Europeiska rådets möte den 15 och 16 juni",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT09144-53/html",
+        "paragraphs": [
+          "Herr talman! Jag vill säga tre saker.",
+          "För det första: Tack för den klara deklarationen om en viktig kamp mot kapitalismen! Det värmde.",
+          "För det andra: Det ska inte råda någon tvekan om att vi är djupt oroade över den utveckling vi ser på alkoholområdet. Införselreglerna är ett elände och bör vid lämpligt tillfälle, om ett sådant yppar sig, naturligtvis undanröjas. I avvaktan på detta ska Sverige i alla sammanhang i EU tillsammans med andra driva kampen mot alkoholen och alkoholskadorna.",
+          "För det tredje: Jag satt icke i denna kammare 1969, jag stod icke i denna talarstol 1969 och ändå är det förunderligt vad hemtamt och nära det inlägg känns som Gabriel Romanus nyss gjorde om alkoholen.",
+          "Herr talman! Låt mig bara säga en sak innan jag lämnar er. Jag vet att ni ska votera fram till sen eftermiddag. Jag önskar kammarens ledamöter med talmannen i spetsen en skön sommar och mycket vila inför höstens intressanta diskussioner och debatter. Vi ses i valrörelsen! Tack så mycket!"
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "H509137-11:5-6",
+        "anf_id": "H509137-11",
+        "rm": "2017/18",
+        "dok_nummer": 137,
+        "party": "L",
+        "speaker": "Mathias Sundin (L)",
+        "date": "2018-06-25",
+        "title": "Svar på interpellation 2017/18:591 om svarta hål i rymdstrategin",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H509137-11/html",
+        "paragraphs": [
+          "Varför skulle de inte kunna vara i Sverige? Men då behöver det vara mycket tydligare. Man kanske inte ska kalla det här området ett svart hål i rymdstrategin, men det är ett grått hål. Det är nämligen väldigt luddiga skrivningar om detta. Det finns skrivningar om privat bemannad rymdfart och investeringar i dessa, och det är bra. Men när det sedan kommer till slutklämmen hur det ska utredas och så vidare är det många ord som \"om\" och \"kanske\". Här borde vi vara mycket tydligare, inte minst som signal till dessa bolag.",
+          "Ett annat projekt som pågår inom Esa och som Esas ledning driver gäller en europeisk månbas. Ska vi ha en närvaro i solsystemet kommer månen naturligtvis att vara en central punkt för det. Detta är ju någonting som bestäms på ministermötena, så regeringen måste rimligen ha en åsikt om detta och inte bara hänskjuta det till Rymdstyrelsen, även om deras underlag naturligtvis är väldigt viktigt. När vi satte våra första fotavtryck på månen blev månen symbolen för vad mänskligheten kan uppnå. Nu har den snarare blivit symbolen för låga ambitioner inom rymdområdet - ingen människa har varit på månen sedan 1972. Det måste vi ändra på, och det kan Europa bidra till."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "H609110-125:0-2",
+        "anf_id": "H609110-125",
+        "rm": "2018/19",
+        "dok_nummer": 110,
+        "party": "S",
+        "speaker": "Statsrådet Matilda Ernkrans (S)",
+        "date": "2019-06-25",
+        "title": "Svar på interpellation 2018/19:179 om rymdstrategin",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H609110-125/html",
+        "paragraphs": [
+          "Fru talman! Inledningsvis vill jag säga att det naturligtvis är glädjande att flera partier i Sveriges riksdag är engagerade i frågan om Sverige som rymdnation och även vill stärka landet som rymdnation. Det vore ännu bättre om samma partier - här är det fråga om företrädare för Moderaterna och Kristdemokraterna - också prioriterade detta i sina budgetar, kanske framför massiva skattesänkningar.",
+          "Rymden är en gemensam resurs som alla länder har rätt att använda i fredliga syften. Grunden för svensk och internationell rymdverksamhet blir allt viktigare att betona när rymden blir tillgänglig för allt fler. Rymden ska användas till samhällelig nytta och inte bli ett ställe där man får placera ut vapen eller där en grogrund för konflikter uppstår.",
+          "Sverige är inte ett stort land, men det är ett stort rymdland. Redan för 50 år sedan sköts den första raketen upp från Esrange. Anledningen till att vi är en viktig rymdnation är att vi är duktiga på innovation. Vi är också duktiga på samverkan mellan högskola, forskning och näringsliv. Vi vet att vi har mycket att vinna på att utveckla rymdarbetet, inte minst ur miljöhänseende vilket också har nämnts här."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "H909130-47:5-8",
+        "anf_id": "H909130-47",
+        "rm": "2021/22",
+        "dok_nummer": 130,
+        "party": "V",
+        "speaker": "Jessica Wetterling (V)",
+        "date": "2022-06-14",
+        "title": "Ett modernt offentligt belöningssystem och de allmänna flaggdagarna",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H909130-47/html",
+        "paragraphs": [
+          "År 1969 gjorde utskottet följande uttalande: \"Ordensväsendet har sitt ursprung i äldre tiders samhällssystem, och principerna för utdelning av ordnar som belöning för samhällsinsatser kan svårligen förenas med nutida demokratiskt betraktelsesätt. Utskottet ser därför med tillfredsställelse att åtgärder företagits för att avveckla ordnar som en statlig belöning för offentlig tjänst.\"",
+          "Detta var 1969, men faktum är att det har väckts motioner sedan långt tillbaka om ordensväsendets avskaffande, faktiskt ända sedan 1869.",
+          "Trots att Förtjänstutredningen har varit fantastiskt intressant och just förtjänstfull - och det har varit fint att få ingå i den - vidhåller Vänsterpartiet åsikten att även om Förtjänstutredningen enligt sig själv föreslår ett belöningssystem som enligt utredningen är modernt anser Vänsterpartiet att ett återinförande av de vilande ordnarna inte heller nu reflekterar dagens behov.",
+          "Vi bedömer att det finns ett värde i att arbetsgivare och liknande kan dela ut olika former av minnesgåvor till anställda efter att de tjänstgjort ett visst antal år. Vi anser dock inte att det är statens uppgift att belöna insatser på central nivå, och därför anser vi också att riksdagen bör avslå propositionen i de delar som handlar om riktlinjer för ett system för offentliga belöningar, detta enligt reservation 1. I övrigt står vi bakom utskottets förslag i betänkandet."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": false,
+    "quotes": []
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 6467,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "H509137-11:5-6",
+            "anf_id": "H509137-11",
+            "rm": "2017/18",
+            "dok_nummer": 137,
+            "party": "L",
+            "speaker": "Mathias Sundin (L)",
+            "date": "2018-06-25",
+            "title": "Svar på interpellation 2017/18:591 om svarta hål i rymdstrategin",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H509137-11/html",
+            "paragraphs": [
+              "Ett annat projekt som pågår inom Esa och som Esas ledning driver gäller en europeisk månbas. Ska vi ha en närvaro i solsystemet kommer månen naturligtvis att vara en central punkt för det. Detta är ju någonting som bestäms på ministermötena, så regeringen måste rimligen ha en åsikt om detta och inte bara hänskjuta det till Rymdstyrelsen, även om deras underlag naturligtvis är väldigt viktigt. När vi satte våra första fotavtryck på månen blev månen symbolen för vad mänskligheten kan uppnå. Nu har den snarare blivit symbolen för låga ambitioner inom rymdområdet - ingen människa har varit på månen sedan 1972. Det måste vi ändra på, och det kan Europa bidra till."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 1,
+            "passage_id": "HB0995-69:0-4",
+            "anf_id": "HB0995-69",
+            "rm": "2023/24",
+            "dok_nummer": 95,
+            "party": "L",
+            "speaker": "Patrik Karlson (L)",
+            "date": "2024-04-10",
+            "title": "Mervärdesskatt",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0995-69/html",
+            "paragraphs": [
+              "En annan stor händelse detta år var att tre astronauter klev ombord på rymdfarkosten Apollo 11 och genomförde rymdfärden som resulterade i att astronauten Neil Armstrong som den första människan någonsin landsteg på månen.",
+              "Frågan är ändå om inte den största händelsen under detta år var att mervärdesskatten - i folkmun kallad momsen - infördes i Sverige och ersatte den allmänna varuskatten."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,806 @@
+{
+  "id": "skjutningar",
+  "question": "Hur ska skjutningarna i Sverige stoppas?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1283,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H509132-124:0-2",
+        "anf_id": "H509132-124",
+        "rm": "2017/18",
+        "dok_nummer": 132,
+        "party": "M",
+        "speaker": "Lars-Arne Staxäng (M)",
+        "date": "2018-06-14",
+        "title": "Statsministerns frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H509132-124/html",
+        "paragraphs": [
+          "Herr talman! Jag vill ställa en fråga till statsministern om de många skjutningar som sker i vårt land. Vad jag vet var den senaste skjutningen i går morse.",
+          "Man kan konstatera att vi statistiskt ligger högt i Sverige, en av de högsta i Europa. De flesta som drabbas är tonåringar och unga vuxna killar. Detta måste stoppas, det tror jag att vi är överens om, så fort det bara går. Att vi ska få fler poliser är vi också överens om, men det tar flera år.",
+          "Min konkreta fråga blir därför: Vad gör regeringen för att påskynda åtgärderna för att stoppa skjutningarna?"
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "H60931-43:6-9",
+        "anf_id": "H60931-43",
+        "rm": "2018/19",
+        "dok_nummer": 31,
+        "party": "M",
+        "speaker": "Cecilia Widegren (M)",
+        "date": "2018-12-17",
+        "title": "Skatt, tull och exekution",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H60931-43/html",
+        "paragraphs": [
+          "Fru talman! Låt mig gå in på den största satsningen som Moderaternas och Kristdemokraternas budgetmotion möjliggör. Det handlar om 90 miljoner de kommande åren, Jörgen Hellman, och närmare en halv miljard under ett antal år framåt för att möjliggöra den höjning för våra gränser som helt klart är nödvändig.",
+          "Detta år är ett av de värsta åren vad gäller dödsskjutningar i Sverige. Det första och nödvändiga steget för att stoppa de skjutningarna är att påbörja en begränsning av inflödet av vapen. Föregående år skedde 129 skjutningar, år 2016 skedde 119 skjutningar och 2015 var siffran under 100. Vi har alltså helt fel utveckling. Vi går åt fel håll, och det måste få ett stopp.",
+          "Situationen har blivit allt värre. Slutsatsen är uppenbar för oss alla. Det kan inte fortsätta. Det är alldeles för lätt att ta in vapen till Sverige, och det har ökat markant jämfört med andra jämförbara länder.",
+          "Det första nödvändiga steget för att stoppa skjutningar är att begränsa inflödet av vapen. Om tullen omgående kunde få möjligt att göra en acceleration av det arbete som de jobbar med i dag men som de behöver göra mer av skulle det vara en bra första linje för att påbörja att bekämpa brottslighet och begränsa det dödliga våldet."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "H90991-67:0-5",
+        "anf_id": "H90991-67",
+        "rm": "2021/22",
+        "dok_nummer": 91,
+        "party": "KD",
+        "speaker": "Ingemar Kihlström (KD)",
+        "date": "2022-03-31",
+        "title": "Frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90991-67/html",
+        "paragraphs": [
+          "Fru talman! Jag vill rikta min fråga till justitieminister Morgan Johansson.",
+          "Skjutningarna i Sverige fortsätter och når nya skrämmande nivåer. Inledningen av 2022 har det högsta antalet som registrerats de senaste fem åren - 18 personer har hittills dödats i Sverige i de 72 skjutningar som polisen registrerat.",
+          "Att skjutningarna fortsätter i hög takt på svenska gator är fruktansvärt och kan inte ses som annat än ett misslyckande för den regering som haft ansvaret under snart två mandatperioder.",
+          "Rikspolischefen har i två skrivelser, den senaste i slutet av 2021, efterfrågat utökade befogenheter och lagändringar för att möta våldets eskalering. Regeringen har dock inte mött upp med förslag enligt polisens begäran.",
+          "Trenden måste brytas. Gängens våld måste få ett stopp.",
+          "Det finns ett förslag till utskottsinitiativ i justitieutskottet som möter rikspolischefens begäran, men Socialdemokraterna kommer att rösta ned detta. Kommer justitieministern att möta rikspolischefens begäran om åtgärder, när nu S i justitieutskottet genom sitt agerande avvisar denna begäran?"
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "H909138-40:0-4",
+        "anf_id": "H909138-40",
+        "rm": "2021/22",
+        "dok_nummer": 138,
+        "party": "S",
+        "speaker": "Justitie- och inrikesministern Morgan Johansson (S)",
+        "date": "2022-06-28",
+        "title": "Svar på interpellation 2021/22:545 om kommunernas ansvar för att bekämpa gängskjutningar",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H909138-40/html",
+        "paragraphs": [
+          "Fru talman! Jan Ericson har frågat mig vad jag menar med mitt uttalande om att kommunerna ska ta större ansvar för att stoppa skjutningarna och på vilket sätt jag menar att det ska gå till.",
+          "Den utveckling som vi har sett när det gäller skjutvapenvåld i Sverige är oacceptabel. För att vi ska lyckas vända utvecklingen räcker det inte med enstaka åtgärder. Hela samhället måste bidra, och satsningarna måste vara långsiktiga.",
+          "Under senare år har rättsväsendet tillförts kraftigt ökade resurser, inte minst polisen. Vi jobbar vidare mot målet att ha 10 000 fler polisanställda 2024 jämfört med 2016. Enligt Polismyndighetens personalstatistik hade man nått mer än halvvägs vid årsskiftet. Med mer resurser till Polismyndigheten ökar också trycket på övriga delar av rättsväsendet. Därför genomförs omfattande satsningar även på Kriminalvården, Åklagarmyndigheten, Ekobrottsmyndigheten, Rättsmedicinalverket och Sveriges Domstolar.",
+          "Straffen har skärpts för en rad brott som är tydligt kopplade till skjutvapenvåldet, exempelvis mord, allvarliga våldsbrott, grovt vapenbrott och de allvarligaste narkotikabrotten. Vi arbetar också för att begränsa tillgången till skjutvapen. Vapensmuggling har blivit ett eget brott med betydligt strängare straffskalor än för vanliga smugglingsbrott.",
+          "Men för att minska brottsligheten räcker det inte med fler poliser och strängare straff. Det krävs också ett strukturerat och långsiktigt brottsförebyggande arbete, inte minst för att stoppa nyrekryteringen till de kriminella gängen och förhindra att barn och unga involveras i kriminalitet."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "H90914-47:0-3",
+        "anf_id": "H90914-47",
+        "rm": "2021/22",
+        "dok_nummer": 14,
+        "party": "S",
+        "speaker": "Statsrådet Mikael Damberg (S)",
+        "date": "2021-10-12",
+        "title": "Svar på interpellation 2020/21:899 om den skenande gängkriminaliteten",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90914-47/html",
+        "paragraphs": [
+          "Fru talman! Alexandra Anstrell har frågat mig om jag och regeringen har för avsikt att samla ett nationellt säkerhetsråd i Regeringskansliet och vilka akuta åtgärder jag avser att vidta för att få stopp på skjutningarna i Stockholm och Sverige.",
+          "Ett säkerhetspolitiskt råd inrättades redan 2014. Rådet har sedan dess träffats regelbundet för att få en gemensam bild av frågor kopplade till det säkerhetspolitiska läget och för att kunna diskutera frågor som rör Sveriges säkerhet. Myndigheter som är direkt berörda av de frågor som ska tas upp kan bjudas in till rådet, vilket innefattar Polismyndigheten.",
+          "Vad gäller Alexandra Anstrells andra fråga delar jag uppfattningen att skjutningarna måste minska. Regeringen ser mycket allvarligt på den grova brottsligheten och genomför därför den största satsningen någonsin på Polismyndigheten. Vid halvårsskiftet 2021 hade antalet polisanställda ökat med drygt 7 000 personer sedan januari 2016. Det betyder att Polismyndigheten aldrig tidigare haft så många anställda, och det har aldrig tidigare funnits så många poliser i Sverige.",
+          "För att minska antalet skjutningar har en rad åtgärder vidtagits, och ytterligare åtgärder är på gång. Regeringen kommer bland annat att låta utreda frågan om preventiva tvångsmedel. Detta görs för att ge Polismyndigheten ännu större möjligheter att förhindra allvarliga brott som begås av kriminella nätverk, till exempel skjutningar."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "H90995-82:0-2",
+        "anf_id": "H90995-82",
+        "rm": "2021/22",
+        "dok_nummer": 95,
+        "party": "M",
+        "speaker": "Johan Forssell (M)",
+        "date": "2022-04-07",
+        "title": "Statsministerns frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90995-82/html",
+        "paragraphs": [
+          "Fru talman! Gängkriminaliteten fortsätter att breda ut sig i Sverige. Skjutningar ligger kvar på rekordnivåer, och det har aldrig varit så många dödsskjutningar som under det första kvartalet i år.",
+          "Polisen har pekat på flera konkreta initiativ som behövs för att stoppa skjutningarna och bryta nyrekryteringen. I ett brev till regeringen pekar man till exempel på vikten av att få en lagstiftning som gör det straffbart att vara med i ett kriminellt gäng. Man har också efterfrågat möjligheten att omedelbart införa preventiva tvångsmedel mot de kriminella gängen liksom möjligheten att vittna anonymt - något som redan är lagligt i Norge, Finland och Danmark.",
+          "Vi hörde just statsministern säga att hon ska vända på alla stenar i arbetet mot de kriminella gängen. Är det då inte ett hyckleri att regeringen samtidigt säger nej till att genomföra just dessa tre konkreta reformer som polisen har bett om för att kunna stoppa de kriminella gängen?"
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "H80964-85:0-3",
+        "anf_id": "H80964-85",
+        "rm": "2020/21",
+        "dok_nummer": 64,
+        "party": "M",
+        "speaker": "Emma Ahlström Köster (M)",
+        "date": "2021-01-14",
+        "title": "Frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80964-85/html",
+        "paragraphs": [
+          "Fru talman! Skottlossningar och dödsskjutningar fortsätter att plåga vårt land. Det har förekommit i många år, men tyvärr har det eskalerat de senaste åren.",
+          "Förra året, 2020, slog vi ett tråkigt rekord med nästan 350 skjutningar och 44 avlidna. Detta har vi hört om tidigare. Men det är fortfarande oacceptabelt. Ingen tvivlar på regeringens vilja att göra någonting åt saken. Men jag är orolig för att verkligheten springer ifrån oss.",
+          "Vi vet en hel del. Vi vet att majoriteten av dåden är gängrelaterade. Vi vet att det oftare skjuts i särskilt utsatta områden. Vi vet också att våra grannar i Danmark har fått bukt med just den här typen av skjutningar.",
+          "Fru talman! Det går inte att bortse från danskarnas succéresultat de senaste tre åren. Man kan jämföra Sveriges 44 förra året med Danmarks 8. Min fråga i dag är: Hur många skjutningar krävs innan Morgan Johansson och regeringen växlar upp till en lagskärpning på liknande nivå som den i Danmark, som krävs för att avskräcka den här typen av skjutningar?"
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "H809143-67:6-10",
+        "anf_id": "H809143-67",
+        "rm": "2020/21",
+        "dok_nummer": 143,
+        "party": "S",
+        "speaker": "Joakim Sandell (S)",
+        "date": "2021-06-17",
+        "title": "Vapenfrågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H809143-67/html",
+        "paragraphs": [
+          "Fru talman! Vi står inför en stor utmaning både globalt och nationellt: Hur minskar vi de mord, självmord och olyckor som är orsakade av skjutvapen?",
+          "År 2016 dog fler än en kvarts miljon människor i världen till följd av skjutvapenrelaterade skador. I Sverige har vi sett en ökning fram till och med 2020. I inledningen på detta år kunde vi se en nedgång. Ökningen i Sverige har varit avgränsad till unga män i kriminella miljöer i utsatta områden. Familjerelaterade dödsskjutningar minskar liksom dödligt våld med andra metoder än skjutvapen.",
+          "För att förebygga det dödliga skjutvapenvåldet är det viktigt att använda samhällets samlade resurser på både den repressiva och den sociala sidan. Samtidigt är det angeläget att även arbeta med att minska nyrekryteringen till kriminella gäng.",
+          "Fru talman! Det gläder mig att det finns en stor samstämmighet i Sveriges riksdag gällande arbetet mot de illegala vapnen.",
+          "Under de senaste åren har straffen för vapenbrott skärpts. Straffet för grovt vapenbrott har höjts i omgångar. Motsvarande straffskärpningar har också gjorts för brott mot lagen om brandfarliga och explosiva varor, som bland annat omfattar handgranater."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "HD0969-81:0-2",
+        "anf_id": "HD0969-81",
+        "rm": "2025/26",
+        "dok_nummer": 69,
+        "party": "KD",
+        "speaker": "Mikael Oscarsson (KD)",
+        "date": "2026-02-05",
+        "title": "Frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HD0969-81/html",
+        "paragraphs": [
+          "Fru talman! I lördags samlades över 13 000 människor på 3 Arena på antivåldssamlingen Det räcker! Där fanns föräldrar som vittnade om hur de förlorat sina barn, till exempel Adrianas mamma som förlorade sin dotter som var ute med sin hund. Drottning Silvia, statsministern, Sebastian Stakset och många andra medverkade – det var en bred samling.",
+          "Min fråga till justitieministern, som också var där, är: Hur kan vi gå vidare? Hur kan vi kroka arm med civilsamhället, med antivåldsorganisationer och med kyrkor för att konkret komma vidare, stoppa nyrekryteringen och hindra våld som kan sluta i skjutningar?",
+          "En konkret sak som lyftes upp var Australien. Kriminella organisationer använder ofta sådant som Facebook för att kunna rekrytera. Detta har Australien stoppat genom att införa en 16-årsgräns, som nu fungerar. Kan vi göra något liknande i Sverige?"
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "H60931-39:0-3",
+        "anf_id": "H60931-39",
+        "rm": "2018/19",
+        "dok_nummer": 31,
+        "party": "M",
+        "speaker": "Cecilia Widegren (M)",
+        "date": "2018-12-17",
+        "title": "Skatt, tull och exekution",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H60931-39/html",
+        "paragraphs": [
+          "Fru talman! Socialdemokraterna lämnar fyra år vid makten bakom sig. Det har varit en tid av god internationell högkonjunktur som har gynnat och stimulerat svensk ekonomi bra, vilket har lett till att vi har haft goda resurser att ta oss an de samhällsutmaningar som vi ser.",
+          "Trots det lämnar vi också bakom oss ett år med kanske flest dödsskjutningar någonsin. Under en månad 2018 hade vi över 20 skjutningar. Det är en utveckling som vi måste få stopp på. Någonting måste vi ändra på. Det första sättet att stoppa skjutningarna är att begränsa inflödet av vapen, vilket är nödvändigt. Om tullen omgående skulle få kraftfulla verktyg och mer resurser för att jobba med detta skulle vi också kunna bryta utvecklingen av vapensmugglingen.",
+          "Det är någonting som tullfacket själva har efterlyst. De har talat om att de behöver ungefär 500 nya medarbetare för att kunna stävja utvecklingen och kunna jobba mer aktivt med detta. Då blir man något beklämd när man hör Jörgen Hellman här beskriva det som att det som gjorts varit det största någonsin och slå sig lite grann för bröstet över de satsningar som den tidigare regeringen har gjort.",
+          "Utvecklingen kan inte anstå. Jag är helt övertygad om att Jörgen Hellman och jag är överens om att dödsskjutningarna och den utvecklingen måste få ett slut. Vi måste ändra trenden med antalet illegala vapen i Sverige. Min fråga till Jörgen Hellman är: Varför har inte Socialdemokraterna under de fyra år som Socialdemokraterna har haft möjligheten sett till att det har blivit fler personer på plats vid gränsen så att man har kunnat arbeta mer aktivt med detta? Tullfacket efterfrågar ytterligare 500 medarbetare."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 4,
+        "passage_id": "H909138-40:0-4",
+        "anf_id": "H909138-40",
+        "rm": "2021/22",
+        "dok_nummer": 138,
+        "party": "S",
+        "speaker": "Justitie- och inrikesministern Morgan Johansson (S)",
+        "date": "2022-06-28",
+        "title": "Svar på interpellation 2021/22:545 om kommunernas ansvar för att bekämpa gängskjutningar",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H909138-40/html",
+        "paragraphs": [
+          "Den utveckling som vi har sett när det gäller skjutvapenvåld i Sverige är oacceptabel. För att vi ska lyckas vända utvecklingen räcker det inte med enstaka åtgärder. Hela samhället måste bidra, och satsningarna måste vara långsiktiga.",
+          "Under senare år har rättsväsendet tillförts kraftigt ökade resurser, inte minst polisen. Vi jobbar vidare mot målet att ha 10 000 fler polisanställda 2024 jämfört med 2016. Enligt Polismyndighetens personalstatistik hade man nått mer än halvvägs vid årsskiftet. Med mer resurser till Polismyndigheten ökar också trycket på övriga delar av rättsväsendet. Därför genomförs omfattande satsningar även på Kriminalvården, Åklagarmyndigheten, Ekobrottsmyndigheten, Rättsmedicinalverket och Sveriges Domstolar.",
+          "Straffen har skärpts för en rad brott som är tydligt kopplade till skjutvapenvåldet, exempelvis mord, allvarliga våldsbrott, grovt vapenbrott och de allvarligaste narkotikabrotten. Vi arbetar också för att begränsa tillgången till skjutvapen. Vapensmuggling har blivit ett eget brott med betydligt strängare straffskalor än för vanliga smugglingsbrott.",
+          "Men för att minska brottsligheten räcker det inte med fler poliser och strängare straff. Det krävs också ett strukturerat och långsiktigt brottsförebyggande arbete, inte minst för att stoppa nyrekryteringen till de kriminella gängen och förhindra att barn och unga involveras i kriminalitet."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 5
+      },
+      {
+        "rank": 2,
+        "passage_id": "H60931-43:6-9",
+        "anf_id": "H60931-43",
+        "rm": "2018/19",
+        "dok_nummer": 31,
+        "party": "M",
+        "speaker": "Cecilia Widegren (M)",
+        "date": "2018-12-17",
+        "title": "Skatt, tull och exekution",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H60931-43/html",
+        "paragraphs": [
+          "Detta år är ett av de värsta åren vad gäller dödsskjutningar i Sverige. Det första och nödvändiga steget för att stoppa de skjutningarna är att påbörja en begränsning av inflödet av vapen. Föregående år skedde 129 skjutningar, år 2016 skedde 119 skjutningar och 2015 var siffran under 100. Vi har alltså helt fel utveckling. Vi går åt fel håll, och det måste få ett stopp.",
+          "Situationen har blivit allt värre. Slutsatsen är uppenbar för oss alla. Det kan inte fortsätta. Det är alldeles för lätt att ta in vapen till Sverige, och det har ökat markant jämfört med andra jämförbara länder.",
+          "Det första nödvändiga steget för att stoppa skjutningar är att begränsa inflödet av vapen. Om tullen omgående kunde få möjligt att göra en acceleration av det arbete som de jobbar med i dag men som de behöver göra mer av skulle det vara en bra första linje för att påbörja att bekämpa brottslighet och begränsa det dödliga våldet."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 4
+      },
+      {
+        "rank": 6,
+        "passage_id": "H90995-82:0-2",
+        "anf_id": "H90995-82",
+        "rm": "2021/22",
+        "dok_nummer": 95,
+        "party": "M",
+        "speaker": "Johan Forssell (M)",
+        "date": "2022-04-07",
+        "title": "Statsministerns frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90995-82/html",
+        "paragraphs": [
+          "Polisen har pekat på flera konkreta initiativ som behövs för att stoppa skjutningarna och bryta nyrekryteringen. I ett brev till regeringen pekar man till exempel på vikten av att få en lagstiftning som gör det straffbart att vara med i ett kriminellt gäng. Man har också efterfrågat möjligheten att omedelbart införa preventiva tvångsmedel mot de kriminella gängen liksom möjligheten att vittna anonymt - något som redan är lagligt i Norge, Finland och Danmark."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 5,
+        "passage_id": "H90914-47:0-3",
+        "anf_id": "H90914-47",
+        "rm": "2021/22",
+        "dok_nummer": 14,
+        "party": "S",
+        "speaker": "Statsrådet Mikael Damberg (S)",
+        "date": "2021-10-12",
+        "title": "Svar på interpellation 2020/21:899 om den skenande gängkriminaliteten",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90914-47/html",
+        "paragraphs": [
+          "Vad gäller Alexandra Anstrells andra fråga delar jag uppfattningen att skjutningarna måste minska. Regeringen ser mycket allvarligt på den grova brottsligheten och genomför därför den största satsningen någonsin på Polismyndigheten. Vid halvårsskiftet 2021 hade antalet polisanställda ökat med drygt 7 000 personer sedan januari 2016. Det betyder att Polismyndigheten aldrig tidigare haft så många anställda, och det har aldrig tidigare funnits så många poliser i Sverige.",
+          "För att minska antalet skjutningar har en rad åtgärder vidtagits, och ytterligare åtgärder är på gång. Regeringen kommer bland annat att låta utreda frågan om preventiva tvångsmedel. Detta görs för att ge Polismyndigheten ännu större möjligheter att förhindra allvarliga brott som begås av kriminella nätverk, till exempel skjutningar."
+        ],
+        "first_paragraph": 3,
+        "last_paragraph": 4
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1283,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H40982-35:6-8",
+            "anf_id": "H40982-35",
+            "rm": "2016/17",
+            "dok_nummer": 82,
+            "party": "V",
+            "speaker": "Linda Snecker (V)",
+            "date": "2017-03-17",
+            "title": "Aktuell debatt om tryggheten i Sverige",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40982-35/html",
+            "paragraphs": [
+              "Polisen i sig är inte det enda svaret på hur trygghet ska skapas, men det är ett fundament i rättsstaten som måste fungera - överallt. Polisen har i dag svårt att utreda alla skjutningar som sker, och uppklaringsgraden är för låg. Det här är allvarligt. Det är därför vi behöver fortsätta att ha fler poliser i de otrygga stadsdelarna. Det är därför vi måste punktmarkera och ha spaning på vissa personer. I dag handlar det om få kriminellt verksamma personer, men de gör att många känner sig otrygga.",
+              "Vänsterpartiet ser två akuta åtgärder som måste vidtas här och nu: Vi måste få stopp på de illegala vapnen, och vi måste strypa rekryteringen till kriminella gäng.",
+              "Det dör människor i Sverige. Människor skjuts på öppen gata och blir skjutna med illegala vapen. Människor dör i Sverige för att knytnävsslagen har ersatts med vapen. För att minska det dödliga våldet måste de illegala vapnen stoppas. Polisen måste tillsammans med åklagare och tullen stoppa smugglingen av vapen, men man måste också stoppa alla vapen som cirkulerar i de kriminella nätverken. Kriminella personer måste punktmarkeras för att man ska hitta vapen, och vi måste införa en vapenamnesti nu."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "H609110-6:4-6",
+            "anf_id": "H609110-6",
+            "rm": "2018/19",
+            "dok_nummer": 110,
+            "party": "V",
+            "speaker": "Linda Westerlund Snecker (V)",
+            "date": "2019-06-25",
+            "title": "Aktuell debatt om gängkriminalitet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H609110-6/html",
+            "paragraphs": [
+              "Det är uppenbart att den ensidiga fokuseringen på straff inte minskar våldet i den utsträckning som svenska folket förväntar sig. Det är därför fascinerande att regeringen skryter om mängden straffskärpningar som har gjorts men inte talar någonting om de brottsförebyggande åtgärderna. Alla de hundratals människor som bor i berörda områden har samma rätt som alla andra att känna sig trygga.",
+              "Det behöver tillsättas en haverikommission om våldet, och det behövs Sluta-skjut-projekt i fler områden. Se till att de ekonomiska skillnaderna mellan fattiga och rika försvinner! Se till att samverkan mellan polis, kommuner och sociala myndigheter finns i varje stad och kommun! Uppdatera polisens medborgarlöften! Utred ett nytt vittnesskyddsprogram, så att fler vågar vittna! Se till att tullen får större befogenheter för att stoppa smuggelgods! Stoppa de svarta pengarna och penningtvätten som förser kriminella gäng med vapen! Skärp vapenlagarna, och se till att vi har en gedigen kontroll på vapnen i Sverige!",
+              "Vill vi stoppa kriminella gäng, skjutningar, bilbränder och otrygghet och allt annat som detta utskott under så många år har debatterat måste vi komma till rätta med den ekonomiska ojämlikheten. Vägrar regeringen att inse att de ekonomiska klyftorna föder desperation är det inte en regering för folket utan för eliten."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 9,
+            "passage_id": "HB09103-19:3-5",
+            "anf_id": "HB09103-19",
+            "rm": "2023/24",
+            "dok_nummer": 103,
+            "party": "V",
+            "speaker": "Lotta Johnsson Fornarve (V)",
+            "date": "2024-04-22",
+            "title": "Unga lagöverträdare",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB09103-19/html",
+            "paragraphs": [
+              "Att stoppa nyrekryteringen av barn och unga till kriminalitet är helt centralt för att minska skjutningar och annan grov brottslighet. Det är därför nödvändigt att satsa på brottsförebyggande åtgärder och att förse bland annat socialtjänst och skola med tillräckliga resurser för detta arbete. Det finns dock ingen snabb lösning för att stoppa nyrekryteringen in i kriminalitet. Det behövs en rad olika åtgärder på både kort och lång sikt. Det är framför allt satsningar på skolan, socialtjänsten och barns och ungdomars fritidsaktiviteter som behövs.",
+              "Om skolan, fritidsaktiviteter och samhället i övrigt fungerar väl minskar möjligheterna att rekrytera barn och unga in i kriminalitet. En ungdom som får det stöd hen behöver för att klara skolan är betydligt mer svårrekryterad. En ungdom som har en meningsfull fritid och ser tydliga alternativ till kriminalitet blir svårare att rekrytera till gängen.",
+              "Det krävs en god samverkan mellan olika myndigheter och lokala aktörer. Här har polisen naturligtvis en viktig roll. Vi måste bygga tillit mellan polis och samhällsmedborgare och inte öka misstron genom felaktiga satsningar som visitationszoner."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 10,
+            "passage_id": "H8098-65:0-3",
+            "anf_id": "H8098-65",
+            "rm": "2020/21",
+            "dok_nummer": 8,
+            "party": "MP",
+            "speaker": "Johanna Öfverbeck (MP)",
+            "date": "2020-09-16",
+            "title": "Särskild debatt om den organiserade gängkriminaliteten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H8098-65/html",
+            "paragraphs": [
+              "Fru talman! Den bästa insatsen är den som lyckas stoppa utvecklingen innan någon blir kriminell, innan någon blir ett brottsoffer. Samhället har verktyg för att göra det. Dessvärre använder vi oss inte av alla.",
+              "Men det finns exempel att lära av. Medan antalet skjutningar ökar i delar av Sverige har de i Malmö gått ned. Jag hade häromveckan ett möte med Stefan Sintéus, polismästare i Malmö, och fick då höra om insatser som har gjort skillnad. Sluta skjut-modellen, som har fått de kriminella att lyfta fingret från avtryckaren, har gett effekt. Modellen bygger på samarbete mellan polis, socialtjänst och frivård. De kriminella får ett tydligt val: sluta skjut, eller få polisens totala fokus! Men de erbjuds också alternativ: hjälp att bryta det kriminella livet. Det är något som flera av dem har tagit emot och har lämnat kriminaliteten.",
+              "Polismästaren nämnde också unga som har lyfts ur en påbörjad kriminell spiral, som har fått stöd att komma ur kriminaliteten innan den har hunnit eskalera. Men här var han tydlig med att det behövs mer hjälp från samhället för att se till att barn inte ens kommer nära den kriminella miljön. Stefan Sintéus efterlyste tidiga insatser som färre skolmisslyckanden, stöd i tidig ålder, insatser till föräldrar så att de kan sätta gränser och samarbete med hyresvärdar, civilsamhälle och dem som bor i de utsatta områdena. Det är något som kan göra skillnad på riktigt, som kan se till att det när en kriminell person grips inte finns någon som kan ta hans plats."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "H80929-12:0-2",
+            "anf_id": "H80929-12",
+            "rm": "2020/21",
+            "dok_nummer": 29,
+            "party": "MP",
+            "speaker": "Pernilla Stålhammar (MP)",
+            "date": "2020-11-04",
+            "title": "En strängare syn på hantering av vapen och explosiva varor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80929-12/html",
+            "paragraphs": [
+              "Vi måste agera kraftfullt och strypa tillförseln av vapen till Sverige, vi måste göra det svårt för kriminella att vara just kriminella och vi måste komma med kraftfulla svar. Det sker bland annat genom den proposition som regeringen nu lägger fram och som vi debatterar här i dag.",
+              "Det är viktigt att vi nu skärper straffen när det gäller smuggling av vapen och sprängmedel. Det är viktigt att vi nu skärper straffen för innehav av vapen. Det är viktigt att vi skärper straffen för innehav av sprängmedel och förberedelse till brott vad gäller sprängningar."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "H9096-105:0-3",
+            "anf_id": "H9096-105",
+            "rm": "2021/22",
+            "dok_nummer": 6,
+            "party": "MP",
+            "speaker": "Karolina Skog (MP)",
+            "date": "2021-09-20",
+            "title": "Debatt med anledning av budgetpropositionens avlämnande",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H9096-105/html",
+            "paragraphs": [
+              "Ingen är nöjd med detta läge, så jag tycker inte att vi behöver lägga diskussionen där. Frågan är i stället vad vi behöver göra och hur samhället gemensamt kan mobilisera för att möta detta hela vägen. Det handlar både om att sätta fast dem som skjuter och om att erbjuda en väg ut ur gängen och stoppa nyrekryteringen. Detta måste vara samhällets gemensamma svar."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "H909138-40:0-4",
+            "anf_id": "H909138-40",
+            "rm": "2021/22",
+            "dok_nummer": 138,
+            "party": "S",
+            "speaker": "Justitie- och inrikesministern Morgan Johansson (S)",
+            "date": "2022-06-28",
+            "title": "Svar på interpellation 2021/22:545 om kommunernas ansvar för att bekämpa gängskjutningar",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909138-40/html",
+            "paragraphs": [
+              "Den utveckling som vi har sett när det gäller skjutvapenvåld i Sverige är oacceptabel. För att vi ska lyckas vända utvecklingen räcker det inte med enstaka åtgärder. Hela samhället måste bidra, och satsningarna måste vara långsiktiga.",
+              "Under senare år har rättsväsendet tillförts kraftigt ökade resurser, inte minst polisen. Vi jobbar vidare mot målet att ha 10 000 fler polisanställda 2024 jämfört med 2016. Enligt Polismyndighetens personalstatistik hade man nått mer än halvvägs vid årsskiftet. Med mer resurser till Polismyndigheten ökar också trycket på övriga delar av rättsväsendet. Därför genomförs omfattande satsningar även på Kriminalvården, Åklagarmyndigheten, Ekobrottsmyndigheten, Rättsmedicinalverket och Sveriges Domstolar.",
+              "Straffen har skärpts för en rad brott som är tydligt kopplade till skjutvapenvåldet, exempelvis mord, allvarliga våldsbrott, grovt vapenbrott och de allvarligaste narkotikabrotten. Vi arbetar också för att begränsa tillgången till skjutvapen. Vapensmuggling har blivit ett eget brott med betydligt strängare straffskalor än för vanliga smugglingsbrott.",
+              "Men för att minska brottsligheten räcker det inte med fler poliser och strängare straff. Det krävs också ett strukturerat och långsiktigt brottsförebyggande arbete, inte minst för att stoppa nyrekryteringen till de kriminella gängen och förhindra att barn och unga involveras i kriminalitet."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 7,
+            "passage_id": "H90914-55:6-8",
+            "anf_id": "H90914-55",
+            "rm": "2021/22",
+            "dok_nummer": 14,
+            "party": "S",
+            "speaker": "Statsrådet Mikael Damberg (S)",
+            "date": "2021-10-12",
+            "title": "(forts.) Svar på interpellation 2020/21:899 om den skenande gängkriminaliteten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90914-55/html",
+            "paragraphs": [
+              "Anders Österberg ställde en viktig fråga om Sluta skjut, ett arbete som har pågått i Malmö under ett antal år med inspiration inte minst från USA. En svensk delegation, som Morgan Johansson ledde tillsammans med Brå, besökte några av de ledande akademikerna i USA och frågade: Finns det någonting i USA som ni tror verkligen skulle kunna fungera i ett svenskt koncept? Då lyfte de fram Group Violence Intervention, en metod som har visat sig vara väldigt framgångsrik i många amerikanska städer för att få ned skjutningarna. Och det är det system som man har prövat i Malmö.",
+              "Under tre års tid har skjutningarna minskat med 70 procent i Malmö. Det är klart att det är väldigt intressant för fler städer runt om i Sverige hur man kan sätta den här pressen på de kriminella men också erbjuda en väg ut i form av en fungerande avhopparverksamhet, om det kan minska skjutningarna på samma sätt som vi har sett i Malmö.",
+              "Jag är väldigt intresserad av detta. Regeringen driver nu ett arbete där vi satsar på att kunna sprida den här modellen till fler städer som är intresserade av den. Men vi är också intresserade av annat forskningsbaserat underlag för att se vilka förebyggande insatser som kan ge resultat, också på lång sikt, vid sidan av fler poliser, skärpta straff och nya verktyg till polisen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 10,
+            "passage_id": "H80971-15:8-11",
+            "anf_id": "H80971-15",
+            "rm": "2020/21",
+            "dok_nummer": 71,
+            "party": "C",
+            "speaker": "Alireza Akhondi (C)",
+            "date": "2021-01-27",
+            "title": "Tullfrågor och Tullverkets utökade möjligheter att besluta om postspärrar",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80971-15/html",
+            "paragraphs": [
+              "Herr talman! Centerpartiet har länge drivit på för att kraftigt skärpa straffen för brott med koppling till gängkriminalitet. Vi har också drivit på för den kraftfulla förstärkning som skett inom polisen och rättsväsendet. Ska vi lyckas i kampen mot droghandel och skjutningar behöver vi på allvar strypa inflödet av knark och vapen, en dödlig kombination som kostar nästan ett människoliv i veckan. Därför måste vi agera kraftfullt redan vid gränsen och ge tullen ökade befogenheter.",
+              "Tullverket måste få befogenhet att utan att behöva tillkalla polis hindra personer eller stoppa fordon med misstänkt stöldgods vid gränsen. Detta är helt nödvändigt för att hindra internationella stöldligor från att härja i Sverige.",
+              "Det finns anledning att även se över samverkan mellan polisen och andra myndigheter. Riksrevisionens rapport om ett myndighetsgemensamt arbete mot organiserad brottslighet visar exempelvis på brister i uppföljningen och styrningen av det myndighetsgemensamma arbetet mot organiserad brottslighet. Centerpartiet anser att det även i övrigt finns utrymme för ytterligare förbättringar av det samordnande arbetet och av informationsutbytet mellan myndigheter i brottsbekämpande syfte."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "HC09114-71:0-3",
+            "anf_id": "HC09114-71",
+            "rm": "2024/25",
+            "dok_nummer": 114,
+            "party": "C",
+            "speaker": "Ulrika Liljeberg (C)",
+            "date": "2025-05-13",
+            "title": "Vapenfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC09114-71/html",
+            "paragraphs": [
+              "Herr ålderspresident! De dödliga skjutningarna har de senaste åren drabbat Sverige hårt. De kriminella gängen och den organiserade brottsligheten har skördat liv och skapat stor otrygghet. Enskilda ensamagerande personer har begått massmord på okända. Fortfarande pågår det dödliga våldet och mördandet i nära relationer.",
+              "Centerpartiet har därför stått bakom de historiskt stora satsningarna på polisen och övriga rättsväsendet. Vi har varit för straffskärpningar och införandet av nya verktyg och metoder för att bekämpa denna allvarliga brottslighet och ge socialtjänst och kommuner ett utökat brottsförebyggande uppdrag.",
+              "Vi har dock sagt nej till införandet av visitationszoner och anonyma vittnen med skälet att de verktygen inte är vare sig effektiva eller rättssäkra insatser mot den grova organiserade brottsligheten eller gängens kriminalitet.",
+              "Av samma skäl är vi nu emot förslaget att återigen förbjuda legala, halvautomatiska vapen utifrån deras utseende. Syftet bakom förslagen har bland annat uppgetts vara att stoppa gängskjutningarna. Därför är det viktigt att konstatera att i de kriminella miljöerna används inte legala vapen – det är uteslutande illegala vapen. Detta visar bland annat de 10–20 vapen som polisen varje vecka beslagtar från kriminella."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 9,
+            "passage_id": "HA0999-25:33-36",
+            "anf_id": "HA0999-25",
+            "rm": "2022/23",
+            "dok_nummer": 99,
+            "party": "L",
+            "speaker": "Martin Melin (L)",
+            "date": "2023-04-27",
+            "title": "Polisfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0999-25/html",
+            "paragraphs": [
+              "Skolan är alltså viktig, kanske det viktigaste, för att stoppa nyrekryteringen.",
+              "Fru talman! Det andra som måste göras är att öka den polisiära närvaron, framför allt på de platser och i de områden där kriminella rör sig, förvarar vapen och narkotika, styr de boende, kontrollerar och hotar näringsidkare och i vissa fall även har påverkan på kommun och förvaltning. Det måste bli jobbigt att vara kriminell. De ska ha polisens ögon på sig 24:7, 365 dagar om året.",
+              "Låt oss prata om det omstridda förslaget om visitationszoner i ett begränsat område under en begränsad tid. Det kan röra sig om ett område där olika kriminella uppehåller sig - ett torg i ett utanförskapsområde där det ett tag har varit oroligt med många skjutningar eller varför inte Stureplan i Stockholm, där många kriminella rör sig. Det ska vara en plats där det finns ett behov för polisen av att kunna leta efter vapen och på så sätt förhindra skjutningar."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 10,
+            "passage_id": "HB0944-19:8-10",
+            "anf_id": "HB0944-19",
+            "rm": "2023/24",
+            "dok_nummer": 44,
+            "party": "L",
+            "speaker": "Martin Melin (L)",
+            "date": "2023-12-07",
+            "title": "Rättsväsendet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0944-19/html",
+            "paragraphs": [
+              "Tidiga sociala insatser är nyckeln till att stoppa nyrekryteringen. Det är de flesta kriminologer i dag överens om, och jag tror även att de flesta i justitieutskottet är överens om detta. Det vi inte är överens om är hur och av vilka dessa åtgärder ska genomföras och hur de ska finansieras. Men det är en helt annan debatt.",
+              "Herr talman! Jag tänkte också prata lite om polisen och dess roll i det brottsförebyggande arbetet, inte minst mot det våld som vi dagligen matas med i medier - skjutningar och sprängningar av gängen och de kriminella nätverken. Det kommer alltid att finnas de som faller igenom de sociala skyddsnäten, och då måste polisen finnas där för att kunna upptäcka och i bästa fall förhindra att brott begås och att unga människor dör.",
+              "Den gängstruktur som vi ser i dag kommer inte att försvinna på några veckor. Det kommer förmodligen att ta år, kanske 10 eller till och med 15 år, innan den är så sargad och skadad av effektivt polisarbete och framgångsrikt förebyggande arbete att den inte kan fungera som i dag. Det gäller att nyrekryteringen bromsas så pass att gängen inte kan fyllas på av nya unga män."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H50935-125:3-4",
+            "anf_id": "H50935-125",
+            "rm": "2017/18",
+            "dok_nummer": 35,
+            "party": "L",
+            "speaker": "Roger Haddad (L)",
+            "date": "2017-11-22",
+            "title": "Skjutvapen och explosiva varor - skärpta straff för de grova brotten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H50935-125/html",
+            "paragraphs": [
+              "Vi ser också av vad som hittills har noterats av polisen att vi har haft 230 skjutningar, varav tolv dödsskjutningar i Stockholm, sju i Malmö och tre i Göteborg, fram till mitten av november. Det är en oerhört allvarlig utveckling, och det är därför det krävs fler åtgärder och inte bara en höjning av minimistraffet. Vi vill också bredda paragrafen så att fler vapenbrott kan gå under denna lagstiftning. Men vi måste även vidta andra åtgärder, som inte direkt är föremål för denna proposition. Det gäller exempelvis polisens förmåga, som några har varit inne på."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 8,
+            "passage_id": "H10971-18:6-8",
+            "anf_id": "H10971-18",
+            "rm": "2013/14",
+            "dok_nummer": 71,
+            "party": "L",
+            "speaker": "ROGER HADDAD (FP)",
+            "date": "2014-02-20",
+            "title": "Polisfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H10971-18/html",
+            "paragraphs": [
+              "Tittar man på hur det ser ut i polisens uppgifter från 2011 för Göteborg, Stockholm och Malmö ser man att det förekom 84 skjutningar i Göteborg, varav ungefär hälften var gängrelaterade, över 300 skjutningar i Malmö och 190 skjutningar i Stockholm. Detta kräver att vi aktivt identifierar de kriminella gängen och underlättar polisens metoder att inhämta uppgifter så att man kan lagföra de här personerna. Alliansregeringen har också aviserat skärpta minimi- och maxstraff för grovt vapenbrott, vilket vi återkommer till."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "HB093-66:0-2",
+            "anf_id": "HB093-66",
+            "rm": "2023/24",
+            "dok_nummer": 3,
+            "party": "KD",
+            "speaker": "Energi- och näringsministern Ebba Busch (KD)",
+            "date": "2023-09-13",
+            "title": "Partiledardebatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HB093-66/html",
+            "paragraphs": [
+              "Det får inte fortsätta på det här sättet. Det måste bli en förändring.",
+              "Min fråga är vilket ansvar Magdalena Andersson är beredd att ta för att bidra till att vi kan vända den här utvecklingen. Det är uppenbart att det vi har gjort hittills inte är tillräckligt. Jag hörde inte tydliga svar tidigare. Kan vi enas om att införa anonyma vittnen? Kan vi enas om visitationszoner? Kan vi enas om dubbla straff för gängkriminella?"
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "HA0992-94:4-7",
+            "anf_id": "HA0992-94",
+            "rm": "2022/23",
+            "dok_nummer": 92,
+            "party": "KD",
+            "speaker": "Ingemar Kihlström (KD)",
+            "date": "2023-04-19",
+            "title": "Vapenfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0992-94/html",
+            "paragraphs": [
+              "Herr talman! Vi kristdemokrater anser naturligtvis att det behövs insatser från rättsväsendets alla delar och även lagändringar för att komma åt kriminellas innehav av vapen och sprängmedel, men vi menar att det måste genomföras på ett sätt som inte skapar problem för vanliga jägare och sportskyttar.",
+              "Redan i dag omges dagens registrerade vapenägare - de är i dag cirka 620 000 personer som har 1,8 miljoner licenser - av många regler, och samhället har många kontrollfunktioner för den som äger ett vapen. Jag måste upprepa det igen, även om jag har sagt det tidigare i debatter: Det är inte legala vapen som används vid de skjutningar och grova brott som vi ser i Sverige. Det är i stället främst vapen som kommer in i Sverige på illegal väg.",
+              "För några år sedan gjorde man en undersökning där man konstaterade att under en ganska lång tidsperiod var det endast ett vapen per år som kom från jakt eller sportskytte vid grov brottslighet. Det är alltså en mycket liten och marginell del. För oss kristdemokrater är det därför självklart att inte bunta ihop jägare och sportskyttar med dem som beter sig allra värst i samhället. En onödig reglering som försvårar för laglydiga vapenägare är inte metoden för att få stopp på det ökade antalet skjutningar på våra gator och torg."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "HD0969-81:0-2",
+            "anf_id": "HD0969-81",
+            "rm": "2025/26",
+            "dok_nummer": 69,
+            "party": "KD",
+            "speaker": "Mikael Oscarsson (KD)",
+            "date": "2026-02-05",
+            "title": "Frågestund",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HD0969-81/html",
+            "paragraphs": [
+              "Min fråga till justitieministern, som också var där, är: Hur kan vi gå vidare? Hur kan vi kroka arm med civilsamhället, med antivåldsorganisationer och med kyrkor för att konkret komma vidare, stoppa nyrekryteringen och hindra våld som kan sluta i skjutningar?",
+              "En konkret sak som lyftes upp var Australien. Kriminella organisationer använder ofta sådant som Facebook för att kunna rekrytera. Detta har Australien stoppat genom att införa en 16-årsgräns, som nu fungerar. Kan vi göra något liknande i Sverige?"
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "HB0934-24:0-3",
+            "anf_id": "HB0934-24",
+            "rm": "2023/24",
+            "dok_nummer": 34,
+            "party": "KD",
+            "speaker": "Torsten Elofsson (KD)",
+            "date": "2023-11-22",
+            "title": "Riksrevisionens rapport om Polismyndighetens arbete med särskilda händelser riktade mot organiserad brottslighet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0934-24/html",
+            "paragraphs": [
+              "Fru talman! För att få bukt med den grova brottsligheten måste alla led i brottsbekämpningen vara effektiva. En metod som polisen kan använda för att bekämpa grov brottslighet med skjutningar och sprängningar är så kallade särskilda händelser. I korthet innebär det att en händelse är eller förväntas bli så omfattande, allvarlig eller komplex att Polismyndigheten måste planera, organisera eller leda sin verksamhet i särskild ordning. Beslut om särskild händelse möjliggör en snabb mobilisering av resurser och kompetens från olika polisområden."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "H60931-43:6-9",
+            "anf_id": "H60931-43",
+            "rm": "2018/19",
+            "dok_nummer": 31,
+            "party": "M",
+            "speaker": "Cecilia Widegren (M)",
+            "date": "2018-12-17",
+            "title": "Skatt, tull och exekution",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H60931-43/html",
+            "paragraphs": [
+              "Detta år är ett av de värsta åren vad gäller dödsskjutningar i Sverige. Det första och nödvändiga steget för att stoppa de skjutningarna är att påbörja en begränsning av inflödet av vapen. Föregående år skedde 129 skjutningar, år 2016 skedde 119 skjutningar och 2015 var siffran under 100. Vi har alltså helt fel utveckling. Vi går åt fel håll, och det måste få ett stopp.",
+              "Situationen har blivit allt värre. Slutsatsen är uppenbar för oss alla. Det kan inte fortsätta. Det är alldeles för lätt att ta in vapen till Sverige, och det har ökat markant jämfört med andra jämförbara länder.",
+              "Det första nödvändiga steget för att stoppa skjutningar är att begränsa inflödet av vapen. Om tullen omgående kunde få möjligt att göra en acceleration av det arbete som de jobbar med i dag men som de behöver göra mer av skulle det vara en bra första linje för att påbörja att bekämpa brottslighet och begränsa det dödliga våldet."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "H90995-82:0-2",
+            "anf_id": "H90995-82",
+            "rm": "2021/22",
+            "dok_nummer": 95,
+            "party": "M",
+            "speaker": "Johan Forssell (M)",
+            "date": "2022-04-07",
+            "title": "Statsministerns frågestund",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90995-82/html",
+            "paragraphs": [
+              "Polisen har pekat på flera konkreta initiativ som behövs för att stoppa skjutningarna och bryta nyrekryteringen. I ett brev till regeringen pekar man till exempel på vikten av att få en lagstiftning som gör det straffbart att vara med i ett kriminellt gäng. Man har också efterfrågat möjligheten att omedelbart införa preventiva tvångsmedel mot de kriminella gängen liksom möjligheten att vittna anonymt - något som redan är lagligt i Norge, Finland och Danmark."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "HC09119-31:0-3",
+            "anf_id": "HC09119-31",
+            "rm": "2024/25",
+            "dok_nummer": 119,
+            "party": "SD",
+            "speaker": "Henrik Vinge (SD)",
+            "date": "2025-05-20",
+            "title": "Internationell verkställighet i brottmål",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC09119-31/html",
+            "paragraphs": [
+              "Antalet skjutningar i gängmiljö har tydligt minskat under perioden. Det beror till stor del på det hårda arbete som polis och andra aktörer gör varje dag i vårt land. Men det beror också på de verktyg som vi har gett inte minst polisen för att de ska kunna bli mycket mer effektiva med att klara upp brott.",
+              "Vi har gett dem betydligt större möjligheter att avlyssna gängkriminella än vad de hade under den förra regeringen. Vi har också gett dem möjlighet att upprätta säkerhetszoner – det som kallas visitationszoner – som polisen själv bedömer har stoppat skjutningar i flera städer runt om i Sverige. Det har räddat människoliv.",
+              "Antalet skjutningar i gängmiljö är en tredjedel färre nu än när vi tillträdde. Innan vi tillträdde klarades ungefär en av fyra skjutningar i gängmiljö upp. I dag klaras närmare tre av fyra skjutningar upp. De här kurvorna hänger ihop. När risken att åka fast ökar minskar också viljan att begå brottet, och för första gången på över ett decennium pekar kurvorna åt rätt håll. Det tar tid att göra förändringar, men vår politik fungerar."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "H10940-21:18-21",
+            "anf_id": "H10940-21",
+            "rm": "2013/14",
+            "dok_nummer": 40,
+            "party": "SD",
+            "speaker": "RICHARD JOMSHOF (SD)",
+            "date": "2013-12-05",
+            "title": "Rättsväsendet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H10940-21/html",
+            "paragraphs": [
+              "Vi förordar, precis i linje med Rikspolisstyrelsen, att minimistraffet för grovt vapenbrott ska höjas. Jag vet inte om det finns samsyn i den här frågan. Vi har åtminstone fått nej när vi lagt fram förslaget. Jag beklagar det.",
+              "När vi föreslår detta har regeringen i stället valt att diskutera vapenamnestier. Vi fick ju en vapenamnesti våren 2013. Vi påpekade vid ett par tillfällen att den skulle vara ganska verkningslös. Det visade sig också att så var det."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,766 @@
+{
+  "id": "vinster-friskolor",
+  "question": "Vilka argument har förts fram mot vinster i friskolor?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 3493,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H00941-158:7-9",
+        "anf_id": "H00941-158",
+        "rm": "2012/13",
+        "dok_nummer": 41,
+        "party": "SD",
+        "speaker": "BJÖRN SÖDER (SD)",
+        "date": "2012-12-11",
+        "title": "Utbildning och universitetsforskning",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+        "paragraphs": [
+          "Det fria skolvalet och friskolereformen har kommit att innebära både för- och nackdelar för den svenska skolan. Friskoleförespråkare nämner ofta bara fördelarna, utan att ta upp de mycket allvarliga, och numera uppenbara, bristerna och nackdelarna. En av nackdelarna som Lärarförbundet nämner är att elever drabbas hårt om friskolor går i konkurs, något som kommer att bli aktuellt när elevantalet minskar kommande år samtidigt som vi har en kraftig ekonomisk recession i Europa.",
+          "Herr talman! När friskolorna började etableras var den vanligaste ägarformen stiftelse eller ekonomisk förening, och ofta fanns det bara en ägare till varje friskola. De senaste åren har det dock blivit allt vanligare att friskolor drivs i aktiebolagsform inom större koncerner, vilka inte alltid har utbildning som sin kärnverksamhet.",
+          "Frågan om friskolor ska få ta ut vinst ur sin verksamhet har kommit att bli alltmer omdebatterad, detta inte minst sedan flera larmrapporter har visat på svåra missförhållanden i friskolor som tillåter detta. Lärarförbundet skriver att det är \"förekomsten av vinst som sänker lärartätheten\", varpå det konstateras att friskolor som tillåter uttag av vinst bland annat har lägre lärartäthet och högre andel obehöriga lärare. Sverigedemokraterna vill ta fasta på dessa åsikter och håller med om att skolsystemets resurser ska användas till att höja kvaliteten i skolorna och inte delas ut som vinst."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "H509125-82:5-8",
+        "anf_id": "H509125-82",
+        "rm": "2017/18",
+        "dok_nummer": 125,
+        "party": "MP",
+        "speaker": "Carl Schlyter (MP)",
+        "date": "2018-06-04",
+        "title": "Tillstånd att ta emot offentlig finansiering inom socialtjänsten, assistansersättningen och skollagsreglerad verksamhet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H509125-82/html",
+        "paragraphs": [
+          "Och ärligt talat - vi är extrema i Sverige. I Norge får man mindre pengar per elev om man driver friskola, och det finns inget vinstläckage. I Danmark finns det gott om friskolor men inga vinstmöjligheter. Nederländerna har en rekordhög andel friskolor men inga vinstutdelningar. Till och med i USA brukar man i genomsnitt ge 19 procent mindre pengar per elev i friskolor, om man vill ha dem.",
+          "Eller varför inte nämna England, där 7 procent av eleverna går i oberoende skolor. Men dessa privatskolor är finansierade med privata medel. Man kan se klassklyftor och andra problem med detta, men där kommer i alla fall pengarna in i undervisningen, inte ut från den till riskkapitalister. Till och med detta är faktiskt ett sätt att se till att mer pengar går in i än ut ur systemet.",
+          "Vidare går 82 procent av de amerikanska studenter som går i friskolor på skolor utan vinstintresse. Stanfords undersökning har visat att de blir bättre på matematik utan vinstintresse. Och hör och häpna: Inte ens i USA fick man göra vinst på vård, skola och omsorg före 1973.",
+          "Det är alltså vi som är ett extremt land. Låt oss bli normala! Mångfalden kommer att finnas kvar, men man blir av med dem som bara bedriver verksamhet för vinstens skull."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "HA09102-96:11-12",
+        "anf_id": "HA09102-96",
+        "rm": "2022/23",
+        "dok_nummer": 102,
+        "party": "MP",
+        "speaker": "Camilla Hansén (MP)",
+        "date": "2023-05-03",
+        "title": "Övergripande skolfrågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA09102-96/html",
+        "paragraphs": [
+          "Fru talman! För många av oss är det självklart att offentlighetsprincipen ska gälla alla skolor, men det är inte en självklarhet för regeringen. För de små idéburna skolorna är offentlighetsprincipen självklar, men de stora skolkoncernerna vill bevara sina affärshemligheter. I våra kommunala skolor är det allas rätt att begära ut den information vi vill ha om vad pengarna går till - alla vi här i rummet kan göra det. När våra system ser ut på det här sättet blir insynen extremt viktig, och därför behövs det en offentlighetsprincip på precis samma villkor för friskolor som för offentliga skolor.",
+          "Jag vet att det har förts fram ett argument om att en del friskolor är så små att de inte kan hantera detta. Då vill jag påminna om att vi har små kommuner och små myndigheter i olika kommuner runtom i landet. Vi förväntar oss att de hanterar offentlighetsprincipen. Det kommer små skolor också att kunna göra på precis samma sätt."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "H40981-177:8-11",
+        "anf_id": "H40981-177",
+        "rm": "2016/17",
+        "dok_nummer": 81,
+        "party": "V",
+        "speaker": "Daniel Riazat (V)",
+        "date": "2017-03-16",
+        "title": "Gymnasieskolan",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H40981-177/html",
+        "paragraphs": [
+          "De stora överskotten inom utbildningsbranschen är en följd av att de vinstdrivande fristående skolorna hela tiden strävar efter att minska sina kostnader. Ett sätt är att anställa färre lärare, som dessutom är obehöriga i större utsträckning än på kommunala gymnasieskolor. Detta sänker såklart lönekostnaderna, och det sparas också in på den del av verksamheten som inte direkt kan hänföras till undervisningen.",
+          "Ytterst få vinstdrivande friskolor har egna skolbibliotek. De använder sig i stället av de offentliga stadsbiblioteken. Givetvis är det positivt att eleverna kommer i kontakt med dessa bibliotek, men det innebär samtidigt att skolan flyttar över sina kostnader till kommunen.",
+          "Vi väntar som sagt med intresse på att få se vilka förslag som kommer att läggas fram framöver, men det är också intressant att se det som samtidigt pågår bakom gardinerna. När Svenskt Näringsliv och andra aktörer med starka kopplingar till både dessa vinstdrivande bolag och till Sverigedemokraterna får bestämma är barnen som pengapåsar som ska finnas på en skolmarknad.",
+          "Vinstlobbyn, som har dessa riskkapitalister och Svenskt Näringsliv bakom sig och i spetsen, är väldigt aktiv i den frågan. Genom att sprida alternativa fakta och ha officiella möten där man söker Sverigedemokraternas aktiva stöd jobbar man numera stenhårt för att behålla dessa vinster."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "H0094-14:2-4",
+        "anf_id": "H0094-14",
+        "rm": "2012/13",
+        "dok_nummer": 4,
+        "party": "V",
+        "speaker": "ULLA ANDERSSON (V) replik",
+        "date": "2012-09-20",
+        "title": "Debatt med anledning av budgetpropositionen",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H0094-14/html",
+        "paragraphs": [
+          "I dag går varannan skattekrona som går till privata företag till 16 riskkapitalägda koncerner. Den mångfald som övriga partier talar om blir alltmer ett riskkapitalistiskt monopol. Små bolag köps upp och ideella aktörer slås ut eftersom stordriftsfördelar behövs för att kunna pressa kostnaderna och maximera vinsten. Det har helt enkelt blivit fri dragningsrätt på våra skattepengar - en tombola med vinst varje gång. Vinsten var 8 miljarder kronor år 2009.",
+          "De argument som har förts fram för privatiseringarna har varit ökad mångfald. Vi har fått ett riskkapitalistiskt monopol. Ökad effektivitet och kvalitet var ett annat argument. Det har blivit såväl lägre personaltäthet som lägre utbildningsnivå bland de anställda, och de osäkra visstidsanställningarna har blivit fler och de fasta heltidstjänsterna färre. Det vill säga att allt det som kännetecknar en god kvalitet har blivit sämre på grund av vinstjakten. Din regering har släppt de här vinstintressena fria. Nu tänker ni tvångsprivatisera äldreomsorgen.",
+          "Våra föräldrar har blivit varor, våra barn har blivit checkar, och vi har fått en äldreomsorg och en välfärd som kännetecknas av en guldrusch. Är du nöjd nu?"
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "H809123-12:0-1",
+        "anf_id": "H809123-12",
+        "rm": "2020/21",
+        "dok_nummer": 123,
+        "party": "M",
+        "speaker": "Kristina Axén Olin (M)",
+        "date": "2021-05-19",
+        "title": "Tidsbegränsad lösning för att säkerställa tillgång till skolinformation",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H809123-12/html",
+        "paragraphs": [
+          "Fru talman! Daniel Riazat svarar inte på min fråga. Vilka friskolor är det som plockar ut vinst och tjänar pengar på våra barn? Vilka friskolor är det?",
+          "Sedan säger Daniel Riazat något där det faktiskt nästan är läge för en ursäkt till friskolorna. Han påstår att friskolor ägnar sig åt försäljning av barn på börsen. Det är inte anständigt, fru talman. Jag vet inte om Daniel Riazat menar Engelska Skolan och Academedia, som är några av våra absolut bästa skolor och oerhört populära i Sverige. Att påstå att de säljer barn på börsen är en oacceptabel nivå när man pratar om duktiga, populära friskolor."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "HD09122-24:4-6",
+        "anf_id": "HD09122-24",
+        "rm": "2025/26",
+        "dok_nummer": 122,
+        "party": "V",
+        "speaker": "Isabell Mixter (V)",
+        "date": "2026-05-21",
+        "title": "Offentlighetsprincipen med lättnadsregler för enskilda mindre huvudmän i skolväsendet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HD09122-24/html",
+        "paragraphs": [
+          "Hur stora vinster aktiebolagen har är höljt i dunkel. Vad barnen faktiskt lär sig vet vi inte, men många som arbetar i den högre utbildningen, till exempel på universitet, vittnar om att kvaliteten på kunskaperna hos dem som har gått i friskolor är väldigt låg.",
+          "Vänsterpartiet har länge efterfrågat en offentlighetsprincip för friskolorna. Så sent som 2024 röstade Tidöpartierna här i kammaren nej till att införa det, även Liberalerna. Det är inte det enda förslaget där Tidöpartierna drar benen efter sig eller inte är överens. Viljan att hålla skololigarkerna om ryggen är sannerligen stark.",
+          "Fram till nu har vi heller inte fått veta vilka elever som står i kö till friskolorna eller hur friskolorna ”väljer ut” vilka elever som får plats där. Jag har till exempel fått ett antal vittnesmål från föräldrar som säger att friskolor inte tar emot deras barn utan säger: På vår skola har vi inga barn med diagnoser. De har alltså nekat elever att läsa på deras skolor, trots att friskolor har samma skyldighet som kommunala skolor att göra anpassningar så att det fungerar för alla elever. Vi vet också att det finns friskolor som hänvisar elever tillbaka till den kommunala skolan därför att det är för krångligt för friskolorna att ha elever med särskilda behov."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "GY0982-55:0-2",
+        "anf_id": "GY0982-55",
+        "rm": "2010/11",
+        "dok_nummer": 82,
+        "party": "M",
+        "speaker": "Finansminister ANDERS BORG (M)",
+        "date": "2011-04-05",
+        "title": "Svar på interpellation 2010/11:290 om riskkapitalbolags intressen i välfärdsföretag",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0982-55/html",
+        "paragraphs": [
+          "Herr talman! Min utgångspunkt i denna debatt är att valfrihet är bra. Det är bra för att vi vet att konkurrens bidrar till lägre kostnader. De översikter vi har från till exempel Ekonomisk Debatt tyder på att konkurrens sänker kostnaderna med någonstans mellan 5 och 10 procent. Vi vet att valfrihet förbättrar kvaliteten. Det höjer kunskapsnivån att man har mer konkurrens om det kombineras med bra utvärdering och tydligt kunskapsfokus. Det har också den effekten att människor upplever att de har större kontroll över sitt eget liv, mer egenmakt.",
+          "Dagens Samhälle gjorde en sammanställning över hur det såg ut i friskolesektorn. Man landade i att 85 procent av alla friskolor drevs av koncerner med två eller tre skolor. Vinstnivån låg, om Dagens Samhälle har rätt, någonstans runt 5 procent. Det är alltså en verksamhet som i huvudsak drivs som småföretag med en relativt blygsam avkastning.",
+          "Varför har vi då denna diskussion om friskolor? Ja, skolan är ett bra exempel. De föräldrar som väljer att sätta sina barn i en friskola gör det för att de vill känna trygghet, känna att skolmiljön är trygg och präglas av ordning och reda och av respekt för varandra. Man tror att kunskap prioriteras och att man genom att sätta sina barn i en friskola ger dem goda förutsättningar i livet. Rätt eller fel, men jag tror att det är det som är förutsättningen. När man rekryterar till friskolorna har man ett stort antal sökande, på ett helt annat sätt än vad det ofta är till de kommunala skolorna. Det har att göra med att vi ofta får sätta underkänt för det kommunala, offentliga, ledarskapet."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "H90959-158:4-5",
+        "anf_id": "H90959-158",
+        "rm": "2021/22",
+        "dok_nummer": 59,
+        "party": "SD",
+        "speaker": "Richard Jomshof (SD)",
+        "date": "2022-01-26",
+        "title": "Utökade möjligheter att stänga skolor med allvarliga brister",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H90959-158/html",
+        "paragraphs": [
+          "Vi borde se på det tvärtom. Levererar skolan? Kan skolan leverera bra kvalitet? Ofta gör man faktiskt det. Precis som jag sa tidigare tar de ofta hand om barn som far illa i den kommunala skolan. Då tycker jag inte att det är ett problem att de tar ut en liten vinst. Det handlar inte om att de dammsuger skolsystemet på miljarder. Det intrycket får man när man lyssnar på partierna till vänster. Det är inte sant. Det handlar om ett litet vinstuttag. Men visst kan vi tänka oss att diskutera det också - absolut. Det är klart att vi kan samtala om det. Men det är inget huvudproblem.",
+          "Om ni skulle ta bort möjligheten att ta ut vinst, till och med förbjuda friskolorna - vad vet jag, det finns de som vill göra det - skulle det knappast göra saken bättre, utan tvärtom. Att det ser ut som det gör beror på att samhället ser ut som det gör, och det är ert fel, inte vårt."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "H50971-49:0-4",
+        "anf_id": "H50971-49",
+        "rm": "2017/18",
+        "dok_nummer": 71,
+        "party": "M",
+        "speaker": "Maria Stockhaus (M)",
+        "date": "2018-02-13",
+        "title": "Svar på interpellation 2017/18:336 om ersättning till skolor på lika villkor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H50971-49/html",
+        "paragraphs": [
+          "Fru talman! När det gäller krav på fristående verksamhet är det viktigt att man utgår från att man ställer krav på hög kvalitet. Då säkerställer vi att våra skattepengar används på rätt sätt. Detta gäller både fristående och kommunala skolor i Sverige.",
+          "Jag tror att det är väldigt få fristående skolor - och väldigt få föräldrar och barn som har valt fristående skolor - som känner att denna regering står upp för att fristående skolor har en plats i det svenska skolsystemet.",
+          "Fristående skolor är väldigt uppskattade av många. De håller generellt sett en hög kvalitet.",
+          "Det har funnits diskussioner om ordning och reda. Internationella Engelska Skolan - en av de största koncernerna, som definitivt har varit i skottgluggen i debatten om vinster i välfärden - levererar generellt mer trygghet och bättre studiero än vad många kommunala skolor gör.",
+          "Utbildningsministerns svar är att han inte tänker göra något åt problemet med beslut kring skolpeng, som berör väldigt många friskolor och ställer till mycket problem för dem när det gäller långsiktighet och ekonomi. Och förslaget om vinstbegränsning, som utbildningsministern själv tog upp i sitt andra inlägg, är ett ställningstagande som skickar tydliga signaler till friskolor i Sverige att de inte är önskvärda."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 1,
+        "passage_id": "H00941-158:7-9",
+        "anf_id": "H00941-158",
+        "rm": "2012/13",
+        "dok_nummer": 41,
+        "party": "SD",
+        "speaker": "BJÖRN SÖDER (SD)",
+        "date": "2012-12-11",
+        "title": "Utbildning och universitetsforskning",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+        "paragraphs": [
+          "Frågan om friskolor ska få ta ut vinst ur sin verksamhet har kommit att bli alltmer omdebatterad, detta inte minst sedan flera larmrapporter har visat på svåra missförhållanden i friskolor som tillåter detta. Lärarförbundet skriver att det är \"förekomsten av vinst som sänker lärartätheten\", varpå det konstateras att friskolor som tillåter uttag av vinst bland annat har lägre lärartäthet och högre andel obehöriga lärare. Sverigedemokraterna vill ta fasta på dessa åsikter och håller med om att skolsystemets resurser ska användas till att höja kvaliteten i skolorna och inte delas ut som vinst."
+        ],
+        "first_paragraph": 3,
+        "last_paragraph": 3
+      },
+      {
+        "rank": 4,
+        "passage_id": "H40981-177:8-11",
+        "anf_id": "H40981-177",
+        "rm": "2016/17",
+        "dok_nummer": 81,
+        "party": "V",
+        "speaker": "Daniel Riazat (V)",
+        "date": "2017-03-16",
+        "title": "Gymnasieskolan",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H40981-177/html",
+        "paragraphs": [
+          "De stora överskotten inom utbildningsbranschen är en följd av att de vinstdrivande fristående skolorna hela tiden strävar efter att minska sina kostnader. Ett sätt är att anställa färre lärare, som dessutom är obehöriga i större utsträckning än på kommunala gymnasieskolor. Detta sänker såklart lönekostnaderna, och det sparas också in på den del av verksamheten som inte direkt kan hänföras till undervisningen.",
+          "Ytterst få vinstdrivande friskolor har egna skolbibliotek. De använder sig i stället av de offentliga stadsbiblioteken. Givetvis är det positivt att eleverna kommer i kontakt med dessa bibliotek, men det innebär samtidigt att skolan flyttar över sina kostnader till kommunen."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 2,
+        "passage_id": "H509125-82:5-8",
+        "anf_id": "H509125-82",
+        "rm": "2017/18",
+        "dok_nummer": 125,
+        "party": "MP",
+        "speaker": "Carl Schlyter (MP)",
+        "date": "2018-06-04",
+        "title": "Tillstånd att ta emot offentlig finansiering inom socialtjänsten, assistansersättningen och skollagsreglerad verksamhet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H509125-82/html",
+        "paragraphs": [
+          "Och ärligt talat - vi är extrema i Sverige. I Norge får man mindre pengar per elev om man driver friskola, och det finns inget vinstläckage. I Danmark finns det gott om friskolor men inga vinstmöjligheter. Nederländerna har en rekordhög andel friskolor men inga vinstutdelningar. Till och med i USA brukar man i genomsnitt ge 19 procent mindre pengar per elev i friskolor, om man vill ha dem.",
+          "Eller varför inte nämna England, där 7 procent av eleverna går i oberoende skolor. Men dessa privatskolor är finansierade med privata medel. Man kan se klassklyftor och andra problem med detta, men där kommer i alla fall pengarna in i undervisningen, inte ut från den till riskkapitalister. Till och med detta är faktiskt ett sätt att se till att mer pengar går in i än ut ur systemet.",
+          "Vidare går 82 procent av de amerikanska studenter som går i friskolor på skolor utan vinstintresse. Stanfords undersökning har visat att de blir bättre på matematik utan vinstintresse. Och hör och häpna: Inte ens i USA fick man göra vinst på vård, skola och omsorg före 1973.",
+          "Det är alltså vi som är ett extremt land. Låt oss bli normala! Mångfalden kommer att finnas kvar, men man blir av med dem som bara bedriver verksamhet för vinstens skull."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 4
+      },
+      {
+        "rank": 5,
+        "passage_id": "H0094-14:2-4",
+        "anf_id": "H0094-14",
+        "rm": "2012/13",
+        "dok_nummer": 4,
+        "party": "V",
+        "speaker": "ULLA ANDERSSON (V) replik",
+        "date": "2012-09-20",
+        "title": "Debatt med anledning av budgetpropositionen",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H0094-14/html",
+        "paragraphs": [
+          "I dag går varannan skattekrona som går till privata företag till 16 riskkapitalägda koncerner. Den mångfald som övriga partier talar om blir alltmer ett riskkapitalistiskt monopol. Små bolag köps upp och ideella aktörer slås ut eftersom stordriftsfördelar behövs för att kunna pressa kostnaderna och maximera vinsten. Det har helt enkelt blivit fri dragningsrätt på våra skattepengar - en tombola med vinst varje gång. Vinsten var 8 miljarder kronor år 2009.",
+          "De argument som har förts fram för privatiseringarna har varit ökad mångfald. Vi har fått ett riskkapitalistiskt monopol. Ökad effektivitet och kvalitet var ett annat argument. Det har blivit såväl lägre personaltäthet som lägre utbildningsnivå bland de anställda, och de osäkra visstidsanställningarna har blivit fler och de fasta heltidstjänsterna färre. Det vill säga att allt det som kännetecknar en god kvalitet har blivit sämre på grund av vinstjakten. Din regering har släppt de här vinstintressena fria. Nu tänker ni tvångsprivatisera äldreomsorgen."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 3493,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "HD09157-96:4-7",
+            "anf_id": "HD09157-96",
+            "rm": "2025/26",
+            "dok_nummer": 157,
+            "party": "V",
+            "speaker": "Isabell Mixter (V)",
+            "date": "2026-08-13",
+            "title": "Skärpta villkor för friskolesektorn",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HD09157-96/html",
+            "paragraphs": [
+              "När man lyssnar på debatten om vinstförbud och hör den rädsla som finns hos högern när det gäller att helt ta bort vinsterna inom skolan kan man nästan tro att rätten att göra vinst är viktigare än artikel 26 i FN:s deklaration om de mänskliga rättigheterna, som säger att alla har rätt till utbildning. Samtidigt som skolkoncernerna gör gigantiska vinster har vi massvis med elever som går ut skolan utan fullständiga betyg, som inte får det stöd de behöver och som går i alldeles för stora klasser. Dessa elever kan inte ta sig vidare i livet på grund av det söndertrasade skolsystem som har skapats.",
+              "De största skolkoncernernas resultat på tre år uppgår till 19 miljarder. Det motsvarar 10 000 lärare. Dessa pengar hade kunnat stanna i skolan.",
+              "Herr talman! Jag var tidigare kommunpolitiker i Sundsvall, som är en friskoletät stad. Det var ingen slump att många friskolor sökte sig just dit. Sundsvall hade en relativt hög skolpeng, vilket gjorde det lukrativt för företagen.",
+              "Som systemet ser ut får alla skolor exakt lika mycket pengar per elev, oavsett vilka kostnader skolan har. Friskolorna kan optimera antalet elever i varje klass, då de har ett kösystem. De kan välja bort elever som de anser är alltför krävande. Kösystemet leder också till att fler barn till välutbildade föräldrar går på fristående skolor jämfört med kommunala skolor. Skolorna får alltså exakt samma elevpeng trots att man vet att behoven är olika."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 2,
+            "passage_id": "H40981-177:8-11",
+            "anf_id": "H40981-177",
+            "rm": "2016/17",
+            "dok_nummer": 81,
+            "party": "V",
+            "speaker": "Daniel Riazat (V)",
+            "date": "2017-03-16",
+            "title": "Gymnasieskolan",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40981-177/html",
+            "paragraphs": [
+              "De stora överskotten inom utbildningsbranschen är en följd av att de vinstdrivande fristående skolorna hela tiden strävar efter att minska sina kostnader. Ett sätt är att anställa färre lärare, som dessutom är obehöriga i större utsträckning än på kommunala gymnasieskolor. Detta sänker såklart lönekostnaderna, och det sparas också in på den del av verksamheten som inte direkt kan hänföras till undervisningen.",
+              "Ytterst få vinstdrivande friskolor har egna skolbibliotek. De använder sig i stället av de offentliga stadsbiblioteken. Givetvis är det positivt att eleverna kommer i kontakt med dessa bibliotek, men det innebär samtidigt att skolan flyttar över sina kostnader till kommunen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 5,
+            "passage_id": "H809123-11:0-3",
+            "anf_id": "H809123-11",
+            "rm": "2020/21",
+            "dok_nummer": 123,
+            "party": "V",
+            "speaker": "Daniel Riazat (V)",
+            "date": "2021-05-19",
+            "title": "Tidsbegränsad lösning för att säkerställa tillgång till skolinformation",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H809123-11/html",
+            "paragraphs": [
+              "Det här är saker som man självklart måste dölja på ett eller annat sätt. Vi vet ju att det är färre behöriga lärare på vinstdrivande friskolor. Vi vet att de ger sämre löner till sin personal. Vi vet att det är mer glädjebetyg på de skolorna och att de lägger mindre pengar på läromedel och på olika specialsalar i skolan."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 10,
+            "passage_id": "GZ09112-119:3-5",
+            "anf_id": "GZ09112-119",
+            "rm": "2011/12",
+            "dok_nummer": 112,
+            "party": "V",
+            "speaker": "ROSSANA DINAMARCA (V)",
+            "date": "2012-05-10",
+            "title": "Grundskolan",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GZ09112-119/html",
+            "paragraphs": [
+              "Den här slappheten får eleverna betala för. Fristående skolor sparar pengar genom att inte ha behöriga lärare. Vinster skapas genom att barnen får äta i klassrummet eller möjligen får en matkupong på 20 spänn eftersom det saknas matsal och personal. Det finns inte tillräckligt med toaletter. Barn med funktionshinder kan avvisas. Skolorna tar in avgifter från föräldrarna, fast man kallar det frivilliga bidrag.",
+              "Effekterna av konkurrensen för de kommunala skolorna har blivit att man har skurit ned på elevhälsan, studie- och yrkesvägledning samt skolbiblioteken. Klasserna har blivit större och lärartätheten har minskat. Nödvändig upprustning av lokalerna prioriteras ned eller bort helt och hållet. Det här är inte vägen till en likvärdig skola.",
+              "Jag sitter nu, tillsammans med några av er, med i den kommitté som ska se över frågan om vinster i fristående skolor. Dess värre visar inga övriga partier på något större mod att ta tag i den här frågan. Man försöker hitta kvalitetskriterier, som det heter, men detta visar sig vara ytterst svårt. För att komma åt problemet med lycksökare inom skolan måste vi attackera vinstintresset, och då kan vi inte tillåta att aktiebolag eller riskkapitalbolag driver skolor vars främsta syfte är att maximera vinster."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 9,
+            "passage_id": "H50971-51:4-6",
+            "anf_id": "H50971-51",
+            "rm": "2017/18",
+            "dok_nummer": 71,
+            "party": "MP",
+            "speaker": "Utbildningsministern Gustav Fridolin (MP)",
+            "date": "2018-02-13",
+            "title": "Svar på interpellation 2017/18:336 om ersättning till skolor på lika villkor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H50971-51/html",
+            "paragraphs": [
+              "Fru talman! Efter de två inläggen går det inte att bortse från vinstfrågan. Och jag måste ärligt ställa frågan: Är Moderaterna verkligen säkra på att det bästa sättet att värna friskolans plats och möjligheten för eldsjälar att driva en skola utifrån en idé man tror på är att fortsätta ha fri möjlighet att använda skattepengar till en helt annan verksamhet än den som de är avsedda för?",
+              "Det är en regellöshet, exempellös i internationell jämförelse, som vi i Sverige har. Vi tillåter ofta stora företag att använda skattepengar till en helt annan verksamhet än den som de är till för - till att expandera i andra länder, till verksamhet i andra kommuner eller för den delen till vinstutdelning, kanske till och med vinstutdelning till ägare som är registrerade på ett sådant sätt att de kan göra smarta upplägg för att undvika att betala den skatt de lever av.",
+              "Jag tror för min del att det skadar friskolan. Det skadar friskolan som idé, och det skadar långsiktigt möjligheten för engagerade lärare, rektorer och andra att driva en skola utifrån en pedagogisk idé. Det skadar alltså valfriheten och mångfalden för eleverna. Det är därför som jag tycker att det är rimligt att ställa krav på den som får förtroendet att driva välfärdsuppdraget skola och att ett av kraven bör vara att när du och jag ger skattepengar till verksamheten ska pengarna gå till det som de är avsedda för, inte till vinstutdelning."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 6,
+            "passage_id": "HA09102-96:7-10",
+            "anf_id": "HA09102-96",
+            "rm": "2022/23",
+            "dok_nummer": 102,
+            "party": "MP",
+            "speaker": "Camilla Hansén (MP)",
+            "date": "2023-05-03",
+            "title": "Övergripande skolfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA09102-96/html",
+            "paragraphs": [
+              "Fru talman! Marknadsskolan, där vinsten är drivkraften och ersättningarna är orättvisa, leder till problem för Sverige som kunskapsnation. Vi vet att orättvisa kösystem segregerar skolan. Den här våren har vi också sett olika exempel på kommuner som talar om att fler friskolor riskerar att leda till att kommunala skolor behöver läggas ned eller att lärare måste sägas upp, med större klasser som resultat. Men nya friskolor beviljas ändå tillstånd.",
+              "Vi har läst om exempel på skolor som smiter undan granskning eller blir påkomna med att inte ge eleverna den undervisning de har rätt till. Man kan inte ha naturbruksutbildningar utan att ha djur eller naturvetenskapliga utbildningar utan att ha labbsalar.",
+              "Att ett av de fuskande företagen delar ut flera hundra miljoner i vinster till ägarna är inget annat än ett hån mot oss som betalar skatt. Vinstutdelning är någonting som de flesta svenskar inte vill ha, över partigränser och oavsett om det är föräldrar med barn i friskolor eller i offentligt finansierade skolor. Man tycker inte att skattepengarna ska läcka ut i vinster."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 2,
+            "passage_id": "H509125-82:5-8",
+            "anf_id": "H509125-82",
+            "rm": "2017/18",
+            "dok_nummer": 125,
+            "party": "MP",
+            "speaker": "Carl Schlyter (MP)",
+            "date": "2018-06-04",
+            "title": "Tillstånd att ta emot offentlig finansiering inom socialtjänsten, assistansersättningen och skollagsreglerad verksamhet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H509125-82/html",
+            "paragraphs": [
+              "Och ärligt talat - vi är extrema i Sverige. I Norge får man mindre pengar per elev om man driver friskola, och det finns inget vinstläckage. I Danmark finns det gott om friskolor men inga vinstmöjligheter. Nederländerna har en rekordhög andel friskolor men inga vinstutdelningar. Till och med i USA brukar man i genomsnitt ge 19 procent mindre pengar per elev i friskolor, om man vill ha dem.",
+              "Eller varför inte nämna England, där 7 procent av eleverna går i oberoende skolor. Men dessa privatskolor är finansierade med privata medel. Man kan se klassklyftor och andra problem med detta, men där kommer i alla fall pengarna in i undervisningen, inte ut från den till riskkapitalister. Till och med detta är faktiskt ett sätt att se till att mer pengar går in i än ut ur systemet.",
+              "Vidare går 82 procent av de amerikanska studenter som går i friskolor på skolor utan vinstintresse. Stanfords undersökning har visat att de blir bättre på matematik utan vinstintresse. Och hör och häpna: Inte ens i USA fick man göra vinst på vård, skola och omsorg före 1973.",
+              "Det är alltså vi som är ett extremt land. Låt oss bli normala! Mångfalden kommer att finnas kvar, men man blir av med dem som bara bedriver verksamhet för vinstens skull."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "HA0915-17:0-2",
+            "anf_id": "HA0915-17",
+            "rm": "2022/23",
+            "dok_nummer": 15,
+            "party": "MP",
+            "speaker": "Camilla Hansén (MP)",
+            "date": "2022-10-27",
+            "title": "Frågestund",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0915-17/html",
+            "paragraphs": [
+              "Herr talman! En stor andel av Sveriges föräldrar till barn som går i skolan tycker inte att vinstutdelning ska tillåtas inom skattefinansierad skola. SVT:s valundersökning visar att väljare från alla partier håller med de här föräldrarna.",
+              "Skolminister Lotta Edholm ska ta fram en ny friskolelag där huvudmännens vinster i viss mån begränsas för nya aktörer men där vinstförbud, som Sveriges föräldrar och väljare visar enormt stöd för, ignoreras. Det innebär att regeringen tillåter jakt på vinst som mål för de stora skolkoncernerna när det borde vara jakt på kunskap."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 5,
+            "passage_id": "HB0983-82:3-7",
+            "anf_id": "HB0983-82",
+            "rm": "2023/24",
+            "dok_nummer": 83,
+            "party": "S",
+            "speaker": "Linus Sköld (S)",
+            "date": "2024-03-12",
+            "title": "Svar på interpellation 2023/24:533 om huvudmannaskap för svensk skola",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0983-82/html",
+            "paragraphs": [
+              "De miljarder som försvinner i vinster till privata fickor hos friskolornas ägare hade kunnat användas till exempelvis fler läromedel i skolan, som Lotta Edholm brukar prata sig varm för. De hade även kunnat användas till att anställa fler speciallärare. Det är ansenliga summor pengar vi talar om. De skulle räcka till långt mycket mer än vad Lotta Edholm förmår få fram i några riktade statsbidrag.",
+              "Vi kan också prata om systemeffekterna som vinstintresset får, det vill säga den tilltagande segregationen av skolsystemet. Barn till akademiker och svenskfödda barn går på vissa skolor, medan barn till föräldrar med svag utbildningsbakgrund och som är utlandsfödda går på andra skolor. Det är ett resultat av vinstintresset. Den som vill göra överskott behöver nämligen segregera ut ett högpresterande elevunderlag.",
+              "Det leder oss till kösystemet, som Lotta Edholm vill bevara. Det leder oss också till planeringsfrågan.",
+              "Riksrevisionen har konstaterat att det här systemet innebär ineffektiv användning av offentliga medel. Det läcker inte bara vinster till privata ägare; med det här systemet får man också betala för en plats i skolan flera gånger. Kommuner sitter kvar med kostnader, och friskolor får intäkter för uppgifter som de inte har. Med ökad effektivitet och stopp för vinstläckaget hade det alltså funnits väldigt mycket mer pengar i systemet. Det behöver skolan nu mer än någonsin, med den kostnadskris som pågår."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "HD0920-37:5-7",
+            "anf_id": "HD0920-37",
+            "rm": "2025/26",
+            "dok_nummer": 20,
+            "party": "S",
+            "speaker": "Anna Wallentheim (S)",
+            "date": "2025-10-16",
+            "title": "Svar på interpellation 2025/26:53 om vinster i välfärden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HD0920-37/html",
+            "paragraphs": [
+              "Vi vet att över hälften av alla friskolor drivs som aktiebolag. Vi vet att stora koncerner delar ut stora summor i vinster varje år samtidigt som kommunala skolor tvingas spara. Vi vet att systemet gynnar de skolor som väljer bort elever som behöver mer stöd eftersom det är billigare att undervisa barn och unga som redan klarar sig bra. Det handlar inte om bara några få oseriösa skolägare i Hässleholm eller någon annanstans. Det handlar om en modell som gör det möjligt och till och med lönsamt att låta skattemedel rinna bort från klassrummet.",
+              "Regeringen talar bland annat om en form av helrenovering av friskolesystemet. Det är bra att man försöker att täppa till en del av läckagen och att man vill ändra system för att stoppa oseriösa aktörer. Men man bortser från det största läckaget, nämligen själva vinstmöjligheten i sig. Då kommer pengar att fortsätta att försvinna från barns verksamhet."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 2,
+            "passage_id": "GV0955-44:0-4",
+            "anf_id": "GV0955-44",
+            "rm": "2007/08",
+            "dok_nummer": 55,
+            "party": "S",
+            "speaker": "MARIE GRANLUND (s)",
+            "date": "2008-01-22",
+            "title": "Svar på interpellation 2007/08:295 om skolor som vinstmaskiner",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0955-44/html",
+            "paragraphs": [
+              "John Bauer är nästa exempel på att vinst går före omsorgen om elever. Vi tycker att skolan inte är som vilken del av samhället som helst. Skola, sjukvård och sådant ska man inte tjäna pengar på. Därför tycker vi, precis som era borgerliga kamrater i andra länder, att skolan ska drivas non-profit. Den får gärna drivas i aktiebolagsform, men man ska inte kunna tjäna pengar på den. De pengarna ska faktiskt gå tillbaka till eleverna. Annars är bidraget helt enkelt för högt.",
+              "Jag vill ta upp Peter Hultqvists fråga. Varför inte kräva att man ska ha en öppen redovisning så att väljarna kan se vad pengarna går till för någonting? Ser inte skolministern att vinstintresse kan stå i konflikt med det pedagogiska intresset?"
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 6,
+            "passage_id": "H90995-81:0-3",
+            "anf_id": "H90995-81",
+            "rm": "2021/22",
+            "dok_nummer": 95,
+            "party": "S",
+            "speaker": "Statsministern Magdalena Andersson (S)",
+            "date": "2022-04-07",
+            "title": "Statsministerns frågestund",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90995-81/html",
+            "paragraphs": [
+              "Fru talman! Svensk skola är unik. Inte i något annat utvecklat land är det fritt fram för privata företag, internationella bolag, koncerner och riskkapitalbolag att göra stora vinster på skolan och kanske skicka dem utomlands till något skatteparadis. Det här är alltså pengar som riksdagen har beslutat ska gå till lärare, skolmaterial, gymnastiksalar, skolkuratorer och skolsköterskor men som i stället går till vinster. Och dessa vinster görs givetvis genom att dra ned på kvaliteten.",
+              "Dessutom har vi ett skolsystem där alla kommunala skolor blir orättvist behandlade i förhållande till friskolorna, som därmed kan göra ännu större vinster."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "HD09122-3:0-2",
+            "anf_id": "HD09122-3",
+            "rm": "2025/26",
+            "dok_nummer": 122,
+            "party": "L",
+            "speaker": "Joar Forssell (L)",
+            "date": "2026-05-21",
+            "title": "Offentlighetsprincipen med lättnadsregler för enskilda mindre huvudmän i skolväsendet",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD09122-3/html",
+            "paragraphs": [
+              "Det har ju varit high chaparral i svensk skola under väldigt lång tid. Man har kunnat skära ned på saker som är viktiga för kvaliteten i undervisningen och därmed kunnat plocka ut vinst. Detta reglerar vi upp. Vi ser till att möjligheten att skära ned i svensk skola för att plocka ut vinst blir alltmer obefintlig. Det handlar om just den stora, breda återregleringen av allt från barngruppers storlek till offentlighetsprincipen, bibliotekarier och så vidare."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 6,
+            "passage_id": "HD093-83:0-1",
+            "anf_id": "HD093-83",
+            "rm": "2025/26",
+            "dok_nummer": 3,
+            "party": "L",
+            "speaker": "Utbildnings- och integrationsministern Simona Mohamsson (L)",
+            "date": "2025-09-10",
+            "title": "Partiledardebatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD093-83/html",
+            "paragraphs": [
+              "Fru talman! Liberalerna och den borgerliga regeringen genomför just nu en helrenovering av friskolesystemet. Nu går vi vidare med vinstbegränsningar, om huvudmän inte sköter sig. Vi gör detta för att skydda barnens rätt till en bra och trygg skolgång. Jag och många där hemma reagerar starkt på uppgifterna om friskolor som snålar med smöret och med elevernas skolpeng – och pengarna har gått till annat än utbildning."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 3,
+            "passage_id": "HD0982-89:3-5",
+            "anf_id": "HD0982-89",
+            "rm": "2025/26",
+            "dok_nummer": 82,
+            "party": "L",
+            "speaker": "Joar Forssell (L)",
+            "date": "2026-03-04",
+            "title": "Övergripande skolfrågor och Grundläggande om utbildning",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD0982-89/html",
+            "paragraphs": [
+              "Det var ur detta som friskolesystemet växte fram, och det tycker jag i grunden är positivt. Det är bra att det finns friskolor och ett fritt skolval. Det är inte bra när man tar ut vinster i stället för att satsa på läraren och eleverna och i stället för att ha skolbibliotek, kvalitet på undervisningen och så vidare. Det är dåligt."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 2,
+            "passage_id": "HD0957-146:0-2",
+            "anf_id": "HD0957-146",
+            "rm": "2025/26",
+            "dok_nummer": 57,
+            "party": "L",
+            "speaker": "Utbildnings- och integrationsministern Simona Mohamsson (L)",
+            "date": "2026-01-14",
+            "title": "Partiledardebatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD0957-146/html",
+            "paragraphs": [
+              "Herr talman! Liberalerna och regeringen är i färd med att helrenovera friskolesystemet. Alldeles för länge har vi fått läsa om oseriösa friskoleägare som prioriterar bort barnens rätt till labbsalar, om obehöriga lärare och om onyttig mat. Vi går nu vidare med vinstbegränsningar för friskolor som inte sköter sig."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "GS0936-87:0-4",
+            "anf_id": "GS0936-87",
+            "rm": "2004/05",
+            "dok_nummer": 36,
+            "party": "KD",
+            "speaker": "LARS LINDÉN (kd)",
+            "date": "2004-11-24",
+            "title": "Offentlig upphandling",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS0936-87/html",
+            "paragraphs": [
+              "När en friskola lyckas få kostnaderna att bli lägre än intäkterna och redovisar en vinst blir det fart på s-ideologerna. Senast i går, i DN, kunde vi se den nye skolministern Ibrahim Baylan \"fara i taket\" då fyra friskolegymnasier med sammanlagt 900 elever visar sig gå med vinst. Detta ska nu stoppas, säger han. Inga pengar som är tänkta att gå till elevernas undervisning ska hamna i friskolans fickor, enligt Baylan."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "HD09157-119:9-12",
+            "anf_id": "HD09157-119",
+            "rm": "2025/26",
+            "dok_nummer": 157,
+            "party": "KD",
+            "speaker": "Mathias Bengtsson (KD)",
+            "date": "2026-08-13",
+            "title": "Skärpta villkor för friskolesektorn",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HD09157-119/html",
+            "paragraphs": [
+              "Det är här regeringens proposition kommer in. Den utgår från den ganska enkla principen att när samhället ger en huvudman förtroendet att bedriva skola och ta emot skattemedel för barns utbildning, då ska eleverna garanteras en bra skolgång. Därför går vi fram med skärpta krav på dem som vill starta och driva skolor.",
+              "Den som vill få samhällets förtroende att bedriva utbildning behöver vara långsiktig och seriös. Den får naturligtvis inte vara där för att tjäna snabba pengar. Därför inför vi också vinstbegränsningar, så att en nystartad skola, en skola som har bytt ägare eller framför allt en skola med kvalitetsbrister inte kan föra ut värden ur verksamheten."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": false,
+        "quotes": []
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H00941-158:7-9",
+            "anf_id": "H00941-158",
+            "rm": "2012/13",
+            "dok_nummer": 41,
+            "party": "SD",
+            "speaker": "BJÖRN SÖDER (SD)",
+            "date": "2012-12-11",
+            "title": "Utbildning och universitetsforskning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+            "paragraphs": [
+              "Frågan om friskolor ska få ta ut vinst ur sin verksamhet har kommit att bli alltmer omdebatterad, detta inte minst sedan flera larmrapporter har visat på svåra missförhållanden i friskolor som tillåter detta. Lärarförbundet skriver att det är \"förekomsten av vinst som sänker lärartätheten\", varpå det konstateras att friskolor som tillåter uttag av vinst bland annat har lägre lärartäthet och högre andel obehöriga lärare. Sverigedemokraterna vill ta fasta på dessa åsikter och håller med om att skolsystemets resurser ska användas till att höja kvaliteten i skolorna och inte delas ut som vinst."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "H00941-158:10-11",
+            "anf_id": "H00941-158",
+            "rm": "2012/13",
+            "dok_nummer": 41,
+            "party": "SD",
+            "speaker": "BJÖRN SÖDER (SD)",
+            "date": "2012-12-11",
+            "title": "Utbildning och universitetsforskning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H00941-158/html",
+            "paragraphs": [
+              "Svensk skola är på väg att förvandlas till en miljardindustri där företag satsar pengar och tar hem vinster som i vilket annat företag som helst, bland annat genom lägre lärartäthet och högre andel obehöriga lärare. Dessa vinster flyttas alltsomoftast också utomlands.",
+              "Vi anser dock inte att skolan kan betraktas som vilket annat företag som helst. Vi menar att det går alldeles utmärkt att driva friskolor utan att ta ut vinst. I vårt grannland Finland, som till skillnad från Sverige ligger i den absoluta toppen när det gäller elevers skolresultat, är det inte tillåtet att ta ut vinst. Även i Danmark och Norge är det förbjudet för en privatskola att drivas i syfte att erhålla ekonomisk vinst. Vi menar att Sverige bör följa den linje som gäller i övriga Norden, där friskolor inte får ta ut några vinster ur sin verksamhet."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 9,
+            "passage_id": "H109127-123:15-18",
+            "anf_id": "H109127-123",
+            "rm": "2013/14",
+            "dok_nummer": 127,
+            "party": "SD",
+            "speaker": "CARINA HERRSTEDT (SD)",
+            "date": "2014-06-17",
+            "title": "Fristående skolor samt tillsyn och information om skolan",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H109127-123/html",
+            "paragraphs": [
+              "Fru talman! Så kommer vi till den inför valet kanske mest brännande punkten: att ta ut vinster i friskolor. Vi närmar oss valet, med det uppskruvade tonläge som hör valrörelsen till. Frågan om att ta ut vinster från friskolor hör väl till de frågor som kanske skulle kunna få en dominerande ställning i valdebatten. Låt mig först bara klargöra en vanlig missuppfattning som ofta hörs i denna debatt.",
+              "Många vinstförespråkare jämför vinstuttag från undervisning av skolelever med vinstuttag från till exempel företag som förser skolan med möbler. Det är att blanda ihop korten rejält. Undervisningen finansieras till hundra procent av skattemedel för att utbilda den uppväxande generationen, till skillnad från till exempel ett möbelföretag. Undervisningen är ett rent samhällsuppdrag, till gagn för både samhället och de enskilda eleverna, i motsats då till ett vanligt möbelföretag."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          }
+        ]
+      }
+    ]
+  }
+}

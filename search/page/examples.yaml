@@ -1,0 +1,24 @@
+# The example questions on the page Fråga protokollet, in the order the page
+# shows them. None is taken from a question set of the evaluation. Step 15
+# answers each once with the chain the page runs, and once under each party for
+# the view with eight parties. The last one asks about an event before the
+# corpus, so it shows how the page abstains.
+questions:
+  - id: karnkraft
+    text: "Vad har sagts om att avveckla kärnkraften?"
+  - id: vargstammen
+    text: "Hur stor ska vargstammen i Sverige få vara?"
+  - id: vinster-friskolor
+    text: "Vilka argument har förts fram mot vinster i friskolor?"
+  - id: nato
+    text: "Vad har sagts om att Sverige ska gå med i Nato?"
+  - id: betyg
+    text: "Ska barn få betyg tidigare i skolan?"
+  - id: skjutningar
+    text: "Hur ska skjutningarna i Sverige stoppas?"
+  - id: apoteksmonopolet
+    text: "Vad har sagts om att avskaffa apoteksmonopolet?"
+  - id: formogenhetsskatten
+    text: "Vad har sagts om att avskaffa förmögenhetsskatten?"
+  - id: manlandningen
+    text: "Vad sa riksdagen om månlandningen 1969?"

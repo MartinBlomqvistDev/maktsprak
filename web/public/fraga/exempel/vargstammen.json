@@ -1,0 +1,688 @@
+{
+  "id": "vargstammen",
+  "question": "Hur stor ska vargstammen i Sverige få vara?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 6971,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H90962-32:3-5",
+        "anf_id": "H90962-32",
+        "rm": "2021/22",
+        "dok_nummer": 62,
+        "party": "M",
+        "speaker": "John Widegren (M)",
+        "date": "2022-02-01",
+        "title": "Svar på interpellation 2021/22:266 om vargpopulationen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90962-32/html",
+        "paragraphs": [
+          "Den svenska vargstammen, som sedan 80-talet har vuxit från 3 individer till dagens någonstans mellan 400 och 500, verkar inte lida av någon stor inavelsdepression eller ha svårt att anpassa sig. Alltså mår vargstammen väldigt bra. Det argumentet faller därmed också bort. Då återkommer man igen till att detta faktiskt är politiskt baserat. Det är regeringen som vill att vi ska ha så här många vargar i Sverige. Det spelar ingen roll att det försvårar tamdjurshållning och har negativa socioekonomiska aspekter, för vi väljer själva.",
+          "Vilket är det vetenskapliga underlaget som säger att vi ska ha mellan 400 och 500 vargar i Sverige i dag. Och varför vill vi ha så många vargar?",
+          "Det finns en majoritet i den här riksdagen för att kraftigt minska vargstammen. Då tycker jag att det vore på sin plats att regeringen motiverade varför vi ska ha så otroligt mycket mer varg än vad majoriteten i Sveriges riksdag tycker."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "GY0955-59:5-7",
+        "anf_id": "GY0955-59",
+        "rm": "2010/11",
+        "dok_nummer": 55,
+        "party": "SD",
+        "speaker": "RICHARD JOMSHOF (SD)",
+        "date": "2011-02-08",
+        "title": "Aktuell debatt: Licensjakt på varg",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0955-59/html",
+        "paragraphs": [
+          "Sverigedemokraterna förespråkar en vargstam, men en begränsad sådan. För oss är inte antalet vargar viktigt. Riksdagen har beslutat att Sverige ska ha en vargstam på 210 individer. Jag kan inte säga om det ska vara fler eller färre. Jag kan inte säga om det är tillräckligt. Jag måste vara ärlig och säga att jag inte har den kunskapen.",
+          "Målet är dock att vi ska få en livskraftig vargstam. Därför menar jag att vi måste överlåta bedömningen åt forskare som är bättre på att bedöma de här sakerna än jag och många andra, inte minst den här församlingen.",
+          "Den svenska vargstammen utgår från, som vi vet, tre individer. Det innebär att vi måste få till en ökad genetisk variation för att vargstammen ska vara livskraftig. Huruvida det ska ske genom invandrade vargar eller genom inplantering är för oss inte av speciellt stor vikt. Jag vill än en gång påpeka att vi inte får stirra oss blinda på siffran 210, utan det primära är att vi får en begränsad men samtidigt en livskraftig vargstam med en ökad genetisk variation."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "HA09126-64:0-3",
+        "anf_id": "HA09126-64",
+        "rm": "2022/23",
+        "dok_nummer": 126,
+        "party": "KD",
+        "speaker": "Landsbygdsministern Peter Kullgren (KD)",
+        "date": "2023-06-16",
+        "title": "Svar på interpellation 2022/23:355 om den svenska vargstammen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA09126-64/html",
+        "paragraphs": [
+          "Fru talman! Daniel Bäckström har frågat mig om jag och regeringen inte instämmer i riksdagens tillkännagivande om det nedre spannet om 170 vargar. Han har även frågat mig när jag och regeringen anser att den svenska vargstammen ska ha halverats och vilka åtgärder jag tänker vidta för att detta ska uppnås. Slutligen har Daniel Bäckström frågat mig när jag och regeringen anser att en gemensam skandinavisk vargförvaltning ska implementeras och vilka initiativ jag är beredd att ta med anledning av detta.",
+          "Vargen har en stark skyddsklassning, och vargstammens utveckling i Sverige har under de senaste 20 åren haft en ökande trend när det gäller antalet individer. Vid den senaste inventeringen, som gjordes så sent som för några veckor sedan, beräknades stammen bestå av 450 individer, vilket är betydligt fler än nuvarande referensvärde på 300 individer.",
+          "Som Daniel Bäckström lyft upp beslutade riksdagen i maj 2022 om ett tillkännagivande som bland annat handlade om att referensvärdet för vargstammen - det vill säga hur många vargar som krävs för att vargstammen ska anses ha gynnsam bevarandestatus - bör vara mellan 170 och 270 vargar. Enligt tillkännagivandet bör det under rådande omständigheter, med en alltmer förtätad vargstam, hållas i den nedre delen av spannet, alltså närmare 170 individer.",
+          "I Naturvårdsverkets vägledning till länsstyrelserna inför vinterns licensjakt anfördes följande: \"Utifrån vargstammens utveckling de senaste åren anser Naturvårdsverket att det nu kan finnas utrymme att besluta om större uttag vid licensjakten på varg än tidigare år.\" Länsstyrelserna följde vägledningen och beslutade i september att 75 vargar får fällas vid kommande licensjakt. Detta är den största beslutade jaktkvoten på varg sedan licensjakten infördes. Som jämförelse beslutades det att 33 vargar skulle få fällas vid licensjakten 2022."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "HD0950-28:0-2",
+        "anf_id": "HD0950-28",
+        "rm": "2025/26",
+        "dok_nummer": 50,
+        "party": "MP",
+        "speaker": "Emma Nohrén (MP)",
+        "date": "2025-12-11",
+        "title": "Areella näringar, landsbygd och livsmedel",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/HD0950-28/html",
+        "paragraphs": [
+          "Fru talman! Jag kan upplysningsvis säga att ersättningen för viltskador i Sverige är 57 miljoner, och bara nästa år kommer det att vara mer än en tredjedel till bara för att skjuta av vargar. Vi vet att stammen är i dåligt genetiskt skick. Det är få individer redan i dag, och det går inte att uppnå en gynnsam bevarandestatus med 170 vargar. Ändå tycker regeringen att det är värt att ta pengar från rennäringen, fiske och vattenbruk, viltskadeersättningen och insatser för skogsbruket för att på sikt få ned vargstammen till 170 individer. Regeringen har också öppnat för att man kan behöva flytta individer från andra stammar.",
+          "Är detta värt alla dessa pengar, inklusive det som händer på de områden som får minskade medel, för att göra denna symbolfråga så stor? Dessutom verkar EU-kommissionen ha starka åsikter om detta och menar att Sverige förmodligen inte får göra så här.",
+          "Hur motiverar ni att det är värt 83 miljoner nästa år och över 300 miljoner på tre år, som delvis tas från andra områden, för att minska vargstammen?"
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "HA09126-68:0-2",
+        "anf_id": "HA09126-68",
+        "rm": "2022/23",
+        "dok_nummer": 126,
+        "party": "C",
+        "speaker": "Daniel Bäckström (C)",
+        "date": "2023-06-16",
+        "title": "Svar på interpellation 2022/23:355 om den svenska vargstammen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA09126-68/html",
+        "paragraphs": [
+          "Fru talman! Vad var det Kristdemokraterna för ett år sedan inte hade koll på? För det var Kristdemokraterna som i Sveriges riksdag oerhört tydligt drev att vi skulle ha en gemensam skandinavisk vargförvaltning. Nu svarar landsbygdsministern i debatten att det inte går, för Norge är inte med i EU, men det är Sverige. Det var slutsatsen av detta, så tack för det svaret. Regeringens företrädare förmedlar här att det inte går att få till en gemensam skandinavisk vargförvaltning. Det vore intressant att höra om detta delas av de kristdemokrater som engagerat jobbar med frågeställningen här i Sveriges riksdag. Men det är bra, då har vi den punkten klar.",
+          "Nästa svar från landsbygdsministern är att regeringens position är att vargstammen är för stor. Då är det alltså inte det uttalande som landsbygdsministerns uttryckte var regeringens position i radion i våras, att vargstammen skulle halveras, som gäller längre, utan det är att vargstammen är för stor. Så svarar nu landsbygdsministern.",
+          "I interpellationssvaret här för en liten stund sedan sa regeringens företrädare att vargstammen ska bli betydligt mindre. Hur många är det, landsbygdsminister Peter Kullgren? Vad innebär betydligt mindre, och vad innebär för stor vargstam? Jag hör fortfarande inte en bekräftelse på att regeringen och landsbygdsminister Peter Kullgren faktiskt anser att Sveriges riksdags tydliga tillkännagivande från förra året gäller."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "H809100-60:0-2",
+        "anf_id": "H809100-60",
+        "rm": "2020/21",
+        "dok_nummer": 100,
+        "party": "M",
+        "speaker": "Sten Bergheden (M)",
+        "date": "2021-03-25",
+        "title": "Frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H809100-60/html",
+        "paragraphs": [
+          "Herr talman! Jag har en allmänpolitisk fråga, så den blir till Anna Ekström.",
+          "År 2013 fattade riksdagen ett tydligt beslut om att vi skulle ha 170-270 vargar i Sverige. Sedan S-regeringen tog över 2014 har vargstammen kraftfullt ökat. I dag har vi uppskattningsvis 400-450 vargar i Sverige. Det innebär att riksdagens beslut om 170-270 vargar inte följs av regeringen. I världen finns det cirka 200 000 vargar. Det innebär att vargen inte är hotad. Man jagar också varg i Europa för att hålla vargstammen på en rimlig nivå.",
+          "Sverige vill också producera livsmedel. Då är det viktigt att vi håller vargstammen på en låg nivå. Sverige måste kunna producera mer livsmedel. Då ska vi inte producera mer vargar. Min fråga till ministern är: Varför följer inte regeringen riksdagens beslut från 2013 att Sverige ska ha max 170-270 vargar?"
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "GT0956-23:4-5",
+        "anf_id": "GT0956-23",
+        "rm": "2005/06",
+        "dok_nummer": 56,
+        "party": "S",
+        "speaker": "Statsrådet LENA SOMMESTAD (s)",
+        "date": "2006-01-17",
+        "title": "Svar på interpellation 2005/06:162 om den svenska vargstammen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0956-23/html",
+        "paragraphs": [
+          "Vargen skiljer sig från de andra stora rovdjursarterna i Sverige genom att kunna få stora kullar årligen. Den tillväxt om ca 25 % som skedde i den skandinaviska vargstammen under flera år under 1990-talet är därför inget onaturligt. På andra ställen i världen där vargen har återkoloniserat tidigare utbredningsområden har man konstaterat en tillväxt som varit betydligt större.",
+          "När vargen fridlystes i Sverige år 1966 bestod den skandinaviska vargstammen av en handfull individer, och någon föryngring skedde troligen inte under en dryg tioårsperiod. År 1983 föddes i gränstrakterna mellan Sverige och Norge en vargkull i norra Värmland för första gången på över hundra år i denna del av Skandinavien. Trots att detta par fick kullar flera år i rad ökade inte vargstammen. Stammen höll sig under tio individer. Det var först när det skedde en föryngring även i Jämtland som stammen växte till. Genom analyser klargjordes att hanen i det nya paret hade invandrat från den finsk-ryska stammen. Detta anser man numera blev avgörande för vargstammens vidare utveckling i Skandinavien. Etablering av nya revir har huvudsakligen skett i närheten av redan befintliga revir, vilket även iakttagits på andra håll i världen, för en växande vargstam och vad som ofta också gäller beträffande de övriga stora rovdjuren."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "H80942-119:0-3",
+        "anf_id": "H80942-119",
+        "rm": "2020/21",
+        "dok_nummer": 42,
+        "party": "L",
+        "speaker": "Helena Gellerman (L)",
+        "date": "2020-11-26",
+        "title": "Skyddsjakt på varg",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80942-119/html",
+        "paragraphs": [
+          "Fru talman! Utskottsmajoriteten lägger fram ett förslag vars syfte är tydligt. Man vill minska vargstammens storlek i Sverige oavsett hur vargpolitiken fungerar. Att det här är syftet framgår klart och tydligt av de argument som fördes fram när utskottsinitiativet lades fram. Ett antal ledamöter i utskottet anser att vi har för många vargar i Sverige och att detta behöver åtgärdas, oavsett vilka konsekvenser det får.",
+          "När förslaget nu ligger för beslut i kammaren är siffrorna bortstädade, men syftet är detsamma. Man vill minska vargstammen till en nivå som är lägre än vad som krävs för att stammen ska överleva.",
+          "Det är inte den här kammarens uppgift att besluta hur stor vargstammen behöver vara för att vara livskraftig. Det är inte en fråga som avgörs genom politiska beslut. Vad som krävs för att det även i framtiden ska finnas varg i Sverige ska bygga på kunskap. Det är forskarnas och expertmyndigheternas uppgift att bedöma gynnsam bevarandestatus.",
+          "Riksdagens uppgift är att besluta om principerna för rovdjursförvaltningen. Det har vi också gjort genom vårt beslut om rovdjurspolitiken från 2013. Sverige ska uppnå och bibehålla gynnsam bevarandestatus för varg, björn, järv, lodjur och kungsörn. Liberalerna står bakom den principen. För oss är det självklart att rovdjuren ska finnas, inte minst för balansen i ekosystemet."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "H90947-186:0-4",
+        "anf_id": "H90947-186",
+        "rm": "2021/22",
+        "dok_nummer": 47,
+        "party": "M",
+        "speaker": "Lotta Olsson (M)",
+        "date": "2021-12-16",
+        "title": "Svar på interpellation 2021/22:171 om varg i Örebro län",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90947-186/html",
+        "paragraphs": [
+          "Fru talman! Vargen är ett rovdjur som länge har varit nära nog utrotat i Sverige. Den spillra av vargstammen som i dag vuxit härstammar från några få individer. De flesta vargar i Sverige är mer släkt med varandra än normala syskon, så inavlad är vargstammen.",
+          "Därför har också alla nya vargar utan släktskap betraktats som viktiga. Det går inte att ha en frisk population över tid utan att friska gener tillförs vargstammen.",
+          "Fru talman! Det är troligen det som ligger bakom att regeringen, trots att riksdagen beslutade annat, tillåtit Naturvårdverket att göra så här. Vi har beslutat att stammen ska vara 170-270 djur. Men i dag är den beräknad till cirka 375 djur utan valpar, med ett konfidensintervall på 312-513 vargar. Det är långt över de beslutade nivåerna.",
+          "Det får konsekvenser. Det är konsekvenser som ingen vill stå för. I mitt hemlän, Örebro län, finns det i dag cirka 60 vargar, och detta på en yta som motsvarar 2,5 procent av Sverige. Det skulle motsvara 240 vargar om alla län inhyste lika många utifrån yta.",
+          "Dessutom är det tätbefolkade områden och områden där markerna mellan skog och jordbruksland betas. Betesdjuren betar de marker där annat inte kan odlas för att den biologiska mångfalden ska kunna bibehållas. Nu är både dessa hagmarker och tryggheten för de människor som lever i vargtäta områden hotade."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "HA0932-83:0-5",
+        "anf_id": "HA0932-83",
+        "rm": "2022/23",
+        "dok_nummer": 32,
+        "party": "KD",
+        "speaker": "Landsbygdsministern Peter Kullgren (KD)",
+        "date": "2022-12-06",
+        "title": "Svar på interpellation 2022/23:61 om förvaltningen av varg",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA0932-83/html",
+        "paragraphs": [
+          "Fru talman! Tomas Kronståhl har frågat mig hur jag avser att agera för att ambitionen om 170 individer ska bli verklighet.",
+          "Vargstammens utveckling i Sverige har under de senaste 20 åren haft en ökande trend när det gäller antalet individer. Vid den senaste inventeringen var vargpopulationen cirka 460 individer, vilket är betydligt fler än nuvarande referensvärde på 300 individer.",
+          "Både nuvarande och tidigare regering har drivit frågan om att minska vargstammen. Exempelvis står både nuvarande och tidigare regering för linjen att verka för att sänka vargens skyddsstatus genom att föreslå att vargen flyttas från bilaga 4 till bilaga 5 i art- och habitatdirektivet samt att sänka vargens skyddsstatus inom Bernkonventionen. En sådan ändring kan öka möjligheten att vidta åtgärder, till exempel skyddsjakt, i syfte att minska konflikter mellan människor och varg.",
+          "Riksdagen beslutade i maj 2022 om ett tillkännagivande som handlar om att referensvärdet för vargstammen - det vill säga hur många vargar som krävs för att vargstammen ska anses ha gynnsam bevarandestatus - bör vara mellan 170 och 270 vargar. Enligt tillkännagivandet bör det hållas i det nedre spannet om 170 individer, bland annat med tanke på att vargpopulationen förtätas.",
+          "Den tidigare regeringen gav samtidigt Naturvårdsverket i uppdrag att utreda referensvärdet för varg. Naturvårdsverket ska analysera om, och i så fall under vilka förutsättningar, vargens referensvärde i fråga om populationsstorlek för gynnsam bevarandestatus enligt art- och habitatdirektivet skulle kunna vara inom det intervall på 170-270 som angavs i propositionen En hållbar rovdjurspolitik (prop. 2012/13:191), som riksdagen beslutade om redan 2013.",
+          "Jag avser att följa utvecklingen noga. Vargen ska ha förutsättningar för att långsiktigt finnas i Sverige, och vi måste leva upp till våra EU-rättsliga förpliktelser. Men det behöver vara en betydligt mindre stam än i dag."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 10,
+        "passage_id": "HA0932-83:0-5",
+        "anf_id": "HA0932-83",
+        "rm": "2022/23",
+        "dok_nummer": 32,
+        "party": "KD",
+        "speaker": "Landsbygdsministern Peter Kullgren (KD)",
+        "date": "2022-12-06",
+        "title": "Svar på interpellation 2022/23:61 om förvaltningen av varg",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA0932-83/html",
+        "paragraphs": [
+          "Riksdagen beslutade i maj 2022 om ett tillkännagivande som handlar om att referensvärdet för vargstammen - det vill säga hur många vargar som krävs för att vargstammen ska anses ha gynnsam bevarandestatus - bör vara mellan 170 och 270 vargar. Enligt tillkännagivandet bör det hållas i det nedre spannet om 170 individer, bland annat med tanke på att vargpopulationen förtätas.",
+          "Den tidigare regeringen gav samtidigt Naturvårdsverket i uppdrag att utreda referensvärdet för varg. Naturvårdsverket ska analysera om, och i så fall under vilka förutsättningar, vargens referensvärde i fråga om populationsstorlek för gynnsam bevarandestatus enligt art- och habitatdirektivet skulle kunna vara inom det intervall på 170-270 som angavs i propositionen En hållbar rovdjurspolitik (prop. 2012/13:191), som riksdagen beslutade om redan 2013.",
+          "Jag avser att följa utvecklingen noga. Vargen ska ha förutsättningar för att långsiktigt finnas i Sverige, och vi måste leva upp till våra EU-rättsliga förpliktelser. Men det behöver vara en betydligt mindre stam än i dag."
+        ],
+        "first_paragraph": 4,
+        "last_paragraph": 6
+      },
+      {
+        "rank": 6,
+        "passage_id": "H809100-60:0-2",
+        "anf_id": "H809100-60",
+        "rm": "2020/21",
+        "dok_nummer": 100,
+        "party": "M",
+        "speaker": "Sten Bergheden (M)",
+        "date": "2021-03-25",
+        "title": "Frågestund",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H809100-60/html",
+        "paragraphs": [
+          "År 2013 fattade riksdagen ett tydligt beslut om att vi skulle ha 170-270 vargar i Sverige. Sedan S-regeringen tog över 2014 har vargstammen kraftfullt ökat. I dag har vi uppskattningsvis 400-450 vargar i Sverige. Det innebär att riksdagens beslut om 170-270 vargar inte följs av regeringen. I världen finns det cirka 200 000 vargar. Det innebär att vargen inte är hotad. Man jagar också varg i Europa för att hålla vargstammen på en rimlig nivå.",
+          "Sverige vill också producera livsmedel. Då är det viktigt att vi håller vargstammen på en låg nivå. Sverige måste kunna producera mer livsmedel. Då ska vi inte producera mer vargar. Min fråga till ministern är: Varför följer inte regeringen riksdagens beslut från 2013 att Sverige ska ha max 170-270 vargar?"
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 3
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 6971,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 7,
+            "passage_id": "GY0996-22:0-5",
+            "anf_id": "GY0996-22",
+            "rm": "2010/11",
+            "dok_nummer": 96,
+            "party": "V",
+            "speaker": "JENS HOLM (V) replik",
+            "date": "2011-05-04",
+            "title": "Biologisk mångfald m.m.",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GY0996-22/html",
+            "paragraphs": [
+              "Den ena rör den biologiska mångfalden vad gäller de vilda djuren. Jag skulle vilja fråga varför Moderaterna tycker att det är så viktigt att slå fast ett tak för hur många vargar som får finnas i Sverige - 210 stycken. Nu har vi dessutom fått en statlig utredning som slår fast att det behövs mer än dubbelt så många vargar än det taket.",
+              "Då säger Bengt-Anders Johansson att den utredningen inte tar hänsyn till de sociala aspekterna. Men jag vet att när det gjordes en opinionsundersökning tidigare i alla län runt om i Sverige så konstaterades det att det fanns en klar majoritet i alla län. Även i varglän som Gävleborg och Dalarna tyckte man att det var viktigt att det fanns vargar i Sverige och vill att de ska finnas kvar.",
+              "Jämför man med andra länder i Europa är Sverige snarare ett u-land vad gäller antalet vargar. I Spanien, Bulgarien och de baltiska länderna lever tusentals vargar, och där lyckas man leva i en form av samexistens."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 9,
+            "passage_id": "H709118-88:5-7",
+            "anf_id": "H709118-88",
+            "rm": "2019/20",
+            "dok_nummer": 118,
+            "party": "V",
+            "speaker": "Jens Holm (V)",
+            "date": "2020-05-07",
+            "title": "(forts. från § 5) Naturvård och biologisk mångfald (forts. MJU15)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H709118-88/html",
+            "paragraphs": [
+              "Man snyter ur sig uttalanden om att vi ska pressa ned vargstammen - det hörde vi från Moderaterna här tidigare - till en population på 170 vargar. Det är det absolut lägsta i ett intervall på 170-270 vargar, vilket redan i sig är helt godtyckligt. För det vet väl alla här att det är helt godtyckligt? De borgerliga partierna tog 2013 fram det intervallet gällande vargpopulationen tillsammans med Sverigedemokraterna.",
+              "Som vi hörde tidigare menar Naturvårdverket att vi behöver en mycket större vargpopulation. Talar man med initierade forskare och internationella forskarpaneler får vi en rekommendation som är ännu högre."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 10,
+            "passage_id": "GU0967-16:0-2",
+            "anf_id": "GU0967-16",
+            "rm": "2006/07",
+            "dok_nummer": 67,
+            "party": "V",
+            "speaker": "WIWI-ANNE JOHANSSON (v)",
+            "date": "2007-02-26",
+            "title": "Svar på interpellation 2006/07:326 om livskraftiga vargstammar",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0967-16/html",
+            "paragraphs": [
+              "Därför är det viktigt att det etappmål för varg som riksdagen antog 2001 och som säger att vi bör ha ca 200 vargar i Sverige hålls. Men vi har ännu inte nått dit, och då menar vi att det är olyckligt att vi försöker underlätta dödande av vargar."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 9,
+            "passage_id": "H809121-15:0-4",
+            "anf_id": "H809121-15",
+            "rm": "2020/21",
+            "dok_nummer": 121,
+            "party": "MP",
+            "speaker": "Miljö- och klimatministern Per Bolund (MP)",
+            "date": "2021-05-07",
+            "title": "Svar på interpellationerna 2020/21:643, 644 och 667 om antalet vargar på landsbygden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H809121-15/html",
+            "paragraphs": [
+              "Riksdagens godkännande av den dåvarande regeringens rovdjursproposition innebar att riksdagen beslutade flera mål för vargstammen i Sverige. Ett av målen avser referensvärdet för gynnsam bevarandestatus hos den svenska vargpopulationen, det vill säga ett mål för det antal vargar som kan anses tillräckligt för att den svenska vargpopulationen ska kunna anses ha en gynnsam bevarandestatus. Riksdagen beslutade att målet för referensvärdet ska vara någonstans mellan 170 och 270 individer. Enligt propositionen skulle Naturvårdsverket efter riksdagens behandling bedöma var det exakta referensvärdet låg och rapportera det till EU-kommissionen enligt art- och habitatdirektivet. Enligt EU-kommissionens riktlinjer kan det rapporterade referensvärdet inte vara ett intervall utan måste vara ett exakt värde."
+            ],
+            "first_paragraph": 5,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 1,
+            "passage_id": "HD0950-28:0-2",
+            "anf_id": "HD0950-28",
+            "rm": "2025/26",
+            "dok_nummer": 50,
+            "party": "MP",
+            "speaker": "Emma Nohrén (MP)",
+            "date": "2025-12-11",
+            "title": "Areella näringar, landsbygd och livsmedel",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD0950-28/html",
+            "paragraphs": [
+              "Fru talman! Jag kan upplysningsvis säga att ersättningen för viltskador i Sverige är 57 miljoner, och bara nästa år kommer det att vara mer än en tredjedel till bara för att skjuta av vargar. Vi vet att stammen är i dåligt genetiskt skick. Det är få individer redan i dag, och det går inte att uppnå en gynnsam bevarandestatus med 170 vargar. Ändå tycker regeringen att det är värt att ta pengar från rennäringen, fiske och vattenbruk, viltskadeersättningen och insatser för skogsbruket för att på sikt få ned vargstammen till 170 individer. Regeringen har också öppnat för att man kan behöva flytta individer från andra stammar."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 5,
+            "passage_id": "HC0973-101:9-11",
+            "anf_id": "HC0973-101",
+            "rm": "2024/25",
+            "dok_nummer": 73,
+            "party": "S",
+            "speaker": "Björn Petersson (S)",
+            "date": "2025-02-19",
+            "title": "Jakt och viltvård",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC0973-101/html",
+            "paragraphs": [
+              "I dag finns cirka 375 vargar i Sverige. Den utredning som vi tidigare uppdrog åt Naturvårdsverket att genomföra visar att vargstammen kan minskas till mellan 170 och 270 individer. Vi står bakom en sådan minskning och anser att den är avgörande för att uppnå en långsiktig, hållbar och förutsägbar vargstam. Samtidigt behöver vi säkerställa att stammens bevarandestatus inte försämras."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 7,
+            "passage_id": "H909108-76:0-3",
+            "anf_id": "H909108-76",
+            "rm": "2021/22",
+            "dok_nummer": 108,
+            "party": "S",
+            "speaker": "Klimat- och miljöministern Annika Strandhäll (S)",
+            "date": "2022-05-05",
+            "title": "Frågestund",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909108-76/html",
+            "paragraphs": [
+              "Den svenska vargstammens storlek styrs inte bara av beslut i Sveriges riksdag, utan vi har också ett EU-direktiv att förhålla oss till.",
+              "Det handlar bland annat om att vi måste säkerställa en gynnsam bevarandestatus av vargen, vilket innebär att det måste finnas minst 300 vargar och att minst en varg ska ha invandrat från Finland eller Ryssland och reproducerat sig med en skandinavisk varg vart femte år.",
+              "Det här värnar vi, för det är det här som är själva verktygslådan för oss. Sjunker vi under antalet som ger en gynnsam bevarandestatus kan vi också säga tack och adjö till en eventuell licensjakt. Därför behöver vi respektera detta nogsamt och inte hitta på några egna siffror som inte bygger på vetenskap."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H909112-116:23-26",
+            "anf_id": "H909112-116",
+            "rm": "2021/22",
+            "dok_nummer": 112,
+            "party": "C",
+            "speaker": "Peter Helander (C)",
+            "date": "2022-05-12",
+            "title": "Naturvård och biologisk mångfald",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909112-116/html",
+            "paragraphs": [
+              "Riksdagsbeslutet om rovdjurspolitiken 2013 handlade inte bara om numerären utan också om ett antal andra punkter, till exempel minskad koncentration av varg och hänsyn till tamboskap och fäbodbruk. Regeringen har inte uppnått syftena med rovdjurspropositionen gällande varg. Under rådande omständigheter - med en mer förtätad vargpopulation i landet - bör referensvärdet ligga i det nedre spannet, alltså omkring 170 individer.",
+              "Fru talman! Eftersom den svenska vargstammen ingår i den så kallade skandinaviska populationen, och eftersom denna population rör sig över gränsen mellan Norge och Sverige, bör vargstammens storlek samordnas med Norge. En utgångspunkt bör vara att den skandinaviska vargstammen inte ska överstiga 230 individer."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "GX0966-17:8-10",
+            "anf_id": "GX0966-17",
+            "rm": "2009/10",
+            "dok_nummer": 66,
+            "party": "C",
+            "speaker": "Miljöminister ANDREAS CARLGREN (c)",
+            "date": "2010-01-29",
+            "title": "Svar på interpellation 2009/10:178 om vargjakten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX0966-17/html",
+            "paragraphs": [
+              "Regeringens politik innebär att Sverige ska ha en vargstam som överstiger 200 vargar. Det viktigaste för den närmaste tiden är att vargstammen ska bli livskraftig, och därför ska obesläktade vargar införlivas i den svenska vargpopulationen. Under tre år sätts ett tillfälligt tak på 210 vargar för antalet vargar i Sverige. Hur många vargar som långsiktigt behövs för att vargstammen ska vara frisk och livskraftig ska avgöras på grundval av noggranna forskarbedömningar."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GX0918-30:6-8",
+            "anf_id": "GX0918-30",
+            "rm": "2009/10",
+            "dok_nummer": 18,
+            "party": "L",
+            "speaker": "NINA LARSSON (fp)",
+            "date": "2009-10-21",
+            "title": "En ny rovdjursförvaltning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX0918-30/html",
+            "paragraphs": [
+              "Samtidigt begränsas vargstammens tillväxt under tiden fram till dess att konsekvenserna av vargstammens utveckling i Sverige och bedömningen av stammens bevarandestatus kan utvärderas och redovisas på ett tillfredsställande sätt. Vargstammen bör hållas på en nivå som långsiktigt skapar en större acceptans för vargen i vår fauna. Vargstammen ska inte överstiga 210 djur, och detta sker genom förvaltning i form av begränsad licensjakt och skyddsjakt på skadegörande individer."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "H909112-118:11-12",
+            "anf_id": "H909112-118",
+            "rm": "2021/22",
+            "dok_nummer": 112,
+            "party": "L",
+            "speaker": "Jakob Olofsgård (L)",
+            "date": "2022-05-12",
+            "title": "Naturvård och biologisk mångfald",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909112-118/html",
+            "paragraphs": [
+              "En förnyad bedömning av referensvärdet för vargens populationsstorlek i Sverige gjordes 2015 av två forskargrupper med ledande internationell expertis i bevarandebiologi och vargekologi. Slutsatsen blev att det behövs minst 300 vargar i Sverige och att minst en ny immigrant från Finland eller Ryssland ska reproducera sig inom det skandinaviska utbredningsområdet under naturliga förhållanden varje femårsperiod för att vargen i Sverige ska kunna anses ha - vadå? Jo, en gynnsam bevarandestatus. Vi landar åter i det, inte i siffror.",
+              "Forskningen går alltid framåt. Det händer alltid saker i forskningen, och antalet vargar vi behöver ha kommer att förändras också framåt. Därför ska Sveriges riksdag inte siffersätta antalet vargar i skogen. Bedömningen av hur många individer som behövs för att vargstammen ska kunna anses leva upp till riksdagsmålet om en gynnsam bevarandestatus är enligt Liberalerna inte en politisk fråga. Det är den bästa vetenskapliga bedömningen som ska användas för att avgöra när vargen kan anses ha en gynnsam bevarandestatus i Sverige, Skandinavien och Norden. Vi i Liberalerna ser ingen anledning att ändra den ordningen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 7,
+            "passage_id": "GR0917-159:0-3",
+            "anf_id": "GR0917-159",
+            "rm": "2003/04",
+            "dok_nummer": 17,
+            "party": "L",
+            "speaker": "RUNAR PATRIKSSON (fp)",
+            "date": "2003-10-22",
+            "title": "(forts. från 13 §) Naturvård (forts. MJU3)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR0917-159/html",
+            "paragraphs": [
+              "Jag har motionerat i fem år nu om den här frågan, och jag har fått fullständigt klart för mig att vargstammen inte behöver vara stor för att vara genetiskt hållbar. Alla experter som är på de möten som jag är med på som handlar om vargfrågan är fullständigt på det klara med att en vargstam på 100-150 djur är helt tillräcklig för att den ska vara genetiskt gångbar."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "HA0984-161:0-2",
+            "anf_id": "HA0984-161",
+            "rm": "2022/23",
+            "dok_nummer": 84,
+            "party": "L",
+            "speaker": "Elin Nilsson (L)",
+            "date": "2023-03-30",
+            "title": "Jakt och viltvård",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HA0984-161/html",
+            "paragraphs": [
+              "Liberalernas ingång i denna fråga är först och främst att vargen är en viktig del av den svenska faunan, och vi tycker att stammen ska ha en gynnsam bevarandestatus. Vi ingår ju i ett regeringssamarbete där det pågår ett arbete kring denna fråga och är en del av de diskussionerna. Vi säger inte att vargstammen ska ned till exakt 170 vargar. Antalet bör baseras på vetenskap. Stammen bör vara livskraftig. Något exakt antal får du alltså inte av mig."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 5,
+            "passage_id": "HD0950-27:0-2",
+            "anf_id": "HD0950-27",
+            "rm": "2025/26",
+            "dok_nummer": 50,
+            "party": "KD",
+            "speaker": "Magnus Oscarsson (KD)",
+            "date": "2025-12-11",
+            "title": "Areella näringar, landsbygd och livsmedel",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/HD0950-27/html",
+            "paragraphs": [
+              "Precis som ledamoten är inne på ska vargstammen äntligen minskas. Riksdagen har beslutat att antalet ska vara 170 individer, och nu har regeringen tittat på hur vi ska nå dit. I första vändan ska den minskas till 270 individer under nästa år."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 1,
+            "passage_id": "HA09126-64:0-3",
+            "anf_id": "HA09126-64",
+            "rm": "2022/23",
+            "dok_nummer": 126,
+            "party": "KD",
+            "speaker": "Landsbygdsministern Peter Kullgren (KD)",
+            "date": "2023-06-16",
+            "title": "Svar på interpellation 2022/23:355 om den svenska vargstammen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA09126-64/html",
+            "paragraphs": [
+              "Vargen har en stark skyddsklassning, och vargstammens utveckling i Sverige har under de senaste 20 åren haft en ökande trend när det gäller antalet individer. Vid den senaste inventeringen, som gjordes så sent som för några veckor sedan, beräknades stammen bestå av 450 individer, vilket är betydligt fler än nuvarande referensvärde på 300 individer.",
+              "Som Daniel Bäckström lyft upp beslutade riksdagen i maj 2022 om ett tillkännagivande som bland annat handlade om att referensvärdet för vargstammen - det vill säga hur många vargar som krävs för att vargstammen ska anses ha gynnsam bevarandestatus - bör vara mellan 170 och 270 vargar. Enligt tillkännagivandet bör det under rådande omständigheter, med en alltmer förtätad vargstam, hållas i den nedre delen av spannet, alltså närmare 170 individer."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 6,
+            "passage_id": "H90972-129:15-17",
+            "anf_id": "H90972-129",
+            "rm": "2021/22",
+            "dok_nummer": 72,
+            "party": "M",
+            "speaker": "John Widegren (M)",
+            "date": "2022-02-24",
+            "title": "Jakt och viltvård",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90972-129/html",
+            "paragraphs": [
+              "Vi har de facto en majoritet i Sveriges riksdag för en väsentligt mindre vargstam. Den forskning som finns, som också har lyfts här i dag, visar på 100 vargar på den skandinaviska halvön, som dessutom skulle klara av en katastrof vart tionde år, där 50-60 procent av vargstammen slås ut på kort tid. Den skulle ändå klara att repa sig.",
+              "Vi säger inte 100 vargar - det var Skandulv som sa det. Moderaterna har under flera år sagt 170 vargar i Sverige. Det gläder mig att flera partier har anslutit sig till den linjen. Jag är ganska övertygad om att det i dag till och med finns en majoritet för att minska vargstammen till de nivåerna."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 8,
+            "passage_id": "H80969-2:5-8",
+            "anf_id": "H80969-2",
+            "rm": "2020/21",
+            "dok_nummer": 69,
+            "party": "M",
+            "speaker": "Sten Bergheden (M)",
+            "date": "2021-01-22",
+            "title": "Svar på interpellationerna 2020/21:135 och 138 om vargstammens storlek",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80969-2/html",
+            "paragraphs": [
+              "Fru talman! Sverige ska ha en rimlig vargstam. I dag är vargstammen i Sverige långt ifrån rimlig. Finland har 160-180 vargar på en yta som är mycket större än den som Sverige har sina 400-500 vargar på. Ändå klagar finländarna. Det är klart att det blir problem i Sverige. Finlands befolkning tycker att dess vargstam är för stor, men Sveriges vargtäthet är betydligt större. Regeringen tycker dock att vi ska tåla ännu mer.",
+              "Om vi ska kunna producera mer miljövänlig mat, låta våra ängar och skogsmarker betas, skapa biologisk mångfald, skapa jobb på landsbygden och genom jägarna se till att vi har viltstammar i balans kan vi inte ha en vargstam som gör att människor slutar med tamboskap. Människor ger upp sin djurproduktion och tvingas flytta, och viltvården äventyras när jägarna inte vågar släppa sina hundar.",
+              "Sveriges riksdag har beslutat om 170-270 vargar. Vargstammen ska ligga inom intervallet. Så står det i beslutet. Mina frågor till ministern är därför: Är det beslut som riksdagen har fattat det som gäller eller har ministern och regeringen en annan syn på detta? Är det riksdagens beslut som gäller eller är det regeringen och Naturvårdsverket som styr landet?"
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "H909112-115:16-20",
+            "anf_id": "H909112-115",
+            "rm": "2021/22",
+            "dok_nummer": 112,
+            "party": "SD",
+            "speaker": "Mats Nordberg (SD)",
+            "date": "2022-05-12",
+            "title": "Naturvård och biologisk mångfald",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909112-115/html",
+            "paragraphs": [
+              "Det första är att majoriteten i utskottet vill att referensvärdet för vargstammen ska ligga i nedre ändan av det spann om 170-270 individer som riksdagen beslutade om redan 2013 och som nu äger laga kraft. Jag tycker inte att det är siffertrixande. Vi lägger oss inom det spann som riksdagen har beslutat medan Naturvårdsverket med sitt referensvärde på 300 faktiskt lägger sig utanför det av de folkvalda beslutade intervallet.",
+              "Man säger nu att man ska ligga i nedre delen av det här spannet, för det ska egentligen inte vara ett spann utan ett fast värde, och då föreslår vi 170. 270 tycker vi från Sverigedemokraternas sida snarare kan utgöra ett tak. När vargstammen går över 270 ska man absolut använda licensjakt för att komma ned till mitten av intervallet. Men det är vad vi tycker från Sverigedemokraternas sida."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "HC0973-103:15-17",
+            "anf_id": "HC0973-103",
+            "rm": "2024/25",
+            "dok_nummer": 73,
+            "party": "SD",
+            "speaker": "Mattias Eriksson Falk (SD)",
+            "date": "2025-02-19",
+            "title": "Jakt och viltvård",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC0973-103/html",
+            "paragraphs": [
+              "För att minska den höga koncentrationen av varg och möjliggöra en mer aktiv förvaltning behöver vargstammen så småningom nå den nedre gränsen för minsta livskraftiga population, vilket är cirka 170 individer. Att vargens skyddsstatus nu är på väg att ändras ska förhoppningsvis möjliggöra för Sverige att nå detta mål."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      }
+    ]
+  }
+}

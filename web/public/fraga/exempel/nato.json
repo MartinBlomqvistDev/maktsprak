@@ -1,0 +1,996 @@
+{
+  "id": "nato",
+  "question": "Vad har sagts om att Sverige ska gå med i Nato?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 2011,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H50972-132:0-3",
+        "anf_id": "H50972-132",
+        "rm": "2017/18",
+        "dok_nummer": 72,
+        "party": "V",
+        "speaker": "Lotta Johnsson Fornarve (V)",
+        "date": "2018-02-14",
+        "title": "Utrikespolitisk debatt",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H50972-132/html",
+        "paragraphs": [
+          "Fru talman! Det är glädjande att Fredrik Malm ser att det är problematiskt att Turkiet ingår i Nato.",
+          "Nu är det dock inte bara Turkiet som ingår i Nato. Även flera andra medlemsländer, till exempel Ungern och Polen, har tagit flera steg bort från demokratins väg.",
+          "Nato leds också av en president, Donald Trump, som är minst sagt oberäknelig. Jag skulle vara väldigt orolig för att gå med i en sådan allians.",
+          "När det gäller vårt närområde är det snarare så att ett svenskt medlemskap i Nato skulle uppfattas av Ryssland som ytterligare ett hot. Om Sverige skulle gå med i Nato skulle detta i stället bidra till att skapa ett mer osäkert närområde. Det är däremot otroligt viktigt att vi försvarar vår alliansfrihet och står upp för fred och nedrustning i vårt närområde och i omvärlden."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "HA0979-110:0-5",
+        "anf_id": "HA0979-110",
+        "rm": "2022/23",
+        "dok_nummer": 79,
+        "party": "M",
+        "speaker": "Katarina Tolgfors (M)",
+        "date": "2023-03-22",
+        "title": "Sveriges medlemskap i Nato",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA0979-110/html",
+        "paragraphs": [
+          "Fru talman! Det är en lång dags färd mot ett säkrare Sverige och ett beslut i Sveriges riksdag om ett svenskt medlemskap i Nato.",
+          "Jag vill börja med att yrka bifall till utrikesutskottets förslag i betänkandet och avslag på reservationerna.",
+          "Sveriges kommande Natomedlemskap garanterar vår säkerhet och låter Sverige bidra till en säkrare värld.",
+          "Försvarsalliansen Nato grundades 1949 för att skydda medlemsländerna mot hot från Sovjetunionen och andra potentiella fiender. Efter Rysslands brutala invasion av och illegala krig mot Ukraina är det tydligt att hotet från öst är allvarligare än någonsin.",
+          "Som ett av de mest stabila och demokratiska länderna i världen måste vi ta ansvar för att skydda vår säkerhet och bidra till att skydda andra demokratier. Ett medlemskap i Nato skulle inte bara göra oss mer säkra utan också stärka alliansen som helhet. Det skulle vara mycket märkligt, fru talman, om Sverige som enda nordiskt land skulle ställa sig utanför den försvarsgemenskap som alliansen i Nato innebär.",
+          "Genom att gå med i Nato kommer vi att ha tillgång till försvarsalliansens resurser och militära styrka, vilket gör att vi kan stärka vår försvarskapacitet och skydda oss mot både rysk aggression och andra globala hot såsom terrorism och cyberattacker."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "H10986-19:3-4",
+        "anf_id": "H10986-19",
+        "rm": "2013/14",
+        "dok_nummer": 86,
+        "party": "V",
+        "speaker": "TORBJÖRN BJÖRLUND (V) replik",
+        "date": "2014-03-19",
+        "title": "Vissa frågor om militär verksamhet m.m.",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H10986-19/html",
+        "paragraphs": [
+          "Sedan handlar det mycket om att göra en distinktion mellan bilateralt samarbete med olika länder, oavsett vad de tillhör för allianser, och Nato som organisation. Nato som organisation, i de förutsättningar som finns för Nato, med en allians ställer speciella krav på dem som är med och dem som samarbetar. Det gör att man måste skilja på vad Nato som organisation gör i Sverige och vad som görs med andra länder.",
+          "Vi har sagt att vi är positiva till ett nordiskt samarbete oavsett att Norge och Danmark är Natoländer, för de kan tillföra sådant som vi i Norden tillsammans kan göra och samarbeta kring för att få ett bättre försvar. Det är inga problem egentligen, utan det handlar verkligen om vad vi gör för distinktion när det gäller just Natosamarbetet om vi ska vara alliansfria. Några uttryckte att man kan göra nästan precis vad som helst med Nato utan att gå med, men då är det ingen mening med det, utan då kan man lika gärna gå med. Det är den distinktionen vi måste ha för att veta vad vi pratar om."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "H50972-119:0-1",
+        "anf_id": "H50972-119",
+        "rm": "2017/18",
+        "dok_nummer": 72,
+        "party": "M",
+        "speaker": "Sofia Arkelsten (M)",
+        "date": "2018-02-14",
+        "title": "Utrikespolitisk debatt",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H50972-119/html",
+        "paragraphs": [
+          "Fru talman! Tack för frågan, Björn Söder! Vi är övertygade om att Sverige är ett suveränt land som fattar sina egna beslut när det gäller säkerhetspolitiska vägval. Vi ska naturligtvis inte påverkas av någon sorts påstådd hotbild från Ryssland i fråga om huruvida vi ska gå med i Nato eller inte. Vi fattar våra egna beslut. Vi kan inte vara styrda av Ryssland.",
+          "Men vi kan vara tydliga med att Natomedlemskapet skulle ge oss en säkerhetsgaranti som vi inte har i dag. Det skulle öka möjligheten till fred, och det tycker vi är bra. Nato är en försvarsallians, och den skulle kunna hjälpa oss - ganska mycket, faktiskt."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "HA0979-47:3-3",
+        "anf_id": "HA0979-47",
+        "rm": "2022/23",
+        "dok_nummer": 79,
+        "party": "V",
+        "speaker": "Håkan Svenneling (V)",
+        "date": "2023-03-22",
+        "title": "Sveriges medlemskap i Nato",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/HA0979-47/html",
+        "paragraphs": [
+          "Det finns ytterligare dimension i det hela. Liberalerna har länge varit anhängare av Nato och att Sverige ska gå in i militäralliansen Nato med Turkiet. Vad innebär det då när vi sitter där vid Natobordet tillsammans med Turkiet och när vi varje dag ska fatta beslut om vår säkerhet tillsammans med ett land som både har andra säkerhetsintressen än vad vi har och som inte är en demokrati? Det är en fråga som Liberalerna faktiskt aldrig har gett ett svar på. Ert svar i era gamla motioner varit: Släng ut Turkiet ur Nato. Då kan Sverige gå med."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "GS0951-2:14-18",
+        "anf_id": "GS0951-2",
+        "rm": "2004/05",
+        "dok_nummer": 51,
+        "party": "L",
+        "speaker": "CECILIA WIGSTRÖM (fp)",
+        "date": "2004-12-15",
+        "title": "Sveriges säkerhetspolitik",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GS0951-2/html",
+        "paragraphs": [
+          "Föreställ er Europas karta! Alla central- och östeuropeiska länder som gått med i EU har också gått med i Nato. Sverige är i dag nästan omringat av Natoländer. Norge är med. Danmark är med. Polen är med. Estland, Lettland och Litauen har också gått med i Nato.",
+          "Varför skulle vi inte ställa upp på dem? Varför ska vi tacka nej till hjälp? Järnridån i Europa har fallit. Mellan vilka länder ska vi i dag stå neutrala?",
+          "Vår säkerhet ökar när andra länder går med i Nato, så också om vi själva gör det. Det är dags för Sverige att ta på sig tröja nr 27 och bli en del i laget.",
+          "Ett vanligt argument mot Natomedlemskap brukar vara att det inte finns något folkligt stöd för det, och det är sant. Det är viktigt att vi har ett folkligt stöd om vi ska gå in med en ansökan. Men det talar inte emot att det vore en bra idé att gå med.",
+          "Det är regeringens ansvar att berätta för oss medborgare att vi i dag samarbetar oerhört tätt med Nato och att därmed också bilda opinion i frågan. Det är, som sagt, regeringens ansvar, men det ansvaret tar man inte."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "H00968-55:4-4",
+        "anf_id": "H00968-55",
+        "rm": "2012/13",
+        "dok_nummer": 68,
+        "party": "MP",
+        "speaker": "VALTER MUTT (MP)",
+        "date": "2013-02-20",
+        "title": "Vissa säkerhetspolitiska frågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H00968-55/html",
+        "paragraphs": [
+          "Herr talman! Det pågår en kampanj från delar av borgerligheten, såväl publicister som politiker, om att Sverige bör ansöka om medlemskap i Nato. Vi i Miljöpartiet avvisar detta bestämt och värdesätter högt fortsatt svensk alliansfrihet och noterar till vår glädje att enligt SOM-institutet ställer sig bara 19 procent av väljarna positiva till ett svenskt Natomedlemskap. I en värld dominerad av stormakter, motsättningar och misstroende har små alliansfria länder som inte hotar någon en viktig roll att spela som medlare och brobyggare. Att utmåla en USA-ledd krigsallians från förra seklets förra hälft som något nytt och spännande är rätt patetiskt och åskådliggör den fantasiinfarkt som lamslår stora delar av dagens svenska borgerlighet. Ett Natomedlemskap skulle kunna öppna upp för stationering av amerikanska kärnvapen på vårt territorium, något som blivit fallet i Belgien, Nederländerna, Italien, Tyskland och Turkiet, och detta trots att dessa länder inte producerar egna kärnvapen. Denna beredskap att ta emot amerikanska kärnvapen kallas nukleärt kompanjonskap, nuclear sharing, och strider mot icke-spridningsavtalet, som Sverige signerat."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "H90966-2:3-5",
+        "anf_id": "H90966-2",
+        "rm": "2021/22",
+        "dok_nummer": 66,
+        "party": "SD",
+        "speaker": "Roger Richthoff (SD)",
+        "date": "2022-02-15",
+        "title": "Försvarspolitik",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H90966-2/html",
+        "paragraphs": [
+          "Följande gäller: Om den här kammaren och riksdagen, fru talman, fattar beslut om att Sverige ska ansöka om medlemskap i Nato anser Sverigedemokraterna inte att det räcker. Då måste vi gå ut och fråga svenska folket, och det får föregås av många debatter och så vidare. Så är det alltså. Först då vill vi ha en folkomröstning. Men då ska det vara en majoritet i kammaren. Vi anser inte att en rösts övervikt, till exempel, i kammaren ska kunna vrida om hela det säkerhetspolitiska systemet. Så var det klart.",
+          "Nato-optionen har ingenting med en ansökan till Nato att göra. Det är bara en markering, precis som den Finland har gjort. Vi i Sverigedemokraterna har inga problem med att uttala en sådan. Därför gör vi detta. Det är som sagt en liten markering av att vi i Sverige själva bestämmer om vi vill gå med i Nato eller inte. Det bestämmer vi här. Det är vad som gäller för en folkomröstning.",
+          "Sedan har vi ytterligare saker som kommer in i Försvarsberedningen, som ska kallas in. Jag kan konstatera, fru talman, att den budget som Sverigedemokraterna lade fram före jul och som gäller för bland annat 2022 innehöll drygt 2,9 miljarder mer än vad vi sedan gick med på i överenskommelsen med Kristdemokraterna och Moderaterna. Men vi ansåg då, och vi anser nu, att det var bättre att göra denna markering tillsammans än att gå på regeringens budgetförslag. Vi räknade inte med att vi hade fått igenom vår egen budget om vi hade stått ensamma."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "H909128-149:0-1",
+        "anf_id": "H909128-149",
+        "rm": "2021/22",
+        "dok_nummer": 128,
+        "party": "MP",
+        "speaker": "Per Bolund (MP)",
+        "date": "2022-06-10",
+        "title": "Nato och arbetet mot kärnvapen",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H909128-149/html",
+        "paragraphs": [
+          "Herr talman! Jag tackar Hans Wallmark för viljan att diskutera vad som ska gälla för Sverige nu när vi ser ut att bli medlemmar i Nato. Den diskussionen har varit närmast helt frånvarande från samtalet under hela processen som ledde fram till att Natoansökan skickades in.",
+          "Här har Sverige under lång tid, vilket Hans Wallmark mer än många andra känner till, varit en stark röst för kärnvapennedrustning globalt. Nu går vi med i en militärallians som har medlemmar som innehar kärnvapen. Det är nog inte svårt att se att det är besvärligare att å ena sidan ta skydd under ett kärnvapenparaply och att å andra sidan försöka avveckla världens kärnvapen. Den konflikten är ändå ganska uppenbar. Om Sverige därtill ska tillåta att kärnvapen placeras på svensk mark är det ännu svårare att föra en sådan linje internationellt. Då ser vi en risk för att ytterligare en röst för fred och nedrustning i världen tystnar."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "H50932-18:0-2",
+        "anf_id": "H50932-18",
+        "rm": "2017/18",
+        "dok_nummer": 32,
+        "party": "S",
+        "speaker": "Kenneth G Forslund (S)",
+        "date": "2017-11-16",
+        "title": "Sveriges samlade politik för internationell civil och militär krishantering",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H50932-18/html",
+        "paragraphs": [
+          "Herr talman! Tack, Allan Widman! Jag kan bara konstatera att även jag själv nu för tiden ingår i listan av socialdemokratiska deltagare i arbetet i Natos parlamentariska församling och den svenska delegationen.",
+          "Det är naturligtvis så att Sverige har ett nära samarbete med Nato. Det är viktigt för oss att följa det som händer i Nato. Det bidrar definitivt till vår kunskap och till vår förmåga.",
+          "Att Sverige skulle vara en del av Nato, en del av en organisation som baserar sin strategiska planering på vissa medlemsstaters innehav av kärnvapen - där går gränsen för min del. Detta sagt bara för att kort bemöta fortsättningen på det som Allan Widman var inne på, det vill säga hur man kan stå så nära Nato utan att vilja gå med i Nato. Där går gränsen för mig."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 2,
+        "passage_id": "HA0979-110:0-5",
+        "anf_id": "HA0979-110",
+        "rm": "2022/23",
+        "dok_nummer": 79,
+        "party": "M",
+        "speaker": "Katarina Tolgfors (M)",
+        "date": "2023-03-22",
+        "title": "Sveriges medlemskap i Nato",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/HA0979-110/html",
+        "paragraphs": [
+          "Sveriges kommande Natomedlemskap garanterar vår säkerhet och låter Sverige bidra till en säkrare värld.",
+          "Försvarsalliansen Nato grundades 1949 för att skydda medlemsländerna mot hot från Sovjetunionen och andra potentiella fiender. Efter Rysslands brutala invasion av och illegala krig mot Ukraina är det tydligt att hotet från öst är allvarligare än någonsin.",
+          "Som ett av de mest stabila och demokratiska länderna i världen måste vi ta ansvar för att skydda vår säkerhet och bidra till att skydda andra demokratier. Ett medlemskap i Nato skulle inte bara göra oss mer säkra utan också stärka alliansen som helhet. Det skulle vara mycket märkligt, fru talman, om Sverige som enda nordiskt land skulle ställa sig utanför den försvarsgemenskap som alliansen i Nato innebär.",
+          "Genom att gå med i Nato kommer vi att ha tillgång till försvarsalliansens resurser och militära styrka, vilket gör att vi kan stärka vår försvarskapacitet och skydda oss mot både rysk aggression och andra globala hot såsom terrorism och cyberattacker."
+        ],
+        "first_paragraph": 3,
+        "last_paragraph": 6
+      },
+      {
+        "rank": 1,
+        "passage_id": "H50972-132:0-3",
+        "anf_id": "H50972-132",
+        "rm": "2017/18",
+        "dok_nummer": 72,
+        "party": "V",
+        "speaker": "Lotta Johnsson Fornarve (V)",
+        "date": "2018-02-14",
+        "title": "Utrikespolitisk debatt",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H50972-132/html",
+        "paragraphs": [
+          "Nu är det dock inte bara Turkiet som ingår i Nato. Även flera andra medlemsländer, till exempel Ungern och Polen, har tagit flera steg bort från demokratins väg.",
+          "Nato leds också av en president, Donald Trump, som är minst sagt oberäknelig. Jag skulle vara väldigt orolig för att gå med i en sådan allians.",
+          "När det gäller vårt närområde är det snarare så att ett svenskt medlemskap i Nato skulle uppfattas av Ryssland som ytterligare ett hot. Om Sverige skulle gå med i Nato skulle detta i stället bidra till att skapa ett mer osäkert närområde. Det är däremot otroligt viktigt att vi försvarar vår alliansfrihet och står upp för fred och nedrustning i vårt närområde och i omvärlden."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 4
+      },
+      {
+        "rank": 7,
+        "passage_id": "H00968-55:4-4",
+        "anf_id": "H00968-55",
+        "rm": "2012/13",
+        "dok_nummer": 68,
+        "party": "MP",
+        "speaker": "VALTER MUTT (MP)",
+        "date": "2013-02-20",
+        "title": "Vissa säkerhetspolitiska frågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H00968-55/html",
+        "paragraphs": [
+          "Herr talman! Det pågår en kampanj från delar av borgerligheten, såväl publicister som politiker, om att Sverige bör ansöka om medlemskap i Nato. Vi i Miljöpartiet avvisar detta bestämt och värdesätter högt fortsatt svensk alliansfrihet och noterar till vår glädje att enligt SOM-institutet ställer sig bara 19 procent av väljarna positiva till ett svenskt Natomedlemskap. I en värld dominerad av stormakter, motsättningar och misstroende har små alliansfria länder som inte hotar någon en viktig roll att spela som medlare och brobyggare. Att utmåla en USA-ledd krigsallians från förra seklets förra hälft som något nytt och spännande är rätt patetiskt och åskådliggör den fantasiinfarkt som lamslår stora delar av dagens svenska borgerlighet. Ett Natomedlemskap skulle kunna öppna upp för stationering av amerikanska kärnvapen på vårt territorium, något som blivit fallet i Belgien, Nederländerna, Italien, Tyskland och Turkiet, och detta trots att dessa länder inte producerar egna kärnvapen. Denna beredskap att ta emot amerikanska kärnvapen kallas nukleärt kompanjonskap, nuclear sharing, och strider mot icke-spridningsavtalet, som Sverige signerat."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 1
+      },
+      {
+        "rank": 6,
+        "passage_id": "GS0951-2:14-18",
+        "anf_id": "GS0951-2",
+        "rm": "2004/05",
+        "dok_nummer": 51,
+        "party": "L",
+        "speaker": "CECILIA WIGSTRÖM (fp)",
+        "date": "2004-12-15",
+        "title": "Sveriges säkerhetspolitik",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GS0951-2/html",
+        "paragraphs": [
+          "Föreställ er Europas karta! Alla central- och östeuropeiska länder som gått med i EU har också gått med i Nato. Sverige är i dag nästan omringat av Natoländer. Norge är med. Danmark är med. Polen är med. Estland, Lettland och Litauen har också gått med i Nato.",
+          "Varför skulle vi inte ställa upp på dem? Varför ska vi tacka nej till hjälp? Järnridån i Europa har fallit. Mellan vilka länder ska vi i dag stå neutrala?",
+          "Vår säkerhet ökar när andra länder går med i Nato, så också om vi själva gör det. Det är dags för Sverige att ta på sig tröja nr 27 och bli en del i laget.",
+          "Ett vanligt argument mot Natomedlemskap brukar vara att det inte finns något folkligt stöd för det, och det är sant. Det är viktigt att vi har ett folkligt stöd om vi ska gå in med en ansökan. Men det talar inte emot att det vore en bra idé att gå med."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 4
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 2011,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H50972-132:0-3",
+            "anf_id": "H50972-132",
+            "rm": "2017/18",
+            "dok_nummer": 72,
+            "party": "V",
+            "speaker": "Lotta Johnsson Fornarve (V)",
+            "date": "2018-02-14",
+            "title": "Utrikespolitisk debatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50972-132/html",
+            "paragraphs": [
+              "Nu är det dock inte bara Turkiet som ingår i Nato. Även flera andra medlemsländer, till exempel Ungern och Polen, har tagit flera steg bort från demokratins väg.",
+              "Nato leds också av en president, Donald Trump, som är minst sagt oberäknelig. Jag skulle vara väldigt orolig för att gå med i en sådan allians.",
+              "När det gäller vårt närområde är det snarare så att ett svenskt medlemskap i Nato skulle uppfattas av Ryssland som ytterligare ett hot. Om Sverige skulle gå med i Nato skulle detta i stället bidra till att skapa ett mer osäkert närområde. Det är däremot otroligt viktigt att vi försvarar vår alliansfrihet och står upp för fred och nedrustning i vårt närområde och i omvärlden."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 10,
+            "passage_id": "H90958-50:3-6",
+            "anf_id": "H90958-50",
+            "rm": "2021/22",
+            "dok_nummer": 58,
+            "party": "V",
+            "speaker": "Håkan Svenneling (V)",
+            "date": "2022-01-25",
+            "title": "Svar på interpellation 2021/22:109 om Nato-option i regeringsförklaringen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90958-50/html",
+            "paragraphs": [
+              "Vänsterpartiet anser att Sveriges säkerhetspolitiska linje ska ligga fast och att Sverige inte ska gå med i Nato eller anta en Nato-option. Det saknas dessutom folkligt stöd för en sådan inriktning. Man kan leta efter olika undersökningar där det sätts kriterier om att kanske hålla öppet om läget försämras och så vidare. Ja, människor är oroliga, för vi befinner oss i ett skakigt politiskt läge. Men det är inte samma sak som att gå fram med att vilja ansluta till Nato.",
+              "Det är mycket bättre att Sverige tar tid på sig, funderar länge och väl på vad vår säkerhetspolitiska linje är, samtalar om detta mellan partierna och sedan tillsammans bestämmer hur man ska gå. Men här tar vurmen för Nato över hos Moderaterna, och det är detta som gör att vi får denna otydlighet.",
+              "Jag vill därför ge mitt tydliga stöd för den linje som utrikesministern redogjort för och som gör det tydligt så att Sverige inte framstår som en inofficiell medlem av kärnvapenalliansen Nato. Det ska inte råda några oklarheter om huruvida vi är med i Nato eller inte. Sverige är inte med. Det gynnar vår säkerhet och har också gjort att vi har haft två hundra år av fred."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H50972-42:0-2",
+            "anf_id": "H50972-42",
+            "rm": "2017/18",
+            "dok_nummer": 72,
+            "party": "V",
+            "speaker": "Yasmine Posio Nilsson (V)",
+            "date": "2018-02-14",
+            "title": "Utrikespolitisk debatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50972-42/html",
+            "paragraphs": [
+              "Herr talman! Jag fick inte svar på hur ni ställer er till att majoriteten av svenska folket inte vill gå med i Nato. Vi i Vänsterpartiet vill även riva upp det värdlandsavtal som vi har med Nato, så för oss räcker det inte med svaret att vi just nu står så nära vi kan och att vi därför lika gärna kan gå med.",
+              "Vi har tydligt visat att ett medlemskap i Nato tvärtom ökar osäkerheten och risken för attacker mot vårt land. Att gå med i Nato innebär, som Margot Wallström lyfte fram, att vi får Donald Trump som ledare och att vi kommer att samverka med Turkiet och Erdogan, som alldeles nyligen har anfallit Syrien."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 9,
+            "passage_id": "H609103-183:0-2",
+            "anf_id": "H609103-183",
+            "rm": "2018/19",
+            "dok_nummer": 103,
+            "party": "V",
+            "speaker": "Håkan Svenneling (V)",
+            "date": "2019-06-12",
+            "title": "Säkerhetspolitik",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H609103-183/html",
+            "paragraphs": [
+              "Fru talman! Varken svenska folket, Vänsterpartiet eller Socialdemokraterna anser att Sverige ska gå med i Nato. Ändå har Socialdemokraterna under de senaste åren varit drivande i att närma sig Nato. Ni har skrivit under ett värdlandsavtal, upplåtit norrländska skogar till att provskjuta raketer och övat tillsammans med Nato. Dessa handlingar inverkar inte bara negativt på vår militära alliansfrihet och på miljön utan går också på tvärs mot folkets vilja att inte gå med i Nato."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 8,
+            "passage_id": "H209116-22:0-5",
+            "anf_id": "H209116-22",
+            "rm": "2014/15",
+            "dok_nummer": 116,
+            "party": "MP",
+            "speaker": "Pernilla Stålhammar (MP)",
+            "date": "2015-06-15",
+            "title": "Säkerhetspolitisk inriktning - Sveriges försvar för perioden 2016-2020",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H209116-22/html",
+            "paragraphs": [
+              "De senaste åren har den säkerhetspolitiska situationen i vårt närområde försämrats. Den ryska aggressionen i Ukraina är oacceptabel. Rysslands annektering av Krim är folkrättsvidrig och måste fortsätta fördömas. Ryssland har ökat sin aktivitet i Östersjöområdet och för en intensiv informationskrigföring. Detta måste vi förhålla oss till. Men förhållningssättet får inte stavas Nato.",
+              "Vänner! Jag känner ett starkt ansvar inför våra barn. Ett medlemskap i Nato är en osäkerhetspolitik, inte en säkerhetspolitik. Risken för krig i Sverige skulle öka. Vi skulle tvingas ha Natotrupper på svensk mark, kanske bestyckade med kärnvapen. Vi skulle inte kunna undgå att bli en del av ett slagfält om krig bröt ut.",
+              "Ett Natomedlemskap skulle dessutom gynna de bakåtsträvande i den ryska makteliten, som skulle peka på ytterligare hot från väst. Den kallakrigsretorik som vissa partier i Sveriges riksdag för skrämmer mig.",
+              "Ett grundläggande element i svensk säkerhetspolitik och diplomati måste i stället vara att verka för fredlig utveckling, stabilitet och ömsesidigt förtroende i den euro-atlantiska regionen. En sådan politik främjas inte av ett svenskt Natomedlemskap. Alliansfriheten har tjänat Sverige väl och kommer att göra så även i framtiden."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 6
+          },
+          {
+            "rank": 1,
+            "passage_id": "H909128-138:6-8",
+            "anf_id": "H909128-138",
+            "rm": "2021/22",
+            "dok_nummer": 128,
+            "party": "MP",
+            "speaker": "Per Bolund (MP)",
+            "date": "2022-06-10",
+            "title": "Nato och arbetet mot kärnvapen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909128-138/html",
+            "paragraphs": [
+              "Herr talman! Nu är som sagt Natoansökan inskickad. Då måste vi också inom det politiska fältet hitta utrymme för den viktiga diskussionen om hur Sveriges framtida medlemskap i Nato ska se ut. Det minsta Sverige ska göra, om vi nu ska gå med i Nato, är att ställa krav, att tydliggöra vilka förbehåll som ska gälla för medlemskapet, precis som många nuvarande medlemsstater i Nato redan har gjort.",
+              "Sverige ska till exempel inte - det anser vi är oerhört viktigt - ha kärnvapen på svensk mark, varken i freds- eller i krigstid. Sverige ska driva på för ett demokratikrav och att detta skärps för länder som arbetar inom Nato. Vi måste också tydligt stå upp för fred, frihet och värnandet av mänskliga rättigheter. Allt annat är för oss oacceptabelt."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H00968-55:4-4",
+            "anf_id": "H00968-55",
+            "rm": "2012/13",
+            "dok_nummer": 68,
+            "party": "MP",
+            "speaker": "VALTER MUTT (MP)",
+            "date": "2013-02-20",
+            "title": "Vissa säkerhetspolitiska frågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H00968-55/html",
+            "paragraphs": [
+              "Herr talman! Det pågår en kampanj från delar av borgerligheten, såväl publicister som politiker, om att Sverige bör ansöka om medlemskap i Nato. Vi i Miljöpartiet avvisar detta bestämt och värdesätter högt fortsatt svensk alliansfrihet och noterar till vår glädje att enligt SOM-institutet ställer sig bara 19 procent av väljarna positiva till ett svenskt Natomedlemskap. I en värld dominerad av stormakter, motsättningar och misstroende har små alliansfria länder som inte hotar någon en viktig roll att spela som medlare och brobyggare. Att utmåla en USA-ledd krigsallians från förra seklets förra hälft som något nytt och spännande är rätt patetiskt och åskådliggör den fantasiinfarkt som lamslår stora delar av dagens svenska borgerlighet. Ett Natomedlemskap skulle kunna öppna upp för stationering av amerikanska kärnvapen på vårt territorium, något som blivit fallet i Belgien, Nederländerna, Italien, Tyskland och Turkiet, och detta trots att dessa länder inte producerar egna kärnvapen. Denna beredskap att ta emot amerikanska kärnvapen kallas nukleärt kompanjonskap, nuclear sharing, och strider mot icke-spridningsavtalet, som Sverige signerat."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 2,
+            "passage_id": "HB0987-60:0-2",
+            "anf_id": "HB0987-60",
+            "rm": "2023/24",
+            "dok_nummer": 87,
+            "party": "MP",
+            "speaker": "Emma Berginger (MP)",
+            "date": "2024-03-20",
+            "title": "Utrikespolitisk debatt med anledning av Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0987-60/html",
+            "paragraphs": [
+              "Herr talman! Sverige är nu till sist med i Nato efter nästan två plågsamma år då utrikespolitiken har kretsat kring att göra auktoritära ledare som Erdogan och Orbán nöjda och glada. Det är bra att limboläget till slut är över.",
+              "Sverige behöver ha en självständig och stark röst i Nato, en röst som kan stå upp för demokrati, mänskliga rättigheter och rättsstatens principer, både utanför och inom Nato. Regeringen har under Natoansökningsprocessen snarare visat att man är beredd att böja och vika sig hur långt som helst för att blidka andra medlemsstater. Detta är rent ut sagt ovärdigt för oss som land. Men nu när Sverige är Natomedlem måste regeringen återfå talförmågan i frågor som är viktiga för Sverige.",
+              "Miljöpartiet har valt att respektera det beslut som en bred majoritet i Sveriges riksdag har fattat om att Sverige ska vara medlem i Nato. Nu fokuserar vi framåt på vilken roll Sverige ska ta som Natomedlem. Sveriges regering borde nu verka för att ett demokratikrav införs i Nato, att principen om no first use införs och att det inte under några omständigheter förs in kärnvapen på svenskt territorium."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "H909114-1:12-14",
+            "anf_id": "H909114-1",
+            "rm": "2021/22",
+            "dok_nummer": 114,
+            "party": "S",
+            "speaker": "Statsministern Magdalena Andersson (S)",
+            "date": "2022-05-16",
+            "title": "Särskild debatt med anledning av rapporten från de säkerhetspolitiska överläggningarna",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909114-1/html",
+            "paragraphs": [
+              "Sverige och Finland är två länder som gör sina säkerhetspolitiska vägval självständigt, men vår historia, vår säkerhet och vår framtid är tätt sammankopplade. Om Sverige skulle bli det enda EU-landet i Östersjöregionen som inte är medlem i Nato skulle vi hamna i ett mycket utsatt läge. Det kan inte uteslutas att Ryssland ökar pressen på Sverige.",
+              "Sverige och Finland har också ett långtgående militärt samarbete, och när Finland som Natomedlem fokuserar mer på samarbetet med andra Natoländer minskar Sveriges försvarsförmåga i en tid då den i stället behöver stärkas. Om vi däremot skulle gå med i Nato tillsammans med Finland skulle alla EU-länder och nordiska länder runt Östersjön vara bundna av samma ömsesidiga och trovärdiga försvarsgaranti, och vårt samarbete och vår samlade försvarsförmåga skulle öka drastiskt.",
+              "Det bästa för vårt lands säkerhet är därför att Sverige söker medlemskap i Nato och att vi gör det nu, tillsammans med Finland. Efter dagens debatt i kammaren är regeringen redo att fatta beslut om en ansökan. Det blir i så fall startskottet för en anslutningsprocess som också inbegriper ratifikationer i samtliga Natoländers parlament. Därefter återkommer regeringen med en proposition till riksdagen med förslag om ratifikation av svensk anslutning till Nato."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 1,
+            "passage_id": "H50932-18:0-2",
+            "anf_id": "H50932-18",
+            "rm": "2017/18",
+            "dok_nummer": 32,
+            "party": "S",
+            "speaker": "Kenneth G Forslund (S)",
+            "date": "2017-11-16",
+            "title": "Sveriges samlade politik för internationell civil och militär krishantering",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50932-18/html",
+            "paragraphs": [
+              "Det är naturligtvis så att Sverige har ett nära samarbete med Nato. Det är viktigt för oss att följa det som händer i Nato. Det bidrar definitivt till vår kunskap och till vår förmåga.",
+              "Att Sverige skulle vara en del av Nato, en del av en organisation som baserar sin strategiska planering på vissa medlemsstaters innehav av kärnvapen - där går gränsen för min del. Detta sagt bara för att kort bemöta fortsättningen på det som Allan Widman var inne på, det vill säga hur man kan stå så nära Nato utan att vilja gå med i Nato. Där går gränsen för mig."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "H50939-137:0-3",
+            "anf_id": "H50939-137",
+            "rm": "2017/18",
+            "dok_nummer": 39,
+            "party": "S",
+            "speaker": "Kenneth G Forslund (S)",
+            "date": "2017-11-29",
+            "title": "Internationell samverkan",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50939-137/html",
+            "paragraphs": [
+              "Att Sverige skulle gå med i Nato, utifrån sin historiska och geografiska position, är däremot en annan sak. Där delar jag inte Kerstin Lundgrens åsikt.",
+              "Kerstin Lundgren framför också det ganska vanliga brandförsäkringsargumentet - att vi ska teckna försäkringen innan det börjar brinna. Det är ju en enkel retorik, men jag är tyvärr inte alldeles övertygad om att Nato kommer att vara så snabbt - trots allt - med att komma till undsättning. Det är tyvärr också så att det finns stora tvivel inom Nato vad gäller detta.",
+              "Avslutningsvis måste jag säga, herr talman, att jag har både brandförsäkring och annan försäkring på bostaden hemma i Kungälv, och jag litar tyvärr mer på mitt eget försäkringsbolag än vad jag skulle lita på Nato."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "HA0979-23:26-28",
+            "anf_id": "HA0979-23",
+            "rm": "2022/23",
+            "dok_nummer": 79,
+            "party": "S",
+            "speaker": "Morgan Johansson (S)",
+            "date": "2023-03-22",
+            "title": "Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0979-23/html",
+            "paragraphs": [
+              "Ganska snart kunde man dra slutsatsen att om Sverige skulle bli det enda landet i Norden utanför Nato skulle vi vara i en mer utsatt situation än om vi också tog steget in i Nato. Och när Ryssland inte längre följer den europeiska säkerhetsordningen, ja, då har världen som sagt blivit avsevärt mycket farligare.",
+              "Därför lämnade vi in en ansökan om Natomedlemskap, och vi kunde också konstatera att vi hade en stor majoritet av svenska folket bakom oss. Svenska folket hade dragit samma slutsats. Sedan vet alla vad som hände. Turkiet svängde på bara några dagar. Från att ha välkomnat Sverige och Finland som medlemmar började de plötsligt ställa krav som ett led i ett turkiskt inrikespolitiskt spel. Den processen pågår ju nu. Låt oss hoppas att de återstående frågorna kan lösas ut.",
+              "Jag kan bara säga att jag som justitieminister var noga med att vi aldrig skulle göra avkall på de grundläggande rättsstatliga principerna i de förhandlingar vi hade med Turkiet inför Madridmötet i somras. Det har vi inte gjort. Det ska vi heller inte göra. Sverige uppfyller med råge alla kriterier Nato har satt upp för att väljas in som ny medlem. Vi går ju med i Nato för att försvara vår demokrati och vår rättsstat, inte för att förhandla bort dem. Det är i Nato vi ska gå med, inte i Turkiet."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 3,
+            "passage_id": "H50944-79:0-2",
+            "anf_id": "H50944-79",
+            "rm": "2017/18",
+            "dok_nummer": 44,
+            "party": "C",
+            "speaker": "Kerstin Lundgren (C)",
+            "date": "2017-12-06",
+            "title": "Sveriges deltagande i det permanenta strukturerade samarbetet inom Europeiska unionen",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50944-79/html",
+            "paragraphs": [
+              "Från vår horisont är det givet: Om vi ska bygga säkerhet bygger vi säkerhet tillsammans med andra och inte ensamma, för det är inte säkert. Vi bygger säkerhet tillsammans inom Nato genom att bli medlemmar, och det vill vi gärna se hända så snart som möjligt.",
+              "Välkommen med, Sverigedemokraterna! Ni har ju uppenbarligen insett att om dagens beslut går igenom är Sverige inte längre alliansfritt, för då har alliansfriheten tappat trovärdighet. Detta borde leda till insikten att även Sverigedemokraterna måste ändra åsikt och tycka att vi ska gå med i Nato."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "H30912-5:7-8",
+            "anf_id": "H30912-5",
+            "rm": "2015/16",
+            "dok_nummer": 12,
+            "party": "C",
+            "speaker": "Staffan Danielsson (C)",
+            "date": "2015-10-13",
+            "title": "Svar på interpellation 2015/16:16 om tydlighet om Sveriges samarbete med Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H30912-5/html",
+            "paragraphs": [
+              "Jag har suttit i försvarsutskottet i åtta år. Jag har kommit fram till övertygelsen att verkligheten är sådan att Sverige inte har något annat val än att försvara sin säkerhet genom att gå med i Nato. Vi är nästan med i dag. Det är inget stort steg. Det är trist att det fortfarande är sådana laddningar i frågan, men jag hoppas att socialdemokratin, liksom man gjorde i EU-frågan för 20 år sedan, över en natt kommer att komma fram till en annan syn på det hela."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 7,
+            "passage_id": "H909128-158:0-2",
+            "anf_id": "H909128-158",
+            "rm": "2021/22",
+            "dok_nummer": 128,
+            "party": "C",
+            "speaker": "Kerstin Lundgren (C)",
+            "date": "2022-06-10",
+            "title": "Nato och arbetet mot kärnvapen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909128-158/html",
+            "paragraphs": [
+              "Det är i denna verklighet som Sverige sökt medlemskap i Nato. Det handlar om att Sveriges säkerhet måste sättas först. Därför finns nu ett brett stöd i riksdagen och också ett starkt folkligt stöd, om man får tro opinionsundersökningarna, för att Sverige tillsammans med Finland ska bli medlemmar i Nato. Och en ansökan är inlämnad.",
+              "Miljöpartiet och Vänsterpartiet vill inte gå med, och det är skälet till den motion som finns på bordet i dag. Jag har respekt för att man har olika uppfattningar. Så har det varit under en lång tid när debatten har förts. Miljöpartiet och Vänsterpartiet har också varit tydliga med att de vill ratificera den förbudskonvention som riksdagen tackat nej till och sagt att vi inte ska ratificera. Mot den bakgrunden blir det inte så konstigt att läsa den motion som Miljöpartiet lagt på riksdagens bord, herr talman."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 5,
+            "passage_id": "HA0979-38:12-15",
+            "anf_id": "HA0979-38",
+            "rm": "2022/23",
+            "dok_nummer": 79,
+            "party": "C",
+            "speaker": "Kerstin Lundgren (C)",
+            "date": "2023-03-22",
+            "title": "Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0979-38/html",
+            "paragraphs": [
+              "Nato är en konsensusorganisation. Varje lands röst räknas lika. Det ser vi nu. Sverige överlämnar inte beslutsmakt till andra. Vi formar vår egen utrikes- och säkerhetspolitik. Sverige är medlem i EU, och EU är vår viktigaste utrikespolitiska arena. Vi ska tillsammans med likasinnade stå upp för demokrati, för den multilaterala världsordningen, för mänskliga rättigheter och för frihet och hållbar utveckling, enligt vårt sätt att se det.",
+              "Nato är en försvarsorganisation - det är också viktigt att säga. Det var följden av andra världskriget då hoten från Ryssland också var kännbara för våra grannar i Norge, Danmark och Island och då man bad att få en militär gren till den politiska alliansen för att försvara sig mot Ryssland.",
+              "Herr talman! Det är som sagt hög tid nu att vi uttalar att vi ska hålla gränsen. Och när vi ska hålla gränsen i framtiden är det en gräns som jag hoppas kommer att vara Natos gräns.",
+              "Jag yrkar bifall till förslaget i utrikesutskottets betänkande. Det innebär ett bifall till att Sverige ansluter sig till försvarsalliansen Nato och därmed bifall till propositionen och avslag på reservationerna."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "GW09130-154:18-23",
+            "anf_id": "GW09130-154",
+            "rm": "2008/09",
+            "dok_nummer": 130,
+            "party": "L",
+            "speaker": "BIRGITTA OHLSSON (fp)",
+            "date": "2009-06-11",
+            "title": "(forts. från 14 §) Vissa säkerhetspolitiska frågor (forts. UU11)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW09130-154/html",
+            "paragraphs": [
+              "Under lång tid har Sveriges säkerhet de facto byggt på Natos stöd. Vi måste erkänna att för ett litet land kommer det stödet alltid att behövas.",
+              "EU är ingen militärallians och därför inget realistiskt alternativ till Nato. Den franska militära återintegreringen i Nato är ett tecken på att fransmännen har gett upp idén att balansera USA genom en konkurrerande organisation.",
+              "Vill vi vara med och ta ett solidariskt ansvar för Europas säkerhet behöver Sverige vara integrerat i en europeisk och transatlantisk försvarskontext. En kombination av EU:s civila kompetens och Natos militära är framtiden för den svenska säkerheten.",
+              "Blir vi medlemmar skulle vi kunna påverka dessa operationer. Nu förlitar vi oss på att andra ska ta ansvaret. Sverige har i allt väsentligt redan tagit steget från neutralitet till solidaritet i säkerhetspolitiken.",
+              "Vårt grannland Finland har gjort tre utredningar om Nato; Sverige har inte gjort någon. Det är hög tid att vi lägger fram en utredning med fördelar och nackdelar för Sverige att gå med eller stå utanför Nato. Vi måste gå till botten med Natofrågan och lägga alla fakta på bordet för väljarna.",
+              "Ett svenskt Natomedlemskap är nödvändigt av såväl ideologiska, ekonomiska som humanistiska skäl. Vi vet av historien att fred skapas genom frihet och att demokratier inte krigar mot varandra."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 6
+          },
+          {
+            "rank": 8,
+            "passage_id": "GT09102-2:6-8",
+            "anf_id": "GT09102-2",
+            "rm": "2005/06",
+            "dok_nummer": 102,
+            "party": "L",
+            "speaker": "CECILIA WIGSTRÖM (fp)",
+            "date": "2006-04-05",
+            "title": "Vissa aspekter på svensk säkerhetspolitik",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT09102-2/html",
+            "paragraphs": [
+              "Det första argumentet handlar om inflytandet. Vi ska få inflytande över beslut som berör oss. Det sägs i den utrikespolitiska deklarationen, och därom är vi alla överens, att den transatlantiska länken är viktig. Det är något slags kodord, transatlantisk länk. Det handlar om att ha en öppen telefonlinje mellan Sverige och USA. Den telefonlinjen fungerar ju bäst om vi är medlemmar i Nato. Då behöver vi inte bara ringa varandra utan vi kan sitta vid samma sammanträdesbord och diskutera och påverka den supermakt vi har i världen i dag.",
+              "Vi behöver också inflytande därför att vi är så aktiva i Nato. Svenska soldater ingår i en Natoinsats i Afghanistan och i Kosovo - fredsuppdrag, vilket faktiskt är Natos främsta uppgift nuförtiden. De besluten behöver vi vara med och påverka också.",
+              "Ett annat argument till att vi behöver gå med i Nato är ju att alliansfriheten i praktiken är överspelad. Vi samarbetar oerhört tätt med Nato. Vi har sagt att vi inte kommer att vara neutrala vid ett angrepp på ett annat EU-land. Vi håller på att omdana hela vårt försvar för att vi ska kunna vara med i EU:s snabbinsatsstyrka. Det är lite svårt att se att det går ihop med vår alliansfrihet."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 1,
+            "passage_id": "GS0951-2:14-18",
+            "anf_id": "GS0951-2",
+            "rm": "2004/05",
+            "dok_nummer": 51,
+            "party": "L",
+            "speaker": "CECILIA WIGSTRÖM (fp)",
+            "date": "2004-12-15",
+            "title": "Sveriges säkerhetspolitik",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS0951-2/html",
+            "paragraphs": [
+              "Föreställ er Europas karta! Alla central- och östeuropeiska länder som gått med i EU har också gått med i Nato. Sverige är i dag nästan omringat av Natoländer. Norge är med. Danmark är med. Polen är med. Estland, Lettland och Litauen har också gått med i Nato.",
+              "Varför skulle vi inte ställa upp på dem? Varför ska vi tacka nej till hjälp? Järnridån i Europa har fallit. Mellan vilka länder ska vi i dag stå neutrala?",
+              "Vår säkerhet ökar när andra länder går med i Nato, så också om vi själva gör det. Det är dags för Sverige att ta på sig tröja nr 27 och bli en del i laget.",
+              "Ett vanligt argument mot Natomedlemskap brukar vara att det inte finns något folkligt stöd för det, och det är sant. Det är viktigt att vi har ett folkligt stöd om vi ska gå in med en ansökan. Men det talar inte emot att det vore en bra idé att gå med.",
+              "Det är regeringens ansvar att berätta för oss medborgare att vi i dag samarbetar oerhört tätt med Nato och att därmed också bilda opinion i frågan. Det är, som sagt, regeringens ansvar, men det ansvaret tar man inte."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 5,
+            "passage_id": "HA0979-44:3-4",
+            "anf_id": "HA0979-44",
+            "rm": "2022/23",
+            "dok_nummer": 79,
+            "party": "L",
+            "speaker": "Anna Starbrink (L)",
+            "date": "2023-03-22",
+            "title": "Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0979-44/html",
+            "paragraphs": [
+              "Men ha förtröstan! Förr eller senare kommer Sverige att bli medlem i Nato. När detta sker är ett beslut som ligger i Turkiets händer. Nu gäller det att vi i Sverige håller huvudet kallt och agerar på ett sätt som gynnar våra möjligheter att bli medlem utan att vi för den sakens skull tillmötesgår orimliga krav på att vi ska montera ned våra grundlagsskyddade rättigheter. Sverige lever redan i dag upp till Natos krav på medlemsländerna, och vi lever upp till det avtal som vi och Finland har med Turkiet. Nu är det Turkiet och Nato som måste visa vad open door policy betyder.",
+              "Genom Nato förbättras vår säkerhet påtagligt. Men inträdet i Nato är inte målet, utan det är början på en ny era där Sverige ska forma sin roll i samarbetet. Liberalerna menar att Sverige ska vara en engagerad och aktiv medlem, och jag vill peka på några viktiga aspekter."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H60956-65:0-3",
+            "anf_id": "H60956-65",
+            "rm": "2018/19",
+            "dok_nummer": 56,
+            "party": "KD",
+            "speaker": "Mikael Oscarsson (KD)",
+            "date": "2019-02-27",
+            "title": "Försvarspolitik",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H60956-65/html",
+            "paragraphs": [
+              "Det finns en utredning som Krister Bringéus har gjort i närtid. Där lyfts det tydligt fram att ett svenskt Natomedlemskap skulle stärka tryggheten och förutsägbarheten, både för oss och för våra grannländer. Han påpekar också att det är ganska svårt för omvärlden att förstå den svenska positionen. Vi ses nästan som medlemmar i Nato och får en del problem på grund av det. Men vi har inte skyddet. Det är det som är skillnaden. Vi omfattas inte av artikel 5.",
+              "Sverige behöver verkligen stärka sin försvarsförmåga, absolut. Vi behöver öka procentandelen av bnp. Det är viktigt. Men det räcker inte. Vi måste också bli medlem i Nato. Det är någonting som Kristdemokraterna arbetar för och hoppas få igenom så fort som möjligt."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 8,
+            "passage_id": "H50996-6:10-11",
+            "anf_id": "H50996-6",
+            "rm": "2017/18",
+            "dok_nummer": 96,
+            "party": "KD",
+            "speaker": "Sofia Damm (KD)",
+            "date": "2018-04-12",
+            "title": "Säkerhetspolitik",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H50996-6/html",
+            "paragraphs": [
+              "Detta blir en naturlig övergång till ämnet svenskt Natosamarbete. I betänkandet har allianspartierna en gemensam reservation, reservation nr 12, om att Sverige ska söka medlemskap. Jag vill härmed yrka bifall till den.",
+              "Sverige är omgivet av Natoländer, Finland undantaget. De eventuella hot som kan uppstå mot dessa innebär att det är svårt att se några situationer där Sverige och svenskt territorium inte skulle beröras vid en allvarlig kris eller konflikt i vårt närområde. Vi har i solidaritetsförklaringen i försvarsbeslutet 2009 förpliktat oss att stödja våra nordiska grannar och andra EU-medlemmar - även militärt om så skulle behövas. Vi har sagt att vi förväntar oss stöd från dem om vi skulle bli angripna. Den enda organisation som har de militära resurser och den ledningsförmåga som krävs för att agera i vårt närområde är Nato. De åtgärder som Sverige vidtagit för att underlätta eventuell hjälp från Nato i händelse av ett angrepp mot Sverige, till exempel avtalet om host nation support och att vi deltar i samarbeten som Joint Expeditionary Force och även i övningsverksamhet med Nato, är av stort värde. Dessa samarbeten ersätter dock inte ett medlemskap, då de inte garanterar hjälp. Utan inflytande i Natos planerings och beslutsprocesser är risken överhängande att såväl svenska insatser som Natoinsatser inte blir optimala eller helt enkelt genomförs för sent."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 3,
+            "passage_id": "H909128-95:0-4",
+            "anf_id": "H909128-95",
+            "rm": "2021/22",
+            "dok_nummer": 128,
+            "party": "KD",
+            "speaker": "Mikael Oscarsson (KD)",
+            "date": "2022-06-10",
+            "title": "Utrikespolitisk debatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H909128-95/html",
+            "paragraphs": [
+              "Den säkerhetspolitiska analysen, som du och jag var med om att göra, var bara en i raden av instanser som har kommit fram till de viktiga slutsatserna, nämligen att bilaterala försvarsavtal inte räcker, att Sverige behöver fördragsfästa försvarsgarantier och att det bara är Nato som kan ge detta.",
+              "Även om det tar emot för Håkan Svenneling att tillstå fakta, nämligen att Sverige står sårbart inför ett ryskt angrepp i avsaknad av ett Natomedlemskap, hoppas jag att vi båda är överens om att de baltiska staterna behöver Natos skydd. I grund och botten är det frågan om överlevnad.",
+              "Ett svenskt Natomedlemskap kommer avsevärt att stärka Baltikums säkerhet, och det kommer på ett avgörande sätt att underlätta hjälp västerifrån om Ryssland skulle få för sig att gå till attack. Man har ju vapensystem, som ledamoten säkert känner till, i Kaliningrad som gör att man väldigt snabbt kan sätta upp en mur och förhindra Natohjälp kommande från Polen. Det enda sättet är då att flyga över Sverige."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "HB0987-51:7-10",
+            "anf_id": "HB0987-51",
+            "rm": "2023/24",
+            "dok_nummer": 87,
+            "party": "KD",
+            "speaker": "Magnus Berntsson (KD)",
+            "date": "2024-03-20",
+            "title": "Utrikespolitisk debatt med anledning av Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HB0987-51/html",
+            "paragraphs": [
+              "Att bli medlem i Nato är en naturlig fortsättning av den linje vi redan har följt. Det är ett historiskt och logiskt steg, särskilt med tanke på den avskräckande effekt och trygghet som försvarsalliansen har erbjudit medlemsländerna genom historien. Ingen Natomedlem har någonsin blivit storskaligt attackerad av en annan stat, vilket visar på alliansens styrka och effektivitet.",
+              "Det är viktigt att erkänna att Nato inte bara är världens starkaste försvarsallians utan också en av de mest framgångsrika fredsorganisationerna i världen. Hade länder som Georgien och Ukraina varit medlemmar i Nato hade de förmodligen undgått storskalig väpnad aggression från externa makter. På samma sätt skulle Estland och Lettland, med liknande geopolitisk bakgrund i förhållande till Ryssland, ha varit oerhört utsatta utan Natos avskräckningsförmåga.",
+              "Sverige har tagit ett klokt, logiskt och strategiskt beslut om att gå med i Nato och dra nytta av dess styrka och skydd. Det är ett naturligt steg mot en mer stabil och säker framtid för vår nation och för hela regionen.",
+              "Herr talman! Den militära alliansfriheten har sedan länge passerat sitt bästföredatum. Allianslösheten har under lång tid präglat vår militära förmåga och försatt Sverige och våra grannländer i en utsatt position. Sverige bidrog till att skapa ett säkerhetspolitiskt vakuum i Östersjöområdet. Därför fattade Kristdemokraterna beslutet att ställa sig bakom ett svenskt Natomedlemskap efter Rysslands olagliga annektering av Krim och Donbass."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "HA0979-110:0-5",
+            "anf_id": "HA0979-110",
+            "rm": "2022/23",
+            "dok_nummer": 79,
+            "party": "M",
+            "speaker": "Katarina Tolgfors (M)",
+            "date": "2023-03-22",
+            "title": "Sveriges medlemskap i Nato",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0979-110/html",
+            "paragraphs": [
+              "Sveriges kommande Natomedlemskap garanterar vår säkerhet och låter Sverige bidra till en säkrare värld.",
+              "Försvarsalliansen Nato grundades 1949 för att skydda medlemsländerna mot hot från Sovjetunionen och andra potentiella fiender. Efter Rysslands brutala invasion av och illegala krig mot Ukraina är det tydligt att hotet från öst är allvarligare än någonsin.",
+              "Som ett av de mest stabila och demokratiska länderna i världen måste vi ta ansvar för att skydda vår säkerhet och bidra till att skydda andra demokratier. Ett medlemskap i Nato skulle inte bara göra oss mer säkra utan också stärka alliansen som helhet. Det skulle vara mycket märkligt, fru talman, om Sverige som enda nordiskt land skulle ställa sig utanför den försvarsgemenskap som alliansen i Nato innebär.",
+              "Genom att gå med i Nato kommer vi att ha tillgång till försvarsalliansens resurser och militära styrka, vilket gör att vi kan stärka vår försvarskapacitet och skydda oss mot både rysk aggression och andra globala hot såsom terrorism och cyberattacker."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 6
+          },
+          {
+            "rank": 4,
+            "passage_id": "H209116-17:17-18",
+            "anf_id": "H209116-17",
+            "rm": "2014/15",
+            "dok_nummer": 116,
+            "party": "M",
+            "speaker": "Karin Enström (M)",
+            "date": "2015-06-15",
+            "title": "Säkerhetspolitisk inriktning - Sveriges försvar för perioden 2016-2020",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H209116-17/html",
+            "paragraphs": [
+              "Vi moderater tycker som sagt att det är bra att det finns en bred överenskommelse om den framtida inriktningen. Vi tycker att det är bra att det där ingår en utredning om Sveriges försvarspolitiska samarbeten och medlemskap. Vi ser utredningen som en bra ståndpunkt. Men som parti skulle vi önska att vi kunde gå ett steg längre därför att för Moderaterna är inte frågan om vi borde bli medlemmar i Nato, utan frågan är faktiskt hur. Det är då viktigt att se på de konkreta förutsättningarna för ett medlemskap och vad det skulle innebära.",
+              "Vi vill fördjupa Sveriges samarbete med Nato, och vi vill verka för en svensk anslutning. Vi tror att det skulle ge Sverige större möjlighet att ta ansvar för och påverka en organisation som i dag är helt central för både vår egen och Europas säkerhet. Vi tror att det skulle stärka vår säkerhet i en tid då osäkerheten i vårt närområde ökar. Sverige skulle också på allvar kunna ha ett mer effektivt nordiskt samarbete inom ramen för Nato som skulle kunna gälla i alla lägen, inte bara i fredstid."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 7,
+            "passage_id": "H909114-2:0-1",
+            "anf_id": "H909114-2",
+            "rm": "2021/22",
+            "dok_nummer": 114,
+            "party": "M",
+            "speaker": "Ulf Kristersson (M)",
+            "date": "2022-05-16",
+            "title": "Särskild debatt med anledning av rapporten från de säkerhetspolitiska överläggningarna",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H909114-2/html",
+            "paragraphs": [
+              "Herr talman! Vad vi än tycker om slutsatsen att Sverige ska söka medlemskap i Nato och när vi än kom fram till den slutsatsen är vi i denna kammare eniga om att den ryska invasionen av Ukraina dramatiskt har förändrat alla förutsättningar för svensk säkerhetspolitik under mycket lång tid framåt. Den nya säkerhetspolitiska analysen, som presenterades häromdagen och som bygger vidare på Bertelmans utredning från 2014 och Bringéus utredning från 2016, stärker mig i en 20 år gammal övertygelse om att Sverige inte bara hör hemma i EU och i väst utan också i Nato. Nu har den dagen kommit.",
+              "Det är naturligtvis svårt att känna glädje medan de ryska övergreppen mot Ukraina pågår, men för Sverige är det här en stor dag. Äntligen kan även vi bli medlemmar i Nato. Det är naturligtvis en historiens ironi att det här sker bara ett par månader efter Rysslands invasion. Jag säger som Finlands president Sauli Niinistö sa förra veckan: Putin! Se dig i spegeln! Se vad du har åstadkommit!"
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 3,
+            "passage_id": "H50972-119:0-1",
+            "anf_id": "H50972-119",
+            "rm": "2017/18",
+            "dok_nummer": 72,
+            "party": "M",
+            "speaker": "Sofia Arkelsten (M)",
+            "date": "2018-02-14",
+            "title": "Utrikespolitisk debatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H50972-119/html",
+            "paragraphs": [
+              "Fru talman! Tack för frågan, Björn Söder! Vi är övertygade om att Sverige är ett suveränt land som fattar sina egna beslut när det gäller säkerhetspolitiska vägval. Vi ska naturligtvis inte påverkas av någon sorts påstådd hotbild från Ryssland i fråga om huruvida vi ska gå med i Nato eller inte. Vi fattar våra egna beslut. Vi kan inte vara styrda av Ryssland.",
+              "Men vi kan vara tydliga med att Natomedlemskapet skulle ge oss en säkerhetsgaranti som vi inte har i dag. Det skulle öka möjligheten till fred, och det tycker vi är bra. Nato är en försvarsallians, och den skulle kunna hjälpa oss - ganska mycket, faktiskt."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 8,
+            "passage_id": "H40968-163:10-12",
+            "anf_id": "H40968-163",
+            "rm": "2016/17",
+            "dok_nummer": 68,
+            "party": "SD",
+            "speaker": "Björn Söder (SD)",
+            "date": "2017-02-15",
+            "title": "Utrikespolitisk debatt",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40968-163/html",
+            "paragraphs": [
+              "Fru talman! Natoförespråkarna hävdar ofta att ett medlemskap i alliansen på ett avgörande sätt skulle stärka vår försvarsförmåga och bidra till stabilitet och säkerhet i Sveriges närområde. Det är givetvis rent nonsens. I stället är det precis tvärtom.",
+              "Ett svenskt medlemskap skulle öka spänningarna i Östersjöregionen och riskera att rubba den geopolitiska balansen och därmed dra in Sverige i konflikter i stället för att förhindra dem. Dessutom lever vi inte ens upp till de krav som ett medlemskap ställer eftersom vi avsätter alldeles för lite resurser till försvaret."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 9,
+            "passage_id": "HC09129-13:0-2",
+            "anf_id": "HC09129-13",
+            "rm": "2024/25",
+            "dok_nummer": 129,
+            "party": "SD",
+            "speaker": "Aron Emilsson (SD)",
+            "date": "2025-06-10",
+            "title": "Verksamheten i Nordatlantiska fördragsorganisationen (Nato) under 2024",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC09129-13/html",
+            "paragraphs": [
+              "Herr talman! Sverigedemokraterna ställde sig 2020 bakom en svensk Natooption och har sedan 2022 ställt sig bakom ett svenskt medlemskap i Nato. Vi har aldrig förespråkat några undantag eller förbehåll. Vi vill att Sverige ska vara en tydlig och pålitlig aktör inom försvarsalliansen både politiskt och militärt. Det är därför vi driver på för en aktiv svensk Natopolitik som handlar om mer än att bara närvara och förvalta. Den handlar om att forma alliansens prioriteringar, förstärka den strategiska avskräckningen, fördjupa det regionala samarbetet i vår del av Europa och bevara Natos kärnuppdrag: det kollektiva försvaret."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 6,
+            "passage_id": "H90941-235:0-2",
+            "anf_id": "H90941-235",
+            "rm": "2021/22",
+            "dok_nummer": 41,
+            "party": "SD",
+            "speaker": "Per Söderlund (SD)",
+            "date": "2021-12-08",
+            "title": "Försvar och samhällets krisberedskap",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H90941-235/html",
+            "paragraphs": [
+              "Fru talman! När det gäller Natomedlemskap har vi varit tydliga hela tiden: Vi vill inte gå med i Nato. Det har varit vår ståndpunkt ända från början. Men som jag sa underlättar Nato-optionen ett försvarssamarbete med Finland, och där ser vi en vinst med att ha antagit den.",
+              "Nato-optionen innebär också att vi ska närma oss de krav som Nato ställer för ett medlemskap, och det tycker vi är jättebra. Vi vill till exempel ha en högre försvarsbudget än vad Sverige har i dag; det är ju någonting som vi har jobbat för väldigt länge.",
+              "För att vara väldigt tydlig: Vi säger nej till ett Natomedlemskap, och det har vi gjort sedan vi kom med i riksdagen. Vi har även kongressbeslut på det. Jag hoppas att detta kan lugna ledamoten Niklas Karlsson."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 5,
+            "passage_id": "H90966-2:3-5",
+            "anf_id": "H90966-2",
+            "rm": "2021/22",
+            "dok_nummer": 66,
+            "party": "SD",
+            "speaker": "Roger Richthoff (SD)",
+            "date": "2022-02-15",
+            "title": "Försvarspolitik",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H90966-2/html",
+            "paragraphs": [
+              "Följande gäller: Om den här kammaren och riksdagen, fru talman, fattar beslut om att Sverige ska ansöka om medlemskap i Nato anser Sverigedemokraterna inte att det räcker. Då måste vi gå ut och fråga svenska folket, och det får föregås av många debatter och så vidare. Så är det alltså. Först då vill vi ha en folkomröstning. Men då ska det vara en majoritet i kammaren. Vi anser inte att en rösts övervikt, till exempel, i kammaren ska kunna vrida om hela det säkerhetspolitiska systemet. Så var det klart.",
+              "Nato-optionen har ingenting med en ansökan till Nato att göra. Det är bara en markering, precis som den Finland har gjort. Vi i Sverigedemokraterna har inga problem med att uttala en sådan. Därför gör vi detta. Det är som sagt en liten markering av att vi i Sverige själva bestämmer om vi vill gå med i Nato eller inte. Det bestämmer vi här. Det är vad som gäller för en folkomröstning."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      }
+    ]
+  }
+}

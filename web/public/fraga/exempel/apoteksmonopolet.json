@@ -1,0 +1,982 @@
+{
+  "id": "apoteksmonopolet",
+  "question": "Vad har sagts om att avskaffa apoteksmonopolet?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 3012,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "GT0931-120:3-4",
+        "anf_id": "GT0931-120",
+        "rm": "2005/06",
+        "dok_nummer": 31,
+        "party": "L",
+        "speaker": "ERIK ULLENHAG (fp)",
+        "date": "2005-11-16",
+        "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+        "paragraphs": [
+          "En annan absurd konsekvens av det apoteksmonopol vi har i Sverige är att jag kan gå in i affären runt hörnet och köpa cigaretter. Jag kan gå in i affären runt hörnet och köpa snus. Men jag har inte kunnat gå in i affären runt hörnet och köpa nikotinläkemedel ifall jag vill sluta röka. Det är okej att röka i meningen att det kan jag köpa i närmaste 7-Eleven. Men om jag behöver medlet för att sluta röka kan jag inte få det.",
+          "Folkpartiet ser det därför som angeläget att vi avskaffar apoteksmonopolet. Vi ser ett antal vinster med det. Vi kommer att se en ökad tillgänglighet och service. Det kommer att sätta press på Apoteket AB. Vi vet att när det kommer fram olika aktörer blir det alltid en spännande utveckling oavsett vilken marknad det gäller. Vi tror också att det är en väg att säkerställa fortsatt säker och trygg läkemedelsförsörjning. Det kommer att öka prispressen, få ned priserna på såväl receptbelagda som receptfria läkemedel."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "GV09107-17:13-18",
+        "anf_id": "GV09107-17",
+        "rm": "2007/08",
+        "dok_nummer": 107,
+        "party": "M",
+        "speaker": "CECILIA WIDEGREN (m)",
+        "date": "2008-05-08",
+        "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GV09107-17/html",
+        "paragraphs": [
+          "Från Apoteket AB säger man vidare att man erkänner att bolagets monopol har inverkat skadligt på priser, tillgänglighet, sortiment och service och att vinnarna på det svenska apoteksmonopolet hittills har varit de globala läkemedelsföretagen. Man säger vidare att det är rimligt att öppna för nya aktörer för att få fler apotek och att man är övertygad om att om man får konkurrens kommer priserna att sjunka och servicen att bli bättre.",
+          "Så skriver Apoteket AB.",
+          "Man fortsätter så här: Vi anser att oron är överdriven. Staten kommer fortsatt att vara en aktiv aktör och ägare och säkerställa grunden för läkemedelshanteringen.",
+          "Vidare skriver man: Vi anser att det finns flera skäl till att det är en naturlig utveckling att avveckla apoteksmonopolet. De främsta skälen är minskade läkemedelskostnader och ökad tillgänglighet.",
+          "Herr talman! Detta säger Apoteket AB.",
+          "När Socialdemokraterna, Vänsterpartiet och Miljöpartiet också här i talarstolen har beskrivit vad de är emot, måste jag fråga vad de är för."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "GY09111-27:0-3",
+        "anf_id": "GY09111-27",
+        "rm": "2010/11",
+        "dok_nummer": 111,
+        "party": "C",
+        "speaker": "ANDERS W JONSSON (C)",
+        "date": "2011-06-08",
+        "title": "Apoteksomregleringen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY09111-27/html",
+        "paragraphs": [
+          "Fru talman! Jag vill börja med att yrka bifall till utskottets förslag i betänkandet och avslag på reservationen.",
+          "En av många stora förändringar som har genomförts på hälso- och sjukvårdens område sedan maktskiftet 2006 är omregleringen av apoteksmarknaden där apoteksmonopolet har avskaffats. Det var en mycket stor reform med många inblandade. Ett antal fallgropar fanns, och erfarenheten av att omreglera en läkemedelsmarknad var av naturliga skäl begränsad.",
+          "Viss erfarenhet kunde dras av Island som var näst näst sist i Europa med av avskaffa sitt apoteksmonopol. Det skedde i mitten av 90-talet. En hel del erfarenhet kunde också dras av Norge som avskaffade sitt apoteksmonopol vid millennieskiftet. Förhoppningsvis kommer Nordkorea och Kuba att kunna dra nytta av våra erfarenheter då de avskaffar sina monopol.",
+          "Under förberedelsearbetet kände jag mer än en gång en viss oro för hur processen skulle gå. Socialdemokraterna drev tillsammans med PRO en kampanj, Rör inte mitt apotek. Äldre skrämdes med att utan monopol skulle de kanske inte få sina läkemedel."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "GT0931-126:0-3",
+        "anf_id": "GT0931-126",
+        "rm": "2005/06",
+        "dok_nummer": 31,
+        "party": "MP",
+        "speaker": "JAN LINDHOLM (mp) replik",
+        "date": "2005-11-16",
+        "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GT0931-126/html",
+        "paragraphs": [
+          "Fru talman! Om Kenneth Johansson hade lyssnat hade han hört att jag i mitt anförande faktiskt inte sade nej till att apoteksmonopolet på sikt skulle kunna avskaffas. Det jag har sagt är att den utveckling som vi ser med oppositionens förslag kan vi inte tillåta.",
+          "Kenneth Johansson säger att marknaden är er analys. Då kan jag säga så här: Vi har sett vad som hände med avregleringen av telemarknaden, vad som hände med avregleringen av elmarknaden och vad som hände med avregleringen av taxi - tre exempel på att det blev en kostnadsinflation utan like för konsumenten.",
+          "Det jag saknar är vad som händer med den läkemedelskonsument som har ett läkemedelsbehov som inte är kommersiellt gångbart. Om man tittar noga på apotekens verksamhet ser man att en väldigt stor del av deras sortiment är väldigt dyrt för dem att hantera och sälja. En stor del av deras verksamhet är alltså långt ifrån möjlig att göra lönsam, även om det nu med en annan form skulle vara möjligt att göra stora rationaliseringar. Detta kanske är möjligt, men det vet vi inte så mycket om.",
+          "Det är den typen av läkemedelskonsumenter jag värnar. De kanske inte är den stora kundgruppen, men de är den stora gruppen konsumenter till antalet. Det är tillgängligheten för dem jag tycker att ni blundar för. Det är därför jag påstår att ni saknar en analys."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "GR09127-97:0-2",
+        "anf_id": "GR09127-97",
+        "rm": "2003/04",
+        "dok_nummer": 127,
+        "party": "M",
+        "speaker": "TOBIAS BILLSTRÖM (m)",
+        "date": "2004-06-14",
+        "title": "Svar på interpellation 2003/04:504 om apoteksmonopolet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GR09127-97/html",
+        "paragraphs": [
+          "Fru talman! Jag ber att få tacka statsrådet för svaret men får samtidigt påpeka att innehållet i det tyvärr lämnar rätt mycket i övrigt att önska. När jag ställde den här interpellationen den 26 maj i år var det för att få reda på om socialministern hade verkat för direktiv till Läkemedelsverket med anledning av att EU:s generaladvokat stod i begrepp att göra ett viktigt uttalande om det svenska apoteksmonopolets vara eller inte vara.",
+          "När vi nu möts här i kammaren fyra veckor senare svarar socialministern att regeringen bevakar frågorna på lämpligt sätt. Med all respekt för ministern måste jag säga att detta hade jag kunnat räkna ut med min vänstra lilltå - ja, mer än så. Jag hade faktiskt blivit djupt oroad om regeringen inte hade bevakat frågorna på ett adekvat sätt.",
+          "Jag vill därför inleda med samma förfrågan på nytt så att vi på en gång klargör vad den här debatten handlar om. Har Läkemedelsverket fått några som helst direktiv för att skapa förutsättningar för ett eventuellt avskaffande av det svenska apoteksmonopolet eller ej?"
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "GR0914-266:5-10",
+        "anf_id": "GR0914-266",
+        "rm": "2003/04",
+        "dok_nummer": 14,
+        "party": "M",
+        "speaker": "CARL-AXEL JOHANSSON (m)",
+        "date": "2003-10-16",
+        "title": "Hälso- och sjukvård, sociala frågor och ohälsa",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GR0914-266/html",
+        "paragraphs": [
+          "Hade socialminister Lars Engqvist varit här i dag hade jag frågat honom: Hur kan svårigheter att kunna inhandla sin medicin vara bra? Hur tjänar detta oss bra?",
+          "Nya och bättre läkemedel ger människor ett bättre liv och frigör resurser från sjukhusen, medan det statliga apoteksmonopolet ger en dålig tillgänglighet och höga priser.",
+          "Lars Engqvist medger i svaret den 9 juli att det finns risker med monopolet: Kostnaderna kan bli höga och effektiviteten låg.",
+          "Detta, herr talman, ingav mig vissa förhoppningar till insikt, men sedan läste jag vidare: Men så har det inte blivit i Sverige. Men så har det inte blivit i Sverige!",
+          "Herr talman! Ljuset i tunneln slocknade för mig. Hade Lars Engqvist varit här i kammaren i dag hade jag frågat honom: Är inte dålig tillgänglighet och stängda apotek tecken på låg effektivitet?",
+          "Det finns utredningar som menar att monopolet ger större kostnader och sämre service för konsumenterna. Konkurrensverket menar att apotekets ensamrätt till försäljning av läkemedel bör avskaffas och att läkemedel, utan att det ställs specifika kompetenskrav, bör kunna säljas vid sidan av apotek."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "GZ0977-21:4-5",
+        "anf_id": "GZ0977-21",
+        "rm": "2011/12",
+        "dok_nummer": 77,
+        "party": "M",
+        "speaker": "FINN BENGTSSON (M)",
+        "date": "2012-02-28",
+        "title": "Svar på interpellation 2011/12:244 om apotek i glesbygden efter avregleringen",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GZ0977-21/html",
+        "paragraphs": [
+          "Man kan även lite grann reflektera över vad det är som gör att Socialdemokraterna hela tiden försöker komma tillbaka till frågan om monopol. Även om interpellanten säger att allt inte var bättre förr, vilket jag verkligen vill understryka i den här debatten, finns det många som gärna skulle vilja se att vi hade monopol på apoteksmarknaden. När vi tittade på hur det såg ut internationellt då vi genomförde omregleringen kunde vi se att det i princip var ett par totalitära länder som hade apoteksmonopol - samt Sverige. Vi vill naturligtvis inte gärna kvalificera in i den gruppen av länder.",
+          "Att komma ut ur ett apoteksmonopol har varit helt avgörande för tillgängligheten till läkemedel. Det fanns negativa trender beträffande såväl apotekens avveckling som apoteksombuden i samband med monopoliseringen. Det är glädjande, fru talman, att den trenden nu är bruten, och vi ser fram emot den bedömning som staten gör inför sitt ägardirektiv till apoteken gällande apoteksombuden, vilket sker i april månad."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "GT09140-7:6-10",
+        "anf_id": "GT09140-7",
+        "rm": "2005/06",
+        "dok_nummer": 140,
+        "party": "L",
+        "speaker": "HELENA BARGHOLTZ (fp)",
+        "date": "2006-06-13",
+        "title": "Avvecklingen av apoteksmonopolet",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT09140-7/html",
+        "paragraphs": [
+          "Den svenska staten sponsrar Norge och England med ett antal för våra dyra skattepengar färdigutbildade farmaceuter. Många tvingas lämna landet därför att de inte får några jobb i Sverige, och kanske gör de det för att aldrig komma tillbaka när de möter en helt annan uppskattning för sitt yrkeskunnande både i fråga om pengar och i fråga om uppskattning från kunder och arbetsgivare. Och de får verkligen känna att de behövs.",
+          "Många har satsat på detta i form av lång studietid och dyra studielån. Och för några år sedan ökades antalet platser och utbildningslinjer kraftigt just för att man skulle kunna fylla apoteken och läkemedelsindustrin med välutbildade yrkesmän och yrkeskvinnor.",
+          "Min granne tvingas alltså att arbeta i Norge bara därför att Sverige som enda civiliserade västerland krampaktigt håller fast vid ett apoteksmonopol som för länge sedan har blivit otidsenligt. Det är bara två länder till i hela världen som har ett apoteksmonopol. Det är Kuba och Nordkorea - vilket härligt sällskap vi är i.",
+          "Min granne har nu ansökt hos regeringen om att få tillstånd att öppna och driva apotek i Stockholm, och hans begäran har just avslagits.",
+          "Nu vill han gå vidare till Europadomstolen. Men, fru talman, varför ska han tvingas göra detta? Varför kan inte apoteksmonopolet avskaffas?"
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "GW09109-7:0-1",
+        "anf_id": "GW09109-7",
+        "rm": "2008/09",
+        "dok_nummer": 109,
+        "party": "L",
+        "speaker": "TOBIAS KRANTZ (fp)",
+        "date": "2009-04-29",
+        "title": "Omreglering av apoteksmarknaden",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GW09109-7/html",
+        "paragraphs": [
+          "Herr talman! Klockan klämtar för apoteksmonopolet. Från den 1 juli i år blir det fritt fram för privata aktörer att starta och driva apotek. Från den 1 november i år blir det fritt fram att sälja receptfria läkemedel i vanliga affärer. Om några timmar fattar riksdagen det beslut som gör att vi lämnar den famösa apoteksmonopolklubben med Kuba och Nordkorea som kvarvarande medlemmar. Det är länder, precis som Thomas Nihlén tidigare sade, som vi vanligtvis inte känner någon större politisk samhörighet med. Varför skulle vi göra det i frågan om hur apoteksmarknaden ska vara reglerad?",
+          "Det svenska apoteksmonopolet såg dagens ljus 1971. Sedan dess har mycket hänt i världen. Berlinmuren har fallit, järnridån har rasat och Sovjetunionen har kollapsat. Sverige är medlem i Europeiska unionen, och ett långt socialdemokratiskt maktinnehav har brutits. Verkligheten förändras, världen förbättras och förhoppningsvis kommer apoteksmonopolet inom en inte alltför avlägsen framtid att ses som en parentes i svensk historia. Apotekets vd Stefan Carlsson skrev själv som ett tecken i tiden nekrologen över det svenska apoteksmonopolet. I mars 2008 skrev han i Dagens Nyheter att det är bra för kunderna att Apoteket upphör."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "GW09133-41:3-5",
+        "anf_id": "GW09133-41",
+        "rm": "2008/09",
+        "dok_nummer": 133,
+        "party": "M",
+        "speaker": "FINN BENGTSSON (m)",
+        "date": "2009-06-16",
+        "title": "Svar på interpellation 2008/09:499 om försäljningen av apotek",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GW09133-41/html",
+        "paragraphs": [
+          "Man kan återigen fundera lite grann på hur självkritiska socialisterna i det här parlamentet har varit kring de effekter som en monopolsituation har förorsakat patienterna i form av successiva minskningar av antalet apotek och apoteksombud. Inte minst under åren 1999-2006 var det minskningar av såväl apotek som apoteksombud, någonting som vi hoppas kunna förbättra.",
+          "Man blir lite förundrad när Kent Persson plötsligt gör sig till tolk för oron över att det ska utvecklas en oligopolmarknad. Men Kent Persson, det är ett akut läge i dag! Vi har fortfarande ett monopol! Ett oligopol är en marknad som åtminstone är fri, öppen och konkurrensutsatt. Med de säkerhetsåtgärder som den här regeringen har vidtagit lär vi få en mycket bredare marknad. Man gör sig plötsligt till tolk för oron för ett oligopol när man själv har sett till att under 40 år låsa in Sverige i ett monopol.",
+          "Det påminner mig snarast om att när man 1970 beslutade om att införa monopolet, herr talman, var Kent Perssons parti för att man även skulle ha monopol på läkemedelstillverkningen. Med historiens spegel kan man naturligtvis fundera lite grann på hur många nya läkemedel vi hade fått om vi hade haft ett statligt läkemedelsmonopol på tillverkningssidan, någonting som har varit en kärnfråga för Vänstern att lyfta från gång till annan."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 1,
+        "passage_id": "GT0931-120:3-4",
+        "anf_id": "GT0931-120",
+        "rm": "2005/06",
+        "dok_nummer": 31,
+        "party": "L",
+        "speaker": "ERIK ULLENHAG (fp)",
+        "date": "2005-11-16",
+        "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+        "paragraphs": [
+          "En annan absurd konsekvens av det apoteksmonopol vi har i Sverige är att jag kan gå in i affären runt hörnet och köpa cigaretter. Jag kan gå in i affären runt hörnet och köpa snus. Men jag har inte kunnat gå in i affären runt hörnet och köpa nikotinläkemedel ifall jag vill sluta röka. Det är okej att röka i meningen att det kan jag köpa i närmaste 7-Eleven. Men om jag behöver medlet för att sluta röka kan jag inte få det.",
+          "Folkpartiet ser det därför som angeläget att vi avskaffar apoteksmonopolet. Vi ser ett antal vinster med det. Vi kommer att se en ökad tillgänglighet och service. Det kommer att sätta press på Apoteket AB. Vi vet att när det kommer fram olika aktörer blir det alltid en spännande utveckling oavsett vilken marknad det gäller. Vi tror också att det är en väg att säkerställa fortsatt säker och trygg läkemedelsförsörjning. Det kommer att öka prispressen, få ned priserna på såväl receptbelagda som receptfria läkemedel."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 4,
+        "passage_id": "GT0931-126:0-3",
+        "anf_id": "GT0931-126",
+        "rm": "2005/06",
+        "dok_nummer": 31,
+        "party": "MP",
+        "speaker": "JAN LINDHOLM (mp) replik",
+        "date": "2005-11-16",
+        "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GT0931-126/html",
+        "paragraphs": [
+          "Fru talman! Om Kenneth Johansson hade lyssnat hade han hört att jag i mitt anförande faktiskt inte sade nej till att apoteksmonopolet på sikt skulle kunna avskaffas. Det jag har sagt är att den utveckling som vi ser med oppositionens förslag kan vi inte tillåta.",
+          "Kenneth Johansson säger att marknaden är er analys. Då kan jag säga så här: Vi har sett vad som hände med avregleringen av telemarknaden, vad som hände med avregleringen av elmarknaden och vad som hände med avregleringen av taxi - tre exempel på att det blev en kostnadsinflation utan like för konsumenten.",
+          "Det jag saknar är vad som händer med den läkemedelskonsument som har ett läkemedelsbehov som inte är kommersiellt gångbart. Om man tittar noga på apotekens verksamhet ser man att en väldigt stor del av deras sortiment är väldigt dyrt för dem att hantera och sälja. En stor del av deras verksamhet är alltså långt ifrån möjlig att göra lönsam, även om det nu med en annan form skulle vara möjligt att göra stora rationaliseringar. Detta kanske är möjligt, men det vet vi inte så mycket om.",
+          "Det är den typen av läkemedelskonsumenter jag värnar. De kanske inte är den stora kundgruppen, men de är den stora gruppen konsumenter till antalet. Det är tillgängligheten för dem jag tycker att ni blundar för. Det är därför jag påstår att ni saknar en analys."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 4
+      },
+      {
+        "rank": 2,
+        "passage_id": "GV09107-17:13-18",
+        "anf_id": "GV09107-17",
+        "rm": "2007/08",
+        "dok_nummer": 107,
+        "party": "M",
+        "speaker": "CECILIA WIDEGREN (m)",
+        "date": "2008-05-08",
+        "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GV09107-17/html",
+        "paragraphs": [
+          "Från Apoteket AB säger man vidare att man erkänner att bolagets monopol har inverkat skadligt på priser, tillgänglighet, sortiment och service och att vinnarna på det svenska apoteksmonopolet hittills har varit de globala läkemedelsföretagen. Man säger vidare att det är rimligt att öppna för nya aktörer för att få fler apotek och att man är övertygad om att om man får konkurrens kommer priserna att sjunka och servicen att bli bättre.",
+          "Så skriver Apoteket AB.",
+          "Man fortsätter så här: Vi anser att oron är överdriven. Staten kommer fortsatt att vara en aktiv aktör och ägare och säkerställa grunden för läkemedelshanteringen.",
+          "Vidare skriver man: Vi anser att det finns flera skäl till att det är en naturlig utveckling att avveckla apoteksmonopolet. De främsta skälen är minskade läkemedelskostnader och ökad tillgänglighet.",
+          "Herr talman! Detta säger Apoteket AB."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 5
+      },
+      {
+        "rank": 9,
+        "passage_id": "GW09109-7:0-1",
+        "anf_id": "GW09109-7",
+        "rm": "2008/09",
+        "dok_nummer": 109,
+        "party": "L",
+        "speaker": "TOBIAS KRANTZ (fp)",
+        "date": "2009-04-29",
+        "title": "Omreglering av apoteksmarknaden",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GW09109-7/html",
+        "paragraphs": [
+          "Herr talman! Klockan klämtar för apoteksmonopolet. Från den 1 juli i år blir det fritt fram för privata aktörer att starta och driva apotek. Från den 1 november i år blir det fritt fram att sälja receptfria läkemedel i vanliga affärer. Om några timmar fattar riksdagen det beslut som gör att vi lämnar den famösa apoteksmonopolklubben med Kuba och Nordkorea som kvarvarande medlemmar. Det är länder, precis som Thomas Nihlén tidigare sade, som vi vanligtvis inte känner någon större politisk samhörighet med. Varför skulle vi göra det i frågan om hur apoteksmarknaden ska vara reglerad?",
+          "Det svenska apoteksmonopolet såg dagens ljus 1971. Sedan dess har mycket hänt i världen. Berlinmuren har fallit, järnridån har rasat och Sovjetunionen har kollapsat. Sverige är medlem i Europeiska unionen, och ett långt socialdemokratiskt maktinnehav har brutits. Verkligheten förändras, världen förbättras och förhoppningsvis kommer apoteksmonopolet inom en inte alltför avlägsen framtid att ses som en parentes i svensk historia. Apotekets vd Stefan Carlsson skrev själv som ett tecken i tiden nekrologen över det svenska apoteksmonopolet. I mars 2008 skrev han i Dagens Nyheter att det är bra för kunderna att Apoteket upphör."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 3012,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GV09107-10:8-12",
+            "anf_id": "GV09107-10",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "V",
+            "speaker": "ELINA LINNA (v)",
+            "date": "2008-05-08",
+            "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-10/html",
+            "paragraphs": [
+              "Herr talman! Regeringen tror på marknadens och konkurrensens krafter också när det handlar om läkemedel. Vänsterpartiet däremot menar att läkemedel inte är som vilken vara som helst på marknaden utan en helt avgörande del i den medicinska behandlingen av sjukdomar. Vi ska också komma ihåg att patienten betalar ca 20 procent av läkemedelskostnaderna, resten betalas med skattemedel.",
+              "Regeringen vill gärna använda argumentet att avregleringen leder till ökad konkurrens och därmed per automatik till lägre priser. Jag tror att det är rätt så många, inte bara vänsterpartister, som håller med mig om att avregleringen av Posten, SJ och elmarknaden inte har inneburit lägre priser och bättre tillgänglighet. I stället har vi fått krångliga system, ökade priser och sämre service. Vad är det som får regeringen att tro att det skulle vara annorlunda med Apoteket?",
+              "Nej, herr talman, apoteksmonopolet har visat sig fungera bra. Vänsterpartiet tillsammans med Socialdemokraterna och Miljöpartiet menar att Apoteket har bidragit till en effektiv läkemedelshantering och läkemedelsanvändning med mycket stor säkerhet och effektivitet med en personal som har stor kompetens. Vi vill behålla apoteksmonopolet."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "GW09109-3:0-3",
+            "anf_id": "GW09109-3",
+            "rm": "2008/09",
+            "dok_nummer": 109,
+            "party": "V",
+            "speaker": "ELINA LINNA (v)",
+            "date": "2009-04-29",
+            "title": "Omreglering av apoteksmarknaden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW09109-3/html",
+            "paragraphs": [
+              "När jag eller någon annan från oppositionen har ställt frågan varför regeringen vill riva ett välfungerande system och ersätta det med ett marknadssystem där läkemedelskostnaderna riskerar att skjuta i höjden har vi fått mer eller mindre begåvade svar.",
+              "De vanligaste förklaringarna har varit att man gick till val med löftet att sälja ut Apoteket eller att endast diktaturer som Nordkorea och Kuba har kvar apoteksmonopolet och att Sverige därför inte kan ha kvar monopolet. Monopol är alltid dåligt, enligt borgerlig retorik. Lika säkert påstår de borgerliga partierna att privatisering och konkurrens per automatik kommer att innebära billigare läkemedel. Alliansens representanter i socialutskottet brukar också lyfta fram den dåliga tillgängligheten och att det är så få apotek i Sverige. Uttalanden från socialministern och hans allianskompanjoner i socialutskottet i olika debatter har varit entydiga: Apoteket måste privatiseras; så här kan vi inte ha det.",
+              "Herr talman! Svenska folket är däremot nöjt med Apoteket. Svenskt kvalitetsindex visar att Apoteket har en hög kundnöjdhet, och OECD prisar vårt monopol och konstaterar att Sverige har ett av de mest kostnadseffektiva distributionssystemen för läkemedel i världen."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 6,
+            "passage_id": "GV0991-61:0-3",
+            "anf_id": "GV0991-61",
+            "rm": "2007/08",
+            "dok_nummer": 91,
+            "party": "V",
+            "speaker": "ELINA LINNA (v)",
+            "date": "2008-04-08",
+            "title": "Svar på interpellation 2007/08:515 om apoteket och landsbygden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0991-61/html",
+            "paragraphs": [
+              "Fru talman! Först vill jag tacka socialministern för svaret. Vi i Vänsterpartiet är allvarligt bekymrade över utvecklingen på landsbygden. Regeringens politik riskerar att försämra människors möjlighet att bo kvar eller bosätta sig på landsbygden. En av de viktigaste förutsättningarna är en fungerande service och tillgång till exempel till hälso- och sjukvård. Därför är jag och Vänsterpartiet bekymrade över konsekvenserna av avskaffandet av apoteksmonopolet. Servicen på landsbygden riskerar att försämras.",
+              "Socialministern bedyrar i sitt svar att ett av huvudsyftena med privatiseringen är och förblir att förbättra tillgängligheten också på landsbygden och att verksamhet på landsbygden inte med automatik innebär dålig lönsamhet. Socialministern lyfter upp en för honom viktig aspekt, nämligen att själva idén med privatiseringen bygger på idén om lönsamhet.",
+              "Här går en tydlig skiljelinje mellan Kristdemokraterna och Vänsterpartiet. Regeringen och Kristdemokraterna menar att hälso- och sjukvård, som också omfattar läkemedelshantering, kan överföras till vilken vinstdrivande verksamhet som helst. Vänsterpartiet däremot anser att apoteksmonopolet har varit och är en garanti för låga och enhetliga priser i hela landet. Vi vill inte att kommersiella intressen sätts framför hälsan, som regeringen nu gör."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 5,
+            "passage_id": "GV09107-10:3-4",
+            "anf_id": "GV09107-10",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "V",
+            "speaker": "ELINA LINNA (v)",
+            "date": "2008-05-08",
+            "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-10/html",
+            "paragraphs": [
+              "Herr talman! Jag påstod inledningsvis att regeringens avsikt att nedmontera apoteksmonopolet helt grundas på ideologiska skäl, fastän regeringen säger att avregleringen innebär lägre priser, ökad effektivitet och större tillgänglighet. Hur vet regeringen att det ska bli så? Har regeringen en utredning gömd i byrålådan som vi inte känner till, en utredning med beräkningar av de samhällsekonomiska konsekvenserna av avregleringen? Vad innebär avregleringen för folkhälsan? Finns det risk för överkonsumtion eller ökat beroende av läkemedel? Läkemedelskostnaderna i Sverige är ungefär 30 miljarder kronor, som Ylva Johansson tidigare nämnde. I vissa beräkningar uppskattas kostnaderna för biverkningar, beroende och andra problem att uppgå till samma belopp. Hur påverkas dessa kostnader av avregleringen?",
+              "Apoteksmarknadsutredningen besvarar inte dessa frågor. Den har inte heller kunnat visa att en avreglering skulle göra att priserna pressas eller att systemet effektiviseras. Det behövs inte avreglering för att få förbättrade tider för öppethållande och ökat antal apotek. Det kan ske inom ramen för nuvarande system. Den ökade Internethandeln från apotek underlättar också tillgängligheten, så det kanske redan nu är omodernt att tala om antalet apotek per invånare, som regeringen så gärna använder som måttstock."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 6,
+            "passage_id": "GU0979-83:13-17",
+            "anf_id": "GU0979-83",
+            "rm": "2006/07",
+            "dok_nummer": 79,
+            "party": "MP",
+            "speaker": "THOMAS NIHLÉN (mp)",
+            "date": "2007-03-21",
+            "title": "Hälso- och sjukvårdsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0979-83/html",
+            "paragraphs": [
+              "Det är av yttersta vikt att läkemedelsförsäljningen präglas av säkerhet och kunskap. Kortsiktiga vinstintressen kan äventyra säkerheten och försvåra samhällets krav på opartisk information.",
+              "Apoteksmonopolet säkerställer en god försörjning och användning av såväl receptbelagda som receptfria läkemedel över hela landet. Därför avvisar Miljöpartiet tillsammans med Socialdemokraterna och Vänsterpartiet regeringens planer på att avveckla apoteksmonopolet."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 2,
+            "passage_id": "GT0931-124:2-3",
+            "anf_id": "GT0931-124",
+            "rm": "2005/06",
+            "dok_nummer": 31,
+            "party": "MP",
+            "speaker": "JAN LINDHOLM (mp)",
+            "date": "2005-11-16",
+            "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0931-124/html",
+            "paragraphs": [
+              "Är då detta det faktum som motiverar att man skrotar Systembolaget, fru talman? Ska vi kanske sänka våra ambitioner bara för att vi inte har lyckats fullt ut? Eller finns det andra lösningar som ger bättre resultat? Ja, man skulle ju kunna tänka sig att svaren på den här typen av frågor skulle vara det som låg till grund för kritiken av Systembolaget och apoteksmonopolet, men icke. De förändringar som oppositionen eftersträvar är inte motiverade av någonting annat än rent ideologiska skäl. Man anser att avskaffande av monopol per automatik är en förbättring, utan tillstymmelse till analys.",
+              "När man sedan presenterar en försäljning i dagligvaruhandeln av läkemedel blir den kringskuren av så många förbehåll och krav att den i allt väsentligt kommer att tvingas att utformas som ett traditionellt apotek. Det som saknas i beskrivningen av detta alternativ är om de här butiksapoteken ska tillåtas att plocka russinen ur kakan eller om de ska åläggas att hålla ett komplett sortiment. Om inte kravet på ett fullständigt sortiment är självklart för oppositionen frågar man sig: Vem ska då betala och finansiera distributionen av alla de minst lika livsavgörande preparaten som inte har en sådan volym att de är kommersiellt intressanta? Det blir en kostsam affär för den som har en sjukdom som inte är kommersiellt intressant. Den utvecklingen kan vi miljöpartister inte tillåta."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 3,
+            "passage_id": "GW09109-4:23-27",
+            "anf_id": "GW09109-4",
+            "rm": "2008/09",
+            "dok_nummer": 109,
+            "party": "MP",
+            "speaker": "THOMAS NIHLÉN (mp)",
+            "date": "2009-04-29",
+            "title": "Omreglering av apoteksmarknaden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW09109-4/html",
+            "paragraphs": [
+              "Avslutningsvis har jag en förhoppning. Det är att vi här i kammaren i dag ska slippa höra ett av regeringens mest populära och använda argument för att avskaffa apoteksmonopolet, nämligen att det bara är Nordkorea och Kuba som har kvar ett apoteksmonopol.",
+              "Att jämföra det svenska apoteksmonopolet med Nordkorea är både stötande och långsökt. Nordkorea är en grym diktatur med ett kraftigt misskött samhälle som har en allvarlig bristsituation när det gäller det mesta, inklusive läkemedel, och där människor dagligen dör av svält och i fångläger.",
+              "Låt oss alltså slippa höra detta argument fler gånger! Liknelsen med Nordkorea är ingenting annat än barnslig demagogi. Att regeringsföreträdare har använt detta argument så flitigt stärker bara bilden av att avregleringen genomförs av ideologiska skäl och inte av sakskäl."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 10,
+            "passage_id": "GV09107-89:0-6",
+            "anf_id": "GV09107-89",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "MP",
+            "speaker": "THOMAS NIHLÉN (mp) replik",
+            "date": "2008-05-08",
+            "title": "(forts. från 5 §) Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder (forts. SoU17)",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GV09107-89/html",
+            "paragraphs": [
+              "När det gäller hur mycket det skulle kosta och så vidare presenterar regeringen mig veterligt ingen som helst samhällsekonomisk analys av vad avregleringen kommer att kunna kosta för staten och skattebetalarna. Socialministern liksom alla de övriga alliansföreträdarna nämner just prisargumentet. Socialministern använder orden fortsatt prispress som ett huvudargument för avregleringen.",
+              "Jag försökte i mitt anförande visa hur orimligt det är att tro att en avreglering skulle ge lägre priser på receptbelagda läkemedel. Vi har redan i dag bland de lägsta priserna. På generiska läkemedel har vi de lägsta priserna i hela Västeuropa.",
+              "Jag tänkte igen läsa upp det som var från OECD-rapporten. Det står så här: Den jämförelsevis låga kostnaden för läkemedel beror i första hand på ett billigt och effektivt distributionssystem som innefattar en statligt ägd apotekskedja med låg handelsmarginal."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 5
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 10,
+            "passage_id": "GV09107-9:12-14",
+            "anf_id": "GV09107-9",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "S",
+            "speaker": "YLVA JOHANSSON (s)",
+            "date": "2008-05-08",
+            "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-9/html",
+            "paragraphs": [
+              "Det svenska systemet med ett apoteksmonopol har många fördelar. Det betyder inte att det är den bästa av världar. Det finns naturligtvis mycket som kan bli bättre också i vårt system.",
+              "Men det som den borgerliga majoriteten och den borgerliga regeringen nu vill göra är att rasera ett väl fungerande system i utbyte mot mycket riskfyllda och osannolika vinster. Man hoppas, herr talman, kunna nå lägre priser på läkemedel, trots att Sverige har bland de lägsta priserna. I den hearing som socialutskottet hade var det svårt att finna någon som på allvar kunde argumentera för att det faktiskt skulle leda till lägre priser.",
+              "Man hoppas, herr talman, nå större tillgänglighet. Det vore önskvärt. Det behövs. Men man har inte kunnat visa på vilket sätt detta skulle nås eller till vilket pris. Tillgänglighet handlar nämligen inte bara om antalet apotek utan också om hur nära människor har till sitt närmaste apotek, om det apoteket är öppet och om det apoteket har alla läkemedel. De frågorna måste vägas in i tillgängligheten."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "GV0947-81:0-7",
+            "anf_id": "GV0947-81",
+            "rm": "2007/08",
+            "dok_nummer": 47,
+            "party": "S",
+            "speaker": "CHRISTER ENGELHARDT (s) replik",
+            "date": "2007-12-19",
+            "title": "Nikotinläkemedel i handeln",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GV0947-81/html",
+            "paragraphs": [
+              "Det är inte riktigt sant att det bara är Vänsterpartiet som vill hålla kvar Apoteket. Det vill vi inom socialdemokratin också göra.",
+              "Det som skiljer oss åt är att vi kan tänka oss att öppna för att släppa ut icke receptbelagda läkemedel i handeln. Men vi vill behålla apoteksmonopolet när det gäller receptbelagda läkemedel. Där skiljer vi oss i förhållande till alliansen som vill avskaffa apoteksmonopolet helt och hållet."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "GX0917-5:0-2",
+            "anf_id": "GX0917-5",
+            "rm": "2009/10",
+            "dok_nummer": 17,
+            "party": "S",
+            "speaker": "LENNART AXELSSON (s)",
+            "date": "2009-10-20",
+            "title": "Svar på interpellation 2009/10:22 om Apoteket och ägardirektiv",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX0917-5/html",
+            "paragraphs": [
+              "Herr talman! Vi socialdemokrater tillsammans med Vänsterpartiet och Miljöpartiet har tydligt deklarerat att vi inte tycker att det är någon god idé att slå sönder ett väl fungerande system för att se till att vi får den medicin vi behöver när vi behöver den. Om man kallar det för socialism eller inte överlåter jag till den tidigare talaren här.",
+              "Faktum är att vi faktiskt har ett system som innebär att vi i förhållande till många andra länder betalar väldigt lite för att få ut vår medicin. Skälet till det är att vi har just ett apoteksmonopol och att vi har en väldigt låg vinstmarginal som innebär att vi som skattebetalare och även som kunder betalar lite för det vi behöver.",
+              "Men det vi debatterar nu är alltså ytterligare en del av det här sättet att slå sönder det nuvarande apoteksmonopolet. Vi skattebetalare vet fortfarande inte var notan kommer att stanna för hela den här processen. Tidigare har vi kunnat konstatera att för att kunna locka de internationella läkemedelsgrossisterna till att vara spekulanter på våra apotek har man tvingats höja den vinstmarginal som tidigare fanns. Det innebär alltså att för varje såld förpackning från apoteket ska skattebetalarna skjuta till 10 kronor utöver den tidigare marginalen. Det motsvarar totalt för de kostnader som man normalt har under ett år för medicin en ökad kostnad som man skulle kunna använda till att anställa ungefär 2 000 undersköterskor i vården i stället."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "GS09113-44:0-3",
+            "anf_id": "GS09113-44",
+            "rm": "2004/05",
+            "dok_nummer": 113,
+            "party": "S",
+            "speaker": "CATHERINE PERSSON (s) replik",
+            "date": "2005-04-27",
+            "title": "Ökad patientsäkerhet på läkemedelsområdet",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GS09113-44/html",
+            "paragraphs": [
+              "När det däremot gäller detta med att vi i dag, som Kerstin Heinemann säger, är långt ifrån en trygg läkemedelsförsörjning - dock ska vi inte här skrämma upp patienterna - vill jag påstå att Sverige tillhör de länder som har den bästa kontrollen av läkemedel, framför allt när det gäller distributionsledet, just på grund av att vi har apoteksmonopolet. Detta gäller också inom hälso- och sjukvården genom de olika rutiner och den lagstiftning som vi har.",
+              "Vad som skulle oroa mig är en sämre kontroll om vi tappade apoteksmonopolet. Jag kan säga att vi varken ganska omgående eller på sikt skulle kunna ersätta en del av det genom andra system om vi inte väldigt kraftigt byggde in andra parametrar som fångade upp det som vi i dag har med hjälp av apoteksmonopolet.",
+              "Där skiljer sig uppfattningarna i de olika partierna åt. Jag ser Apoteket som en oerhört stor tillgång för en säker läkemedelsanvändning. Jag är övertygad om att det kommer att vara så också i framtiden."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 5,
+            "passage_id": "GT0931-123:0-3",
+            "anf_id": "GT0931-123",
+            "rm": "2005/06",
+            "dok_nummer": 31,
+            "party": "C",
+            "speaker": "KENNETH JOHANSSON (c)",
+            "date": "2005-11-16",
+            "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0931-123/html",
+            "paragraphs": [
+              "Apoteket AB gör, utifrån sina förutsättningar, ett bra arbete. Vi är dock många som anser att Apoteksmonopolet överlevt sig självt och bör avvecklas. När nu även EU-medlemskapet sätter press på monopolet är det enligt min bedömning bara en tidsfråga innan monopolet faller. Med en ny alliansregering efter valet påskyndas den avvecklingen.",
+              "De starkaste argumenten för en avreglering är att konkurrens på sikt sannolikt leder till lägre priser och större effektivitet vilket gagnar kunderna, det vill säga privatpersoner och landsting. Om detaljhandeln fick ökade möjligheter att saluföra läkemedel skulle det medföra en ökad tillgänglighet, det är min tro, både genom fler försäljningsställen och genom bättre öppettider. Om vi ser på vår omvärld kan vi ta ett exempel, som jag tagit del av. Vi kan jämföra Frankrike, som har 4 000 invånare per försäljningsställe, med Sverige, som har ca 10 000 invånare per försäljningsställe."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 2,
+            "passage_id": "GY09111-27:4-5",
+            "anf_id": "GY09111-27",
+            "rm": "2010/11",
+            "dok_nummer": 111,
+            "party": "C",
+            "speaker": "ANDERS W JONSSON (C)",
+            "date": "2011-06-08",
+            "title": "Apoteksomregleringen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY09111-27/html",
+            "paragraphs": [
+              "Min oro rörde inte att läkemedelsförsörjningen skulle slås ut, vilket Socialdemokraterna förebådade, utan att man skulle råka ut för allvarliga bakslag på grund av reformens omfattning. Jag lugnades dock när jag i samtal med en erfaren norsk politiker som var väl förtrogen med den norska processen ställde frågan: Är det inte många i Norge som nu när monopolet har avskaffats vill återgå till monopoltiden? Hans svar löd: Du får gå mycket länge på Karl Johan och fråga, innan du finner någon som vill ha det som det var förr.",
+              "Fru talman! Jag är övertygad om att våra socialdemokratiska vänner får gå länge på Drottninggatan och fråga innan de hittar någon som tycker att vi ska gå tillbaka till monopoltiden. Flera mil måste nog Socialdemokraterna vandra, frågandes på den svenska landsbygden innan man hittar någon som vill gå tillbaka till apoteksmonopolet. På monopolets tid stängde Apoteket AB ned apotek efter apotek på den svenska landsbygden. Kälarne, i östra Jämtland, som jag kommer från, hade tidigare ett apotek, men det stängdes. Inte en enda socialdemokrat hördes protestera. När ett offentligt monopol bestämmer sig för att försämra servicen på landsbygden, oavsett om det är den socialdemokratiskt styrda kommunen som stänger en skola eller ett ålderdomshem, landstinget som stänger en vårdcentral eller det statliga apoteksmonopolet som stänger ett litet apotek i Kälarne, då tycker Socialdemokraterna att det är helt okej. Men när det offentliga monopolet i apoteket avskaffas räds man inte att använda glesbygden som slagträ. I Centerpartiet vet vi att det är precis tvärtom. Vi vet att det är offentliga monopol som är glesbygdens fiende. Det är när monopolen rivs och entreprenörerna släpps fria som det öppnas möjligheter till kloka lösningar utanför tätorterna."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "GY09111-27:6-8",
+            "anf_id": "GY09111-27",
+            "rm": "2010/11",
+            "dok_nummer": 111,
+            "party": "C",
+            "speaker": "ANDERS W JONSSON (C)",
+            "date": "2011-06-08",
+            "title": "Apoteksomregleringen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY09111-27/html",
+            "paragraphs": [
+              "Vi ser det så tydligt när det handlar om avskaffandet av apoteksmonopolet. Jag läste en artikel i Falu-Kuriren i helgen. Där stod att läsa: Nu kan Sonja Marander, 79 är, promenera till apoteket. Hon behöver inte längre ta bussen in till Leksand, utan kan handla sin medicin hemma i byn.",
+              "Fru talman! Jag har svårt att förstå varför socialdemokrater, vänsterpartister och miljöpartister är negativa till att flera byar som inte hade apotek under monopoltiden nu har fått apotek.",
+              "Dalarna har fått fem nya apotek sedan monopolet upphörde. Sonja Maranders nyöppnade apotek hemma i byn är ett. I Sverige har, som vi har hört från talarstolen, mer än 200 nya apotek öppnats. Jag fick själv inviga ett apotek hemma i Sandviken. På det apotek jag invigde berättade man att man hade valt en butikslokal utefter den väg de flesta i Sandviken går till och från jobbet. Dessutom hade man bestämt sig för att öppna redan klockan åtta så att människor skulle kunna handla sina läkemedel på väg till jobbet eller efter det tidiga läkarbesöket på morgonen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "GX09124-15:13-15",
+            "anf_id": "GX09124-15",
+            "rm": "2009/10",
+            "dok_nummer": 124,
+            "party": "C",
+            "speaker": "GUNNEL WALLIN (c)",
+            "date": "2010-05-24",
+            "title": "Ökad kvalitet vid läkemedelsförskrivning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX09124-15/html",
+            "paragraphs": [
+              "Jag tänkte lite grann kommentera det som har sagts här om avvecklingen av apoteksmonopolet. Ibland hör man kanske bara det som man vill höra, Elina Linna. Jag har inte hört de beskrivningar som du framförde här från talarstolen. Däremot har jag hört många positiva framställningar om att man nu äntligen kan komma till apoteken och att de är öppna även på kvällstid. Jag har hört många som är positiva till just denna service och detta bemötande. Jag har inte hört något av det som Elina Linna lyfter fram.",
+              "Hemma stängdes apoteket plötsligt ett halvår. Det var på sommarhalvåret när vi hade som störst befolkning. Under ett halvår minskades tillgängligheten. Mot detta blev det en otroligt stor opposition. Nu har vi ett apotek som är öppet hela sommaren, även på obekväm tid. Detta uppskattar vi verkligen."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GT0931-120:3-4",
+            "anf_id": "GT0931-120",
+            "rm": "2005/06",
+            "dok_nummer": 31,
+            "party": "L",
+            "speaker": "ERIK ULLENHAG (fp)",
+            "date": "2005-11-16",
+            "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+            "paragraphs": [
+              "Folkpartiet ser det därför som angeläget att vi avskaffar apoteksmonopolet. Vi ser ett antal vinster med det. Vi kommer att se en ökad tillgänglighet och service. Det kommer att sätta press på Apoteket AB. Vi vet att när det kommer fram olika aktörer blir det alltid en spännande utveckling oavsett vilken marknad det gäller. Vi tror också att det är en väg att säkerställa fortsatt säker och trygg läkemedelsförsörjning. Det kommer att öka prispressen, få ned priserna på såväl receptbelagda som receptfria läkemedel."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "GW09109-7:4-7",
+            "anf_id": "GW09109-7",
+            "rm": "2008/09",
+            "dok_nummer": 109,
+            "party": "L",
+            "speaker": "TOBIAS KRANTZ (fp)",
+            "date": "2009-04-29",
+            "title": "Omreglering av apoteksmarknaden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW09109-7/html",
+            "paragraphs": [
+              "Mellan 1999 och 2006 - under monopolets och den socialdemokratiska regeringens tid - minskade antalet apotek i Sverige från 890 till 872. Antalet apoteksombud minskade från 963 till 871. Socialdemokraternas alternativ faller platt till marken. Under den tid ni styrde, under monopolets tid, minskade antalet apotek; apotekstätheten i Sverige blev mindre.",
+              "För det andra är det ett centralt motiv för oss, herr talman, att vi vill ha bättre service. Ett avskaffat monopol öppnar nämligen för kreativitet, nytänkande, nya sätt att resonera och fundera och inte minst nya sätt att bemöta kunder. Den kreativiteten, den spänsten och det engagemanget mötte flera av oss tidigare i morse när vi träffade företrädare för Farmacevtförbundet. Tänk vilken kraft, vilket engagemang och vilket entreprenörskap som har väntat på att släppas loss! Varför ska vi inte ta till vara den kraft och det engagemang som finns?",
+              "För det tredje behövs det en ökad tillgänglighet. Receptfria läkemedel som huvudvärkstabletter och nässprejer bör kunna köpas i vanliga livsmedelsbutiker."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "GT0931-120:5-6",
+            "anf_id": "GT0931-120",
+            "rm": "2005/06",
+            "dok_nummer": 31,
+            "party": "L",
+            "speaker": "ERIK ULLENHAG (fp)",
+            "date": "2005-11-16",
+            "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0931-120/html",
+            "paragraphs": [
+              "Men det här med avskaffande av monopolet är ju inte samma sak - just eftersom det gäller handeln med läkemedel - som att släppa handeln helt fri. Det ska vara tydligt och fast reglerat vilka som får sälja, i synnerhet receptbelagda läkemedel. Endast butiker som har farmaceutiskt utbildad personal tillgänglig under hela öppettiderna ska kunna sälja läkemedel. Tillstånden ska inte ges till kedjor utan till enskilda butiker så att vi kan se till att Läkemedelsverket kan hålla kontroll på försäljningen. Det ska alltså vara ett starkt regelverk för dem som vill sälja receptbelagda läkemedel, något mindre strikt kanske för den som vill sälja receptfria läkemedel, men även där ska det finnas en kontroll."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 8,
+            "passage_id": "GR0942-8:12-16",
+            "anf_id": "GR0942-8",
+            "rm": "2003/04",
+            "dok_nummer": 42,
+            "party": "L",
+            "speaker": "MARITA ARONSON (fp)",
+            "date": "2003-12-04",
+            "title": "Hälsovård, sjukvård och social omsorg",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR0942-8/html",
+            "paragraphs": [
+              "Vi vill också tillsammans med m, kd och c konkurrensutsätta detaljhandeln med läkemedel och avskaffa apoteksmonopolet. Jag var häromdagen på apoteket, och jag fick vänta i över en och en halv timme innan det blev min tur - köerna är jättelånga. Vi tror att kostnaderna kommer att kunna sänkas om apoteket konkurrensutsattes."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "GV09107-84:9-13",
+            "anf_id": "GV09107-84",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "KD",
+            "speaker": "Socialminister GÖRAN HÄGGLUND (kd)",
+            "date": "2008-05-08",
+            "title": "(forts. från 5 §) Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder (forts. SoU17)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-84/html",
+            "paragraphs": [
+              "Stora offentliga monopol lider ofta av två problem: bristande kundfokus och svårigheter att ta till vara personalens engagemang. Bristande fokus på kunden yttrar sig ofta i bristfällig tillgänglighet och service. Personalens entreprenörsanda och innovativa idéer har sällan de bästa förutsättningarna att utvecklas i de offentliga monopolens hägn.",
+              "Tittar vi framåt tror jag att två trender kommer att vara tydliga.",
+              "För det första blir det ökade förväntningar. Patienterna, apotekens kunder, kommer inte att acceptera dålig service eller bristande tillgänglighet. Det gäller inom hälso- och sjukvården, och det gäller inom läkemedelsdistributionen. Allt fler väntar sig att få tag på nässprej när de behöver den. Man vill inte vänta till måndag förmiddag bara för att apoteket är stängt.",
+              "För det andra: Om vi ska locka de bästa farmaceuterna till yrket måste yrket ha en utvecklingspotential. Att ha flera arbetsgivare att välja på eller att ha möjlighet att öppna en egen låda tror jag är centralt om vi på sikt ska klara av kompetensförsörjningen.",
+              "Herr talman! Min bedömning är att vi har kommit till vägs ände när det gäller apoteksmonopolet. Det är inte i apoteksmonopolets form vi bäst möter framtidens utmaningar. Om det är jag helt övertygad. Men jag ser inte omregleringen som ett självändamål. Den är ett medel för att uppnå vårt mål: ökad tillgänglighet, längre öppettider, fortsatt prispress och en patientsäker distribution. Jag är förstås inte ensam om den här uppfattningen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 9,
+            "passage_id": "GT0931-121:2-3",
+            "anf_id": "GT0931-121",
+            "rm": "2005/06",
+            "dok_nummer": 31,
+            "party": "KD",
+            "speaker": "CHATRINE PÅLSSON (kd)",
+            "date": "2005-11-16",
+            "title": "Handel med läkemedel samt andra läkemedelsfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0931-121/html",
+            "paragraphs": [
+              "Det är alltså 60 år sedan som man bestämde sig för att monopolisera apoteket. Och nu är vi i ett läge där jag och de borgerliga partierna tycker att det är hög tid att ta bort monopolet och låta apoteksverksamheten få skötas av andra. Syftet med det är inte bara något allmänt, utan syftet är att öka tillgängligheten och servicegraden inom läkemedelshandeln, att säkerställa en fortsatt säker och trygg läkemedelsförsörjning, att öka prispressen på såväl receptbelagda som receptfria läkemedel och att ge Apoteket AB ökade incitament för effektivisering och kundorientering med förbättrad service och möjligheter för en internationalisering. Det är alltså våra motiv. Och i grunden finns den enskilda människan, patienten och medborgaren."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 3,
+            "passage_id": "GV0991-60:4-5",
+            "anf_id": "GV0991-60",
+            "rm": "2007/08",
+            "dok_nummer": 91,
+            "party": "KD",
+            "speaker": "Socialminister GÖRAN HÄGGLUND (kd)",
+            "date": "2008-04-08",
+            "title": "Svar på interpellation 2007/08:515 om apoteket och landsbygden",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0991-60/html",
+            "paragraphs": [
+              "Elina Linna nämner i sin interpellation OECD:s rapport Pharmaceutical pricing and reimbursement in Sweden. I rapporten, som publicerades 2007, fastslog OECD att apotekstätheten är lägre i Sverige än på något annat håll. Enligt rapporten skulle konsumenterna sannolikt bli mer tillfredsställda med tillgängligheten om försäljningen av receptfria läkemedel konkurrensutsattes. Vidare konstaterar OECD att när det gäller förskrivna läkemedel visar erfarenheten från Norge och Island att antalet apotek har ökat och att öppettiderna har förlängts sedan apoteksmarknaderna reformerades. OECD menade att Norges förändrade apoteksstruktur kunde fungera som en förebild för en eventuell apoteksreform i Sverige.",
+              "Regeringens intention att förbättra tillgången till läkemedel genom att dels avskaffa det statliga apoteksmonopolet, dels möjliggöra försäljning av ett begränsat sortiment av receptfria läkemedel utanför apotek är således helt i linje med OECD:s förslag. Erfarenheten från Norge visar också att intentionen att förbättra tillgängligheten till läkemedel går att realisera genom att omreglera apoteksmarknaden."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 5,
+            "passage_id": "GU0941-30:0-1",
+            "anf_id": "GU0941-30",
+            "rm": "2006/07",
+            "dok_nummer": 41,
+            "party": "KD",
+            "speaker": "Socialminister GÖRAN HÄGGLUND (kd) replik",
+            "date": "2006-12-15",
+            "title": "Hälsovård, sjukvård och social omsorg m.m.",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GU0941-30/html",
+            "paragraphs": [
+              "När det gäller apotek är jag inte förvånad över att Elina Linna och hennes parti är emot ett öppnande av detta område. Sverige är i dag det enda land inom OECD-området, alltså i princip alla ekonomiskt utvecklade länder, som här har ett monopol. Jag tror att monopol kan behövas på en del områden, till exempel när det gäller myndighetsuppgifter - förstås. Jag står också bakom det monopol vi har när det till exempel gäller Systembolaget. När det gäller läkemedel tror jag dock att detta går att hantera på ett mer effektivt sätt som gör att vi får bättre tillgänglighet och lägre priser än annars."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 5,
+            "passage_id": "GY09117-104:0-4",
+            "anf_id": "GY09117-104",
+            "rm": "2010/11",
+            "dok_nummer": 117,
+            "party": "M",
+            "speaker": "HANS ROTHENBERG (M)",
+            "date": "2011-06-16",
+            "title": "Horisontella konkurrensbegränsningar m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY09117-104/html",
+            "paragraphs": [
+              "Apoteksmonopolet blev en knappt 40-årig parentes i den svenska apotekshistorien. Reformen är en av de största som alliansregeringen genomförde under förra mandatperioden. Tillgänglighet, mångfald och lägre priser var de tre huvudskäl som alliansregeringen angav för behovet av att av- och omreglera apoteksmarknaden.",
+              "Sedan omregleringen har fler än 20 nya apoteksaktörer etablerats. Runt 200 nya apotek har öppnats sedan monopolet avskaffades. Samtidigt har Apoteket AB fortfarande en särställning på marknaden, ett och ett halvt år efter att omregleringen genomförts.",
+              "Med i genomsnitt 10 000 invånare per apotek hör Sverige till de länder i Europa där avstånden mellan apoteken är som störst. I och med omregleringen beräknas 400-500 nya apotek slå upp sina dörrar runt om i landet de närmaste åren. Det här är ett intressant exempel, och det är viktigt att också utvärdera det man omreglerar och förändrar."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 2,
+            "passage_id": "GR0914-266:5-10",
+            "anf_id": "GR0914-266",
+            "rm": "2003/04",
+            "dok_nummer": 14,
+            "party": "M",
+            "speaker": "CARL-AXEL JOHANSSON (m)",
+            "date": "2003-10-16",
+            "title": "Hälso- och sjukvård, sociala frågor och ohälsa",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR0914-266/html",
+            "paragraphs": [
+              "Nya och bättre läkemedel ger människor ett bättre liv och frigör resurser från sjukhusen, medan det statliga apoteksmonopolet ger en dålig tillgänglighet och höga priser.",
+              "Lars Engqvist medger i svaret den 9 juli att det finns risker med monopolet: Kostnaderna kan bli höga och effektiviteten låg.",
+              "Detta, herr talman, ingav mig vissa förhoppningar till insikt, men sedan läste jag vidare: Men så har det inte blivit i Sverige. Men så har det inte blivit i Sverige!",
+              "Herr talman! Ljuset i tunneln slocknade för mig. Hade Lars Engqvist varit här i kammaren i dag hade jag frågat honom: Är inte dålig tillgänglighet och stängda apotek tecken på låg effektivitet?",
+              "Det finns utredningar som menar att monopolet ger större kostnader och sämre service för konsumenterna. Konkurrensverket menar att apotekets ensamrätt till försäljning av läkemedel bör avskaffas och att läkemedel, utan att det ställs specifika kompetenskrav, bör kunna säljas vid sidan av apotek."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 6
+          },
+          {
+            "rank": 1,
+            "passage_id": "GV09107-17:13-18",
+            "anf_id": "GV09107-17",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "M",
+            "speaker": "CECILIA WIDEGREN (m)",
+            "date": "2008-05-08",
+            "title": "Bildande av moderbolag för Apoteket AB samt vissa omstruktureringsåtgärder",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-17/html",
+            "paragraphs": [
+              "Från Apoteket AB säger man vidare att man erkänner att bolagets monopol har inverkat skadligt på priser, tillgänglighet, sortiment och service och att vinnarna på det svenska apoteksmonopolet hittills har varit de globala läkemedelsföretagen. Man säger vidare att det är rimligt att öppna för nya aktörer för att få fler apotek och att man är övertygad om att om man får konkurrens kommer priserna att sjunka och servicen att bli bättre.",
+              "Så skriver Apoteket AB.",
+              "Man fortsätter så här: Vi anser att oron är överdriven. Staten kommer fortsatt att vara en aktiv aktör och ägare och säkerställa grunden för läkemedelshanteringen.",
+              "Vidare skriver man: Vi anser att det finns flera skäl till att det är en naturlig utveckling att avveckla apoteksmonopolet. De främsta skälen är minskade läkemedelskostnader och ökad tillgänglighet.",
+              "Herr talman! Detta säger Apoteket AB."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 10,
+            "passage_id": "H10917-83:7-9",
+            "anf_id": "H10917-83",
+            "rm": "2013/14",
+            "dok_nummer": 17,
+            "party": "M",
+            "speaker": "BORIANA ÅBERG (M)",
+            "date": "2013-10-23",
+            "title": "Strategiskt tillväxtarbete för regional konkurrenskraft, entreprenörskap och sysselsättning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H10917-83/html",
+            "paragraphs": [
+              "Fru talman! Vår politik för mångfald och större utbud, avskaffat apoteksmonopol och möjlighet att fritt välja vårdcentral ger bättre resultat än de uppdrag till statliga myndigheter som Socialdemokraterna föreslår. I en rapport från Tillväxtanalys från mars i år går att läsa att avregleringen av apoteksmarknaden inte har lett till antalet apotek har minskat. Det svenska apoteksmonopolet från 1970 var föråldrat och näst intill unikt för ett västeuropeiskt demokratiskt land. Vi har lämnat den föga smickrande skaran - Albanien, Kuba och Nordkorea - med statliga apoteksmonopol bakom oss. I dag finns det tolv aktörer på den svenska apoteksmarknaden. Det leder till stor konkurrens och valfrihet för den enskilde. Den självklara frågan infinner sig: Är detta någonting som är dåligt?"
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "HC09134-6:0-5",
+            "anf_id": "HC09134-6",
+            "rm": "2024/25",
+            "dok_nummer": 134,
+            "party": "SD",
+            "speaker": "David Perez (SD)",
+            "date": "2025-06-17",
+            "title": "Extra ändringsbudget för 2025 - Kapitaltillskott till Apotek Produktion & Laboratorier AB",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HC09134-6/html",
+            "paragraphs": [
+              "Jag är inte av uppfattningen att det här är ett marknadsmisslyckande på grund av att vi tog bort apoteksmonopolet. Jag skulle tvärtom säga att många där ute är nöjda med hur apoteken fungerar eftersom öppettiderna för dessa faktiskt har ökat efter att monopolet avskaffades."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 6,
+            "passage_id": "GY09111-32:0-3",
+            "anf_id": "GY09111-32",
+            "rm": "2010/11",
+            "dok_nummer": 111,
+            "party": "SD",
+            "speaker": "PER RAMHORN (SD)",
+            "date": "2011-06-08",
+            "title": "Apoteksomregleringen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY09111-32/html",
+            "paragraphs": [
+              "Fru talman! I dag debatterar vi apoteksomregleringen. Vi har under debattens gång hört att det finns olika åsikter om hur det har blivit, alltifrån katastrof till succé. Sanningen ligger nog mitt emellan med en viss övervikt för succé.",
+              "I ärlighetens namn ska jag säga att vi var delvis skeptiska till denna omreglering från början och såg en del farhågor. Men lyckligtvis besannades de inte, vilket vi naturligtvis är mycket glada för.",
+              "En ökad tillgänglighet var ett av huvudsyftena med apoteksomregleringen. I stort sett har man lyckats med detta mål. Vid tiden före omregleringen gick det ett apotek på ca 10 000 invånare. Efter omregleringen har antalet ökat till ett apotek på ca 8 300 invånare, vilket innebär att det finns ca 1 200 apotek i Sverige i dag. Det är en ökning med 20 procent på lite mer än ett år.",
+              "Även öppettiderna på svenska apotek var ett problem före omregleringen. Få apotek var öppna på helger och sent på kvällen. Detta har nu förbättrats betydligt. Dessutom har apotek etablerats på orter som tidigare var helt utan, till exempel Älmsta och Insjön."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 8,
+            "passage_id": "H109115-36:0-3",
+            "anf_id": "H109115-36",
+            "rm": "2013/14",
+            "dok_nummer": 115,
+            "party": "SD",
+            "speaker": "PER RAMHORN (SD)",
+            "date": "2014-05-27",
+            "title": "Ökad tillgänglighet och mer ändamålsenlig prissättning av läkemedel",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H109115-36/html",
+            "paragraphs": [
+              "Alla vi som regelbundet använder olika läkemedel vet hur viktigt det är att det finns god tillgänglighet på apotek och läkemedel när vi har behov av dem. Efter avregleringen har ca 368 nya apotek tillkommit, vilket betyder att antalet apotek i Sverige ökat med nästan 40 procent.",
+              "En stor andel av befolkningen har fått fler apotek i sin närhet att välja på, vilket naturligtvis är bra. Men det finns stora skillnader mellan olika län. Stockholms län fick den största ökningen med nära 60 procent fler apotek medan Jämtlands län fick den minsta ökningen med ca 4 procent fler apotek. Det innebär att nästan samtliga nya apotek har öppnats i tätorter, som i min hemstad Malmö där antalet apotek har ökat kraftigt.",
+              "Dessutom har öppettiderna förbättrats märkbart. Som exempel kan nämnas att vi före avregleringen bara hade ett kvällsöppet apotek i Malmö, och det är trots allt Sveriges tredje största stad. Nu har vi ett tiotal kvällsöppna apotek, vilket är bra. Det innebär att ett trettiotal nya apotek har öppnats på orter som inte hade något apotek före avregleringen. Också det är naturligtvis bra. Nu satt vi sverigedemokrater inte i riksdagen när avregleringen genomfördes, så vi kan varken ta åt oss äran av reformen eller beskyllas för den."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          }
+        ]
+      }
+    ]
+  }
+}

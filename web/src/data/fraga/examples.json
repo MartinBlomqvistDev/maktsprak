@@ -1,0 +1,52 @@
+{
+  "generated": "2026-11-25",
+  "chain": {
+    "embedding_model": "qwen/qwen3-embedding-8b",
+    "provider": "nebius",
+    "rrf_k": 10.0,
+    "model": "claude-opus-5-5",
+    "prompt_sha256": "2d6a0dc174ba03ddbf19c86b1537a351ae2d8c366cc0ab04fff194d40d82af27",
+    "effort": "low",
+    "transport": "message batch",
+    "requests": 81,
+    "cost_usd": 1.21
+  },
+  "examples": [
+    {
+      "id": "karnkraft",
+      "question": "Vad har sagts om att avveckla kärnkraften?"
+    },
+    {
+      "id": "vargstammen",
+      "question": "Hur stor ska vargstammen i Sverige få vara?"
+    },
+    {
+      "id": "vinster-friskolor",
+      "question": "Vilka argument har förts fram mot vinster i friskolor?"
+    },
+    {
+      "id": "nato",
+      "question": "Vad har sagts om att Sverige ska gå med i Nato?"
+    },
+    {
+      "id": "betyg",
+      "question": "Ska barn få betyg tidigare i skolan?"
+    },
+    {
+      "id": "skjutningar",
+      "question": "Hur ska skjutningarna i Sverige stoppas?"
+    },
+    {
+      "id": "apoteksmonopolet",
+      "question": "Vad har sagts om att avskaffa apoteksmonopolet?"
+    },
+    {
+      "id": "formogenhetsskatten",
+      "question": "Vad har sagts om att avskaffa förmögenhetsskatten?"
+    },
+    {
+      "id": "manlandningen",
+      "question": "Vad sa riksdagen om månlandningen 1969?"
+    }
+  ]
+}

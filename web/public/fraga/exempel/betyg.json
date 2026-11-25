@@ -1,0 +1,870 @@
+{
+  "id": "betyg",
+  "question": "Ska barn få betyg tidigare i skolan?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1993,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "GY0938-156:0-2",
+        "anf_id": "GY0938-156",
+        "rm": "2010/11",
+        "dok_nummer": 38,
+        "party": "L",
+        "speaker": "ROGER HADDAD (FP)",
+        "date": "2010-12-20",
+        "title": "Betyg från årskurs 6 i grundskolan m.m.",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0938-156/html",
+        "paragraphs": [
+          "Herr talman! Ska vi ha betyg eller inte? Ska vi ha betyg tidigare i skolan eller inte? Hur vårt betygssystem ska se ut och om vi ska ha betyg i skolan eller inte har präglat skoldebatten så länge jag har varit aktiv i politiken. Folkpartiet har varit pådrivande i den frågan, och det känns lite historiskt att vi i dag närmar oss ett definitivt beslut om att införa betyg i årskurs 6.",
+          "Institutet för arbetsmarknadspolitisk utvärdering har nämnts tidigare. Jag vill komplettera det tidigare inlägget med att studien visar att det finns ett samband mellan tidiga betyg och sannolikheten för att genomgå en gymnasieutbildning. I samma utredning konstateras att barn till lågutbildade föräldrar missgynnas av att inte få betyg i den meningen att sannolikheten för att genomgå gymnasieskolan minskar.",
+          "Herr talman! Detta är en efterlängtad och viktig reform. Vi vill till skillnad från Vänsterpartiet, med tanke på de tidigare inläggen, ha betyg i grundskolan och gymnasieskolan. Vi gör inte tolkningen av betyg som att det enbart ska vara ett slags intyg efter nio år i svensk grundskola."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "H80987-34:0-3",
+        "anf_id": "H80987-34",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "SD",
+        "speaker": "Patrick Reslow (SD)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+        "paragraphs": [
+          "Fru talman! Låt mig först och främst yrka bifall till reservation nummer 3.",
+          "Utbildningsutskottet debatterar i dag frågan om möjligheten att införa betyg från årskurs 4. Det bör inledningsvis sägas att förslaget mer precist avser möjlighet till betyg från årskurs 4 i grundskolan, särskolan och sameskolan och från årskurs 5 i specialskolan. Beslut om att införa betyg ska även gälla efterföljande årskurs.",
+          "Det finns nog få saker inom skolans område som genom åren skapat så stor debatt som just betyg. Det har handlat om betygskriterierna. Det har handlat om benämningen av betygen och om antalet betygssteg. Det har också handlat om betygens vara eller icke vara.",
+          "Från Sverigedemokraternas sida är budskapet tydligt: Betyg är bra och ska vara en naturlig och integrerad del av den svenska skolan. Betyg bidrar till ökad kunskaps- och kvalitetsnivå i skolan. Betyg ökar också möjligheterna att tidigt upptäcka barn som är i behov av stödinsatser. Och betyg ger elever och föräldrar mycket tydligare signaler om kunskapsutvecklingen än andra typer av återkopplingar."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "H80987-56:4-6",
+        "anf_id": "H80987-56",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "MP",
+        "speaker": "Annika Hirvonen (MP)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+        "paragraphs": [
+          "Vi ville ändra på detta. Vi ville bryta kopplingen mellan betyg och det stöd som elever får för att de har olika utmaningar. Därför införde vi en läsa-skriva-räkna-garanti som riktar in sig på att tidigt upptäcka om barn har behov av särskilt stöd för att lära sig att läsa, skriva och räkna bra. Redan i förskoleklassen, och i årskurserna 1, 2 och 3, finns bedömningsstöd för lärare. Det är obligatoriskt att arbeta med att kartlägga och att ge stödet tidigt.",
+          "Fru talman! Att alla elever behöver få det stöd de behöver tidigt är dock inte samma sak som att det är bra med tidigare betyg. Jag menar att dessa saker bör skiljas åt. Jag vill se till att varje barn som behöver stöd, till exempel för att lära sig att läsa bra, ska få det innan han eller hon ens har märkt att det gick lite knackigt - innan självkänslan ens hinner få sig en törn.",
+          "Låt oss gå till frågan om betyg i årskurs 4. Vad vet vi om tidiga betyg? Det har gjorts en hel del forskningsstudier, och sammantaget kan man inte säga att elevernas kunskapsresultat förbättras av betyg. Det vi kan se är att tidiga betyg, alltså betyg på barn som är i lägre ålder, kan få negativa konsekvenser för barnens syn på sig själva och sitt lärande. Ett dåligt betyg tidigt kan få ett barn att känna att det är kört och att man är dålig - inte bara att det inte har gått så bra och att man inte har lärt sig så mycket ännu."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "GV0969-6:3-6",
+        "anf_id": "GV0969-6",
+        "rm": "2007/08",
+        "dok_nummer": 69,
+        "party": "C",
+        "speaker": "ULRIKA CARLSSON i Skövde (c)",
+        "date": "2008-02-21",
+        "title": "Aktuell debatt: Nytt betygssystem",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GV0969-6/html",
+        "paragraphs": [
+          "Många elever är väldigt nervösa inför att få betyg i åttan. Efter åtta år ska man få nedskrivet hur långt man har nått i fråga om kunskapsmålen. Det har givetvis diskuterats under utvecklingssamtal under åren, men det är först nu som man får det i skrift.",
+          "Mellan pojkar och flickor ökar skillnaden i resultat i den svenska skolan. Första gången som pojkar ska få betyg är i åttan när de befinner sig mitt i puberteten. Det är en ganska känslig period.",
+          "Därför välkomnar nu många elever att de ska få besked tidigare. Föräldrar vill givetvis också veta hur det går för deras barn. Även om föräldrarna har varit med på utvecklingssamtal är det svårt att muntligt ge en tydlig information så att föräldrarna förstår och tar till sig den.",
+          "Det blir också en större tydlighet så att man som förälder ska kunna ställa krav på skolan när det gäller stöd som ens barn behöver. Man får också möjlighet att fråga sig själv som förälder: På vilket sätt kan jag stötta mitt barn för att barnet ska nå målen och få en lyckad skolgång?"
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "GY0938-143:10-13",
+        "anf_id": "GY0938-143",
+        "rm": "2010/11",
+        "dok_nummer": 38,
+        "party": "S",
+        "speaker": "MIKAEL DAMBERG (S)",
+        "date": "2010-12-20",
+        "title": "Betyg från årskurs 6 i grundskolan m.m.",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0938-143/html",
+        "paragraphs": [
+          "Fru talman! Vi rödgröna partier avvisar regeringens förslag om att börja med betyg i mellanstadiet. Vi föreslår att betyg ska sättas från årskurs 7.",
+          "Att tidigarelägga betygen till årskurs 6 i grundskolan, och i sameskolan, är inte nödvändigt för att tillgodose regeringens egen argumentation om att alla elever behöver mer förberedelser än i dag inför sina slutbetyg. Under större delen av grundskolan är andra former av uppföljning och kontroll av elevernas kunskaper mer lämpliga än vad betyg är. De framåtsyftande individuella utvecklingsplanerna för eleverna är viktiga. Vi föreslår vidare att varje elev ska få skriftliga omdömen från årskurs 1. Omdömena ska inte vara betygsliknande, men de ska på ett tydligt och konkret sätt visa elevens utveckling i förhållande till målen och även tydliggöra för skolan, eleven och hemmet vilka förbättringsinsatser som behövs.",
+          "Jag finner det anmärkningsvärt att den borgerliga regeringen öppnat för att betygssätta barn redan för första klass i form av ett omdöme. Vi vet av forskning att små barn inte kan skilja på om det är deras kunskaper eller de själva som underkänns vid tidiga år. Vi menar att små barn ska stimuleras i sin kunskapsutveckling - inte underkännas.",
+          "Fru talman! Jag står naturligtvis bakom alla socialdemokratiska reservationer, men för tids vinnande yrkar jag bifall till de två rödgröna reservationerna 1 och 5."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "H80987-33:0-4",
+        "anf_id": "H80987-33",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "M",
+        "speaker": "Kristina Axén Olin (M)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-33/html",
+        "paragraphs": [
+          "Herr talman! Läget i svensk skola är otroligt allvarligt. Pandemin förstärker en redan bekymmersam situation. Den samlade betygsstatistiken för årskurs 6 är riktigt sorglig. Aldrig tidigare har så många elever haft icke godkänt redan i årskurs 6. I somras lämnade 31 385 elever - det är över tusen klasser och mer än var fjärde elev - skolan redan i årskurs 6 med icke godkänt i något eller några ämnen. Om detta inte hämtas upp med stöd, extraundervisning eller vad som står till buds riskerar vi att få en framtid där var fjärde elev inte klarar grundskolan.",
+          "Därför måste stöd sättas in tidigt, mycket tidigare än vad som sker i dag. Ett sätt att tydliggöra elevers behov av hjälp är betyg. Vi moderater anser därför att betyg borde sättas redan i årskurs 3, det år då elever börjar skriva nationella prov. Det blir en tydlig signal, till eleven men också till familjen och skolan.",
+          "Om betyg tycker vi människor och partier olika. I dag är det bara Moderaterna som vill ha betyg redan från årskurs 3. Men det som är märkligt med dagens ärende är att Socialdemokraterna, som särskilt anger likvärdighet som skolans främsta mål, skriver fram ett ärende som innebär att det blir upp till rektor att avgöra om man ska sätta betyg i årskurs 4 eller 5 eller inte.",
+          "Det betyder inte att vi får en likvärdig skola utan att skillnaderna ökar. Två skolor bredvid varandra kommer att ha olika betygssystem, liksom syskon som går i olika skolor. Det vore djupt olyckligt om vi strävar efter ökad likhet i våra skolor och inte tvärtom.",
+          "Med detta, fru talman, yrkar jag bifall till Moderaternas reservation."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "H80987-34:4-5",
+        "anf_id": "H80987-34",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "SD",
+        "speaker": "Patrick Reslow (SD)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+        "paragraphs": [
+          "Just därför är det bra om betyg införs så tidigt som möjligt. Årskurs 4 är också en rimlig tidpunkt att införa betyg. Det är första året på ett nytt stadium, mellanstadiet, och eleverna arbetar mot kunskapsmålen i årskurs 6. På så vis kan kunskapsprogressionen följas tydligt av såväl elever och föräldrar som lärare.",
+          "Den utvärdering som Skolverket har gjort av införandet av betyg i årskurs 6 - den genomfördes 2012, om jag inte minns fel - ger också starkt stöd för tidigare betyg. Enligt Skolverket påverkas elevernas motivation positivt av tidigare betyg i skolan. Enligt utvärderingen anser drygt hälften av lärarna att elevernas motivation höjts på grund av betygen. Hos eleverna är siffran betydligt högre. Så många som åtta av tio elever säger att de arbetar hårdare när de får betyg, något som också bekräftas av vårdnadshavarna. Skolverkets utvärdering visar också att införandet av tidigare betyg har lett till ett ökat fokus på elevernas kunskapsutveckling. Allt detta tyder på att införandet av tidigare betyg kan bidra till bättre resultat i den svenska skolan. Vi tycker att det är jättebra."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "GY0938-145:3-5",
+        "anf_id": "GY0938-145",
+        "rm": "2010/11",
+        "dok_nummer": 38,
+        "party": "SD",
+        "speaker": "WILLIAM PETZÄLL (SD)",
+        "date": "2010-12-20",
+        "title": "Betyg från årskurs 6 i grundskolan m.m.",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0938-145/html",
+        "paragraphs": [
+          "Ytterligare ett hårt slag mot den svenska skolan har den socialdemokratiska flumpedagogiken varit - en skola där elever förväntas lära sig på egen hand genom att själva söka information, en skola där traditionella prov ofta ersätts med redovisningar och olika former av grupparbeten och en skola där lärarrollen kommit att undermineras till att i allt större utsträckning enbart utgöra en organisatorisk funktion som ska uppmuntra elever till fritt forskande och fria studier.",
+          "Mot denna bakgrund är det därför inte förvånande att svensk skola tappat i kvalitet inom en rad olika områden. Det står nu klart att något måste göras för att vi åter ska kunna få en skola värd namnet.",
+          "Att regeringen nu föreslår ett införande av betyg från årskurs 6 i grundskolan är därför positivt och ett steg i rätt riktning. Vi menar dock att betyg bör införas redan i årskurs 4, inte minst för att ge skolan ökade möjligheter att tidigt upptäcka barn i behov av extra stödinsatser. Att tidiga betyg kan ha en positiv inverkan ser vi för övrigt, som jag nyss nämnt, också i Finland där man i många kommuner valt att ha kvar betygen i de lägre årskurserna."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "GW0969-103:3-5",
+        "anf_id": "GW0969-103",
+        "rm": "2008/09",
+        "dok_nummer": 69,
+        "party": "L",
+        "speaker": "CHRISTER NYLANDER (fp)",
+        "date": "2009-02-12",
+        "title": "(forts. från 5 §) En ny betygsskala (forts. UbU5)",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GW0969-103/html",
+        "paragraphs": [
+          "Den nya betygsskalan som diskuteras innehåller fler steg. Mina kolleger har mer i detalj berättat vad det innebär, så jag tänkte lämna det därhän. Den ger en chans för eleverna att få ett högre betyg i stället för ett plus i kanten. Det är en viktig signal att sända till eleverna att det nu lönar sig att plugga. Det är mycket bra.",
+          "De utmaningar som skolan möter måste bemötas så tidigt som möjligt. Det är en tanke som genomsyrar alliansens hela politik på utbildningsområdet. Vi håller på att bygga upp ett tydligt signalsystem som ser till att elever som håller på att halka efter får hjälp så tidigt som möjligt. Föräldrarna till dessa barn ska också få signaler så tidigt som möjligt så att de kan hjälpa till och bidra till att fler elever ska lyckas. Därför ska betygen ha fler steg men också ges tidigare, från årskurs 6. Det är för sent att som nu ha betyg först i åttan.",
+          "Detta system för early warning innehåller duktiga lärare, skriftliga omdömen och snart också tidigare och tydligare betyg. Det är viktigt att man gör det på flera olika håll för att se till att fler lyckas i skolan. Det är viktigt för den enskilde, men det är framför allt viktigt för Sverige."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "GS09119-61:0-3",
+        "anf_id": "GS09119-61",
+        "rm": "2004/05",
+        "dok_nummer": 119,
+        "party": "M",
+        "speaker": "HILLEVI ENGSTRÖM (m)",
+        "date": "2005-05-12",
+        "title": "Betyg i skolan",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GS09119-61/html",
+        "paragraphs": [
+          "Fru talman! I dagens skola börjar man med utvecklingssamtal tidigt, i årskurs 1, där vi föräldrar får lyssna på lärarnas omdömen om våra barn. Vi får aldrig någon skriftlig information. Jag tror att det är väldigt viktigt för de flesta föräldrar att få både en muntlig och en skriftlig information, så att man hemma på kammaren eller vid köksbordet kan gå igenom vad man kan stötta sitt barn med och hur man ska hjälpa honom eller henne med läxor, redan från årskurs 1 så att inget barn blir lämnat på efterkälken. I dagens skola fungerar det inte så.",
+          "Efter min egen erfarenhet av två barn i skolan i nio år och ett antal utvecklingssamtal kan jag säga att föräldrar väljer informationen, lyssnar på olika saker och inte får en fullödig information.",
+          "Varför inte ge alla barn chansen att klara skolan och få sina livsdrömmar realiserade och chansen att göra det som de drömmer om? Varför lämna 25 % efter?",
+          "Därför är min fråga återigen när det gäller betygen hur skolministern ser på förslaget från Skolverket om tidigare betyg."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 7,
+        "passage_id": "H80987-34:4-5",
+        "anf_id": "H80987-34",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "SD",
+        "speaker": "Patrick Reslow (SD)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+        "paragraphs": [
+          "Just därför är det bra om betyg införs så tidigt som möjligt. Årskurs 4 är också en rimlig tidpunkt att införa betyg. Det är första året på ett nytt stadium, mellanstadiet, och eleverna arbetar mot kunskapsmålen i årskurs 6. På så vis kan kunskapsprogressionen följas tydligt av såväl elever och föräldrar som lärare.",
+          "Den utvärdering som Skolverket har gjort av införandet av betyg i årskurs 6 - den genomfördes 2012, om jag inte minns fel - ger också starkt stöd för tidigare betyg. Enligt Skolverket påverkas elevernas motivation positivt av tidigare betyg i skolan. Enligt utvärderingen anser drygt hälften av lärarna att elevernas motivation höjts på grund av betygen. Hos eleverna är siffran betydligt högre. Så många som åtta av tio elever säger att de arbetar hårdare när de får betyg, något som också bekräftas av vårdnadshavarna. Skolverkets utvärdering visar också att införandet av tidigare betyg har lett till ett ökat fokus på elevernas kunskapsutveckling. Allt detta tyder på att införandet av tidigare betyg kan bidra till bättre resultat i den svenska skolan. Vi tycker att det är jättebra."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 3,
+        "passage_id": "H80987-56:4-6",
+        "anf_id": "H80987-56",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "MP",
+        "speaker": "Annika Hirvonen (MP)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+        "paragraphs": [
+          "Fru talman! Att alla elever behöver få det stöd de behöver tidigt är dock inte samma sak som att det är bra med tidigare betyg. Jag menar att dessa saker bör skiljas åt. Jag vill se till att varje barn som behöver stöd, till exempel för att lära sig att läsa bra, ska få det innan han eller hon ens har märkt att det gick lite knackigt - innan självkänslan ens hinner få sig en törn.",
+          "Låt oss gå till frågan om betyg i årskurs 4. Vad vet vi om tidiga betyg? Det har gjorts en hel del forskningsstudier, och sammantaget kan man inte säga att elevernas kunskapsresultat förbättras av betyg. Det vi kan se är att tidiga betyg, alltså betyg på barn som är i lägre ålder, kan få negativa konsekvenser för barnens syn på sig själva och sitt lärande. Ett dåligt betyg tidigt kan få ett barn att känna att det är kört och att man är dålig - inte bara att det inte har gått så bra och att man inte har lärt sig så mycket ännu."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 3
+      },
+      {
+        "rank": 6,
+        "passage_id": "H80987-33:0-4",
+        "anf_id": "H80987-33",
+        "rm": "2020/21",
+        "dok_nummer": 87,
+        "party": "M",
+        "speaker": "Kristina Axén Olin (M)",
+        "date": "2021-03-03",
+        "title": "Möjlighet till betyg från årskurs 4",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/H80987-33/html",
+        "paragraphs": [
+          "Herr talman! Läget i svensk skola är otroligt allvarligt. Pandemin förstärker en redan bekymmersam situation. Den samlade betygsstatistiken för årskurs 6 är riktigt sorglig. Aldrig tidigare har så många elever haft icke godkänt redan i årskurs 6. I somras lämnade 31 385 elever - det är över tusen klasser och mer än var fjärde elev - skolan redan i årskurs 6 med icke godkänt i något eller några ämnen. Om detta inte hämtas upp med stöd, extraundervisning eller vad som står till buds riskerar vi att få en framtid där var fjärde elev inte klarar grundskolan.",
+          "Därför måste stöd sättas in tidigt, mycket tidigare än vad som sker i dag. Ett sätt att tydliggöra elevers behov av hjälp är betyg. Vi moderater anser därför att betyg borde sättas redan i årskurs 3, det år då elever börjar skriva nationella prov. Det blir en tydlig signal, till eleven men också till familjen och skolan."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 5,
+        "passage_id": "GY0938-143:10-13",
+        "anf_id": "GY0938-143",
+        "rm": "2010/11",
+        "dok_nummer": 38,
+        "party": "S",
+        "speaker": "MIKAEL DAMBERG (S)",
+        "date": "2010-12-20",
+        "title": "Betyg från årskurs 6 i grundskolan m.m.",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0938-143/html",
+        "paragraphs": [
+          "Fru talman! Vi rödgröna partier avvisar regeringens förslag om att börja med betyg i mellanstadiet. Vi föreslår att betyg ska sättas från årskurs 7.",
+          "Att tidigarelägga betygen till årskurs 6 i grundskolan, och i sameskolan, är inte nödvändigt för att tillgodose regeringens egen argumentation om att alla elever behöver mer förberedelser än i dag inför sina slutbetyg. Under större delen av grundskolan är andra former av uppföljning och kontroll av elevernas kunskaper mer lämpliga än vad betyg är. De framåtsyftande individuella utvecklingsplanerna för eleverna är viktiga. Vi föreslår vidare att varje elev ska få skriftliga omdömen från årskurs 1. Omdömena ska inte vara betygsliknande, men de ska på ett tydligt och konkret sätt visa elevens utveckling i förhållande till målen och även tydliggöra för skolan, eleven och hemmet vilka förbättringsinsatser som behövs.",
+          "Jag finner det anmärkningsvärt att den borgerliga regeringen öppnat för att betygssätta barn redan för första klass i form av ett omdöme. Vi vet av forskning att små barn inte kan skilja på om det är deras kunskaper eller de själva som underkänns vid tidiga år. Vi menar att små barn ska stimuleras i sin kunskapsutveckling - inte underkännas."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 3
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1993,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H80987-35:0-3",
+            "anf_id": "H80987-35",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "V",
+            "speaker": "Daniel Riazat (V)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-35/html",
+            "paragraphs": [
+              "Det finns mycket som behöver förändras i den svenska skolan, samtidigt som skolan har ett behov av arbetsro och välförankrade och välutredda reformer. Betyg från årskurs 4 är inte en sådan reform.",
+              "Det finns ingenting som talar för att betyg i tidiga åldrar har en positiv effekt på inlärningen. Tvärtom finns det bevis för att det ger upphov till stress och tidig utslagning. Såväl internationell som svensk forskning är överens om detta. Det betyder självfallet inte att kunskapsutvecklingen inte ska följas upp. För att garantera elevernas rätt till kunskap behövs en uppföljning av deras kunskapsutveckling. En tydlig och likvärdig uppföljning i tidig ålder är dock bättre än tidiga betyg."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "H40976-49:0-3",
+            "anf_id": "H40976-49",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "V",
+            "speaker": "Daniel Riazat (V)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-49/html",
+            "paragraphs": [
+              "Herr talman, riksdagskollegor och åhörare! År 2015 presenterade Vetenskapsrådet en forskningsrapport där idén med tidiga betyg sågades. Christian Lundahl har nämnts tidigare här i talarstolen. Han är professor i pedagogik, till skillnad från den som nämnde honom. Lundahl ledde arbetet med rapporten och kom tillsammans med sina kollegor fram till att tidiga betyg har negativ inverkan på många elever, framför allt på de elever som har det svårast i skolan. Eleverna presterar däremot bättre om de får kontinuerlig återkoppling med positiv information om hur de kan förbättra sitt arbete."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 5,
+            "passage_id": "GY0938-146:12-14",
+            "anf_id": "GY0938-146",
+            "rm": "2010/11",
+            "dok_nummer": 38,
+            "party": "V",
+            "speaker": "ROSSANA DINAMARCA (V)",
+            "date": "2010-12-20",
+            "title": "Betyg från årskurs 6 i grundskolan m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0938-146/html",
+            "paragraphs": [
+              "Fru talman! Regeringen hävdar att Sverige sätter betyg senare än de flesta länder samt att tidiga betyg är bra för elevernas lärande. Det finns dock inget samband mellan betyg tidigare och ökad kunskap. Om regeringen hade tagit till sig resultaten från svensk och internationell bedömningsforskning hade de kanske gått betydligt varsammare fram.",
+              "Uppsala universitet tog, vilket också nämndes i DN-artikeln, fram ett expertutlåtande som svar på regeringens betygsutredning. Det visar att de länder som har tidigare betyg har det därför att de har ett helt annat system, nämligen ett primär- och sekundärskolesystem där man byter skolform i år 5 eller 6. Betygen är ett avgångscertifikat i flertalet av dessa länder och direkt urvalsgrundande i några. Att vi har sena betyg i Sverige beror således på att vi har en nioårig grundskola och inte en sexårig primärskola.",
+              "Det är viktigt att påpeka att den europeiska trenden under 2000-talet är att senarelägga betygsättningen även i primär- och sekundärskolor och att komplettera eller ersätta betyg med mer beskrivande omdömen. Denna trend bottnar delvis i internationella forskningsrön där betygen och dess pedagogiska effekter ställs mot andra former av bedömning. Regeringens förslag om betyg från årskurs sex innebär å ena sidan en anpassning till en äldre europeisk norm men är å andra sidan ett brott mot trenden att senarelägga betygen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H209100-87:16-18",
+            "anf_id": "H209100-87",
+            "rm": "2014/15",
+            "dok_nummer": 100,
+            "party": "V",
+            "speaker": "Daniel Riazat (V)",
+            "date": "2015-05-20",
+            "title": "Skolväsendet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H209100-87/html",
+            "paragraphs": [
+              "Hur underlättar vi för elever så att de lär sig på ett bättre sätt? Hur underlättar vi för elever så att de får en högre kunskapsnivå? Att införa betyg från allt lägre åldrar visar dessutom att ni inte tror att lärarna vet vad de gör, att ni inte tror att lärarna kan säga till föräldrarna var deras barn står i fråga om skolresultaten. För det behöver man inte betyg. Lärarna har redan i dag koll på var eleverna står, vilken nivå de ligger på och vad de behöver hjälp med. Det lärarna saknar är resurser för att kunna lösa de problem som finns."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H80987-56:4-6",
+            "anf_id": "H80987-56",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "MP",
+            "speaker": "Annika Hirvonen (MP)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+            "paragraphs": [
+              "Fru talman! Att alla elever behöver få det stöd de behöver tidigt är dock inte samma sak som att det är bra med tidigare betyg. Jag menar att dessa saker bör skiljas åt. Jag vill se till att varje barn som behöver stöd, till exempel för att lära sig att läsa bra, ska få det innan han eller hon ens har märkt att det gick lite knackigt - innan självkänslan ens hinner få sig en törn.",
+              "Låt oss gå till frågan om betyg i årskurs 4. Vad vet vi om tidiga betyg? Det har gjorts en hel del forskningsstudier, och sammantaget kan man inte säga att elevernas kunskapsresultat förbättras av betyg. Det vi kan se är att tidiga betyg, alltså betyg på barn som är i lägre ålder, kan få negativa konsekvenser för barnens syn på sig själva och sitt lärande. Ett dåligt betyg tidigt kan få ett barn att känna att det är kört och att man är dålig - inte bara att det inte har gått så bra och att man inte har lärt sig så mycket ännu."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H40976-61:3-5",
+            "anf_id": "H40976-61",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "MP",
+            "speaker": "Elisabet Knutsson (MP)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-61/html",
+            "paragraphs": [
+              "Jag tror inte att betyg är det som gynnar kunskapsutvecklingen, och jag är inte ensam. Det finns ingen som helst forskning som visar att tidigare betyg påverkar elevernas lärande positivt. Däremot finns det forskning som visar att lågpresterande och yngre elever kan få en negativ utveckling och prestera sämre. Så säger Lärarförbundets ordförande Johanna Jaara Åstrand. Lärarnas Riksförbund påpekar att det finns en stor skepsis bland lärarna till tidigare betyg."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 2,
+            "passage_id": "GU0918-211:7-11",
+            "anf_id": "GU0918-211",
+            "rm": "2006/07",
+            "dok_nummer": 18,
+            "party": "MP",
+            "speaker": "PETER RÅDBERG (mp)",
+            "date": "2006-11-09",
+            "title": "Skola, utbildning och forskning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0918-211/html",
+            "paragraphs": [
+              "Om jag fortsätter med betygsdelen kan vi notera att regeringen också har för avsikt att låta utreda ett obligatoriskt betyg från årskurs 3. Vi vet sedan gammalt att de borgerliga partierna har den visionen. Miljöpartiet anser att det är olyckligt om detta skulle ske.",
+              "Betyg är dåligt just som pedagogiskt instrument eftersom det säger otroligt lite om vad en elev faktiskt kan och vilka utvecklingsmöjligheter eleven har. Tidigare betyg leder också till just minskad pedagogisk frihet i skolan genom att man centraliserar.",
+              "Många skolor som drivs utifrån alternativ pedagogik använder inte betyg som ett pedagogiskt instrument. För dessa skolor vore ett beslut om tidigare betyg helt enkelt förödande."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 8,
+            "passage_id": "H80987-56:7-8",
+            "anf_id": "H80987-56",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "MP",
+            "speaker": "Annika Hirvonen (MP)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-56/html",
+            "paragraphs": [
+              "Detta är någonting som vi i Miljöpartiet är väldigt oroliga för. Vi är oroliga för att utvärderingen av betyg i årskurs 6 visar att särskilt flickor riskerar en högre stress och psykisk ohälsa. Det är oroväckande.",
+              "När vi förhandlade januariavtalet arbetade vi därför för att det inte skulle vara obligatoriskt för alla att införa betyg i årskurs 4 utan att det skulle vara ett beslut som fattades av rektor på den enskilda skolan efter samråd med lärarna. Det är ju de som arbetar i skolan, nära eleverna, som bäst kan bedöma konsekvenserna i sina elevgrupper och samtidigt kan sätta in insatser för att motverka de risker som finns med tidiga betyg."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 8,
+            "passage_id": "H40976-56:4-6",
+            "anf_id": "H40976-56",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "S",
+            "speaker": "Lena Hallengren (S)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-56/html",
+            "paragraphs": [
+              "Herr talman! Även om jag och Socialdemokraterna står bakom överenskommelsen, oavsett vad en del sagt här i talarstolen, känns det viktigt att i talarstolen få säga att vår inställning till tidiga betyg i grundskolan i grunden inte har förändrats. Bevekelsegrunderna är flera för att vi intar en restriktiv hållning och egentligen tycker att betyg i årskurs 6 är tillräckligt - en uppfattning som för övrigt delades av både Centerpartiet och Kristdemokraterna så sent som strax före årsskiftet 2013/14, mindre än ett år före valet.",
+              "Först och främst finns det ingen forskning som visar tidiga betygs positiva inverkan på annat sätt än att det möjligen gynnar redan starka elever och missgynnar de svaga på ett sätt där vinsten inte är större än förlusten. En annan avigsida är att betyg fostrar eleverna till att drivas av yttre belöningar och en yttre motivation snarare än att utveckla deras egna drivkrafter, som är nog så viktiga i ett framtida arbetsliv och samhällsengagemang."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 1,
+            "passage_id": "GY0938-143:10-13",
+            "anf_id": "GY0938-143",
+            "rm": "2010/11",
+            "dok_nummer": 38,
+            "party": "S",
+            "speaker": "MIKAEL DAMBERG (S)",
+            "date": "2010-12-20",
+            "title": "Betyg från årskurs 6 i grundskolan m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0938-143/html",
+            "paragraphs": [
+              "Fru talman! Vi rödgröna partier avvisar regeringens förslag om att börja med betyg i mellanstadiet. Vi föreslår att betyg ska sättas från årskurs 7.",
+              "Att tidigarelägga betygen till årskurs 6 i grundskolan, och i sameskolan, är inte nödvändigt för att tillgodose regeringens egen argumentation om att alla elever behöver mer förberedelser än i dag inför sina slutbetyg. Under större delen av grundskolan är andra former av uppföljning och kontroll av elevernas kunskaper mer lämpliga än vad betyg är. De framåtsyftande individuella utvecklingsplanerna för eleverna är viktiga. Vi föreslår vidare att varje elev ska få skriftliga omdömen från årskurs 1. Omdömena ska inte vara betygsliknande, men de ska på ett tydligt och konkret sätt visa elevens utveckling i förhållande till målen och även tydliggöra för skolan, eleven och hemmet vilka förbättringsinsatser som behövs.",
+              "Jag finner det anmärkningsvärt att den borgerliga regeringen öppnat för att betygssätta barn redan för första klass i form av ett omdöme. Vi vet av forskning att små barn inte kan skilja på om det är deras kunskaper eller de själva som underkänns vid tidiga år. Vi menar att små barn ska stimuleras i sin kunskapsutveckling - inte underkännas."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "GW0969-73:7-8",
+            "anf_id": "GW0969-73",
+            "rm": "2008/09",
+            "dok_nummer": 69,
+            "party": "S",
+            "speaker": "MARIE GRANLUND (s)",
+            "date": "2009-02-12",
+            "title": "En ny betygsskala",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW0969-73/html",
+            "paragraphs": [
+              "Herr talman! Vi socialdemokrater säger ja till betyg från årskurs 6. Vi accepterar också att ytterligare betygssteg införs. Vid sidan av nuvarande betygssystem har det nämligen utvecklats ett informellt mellansteg i betygsskalan, och elever, föräldrar och lärare måste få veta vad som gäller. Det förslag som vi i dag behandlar föranleder emellertid vissa frågor, bland annat vad betyget Icke godkänd eller streck innebär för den skola som har gett det betyget. Blir skolan i och med detta skyldig att sätta in resurser för att se till att eleven snarast når nivån för godkänd? För barnen i grundskolan råder skolplikt, och då måste också skolans skyldigheter klargöras. Varje barn måste få erforderliga kunskaper. Hur säkerställs det i och med den nya betygsskalan?"
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 6,
+            "passage_id": "GU09116-215:3-5",
+            "anf_id": "GU09116-215",
+            "rm": "2006/07",
+            "dok_nummer": 116,
+            "party": "S",
+            "speaker": "MIKAEL DAMBERG (s)",
+            "date": "2007-05-30",
+            "title": "Vissa skolfrågor",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU09116-215/html",
+            "paragraphs": [
+              "Jag kan i och för sig förstå att Jan Björklund och de borgerliga partierna har en vilja att ludda till rubriken lite grann, eftersom väldigt få svenska föräldrar och elever tycker att deras förslag på den här punkten, som egentligen är att öppna upp för att betygssätta sjuåringar, är särskilt vettigt och klokt. Vi socialdemokrater är principiella motståndare till att betygssätta små barn. De första åren i skolan borde präglas av nyfikenhet och lust, av beröm och uppmuntran, inte av sortering och stämpling.",
+              "Däremot är det viktigt att följa varje enskilt barns kunskapsutveckling redan från första dagen i skolan, inte vänta tre år. Föräldrar och elever har rätt att få veta hur det går för barnen i skolan. Därför infördes den 1 januari 2006 ett krav på att alla barn ska ha rätt till individuell utvecklingsplan. Utvecklingsplanerna ska vara av framåtsyftande karaktär. Lärare, elever och föräldrar ska i samverkan sätta upp mål för eleven för att jobba vidare."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GV0969-6:3-6",
+            "anf_id": "GV0969-6",
+            "rm": "2007/08",
+            "dok_nummer": 69,
+            "party": "C",
+            "speaker": "ULRIKA CARLSSON i Skövde (c)",
+            "date": "2008-02-21",
+            "title": "Aktuell debatt: Nytt betygssystem",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0969-6/html",
+            "paragraphs": [
+              "Många elever är väldigt nervösa inför att få betyg i åttan. Efter åtta år ska man få nedskrivet hur långt man har nått i fråga om kunskapsmålen. Det har givetvis diskuterats under utvecklingssamtal under åren, men det är först nu som man får det i skrift.",
+              "Mellan pojkar och flickor ökar skillnaden i resultat i den svenska skolan. Första gången som pojkar ska få betyg är i åttan när de befinner sig mitt i puberteten. Det är en ganska känslig period.",
+              "Därför välkomnar nu många elever att de ska få besked tidigare. Föräldrar vill givetvis också veta hur det går för deras barn. Även om föräldrarna har varit med på utvecklingssamtal är det svårt att muntligt ge en tydlig information så att föräldrarna förstår och tar till sig den.",
+              "Det blir också en större tydlighet så att man som förälder ska kunna ställa krav på skolan när det gäller stöd som ens barn behöver. Man får också möjlighet att fråga sig själv som förälder: På vilket sätt kan jag stötta mitt barn för att barnet ska nå målen och få en lyckad skolgång?"
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 7,
+            "passage_id": "H80987-46:1-4",
+            "anf_id": "H80987-46",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "C",
+            "speaker": "Niels Paarup-Petersen (C)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-46/html",
+            "paragraphs": [
+              "Till sakfrågan: Ger betyg en bättre skola? Det får vi hoppas, när man nu vill införa det i Sveriges alla skolor. Det enda vi kan säga med säkerhet är att vi inte vet det. Det som vi vet med säkerhet är att det kommer att ta mer tid från lärarna, och i stället för att ge bättre stöd till de elever som behöver det mest riskerar det att leda till mindre stöd till de eleverna. Det är en utmaning.",
+              "Fru talman! Vi kan konstatera att lärarna överlag är skeptiska. Det riskerar att öka deras arbetsbörda. Vi ser att forskarna inte ser att det finns vetenskapligt stöd för att det ger bättre studieresultat. Vi ser också att elevorganisationerna är emot precis som huvudparten av remissinstanserna, både fackliga organisationer och vetenskapliga institutioner.",
+              "Vad vi dock vet och är helt säkra på, och som alla är överens om, är att stöd till de elever som har det svårast måste in tidigt. Man kan säga att det är tanken bakom att införa betyg från årskurs 4, att betygen kanske kan visa att det finns vissa elever som behöver ett bättre stöd tidigare.",
+              "Vad vi dock har fått veta från fackliga organisationer och forskningen är att lärarna redan vet detta och därför borde kunna sätta in stöd. Sedan är frågan om detta tidiga stöd kommer att införas oftare om eleverna får betyg vid lägre ålder. Det är det som är den stora frågan. Då kan vi konstatera att lärarna enligt forskningen överlag vet vilka elever som har det svårt oavsett. Men samtidigt, som vi också har hört här, kan motivationen öka när man får betyg."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "H40976-66:0-2",
+            "anf_id": "H40976-66",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "C",
+            "speaker": "Ulrika Carlsson (C)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H40976-66/html",
+            "paragraphs": [
+              "När det nu blir tydligare i årskurs 6 att det finns ett större behov av särskilt stöd och också en större möjlighet för föräldrar att använda den kunskapen om sitt barn till att önska att skolan skulle uppfylla detta behov av särskilt stöd, tror inte Elisabet Knutsson att det då är viktigt för både barn och föräldrar att det ännu tidigare ges möjlighet att faktiskt efterfråga det stöd som behövs? Vi ser ju i dag att många skolor i princip kräver en diagnos för att man ska få tillgång till särskilt stöd. Här skulle det bli möjligt också utifrån en kunskapsbas.",
+              "Elisabet Knutsson tog upp många frågor i början av sitt anförande, till exempel vad som driver barn till kunskap och att man ibland kan behöva lite mer tid. Man har dock inte riktigt tid att vänta ett antal år, utan det som behövs är kanske lite mer tid varje vecka, och därför skulle försöksverksamheten med betyg från årskurs 4 faktiskt gynna tidiga uppföljningar med en större tydlighet gentemot barn och föräldrar om vilka behov som faktiskt finns så att föräldrar får större möjlighet gentemot skolan att i princip kräva ett ökat stöd för att ens barn ska uppnå till exempel betygssteget E."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 9,
+            "passage_id": "H40976-48:8-10",
+            "anf_id": "H40976-48",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "C",
+            "speaker": "Ulrika Carlsson (C)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-48/html",
+            "paragraphs": [
+              "När den svenska skolan hade betyg från årskurs 8 upplevde alltför många elever att det var först efter höstterminen i årskurs 8 som de fick ett tydligt besked om att den ansträngning de gjort och de resultat de hade uppnått inte alls räckte till ett betyg som stämde med den bild de fått utifrån tidigare uppmuntrande utvecklingssamtal och så vidare."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "GW0969-103:3-5",
+            "anf_id": "GW0969-103",
+            "rm": "2008/09",
+            "dok_nummer": 69,
+            "party": "L",
+            "speaker": "CHRISTER NYLANDER (fp)",
+            "date": "2009-02-12",
+            "title": "(forts. från 5 §) En ny betygsskala (forts. UbU5)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GW0969-103/html",
+            "paragraphs": [
+              "De utmaningar som skolan möter måste bemötas så tidigt som möjligt. Det är en tanke som genomsyrar alliansens hela politik på utbildningsområdet. Vi håller på att bygga upp ett tydligt signalsystem som ser till att elever som håller på att halka efter får hjälp så tidigt som möjligt. Föräldrarna till dessa barn ska också få signaler så tidigt som möjligt så att de kan hjälpa till och bidra till att fler elever ska lyckas. Därför ska betygen ha fler steg men också ges tidigare, från årskurs 6. Det är för sent att som nu ha betyg först i åttan.",
+              "Detta system för early warning innehåller duktiga lärare, skriftliga omdömen och snart också tidigare och tydligare betyg. Det är viktigt att man gör det på flera olika håll för att se till att fler lyckas i skolan. Det är viktigt för den enskilde, men det är framför allt viktigt för Sverige."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 7,
+            "passage_id": "H40976-50:9-13",
+            "anf_id": "H40976-50",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "L",
+            "speaker": "Christer Nylander (L)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-50/html",
+            "paragraphs": [
+              "Vi har tidigare hört att betyg i årskurs 6 har gett en del effekter, i alla fall i de skattningar som nu görs och de enkätundersökningar som har genomförts.",
+              "Det har lett till tydligare fokus på kunskap. Jag tycker att det är bra. Jag vill ha mer sådant.",
+              "Det har gett att man tidigare upptäcker barn som behöver särskilt stöd. Jag tycker att det är bra. Jag tycker att vi ska fortsätta med det, men jag tycker att vi också ska se till att huvudmännen ger det stöd som verkligen behövs så att fler kan lyckas i skolan.",
+              "Det har gett ökad motivation bland eleverna. 80 procent av eleverna säger att de är mer motiverade i skolan i dag, när de får betyg i årskurs 6. En majoritet av lärarna säger att de märker att eleverna är mer motiverade. Även föräldrarna märker att eleverna är mer motiverade.",
+              "Jag vill ha mer av detta. Jag vill inte ha mindre av det utan mer av det. Jag förstår inte hur man kan komma till slutsatsen att man ska avskaffa betyg i årskurs 6 när man ser att det ökar motivationen, ökar kunskapsfokus och ökar chanserna att upptäcka elever som behöver mer stöd. Hur kan man komma till slutsatsen att man inte behöver mer av detta och i stället föreslå mindre?"
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 5
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H40976-55:3-4",
+            "anf_id": "H40976-55",
+            "rm": "2016/17",
+            "dok_nummer": 76,
+            "party": "KD",
+            "speaker": "Annika Eclund (KD)",
+            "date": "2017-03-01",
+            "title": "En försöksverksamhet med betyg från och med årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H40976-55/html",
+            "paragraphs": [
+              "Herr talman! Mot denna bakgrund är det mycket bra att vi läsåret 2012/13 införde betyg i årskurs 6. Betyg är ett viktigt verktyg för att ge elever och föräldrar information om hur eleven förhåller sig till skolans kunskapsmål. Betygen ska vara tydliga och bidra till att elevernas kunskaper kontinuerligt följs upp och utvärderas, att resultaten kommuniceras med hemmen och att stöd sätts in tidigt.",
+              "Det är ju det främsta skälet för att ge betyg tidigare: att kunna sätta in stöd tidigare under skolgången för dem som inte klarar vissa moment. Återigen kan vi titta på Finland, som är ett bra exempel. Där är det inte stigmatiserande att behöva hjälp av en speciallärare då och då, och det sätts in under kortare eller längre perioder då behov uppträder."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "H80987-36:0-2",
+            "anf_id": "H80987-36",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "KD",
+            "speaker": "Gudrun Brunegård (KD)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-36/html",
+            "paragraphs": [
+              "Dagens ordning med betyg från höstterminen i årskurs 6 är en bra modell. Drygt hälften av lärarna i utvärderingen av betyg från årskurs 6 upplevde att elevernas motivation blev högre till följd av betygen. Bland eleverna själva uppgav hela 80 procent att de arbetade hårdare när de visste att de skulle få betyg. Intervjuer med vårdnadshavare visade också att man upplevde att barnens motivation blev högre.",
+              "En så viktig förändring som att införa betyg redan från årskurs 4 i stället för från årskurs 6 bör luta sig på vetenskap och saklig grund. Men någon sådan forskning finns inte i dag. Det finns därför skäl att noga utvärdera införandet av betyg från årskurs 4, där detta har prövats i försöksverksamheten, utifrån hur det har påverkat kunskapsinhämtningen och i vilken mån eleverna har fått extra resurser när de har varit i riskzonen för att inte nå kunskapsmålen. Det naturliga hade varit, precis som andra har förespråkat här, att först efter en sådan utvärdering fatta ett välgrundat beslut om lämpligheten att införa detta i alla skolor. Regeringen borde alltså ha utrett detta noggrannare."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GV0969-5:0-4",
+            "anf_id": "GV0969-5",
+            "rm": "2007/08",
+            "dok_nummer": 69,
+            "party": "M",
+            "speaker": "MARGARETA PÅLSSON (m)",
+            "date": "2008-02-21",
+            "title": "Aktuell debatt: Nytt betygssystem",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0969-5/html",
+            "paragraphs": [
+              "Dagens betygssystem har två stora brister: betygen kommer för sent och de kommer i för få steg.",
+              "Nu ska betygen bli obligatoriska från och med årskurs 6. Vi har i dag till vår stora glädje fått reda på att 75 procent stöder vårt förslag. Det är fler än de som röstade fram det i valet.",
+              "Fördelarna med att tidigarelägga betygen är flera. Kunskapsluckorna kommer att upptäckas tidigare och lämpliga åtgärder kan sättas in. I dag får man betyg när det återstår tre terminer i grundskolan. Om brister upptäcks först då, som i fallet med flickan med betyget i engelska som utbildningsministern refererade till, är det för mycket att ta igen på för kort tid."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 3,
+            "passage_id": "H80987-33:0-4",
+            "anf_id": "H80987-33",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "M",
+            "speaker": "Kristina Axén Olin (M)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-33/html",
+            "paragraphs": [
+              "Herr talman! Läget i svensk skola är otroligt allvarligt. Pandemin förstärker en redan bekymmersam situation. Den samlade betygsstatistiken för årskurs 6 är riktigt sorglig. Aldrig tidigare har så många elever haft icke godkänt redan i årskurs 6. I somras lämnade 31 385 elever - det är över tusen klasser och mer än var fjärde elev - skolan redan i årskurs 6 med icke godkänt i något eller några ämnen. Om detta inte hämtas upp med stöd, extraundervisning eller vad som står till buds riskerar vi att få en framtid där var fjärde elev inte klarar grundskolan.",
+              "Därför måste stöd sättas in tidigt, mycket tidigare än vad som sker i dag. Ett sätt att tydliggöra elevers behov av hjälp är betyg. Vi moderater anser därför att betyg borde sättas redan i årskurs 3, det år då elever börjar skriva nationella prov. Det blir en tydlig signal, till eleven men också till familjen och skolan."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 5,
+            "passage_id": "GY0938-147:4-6",
+            "anf_id": "GY0938-147",
+            "rm": "2010/11",
+            "dok_nummer": 38,
+            "party": "M",
+            "speaker": "MARGARETA PÅLSSON (M)",
+            "date": "2010-12-20",
+            "title": "Betyg från årskurs 6 i grundskolan m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0938-147/html",
+            "paragraphs": [
+              "Forskning från IFAU visar på det vi moderater länge har sagt: När betygen avskaffades på låg- och mellanstadiet och skulle sättas först i årskurs 8 var det främst arbetarbarn som drabbades och då främst pojkar. Däremot gynnades söner till högutbildade av att betygen togs bort. Fler av dem gick på universitet och högskola. Avskaffandet av tidigare betyg ökade de sociala skillnaderna. Det fick alltså helt motsatt effekt än vad det var tänkt.",
+              "Även i McKinseyrapporten kommer forskarna fram till snarlika resultat, nämligen att de elever som har svårast att lyckas i skolan är de som tjänar mest på den pedagogik där man genom att mäta resultaten försäkrar sig om att alla kommer med från början. I de länder där man mäter elevernas kunskaper tidigare och mer frekvent är andelen elever som inte hänger med i klasskamraternas tempo betydligt lägre än i Sverige. Bara det man mäter kan man förbättra."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "H80987-34:4-5",
+            "anf_id": "H80987-34",
+            "rm": "2020/21",
+            "dok_nummer": 87,
+            "party": "SD",
+            "speaker": "Patrick Reslow (SD)",
+            "date": "2021-03-03",
+            "title": "Möjlighet till betyg från årskurs 4",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H80987-34/html",
+            "paragraphs": [
+              "Just därför är det bra om betyg införs så tidigt som möjligt. Årskurs 4 är också en rimlig tidpunkt att införa betyg. Det är första året på ett nytt stadium, mellanstadiet, och eleverna arbetar mot kunskapsmålen i årskurs 6. På så vis kan kunskapsprogressionen följas tydligt av såväl elever och föräldrar som lärare.",
+              "Den utvärdering som Skolverket har gjort av införandet av betyg i årskurs 6 - den genomfördes 2012, om jag inte minns fel - ger också starkt stöd för tidigare betyg. Enligt Skolverket påverkas elevernas motivation positivt av tidigare betyg i skolan. Enligt utvärderingen anser drygt hälften av lärarna att elevernas motivation höjts på grund av betygen. Hos eleverna är siffran betydligt högre. Så många som åtta av tio elever säger att de arbetar hårdare när de får betyg, något som också bekräftas av vårdnadshavarna. Skolverkets utvärdering visar också att införandet av tidigare betyg har lett till ett ökat fokus på elevernas kunskapsutveckling. Allt detta tyder på att införandet av tidigare betyg kan bidra till bättre resultat i den svenska skolan. Vi tycker att det är jättebra."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 2,
+            "passage_id": "H10971-94:17-19",
+            "anf_id": "H10971-94",
+            "rm": "2013/14",
+            "dok_nummer": 71,
+            "party": "SD",
+            "speaker": "CARINA HERRSTEDT (SD)",
+            "date": "2014-02-20",
+            "title": "Grundskolan",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H10971-94/html",
+            "paragraphs": [
+              "Ett instrument för att tidigare upptäcka eventuella svårigheter hos eleverna är betygen. Att ge betyg i årskurs 4, då eleverna träder in i ett nytt stadium verkar naturligt. Dessutom ska man enligt ämnesplanerna lära sig att läsa och skriva under de tre första åren i grundskolan. Då förefaller det ganska naturligt att man, som vi föreslår, börjar använda sig av betyg i årskurs 4. Betyg är ett bra och kompletterande verktyg för att kontrollera att inget barn har hamnat mellan stolarna och missat viktig läs- och skrivinlärning. Man kan klart och tydligt direkt visa vilka barn som är i behov av extrainsatser."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "H60933-70:0-2",
+            "anf_id": "H60933-70",
+            "rm": "2018/19",
+            "dok_nummer": 33,
+            "party": "SD",
+            "speaker": "Patrick Reslow (SD)",
+            "date": "2018-12-19",
+            "title": "Utbildning och universitetsforskning",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H60933-70/html",
+            "paragraphs": [
+              "Fru talman! Det finns också internationell forskning som visar att betyg om man använder dem från ett tidigt stadium blir en naturlig del i skolarbetet och inte upplevs som någonting konstigt alls.",
+              "Problemet uppstår om vi börjar ge betyg i årskurs 6, 8 eller 9. Då blir det i ett sent skede, där man är i ett annat utvecklingsstadium. Det leder automatiskt till ökad stress. Men om betyget är med från början, om man redan från början får betyg eller skriftliga omdömen, blir det en naturlig del i skolarbetet."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      }
+    ]
+  }
+}

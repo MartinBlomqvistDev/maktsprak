@@ -1,0 +1,952 @@
+{
+  "id": "formogenhetsskatten",
+  "question": "Vad har sagts om att avskaffa förmögenhetsskatten?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 2905,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "GX0931-33:0-1",
+        "anf_id": "GX0931-33",
+        "rm": "2009/10",
+        "dok_nummer": 31,
+        "party": "M",
+        "speaker": "Finansminister ANDERS BORG (m)",
+        "date": "2009-11-17",
+        "title": "Svar på interpellationerna 2009/10:14 och 37 om effekter av avskaffad förmögenhetsskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GX0931-33/html",
+        "paragraphs": [
+          "Herr talman! Peter Hultqvist har frågat mig vad jag avser att vidta för åtgärder för att minska de ekonomiska klyftorna. Hans Olsson har frågat mig hur jag bedömde att avskaffandet av förmögenhetsskatten skulle finansieras, om jag avser att ta initiativ till en utredning av hur nettoinflödet av kapital påverkats av förmögenhetsskattens avskaffande samt vilka åtgärder jag avser att vidta för att säkerställa en rättvis förmögenhetsfördelning. Bakgrunden till frågorna är att förmögenhetsskatten avskaffades från och med 2007.",
+          "Förmögenhetsskatten var en dåligt fungerande skatt. Några av Sveriges mest förmögna personer var helt eller delvis skattebefriade medan vanliga husägare betalade förmögenhetsskatt på grund av snabbt stigande taxeringsvärden. Förmögenhetsskatten uppfattades därför som både godtycklig och orättvis. Dess brister har lyfts fram av bland annat Skattebasutredningen, Skatteverket och Finanspolitiska rådet. Det fanns därför goda skäl för att avskaffa förmögenhetsskatten."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "GU0997-23:0-3",
+        "anf_id": "GU0997-23",
+        "rm": "2006/07",
+        "dok_nummer": 97,
+        "party": "S",
+        "speaker": "BOSSE RINGHOLM (s)",
+        "date": "2007-04-24",
+        "title": "Svar på interpellation 2006/07:447 om fördelningseffekter av slopad förmögenhetsskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+        "paragraphs": [
+          "Herr talman! Jag förstår att finansministern inte i sitt svar till Fredrik Olovsson vill erkänna det som han har sagt i annat sammanhang, nämligen att ett avskaffande av förmögenhetsskatten främst gynnar de rika. Jag förstår att han inte vill erkänna det i interpellationssvaret, men jag blev något upprörd när finansministern i sin replik försökte lägga skulden för avskaffandet av förmögenhetsskatten på den förra regeringen och säga att det är den som har bidragit till klyftorna.",
+          "Finansminister Borg står här naken, avklädd av de borgerliga partiledarna och regeringen. Finansministern tyckte för några veckor sedan att man skulle behålla förmögenhetsskatten. Han tyckte att det var orättvist att avskaffa den och att det framför allt gynnar de rika.",
+          "Nu vill han inte kännas vid vad han sade för några veckor sedan efter det att han kläddes av av de borgerliga partiledarna och var tvungen att lägga fram det här förslaget. Nu försöker han leda i bevis att det är bra om man avskaffar förmögenhetsskatten och ger de rika ännu mer pengar eftersom det kommer att ge jobb och nya företag och investeringar.",
+          "Jag måste få ställa en fråga till finansministern. Kan vi få se den kalkyl som finansministern och Finansdepartementet har över hur många nya företag och hur många nya jobb som kommer att åstadkommas genom avskaffandet av förmögenhetsskatten?"
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "GS0952-63:0-1",
+        "anf_id": "GS0952-63",
+        "rm": "2004/05",
+        "dok_nummer": 52,
+        "party": "S",
+        "speaker": "CATHARINA BRÅKENHIELM (s) replik",
+        "date": "2004-12-16",
+        "title": "Slopad arvsskatt och gåvoskatt",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GS0952-63/html",
+        "paragraphs": [
+          "Herr talman! Ja, det tycker vi är rimligt.",
+          "Du ställde samma fråga som ställdes tidigare. Då blir det faktiskt samma svar som jag gav tidigare om när förmögenhetsskatten ska avskaffas. Det kan vi inte svara på nu. Vi har sagt att man ska titta på det, så den frågan kommer det naturligtvis att arbetas vidare med, om och när en förmögenhetsskatt eventuellt ska slopas."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "GT0948-76:0-3",
+        "anf_id": "GT0948-76",
+        "rm": "2005/06",
+        "dok_nummer": 48,
+        "party": "S",
+        "speaker": "Finansminister PÄR NUDER (s)",
+        "date": "2005-12-09",
+        "title": "Svar på interpellation 2005/06:136 om förmögenhetsskatten",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0948-76/html",
+        "paragraphs": [
+          "Herr talman! Stefan Hagfeldt har frågat mig om jag avser att lägga fram ett förslag om avskaffande av förmögenhetsskatten och i så fall när. Stefan Hagfeldt har vidare frågat, för det fall något sådant förslag inte kommer att läggas fram, vilka mina motiv är för att även fortsättningsvis ha kvar förmögenhetsskatten.",
+          "Nej, jag har för närvarande inte för avsikt att lägga fram något förslag om att avskaffa förmögenhetsskatten. Skatten bidrar årligen med mellan 5 och 6 miljarder kronor till statskassan. Merparten av skatten betalas av höginkomsttagare. Motiven för förmögenhetsskatten är således statsfinansiella och fördelningspolitiska.",
+          "Jag har debatterat förmögenhetsskatten vid ett flertal tillfällen i riksdagen under hösten. Vad jag har sagt är att regeringen inte utesluter en diskussion om den framtida utformningen av förmögenhetsskatten. En sådan diskussion bör dock föras i ett större skattepolitiskt sammanhang där fördelningspolitiska och statsfinansiella överväganden kan beaktas på ett ansvarsfullt sätt.",
+          "Som bekant förbereder regeringen nu en samlad översyn av skattesystemet. Avsikten är att framöver bjuda in övriga partier till överläggningar om en bred skattereform. I det sammanhanget är jag beredd att diskutera eventuella förändringar i förmögenhetsbeskattningen."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "GU0974-181:11-13",
+        "anf_id": "GU0974-181",
+        "rm": "2006/07",
+        "dok_nummer": 74,
+        "party": "KD",
+        "speaker": "LENNART SACRÉDEUS (kd)",
+        "date": "2007-03-14",
+        "title": "Allmänna motioner om företagsbeskattning m.m.",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GU0974-181/html",
+        "paragraphs": [
+          "Fru talman! Låt mig gå över till förmögenhetsskatten. Man kan se på reservationerna från Socialdemokraterna, Vänsterpartiet och Miljöpartiet. Gång efter annan betonas att ett avskaffande av förmögenhetsskatten är fördelningsmässigt olämpligt och orättvist.",
+          "Socialdemokraterna menar i sin reservation att förmögenhetsskatten fyller en viktig fördelningspolitisk funktion. Men frågan är samtidigt om den är ekonomiskt effektiv och om den leder till lösningar av andra bekymmer som finns på den svenska företagsmarknaden. Socialdemokraterna väljer också att skriva i sin reservation: Att avskaffa förmögenhetsskatten skulle leda till ökade klyftor i samhället och förstärka den snedvridning mellan olika grupper som den nuvarande regeringen redan har åstadkommit med bland annat införandet av ett jobbskatteavdrag.",
+          "Det är lite synd att ni är emot att vi sänker skatten för människor som har arbete, men det är inte det som debatten gäller nu. Ni säger att ett avskaffande av förmögenhetsskatten skulle förstärka en snedvridning mellan olika grupper. Men i dag har vi ett system där Stefan Persson - inget ont om honom och hans familj och allt vad de har byggt upp av jobb och företagande i Sverige inom Hennes & Mauritz eller H&M - är skattebefriad vad gäller förmögenhetsskatten. Onoterade aktier är skattebefriade vad gäller förmögenhetsskatten. Och ett tag ville ett antal bolag föra över även större bolag till Stockholmsbörsens O-lista för att vara förmögenhetsskattebefriade."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "GU0997-23:4-7",
+        "anf_id": "GU0997-23",
+        "rm": "2006/07",
+        "dok_nummer": 97,
+        "party": "S",
+        "speaker": "BOSSE RINGHOLM (s)",
+        "date": "2007-04-24",
+        "title": "Svar på interpellation 2006/07:447 om fördelningseffekter av slopad förmögenhetsskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+        "paragraphs": [
+          "Att det är orättvist att avskaffa förmögenhetsskatten kan varenda skolungdom och varenda svensk räkna ut. Det fordras inte några större kunskaper i matematik, inte ens studier i nationalekonomi, för att se att det är orättvist att avskaffa förmögenhetsskatten.",
+          "Man hävdar att detta avskaffande av förmögenhetsskatten ska leda till många nya jobb och nya företag. Låt oss få se de kalkylerna. Låt oss höra ett svar från Anders Borg på hur många nya företag det handlar om.",
+          "Precis som Fredrik Olovsson sade förut är det ett par hundra personer som får 1 miljon eller ännu mer i slopad förmögenhetsskatt. De som slipper förmögenhetsskatten kanske finns ganska nära oss, i den moderata riksdagsgruppen. Hur många nya jobb och hur många nya företag kan Anders Borg skriva ut att det kommer att bli som ett resultat av detta?",
+          "Det som jag upprördes av och som jag tyckte var mycket märkligt är hur Anders Borg den ena dagen kan säga, precis som vi Socialdemokrater har sagt hela tiden: Tar man bort förmögenhetsskatten ökar orättvisorna i Sverige. De rika blir ännu rikare, och de fattiga får vara med och betala det på ett eller annat sätt i fortsättningen."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "GV0944-117:0-1",
+        "anf_id": "GV0944-117",
+        "rm": "2007/08",
+        "dok_nummer": 44,
+        "party": "M",
+        "speaker": "ULF BERG (m)",
+        "date": "2007-12-14",
+        "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GV0944-117/html",
+        "paragraphs": [
+          "Fru talman! Äntligen! Nu avskaffar vi förmögenhetsskatten. Staten ska inte ha godtyckliga skatter, och därför ska förmögenhetsskatten avskaffas. Jag tror att de allra flesta kan skriva under på att det är viktigt att företagare och entreprenörer vågar föra tillbaka sitt sparande och sina investeringar till Sverige, så att vi inte längre går miste om de 500 miljarder kronor som Skatteverket uppskattat hålls utanför Sverige. Risken är stor att det är minst det dubbla som hamnat utanför Sveriges gränser. Naturligtvis är det bättre för jobben och välfärden i Sverige om kapitalet investeras här. Det handlar om att slå vakt om jobben och välfärden. Det var mandatet vi i alliansen fick av väljarna.",
+          "Vad gäller Vänsterpartiets och Socialdemokraternas argument om att det fördelningspolitiskt är orättvist att slopa förmögenhetsskatten är det alldeles uppenbart att varken s eller v har förstått hur pass skadlig förmögenhetsskatten har varit. Men jag ska villigt erkänna att det kanske bara är ett spel för galleriet. Det låter naturligtvis bra att säga att förmögna ska betala skatt. Det låter onekligen klokt om man stannar där. Men den ekonomiska forskningen visar helt klart att denna skatt är skadlig. Varför avskaffar de flesta länderna i EU denna skatt? Bara Frankrike och Spanien har den kvar."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "GU09130-124:5-7",
+        "anf_id": "GU09130-124",
+        "rm": "2006/07",
+        "dok_nummer": 130,
+        "party": "M",
+        "speaker": "LENNART HEDQUIST (m)",
+        "date": "2007-06-20",
+        "title": "Riktlinjer för den ekonomiska politiken och budgetpolitiken",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GU09130-124/html",
+        "paragraphs": [
+          "Den andra inriktningen av regeringens politik har varit att ta bort skadliga skatter - skatter som är skadliga för hela landet. I det avseendet är det oerhört viktigt att förmögenhetsskatten kan slopas. Det råder förbluffande stor enighet bland ekonomer och bland betraktare av skattepolitik i olika länder om att det är viktigt att slopa förmögenhetsskatten. Många socialdemokrater har också uttalat genom åren att det är betydelsefullt.",
+          "Nu kommer det avskaffandet. Det är inte för att gynna några få utan det är för att detta är en skadlig skatt. När den tas bort är det bra för hela landet och därmed bra för alla dess invånare.",
+          "Socialdemokraterna gjorde ett selektivt borttagande av förmögenhetsskatten för de allra rikaste. Men vi tar bort förmögenhetsskatten för alla, och det kommer att ha gynnsamma effekter."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "GV0911-477:0-3",
+        "anf_id": "GV0911-477",
+        "rm": "2007/08",
+        "dok_nummer": 11,
+        "party": "M",
+        "speaker": "LENNART HEDQUIST (m) replik",
+        "date": "2007-10-17",
+        "title": "Finans- och skattepolitik",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GV0911-477/html",
+        "paragraphs": [
+          "Herr talman! Nu ska vi gå till grunden med det hela, Raimo Pärssinen. Vilket parti var det som avskaffade förmögenhetsskatten för miljardärerna? Vad var anledningen till att den avskaffades för dem? Det var ägarna till företag som ni ville behålla i Sverige för att kunna få kapitalinkomster från det kapitalet. Ni ville stoppa det utflödet.",
+          "Vad vi nu gör är att vi försöker att stoppa hela utflödet med avsikt att det ska kunna börja rinna tillbaka. Det är vad man har gjort i övriga länder. Men Socialdemokraterna driver en populistisk propaganda för att få folk att tro att förmögenhetsskattens avskaffande är någonting som berör de rika.",
+          "Förmögenhetsskattens avskaffande är någonting som är bra för hela folkhushållet. Det skapar förutsättningar för ett ökat välstånd i landet. Det är därför det avskaffats i andra länder. Det var därför det avskaffades i Finland.",
+          "Jag tycker att ni ska lägga av med den populistiska propagandan om förmögenhetsskatten."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "GS0952-49:11-15",
+        "anf_id": "GS0952-49",
+        "rm": "2004/05",
+        "dok_nummer": 52,
+        "party": "M",
+        "speaker": "LENNART HEDQUIST (m)",
+        "date": "2004-12-16",
+        "title": "Slopad arvsskatt och gåvoskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GS0952-49/html",
+        "paragraphs": [
+          "Det är märkligt att regeringen nu när den lagt fram ett förslag om avskaffande av arvs- och gåvoskatterna inte också kunde samla sig till att lägga fram ett förslag om avskaffande av förmögenhetsskatten.",
+          "Man kan dock, fru talman, rimligen lämna en klockren prognos om att även förmögenhetsskatten kommer att avskaffas, liksom sker och har skett i vår omvärld.",
+          "Det är självfallet så att förmögenhetsskatten kommer att avskaffas vid ett regeringsskifte 2006. Men det skulle inte förvåna mig om även en socialdemokratisk regering mycket snart skulle ta skeden i vacker hand och avskaffa förmögenhetsskatten, just därför att man rimligen inser, åtminstone i slutna rum, förmögenhetsskattens skadliga effekt också på samhällsekonomin. De argument som till sist har varit avgörande för arvs- och gåvoskatternas avskaffande kommer naturligtvis också att ta över när det gäller att avskaffa förmögenhetsskatten.",
+          "Fru talman! Vi är självfallet eniga i sak i detta ärende. Arvs- och gåvoskatterna ska avskaffas. Vi är dock oeniga om motiveringen eftersom Socialdemokraterna har vägrat att ange den egentliga motiveringen till arvs- och gåvoskatternas avskaffande. Därför föreligger det en gemensam borgerlig motivreservation. Därutöver har Kristdemokraterna och Moderaterna ett särskilt yttrande där vi har påtalat att arvs- och gåvoskatterna borde ha avskaffats från den dag det i budgetpropositionen angavs att så skulle ske.",
+          "Jag yrkar, fru talman, bifall till motivreservationen."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 1,
+        "passage_id": "GX0931-33:0-1",
+        "anf_id": "GX0931-33",
+        "rm": "2009/10",
+        "dok_nummer": 31,
+        "party": "M",
+        "speaker": "Finansminister ANDERS BORG (m)",
+        "date": "2009-11-17",
+        "title": "Svar på interpellationerna 2009/10:14 och 37 om effekter av avskaffad förmögenhetsskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GX0931-33/html",
+        "paragraphs": [
+          "Förmögenhetsskatten var en dåligt fungerande skatt. Några av Sveriges mest förmögna personer var helt eller delvis skattebefriade medan vanliga husägare betalade förmögenhetsskatt på grund av snabbt stigande taxeringsvärden. Förmögenhetsskatten uppfattades därför som både godtycklig och orättvis. Dess brister har lyfts fram av bland annat Skattebasutredningen, Skatteverket och Finanspolitiska rådet. Det fanns därför goda skäl för att avskaffa förmögenhetsskatten."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 6,
+        "passage_id": "GU0997-23:4-7",
+        "anf_id": "GU0997-23",
+        "rm": "2006/07",
+        "dok_nummer": 97,
+        "party": "S",
+        "speaker": "BOSSE RINGHOLM (s)",
+        "date": "2007-04-24",
+        "title": "Svar på interpellation 2006/07:447 om fördelningseffekter av slopad förmögenhetsskatt",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+        "paragraphs": [
+          "Att det är orättvist att avskaffa förmögenhetsskatten kan varenda skolungdom och varenda svensk räkna ut. Det fordras inte några större kunskaper i matematik, inte ens studier i nationalekonomi, för att se att det är orättvist att avskaffa förmögenhetsskatten.",
+          "Man hävdar att detta avskaffande av förmögenhetsskatten ska leda till många nya jobb och nya företag. Låt oss få se de kalkylerna. Låt oss höra ett svar från Anders Borg på hur många nya företag det handlar om.",
+          "Precis som Fredrik Olovsson sade förut är det ett par hundra personer som får 1 miljon eller ännu mer i slopad förmögenhetsskatt. De som slipper förmögenhetsskatten kanske finns ganska nära oss, i den moderata riksdagsgruppen. Hur många nya jobb och hur många nya företag kan Anders Borg skriva ut att det kommer att bli som ett resultat av detta?",
+          "Det som jag upprördes av och som jag tyckte var mycket märkligt är hur Anders Borg den ena dagen kan säga, precis som vi Socialdemokrater har sagt hela tiden: Tar man bort förmögenhetsskatten ökar orättvisorna i Sverige. De rika blir ännu rikare, och de fattiga får vara med och betala det på ett eller annat sätt i fortsättningen."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 4
+      },
+      {
+        "rank": 7,
+        "passage_id": "GV0944-117:0-1",
+        "anf_id": "GV0944-117",
+        "rm": "2007/08",
+        "dok_nummer": 44,
+        "party": "M",
+        "speaker": "ULF BERG (m)",
+        "date": "2007-12-14",
+        "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GV0944-117/html",
+        "paragraphs": [
+          "Fru talman! Äntligen! Nu avskaffar vi förmögenhetsskatten. Staten ska inte ha godtyckliga skatter, och därför ska förmögenhetsskatten avskaffas. Jag tror att de allra flesta kan skriva under på att det är viktigt att företagare och entreprenörer vågar föra tillbaka sitt sparande och sina investeringar till Sverige, så att vi inte längre går miste om de 500 miljarder kronor som Skatteverket uppskattat hålls utanför Sverige. Risken är stor att det är minst det dubbla som hamnat utanför Sveriges gränser. Naturligtvis är det bättre för jobben och välfärden i Sverige om kapitalet investeras här. Det handlar om att slå vakt om jobben och välfärden. Det var mandatet vi i alliansen fick av väljarna.",
+          "Vad gäller Vänsterpartiets och Socialdemokraternas argument om att det fördelningspolitiskt är orättvist att slopa förmögenhetsskatten är det alldeles uppenbart att varken s eller v har förstått hur pass skadlig förmögenhetsskatten har varit. Men jag ska villigt erkänna att det kanske bara är ett spel för galleriet. Det låter naturligtvis bra att säga att förmögna ska betala skatt. Det låter onekligen klokt om man stannar där. Men den ekonomiska forskningen visar helt klart att denna skatt är skadlig. Varför avskaffar de flesta länderna i EU denna skatt? Bara Frankrike och Spanien har den kvar."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 4,
+        "passage_id": "GT0948-76:0-3",
+        "anf_id": "GT0948-76",
+        "rm": "2005/06",
+        "dok_nummer": 48,
+        "party": "S",
+        "speaker": "Finansminister PÄR NUDER (s)",
+        "date": "2005-12-09",
+        "title": "Svar på interpellation 2005/06:136 om förmögenhetsskatten",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0948-76/html",
+        "paragraphs": [
+          "Nej, jag har för närvarande inte för avsikt att lägga fram något förslag om att avskaffa förmögenhetsskatten. Skatten bidrar årligen med mellan 5 och 6 miljarder kronor till statskassan. Merparten av skatten betalas av höginkomsttagare. Motiven för förmögenhetsskatten är således statsfinansiella och fördelningspolitiska."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 2
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 2905,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "GU0974-165:22-25",
+            "anf_id": "GU0974-165",
+            "rm": "2006/07",
+            "dok_nummer": 74,
+            "party": "V",
+            "speaker": "ANNE-MARIE WALLOUCH (v)",
+            "date": "2007-03-14",
+            "title": "Allmänna motioner om företagsbeskattning m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0974-165/html",
+            "paragraphs": [
+              "Förmögenhetsskatten har stor betydelse ur fördelningssynpunkt. En sänkning eller ett avskaffande av förmögenhetsskatten kommer att öka de ekonomiska klyftorna ytterligare. Särskilt markant blir detta om regeringen gör allvar av sina planer att sänka förmögenhetsskatten på alla andra kapitaltillgångar än den egna bostaden. Förmögenhetsskatten bör därför finnas kvar även i framtiden. Men det kan finnas skäl att göra olika förändringar för att skatten inte ska få oönskade effekter."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 5,
+            "passage_id": "GR0987-168:0-3",
+            "anf_id": "GR0987-168",
+            "rm": "2003/04",
+            "dok_nummer": 87,
+            "party": "V",
+            "speaker": "PER ROSENGREN (v) replik",
+            "date": "2004-03-24",
+            "title": "(forts. från 14 §) Allmänna motioner om fastighets- och förmögenhetsbeskattning (forts. SkU22)",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GR0987-168/html",
+            "paragraphs": [
+              "Jag kan säga att två tredjedelar av förmögenhetsskatten betalas av den tionde decilen, de tio procenten med högst inkomst. Det visar att den har en ganska bra fördelningspolitisk profil.",
+              "Att förmögenhetsskatten skulle driva företag ut ur landet tror jag inte på. Visst har det försvunnit en del kapital. Danmark har tagit bort förmögenhetsskatten. Vad har hänt? Har det återvänt något kapital där? Nej, det har det inte gjort. Inte vad man kan notera. I Österrike och i Italien har det skett, men då tog man bort förmögenhetsskatten och kombinerade det med en amnesti, för det var förbjudet att ta ut pengar. Denna amnesti har medfört att det har kommit tillbaka pengar. Men titta på det danska exemplet! Det återkom inget noterbart kapital.",
+              "Och så har vi det här med att det skulle bli ett minskat kapital i landet för företag. Så är det ju inte. Kapitalet söker sig dit där det förräntar sig bäst. För många är det faktiskt väldigt lönsamt att investera i företag i Sverige. Att det skulle råda kapitalbrist på grund av förmögenhetsskatten är alltså - och det kan också Ulf Sjösten läsa i betänkandet - en myt som härmed ska avlivas. Däremot kan det i utformningen av vissa finansieringsförslag, till exempel det här med beskattning av OTC-listan, naturligtvis finnas vissa problem som måste rättas till. Det får jag återkomma till."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "GX0919-7:0-4",
+            "anf_id": "GX0919-7",
+            "rm": "2009/10",
+            "dok_nummer": 19,
+            "party": "V",
+            "speaker": "LISELOTTE OLSSON (v)",
+            "date": "2009-10-22",
+            "title": "Beräkning av förmögenhet vid fastställande av vissa förmåner",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX0919-7/html",
+            "paragraphs": [
+              "Det förslag som finns i detta betänkande ser vi som sagt bara som en tillfällig lösning. Vänsterpartiet vill återinföra förmögenhetsskatten och kontrolluppgiftsskyldigheten. Även om förmögenhetsskatten uppvisade vissa brister menar vi att dess fördelningspolitiska betydelse var stor och att förmögenhetsskatten naturligtvis måste återinföras.",
+              "Drygt 60 procent av förmögenhetsskatten betalades av den grupp människor som hade de högsta inkomsterna. 63 procent betalades av männen och 37 procent av kvinnorna. Det är tydliga siffror som visar att det är främst män med höga inkomster som har tjänat på borttagandet av förmögenhetsskatten. Det är alltså den grupp som regeringen konsekvent gynnar med sin politik även i detta fall."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "GV0944-115:0-0",
+            "anf_id": "GV0944-115",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "V",
+            "speaker": "MARIE ENGSTRÖM (v)",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0944-115/html",
+            "paragraphs": [
+              "Fru talman! Jag tycker att det är magstarkt att ta bort förmögenhetsskatten i ett land där den rikaste procenten äger någonstans mellan 30 och 40 procent av den samlade förmögenheten. Anledningen till att det är lite osäkert vad gäller siffran är att SCB tidigare sagt att den rikaste procenten äger ca 19-20 procent av de samlade förmögenheterna. Nu har några forskare på Institutet för näringslivsforskning tittat på det och sagt att andelen är större. De menar att vi nästan slår USA när det gäller hur utvecklingen har varit för de allra rikaste i landet. De säger att andelen ligger någonstans på drygt 30 procent. Då har man också tagit med förmögenheter i utlandet. Siffran kan ligga till och med uppemot 40 procent om man skulle inkludera alla tillgångar hos svenskar i utlandet. Men det talar ändå sitt tydliga språk. Vare sig det är 20, 30 eller 40 procent är det en stor andel."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GV0944-116:0-2",
+            "anf_id": "GV0944-116",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "MP",
+            "speaker": "HELENA LEANDER (mp)",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0944-116/html",
+            "paragraphs": [
+              "Fru talman! Jag vet inte hur det är med er andra, men jag börjar i alla fall bli lite mör efter sex timmars debatterande. Om någon har sett mig gäspa är det inte för att mina ärade med- och motdebattörer är tråkiga. Jag kommer därför inte att hålla något mastodonttal utan fatta mig kort. Det underlättas också av att jag i grunden inte tycker att det är någon tokig idé att avskaffa förmögenhetsskatten, även om jag tycker att det blir väldigt fel sett i ljuset av regeringens fördelningspolitik i övrigt. Trots de goda fördelningspolitiska ambitioner som man har med förmögenhetsskatten har vi under åren sett att den fått oönskade konsekvenser. Det har gjort att man sett sig nödgad att införa ett antal undantag. Dessa undantag har gjort att fördelningspolitiken med tiden blivit allt sämre och godtyckligheten allt större.",
+              "Om man verkligen har ambitionen att beskatta välbärgade och om man har goda fördelningspolitiska ambitioner finns det alltså goda skäl att försöka ta in skatteintäkter genom skatter som mer träffsäkert når just de välbärgade. Tyvärr har regeringen just inga fördelningspolitiska ambitioner, utom möjligtvis att minska det fördelande inslaget i skattepolitiken. Därför avskaffar man förmögenhetsskatten samtidigt som man genomför andra stora skattesänkningar för välbärgade och samtidigt sparar på sjuka och arbetslösa. En sådan fördelningspolitik kan vi gröna inte acceptera, och därför säger vi i dagsläget nej till avskaffandet av förmögenhetsskatten."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 2,
+            "passage_id": "H10982-74:4-8",
+            "anf_id": "H10982-74",
+            "rm": "2013/14",
+            "dok_nummer": 82,
+            "party": "MP",
+            "speaker": "ANNIKA LILLEMETS (MP)",
+            "date": "2014-03-12",
+            "title": "Beskattning av företag, kapital och fastighet",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H10982-74/html",
+            "paragraphs": [
+              "Valter Mutt och jag föreslår också i samma motion att riksdagen uppmanar regeringen att presentera ett lagförslag om återinförande av förmögenhetsskatt i Sverige. Den avskaffades 2007. Motivet var bland annat att skatten ansågs försämra riskkapitalförsörjningen i landet, då förmögna individer skulle välja att flytta sina pengar utomlands. Men 2005 gav förmögenhetsskatten ändå närmare 5 välbehövliga miljarder i intäkt till statskassan och 2006 nästan 6 miljarder.",
+              "Med tanke på att de ekonomiska klyftorna har ökat dramatiskt i Sverige och att inkomstskatten under alliansregeringens styre har sänkts kraftigt för den del av befolkningen som har höga inkomster från förvärvsarbete, är reformer som syftar till ökad progressivitet i skatteskalan väl motiverade.",
+              "Självklart krävs en ordentlig utredning om utformningen av arvs-, gåvo- och förmögenhetsskatt, så att det inte slår fel på något sätt. Men lämpligt utformad förmögenhetsskatt och arvsskatt är reformer som kan bidra till att minska de ekonomiska klyftorna vad gäller inkomster och förmögenheter i Sverige och vända trenden."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 8,
+            "passage_id": "GV0912-493:0-1",
+            "anf_id": "GV0912-493",
+            "rm": "2007/08",
+            "dok_nummer": 12,
+            "party": "MP",
+            "speaker": "PER BOLUND (mp) replik",
+            "date": "2007-10-18",
+            "title": "Del 3: Näringspolitik",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GV0912-493/html",
+            "paragraphs": [
+              "Herr talman! Jag vill först hålla med om att förmögenhetsskatten hade stora brister. Det är inget snack om den saken. Jag tycker också att det finns fördelar med att ta bort den. Men det jag har problem med är att regeringspartierna nu utmålar detta som en företagsvänlig politik för att öka investeringsviljan i företagen, för där är den extremt oträffsäker.",
+              "De undersökningar som har gjorts, till exempel av Biotech Sweden, visar att det är en väldigt liten andel av företagen som upplever att de har fått mer kapital till investeringar på grund av den sänkta förmögenhetsskatten. Det kan finnas många skäl att ta bort skatten, men inte att det kan finansiera nya företag."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 6,
+            "passage_id": "GU0991-9:0-4",
+            "anf_id": "GU0991-9",
+            "rm": "2006/07",
+            "dok_nummer": 91,
+            "party": "MP",
+            "speaker": "MIKAELA VALTERSSON (mp) replik",
+            "date": "2007-04-16",
+            "title": "Bordläggningsdebatt med anledning av vårpropositionen",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GU0991-9/html",
+            "paragraphs": [
+              "Finansministern medger i Dagens Industri i veckan att avskaffandet av de två symbolladdade skatterna förmögenhets- och fastighetsskatt har negativa fördelningspolitiska effekter. Han ger Miljöpartiet rätt där:",
+              "\"Att ta bort förmögenhetsskatten och fastighetsskatten gynnar förstås mer dem som har mycket än dem som har lite. - - - Vi har nu ett särskilt ansvar för att fördelningspolitiken blir rimlig. - - - Framtida skattesänkningar måste ha en tyngdpunkt hos låg- och medelinkomsttagare.\""
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "GU0997-23:4-7",
+            "anf_id": "GU0997-23",
+            "rm": "2006/07",
+            "dok_nummer": 97,
+            "party": "S",
+            "speaker": "BOSSE RINGHOLM (s)",
+            "date": "2007-04-24",
+            "title": "Svar på interpellation 2006/07:447 om fördelningseffekter av slopad förmögenhetsskatt",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0997-23/html",
+            "paragraphs": [
+              "Att det är orättvist att avskaffa förmögenhetsskatten kan varenda skolungdom och varenda svensk räkna ut. Det fordras inte några större kunskaper i matematik, inte ens studier i nationalekonomi, för att se att det är orättvist att avskaffa förmögenhetsskatten.",
+              "Man hävdar att detta avskaffande av förmögenhetsskatten ska leda till många nya jobb och nya företag. Låt oss få se de kalkylerna. Låt oss höra ett svar från Anders Borg på hur många nya företag det handlar om.",
+              "Precis som Fredrik Olovsson sade förut är det ett par hundra personer som får 1 miljon eller ännu mer i slopad förmögenhetsskatt. De som slipper förmögenhetsskatten kanske finns ganska nära oss, i den moderata riksdagsgruppen. Hur många nya jobb och hur många nya företag kan Anders Borg skriva ut att det kommer att bli som ett resultat av detta?",
+              "Det som jag upprördes av och som jag tyckte var mycket märkligt är hur Anders Borg den ena dagen kan säga, precis som vi Socialdemokrater har sagt hela tiden: Tar man bort förmögenhetsskatten ökar orättvisorna i Sverige. De rika blir ännu rikare, och de fattiga får vara med och betala det på ett eller annat sätt i fortsättningen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "GT0948-76:0-3",
+            "anf_id": "GT0948-76",
+            "rm": "2005/06",
+            "dok_nummer": 48,
+            "party": "S",
+            "speaker": "Finansminister PÄR NUDER (s)",
+            "date": "2005-12-09",
+            "title": "Svar på interpellation 2005/06:136 om förmögenhetsskatten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0948-76/html",
+            "paragraphs": [
+              "Nej, jag har för närvarande inte för avsikt att lägga fram något förslag om att avskaffa förmögenhetsskatten. Skatten bidrar årligen med mellan 5 och 6 miljarder kronor till statskassan. Merparten av skatten betalas av höginkomsttagare. Motiven för förmögenhetsskatten är således statsfinansiella och fördelningspolitiska.",
+              "Jag har debatterat förmögenhetsskatten vid ett flertal tillfällen i riksdagen under hösten. Vad jag har sagt är att regeringen inte utesluter en diskussion om den framtida utformningen av förmögenhetsskatten. En sådan diskussion bör dock föras i ett större skattepolitiskt sammanhang där fördelningspolitiska och statsfinansiella överväganden kan beaktas på ett ansvarsfullt sätt.",
+              "Som bekant förbereder regeringen nu en samlad översyn av skattesystemet. Avsikten är att framöver bjuda in övriga partier till överläggningar om en bred skattereform. I det sammanhanget är jag beredd att diskutera eventuella förändringar i förmögenhetsbeskattningen."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 8,
+            "passage_id": "GV09107-24:0-3",
+            "anf_id": "GV09107-24",
+            "rm": "2007/08",
+            "dok_nummer": 107,
+            "party": "S",
+            "speaker": "MORGAN JOHANSSON (s)",
+            "date": "2008-05-08",
+            "title": "Avskaffandet av förmögenhetsskatten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09107-24/html",
+            "paragraphs": [
+              "Det är säkert en del som har upptäckt att rutan för förmögenhetsskatt har försvunnit från deklarationsblanketten. Det beror naturligtvis på att förmögenhetsskatten nu är avskaffad. Men det var nog inte så många som betalade förmögenhetsskatt från början. Framför allt riktade den sig mot de 10 procenten rikaste. Det ser man också när man tittar på effekterna, när man går igenom var vinnarna finns av den avskaffade förmögenhetsskatten.",
+              "Dagens Arbete gick igenom direktörerna i storföretagen. Då såg man att det är där vinnarna finns. De här direktörerna får nu dela på 70 miljoner kronor, rakt ned i fickan. Och den som tjänar allra mest är finansmannen Fredrik Lundberg. Han tjänar bara på avskaffad förmögenhetsskatt nästan 40 miljoner kronor, rakt ned i fickan som sagt. Det är ett formidabelt penningregn över de allra rikaste i Sverige. Samtidigt har vi stora nedskärningar i den offentliga servicen. Jag behöver bara gå till mitt eget landsting. Jag tror att sparbetinget i Region Skåne nu är uppe i över 800 miljoner kronor."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 5,
+            "passage_id": "GU0999-61:0-3",
+            "anf_id": "GU0999-61",
+            "rm": "2006/07",
+            "dok_nummer": 99,
+            "party": "S",
+            "speaker": "LARS JOHANSSON (s)",
+            "date": "2007-04-26",
+            "title": "Skatteamnesti vid avskaffandet av förmögenhetsskatten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0999-61/html",
+            "paragraphs": [
+              "Herr talman! De borgerliga partiledarna har i regeringen drivit igenom att förmögenhetsskatten ska avskaffas och staten därmed gå miste om 5 miljarder kronor. Man har varit väldigt tydlig med sina skäl till detta. Man ska på det här viset få förmögna människor med kapital utomlands att ta tillbaka kapitalet till Sverige.",
+              "Det kapitalet är ofta obeskattat. Det finns en regel som säger att under de kommande fem åren ska det obeskattade kapitalet som kommer tillbaka till Sverige beskattas. Det kan också om det har varit fråga om att man har försökt gömma pengar innebära att man får ett skattetillägg på 40 procent.",
+              "I andra länder som har avskaffat förmögenhetsskatten har det visat sig att för att få tillbaka pengarna, som man tror att man ska få när man avskaffar förmögenhetsskatten, inför man skatteamnesti."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 6,
+            "passage_id": "GV09100-22:4-7",
+            "anf_id": "GV09100-22",
+            "rm": "2007/08",
+            "dok_nummer": 100,
+            "party": "C",
+            "speaker": "Näringsminister MAUD OLOFSSON (c)",
+            "date": "2008-04-22",
+            "title": "Svar på interpellationerna 2007/08:498 och 508 om kreditgarantiföreningar",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV09100-22/html",
+            "paragraphs": [
+              "Förmögenhetsskatten säger många, inte minst Vänsterpartiet, är en skatt som bara de rika får betala. Men sanningen är att de som är rika flyttar ut pengarna någon annanstans, medan de som har små förmögenheter får betala förmögenhetsskatt här hemma.",
+              "Poängen med att avskaffa förmögenhetsskatten är att man ska ha pengarna här hemma i Sverige och investera dem i Sverige. Jag brukar säga att vi behöver fler rika fastrar och mostrar som kan låna ut pengar till grannar och släktingar, så att småföretagen också den vägen ska kunna få tillgång till kapital."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 1,
+            "passage_id": "GT0987-149:2-4",
+            "anf_id": "GT0987-149",
+            "rm": "2005/06",
+            "dok_nummer": 87,
+            "party": "C",
+            "speaker": "STAFFAN DANIELSSON (c)",
+            "date": "2006-03-15",
+            "title": "Motioner om företags- och kapitalbeskattning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0987-149/html",
+            "paragraphs": [
+              "Det här med konkurrenskraftiga och likvärdiga villkor gäller även skatteområdet. Det inser ibland även Socialdemokraterna, även om man inte brukar prata om det före ett val. Vem minns något vallöfte om att avskaffa arvs- och gåvoskatten? Ändå är den borttagen i dag. Det är bra. Den var negativ. Den finns kvar i många andra länder, men Sverige och bland annat Socialdemokraterna har agerat, och det är bra. Inför årets val finns inget vallöfte från Socialdemokraterna om att avskaffa den än mer skadliga förmögenhetsskatten. Den är borttagen i de allra flesta länder, men i Sverige finns den kvar med starkt negativa effekter. Socialdemokraterna kritiserar alliansens förslag om att avskaffa den lika hårt som man tidigare har kritiserat eventuella förslag om att avskaffa arvs- och gåvoskatten. Ändå togs arvs- och gåvoskatten bort.",
+              "Jag är beredd att liksom Lennart Hedquist i någon tidigare debatt här i kammaren slå vad om att även Socialdemokraterna inser realiteterna i denna fråga och medverkar till att förmögenhetsskatten tas bort efter nästa val. Men före valet gäller hård och skoningslös kritik mot det borgerliga förslaget, inget annat. Lika hård är kritiken av varje borgerlig antydan om målet att få folk i arbete och kunna sänka världens högsta skattetryck."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 3,
+            "passage_id": "GR0987-139:8-11",
+            "anf_id": "GR0987-139",
+            "rm": "2003/04",
+            "dok_nummer": 87,
+            "party": "C",
+            "speaker": "ROGER TIEFENSEE (c)",
+            "date": "2004-03-24",
+            "title": "(forts. från 14 §) Allmänna motioner om fastighets- och förmögenhetsbeskattning (forts. SkU22)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR0987-139/html",
+            "paragraphs": [
+              "Man kan betrakta förmögenhetsskatten som mer eller mindre frivillig; det finns väldigt många möjligheter att undgå den. I sitt försök att minska skatteplaneringsmöjligheterna har Egendomsskattekommittén föreslagit att O-listenoterade aktier också ska förmögenhetsbeskattas. Jag vill understryka att det är ett dumt förslag. Det innebär att det kommer att bli svårare att skaffa fram riskvilligt kapital till små och växande företag. Kvar på O-listan kommer att vara de placerare, småföretag, som behöver riskvilligt kapital. De som finns på O-listan för att skatteplanera kommer att försvinna därifrån.",
+              "Redan innan betänkandet har lagts fram ser vi att kapital börjar flyttas och placeras. Det är ett ökat intresse för att placera i bostadsrätter. Det finns risk för att vi skapar en bubbla på bostadsmarknaden.",
+              "Då tycker jag, fru talman, att det är mycket tydligt att förmögenhetsskatten måste avskaffas. Det första viktiga steget är att se det här problemet, med en kombination av fastighetsskatt och förmögenhetsskatt, och helt enkelt ta bort egnahem som underlag för förmögenhetsbeskattning och också helt och hållet avskaffa sambeskattningen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 10,
+            "passage_id": "GV0944-128:0-2",
+            "anf_id": "GV0944-128",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "C",
+            "speaker": "JÖRGEN JOHANSSON (c) replik",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GV0944-128/html",
+            "paragraphs": [
+              "Herr talman! Det är mer principen jag är ute efter. Tittar vi på Socialdemokraterna i Finland så ser vi att man avskaffar förmögenhetsskatten, och nu diskuteras arvs- och gåvoskatten. Det gäller diskussionen om hur man ser på olika skatters betydelse - frånvarande eller närvarande - och det är den jag mer vill belysa. Socialdemokraterna måste ändå se att slopandet av förmögenhetsskatten är ett steg mot att också få riskvilligt kapital till vårt land."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 8,
+            "passage_id": "GV0944-131:12-13",
+            "anf_id": "GV0944-131",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "L",
+            "speaker": "GUNNAR ANDRÉN (fp)",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0944-131/html",
+            "paragraphs": [
+              "Herr talman! Jag har ofta diskuterat ifall förmögenhetsskatten alltid varit en dålig skatt. Jag tycker inte det. Jag håller med Adam Smith, som levde på 1700-talet, om att förmögenhetsskatten en gång i tiden var en god skatt. Den var tidigare en bra liberal skatt. I princip har jag inget emot den, för den har nämligen den karaktären - om alla skulle betala den - att det skulle vara skatt efter bärkraft. Men genom tiderna har vi totalt urholkat basen för den, och den har kommit att framstå som en icke-rättvis skatt. Den har blivit, som Mats Sjöstrand sade 2003, en i princip helt frivillig skatt. Därför är det bra att den avskaffas, vilket många andra länder också gjort."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 7,
+            "passage_id": "GT0913-162:6-10",
+            "anf_id": "GT0913-162",
+            "rm": "2005/06",
+            "dok_nummer": 13,
+            "party": "L",
+            "speaker": "MARTIN ANDREASSON (fp)",
+            "date": "2005-10-12",
+            "title": "Näringsliv",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0913-162/html",
+            "paragraphs": [
+              "Men det måste också vara enklare att starta företag. Regelbördan måste skäras ned. Det handlar om att få tag på kapital. Ett avskaffande av förmögenhetsskatten är en av de viktigaste sakerna just för att få fram det kapital som behövs för att starta nya företag.",
+              "Det här har Socialdemokraterna förstått, inte i Sverige men i Finland. Den avgående finansministern, socialdemokraten Antti Kalliomäki, lade fram, några dagar före Pär Nuders presentation av sin budget, Socialdemokraternas och den finska regeringens budget, där man nu tar det sista steget och avskaffar förmögenhetsskatten i Finland helt och hållet för att förbättra möjligheten till investeringar och företagande.",
+              "Skatteverkets beräkningar säger att ungefär 500 miljarder av svenskarnas tillgångar är placerade utomlands. Förmögenhetsbeskattningen är en viktig orsak till detta. Tänk om ett avskaffande av förmögenhetsskatten skulle leda till att bara en tiondel kommer tillbaka. Tänk vilka företag som skulle kunna växa fram."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 6,
+            "passage_id": "GW0913-379:0-2",
+            "anf_id": "GW0913-379",
+            "rm": "2008/09",
+            "dok_nummer": 13,
+            "party": "L",
+            "speaker": "GUNNAR ANDRÉN (fp) replik",
+            "date": "2008-10-15",
+            "title": "Skatter",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GW0913-379/html",
+            "paragraphs": [
+              "Fru talman! Jag tackar för möjligheten att få utveckla också varför det är bra att vi har avskaffat förmögenhetsskatten. Inte heller det handlar i första hand om statsfinansiella skäl, för den ger ganska lite. Däremot är det väldigt viktigt att företagare av olika slag och stora kapitalägare inte längre har något argument för att flytta sina förmögenheter till andra länder, till lågskatteländer.",
+              "Fru talman! Jag har åtminstone sett ett exempel på att en kapitalstark, måste jag säga, företagare, nu bosatt i London, har startat ett litet företag i Helsingborg som har gett ett antal nya jobb. Jag tycker att bara det lilla exemplet är intressant. Det spelar roll hur man ser på skatterna och förmögenhetsskatten.",
+              "Jag tror inte att det kommer att gå fort, men vi kommer att se en utveckling där fler behåller sitt kapital i Sverige, och det tycker jag är bra."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 10,
+            "passage_id": "GS0935-112:0-4",
+            "anf_id": "GS0935-112",
+            "rm": "2004/05",
+            "dok_nummer": 35,
+            "party": "L",
+            "speaker": "GUNNAR ANDRÉN (fp)",
+            "date": "2004-11-23",
+            "title": "Svar på interpellation 2004/05:135 om förmögenhetsskatten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS0935-112/html",
+            "paragraphs": [
+              "Skatt efter bärkraft är inte bara en liberal princip. Det är säkert också en socialdemokratisk princip. Det är det som är det stora problemet i det här sammanhanget, enligt mitt förmenande. Folkpartiet har som goda liberaler inte alltid varit emot förmögenhetsskatten. Vi har tvärtom stått upp för den under långa tider, precis som Socialdemokraterna gjort.",
+              "Men när det blir på det sätt som statsrådet vältaligt beskriver här, att man måste göra en sådan fruktansvärd massa undantag att det i stor utsträckning är ett mycket litet antal människor som bär nästan hela denna börda, har inte den här skatten, som Ulf Sjösten beskrev, längre någon legitimitet. Det är numera i väldigt stor utsträckning ett antal husägare - jag skulle tippa att det kommer att vara 40 % av de 3,8 procenten, och det är inte aktieägare - som betalar detta.",
+              "Nu är inte det mitt huvudargument, utan mitt huvudargument är fortfarande att skatten är skadlig för Sverige därför att den flyttar företag och arbetsplatser ur Sverige. Jag skulle gärna vilja höra en diskussion från finansministerns sida om det argumentet."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "GV0944-140:0-4",
+            "anf_id": "GV0944-140",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "KD",
+            "speaker": "LENNART SACRÉDEUS (kd)",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0944-140/html",
+            "paragraphs": [
+              "Herr talman! Efter 97 år avskaffas förmögenhetskatten i vårt land. Nu gör Sverige det vi borde ha gjort för länge sedan och vad det ena konkurrentlandet efter det andra har gjort i Europa och inom den europeiska unionen.",
+              "När förmögenhetsskatten har avskaffats i det ena EU-landet efter det andra är det under socialdemokratiska, liberala, konservativa och kristdemokratiska regeringar. I vårt östra grannland Finland medverkade Socialdemokraterna till en reform där förmögenhetsskatten avskaffades. Mer dramatiskt än så har det inte varit i den europeiska socialdemokratin.",
+              "Herr talman! Ett väsentligt motiv att avskaffa förmögenhetsskatten är att värna det svenska ägandet. Attackerna mot svenska bolag från utlandet har mycket av sin förklaring i hur förmögenhetsskatten snedvrider skatteförhållandet mellan svenska och utländska ägare.",
+              "Ska vi i längden kunna försvara att svenska bolag ägs och kontrolleras från vårt eget land måste vi snarast ta bort de skatter som snedvrider och stör ägandet. Vem som äger svenska bolag har en stark koppling till sysselsättningen eftersom huvudägarens hemvist i allt väsentligt också bestämmer var huvudkontoret ska placeras.",
+              "Runt varje huvudkontor skapas mängder med arbetstillfällen både på kontoret och i verksamheter som riktar sig mot de anställda där. Därför är det även ur denna aspekt viktigt att vi tar bort förmögenhetsskatten så att utflyttningen av svenska företag inte drivs av en snedvridande beskattning."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 3,
+            "passage_id": "GV0921-23:3-5",
+            "anf_id": "GV0921-23",
+            "rm": "2007/08",
+            "dok_nummer": 21,
+            "party": "KD",
+            "speaker": "Socialminister GÖRAN HÄGGLUND (kd)",
+            "date": "2007-11-02",
+            "title": "Svar på interpellation 2007/08:52 om förmögenhet och bidrag",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0921-23/html",
+            "paragraphs": [
+              "Lars Johansson understryker igen - som om det behövdes - att Socialdemokraterna inte anser att förmögenhetsskatten ska avskaffas. Det är naturligtvis en legitim synpunkt, men den blir alltmer udda i en internationaliserad värld där mycket få länder numera har förmögenhetsskatten kvar. Dessutom visar undersökningar att förmögenhetsskatten i Sverige leder till att många hundra miljarder kronor förs ut från vårt land och placeras i andra sammanhang, vilket sannolikt innebär att man undandrar sig beskattning inte bara på själva förmögenheten utan också på avkastningen av förmögenheten. I stället för att pengarna arbetar i Sverige försvinner de till andra länder. Det tycker jag givetvis är olyckligt.",
+              "Lars Johanssons tidigare partiledare Göran Persson sade i något sammanhang att förmögenhetsskatten har ett drag av frivillighet över sig. Det är naturligtvis sant. I en internationaliserad ekonomi såg han problemet med att Sverige som ett av få länder skulle bibehålla förmögenhetsskatten. Det skulle innebära att pengar försvann från Sverige till andra länder, pengar som borde finnas och arbeta i vårt eget land.",
+              "Sedan redovisar Lars Johansson fördelningseffekter av förmögenhetsskattens avskaffande. Men själva poängen med avskaffandet är att vi kommer bort från det statiska tänkande som tidigare präglat politiken. I och med att det finns mer pengar i vårt eget land ökar också möjligheterna för investeringar, vilket ger människor arbete och gör att fler betalar skatt. Vi får mer pengar till att utveckla den svenska välfärden. Det är grunden för regeringens ställningstagande. Förmögenhetsskatten bör avskaffas eftersom den har karaktären av att begränsa tillkomsten av nya jobb i vårt land, nya jobb som är en nödvändighet för framtidens välfärd."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "GU09126-56:0-3",
+            "anf_id": "GU09126-56",
+            "rm": "2006/07",
+            "dok_nummer": 126,
+            "party": "KD",
+            "speaker": "Socialminister GÖRAN HÄGGLUND (kd)",
+            "date": "2007-06-14",
+            "title": "Skatteamnesti i samband med avskaffandet av förmögenhetsskatten",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU09126-56/html",
+            "paragraphs": [
+              "Herr talman! Jag tror att man ska vara väldigt försiktig med att uttala sig på det sätt som Lars Johansson gör när han beskriver vilka som är vinnare på förmögenhetsskattens avskaffande. Jag tror nämligen att de som verkligen vinner på avskaffandet av förmögenhetsskatten är de människor som i dag saknar arbete eller anställningstrygghet i Sverige.",
+              "Genom förmögenhetsskattens avskaffande kommer vi att få mer kapital som stannar kvar i vårt land och pengar som flödar in i vårt land. Det tror jag spelar väldigt stor roll för kapitalbildningen, för tillgången på riskvilligt kapital och i sin tur naturligtvis för tillgången på arbetstillfällen i Sverige.",
+              "Jag brukar säga att förmögenhetsskattens avskaffande framför allt spelar roll för de oförmögna, för dem som saknar arbete. Det tror jag är betydelsefullt.",
+              "När vi ser oss om i världen ser vi att vi är ett av få länder som har förmögenhetsskatten kvar. Den bör bort också i vårt land."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 1,
+            "passage_id": "GU0974-181:11-13",
+            "anf_id": "GU0974-181",
+            "rm": "2006/07",
+            "dok_nummer": 74,
+            "party": "KD",
+            "speaker": "LENNART SACRÉDEUS (kd)",
+            "date": "2007-03-14",
+            "title": "Allmänna motioner om företagsbeskattning m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0974-181/html",
+            "paragraphs": [
+              "Fru talman! Låt mig gå över till förmögenhetsskatten. Man kan se på reservationerna från Socialdemokraterna, Vänsterpartiet och Miljöpartiet. Gång efter annan betonas att ett avskaffande av förmögenhetsskatten är fördelningsmässigt olämpligt och orättvist.",
+              "Socialdemokraterna menar i sin reservation att förmögenhetsskatten fyller en viktig fördelningspolitisk funktion. Men frågan är samtidigt om den är ekonomiskt effektiv och om den leder till lösningar av andra bekymmer som finns på den svenska företagsmarknaden. Socialdemokraterna väljer också att skriva i sin reservation: Att avskaffa förmögenhetsskatten skulle leda till ökade klyftor i samhället och förstärka den snedvridning mellan olika grupper som den nuvarande regeringen redan har åstadkommit med bland annat införandet av ett jobbskatteavdrag.",
+              "Det är lite synd att ni är emot att vi sänker skatten för människor som har arbete, men det är inte det som debatten gäller nu. Ni säger att ett avskaffande av förmögenhetsskatten skulle förstärka en snedvridning mellan olika grupper. Men i dag har vi ett system där Stefan Persson - inget ont om honom och hans familj och allt vad de har byggt upp av jobb och företagande i Sverige inom Hennes & Mauritz eller H&M - är skattebefriad vad gäller förmögenhetsskatten. Onoterade aktier är skattebefriade vad gäller förmögenhetsskatten. Och ett tag ville ett antal bolag föra över även större bolag till Stockholmsbörsens O-lista för att vara förmögenhetsskattebefriade."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GX0931-33:0-1",
+            "anf_id": "GX0931-33",
+            "rm": "2009/10",
+            "dok_nummer": 31,
+            "party": "M",
+            "speaker": "Finansminister ANDERS BORG (m)",
+            "date": "2009-11-17",
+            "title": "Svar på interpellationerna 2009/10:14 och 37 om effekter av avskaffad förmögenhetsskatt",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX0931-33/html",
+            "paragraphs": [
+              "Förmögenhetsskatten var en dåligt fungerande skatt. Några av Sveriges mest förmögna personer var helt eller delvis skattebefriade medan vanliga husägare betalade förmögenhetsskatt på grund av snabbt stigande taxeringsvärden. Förmögenhetsskatten uppfattades därför som både godtycklig och orättvis. Dess brister har lyfts fram av bland annat Skattebasutredningen, Skatteverket och Finanspolitiska rådet. Det fanns därför goda skäl för att avskaffa förmögenhetsskatten."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "GV0944-117:0-1",
+            "anf_id": "GV0944-117",
+            "rm": "2007/08",
+            "dok_nummer": 44,
+            "party": "M",
+            "speaker": "ULF BERG (m)",
+            "date": "2007-12-14",
+            "title": "Slopad förmögenhetsskatt och begränsad avdragsrätt för privat pensionssparande",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GV0944-117/html",
+            "paragraphs": [
+              "Fru talman! Äntligen! Nu avskaffar vi förmögenhetsskatten. Staten ska inte ha godtyckliga skatter, och därför ska förmögenhetsskatten avskaffas. Jag tror att de allra flesta kan skriva under på att det är viktigt att företagare och entreprenörer vågar föra tillbaka sitt sparande och sina investeringar till Sverige, så att vi inte längre går miste om de 500 miljarder kronor som Skatteverket uppskattat hålls utanför Sverige. Risken är stor att det är minst det dubbla som hamnat utanför Sveriges gränser. Naturligtvis är det bättre för jobben och välfärden i Sverige om kapitalet investeras här. Det handlar om att slå vakt om jobben och välfärden. Det var mandatet vi i alliansen fick av väljarna.",
+              "Vad gäller Vänsterpartiets och Socialdemokraternas argument om att det fördelningspolitiskt är orättvist att slopa förmögenhetsskatten är det alldeles uppenbart att varken s eller v har förstått hur pass skadlig förmögenhetsskatten har varit. Men jag ska villigt erkänna att det kanske bara är ett spel för galleriet. Det låter naturligtvis bra att säga att förmögna ska betala skatt. Det låter onekligen klokt om man stannar där. Men den ekonomiska forskningen visar helt klart att denna skatt är skadlig. Varför avskaffar de flesta länderna i EU denna skatt? Bara Frankrike och Spanien har den kvar."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 10,
+            "passage_id": "GR0931-40:7-9",
+            "anf_id": "GR0931-40",
+            "rm": "2003/04",
+            "dok_nummer": 31,
+            "party": "M",
+            "speaker": "LENNART HEDQUIST (m)",
+            "date": "2003-11-19",
+            "title": "Utgiftsramar och beräkning av statsinkomsterna, m.m.",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR0931-40/html",
+            "paragraphs": [
+              "När takten i skattesänkningen ska bestämmas måste i hög grad sådana skatter prioriteras som direkt skadar vår tillväxt. Dit hör, fru talman, inte minst förmögenhetsskatten. Mats Odell har redan berört just detta i debatten. I en tid när andra länder avskaffar förmögenhetsskatten har vi i Sverige kvar den, och på en hög nivå, med resultatet att denna skatt driver kapital ut ur landet - ca 500 miljarder enligt beräkningar, pengar som därför i sin tur inte genererar några kapitalskatter inom landet.",
+              "Förmögenhetsskatten leder också till en mängd direkt orationella transaktioner som människor gör för att undvika skatten, samtidigt som förmögenhetsskatten för vanligt folk är en extra och orättfärdig fastighetsskatt.",
+              "Avskaffandet av förmögenhetsskatten kan förvisso inte sägas ha kortsiktiga gynnsamma fördelningseffekter. Men ett avskaffande skulle relativt snabbt få långsiktiga och uthålliga gynnsamma samhällsekonomiska effekter och en tillväxt som därmed kommer alla till del."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 7,
+            "passage_id": "GT09120-124:9-12",
+            "anf_id": "GT09120-124",
+            "rm": "2005/06",
+            "dok_nummer": 120,
+            "party": "M",
+            "speaker": "ULF SJÖSTEN (m)",
+            "date": "2006-05-10",
+            "title": "Motioner om fastighets- och förmögenhetsbeskattning",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT09120-124/html",
+            "paragraphs": [
+              "Fru talman! Förmögenhetsskatten driver kapital ur landet och missgynnar kapitalbildning, riskvillighet, investeringar och nyföretagande. Kan det finnas något som helst positivt i det scenariot, fru talman?",
+              "Som tidigare har sagts har alltfler inom EU övergett förmögenhetsskatten. Bland OECD:s 30 medlemmar finns i dag skatten kvar i sju åtta länder. Under 90-talet avskaffades skatten i Danmark, Tyskland, Nederländerna och Österrike. Finland, vårt östra grannland, har fattat beslut om att skatten ska bort med motiveringen att den är dålig för tillväxten och förhindrar nyföretagande och nya jobb. Så sant, fru talman!",
+              "Förmögenhetsskatten tas ut oavsett om förmögenheten genererar löpande inkomster eller ej. Detta strider mot en grundläggande princip för svensk beskattning, nämligen att man inte ska beskatta något förrän skattebasen har gett pengar att betala skatten med."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "H809142-34:0-3",
+            "anf_id": "H809142-34",
+            "rm": "2020/21",
+            "dok_nummer": 142,
+            "party": "SD",
+            "speaker": "Oscar Sjöstedt (SD)",
+            "date": "2021-06-16",
+            "title": "Riktlinjer för den ekonomiska politiken och Vårändringsbudget för 2021 samt extra ändringsbudget - förstärkt nedsättning av arbetsgivaravgifterna för 19-23-åringar under juni-augusti 2021",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H809142-34/html",
+            "paragraphs": [
+              "Vi har haft förmögenhetsskatt i det här landet. Det fanns en anledning till att den avskaffades. Andra länder som har haft motsvarande har också avskaffat det, just därför att kapital, investeringar, företagande och jobb tenderar att försvinna någon annanstans."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "GY094-68:0-5",
+            "anf_id": "GY094-68",
+            "rm": "2010/11",
+            "dok_nummer": 4,
+            "party": "SD",
+            "speaker": "JOHNNY SKALIN (SD) replik",
+            "date": "2010-10-12",
+            "title": "Debatt med anledning av budgetpropositionen",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GY094-68/html",
+            "paragraphs": [
+              "Fru talman! Ulla Andersson säger att vi vill slopa skatterna på de förmögna. Det handlar alltså om förmögenhetsskatten. Det är något som vi har majoritet för här i riksdagens kammare, och det är jag ganska glad för.",
+              "Vi kan inte ha ett system som på ett avgörande sätt skiljer sig från dem i vår omvärld. Sverige är inte någon isolerad ekonomisk ö.",
+              "Förmögenhetsskatten kan man också se som frivillig. Tittar man på hur det var under den gamla regeringen införde ni lättnader och totala undantag för elva miljardärer, tror jag det var. Ni är inte heller särskilt konsekventa i den frågan i så fall."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          }
+        ]
+      }
+    ]
+  }
+}

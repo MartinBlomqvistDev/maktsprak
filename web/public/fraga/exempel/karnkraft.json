@@ -1,0 +1,968 @@
+{
+  "id": "karnkraft",
+  "question": "Vad har sagts om att avveckla kärnkraften?",
+  "search": {
+    "type": "search",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1372,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "hits": [
+      {
+        "rank": 1,
+        "passage_id": "H10939-52:0-2",
+        "anf_id": "H10939-52",
+        "rm": "2013/14",
+        "dok_nummer": 39,
+        "party": "M",
+        "speaker": "JOHAN JOHANSSON (M) replik",
+        "date": "2013-12-04",
+        "title": "Energi",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H10939-52/html",
+        "paragraphs": [
+          "Herr talman! Nu blev det märkligt. Det hänvisades till oppositionens energiöverenskommelse ännu en gång och att man ska komma överens.",
+          "Två partier säger att de ska avveckla kärnkraften. Ett partis partiledare har till och med sagt att man inte kommer att sätta sig i en regering som är för kärnkraften.",
+          "Carina Adolfsson Elgestam säger nu tydligt att Socialdemokraterna ger vika för Vänsterpartiets och Miljöpartiets krav. Kärnkraften kommer att avvecklas, kanske redan med start under kommande mandatperiod."
+        ]
+      },
+      {
+        "rank": 2,
+        "passage_id": "GT0946-159:14-16",
+        "anf_id": "GT0946-159",
+        "rm": "2005/06",
+        "dok_nummer": 46,
+        "party": "MP",
+        "speaker": "INGEGERD SAARINEN (mp)",
+        "date": "2005-12-07",
+        "title": "Energi samt Leveranssäkra elnät",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0946-159/html",
+        "paragraphs": [
+          "Även kärnkraften bör avvecklas. Den är farlig och inte förnybar. Den hör inte hemma i ett modernt och ekologiskt samhälle. Genom en effektivare energianvändning och ett ökat nyttjande av vindkraft och biokraftvärme kan kärnkraften avvecklas samtidigt som nettoutsläppen av koldioxid minskas. Kärnkraften både bör och kan avvecklas i en snabbare takt än vad som sker i dag.",
+          "En avveckling motiveras av att kärnkraften inte är en ekologiskt hållbar energikälla samtidigt som den har stora risker. Med kärnkraft finns risken för en stor utsläppsolycka med extremt allvarliga konsekvenser. Det produceras också avfall som är farligt i hundratusentals år. Ett starkt beroende av kärnkraften är också ett hot mot försörjningstryggheten. Kärnkraft är också ett hot mot internationell säkerhet genom att den är nära förknippad med kärnvapen.",
+          "Effekthöjningar medför ett ökat beroende av kärnkraft. De innebär till viss del även ökade utsläpp vid en eventuell olycka och att mer avfall produceras. Miljödomstolen fann att det förelåg hinder enligt miljöbalken att bifalla en ansökan om effekthöjning från Ringhals. Regeringen har tyvärr nyligen beslutat att verksamheten är tillåtlig enligt miljöbalken. Det är ett tydligt politiskt ställningstagande. Min uppfattning är att eftersom frågan om avfallets förvaring inte är löst bör det heller inte produceras avfall."
+        ]
+      },
+      {
+        "rank": 3,
+        "passage_id": "GY0951-24:7-9",
+        "anf_id": "GY0951-24",
+        "rm": "2010/11",
+        "dok_nummer": 51,
+        "party": "M",
+        "speaker": "CECILIE TENFJORD-TOFTBY (M)",
+        "date": "2011-02-01",
+        "title": "Svar på interpellation 2010/11:125 om rekordhöga elpriser",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0951-24/html",
+        "paragraphs": [
+          "Hade man avvecklat kärnkraften och varit utan i dag, vad hade hänt då? Det hade inte bara blivit högre elpriser, vi hade levt i ett Sverige med elbrist. Det hade blivit ett mörkt och kallt Sverige där pensionärerna inte bara hade fått betala höga elräkningar utan de kanske inte ens hade haft tillräckligt med el under vissa tider på dygnet.",
+          "Jag tror nog att oppositionen kanske har insett att deras energipolitik inte räckte till. I de senaste skrivningarna från oppositionen som jag har sett på energisidan säger de just som min företrädare från Socialdemokraterna gjorde: Vi vill inte alls avveckla kärnkraften omedelbart, vi vill avveckla den när samhället så tillåter.",
+          "Hade samhället tillåtit att man hade avvecklat kärnkraften i dag? Nej, det hade det inte. Därför är det rätt och riktigt att vi bibehåller kärnkraften samtidigt som vi gör rejäla, kraftiga satsningar på förnybart, på vattenkraft och på energieffektivisering."
+        ]
+      },
+      {
+        "rank": 4,
+        "passage_id": "H70952-151:0-2",
+        "anf_id": "H70952-151",
+        "rm": "2019/20",
+        "dok_nummer": 52,
+        "party": "MP",
+        "speaker": "Lorentz Tovatt (MP)",
+        "date": "2019-12-16",
+        "title": "Allmän miljö- och naturvård",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H70952-151/html",
+        "paragraphs": [
+          "Fru talman! Jag tackar för frågan från Louise Meijer.",
+          "En sak ska göras tydlig från första början: Det är inte jag som avvecklar kärnkraften. Det är inte mitt parti. Det är inte Lorentz Tovatt eller någon annan i mitt parti som fattar beslut om att avveckla kärnkraften. Vi har tvärtom skrivit under en överenskommelse där vi säger att man inte ska avveckla kärnkraften med politiska beslut.",
+          "Det som avvecklar kärnkraften nu är marknaden. Kärnkraften blir helt enkelt mindre och mindre lönsam för varje dag som går. Det är bara att titta på kostnaden för ny förnybar el och jämföra den med kostnaden för ny kärnkraft. Även om man jämför med befintlig kärnkraft kan man konstatera en sak: Kärnkraften blir dyrare för varje dag som går. Vind och sol blir billigare för varje dag som går."
+        ]
+      },
+      {
+        "rank": 5,
+        "passage_id": "GZ0940-33:0-2",
+        "anf_id": "GZ0940-33",
+        "rm": "2011/12",
+        "dok_nummer": 40,
+        "party": "C",
+        "speaker": "INGER FREDRIKSSON (C)",
+        "date": "2011-12-01",
+        "title": "Svar på interpellation 2011/12:87 om stresstester av de svenska kärnkraftverken",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GZ0940-33/html",
+        "paragraphs": [
+          "Fru talman! Kärnkraften ska vara säker. Det får inte råda någon som helst tvekan om det. Det får inte heller råda någon tvekan om att Centerpartiet vill avveckla kärnkraften. Men vi gör det genom att utveckla alternativen och se till att den kärnkraft som finns kvar är säker.",
+          "Kärnkraften ska också bära sina egna kostnader. Det är oerhört viktigt.",
+          "Det är så vi vill avveckla kärnkraften, och vi stöder energi- och klimatöverenskommelsen."
+        ]
+      },
+      {
+        "rank": 6,
+        "passage_id": "GX0959-74:0-1",
+        "anf_id": "GX0959-74",
+        "rm": "2009/10",
+        "dok_nummer": 59,
+        "party": "V",
+        "speaker": "LARS OHLY (v) replik",
+        "date": "2010-01-20",
+        "title": "Partiledardebatt",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GX0959-74/html",
+        "paragraphs": [
+          "Herr talman! Jag har svårt att se det som ett problem att kärnkraften måste avvecklas. Jag tror tvärtom att det är helt nödvändigt, inte minst ur ett miljöperspektiv, att vi gör oss av med de gamla icke förnybara energikällorna. Kärnkraften hör dit. Kärnkraften medför stora ingrepp i naturen och sår i jordskorpan som inte kan återställas. Den är farlig vid framställning, och den producerar dessutom ett radioaktivt avfall som vi fortfarande inte har en bra förvaring för. Det är en dålig energikälla i längden.",
+          "Om vi ökar takten för att kunna ersätta kärnkraften med andra, förnybara energikällor har jag svårt att se det som ett problem. Men Jan Björklund har rätt; vi måste öka takten. Vi måste se till att de nya energikällorna växer till i mycket större omfattning än hittills. Vi ska inte äventyra energiförsörjningen vare sig för svenska företag eller hushåll."
+        ]
+      },
+      {
+        "rank": 7,
+        "passage_id": "HA09128-114:3-6",
+        "anf_id": "HA09128-114",
+        "rm": "2022/23",
+        "dok_nummer": 128,
+        "party": "M",
+        "speaker": "Mats Green (M)",
+        "date": "2023-06-20",
+        "title": "Vårändringsbudget för 2023",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/HA09128-114/html",
+        "paragraphs": [
+          "Det är också intressant att konstatera att när det gäller havsbaserad vindkraft har regeringen sagt ja till dubbelt så många havsbaserade vindkraftsparker under åtta månader som den tidigare S-MP-regeringen sa ja till under åtta år. Det säger ganska mycket. Det är dessutom fakta.",
+          "Det ställdes en fråga om jag har några synpunkter på att man vidtar ytterligare säkerhetsåtgärder när olika olyckor sker inom olika kraftslag och i det här fallet kärnkraften. Självklart inte. Man ska alltid se till att inte något sparas för att ha så hög säkerhet som möjligt.",
+          "Det är intressant när miljöpartisterna tycker att vi är osjysta som anklagar Socialdemokraterna för att ha avvecklat kärnkraften. Jag noterar att alla som tidigare gått och skanderat på gator och torg att kärnkraften ska bort, och dessutom sagt att de har tagit bort kärnkraften, nu säger: Det har vi aldrig sagt. De vill inte plåga oss med någon form av faktakunskap här.",
+          "Vi kan också konstatera att Magdalena Andersson lovade att avveckla kärnkraften 2013. Det var kanske det enda löfte hon höll."
+        ]
+      },
+      {
+        "rank": 8,
+        "passage_id": "GY0910-270:0-1",
+        "anf_id": "GY0910-270",
+        "rm": "2010/11",
+        "dok_nummer": 10,
+        "party": "S",
+        "speaker": "LARS JOHANSSON (S) replik",
+        "date": "2010-11-04",
+        "title": "Energipolitik",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GY0910-270/html",
+        "paragraphs": [
+          "Fru talman! Ja, men om vi ska göra en riktig historiebeskrivning fattade vi beslut i den blocköverskridande överenskommelsen som fanns om att göra en teknisk upprustning av de tio kvarvarande kärnkraftverken, vilket ger minst lika mycket elproduktion som de två reaktorerna som stängdes i Barsebäck. Historiebeskrivningen är alltså inte korrekt, för det här tog vi ansvar för.",
+          "Vad vi har sagt sedan är att vi successivt ska avveckla kärnkraften i takt med att vi får annan energiförsörjning."
+        ]
+      },
+      {
+        "rank": 9,
+        "passage_id": "GS0947-233:0-1",
+        "anf_id": "GS0947-233",
+        "rm": "2004/05",
+        "dok_nummer": 47,
+        "party": "S",
+        "speaker": "Samhällsbyggnadsminister MONA SAHLIN (s) replik",
+        "date": "2004-12-09",
+        "title": "Energi",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GS0947-233/html",
+        "paragraphs": [
+          "Herr talman! Det var ju intressant att Eva Flyborg nu i alla fall sade att kärnkraften i dess nuvarande form inte är långsiktig, inte är hållbar och alltså måste avvecklas förr eller senare. Ju förr man börjar, desto mindre får man den där döda handen över all utveckling som Eva Flyborg beskrev det som. I takt med att vi avvecklar blir det också en möjlighet, med hjälp av de energipolitiska stöd som bland andra ni vill dra ned på, för andra delar av vår industri att växa, blomstra och kunna vara en aktiv del när världens länder nu står inför den omställning som vi har kommit väldigt långt med redan.",
+          "Framtiden ligger inte i kärnkraften. Framtiden ligger i det förnybara, och det är inte kärnkraft. Det är sol, det är vind, det är vatten, det är bioenergi och det som framtiden kan ge oss i form av till exempel bränsleceller. Med den moderna inriktningen vill Centern, Socialdemokraterna och Vänsterpartiet avveckla kärnkraften i lugn takt, och det kommer vi att fortsätta göra."
+        ]
+      },
+      {
+        "rank": 10,
+        "passage_id": "GS0915-226:0-2",
+        "anf_id": "GS0915-226",
+        "rm": "2004/05",
+        "dok_nummer": 15,
+        "party": "S",
+        "speaker": "CHRISTIN HAGBERG (s) replik",
+        "date": "2004-10-15",
+        "title": "Miljö- och jordbruksfrågor",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GS0915-226/html",
+        "paragraphs": [
+          "Herr talman! Om avvecklingen av kärnkraften i Sverige tror jag att det råder en ganska bred enighet, sett på sikt, för det här är ju ingenting som kommer att göras i ett kortare perspektiv.",
+          "Vi måste ha en planerad avveckling av en energikälla som inte tillfredsställer kraven i vare sig miljöhänseende eller andra hänseenden - säkerhet och så vidare - sett på lång sikt.",
+          "Jag ställer mig helt och hållet bakom stängningen av Barsebäck 2 och menar att vi kommer att lösa det här. När det gäller alternativa bränslen är vi på god väg. Därmed minskar vi också koldioxidutsläppen."
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "type": "answer",
+    "selector": "claude",
+    "model": "claude-opus-5-5",
+    "fallback": null,
+    "answerable": true,
+    "quotes": [
+      {
+        "rank": 2,
+        "passage_id": "GT0946-159:14-16",
+        "anf_id": "GT0946-159",
+        "rm": "2005/06",
+        "dok_nummer": 46,
+        "party": "MP",
+        "speaker": "INGEGERD SAARINEN (mp)",
+        "date": "2005-12-07",
+        "title": "Energi samt Leveranssäkra elnät",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GT0946-159/html",
+        "paragraphs": [
+          "Även kärnkraften bör avvecklas. Den är farlig och inte förnybar. Den hör inte hemma i ett modernt och ekologiskt samhälle. Genom en effektivare energianvändning och ett ökat nyttjande av vindkraft och biokraftvärme kan kärnkraften avvecklas samtidigt som nettoutsläppen av koldioxid minskas. Kärnkraften både bör och kan avvecklas i en snabbare takt än vad som sker i dag.",
+          "En avveckling motiveras av att kärnkraften inte är en ekologiskt hållbar energikälla samtidigt som den har stora risker. Med kärnkraft finns risken för en stor utsläppsolycka med extremt allvarliga konsekvenser. Det produceras också avfall som är farligt i hundratusentals år. Ett starkt beroende av kärnkraften är också ett hot mot försörjningstryggheten. Kärnkraft är också ett hot mot internationell säkerhet genom att den är nära förknippad med kärnvapen."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      },
+      {
+        "rank": 3,
+        "passage_id": "GY0951-24:7-9",
+        "anf_id": "GY0951-24",
+        "rm": "2010/11",
+        "dok_nummer": 51,
+        "party": "M",
+        "speaker": "CECILIE TENFJORD-TOFTBY (M)",
+        "date": "2011-02-01",
+        "title": "Svar på interpellation 2010/11:125 om rekordhöga elpriser",
+        "is_reply": false,
+        "url": "https://data.riksdagen.se/anforande/GY0951-24/html",
+        "paragraphs": [
+          "Hade man avvecklat kärnkraften och varit utan i dag, vad hade hänt då? Det hade inte bara blivit högre elpriser, vi hade levt i ett Sverige med elbrist. Det hade blivit ett mörkt och kallt Sverige där pensionärerna inte bara hade fått betala höga elräkningar utan de kanske inte ens hade haft tillräckligt med el under vissa tider på dygnet.",
+          "Jag tror nog att oppositionen kanske har insett att deras energipolitik inte räckte till. I de senaste skrivningarna från oppositionen som jag har sett på energisidan säger de just som min företrädare från Socialdemokraterna gjorde: Vi vill inte alls avveckla kärnkraften omedelbart, vi vill avveckla den när samhället så tillåter.",
+          "Hade samhället tillåtit att man hade avvecklat kärnkraften i dag? Nej, det hade det inte. Därför är det rätt och riktigt att vi bibehåller kärnkraften samtidigt som vi gör rejäla, kraftiga satsningar på förnybart, på vattenkraft och på energieffektivisering."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 3
+      },
+      {
+        "rank": 4,
+        "passage_id": "H70952-151:0-2",
+        "anf_id": "H70952-151",
+        "rm": "2019/20",
+        "dok_nummer": 52,
+        "party": "MP",
+        "speaker": "Lorentz Tovatt (MP)",
+        "date": "2019-12-16",
+        "title": "Allmän miljö- och naturvård",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/H70952-151/html",
+        "paragraphs": [
+          "En sak ska göras tydlig från första början: Det är inte jag som avvecklar kärnkraften. Det är inte mitt parti. Det är inte Lorentz Tovatt eller någon annan i mitt parti som fattar beslut om att avveckla kärnkraften. Vi har tvärtom skrivit under en överenskommelse där vi säger att man inte ska avveckla kärnkraften med politiska beslut.",
+          "Det som avvecklar kärnkraften nu är marknaden. Kärnkraften blir helt enkelt mindre och mindre lönsam för varje dag som går. Det är bara att titta på kostnaden för ny förnybar el och jämföra den med kostnaden för ny kärnkraft. Även om man jämför med befintlig kärnkraft kan man konstatera en sak: Kärnkraften blir dyrare för varje dag som går. Vind och sol blir billigare för varje dag som går."
+        ],
+        "first_paragraph": 2,
+        "last_paragraph": 3
+      },
+      {
+        "rank": 9,
+        "passage_id": "GS0947-233:0-1",
+        "anf_id": "GS0947-233",
+        "rm": "2004/05",
+        "dok_nummer": 47,
+        "party": "S",
+        "speaker": "Samhällsbyggnadsminister MONA SAHLIN (s) replik",
+        "date": "2004-12-09",
+        "title": "Energi",
+        "is_reply": true,
+        "url": "https://data.riksdagen.se/anforande/GS0947-233/html",
+        "paragraphs": [
+          "Herr talman! Det var ju intressant att Eva Flyborg nu i alla fall sade att kärnkraften i dess nuvarande form inte är långsiktig, inte är hållbar och alltså måste avvecklas förr eller senare. Ju förr man börjar, desto mindre får man den där döda handen över all utveckling som Eva Flyborg beskrev det som. I takt med att vi avvecklar blir det också en möjlighet, med hjälp av de energipolitiska stöd som bland andra ni vill dra ned på, för andra delar av vår industri att växa, blomstra och kunna vara en aktiv del när världens länder nu står inför den omställning som vi har kommit väldigt långt med redan.",
+          "Framtiden ligger inte i kärnkraften. Framtiden ligger i det förnybara, och det är inte kärnkraft. Det är sol, det är vind, det är vatten, det är bioenergi och det som framtiden kan ge oss i form av till exempel bränsleceller. Med den moderna inriktningen vill Centern, Socialdemokraterna och Vänsterpartiet avveckla kärnkraften i lugn takt, och det kommer vi att fortsätta göra."
+        ],
+        "first_paragraph": 1,
+        "last_paragraph": 2
+      }
+    ]
+  },
+  "parties": {
+    "type": "parties",
+    "retrieval": "hybrid",
+    "vector_wait_ms": 1372,
+    "index": {
+      "last_date": "2026-11-18",
+      "speeches": 301358,
+      "passages": 563909
+    },
+    "parties": [
+      {
+        "party": "V",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 3,
+            "passage_id": "GX0959-74:0-1",
+            "anf_id": "GX0959-74",
+            "rm": "2009/10",
+            "dok_nummer": 59,
+            "party": "V",
+            "speaker": "LARS OHLY (v) replik",
+            "date": "2010-01-20",
+            "title": "Partiledardebatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GX0959-74/html",
+            "paragraphs": [
+              "Herr talman! Jag har svårt att se det som ett problem att kärnkraften måste avvecklas. Jag tror tvärtom att det är helt nödvändigt, inte minst ur ett miljöperspektiv, att vi gör oss av med de gamla icke förnybara energikällorna. Kärnkraften hör dit. Kärnkraften medför stora ingrepp i naturen och sår i jordskorpan som inte kan återställas. Den är farlig vid framställning, och den producerar dessutom ett radioaktivt avfall som vi fortfarande inte har en bra förvaring för. Det är en dålig energikälla i längden.",
+              "Om vi ökar takten för att kunna ersätta kärnkraften med andra, förnybara energikällor har jag svårt att se det som ett problem. Men Jan Björklund har rätt; vi måste öka takten. Vi måste se till att de nya energikällorna växer till i mycket större omfattning än hittills. Vi ska inte äventyra energiförsörjningen vare sig för svenska företag eller hushåll."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 9,
+            "passage_id": "GZ0987-92:0-5",
+            "anf_id": "GZ0987-92",
+            "rm": "2011/12",
+            "dok_nummer": 87,
+            "party": "V",
+            "speaker": "KENT PERSSON (V) replik",
+            "date": "2012-03-22",
+            "title": "(forts. från 3 §) Näringspolitiska frågor (forts. NU10)",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GZ0987-92/html",
+            "paragraphs": [
+              "När det gäller kärnkraften har vi sagt att kärnkraften ska avvecklas när vi kan avveckla den. Det ska göras så att det inte hotar försörjningstryggheten eller sysselsättningen. Den politiken ligger fast.",
+              "För att klara av det förordar vi från Vänsterpartiet en betydligt mer aktiv energipolitik än vad regeringen föreslår när det gäller förnybar energi, utbyggnad av infrastruktur i fråga om energi och beträffande energieffektivisering.",
+              "Det är en politik som Mats Odell känner till. Vi anser inte att kärnkraften hör hemma i det svenska energisystemet utan ska avvecklas i den takt som vi klarar av att göra det."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 6
+          },
+          {
+            "rank": 5,
+            "passage_id": "GV0987-239:0-3",
+            "anf_id": "GV0987-239",
+            "rm": "2007/08",
+            "dok_nummer": 87,
+            "party": "V",
+            "speaker": "KENT PERSSON (v) replik",
+            "date": "2008-04-02",
+            "title": "Vissa energipolitiska frågor",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GV0987-239/html",
+            "paragraphs": [
+              "Herr talman! Folkomröstningsresultatet gäller fortfarande. Ingenting annat är sagt. Det innebär att Vänsterpartiet står fast vid den överenskommelse som vi ingick med Socialdemokraterna och Centerpartiet om att kärnkraften ska avvecklas i takt med att den kan ersättas med förnybar energi. Det är vår uppfattning.",
+              "Vi har haft diskussionerna tidigare. Vi har motionerat om kärnkraftens avveckling. Det gjorde jag senast i höstas, och Carl B Hamilton och jag har debatterat frågan i kammaren.",
+              "Det här är ett vägval. Vi kan inte både bygga ut kärnkraften och bygga ut och satsa på förnybar energi. De ekonomiska resurserna har vi inte i Sverige. Det här är ett vägval. Folkpartiet har gjort sitt. Det är kärnkraften som är framtiden. Vänsterpartiet står för en helt annan utveckling i det framtida Sverige, där kärnkraften ska fasas ut. Det gör vi också med beaktande av att Energimyndigheten gör en bedömning av att vi har 15-20 terawattimmars överskott 2015. Klimatberedningen har också sagt att den stora potentialen finns med energieffektivisering, vilket flera andra utredningar visar. Det är en enorm potential för att minska energiåtgången."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 6,
+            "passage_id": "GU0948-5:0-1",
+            "anf_id": "GU0948-5",
+            "rm": "2006/07",
+            "dok_nummer": 48,
+            "party": "V",
+            "speaker": "KENT PERSSON (v)",
+            "date": "2007-01-16",
+            "title": "Svar på interpellation 2006/07:75 om strategi för kärnkraftsavvecklingen och energiomställningen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GU0948-5/html",
+            "paragraphs": [
+              "Men det är möjligheterna vi måste se. Vi ska inte ha en energipolitik som innebär att vi riskerar våra jobb i Sverige. Redan i dag finns det förslag som skulle göra det möjligt att avveckla kärnkraften fram till i alla fall 2025. Enligt en artikel i Eskilstuna-Kuriren den 5 januari, som Lennart Daléus har skrivit och som är ett referat av en rapport som den mer eller mindre kände energiforskaren Klaus Illum från Danmark har skrivit, Ett nordiskt energiscenario, är det fullt möjligt att göra den här avvecklingen av kärnkraften i hela Norden fram till 2025 utan att det påverkar samhällsekonomin i Norden. Det här går, och det kommer också att ge möjligheter till nya jobb."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "MP",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GT0946-159:14-16",
+            "anf_id": "GT0946-159",
+            "rm": "2005/06",
+            "dok_nummer": 46,
+            "party": "MP",
+            "speaker": "INGEGERD SAARINEN (mp)",
+            "date": "2005-12-07",
+            "title": "Energi samt Leveranssäkra elnät",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT0946-159/html",
+            "paragraphs": [
+              "Även kärnkraften bör avvecklas. Den är farlig och inte förnybar. Den hör inte hemma i ett modernt och ekologiskt samhälle. Genom en effektivare energianvändning och ett ökat nyttjande av vindkraft och biokraftvärme kan kärnkraften avvecklas samtidigt som nettoutsläppen av koldioxid minskas. Kärnkraften både bör och kan avvecklas i en snabbare takt än vad som sker i dag.",
+              "En avveckling motiveras av att kärnkraften inte är en ekologiskt hållbar energikälla samtidigt som den har stora risker. Med kärnkraft finns risken för en stor utsläppsolycka med extremt allvarliga konsekvenser. Det produceras också avfall som är farligt i hundratusentals år. Ett starkt beroende av kärnkraften är också ett hot mot försörjningstryggheten. Kärnkraft är också ett hot mot internationell säkerhet genom att den är nära förknippad med kärnvapen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 2,
+            "passage_id": "H70952-151:0-2",
+            "anf_id": "H70952-151",
+            "rm": "2019/20",
+            "dok_nummer": 52,
+            "party": "MP",
+            "speaker": "Lorentz Tovatt (MP)",
+            "date": "2019-12-16",
+            "title": "Allmän miljö- och naturvård",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H70952-151/html",
+            "paragraphs": [
+              "En sak ska göras tydlig från första början: Det är inte jag som avvecklar kärnkraften. Det är inte mitt parti. Det är inte Lorentz Tovatt eller någon annan i mitt parti som fattar beslut om att avveckla kärnkraften. Vi har tvärtom skrivit under en överenskommelse där vi säger att man inte ska avveckla kärnkraften med politiska beslut.",
+              "Det som avvecklar kärnkraften nu är marknaden. Kärnkraften blir helt enkelt mindre och mindre lönsam för varje dag som går. Det är bara att titta på kostnaden för ny förnybar el och jämföra den med kostnaden för ny kärnkraft. Även om man jämför med befintlig kärnkraft kan man konstatera en sak: Kärnkraften blir dyrare för varje dag som går. Vind och sol blir billigare för varje dag som går."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 8,
+            "passage_id": "H109121-56:0-5",
+            "anf_id": "H109121-56",
+            "rm": "2013/14",
+            "dok_nummer": 121,
+            "party": "MP",
+            "speaker": "JAN LINDHOLM (MP) replik",
+            "date": "2014-06-09",
+            "title": "Norden",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H109121-56/html",
+            "paragraphs": [
+              "Herr talman! Det var fyra frågor. När det gäller kärnkraften vill vi avveckla så många som möjligt utan att det drabbar svenskt näringsliv. Det har varit vår linje ända från början, fast ni inte har förstått det. Vi skulle aldrig stänga en reaktor om det drabbar elförsörjningen.",
+              "Men det kanske går att stänga igen tre eller fyra under en mandatperiod. Det handlar om att vi ska ersätta elförbrukningen och rationalisera och effektivisera den elanvändning vi har. Det beror alltså på hur mycket vi är beredda att satsa på att göra omställningen. Det kan man inte säga, utan vi har hela tiden haft linjen att vi ska avveckla kärnkraften i den takt vi kan göra det utan att få problem med elförsörjningen.",
+              "I dag har vi ungefär 20 terawattimmar i elöverskott som gör att vi skulle kunna stänga en reaktor utan problem. Jag är inte så inne på försvarsfrågan, men jag kan säga att jag är pacifist. Jag skulle helst se att vi inte hade några JAS-plan alls. Ubåtar har jag egentligen ingen uppfattning om."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "GY0910-282:0-1",
+            "anf_id": "GY0910-282",
+            "rm": "2010/11",
+            "dok_nummer": 10,
+            "party": "MP",
+            "speaker": "LISE NORDIN (MP) replik",
+            "date": "2010-11-04",
+            "title": "Energipolitik",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GY0910-282/html",
+            "paragraphs": [
+              "Fru talman! Det finns ett mycket tydligt besked i den rödgröna överenskommelsen om kärnkraften, nämligen att vi ska avveckla den och att vi varje mandatperiod ska göra en bedömning av hur många reaktorer man kan avveckla just den mandatperioden. Det är ett väldigt tydligt rödgrönt besked."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          }
+        ]
+      },
+      {
+        "party": "S",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GS0947-233:0-1",
+            "anf_id": "GS0947-233",
+            "rm": "2004/05",
+            "dok_nummer": 47,
+            "party": "S",
+            "speaker": "Samhällsbyggnadsminister MONA SAHLIN (s) replik",
+            "date": "2004-12-09",
+            "title": "Energi",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GS0947-233/html",
+            "paragraphs": [
+              "Herr talman! Det var ju intressant att Eva Flyborg nu i alla fall sade att kärnkraften i dess nuvarande form inte är långsiktig, inte är hållbar och alltså måste avvecklas förr eller senare. Ju förr man börjar, desto mindre får man den där döda handen över all utveckling som Eva Flyborg beskrev det som. I takt med att vi avvecklar blir det också en möjlighet, med hjälp av de energipolitiska stöd som bland andra ni vill dra ned på, för andra delar av vår industri att växa, blomstra och kunna vara en aktiv del när världens länder nu står inför den omställning som vi har kommit väldigt långt med redan.",
+              "Framtiden ligger inte i kärnkraften. Framtiden ligger i det förnybara, och det är inte kärnkraft. Det är sol, det är vind, det är vatten, det är bioenergi och det som framtiden kan ge oss i form av till exempel bränsleceller. Med den moderna inriktningen vill Centern, Socialdemokraterna och Vänsterpartiet avveckla kärnkraften i lugn takt, och det kommer vi att fortsätta göra."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 7,
+            "passage_id": "GY09120-38:0-2",
+            "anf_id": "GY09120-38",
+            "rm": "2010/11",
+            "dok_nummer": 120,
+            "party": "S",
+            "speaker": "LARS JOHANSSON (S) replik",
+            "date": "2011-06-21",
+            "title": "Säkerheten i svenska kärnkraftsreaktorer",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GY09120-38/html",
+            "paragraphs": [
+              "Herr talman! Vi har inte sagt att vi ska snabbavveckla kärnkraften. Vi har inte talat om några reaktorer. Det är det Miljöpartiet som har gjort.",
+              "Vad vi säger är att vi vill avveckla kärnkraften när vi har de andra alternativen i tillräcklig omfattning för vår svenska basindustri och för svenska hushåll. Vi vill ha ett elöverskott, men eftersom vi inte har sett att vi har haft något elöverskott ännu är inte vi beredda att pröva den frågan i dag. Det gör vi den dagen vi vet att vi har ett rejält elöverskott."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 9,
+            "passage_id": "GS0915-226:0-2",
+            "anf_id": "GS0915-226",
+            "rm": "2004/05",
+            "dok_nummer": 15,
+            "party": "S",
+            "speaker": "CHRISTIN HAGBERG (s) replik",
+            "date": "2004-10-15",
+            "title": "Miljö- och jordbruksfrågor",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GS0915-226/html",
+            "paragraphs": [
+              "Herr talman! Om avvecklingen av kärnkraften i Sverige tror jag att det råder en ganska bred enighet, sett på sikt, för det här är ju ingenting som kommer att göras i ett kortare perspektiv.",
+              "Vi måste ha en planerad avveckling av en energikälla som inte tillfredsställer kraven i vare sig miljöhänseende eller andra hänseenden - säkerhet och så vidare - sett på lång sikt."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 5,
+            "passage_id": "H10983-126:0-3",
+            "anf_id": "H10983-126",
+            "rm": "2013/14",
+            "dok_nummer": 83,
+            "party": "S",
+            "speaker": "BÖRJE VESTLUND (S) replik",
+            "date": "2014-03-13",
+            "title": "Granskning av meddelande om en klimat- och energipolitisk ram 2020-2030",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H10983-126/html",
+            "paragraphs": [
+              "Fru talman! Vi har haft samma uppfattning om energipolitiken i ganska många år, det vill säga att vi vill avveckla kärnkraften i den takt vi kan få fram förnybar energi. Det är vad vi har tagit upp på inte bara en partikongress utan fyra fem partikongresser. Där har vi sagt precis samma sak, så vi är ganska klara när det gäller det.",
+              "Jag är inte så orolig för industrin och industrins folk. De som har kritiserat oss mest är Pappersindustriarbetareförbundet, som jag träffar med jämna mellanrum. I dag kan de konstatera: Det här kanske kan fungera bra. Men man måste avvakta - det ska inte ske någon förtida avveckling. Men det kommer att växa fram förnybar energi."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "C",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 1,
+            "passage_id": "GZ0940-33:0-2",
+            "anf_id": "GZ0940-33",
+            "rm": "2011/12",
+            "dok_nummer": 40,
+            "party": "C",
+            "speaker": "INGER FREDRIKSSON (C)",
+            "date": "2011-12-01",
+            "title": "Svar på interpellation 2011/12:87 om stresstester av de svenska kärnkraftverken",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GZ0940-33/html",
+            "paragraphs": [
+              "Fru talman! Kärnkraften ska vara säker. Det får inte råda någon som helst tvekan om det. Det får inte heller råda någon tvekan om att Centerpartiet vill avveckla kärnkraften. Men vi gör det genom att utveckla alternativen och se till att den kärnkraft som finns kvar är säker.",
+              "Kärnkraften ska också bära sina egna kostnader. Det är oerhört viktigt.",
+              "Det är så vi vill avveckla kärnkraften, och vi stöder energi- och klimatöverenskommelsen."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 3,
+            "passage_id": "GX09139-161:3-6",
+            "anf_id": "GX09139-161",
+            "rm": "2009/10",
+            "dok_nummer": 139,
+            "party": "C",
+            "speaker": "SVEN BERGSTRÖM (c)",
+            "date": "2010-06-17",
+            "title": "(forts. från 3 §) Kärnkraften - förutsättningar för generationsskifte (forts. NU26)",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GX09139-161/html",
+            "paragraphs": [
+              "Folkomröstningen 1980 gav ett entydigt besked om att svenska folket ville avveckla kärnkraften. Folkomröstningen fullföljdes med ett riksdagsbeslut om avveckling där sista reaktorn skulle vara avvecklad just i år, 2010. Men ännu har bara Barsebäcksreaktorerna 1 och 2 - de i särklass sämst placerade i världen - tagits ur drift. Effekten har i stället skruvats upp i kvarvarande reaktorer, och det var den socialdemokratiska regeringen med stöd av Miljöpartiet och Vänsterpartiet som satte i gång denna effekthöjning som i praktiken ersatte de båda avvecklade Barsebäcksreaktorerna. Så kan man också bygga nya reaktorer i tysthet."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 5,
+            "passage_id": "GS0959-7:2-4",
+            "anf_id": "GS0959-7",
+            "rm": "2004/05",
+            "dok_nummer": 59,
+            "party": "C",
+            "speaker": "STAFFAN DANIELSSON (c)",
+            "date": "2005-01-18",
+            "title": "Svar på interpellation 2004/05:259 om introduktionen av fossilgas",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS0959-7/html",
+            "paragraphs": [
+              "Det finns de som hävdar att Sydkrafts planerade fossilgasinvasion är nödvändig för att klara elförsörjningen när kärnkraften ska avvecklas. Det tror inte jag. Jag har stark tilltro till en ökad elproduktion kopplad till bland annat biobränsleeldade anläggningar. Men skulle det vara så att dagens stora miljöfråga, klimatfrågan, ställs mot gårdagens, kärnkraften, menar jag att det absolut viktigaste är att minska koldioxidutsläppen och bromsa växthuseffekten. Dagen går före gårdagen.",
+              "Det innebär att skulle ett nej till koncession för gasledningen om ett antal år innebära att vi behöver skjuta kärnkraftsavvecklingen lite framåt är det något som vi får acceptera. Kärnkraften ska avvecklas. Men kan en senareläggning säkerställa att biobränsleexpansionen kan bestå och utvecklas är totaleffekten för Sverige från energi- och miljösynpunkt, enligt min uppfattning, klart positiv. Det vore intressant om energiministern kunde kommentera min mycket tydliga analys på denna punkt, om nu fossilgasen och kärnkraften skulle ställas mot varandra."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "GY0981-24:0-2",
+            "anf_id": "GY0981-24",
+            "rm": "2010/11",
+            "dok_nummer": 81,
+            "party": "C",
+            "speaker": "Miljöminister ANDREAS CARLGREN (C)",
+            "date": "2011-04-01",
+            "title": "Aktuell debatt: Kärnkraftens framtid och risker",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0981-24/html",
+            "paragraphs": [
+              "Jag skulle förstå upplägget i era angrepp om ni på allvar verkligen föreslog att kärnkraft ska stängas nu, men det är ju ingen av er som gör det. Det var ingen av er som gick till val på att kärnkraft skulle avvecklas nu, att någon reaktor skulle stängas nu, tvärtom, och ingen av er förnekar det egentligen. Ni kommer att använda kärnkraft in på 2020-talet."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "L",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 4,
+            "passage_id": "GT09133-184:0-2",
+            "anf_id": "GT09133-184",
+            "rm": "2005/06",
+            "dok_nummer": 133,
+            "party": "L",
+            "speaker": "EVA FLYBORG (fp)",
+            "date": "2006-06-01",
+            "title": "Forskning och ny teknik för framtidens energisystem",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GT09133-184/html",
+            "paragraphs": [
+              "Folkpartiet motsätter sig kärnkraftsavvecklingen och accepterar därmed inte denna strategi, vilket vi har motionerat om. Vi menar att omställningen av energisystemet ska syfta till att minska den klimatpåverkan, övriga miljöskador och hälsoskador som energisektorn ger upphov till. Att minska användningen av fossila bränslen är ett viktigt medel för att uppnå detta. Att minska användningen av fossil olja och naturgas är dessutom fördelaktigt av ekonomiska och säkerhetspolitiska skäl, eftersom tillgångarna är knappa och ofta finns i politiskt instabila regioner. Se exemplet med Ryssland och naturgasen senast.",
+              "Att avveckla kärnkraften är varken nödvändigt eller önskvärt. Tvärtom försvårar det minskningen av fossila bränslen. Fokuseringen på att avveckla kärnkraften har dessutom lett till en osund fokusering på att minska elanvändningen. Att minska elanvändningen kan inte vara ett självändamål. Man måste i stället se till den totala energianvändningen och dess konsekvenser för klimat, miljö och hälsa."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 2,
+            "passage_id": "GR09124-10:0-3",
+            "anf_id": "GR09124-10",
+            "rm": "2003/04",
+            "dok_nummer": 124,
+            "party": "L",
+            "speaker": "LARS LEIJONBORG (fp)",
+            "date": "2004-05-28",
+            "title": "Särskilt anordnad debatt om kärnkraften och koldioxidutsläppen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR09124-10/html",
+            "paragraphs": [
+              "Det sades här att Sverige är det land som använder mest kärnkraft per capita. Ja, men av Europas länder är vi mycket riktigt också det land som för närvarande släpper ut minst koldioxid per capita för energiproduktion. Men det är tydligen för lite för Miljöpartiet, för i praktiken medverkar Miljöpartiet till att kraftigt öka den andelen.",
+              "Skulle all kärnkraft läggas ned, vilket är Miljöpartiets ståndpunkt och vilket man vill driva igenom så snabbt som möjligt, då skulle den realistiska och sannolika effekten bli att koldioxidutsläppen från Sverige ökar med 50 %."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 3,
+            "passage_id": "GS09112-63:0-3",
+            "anf_id": "GS09112-63",
+            "rm": "2004/05",
+            "dok_nummer": 112,
+            "party": "L",
+            "speaker": "HANS BACKMAN (fp)",
+            "date": "2005-04-26",
+            "title": "Svar på interpellation 2004/05:517 om avvecklingen av kärnkraften",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS09112-63/html",
+            "paragraphs": [
+              "Att i det läget börja att avveckla i förtid ser jag som väldigt oroväckande, och även industrin är orolig. Det kan ju näppeligen vara för industrins skull som samhällsbyggnadsministern driver den här frågan.",
+              "Vi ska avveckla kärnkraften med förnuft i den takt som man kan ersätta den med nya energislag, men det lyckas man ju inte med. Just nu räddas avvecklingen av kärnkraften med att de kärnkraftverk som vi har kvar har blivit effektivare. Det är ju det som löser problemet med energitillförseln i Sverige, i alla fall enligt de forskare som jag har läst, och de är trovärdiga personer."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 8,
+            "passage_id": "H209113-85:0-3",
+            "anf_id": "H209113-85",
+            "rm": "2014/15",
+            "dok_nummer": 113,
+            "party": "L",
+            "speaker": "Jan Björklund (FP)",
+            "date": "2015-06-10",
+            "title": "Partiledardebatt",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H209113-85/html",
+            "paragraphs": [
+              "Problemet är bara att det också har en ganska stor baksida. Vi kan titta på Tyskland och Energiewende, som man kallar det där när man ska avveckla kärnkraften. Där ökar användningen av kolkraft. Förra året var 43 procent av elförsörjningen i Tyskland baserad på stenkol och brunkol - 43 procent. Och utsläppen ökar. De har ökat de senaste fem åren. Det beror på att man kraftigt bygger ut vindkraften. Det är det som man talar om. Problemet är att man behöver backup när det inte blåser. Det blir kolkraft."
+            ],
+            "first_paragraph": 4,
+            "last_paragraph": 4
+          }
+        ]
+      },
+      {
+        "party": "KD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 3,
+            "passage_id": "GR09124-4:0-1",
+            "anf_id": "GR09124-4",
+            "rm": "2003/04",
+            "dok_nummer": 124,
+            "party": "KD",
+            "speaker": "MARIA LARSSON (kd)",
+            "date": "2004-05-28",
+            "title": "Särskilt anordnad debatt om kärnkraften och koldioxidutsläppen",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GR09124-4/html",
+            "paragraphs": [
+              "Herr talman! Om Banverkets chef Bo Bylund kom till ett väl fungerande företag i min hemkommun Gnosjö och sade att det skulle läggas ned skulle väl ägaren bli minst sagt förvånad? Ännu mer obegripligt skulle det bli om ägaren fick veta att nedläggningen av hans fabrik skulle medföra att utsläppen av koldioxid i Sverige skulle öka. Ändå är det just ett sådant uppdrag som Bo Bylund har fått av Socialdemokraterna, Vänsterpartiet och Centerpartiet.",
+              "Min och Kristdemokraternas åsikt är att det kommer att bli orimliga konsekvenser för miljön av en nedläggning nu. Det kommer också att bli orimligt dyrt för folkhushållet att avveckla kärnkraften i förtid, alltså innan våra myndigheter bedömer att säkerheten inte är fullgod eller företagen anser att de inte är lönsamma att drivas vidare."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 4,
+            "passage_id": "GT09133-196:0-1",
+            "anf_id": "GT09133-196",
+            "rm": "2005/06",
+            "dok_nummer": 133,
+            "party": "KD",
+            "speaker": "MIKAEL OSCARSSON (kd) replik",
+            "date": "2006-06-01",
+            "title": "Forskning och ny teknik för framtidens energisystem",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GT09133-196/html",
+            "paragraphs": [
+              "Fru talman! Lennart Beijer hade en del synpunkter på mitt anförande. Det jag tog fasta på var att propositionen saknar koppling till den verklighet som Sveriges riksdag borde förhålla sig till. I propositionen ingår visionen om en fortsatt avveckling av kärnkraften. Den är olycksalig för vårt land. Ett förtida avvecklande av Barsebäck 1 och 2 har i direkta kostnader inneburit långt över 10 miljarder. Det gör att vi under kalla vinterdagar blir nettoimportörer. Vi får till exempel använda skitig kolkraft från Polen.",
+              "Tycker Lennart Beijer att det är bra? Är det bra för miljön? Är det inte dags också för Vänsterpartiet att ändra sig och inse att det är koldioxiden som är den stora faran och att det är dumt att avveckla fungerande energiframställning?"
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 2
+          },
+          {
+            "rank": 5,
+            "passage_id": "GS0913-28:12-13",
+            "anf_id": "GS0913-28",
+            "rm": "2004/05",
+            "dok_nummer": 13,
+            "party": "KD",
+            "speaker": "GÖRAN HÄGGLUND (kd)",
+            "date": "2004-10-13",
+            "title": "Partiledardebatt",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GS0913-28/html",
+            "paragraphs": [
+              "Herr talman! I mars nästa år är det ett kvarts sekel sedan folkomröstningen om kärnkraft. I dag lever vi i en helt annan värld än då. Ingen som nu är under 43 år hade rösträtt då. De flesta var inte ens födda år 1980. Är det inte dags att också dagens svenskar får säga sitt om vi ska behålla eller avveckla kärnkraften? Jag tycker det. För att komma ifrån de politiska låsningar som blockerat energipolitiken under ett par decennier föreslår jag en ny folkomröstning att hållas innan ytterligare en enda reaktor stängs."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 6,
+            "passage_id": "GY0981-31:2-3",
+            "anf_id": "GY0981-31",
+            "rm": "2010/11",
+            "dok_nummer": 81,
+            "party": "KD",
+            "speaker": "MATS ODELL (KD)",
+            "date": "2011-04-01",
+            "title": "Aktuell debatt: Kärnkraftens framtid och risker",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0981-31/html",
+            "paragraphs": [
+              "Nu tycker Lars Johansson att jag svartmålar. Han säger: Visst går det att avveckla kärnkraften till år 2030! Om man har detta som absolut överordnat mål med politiken måste man kanske också analysera om det inte samtidigt är ett antal barn som åker ut med badvattnet, Lars Johansson. Visst kanske det går, men vad händer med elpriset? Har Lars Johansson analyserat det? Har Socialdemokraterna analyserat vad detta betyder för svensk gruvindustris konkurrenskraft, för svensk stålindustris konkurrenskraft, för svensk verkstadsindustris konkurrens, för svensk skogsindustris konkurrenskraft och därmed också för hela välfärdsutvecklingen i vårt land?"
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      },
+      {
+        "party": "M",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 2,
+            "passage_id": "GY0951-24:7-9",
+            "anf_id": "GY0951-24",
+            "rm": "2010/11",
+            "dok_nummer": 51,
+            "party": "M",
+            "speaker": "CECILIE TENFJORD-TOFTBY (M)",
+            "date": "2011-02-01",
+            "title": "Svar på interpellation 2010/11:125 om rekordhöga elpriser",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/GY0951-24/html",
+            "paragraphs": [
+              "Hade man avvecklat kärnkraften och varit utan i dag, vad hade hänt då? Det hade inte bara blivit högre elpriser, vi hade levt i ett Sverige med elbrist. Det hade blivit ett mörkt och kallt Sverige där pensionärerna inte bara hade fått betala höga elräkningar utan de kanske inte ens hade haft tillräckligt med el under vissa tider på dygnet.",
+              "Jag tror nog att oppositionen kanske har insett att deras energipolitik inte räckte till. I de senaste skrivningarna från oppositionen som jag har sett på energisidan säger de just som min företrädare från Socialdemokraterna gjorde: Vi vill inte alls avveckla kärnkraften omedelbart, vi vill avveckla den när samhället så tillåter.",
+              "Hade samhället tillåtit att man hade avvecklat kärnkraften i dag? Nej, det hade det inte. Därför är det rätt och riktigt att vi bibehåller kärnkraften samtidigt som vi gör rejäla, kraftiga satsningar på förnybart, på vattenkraft och på energieffektivisering."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 4,
+            "passage_id": "H70952-150:0-2",
+            "anf_id": "H70952-150",
+            "rm": "2019/20",
+            "dok_nummer": 52,
+            "party": "M",
+            "speaker": "Louise Meijer (M)",
+            "date": "2019-12-16",
+            "title": "Allmän miljö- och naturvård",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H70952-150/html",
+            "paragraphs": [
+              "Fru talman! Mitt under brinnande klimatkris gör Miljöpartiet avvecklingen av fossilfri el till sin paradfråga. Det verkar inte finnas något viktigare än att Sverige ska avveckla kärnkraften, när vi vet att kärnkraften är det som försörjer 40 procent av Sverige med fossilfri el.",
+              "Det finns inget land som har avvecklat kärnkraften och samtidigt minskat sina utsläpp. Det är en ekvation som helt enkelt inte går ihop. Min fråga till Lorentz Tovatt är därför: Hur kommer det sig att Miljöpartiet driver en politik som stänger ned kärnkraften i Sverige när det behövs en politik som gör det precis motsatta?"
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 3
+          },
+          {
+            "rank": 6,
+            "passage_id": "GS0947-224:0-3",
+            "anf_id": "GS0947-224",
+            "rm": "2004/05",
+            "dok_nummer": 47,
+            "party": "M",
+            "speaker": "ULLA LÖFGREN (m) replik",
+            "date": "2004-12-09",
+            "title": "Energi",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GS0947-224/html",
+            "paragraphs": [
+              "Fru talman! Moderaterna tänker inte avveckla kärnkraften. Det tycker vi att elkraftindustrin ska få göra själv. De främjas nog bäst och tycker att det är långsiktigt bäst om vi sätter de politiska ramarna och talar om vilka miljö- och säkerhetskrav vi vill ha. Sedan får de besluta i vilken takt man ska avveckla, eller starta nya energikällor. Vi tycker inte alls att vi ska avveckla kärnkraften."
+            ],
+            "first_paragraph": 1,
+            "last_paragraph": 1
+          },
+          {
+            "rank": 3,
+            "passage_id": "GX09139-129:0-2",
+            "anf_id": "GX09139-129",
+            "rm": "2009/10",
+            "dok_nummer": 139,
+            "party": "M",
+            "speaker": "CECILIE TENFJORD-TOFTBY (m) replik",
+            "date": "2010-06-17",
+            "title": "(forts. från 3 §) Kärnkraften - förutsättningar för generationsskifte (forts. NU26)",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/GX09139-129/html",
+            "paragraphs": [
+              "Med era argument om kärnkraftens alla faror är det lite underligt att ni i dag inte har ett förslag om avveckla kärnkraften omedelbart. Är det så att kärnkraften representerar ett mardrömsscenario för er undrar jag om ni verkligen vill utsätta Sveriges invånare för den faran tills ni successivt kan avveckla kärnkraften. Det är vad Miljöpartiet och Socialdemokraterna säger. Ni säger att ni vill successivt avveckla kärnkraften, men samtidigt säger att ni att kärnkraften varje dag är ett potentiellt katastrofscenario. Om ni verkligen tycker att kärnkraften är ett potentiellt katastrofscenario tycker jag att ert argument om att avveckla kärnkraften successivt är oansvarigt, ansvarslöst och extremt cyniskt. Eller är det så att er argumentation i dag bara är ren retorik?"
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 3
+          }
+        ]
+      },
+      {
+        "party": "SD",
+        "selector": "claude",
+        "model": "claude-opus-5-5",
+        "fallback": null,
+        "answerable": true,
+        "quotes": [
+          {
+            "rank": 10,
+            "passage_id": "H1098-80:0-5",
+            "anf_id": "H1098-80",
+            "rm": "2013/14",
+            "dok_nummer": 8,
+            "party": "SD",
+            "speaker": "ANNA HAGWALL (SD)",
+            "date": "2013-10-02",
+            "title": "Aktuell debatt: Mineralpolitiken",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/H1098-80/html",
+            "paragraphs": [
+              "I ett scenario där Sverige avvecklar sina kärnkraftverk, som i dag utgör ungefär 40 procent av elproduktionen, skulle prisbilden se helt annorlunda ut. Sverige skulle dels riskera att tvingas importera dyr kol- och gaskraft från kontinenten, dels behöva göra stora investeringar för att rusta upp transmissionskapaciteten. Kostnaden för dessa investeringar skulle föras vidare till konsumenterna, och svensk industri skulle bli mer beroende av dyr och miljöovänlig kraft från kontinenten."
+            ],
+            "first_paragraph": 5,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 7,
+            "passage_id": "HA0943-86:0-3",
+            "anf_id": "HA0943-86",
+            "rm": "2022/23",
+            "dok_nummer": 43,
+            "party": "SD",
+            "speaker": "Martin Kinnunen (SD)",
+            "date": "2022-12-20",
+            "title": "Allmän miljö- och naturvård",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0943-86/html",
+            "paragraphs": [
+              "De låsningar som funnits på energiområdet är över. Ambitionen att rätta till en nedmontering av svensk energiförsörjning som S, C och MP stod för är hög. Målet om 100 procent förnybart försvinner, och äntligen kan vi se fram emot att ny kärnkraft planeras, projekteras och slutligen byggs.",
+              "Äntligen kan vi återknyta till den energipolitiska revolution som skedde i Sverige för 40-50 år sedan när vi på kort tid fasade ut fossila bränslen från vår elproduktion och uppvärmning. Detta skedde genom en storsatsning på fossilfri, planerbar energiproduktion. Felet att avveckla kärnkraften kan vi nu rätta till. Det kommer att ta lite tid, men det är inget argument för att inte börja utan snarare ett argument för att vi inte kan vänta längre."
+            ],
+            "first_paragraph": 3,
+            "last_paragraph": 4
+          },
+          {
+            "rank": 6,
+            "passage_id": "HA0991-4:4-9",
+            "anf_id": "HA0991-4",
+            "rm": "2022/23",
+            "dok_nummer": 91,
+            "party": "SD",
+            "speaker": "Aron Emilsson (SD)",
+            "date": "2023-04-18",
+            "title": "Särskild debatt om importen av rysk fossil energi",
+            "is_reply": false,
+            "url": "https://data.riksdagen.se/anforande/HA0991-4/html",
+            "paragraphs": [
+              "Kontrasten är tydlig om man jämför med Tyskland som också har haft en väl utvecklad kärnkraft men nu avvecklar den. Där har beroendet av rysk fossil energi varit stort, inte minst genom direktimport via den nu saboterade Nord Stream-ledningen.",
+              "Det finns också en risk att vi framöver, efter Tysklands stängning av kärnkraften, kommer att se att landet får ett ökat beroende av fossil energi. Det vore allvarligt och kan få en påverkan på Europas energipriser och på försörjningssäkerheten.",
+              "Fru talman! Vi behöver ta till oss lärdomarna från de stora europeiska staterna. Och lärdomen är tydlig: Finns det inte några realistiska alternativ blir beroendet av fossil energi stort. Det realistiska alternativet som historien lärt oss är att kärnkraft är och förblir en sådan energikälla som utgör ett av de främsta alternativen till fossil energi.",
+              "Sverige drog denna lärdom när vi byggde ut kärnkraften, men under de senaste decenniernas röda och rödgröna regeringar har man avvecklat denna pålitliga energikälla. Det måste nu vara dags att omvärdera ståndpunkten och satsa långsiktigt på kärnkraft som ett trovärdigt alternativ till fossil energi för både Sverige och Europa."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 5
+          },
+          {
+            "rank": 2,
+            "passage_id": "H10983-127:0-1",
+            "anf_id": "H10983-127",
+            "rm": "2013/14",
+            "dok_nummer": 83,
+            "party": "SD",
+            "speaker": "ANNA HAGWALL (SD) replik",
+            "date": "2014-03-13",
+            "title": "Granskning av meddelande om en klimat- och energipolitisk ram 2020-2030",
+            "is_reply": true,
+            "url": "https://data.riksdagen.se/anforande/H10983-127/html",
+            "paragraphs": [
+              "Den förnybara energin måste ha stora subventioner, så jag tror tyvärr inte att den är lösningen på alla problem. Det är klart att mitt parti också är för att man ska övergå till förnybar energi mer och mer, och naturligtvis energieffektivisering. Men just nu är vi inte i det läget att vi kan avveckla kärnkraftverk och övergå till enbart förnybart, för det skulle kosta svenska folket alldeles för mycket."
+            ],
+            "first_paragraph": 2,
+            "last_paragraph": 2
+          }
+        ]
+      }
+    ]
+  }
+}
