@@ -1,0 +1,49 @@
+{
+  "target": "proxy",
+  "host": "maktsprak-rm0wxsyx1-martin-blomqvist.vercel.app",
+  "mode": "search",
+  "questions": "natural.jsonl",
+  "started": "2026-11-25T11:57:51+00:00",
+  "finished": "2026-11-25T11:58:21+00:00",
+  "first_request": {
+    "question_id": "natural-0002",
+    "status": 200,
+    "first_line_s": 29.834,
+    "last_line_s": 29.834,
+    "lines": [
+      "search"
+    ],
+    "retrieval": "hybrid",
+    "vector_wait_ms": 823,
+    "hits": 10
+  },
+  "warm": {
+    "first_line_s": {
+      "p50": null,
+      "p95": null,
+      "max": null,
+      "requests": 0
+    },
+    "last_line_s": {
+      "p50": null,
+      "p95": null,
+      "max": null,
+      "requests": 0
+    }
+  },
+  "bm25_alone": 0,
+  "requests": [
+    {
+      "question_id": "natural-0002",
+      "status": 200,
+      "first_line_s": 29.834,
+      "last_line_s": 29.834,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 823,
+      "hits": 10
+    }
+  ]
+}

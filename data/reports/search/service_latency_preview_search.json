@@ -1,0 +1,397 @@
+{
+  "target": "proxy",
+  "host": "maktsprak-rm0wxsyx1-martin-blomqvist.vercel.app",
+  "mode": "search",
+  "questions": "natural.jsonl",
+  "started": "2026-11-25T11:35:42+00:00",
+  "finished": "2026-11-25T11:36:55+00:00",
+  "first_request": {
+    "question_id": "natural-0002",
+    "status": 200,
+    "first_line_s": 2.245,
+    "last_line_s": 2.245,
+    "lines": [
+      "search"
+    ],
+    "retrieval": "hybrid",
+    "vector_wait_ms": 349,
+    "hits": 10
+  },
+  "warm": {
+    "first_line_s": {
+      "p50": 1.494,
+      "p95": 5.975,
+      "max": 9.189,
+      "requests": 29
+    },
+    "last_line_s": {
+      "p50": 1.494,
+      "p95": 5.975,
+      "max": 9.189,
+      "requests": 29
+    }
+  },
+  "bm25_alone": 0,
+  "requests": [
+    {
+      "question_id": "natural-0002",
+      "status": 200,
+      "first_line_s": 2.245,
+      "last_line_s": 2.245,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 349,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0005",
+      "status": 200,
+      "first_line_s": 4.327,
+      "last_line_s": 4.327,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 2927,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0007",
+      "status": 200,
+      "first_line_s": 4.073,
+      "last_line_s": 4.073,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 2782,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0010",
+      "status": 200,
+      "first_line_s": 2.058,
+      "last_line_s": 2.059,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 487,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0012",
+      "status": 200,
+      "first_line_s": 9.189,
+      "last_line_s": 9.189,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 7948,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0015",
+      "status": 200,
+      "first_line_s": 1.859,
+      "last_line_s": 1.869,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 750,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0017",
+      "status": 200,
+      "first_line_s": 1.459,
+      "last_line_s": 1.459,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 501,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0020",
+      "status": 200,
+      "first_line_s": 3.087,
+      "last_line_s": 3.087,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 2053,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0022",
+      "status": 200,
+      "first_line_s": 1.249,
+      "last_line_s": 1.249,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 328,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0025",
+      "status": 200,
+      "first_line_s": 3.974,
+      "last_line_s": 3.974,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 2947,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0027",
+      "status": 200,
+      "first_line_s": 5.204,
+      "last_line_s": 5.204,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 4295,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0030",
+      "status": 200,
+      "first_line_s": 1.139,
+      "last_line_s": 1.139,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 296,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0032",
+      "status": 200,
+      "first_line_s": 2.576,
+      "last_line_s": 2.576,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 1480,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0035",
+      "status": 200,
+      "first_line_s": 1.612,
+      "last_line_s": 1.612,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 649,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0037",
+      "status": 200,
+      "first_line_s": 1.089,
+      "last_line_s": 1.09,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 294,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0040",
+      "status": 200,
+      "first_line_s": 2.045,
+      "last_line_s": 2.045,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 1207,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0042",
+      "status": 200,
+      "first_line_s": 1.494,
+      "last_line_s": 1.494,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 534,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0045",
+      "status": 200,
+      "first_line_s": 1.188,
+      "last_line_s": 1.188,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 300,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0047",
+      "status": 200,
+      "first_line_s": 5.975,
+      "last_line_s": 5.975,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 5240,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0050",
+      "status": 200,
+      "first_line_s": 1.126,
+      "last_line_s": 1.127,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 359,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0052",
+      "status": 200,
+      "first_line_s": 1.289,
+      "last_line_s": 1.289,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 294,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0055",
+      "status": 200,
+      "first_line_s": 5.009,
+      "last_line_s": 5.009,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 4141,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0057",
+      "status": 200,
+      "first_line_s": 1.229,
+      "last_line_s": 1.23,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 302,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0060",
+      "status": 200,
+      "first_line_s": 1.059,
+      "last_line_s": 1.059,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 308,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0062",
+      "status": 200,
+      "first_line_s": 1.265,
+      "last_line_s": 1.265,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 291,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0065",
+      "status": 200,
+      "first_line_s": 1.103,
+      "last_line_s": 1.206,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 303,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0067",
+      "status": 200,
+      "first_line_s": 1.307,
+      "last_line_s": 1.307,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 285,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0070",
+      "status": 200,
+      "first_line_s": 1.501,
+      "last_line_s": 1.501,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 633,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0072",
+      "status": 200,
+      "first_line_s": 1.05,
+      "last_line_s": 1.05,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 338,
+      "hits": 10
+    },
+    {
+      "question_id": "natural-0075",
+      "status": 200,
+      "first_line_s": 1.275,
+      "last_line_s": 1.275,
+      "lines": [
+        "search"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 476,
+      "hits": 10
+    }
+  ]
+}
