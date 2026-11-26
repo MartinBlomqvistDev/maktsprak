@@ -147,6 +147,13 @@ export interface MethodFigures {
     cold_start_budget_s: number;
     memory_peak_gib: number;
     memory_budget_gib: number;
+    proxy_search_requests: number;
+    proxy_search_p50_s: number;
+    proxy_search_p95_s: number;
+    proxy_answer_requests: number;
+    proxy_answer_p50_s: number;
+    proxy_answer_p95_s: number;
+    proxy_cold_first_line_s: number;
     monthly_budget_usd: number;
     cost_per_question_usd: number;
     questions_per_month: number;

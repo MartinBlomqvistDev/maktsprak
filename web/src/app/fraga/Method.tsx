@@ -421,8 +421,16 @@ export function Method() {
           svarade på {int(ops.search_p95_ms)} ms vid 95:e percentilen, startade på{" "}
           {dec(ops.cold_start_s, 1)} s som längst och använde som mest{" "}
           {dec(ops.memory_peak_gib, 1)} GiB. Gränserna var {int(ops.search_p95_budget_ms)} ms och{" "}
-          {dec(ops.cold_start_budget_s, 0)} s. Hur lång en kallstart blir på Cloud Run mäter jag
-          när tjänsten är ute.
+          {dec(ops.cold_start_budget_s, 0)} s.
+        </p>
+        <p>
+          Jag mätte också genom sajten, från att frågan skickas. I{" "}
+          {int(ops.proxy_search_requests)} sökningar kom träfflistan efter{" "}
+          {dec(ops.proxy_search_p50_s, 1)} s i median och {dec(ops.proxy_search_p95_s, 1)} s vid
+          95:e percentilen. För {words(ops.proxy_answer_requests)} frågor med svarssteget kom
+          citaten efter {dec(ops.proxy_answer_p50_s, 1)} s i median. När tjänsten hade stått stilla
+          fick den första frågan vänta {dec(ops.proxy_cold_first_line_s, 1)} s på träfflistan
+          medan den startade.
         </p>
         <p>
           Frågans vektor räknas ut av Qwen3-Embedding-8B, som jag når via OpenRouter och som körs

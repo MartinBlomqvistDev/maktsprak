@@ -45,6 +45,9 @@ REPORTS = (
     "answer_test_hand_draw.json",
     "page_example_links.json",
     "source_dashes.json",
+    "service_latency_preview_search.json",
+    "service_latency_preview_answer.json",
+    "service_latency_preview_cold.json",
 )
 
 #: Reports that exist only once Martin has graded the drawn quotations.
@@ -327,6 +330,13 @@ class Operations(_Frozen):
     cold_start_budget_s: float
     memory_peak_gib: float
     memory_budget_gib: float
+    proxy_search_requests: int
+    proxy_search_p50_s: float
+    proxy_search_p95_s: float
+    proxy_answer_requests: int
+    proxy_answer_p50_s: float
+    proxy_answer_p95_s: float
+    proxy_cold_first_line_s: float
     monthly_budget_usd: float
     cost_per_question_usd: float
     questions_per_month: int
@@ -561,8 +571,18 @@ def _answer_test(report: Any) -> AnswerTest:
     )
 
 
-def _operations(settings: Settings, check: Any, hybrid_run: Any) -> Operations:
+def _operations(
+    settings: Settings, check: Any, hybrid_run: Any, search: Any, answer: Any, cold: Any
+) -> Operations:
+    """The service's measurements, in a container and from outside through the site's proxy.
+
+    From outside, a search's time is to its first line, the list of results,
+    and an answer's to its last line, the quotations; a cold start is the time
+    to the first line of the first request after the service had been idle.
+    """
     waiting = check["queries"]["waiting"]
+    found = search["warm"]["first_line_s"]
+    quoted = answer["warm"]["last_line_s"]
     storage = check["storage"]
     discount = settings.generation.batch_discount
     questions = hybrid_run["retrieval"]["questions"]
@@ -582,6 +602,13 @@ def _operations(settings: Settings, check: Any, hybrid_run: Any) -> Operations:
         cold_start_budget_s=storage["budget"]["cold_start_s"],
         memory_peak_gib=storage["memory_peak_gib"],
         memory_budget_gib=storage["budget"]["memory_gib"],
+        proxy_search_requests=found["requests"],
+        proxy_search_p50_s=found["p50"],
+        proxy_search_p95_s=found["p95"],
+        proxy_answer_requests=quoted["requests"],
+        proxy_answer_p50_s=quoted["p50"],
+        proxy_answer_p95_s=quoted["p95"],
+        proxy_cold_first_line_s=cold["first_request"]["first_line_s"],
         monthly_budget_usd=budget,
         cost_per_question_usd=round(per_question, 4),
         questions_per_month=round(budget / per_question),
@@ -659,7 +686,14 @@ def method_figures(settings: Settings) -> MethodFigures:
                 name: shares["balanced_accuracy"] for name, shares in sealed["abstention"].items()
             },
         ),
-        operations=_operations(settings, read["service_check_dev.json"], hybrid),
+        operations=_operations(
+            settings,
+            read["service_check_dev.json"],
+            hybrid,
+            read["service_latency_preview_search.json"],
+            read["service_latency_preview_answer.json"],
+            read["service_latency_preview_cold.json"],
+        ),
         links=_links(
             read["anforanden_build.json"],
             read["page_example_links.json"],

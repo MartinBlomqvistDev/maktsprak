@@ -81,6 +81,7 @@ export default function FragaPage() {
           lastYear={lastYear}
           answerStep={answerStep}
           vectorLimitS={figures.operations.vector_limit_s}
+          coldStartS={figures.operations.proxy_cold_first_line_s}
         />
       </div>
 

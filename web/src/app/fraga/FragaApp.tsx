@@ -155,6 +155,7 @@ export function FragaApp({
   lastYear,
   answerStep,
   vectorLimitS,
+  coldStartS,
 }: {
   entries: ExampleEntry[];
   /** The first example, shown before anything is asked. */
@@ -166,6 +167,8 @@ export function FragaApp({
   answerStep: boolean;
   /** How long the service waits for a question's vector before BM25 answers alone. */
   vectorLimitS: number;
+  /** How long the first question after an idle spell waited, measured through the proxy. */
+  coldStartS: number;
 }) {
   const [question, setQuestion] = useState(initial.question);
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
@@ -478,9 +481,10 @@ export function FragaApp({
             <p className="text-sm text-ink-2">Söker i protokollen…</p>
             {warming && (
               <p className="text-xs text-ink-3">
-                Sökningen körs på en tjänst som stängs av när ingen använder den, och den första
-                frågan får vänta medan den startar. Frågans vektor kommer från en annan tjänst.
-                Dröjer den mer än {int(vectorLimitS)} sekunder söker sidan med nyckelord enbart.
+                Sökningen körs på en tjänst som stängs av när ingen använder den. Den första frågan
+                efter en paus får vänta ungefär {int(coldStartS)} sekunder medan tjänsten startar.
+                Frågans vektor kommer från en annan tjänst, och dröjer den mer än{" "}
+                {int(vectorLimitS)} sekunder söker sidan med nyckelord enbart.
               </p>
             )}
           </div>
