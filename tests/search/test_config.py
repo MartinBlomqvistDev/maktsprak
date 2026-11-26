@@ -82,6 +82,15 @@ VALID_YAML = (
     "  dev_budget_usd: 38.0\n"
     "  resamples: 1000\n"
     "  bootstrap_seed: 16\n"
+    "service:\n"
+    "  package: full-200-remote\n"
+    "  dataset: someone/index\n"
+    "  vector_wait_s: 30\n"
+    "  question_chars: 400\n"
+    "  rate_window_s: 3600\n"
+    "  searches_per_window: 60\n"
+    "  answers_per_window: 10\n"
+    "  embedding_cap_usd: 1.0\n"
     "vectors:\n"
     "  candidates:\n"
     "    - name: small\n"
@@ -673,3 +682,27 @@ class TestVectorSettings:
         with pytest.raises(ValidationError) as raised:
             load_settings(config_file=config, data_root=data_root)
         assert error_places(raised.value) == [(("vectors",), "missing")]
+
+
+class TestServiceSettings:
+    def test_the_service_settings_are_read(self, data_root):
+        config = data_root / "config.yaml"
+        config.write_text(VALID_YAML, encoding="utf-8")
+        service = load_settings(config_file=config, data_root=data_root).service
+        assert (service.package, service.vector_wait_s, service.answers_per_window) == (
+            "full-200-remote",
+            30,
+            10,
+        )
+
+    def test_the_shipped_service_waits_30_seconds_for_a_vector(self):
+        assert load_settings().service.vector_wait_s == 30
+
+    @pytest.mark.parametrize("line", ["  answers_per_window: 0\n", "  dataset: no-owner\n"])
+    def test_a_service_value_out_of_range_raises(self, data_root, line):
+        config = data_root / "config.yaml"
+        key = line.split(":")[0].strip()
+        config.write_text(with_line_replaced(key, line, "service"), encoding="utf-8")
+        with pytest.raises(ValidationError) as raised:
+            load_settings(config_file=config, data_root=data_root)
+        assert [place for place, _ in error_places(raised.value)] == [("service", key)]

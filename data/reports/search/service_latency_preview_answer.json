@@ -1,0 +1,169 @@
+{
+  "target": "proxy",
+  "host": "maktsprak-rm0wxsyx1-martin-blomqvist.vercel.app",
+  "mode": "answer",
+  "questions": "natural.jsonl",
+  "started": "2026-11-25T11:36:56+00:00",
+  "finished": "2026-11-25T11:37:24+00:00",
+  "first_request": {
+    "question_id": "natural-0002",
+    "status": 200,
+    "first_line_s": 4.025,
+    "last_line_s": 5.905,
+    "lines": [
+      "search",
+      "answer"
+    ],
+    "retrieval": "hybrid",
+    "vector_wait_ms": 3262,
+    "hits": 10,
+    "selector": "claude",
+    "fallback": null,
+    "quotes": 1
+  },
+  "warm": {
+    "first_line_s": {
+      "p50": 1.169,
+      "p95": 1.71,
+      "max": 1.71,
+      "requests": 7
+    },
+    "last_line_s": {
+      "p50": 3.058,
+      "p95": 3.623,
+      "max": 3.623,
+      "requests": 7
+    }
+  },
+  "bm25_alone": 0,
+  "requests": [
+    {
+      "question_id": "natural-0002",
+      "status": 200,
+      "first_line_s": 4.025,
+      "last_line_s": 5.905,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 3262,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 1
+    },
+    {
+      "question_id": "natural-0005",
+      "status": 200,
+      "first_line_s": 1.169,
+      "last_line_s": 2.864,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 545,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 1
+    },
+    {
+      "question_id": "natural-0007",
+      "status": 200,
+      "first_line_s": 1.71,
+      "last_line_s": 3.623,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 966,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 2
+    },
+    {
+      "question_id": "natural-0010",
+      "status": 200,
+      "first_line_s": 1.066,
+      "last_line_s": 3.545,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 278,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 4
+    },
+    {
+      "question_id": "natural-0012",
+      "status": 200,
+      "first_line_s": 1.257,
+      "last_line_s": 2.468,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 545,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 1
+    },
+    {
+      "question_id": "natural-0015",
+      "status": 200,
+      "first_line_s": 1.173,
+      "last_line_s": 3.03,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 441,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 2
+    },
+    {
+      "question_id": "natural-0017",
+      "status": 200,
+      "first_line_s": 0.876,
+      "last_line_s": 3.331,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 360,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 4
+    },
+    {
+      "question_id": "natural-0020",
+      "status": 200,
+      "first_line_s": 0.89,
+      "last_line_s": 3.058,
+      "lines": [
+        "search",
+        "answer"
+      ],
+      "retrieval": "hybrid",
+      "vector_wait_ms": 290,
+      "hits": 10,
+      "selector": "claude",
+      "fallback": null,
+      "quotes": 2
+    }
+  ]
+}

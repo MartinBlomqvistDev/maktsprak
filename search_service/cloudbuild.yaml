@@ -1,0 +1,25 @@
+# Builds the search service's image on Cloud Build, from the repository root:
+#
+#   gcloud builds submit --project maktsprak-inference --region us-central1 \
+#     --config search_service/cloudbuild.yaml --substitutions _TAG=TAG .
+#
+# .gcloudignore at the root keeps the upload to search/ and search_service/.
+# The image pins its package (search_service/Dockerfile), so the build fetches
+# exactly that revision of the dataset and fails if it does not check out.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    env: ["DOCKER_BUILDKIT=1"]
+    args:
+      - build
+      - -f
+      - search_service/Dockerfile
+      - --target
+      - service
+      - -t
+      - us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/maktsprak-search:${_TAG}
+      - .
+images:
+  - us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/maktsprak-search:${_TAG}
+substitutions:
+  _TAG: latest
+timeout: 1800s

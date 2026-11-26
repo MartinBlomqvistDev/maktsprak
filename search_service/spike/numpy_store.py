@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import shutil
+from dataclasses import dataclass
 from pathlib import Path
 from time import perf_counter
 
@@ -257,20 +258,23 @@ def build_numpy_store(
         vectors_from: A vector index whose real vectors the store holds instead
             of synthetic ones; it takes one shape and every passage.
         queries_from: The questions' vectors, as the check of the service wrote
-            them; given with *vectors_from*.
+            them; only with *vectors_from*. The search service's own store holds
+            none, since the service asks for each question's vector when the
+            question comes.
 
     Returns:
         The store's manifest, also written as ``store.json``.
 
     Raises:
-        ValueError: If real vectors are asked for with more than one shape, a
-            limit, or without the questions' vectors.
+        ValueError: If real vectors are asked for with more than one shape or a
+            limit, or questions' vectors without real vectors.
     """
-    if (vectors_from is None) != (queries_from is None) or (
+    if (queries_from is not None and vectors_from is None) or (
         vectors_from is not None and (len(shapes) != 1 or limit is not None)
     ):
         raise ValueError(
-            "A store of real vectors holds one shape of every passage, with the questions' vectors."
+            "A store of real vectors holds one shape of every passage, "
+            "and only such a store holds the questions' vectors."
         )
     directory.mkdir(parents=True, exist_ok=True)
     columns = read_passage_columns(files.passages, limit)
@@ -360,6 +364,36 @@ def build_numpy_store(
 
 def _ms(start: float, end: float) -> float:
     return round((end - start) * 1000, 3)
+
+
+@dataclass(frozen=True)
+class Ranking:
+    """The passages one search ranked highest, before their text is read.
+
+    Attributes:
+        ranked: The positions of the best passages, best first, with their fused scores.
+        allowed: How many passages the filter allows.
+        mode: Which legs ran.
+        marks: When the search started, and when the filter, the BM25 leg, the
+            vector leg and the fusion were done, by :func:`time.perf_counter`.
+    """
+
+    ranked: tuple[tuple[int, float], ...]
+    allowed: int
+    mode: str
+    marks: tuple[float, float, float, float, float]
+
+    def timings(self, end: float) -> Timings:
+        """Where the time went, with the hits' text read by *end*."""
+        start, filtered, lexical_done, vector_done, fused = self.marks
+        return Timings(
+            total_ms=_ms(start, end),
+            filter_ms=_ms(start, filtered),
+            lexical_ms=_ms(filtered, lexical_done) if self.mode != "vector" else None,
+            vector_ms=_ms(lexical_done, vector_done) if self.mode != "lexical" else None,
+            fusion_ms=_ms(vector_done, fused),
+            fetch_ms=_ms(fused, end),
+        )
 
 
 class NumpyStore:
@@ -477,8 +511,8 @@ class NumpyStore:
             return self.question_vectors[row]
         return query_vector(vector_seed, self.dim)
 
-    def search(self, request: SearchRequest, vector: np.ndarray | None = None) -> SearchResponse:
-        """Search the store.
+    def rank(self, request: SearchRequest, vector: np.ndarray | None = None) -> Ranking:
+        """Rank the passages for a search, without reading their text.
 
         Args:
             request: The question, its filter and which legs run.
@@ -486,7 +520,7 @@ class NumpyStore:
                 synthetic vector of the request's seed.
 
         Returns:
-            The best hits, with where the time went.
+            The positions of the best passages, best first, with their fused scores.
         """
         start = perf_counter()
         allowed = self.mask(request.filter)
@@ -503,20 +537,28 @@ class NumpyStore:
         vector_done = perf_counter()
         legs = [leg for leg in (lexical, nearest) if leg]
         ranked = rrf(legs, self.settings.rrf_k, self.settings.hits)
-        fused = perf_counter()
-        hits = tuple(self.hit(position, score) for position, score in ranked)
-        end = perf_counter()
-        return SearchResponse(
-            hits=hits,
+        return Ranking(
+            ranked=tuple(ranked),
             allowed=count,
-            timings=Timings(
-                total_ms=_ms(start, end),
-                filter_ms=_ms(start, filtered),
-                lexical_ms=_ms(filtered, lexical_done) if request.mode != "vector" else None,
-                vector_ms=_ms(lexical_done, vector_done) if request.mode != "lexical" else None,
-                fusion_ms=_ms(vector_done, fused),
-                fetch_ms=_ms(fused, end),
-            ),
+            mode=request.mode,
+            marks=(start, filtered, lexical_done, vector_done, perf_counter()),
+        )
+
+    def search(self, request: SearchRequest, vector: np.ndarray | None = None) -> SearchResponse:
+        """Search the store.
+
+        Args:
+            request: The question, its filter and which legs run.
+            vector: The question's vector from a query model; ``None`` uses the
+                synthetic vector of the request's seed.
+
+        Returns:
+            The best hits, with where the time went.
+        """
+        ranking = self.rank(request, vector)
+        hits = tuple(self.hit(position, score) for position, score in ranking.ranked)
+        return SearchResponse(
+            hits=hits, allowed=ranking.allowed, timings=ranking.timings(perf_counter())
         )
 
     def party_view(

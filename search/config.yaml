@@ -206,3 +206,24 @@ vectors:
   rrf_k_preferred: 60
   api_batch_inputs: 64
   api_concurrency: 4
+
+# The search service (search_service/). Step 08 packs what the service searches
+# into data/search/package/<package>, and the package is published as the
+# dataset named here, from which the service's image fetches it when the image
+# is built. vector_wait_s is fixed in the addendum of 2026-11-24 on the tuned
+# configuration: a question whose vector has not come by then is answered from
+# BM25 alone, and the answer says so. A question holds at most question_chars
+# characters once trimmed. In each window of rate_window_s seconds, one caller
+# may ask searches_per_window searches and answers_per_window answers; the
+# counts are kept in memory and never saved. The embedding API may cost
+# embedding_cap_usd before an instance stops asking it, far above what its
+# questions cost.
+service:
+  package: full-200-qwen3-8b
+  dataset: MartinBlomqvist/fraga-protokollet-index
+  vector_wait_s: 30
+  question_chars: 400
+  rate_window_s: 3600
+  searches_per_window: 60
+  answers_per_window: 10
+  embedding_cap_usd: 1.0
