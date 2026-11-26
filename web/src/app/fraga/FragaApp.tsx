@@ -32,7 +32,8 @@ type Failure =
   | { kind: "rate"; retryAfterS: number | null }
   | { kind: "not-connected" }
   | { kind: "failed" }
-  | { kind: "interrupted" };
+  | { kind: "interrupted" }
+  | { kind: "off" };
 
 interface Shown {
   source: "live" | "example";
@@ -77,6 +78,7 @@ function failureOf(error: unknown): Failure | null {
     if (error.status === 400) return { kind: "invalid" };
     if (error.status === 429) return { kind: "rate", retryAfterS: error.retryAfterS };
     if (error.status === 501) return { kind: "not-connected" };
+    if (error.status === 403 && error.code === "answer_step_off") return { kind: "off" };
   }
   return { kind: "failed" };
 }
@@ -87,6 +89,7 @@ function FailureNotice({ failure }: { failure: Failure }) {
     rate: "Många frågor på kort tid. Vänta en stund och försök igen.",
     "not-connected": "Sökningen är inte ansluten ännu. Exemplen går att läsa ändå.",
     failed: "Något gick fel. Försök igen om en stund.",
+    off: "Citaten är avstängda på sajten just nu, så frågan kunde inte besvaras.",
     interrupted:
       "Svaret bröts innan citaten kom. Träffarna stämmer; ställ frågan igen för att få citaten.",
   }[failure.kind];
@@ -417,7 +420,10 @@ export function FragaApp({
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <div
+            className={`mt-4 flex flex-wrap items-center gap-3 ${answerStep ? "justify-between" : "justify-end"}`}
+          >
+            {answerStep && (
             <div role="tablist" aria-label="Visa" className="flex rounded-sm border border-line-2 p-0.5">
               {(
                 [
@@ -437,6 +443,7 @@ export function FragaApp({
                 </button>
               ))}
             </div>
+            )}
             <button
               type="submit"
               disabled={busy || !question.trim()}
@@ -446,8 +453,9 @@ export function FragaApp({
             </button>
           </div>
           <p className="mt-3 text-xs text-ink-3">
-            Sajten sparar inte frågan. Den skickas till OpenRouter för vektorn och till Anthropic
-            när Opus väljer citat.
+            {answerStep
+              ? "Sajten sparar inte frågan. Den skickas till OpenRouter för vektorn och till Anthropic när Opus väljer citat."
+              : "Sajten sparar inte frågan. Den skickas till OpenRouter för vektorn."}
           </p>
           {view === "partier" && (
             <p className="mt-2 text-xs text-ink-3">
@@ -496,8 +504,9 @@ export function FragaApp({
           <>
             {example && (
               <p className="text-sm text-ink-3">
-                Exempel, framtaget {longDate(generated)} med samma sökning och samma språkmodell
-                som sidan kör.
+                {answerStep
+                  ? `Exempel, framtaget ${longDate(generated)} med samma sökning och samma språkmodell som sidan kör.`
+                  : `Exempel, framtaget ${longDate(generated)} med samma sökning som sidan kör.`}
               </p>
             )}
             <RetrievalNote line={line} vectorLimitS={vectorLimitS} />
@@ -506,6 +515,12 @@ export function FragaApp({
 
         {view === "svar" && shown?.search && (
           <>
+            {!answerStep && (
+              <p className="text-sm text-ink-2">
+                Citaten som Claude Opus 5.5 väljer ur träffarna visas här när mätningen av dem är
+                klar, om de klarar den.
+              </p>
+            )}
             {answerStep && (
               <section>
                 <h2 className="anf-marker mb-3">

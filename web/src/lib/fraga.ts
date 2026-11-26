@@ -108,7 +108,8 @@ export type FragaErrorCode =
   | "invalid_request"
   | "rate_limited"
   | "search_not_connected"
-  | "search_failed";
+  | "search_failed"
+  | "answer_step_off";
 
 /** The page's limits on a question, the same as the service's. */
 export const QUESTION_MAX_CHARS = 400;

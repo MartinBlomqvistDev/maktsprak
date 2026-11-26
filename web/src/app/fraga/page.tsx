@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
 import examplesRaw from "@/data/fraga/examples.json";
+import { answerStepRuns, answerStepSwitch } from "@/lib/answer-step";
 import { FragaApp } from "./FragaApp";
 import { Method } from "./Method";
 import { figures } from "./method-data";
@@ -46,7 +47,7 @@ function firstExample(): Example {
 
 export default function FragaPage() {
   const report = figures.answer_test.report;
-  const answerStep = report === null || report.launch;
+  const answerStep = answerStepRuns(answerStepSwitch(), report === null ? null : report.launch);
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
@@ -85,7 +86,7 @@ export default function FragaPage() {
         />
       </div>
 
-      <Method />
+      <Method answerStep={answerStep} />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { answerStepSwitch } from "../../../lib/answer-step.ts";
 
 /**
  * Proxies the page's questions to the search service, a FastAPI service on
@@ -11,6 +11,11 @@ import { NextResponse } from "next/server";
  * still choosing. The caller's address goes to the service for its rate limit,
  * which keeps it in memory only. Without the env vars set this returns a typed
  * "not yet connected" response, as `predict` does.
+ *
+ * The modes `answer` and `parties` choose quotations, and they run only while
+ * FRAGA_ANSWER_STEP is "on" (see lib/answer-step.ts). Otherwise they are
+ * refused with 403 `answer_step_off`, before the service is called, and only
+ * `search` goes through.
  */
 
 // A cold start of the service, the wait of up to 30 s for the question's
@@ -23,7 +28,7 @@ type Mode = keyof typeof PATHS;
 const MAX_QUESTION = 400;
 
 function failure(status: number, error: string, headers?: Record<string, string>) {
-  return NextResponse.json({ error }, { status, headers });
+  return Response.json({ error }, { status, headers });
 }
 
 function isMode(value: unknown): value is Mode {
@@ -40,7 +45,7 @@ export async function POST(request: Request) {
   const secret = process.env.SEARCH_SHARED_SECRET;
 
   if (!serviceUrl || !secret) {
-    return NextResponse.json(
+    return Response.json(
       {
         error: "search_not_connected",
         message:
@@ -67,6 +72,9 @@ export async function POST(request: Request) {
     (typeof filters === "object" && !Array.isArray(filters));
   if (trimmed.length < 1 || trimmed.length > MAX_QUESTION || !isMode(mode) || !filtersOk) {
     return failure(400, "invalid_request");
+  }
+  if (mode !== "search" && !answerStepSwitch()) {
+    return failure(403, "answer_step_off");
   }
 
   let upstream: Response;

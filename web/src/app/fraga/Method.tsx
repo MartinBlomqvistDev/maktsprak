@@ -195,7 +195,7 @@ function AnswerResults() {
   );
 }
 
-export function Method() {
+export function Method({ answerStep }: { answerStep: boolean }) {
   const design = figures.design;
   const corpus = figures.corpus;
   const retrieval = figures.retrieval;
@@ -217,10 +217,14 @@ export function Method() {
   const level = pct(design.interval_level);
   const candidates = words(design.candidates);
   const unexplained = links.speeches - links.passed_with_folded_dashes;
+  // The sections are numbered as they are shown: the view with eight parties
+  // is described only while the page runs it.
+  let shownSections = 0;
+  const next = () => ++shownSections;
 
   return (
     <div>
-      <Section n={1} name="Hur det fungerar">
+      <Section n={next()} name="Hur det fungerar">
         <p>
           Frågan söks på två sätt samtidigt. Nyckelordssökning (BM25) letar efter frågans ord, och
           vektorsökning jämför vad frågan handlar om med varje passage i korpusen. De två listorna
@@ -240,7 +244,7 @@ export function Method() {
         </p>
       </Section>
 
-      <Section n={2} name="Korpusen">
+      <Section n={next()} name="Korpusen">
         <p>
           Korpusen är riksdagens egna öppna data, där varje anförande publiceras för sig. Den
           rymmer <strong>{int(corpus.speeches)}</strong> anföranden från{" "}
@@ -291,7 +295,7 @@ export function Method() {
         </p>
       </Section>
 
-      <Section n={3} name="Bestämt innan jag mätte">
+      <Section n={next()} name="Bestämt innan jag mätte">
         <p>
           Frågeseten, måtten, jämförelserna och reglerna för vad som skulle köras på sidan skrev jag
           ner innan något var mätt. <Link href={PREREGISTRATION}>Förregistreringen</Link> ligger i
@@ -308,7 +312,7 @@ export function Method() {
         </p>
       </Section>
 
-      <Section n={4} name="Sökningen">
+      <Section n={next()} name="Sökningen">
         <p>
           Jag ville veta om vektorsökning slår nyckelordssökning på svenskt riksdagsspråk.
           Svenskan sätter ihop ord, så den som frågar om att avveckla kärnkraften hittar inte ordet
@@ -369,7 +373,7 @@ export function Method() {
         <PartyTable />
       </Section>
 
-      <Section n={5} name="Citaten">
+      <Section n={next()} name="Citaten">
         <p>
           Jag mätte två sätt att välja citat mot varandra. Baslinjen använder ingen språkmodell.
           Den citerar den bästa träffens stycken med frågans ord och avstår när träffens poäng
@@ -403,7 +407,8 @@ export function Method() {
         <AnswerResults />
       </Section>
 
-      <Section n={6} name="Åtta partier">
+      {answerStep && (
+      <Section n={next()} name="Åtta partier">
         <p>
           I vyn med alla {words(PARTY_ORDER.length)} partier ställs frågan en gång per parti, bara
           bland partiets egna anföranden. I exemplen har Claude Opus 5.5 valt citaten för varje
@@ -412,8 +417,9 @@ export function Method() {
           {words(ops.party_views_per_month)} sådana frågor.
         </p>
       </Section>
+      )}
 
-      <Section n={7} name="Driften">
+      <Section n={next()} name="Driften">
         <p>
           Sökningen körs i en egen tjänst på Google Cloud Run med indexet inbakat, och tjänsten
           stängs av när ingen använder den. Jag mätte den i en container med{" "}
@@ -455,7 +461,7 @@ export function Method() {
         </p>
       </Section>
 
-      <Section n={8} name="Vad sidan inte gör">
+      <Section n={next()} name="Vad sidan inte gör">
         <p>
           Sidan sammanfattar aldrig vad ett parti tycker. Skälet kommer ur sajtens egen studie, där{" "}
           {leaningM} av {STUDY_META.models} språkmodeller skrev mer som Moderaterna än baslinjen
@@ -467,7 +473,7 @@ export function Method() {
         </p>
       </Section>
 
-      <Section n={9} name="Data och kod">
+      <Section n={next()} name="Data och kod">
         <ul className="space-y-3">
           {[
             ["Koden", "sökningen, svarssteget och mätningen i search/", SEARCH_CODE],
