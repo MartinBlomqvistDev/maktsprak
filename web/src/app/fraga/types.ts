@@ -9,8 +9,9 @@ export interface Example {
   id: string;
   question: string;
   search: SearchLine;
-  answer: AnswerLine;
-  parties: PartiesLine;
+  /** Left out when the page runs without the answer step. */
+  answer?: AnswerLine;
+  parties?: PartiesLine;
 }
 
 /** One example in the page's list. */

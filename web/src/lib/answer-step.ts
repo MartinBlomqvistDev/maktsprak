@@ -21,10 +21,29 @@ export function answerStepSwitch(env: Record<string, string | undefined> = proce
 }
 
 /**
- * Whether the page runs the answer step: the switch is on, and the launch rule
- * has not failed. `launch` is the test report's verdict, or null before the
- * report exists.
+ * Where the answer step stands, which decides what the page says about it.
+ * It fails closed: the step runs only once the test report has found that the
+ * launch rule holds, as the search service itself requires.
+ *
+ * - `on`: the switch is on and the launch rule holds, so the page runs it.
+ * - `pending`: the test report is not in yet, whatever the switch says.
+ * - `failed`: the test report found that the launch rule does not hold, so the
+ *   page never runs it, whatever the switch says.
+ * - `passed`: the launch rule holds, but the switch is still off.
  */
+export type AnswerStepState = "on" | "pending" | "failed" | "passed";
+
+/**
+ * Where the answer step stands. `launch` is the test report's verdict, or null
+ * before the report exists.
+ */
+export function answerStepState(switchOn: boolean, launch: boolean | null): AnswerStepState {
+  if (launch === null) return "pending";
+  if (!launch) return "failed";
+  return switchOn ? "on" : "passed";
+}
+
+/** Whether the page runs the answer step: the switch is on, and the launch rule holds. */
 export function answerStepRuns(switchOn: boolean, launch: boolean | null): boolean {
-  return switchOn && launch !== false;
+  return answerStepState(switchOn, launch) === "on";
 }

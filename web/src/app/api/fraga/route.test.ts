@@ -1,6 +1,11 @@
 import { strict as assert } from "node:assert";
 import { afterEach, beforeEach, describe, it } from "node:test";
+import method from "../../../data/fraga/method.json" with { type: "json" };
 import { POST } from "./route.ts";
+
+// Whether the committed test report lets the answer step run: null until it exists.
+const report = method.answer_test.report as { launch: boolean } | null;
+const launchHolds = report !== null && report.launch;
 
 /**
  * The proxy in both positions of the answer step's switch. The search service
@@ -71,16 +76,49 @@ describe("with the answer step off, as it is unless the environment turns it on"
   });
 });
 
-describe("with the answer step on", () => {
+describe("with the switch on", () => {
   beforeEach(() => {
     process.env.FRAGA_ANSWER_STEP = "on";
   });
 
-  for (const mode of ["search", "answer", "parties"]) {
-    it(`sends ${mode} to the service's /${mode}`, async () => {
+  it("sends a search to the service's /search", async () => {
+    const response = await ask("search");
+    assert.equal(response.status, 200);
+    assert.deepEqual(called, ["https://search.example/search"]);
+  });
+
+  for (const mode of ["answer", "parties"]) {
+    it(`sends ${mode} on only if the test report found that the launch rule holds`, async () => {
       const response = await ask(mode);
-      assert.equal(response.status, 200);
-      assert.deepEqual(called, [`https://search.example/${mode}`]);
+      if (launchHolds) {
+        assert.equal(response.status, 200);
+        assert.deepEqual(called, [`https://search.example/${mode}`]);
+      } else {
+        assert.equal(response.status, 403);
+        assert.equal((await response.json()).error, "answer_step_off");
+        assert.deepEqual(called, []);
+      }
     });
   }
+});
+
+describe("the service's own refusals", () => {
+  it("passes its refusal of the answer step on with the same code", async () => {
+    globalThis.fetch = (async () =>
+      Response.json({ error: "answer_step_off" }, { status: 403 })) as typeof fetch;
+    const response = await ask("search");
+    assert.equal(response.status, 403);
+    assert.equal((await response.json()).error, "answer_step_off");
+  });
+
+  it("answers any other refusal as a failed search", async () => {
+    globalThis.fetch = (async () => new Response("Forbidden", { status: 403 })) as typeof fetch;
+    assert.equal((await ask("search")).status, 502);
+  });
+
+  it("answers a body the service finds too large as an invalid request", async () => {
+    globalThis.fetch = (async () =>
+      Response.json({ error: "invalid_request" }, { status: 413 })) as typeof fetch;
+    assert.equal((await ask("search")).status, 400);
+  });
 });

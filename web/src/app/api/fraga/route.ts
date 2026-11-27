@@ -1,4 +1,10 @@
-import { answerStepSwitch } from "../../../lib/answer-step.ts";
+import method from "../../../data/fraga/method.json" with { type: "json" };
+import { answerStepRuns, answerStepSwitch } from "../../../lib/answer-step.ts";
+
+// The test report's verdict on the launch rule, from the figures the page is
+// built with: null until the report exists.
+const report = method.answer_test.report as { launch: boolean } | null;
+const LAUNCH = report === null ? null : report.launch;
 
 /**
  * Proxies the page's questions to the search service, a FastAPI service on
@@ -13,9 +19,11 @@ import { answerStepSwitch } from "../../../lib/answer-step.ts";
  * "not yet connected" response, as `predict` does.
  *
  * The modes `answer` and `parties` choose quotations, and they run only while
- * FRAGA_ANSWER_STEP is "on" (see lib/answer-step.ts). Otherwise they are
- * refused with 403 `answer_step_off`, before the service is called, and only
- * `search` goes through.
+ * FRAGA_ANSWER_STEP is "on" and the test report has found that the launch rule
+ * holds (see lib/answer-step.ts). Otherwise they are refused with 403
+ * `answer_step_off`, before the service is called, and only `search` goes
+ * through. The service refuses them on the same grounds, and its refusal is
+ * passed on with the same code.
  */
 
 // A cold start of the service, the wait of up to 30 s for the question's
@@ -73,7 +81,7 @@ export async function POST(request: Request) {
   if (trimmed.length < 1 || trimmed.length > MAX_QUESTION || !isMode(mode) || !filtersOk) {
     return failure(400, "invalid_request");
   }
-  if (mode !== "search" && !answerStepSwitch()) {
+  if (mode !== "search" && !answerStepRuns(answerStepSwitch(), LAUNCH)) {
     return failure(403, "answer_step_off");
   }
 
@@ -88,6 +96,8 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({ question: trimmed, filters: filters ?? {} }),
       cache: "no-store",
+      // A visitor who leaves or asks again stops the service's work too.
+      signal: request.signal,
     });
   } catch {
     return failure(502, "search_failed");
@@ -95,6 +105,15 @@ export async function POST(request: Request) {
 
   if (upstream.status === 400) {
     return failure(400, "invalid_request");
+  }
+  if (upstream.status === 413) {
+    return failure(400, "invalid_request");
+  }
+  if (upstream.status === 403) {
+    const refusal = (await upstream.json().catch(() => null)) as { error?: string } | null;
+    return refusal?.error === "answer_step_off"
+      ? failure(403, "answer_step_off")
+      : failure(502, "search_failed");
   }
   if (upstream.status === 429) {
     return failure(429, "rate_limited", {

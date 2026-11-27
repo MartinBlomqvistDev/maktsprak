@@ -13,10 +13,12 @@ import {
   type PartiesLine,
   type SearchLine,
 } from "@/lib/fraga";
+import type { AnswerStepState } from "@/lib/answer-step";
 import { int, longDate, seconds, words } from "./format";
 import { AnswerView, HitList, PartyGrid } from "./Results";
 import { SpeakerPicker, type Speaker } from "./SpeakerPicker";
 import { loadExample, type Example, type ExampleEntry } from "./types";
+import { stopNote } from "./verdict";
 
 // The search service scales to zero, so the first question after an idle spell
 // waits for it to start. A warm search answers within about a second and a half
@@ -33,6 +35,8 @@ type Failure =
   | { kind: "not-connected" }
   | { kind: "failed" }
   | { kind: "interrupted" }
+  | { kind: "incomplete" }
+  | { kind: "speaker" }
   | { kind: "off" };
 
 interface Shown {
@@ -92,6 +96,8 @@ function FailureNotice({ failure }: { failure: Failure }) {
     off: "Citaten är avstängda på sajten just nu, så frågan kunde inte besvaras.",
     interrupted:
       "Svaret bröts innan citaten kom. Träffarna stämmer; ställ frågan igen för att få citaten.",
+    incomplete: "Svaret kom inte fram helt. Ställ frågan igen.",
+    speaker: "Välj en talare i listan, eller töm fältet för talare.",
   }[failure.kind];
   const detail =
     failure.kind === "rate" && failure.retryAfterS
@@ -108,13 +114,7 @@ function FailureNotice({ failure }: { failure: Failure }) {
   );
 }
 
-function RetrievalNote({
-  line,
-  vectorLimitS,
-}: {
-  line: SearchLine | PartiesLine;
-  vectorLimitS: number;
-}) {
+function RetrievalNote({ line }: { line: SearchLine | PartiesLine }) {
   return (
     <p className="text-sm text-ink-3">
       {line.retrieval === "hybrid" ? (
@@ -126,8 +126,7 @@ function RetrievalNote({
         </>
       ) : (
         <>
-          Frågans vektor kom inte inom {int(vectorLimitS)} sekunder, så sökningen gjordes med
-          nyckelord enbart (BM25).
+          Frågans vektor kom inte fram, så sökningen gjordes med nyckelord enbart (BM25).
         </>
       )}{" "}
       Indexet går till och med {longDate(line.index.last_date)}.
@@ -136,7 +135,7 @@ function RetrievalNote({
 }
 
 const selectClass =
-  "w-full rounded-sm border border-line-2 bg-paper px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none disabled:opacity-50";
+  "w-full rounded-sm border border-line-2 bg-paper px-3 py-2 text-base text-ink focus:border-accent focus:outline-none disabled:opacity-50 sm:text-sm";
 
 function exampleShown(example: Example): Shown {
   return {
@@ -156,7 +155,7 @@ export function FragaApp({
   generated,
   firstYear,
   lastYear,
-  answerStep,
+  answerState,
   vectorLimitS,
   coldStartS,
 }: {
@@ -166,8 +165,8 @@ export function FragaApp({
   generated: string;
   firstYear: number;
   lastYear: number;
-  /** False once the launch rule has failed: the page then searches without the answer step. */
-  answerStep: boolean;
+  /** Where the answer step stands; the page runs it only when it is on. */
+  answerState: AnswerStepState;
   /** How long the service waits for a question's vector before BM25 answers alone. */
   vectorLimitS: number;
   /** How long the first question after an idle spell waited, measured through the proxy. */
@@ -184,6 +183,8 @@ export function FragaApp({
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const loaded = useRef(new Map<string, Example>([[initial.id, initial]]));
   const [pickerKey, setPickerKey] = useState(0);
+  const [speakerPending, setSpeakerPending] = useState(false);
+  const answerStep = answerState === "on";
 
   useEffect(
     () => () => {
@@ -232,9 +233,11 @@ export function FragaApp({
       },
     };
     let current = base;
+    let complete = false;
     const onLine = (line: FragaLine) => {
       stopHint();
       if (line.type === "error") {
+        complete = true;
         setFailure({ kind: "interrupted" });
         setPhase("error");
         return;
@@ -243,7 +246,10 @@ export function FragaApp({
       if (line.type === "answer") current = { ...current, answer: line };
       if (line.type === "parties") current = { ...current, parties: line };
       const finished = line.type !== "search" || mode === "search";
-      if (finished) current = { ...current, tookMs: clock() - started };
+      if (finished) {
+        complete = true;
+        current = { ...current, tookMs: clock() - started };
+      }
       setShown(current);
       setPhase(finished ? "done" : "answering");
     };
@@ -259,6 +265,11 @@ export function FragaApp({
       } else {
         await askFraga(request, onLine, abort.signal);
       }
+      // A body that closes before its last line leaves nothing to wait for.
+      if (!complete && !abort.signal.aborted) {
+        setFailure({ kind: "incomplete" });
+        setPhase("error");
+      }
     } catch (error) {
       const found = failureOf(error);
       if (found) {
@@ -272,6 +283,12 @@ export function FragaApp({
 
   function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (busy) return;
+    if (view !== "partier" && speakerPending) {
+      setFailure({ kind: "speaker" });
+      setPhase("error");
+      return;
+    }
     if (view === "partier") void ask("parties");
     else void ask(answerStep ? "answer" : "search");
   }
@@ -283,13 +300,17 @@ export function FragaApp({
     setQuestion(entry.question);
     setFilters(NO_FILTERS);
     setPickerKey((n) => n + 1);
+    setSpeakerPending(false);
     setFailure(null);
     let example = loaded.current.get(entry.id);
     if (!example) {
       setShown(null);
       setPhase("waiting");
       try {
-        example = await loadExample(entry.id);
+        const fetched = await loadExample(entry.id);
+        example = answerStep
+          ? fetched
+          : { id: fetched.id, question: fetched.question, search: fetched.search };
         loaded.current.set(entry.id, example);
       } catch {
         setFailure({ kind: "failed" });
@@ -333,13 +354,13 @@ export function FragaApp({
             onKeyDown={(event) => {
               if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault();
-                event.currentTarget.form?.requestSubmit();
+                if (!busy) event.currentTarget.form?.requestSubmit();
               }
             }}
             maxLength={QUESTION_MAX_CHARS}
             rows={2}
             placeholder="Ställ en fråga om något riksdagen har debatterat"
-            className="w-full resize-none rounded-sm border border-line-2 bg-paper px-4 py-3 font-body text-[15px] text-ink placeholder:text-ink-3 focus:border-accent focus:outline-none"
+            className="w-full resize-none rounded-sm border border-line-2 bg-paper px-4 py-3 font-body text-base text-ink placeholder:text-ink-3 focus:border-accent focus:outline-none sm:text-[15px]"
           />
 
           <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_1fr_1.6fr]">
@@ -410,12 +431,16 @@ export function FragaApp({
               </select>
             </label>
             <div>
-              <span className="label mb-1 block text-ink-3">Talare</span>
+              <span id="fraga-speaker-label" className="label mb-1 block text-ink-3">
+                Talare
+              </span>
               <SpeakerPicker
                 key={pickerKey}
                 value={filters.speaker}
                 disabled={view === "partier"}
+                labelledBy="fraga-speaker-label"
                 onChange={(speaker) => setFilters({ ...filters, speaker })}
+                onPending={setSpeakerPending}
               />
             </div>
           </div>
@@ -424,7 +449,7 @@ export function FragaApp({
             className={`mt-4 flex flex-wrap items-center gap-3 ${answerStep ? "justify-between" : "justify-end"}`}
           >
             {answerStep && (
-            <div role="tablist" aria-label="Visa" className="flex rounded-sm border border-line-2 p-0.5">
+            <div role="group" aria-label="Visa" className="flex rounded-sm border border-line-2 p-0.5">
               {(
                 [
                   ["svar", "Svaret"],
@@ -434,8 +459,7 @@ export function FragaApp({
                 <button
                   key={value}
                   type="button"
-                  role="tab"
-                  aria-selected={view === value}
+                  aria-pressed={view === value}
                   onClick={() => switchView(value)}
                   className={`rounded-[2px] px-3 py-1.5 label transition-colors ${view === value ? "bg-accent text-accent-ink" : "text-ink-2 hover:text-accent"}`}
                 >
@@ -454,8 +478,8 @@ export function FragaApp({
           </div>
           <p className="mt-3 text-xs text-ink-3">
             {answerStep
-              ? "Sajten sparar inte frågan. Den skickas till OpenRouter för vektorn och till Anthropic när Opus väljer citat."
-              : "Sajten sparar inte frågan. Den skickas till OpenRouter för vektorn."}
+              ? "Sajten sparar inte frågan. Den skickas via OpenRouter till Nebius för vektorn och till Anthropic när Opus väljer citat."
+              : "Sajten sparar inte frågan. Den skickas via OpenRouter till Nebius för vektorn."}
           </p>
           {view === "partier" && (
             <p className="mt-2 text-xs text-ink-3">
@@ -483,7 +507,16 @@ export function FragaApp({
         </div>
       </div>
 
-      <div className="mt-8 space-y-6" aria-live="polite">
+      <p className="sr-only" aria-live="polite">
+        {phase === "waiting"
+          ? "Söker i protokollen…"
+          : phase === "answering"
+            ? "Träffarna har kommit. Citaten väljs."
+            : phase === "done" && shown?.source === "live"
+              ? "Svaret har kommit."
+              : ""}
+      </p>
+      <div className="mt-8 space-y-6">
         {phase === "waiting" && (
           <div className="space-y-2">
             <p className="text-sm text-ink-2">Söker i protokollen…</p>
@@ -491,7 +524,7 @@ export function FragaApp({
               <p className="text-xs text-ink-3">
                 Sökningen körs på en tjänst som stängs av när ingen använder den. Den första frågan
                 efter en paus får vänta ungefär {int(coldStartS)} sekunder medan tjänsten startar.
-                Frågans vektor kommer från en annan tjänst, och dröjer den mer än{" "}
+                Frågans vektor kommer från en annan tjänst. Dröjer den mer än{" "}
                 {int(vectorLimitS)} sekunder söker sidan med nyckelord enbart.
               </p>
             )}
@@ -509,18 +542,13 @@ export function FragaApp({
                   : `Exempel, framtaget ${longDate(generated)} med samma sökning som sidan kör.`}
               </p>
             )}
-            <RetrievalNote line={line} vectorLimitS={vectorLimitS} />
+            <RetrievalNote line={line} />
           </>
         )}
 
         {view === "svar" && shown?.search && (
           <>
-            {!answerStep && (
-              <p className="text-sm text-ink-2">
-                Citaten som Claude Opus 5.5 väljer ur träffarna visas här när mätningen av dem är
-                klar, om de klarar den.
-              </p>
-            )}
+            {answerState !== "on" && <p className="text-sm text-ink-2">{stopNote(answerState)}</p>}
             {answerStep && (
               <section>
                 <h2 className="anf-marker mb-3">
@@ -540,7 +568,9 @@ export function FragaApp({
                 <b>
                   {shown.search.hits.length > 1
                     ? `De ${words(shown.search.hits.length)} bästa träffarna`
-                    : "Träffen"}
+                    : shown.search.hits.length === 1
+                      ? "Träffen"
+                      : "Inga träffar"}
                 </b>
               </h2>
               <HitList hits={shown.search.hits} />
@@ -549,6 +579,12 @@ export function FragaApp({
         )}
 
         {view === "partier" && shown?.parties && <PartyGrid line={shown.parties} />}
+
+        {shown && line && (
+          <p className="text-xs text-ink-3">
+            Källa: Sveriges riksdag. Riksdagen står inte bakom Maktspråk eller sökningen.
+          </p>
+        )}
 
         {shown?.tookMs !== undefined && phase === "done" && (
           <p className="text-xs text-ink-3">Svaret kom efter {seconds(shown.tookMs)}.</p>

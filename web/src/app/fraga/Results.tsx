@@ -71,17 +71,33 @@ export function SelectorNote({
   );
 }
 
+/**
+ * Why an answer holds no quotation. The model's own abstention is told apart
+ * from a selection the code could not use, and a fallback to the baseline is
+ * always named.
+ */
+function emptyReason(line: AnswerLine, hits: number): string {
+  if (hits === 0) return "Sökningen gav inga träffar att citera ur.";
+  if (line.fallback === "budget") {
+    return "Månadens budget för språkmodellen är slut. Ingen träff nådde baslinjens tröskel.";
+  }
+  if (line.fallback === "failed") {
+    return "Språkmodellen svarade inte. Ingen träff nådde baslinjens tröskel.";
+  }
+  if (line.selector === "baseline") return "Ingen träff nådde baslinjens tröskel.";
+  if (line.answerable === false) {
+    return `Claude Opus 5.5 läste de ${words(hits)} bästa träffarna och fann inget stycke som besvarar den.`;
+  }
+  return "Språkmodellens val gick inte att använda, så sidan visar inget citat.";
+}
+
 /** The answer step's quotations, or the notice that none answers the question. */
 export function AnswerView({ line, hits }: { line: AnswerLine; hits: number }) {
   if (line.quotes.length === 0) {
     return (
       <div className="rounded-card border border-dashed border-line-2 bg-paper-2 px-5 py-4">
         <p className="font-medium text-ink">Inget citat svarar på frågan.</p>
-        <p className="mt-1 text-sm text-ink-2">
-          {line.selector === "claude"
-            ? `Claude Opus 5.5 läste de ${words(hits)} bästa träffarna och fann inget stycke som besvarar den.`
-            : "Ingen träff nådde baslinjens tröskel."}
-        </p>
+        <p className="mt-1 text-sm text-ink-2">{emptyReason(line, hits)}</p>
       </div>
     );
   }

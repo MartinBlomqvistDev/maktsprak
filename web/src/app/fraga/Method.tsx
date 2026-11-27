@@ -1,8 +1,10 @@
 import { ProtokollMarker } from "@/components/ProtokollMarker";
+import type { AnswerStepState } from "@/lib/answer-step";
 import { SPEECH, STUDY_META } from "@/lib/llm-study";
 import { PARTY_ORDER, partyByCode } from "@/lib/parties";
 import { dec, int, interval, longDate, pct, signed, words } from "./format";
 import { comparison, figures, questionSet, round } from "./method-data";
+import { verdict } from "./verdict";
 
 /**
  * The method section of Fråga protokollet. Every figure is read from
@@ -115,10 +117,48 @@ function PartyTable() {
   );
 }
 
-function AnswerResults() {
+function VersionsTable() {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr className="border-b border-line-2">
+            <Th>Riksmöte</Th>
+            <Th right>Ur snabbprotokoll</Th>
+            <Th right>Anföranden</Th>
+          </tr>
+        </thead>
+        <tbody>
+          {figures.versions.sessions.map((row) => (
+            <tr key={row.session} className="border-b border-line">
+              <td className="tabular py-2.5 pr-4 text-ink-2">{row.session}</td>
+              <td className="tabular py-2.5 pr-4 text-right text-ink-2">{int(row.preliminary)}</td>
+              <td className="tabular py-2.5 pr-4 text-right text-ink-3">{int(row.speeches)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** The launch rule, said in full wherever the page judges a selector by it. */
+function LaunchRule() {
+  const rule = figures.answer_test.launch_rule;
+  return (
+    <p>
+      Lanseringsregeln är kravet som jag satte i förväg för att citatvalet ska slås på. Det ska
+      avstå på minst {pct(rule.abstains_unanswerable)} av frågorna som protokollen inte kan svara
+      på. Av de andra frågorna får det avstå i onödan på högst {pct(rule.needless_abstention)}.
+      Minst {pct(rule.quote_precision)} av citaten ska besvara frågan. Klarar det inte regeln visar
+      sidan bara träffarna.
+    </p>
+  );
+}
+
+function AnswerResults({ state }: { state: AnswerStepState }) {
   const answer = figures.answer_test;
   const report = answer.report;
-  const rule = answer.launch_rule;
   if (!report) {
     return (
       <>
@@ -127,13 +167,7 @@ function AnswerResults() {
           {int(answer.hand_questions)} slumpade frågor ur testdelen, utan att se vilket sätt som
           valt vilket citat. Resultatet hamnar här när bedömningen är klar.
         </p>
-        <p>
-          Lanseringsregeln avgör om svarssteget körs på sidan. Det ska avstå på minst{" "}
-          {pct(rule.abstains_unanswerable)} av frågorna som protokollen inte kan svara på och i
-          onödan på högst {pct(rule.needless_abstention)} av de andra, och minst{" "}
-          {pct(rule.quote_precision)} av citaten ska besvara frågan. Klarar det inte regeln visar
-          sidan träffarna utan citatval.
-        </p>
+        <LaunchRule />
       </>
     );
   }
@@ -148,6 +182,7 @@ function AnswerResults() {
         {int(report.drawn_questions)} slumpade frågor ur testdelen, utan att se vilket sätt som
         valt vilket citat.
       </p>
+      <LaunchRule />
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-left text-sm">
           <thead>
@@ -183,19 +218,13 @@ function AnswerResults() {
         när det går, skiljer sig med {signed(accuracy[0], 3)}, med ett intervall från{" "}
         {interval(accuracy[1], accuracy[2], 3)}.
       </p>
-      <p>
-        {report.beats_baseline
-          ? "Språkmodellen slår baslinjen på båda måtten, så den väljer citaten på sidan."
-          : "Språkmodellen slår inte baslinjen på båda måtten, så baslinjen väljer citaten på sidan."}{" "}
-        {report.launch
-          ? "Lanseringsregeln håller."
-          : "Lanseringsregeln håller inte, så sidan visar träffarna utan citatval."}
-      </p>
+      <p>{verdict(report.beats_baseline, state)}</p>
     </>
   );
 }
 
-export function Method({ answerStep }: { answerStep: boolean }) {
+export function Method({ answerState }: { answerState: AnswerStepState }) {
+  const answerStep = answerState === "on";
   const design = figures.design;
   const corpus = figures.corpus;
   const retrieval = figures.retrieval;
@@ -203,6 +232,8 @@ export function Method({ answerStep }: { answerStep: boolean }) {
   const answer = figures.answer_test;
   const links = figures.links;
   const judge = figures.judge;
+  const versions = figures.versions;
+  const found = retrieval.interpellation_found;
   const natural = questionSet("natural");
   const hybrid = comparison("natural", "hybrid");
   const vectors = comparison("natural", "vectors");
@@ -226,49 +257,93 @@ export function Method({ answerStep }: { answerStep: boolean }) {
     <div>
       <Section n={next()} name="Hur det fungerar">
         <p>
-          Frågan söks på två sätt samtidigt. Nyckelordssökning (BM25) letar efter frågans ord, och
-          vektorsökning jämför vad frågan handlar om med varje passage i korpusen. De två listorna
-          slås ihop, och de {candidates} bästa passagerna går vidare.
+          Frågan söks på två sätt samtidigt. Nyckelordssökning (BM25) letar efter frågans ord.
+          Vektorsökning jämför vad frågan handlar om med varje passage i korpusen.{" "}
+          {answerStep
+            ? `Sidan slår ihop de två listorna och skickar de ${candidates} bästa passagerna vidare.`
+            : `Sidan slår ihop de två listorna och visar de ${candidates} bästa passagerna.`}
         </p>
-        <p>
-          Claude Opus 5.5 läser de {candidates} passagerna med numrerade stycken. Den svarar bara
-          med vilka stycken den väljer, eller med att inget av dem besvarar frågan, och den får
-          välja högst {words(design.max_quotes)} citat. Koden kontrollerar att varje val pekar på
-          en av frågans egna passager och hämtar sedan styckena ur korpusen. Ingen annan kod skriver
-          ut ett citat.
-        </p>
-        <p>
-          Ett citat är därför alltid hela stycken ur ett och samma anförande, under det
-          anförandets talare, parti och länk. Ordagrant betyder samma text som i riksdagens öppna
-          data, med taggar borttagna, tecken avkodade och blanksteg ihopslagna.
-        </p>
+        {answerStep ? (
+          <>
+            <p>
+              Claude Opus 5.5 läser de {candidates} passagerna med numrerade stycken. Den svarar
+              bara med vilka stycken den väljer, eller med att inget av dem besvarar frågan. Den
+              får välja högst {words(design.max_quotes)} citat. Koden kontrollerar att varje val
+              pekar på en av frågans egna passager och hämtar sedan styckena ur korpusen. Ingen
+              annan kod skriver ut ett citat.
+            </p>
+            <p>
+              Ett citat är därför alltid hela stycken ur ett och samma anförande, under det
+              anförandets talare, parti och länk. Ordagrant betyder samma text som i riksdagens
+              öppna data, med taggar borttagna, tecken avkodade och blanksteg ihopslagna.
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              En passage är alltid hela stycken ur ett och samma anförande, under det anförandets
+              talare, parti och länk. Ordagrant betyder samma text som i riksdagens öppna data, med
+              taggar borttagna, tecken avkodade och blanksteg ihopslagna.
+            </p>
+            <p>
+              Jag har också byggt ett svarssteg som väljer citat ur de {candidates} passagerna. Det
+              är inte påslaget på sidan. Avsnittet Citaten nedan beskriver hur det mäts.
+            </p>
+          </>
+        )}
       </Section>
 
       <Section n={next()} name="Korpusen">
         <p>
-          Korpusen är riksdagens egna öppna data, där varje anförande publiceras för sig. Den
-          rymmer <strong>{int(corpus.speeches)}</strong> anföranden från{" "}
+          Korpusen är riksdagens egna öppna data, där varje anförande publiceras för sig. Ett
+          anförande är det någon säger varje gång den får ordet i kammaren. Också en replik är ett
+          anförande. Korpusen rymmer <strong>{int(corpus.speeches)}</strong> anföranden från{" "}
           {longDate(corpus.first_date)} till {longDate(corpus.last_date)}, av ledamöter och
           statsråd från de {words(PARTY_ORDER.length)} partierna. Talmannen och ledamöter utan
-          parti är inte med.
+          parti är inte med. Folkpartiet bytte namn till Liberalerna i november 2015. Partiets
+          anföranden från åren innan står också under L.
+        </p>
+        <p>Källa: Sveriges riksdag. Riksdagen står inte bakom Maktspråk eller sökningen.</p>
+        <p>
+          Riksmötet {corpus.left_out_session}, med {int(corpus.left_out_hard_wrapped)} anföranden,
+          lämnade jag utanför. Riksdagen publicerar det som text som bryts vid den tryckta spalten,
+          med avstavade ord och utan markerade stycken. Sådan text går inte att citera ordagrant.
         </p>
         <p>
-          Riksmötet {corpus.left_out_session} lämnade jag utanför. Riksdagen publicerar det som
-          text som bryts vid den tryckta spalten, med avstavade ord och utan markerade stycken.
-          Sådan text går inte att citera ordagrant, och det gäller{" "}
-          {int(corpus.left_out_hard_wrapped)} anföranden.
+          {int(versions.preliminary)} av anförandena, {pct(versions.preliminary_share, 1)}, kommer
+          ur riksdagens snabbprotokoll. Det är protokollet som det ser ut när det först publiceras,
+          innan det är granskat. Ordalydelsen kan skilja sig från det slutliga. I ett anförande
+          från december 2013 står det till exempel &rdquo;Det har sagt en hel del här&rdquo; i
+          snabbprotokollet och &rdquo;Det har sagts en hel del här&rdquo; i det slutliga.
+          Riksdagens egen sida för ett sådant anförande visar samma text, under en rubrik som säger
+          att det är snabbprotokollet. Nästa version av korpusen bygger de anförandena ur de
+          slutliga protokollen.
         </p>
+        <VersionsTable />
         <p>
-          Riksdagens poster innehåller också protokollets egen text, som applåder, voteringar och
+          Riksdagens data innehåller också protokollets egen text, som applåder, voteringar och
           beskedet att en debatt är avslutad. Jag lägger {int(corpus.set_aside_paragraphs)} sådana
-          stycken åt sidan med {int(corpus.set_aside_rules)} namngivna regler, så att de aldrig
+          stycken åt sidan med {int(corpus.set_aside_rules)} namngivna regler, så att de inte
           citeras som någons ord.
         </p>
         <p>
+          Korpusen har också kända fel, som nästa version rättar. I några anföranden står
+          protokollets anteckningar kvar inne i talarens stycken, som &rdquo;(ohörbart)&rdquo; och
+          &rdquo;(Applåder)&rdquo;. Anteckningen om vilka ledamöter som instämde i ett anförande står
+          ibland kvar som talarens sista stycke. Där riksdagens text bryter en rad mitt i ett ord
+          kan ett stycke börja eller sluta inne i ordet, som &rdquo;ublic service-utredarna&rdquo;.
+          Enstaka anföranden har ett annat parti än talarens alla andra anföranden. Några står två
+          gånger med samma text. Ett anförande av Gunilla Carlsson (M) står under Maria Larsson
+          (KD). Tillägget i förregistreringen räknar upp dem.
+        </p>
+        <p>
           Jag stämde av korpusen mot den äldre, som klassificeraren på resten av sajten bygger på.
-          Av dess {int(corpus.coverage_of)} anföranden har {int(corpus.coverage_paired)} en
-          motsvarighet här, alltså {pct(corpus.coverage, 2)}. Kravet var{" "}
-          {pct(corpus.coverage_threshold)}, och det satte jag innan jag räknade.
+          Där är allt som en talare sa i ett protokoll ihopslaget till en post, så dess{" "}
+          {int(corpus.legacy_speeches)} anföranden ligger i {int(corpus.legacy_records)} poster. Av
+          de {int(corpus.coverage_of)} anförandena från riksmötet {corpus.legacy_scope_from} och
+          framåt har {int(corpus.coverage_paired)} en motsvarighet här, alltså{" "}
+          {pct(corpus.coverage, 2)}. Kravet på {pct(corpus.coverage_threshold)} satte jag innan jag
+          räknade.
         </p>
         <p>
           Varje anförande delas i passager av hela stycken, på runt{" "}
@@ -277,19 +352,19 @@ export function Method({ answerStep }: { answerStep: boolean }) {
         <p>
           Länken på ett citat går till anförandets egen sida hos riksdagen. Av{" "}
           {int(corpus.links_sampled)} slumpade länkar ledde {int(corpus.links_passed)} till rätt
-          anförande. Den som återstod öppnade anförandets post ur riksdagens öppna data, med texten
-          men utan rubrik. En länk kan alltså öppna rådata.
+          anförande. Den som återstod öppnade anförandet i riksdagens öppna data, med texten men
+          utan rubrik. En länk kan alltså öppna rådata.
         </p>
         <p>
-          Länkarna i exemplen på den här sidan prövade jag på samma sätt, och {int(links.passed)} av{" "}
+          Länkarna i exemplen på den här sidan prövade jag på samma sätt: {int(links.passed)} av{" "}
           {int(links.speeches)} klarade kontrollen. Riksdagens datamängder för riksmötena{" "}
           {links.dashless_from} till {links.dashless_to} skriver tankstreck som bindestreck,
           medan sidan för samma anförande har kvar tankstrecket. Räknas de två tecknen som lika
           klarar {int(links.passed_with_folded_dashes)} av {int(links.speeches)} kontrollen
           {unexplained === links.xml_records && unexplained > 0
             ? unexplained === 1
-              ? ", och den som återstod öppnade posten ur öppna data"
-              : `, och de ${words(unexplained)} som återstod öppnade posten ur öppna data`
+              ? ". Den som återstod öppnade anförandet i öppna data"
+              : `. De ${words(unexplained)} som återstod öppnade anförandet i öppna data`
             : ""}
           . Ett citat ur de åren kan alltså skilja sig från riksdagens sida i just det tecknet.
         </p>
@@ -297,15 +372,18 @@ export function Method({ answerStep }: { answerStep: boolean }) {
 
       <Section n={next()} name="Bestämt innan jag mätte">
         <p>
-          Frågeseten, måtten, jämförelserna och reglerna för vad som skulle köras på sidan skrev jag
-          ner innan något var mätt. <Link href={PREREGISTRATION}>Förregistreringen</Link> ligger i
-          repot, och git visar i vilken ordning saker hände. Det som ändrades senare står i
-          daterade tillägg, med skälen.
+          Frågeseten, måtten, jämförelserna och reglerna för vad sidan skulle köra skrev jag ner
+          innan något var mätt. <Link href={PREREGISTRATION}>Förregistreringen</Link> ligger i
+          repot och har varit publik sedan den 21 november 2026. Det jag ändrade senare står i
+          daterade tillägg, med skälen. Tilläggen som kom efter den 21 november blev publika först
+          den 25 november, efter körningarna på testdelen. För dem bygger ordningen på datum i git
+          som jag satte själv. Två tillägg lades in efter en körning som de gäller. Vad de ändrade
+          står i ett tillägg från den 27 november.
         </p>
         <p>
-          Frågorna delades i en utvecklingsdel, där allt trimmades, och en testdel som öppnades
-          först efter det. Claude Opus 5.5 skrev {int(natural.questions)} frågor i vanligt språk
-          utifrån slumpade passager, och passagens ovanliga ord fick inte återkomma i frågan. Samma
+          Frågorna delades i två delar: en utvecklingsdel där allt trimmades och en testdel som
+          öppnades först efter det. Claude Opus 5.5 skrev {int(natural.questions)} frågor i vanligt
+          språk utifrån slumpade passager. Passagens ovanliga ord fick inte återkomma i frågan. Samma
           passager fick också frågor i form av några sökord. Jag granskade{" "}
           {int(figures.questions.review_drawn)} slumpade frågor och godkände{" "}
           {int(figures.questions.review_approved)}.
@@ -331,8 +409,14 @@ export function Method({ answerStep }: { answerStep: boolean }) {
         )}
         <p>
           Tabellen visar resultatet på testdelen: andelen frågor där rätt anförande finns bland de{" "}
-          {candidates} bästa träffarna. Hybriden är BM25 och vektorerna ihopslagna, och det är den
-          som körs på sidan.
+          {candidates} bästa träffarna. Hybriden, BM25 och vektorerna ihopslagna, är den som körs
+          på sidan.
+        </p>
+        <p>
+          En interpellationsdebatt har flera anföranden. För de frågorna visar tabellen andelen av
+          debattens anföranden som finns bland de {candidates}. Räknat som andelen rubriker där
+          minst ett av dem finns bland de {candidates} blir det {dec(found.hybrid, 3)} för hybriden,{" "}
+          {dec(found.bm25, 3)} för BM25 och {dec(found.vectors, 3)} för vektorerna.
         </p>
         <RetrievalTable />
         <p>
@@ -347,41 +431,44 @@ export function Method({ answerStep }: { answerStep: boolean }) {
           Vektorerna ensamma slår BM25 ännu tydligare på samma frågor:{" "}
           {dec(vectors.system_mean, 3)} mot {dec(vectors.against_mean, 3)}, med ett intervall från{" "}
           {interval(vectors.low, vectors.high, 3)}. Ställda som sökord vänder det. Där når BM25{" "}
-          {dec(keyword.against_mean, 3)} och vektorerna {dec(keyword.system_mean, 3)}, och
-          intervallet för skillnaden går från {interval(keyword.low, keyword.high, 3)}. Båda
+          {dec(keyword.against_mean, 3)} och vektorerna {dec(keyword.system_mean, 3)}. Intervallet
+          för skillnaden går från {interval(keyword.low, keyword.high, 3)}. Båda
           intervallen ligger helt på ena sidan om noll, så båda resultaten håller.
         </p>
         {hybridKeyword && (
           <p>
-            Hybriden tappar lite mot vektorerna på vanligt språk, {dec(hybrid.system_mean, 3)} mot{" "}
-            {dec(vectors.system_mean, 3)}, och nästan inget mot BM25 på sökord,{" "}
+            Mot vektorerna tappar hybriden lite på vanligt språk, {dec(hybrid.system_mean, 3)} mot{" "}
+            {dec(vectors.system_mean, 3)}. Mot BM25 på sökord tappar den nästan inget,{" "}
             {dec(hybridKeyword.hybrid, 3)} mot {dec(hybridKeyword.bm25, 3)}. Förregistreringen
             prövade bara hybriden mot BM25 för sidan.
           </p>
         )}
         <p>
-          Måttet är en undre gräns. Varje fråga i vanligt språk har ett enda rätt anförande, och
-          andra anföranden kan svara på den också.
+          Måttet är en undre gräns. Varje fråga i vanligt språk har ett enda rätt anförande, även om
+          andra anföranden kan svara på den också. Förregistreringen väger upp det med nDCG@10 över
+          en pool av träffar som jag bedömer för hand. Den bedömningen återstår, liksom
+          jämförelse 4, en omrankare mot ingen. Båda redovisas här när de är gjorda.
         </p>
         <p>
           Förregistreringen säger att ett parti ska nämnas här om andelen för frågor ur partiets
           anföranden avviker mer än {dec(retrieval.party_margin, 2)} från medelvärdet, som är{" "}
           {dec(retrieval.natural_mean, 3)}. Det gör alla {words(retrieval.parties.length)}. Med
           mellan {int(Math.min(...partyQuestions))} och {int(Math.max(...partyQuestions))} frågor
-          per parti är osäkerheten stor, och uppdelningen avgör ingenting.
+          per parti är osäkerheten stor, så uppdelningen avgör ingenting.
         </p>
         <PartyTable />
       </Section>
 
       <Section n={next()} name="Citaten">
         <p>
-          Jag mätte två sätt att välja citat mot varandra. Baslinjen använder ingen språkmodell.
-          Den citerar den bästa träffens stycken med frågans ord och avstår när träffens poäng
-          ligger under en tröskel. Det andra sättet är Claude Opus 5.5.
+          Jag mätte två sätt att välja citat mot varandra. Det första är en baslinje, ett enkelt sätt
+          som det andra måste slå. Den citerar, utan språkmodell, de stycken i den bästa träffen som
+          har frågans ord. Är träffens poäng under en tröskel avstår den. Det andra sättet är Claude
+          Opus 5.5.
         </p>
         <p>
           Prompten fick {words(design.prompt_rounds)} omgångar på utvecklingsdelen, med BM25:s{" "}
-          {candidates} träffar per fråga, och den sista valdes. Den avstod på{" "}
+          {candidates} träffar per fråga. Den sista versionen valdes. Med den avstod citatvalet på{" "}
           {pct(chosen.abstains_unanswerable)} av frågorna som protokollen inte kan svara på och i
           onödan på {pct(chosen.needless_abstention)} av de andra, mot baslinjens{" "}
           {pct(baseline.abstains_unanswerable)} och {pct(baseline.needless_abstention)}.
@@ -389,7 +476,7 @@ export function Method({ answerStep }: { answerStep: boolean }) {
         <p>
           Citatens kvalitet skulle bedömas av en språkmodell, men bara om den först stämde med mina
           egna bedömningar av {int(judge.pairs)} par av fråga och text. Den gav samma betyg som jag
-          i {int(Math.round(judge.exact * judge.pairs))} av dem, och kappa blev{" "}
+          i {int(Math.round(judge.exact * judge.pairs))} av dem. Kappa blev{" "}
           <strong>{dec(judge.kappa, 3)}</strong> mot kravet {dec(judge.threshold, 1)}, så bara mina
           egna bedömningar räknas. I {int(judge.stricter)} av de {int(judge.disagreements)} par där
           vi skilde oss åt var den strängare än jag.
@@ -397,14 +484,14 @@ export function Method({ answerStep }: { answerStep: boolean }) {
         <p>
           Svarssteget kördes först på testdelen med BM25:s träffar, innan sökningen var avgjord.
           Jag trodde att API-krediten gick ut tidigare än den gjorde. Sedan valde sökningen
-          hybriden, och då skulle sidan ha valt citat ur andra träffar än dem den visar. Jag lade
+          hybriden. Då skulle sidan ha valt citat ur andra träffar än dem den visar. Jag lade
           därför den första körningen åt sidan oläst, skrev ett tillägg till förregistreringen och
           körde testdelen igen på hybridens träffar, med samma prompt. De två körningarna kostade{" "}
           {dec(answer.first_cost_usd, 2)} och {dec(answer.hybrid_cost_usd, 2)} dollar. Testdelen
           körs därmed en gång fler än förregistreringen från början tillät. Den första körningen
           avgör ingenting och öppnas först när den andra är bedömd.
         </p>
-        <AnswerResults />
+        <AnswerResults state={answerState} />
       </Section>
 
       {answerStep && (
@@ -421,13 +508,16 @@ export function Method({ answerStep }: { answerStep: boolean }) {
 
       <Section n={next()} name="Driften">
         <p>
-          Sökningen körs i en egen tjänst på Google Cloud Run med indexet inbakat, och tjänsten
-          stängs av när ingen använder den. Jag mätte den i en container med{" "}
-          {words(design.service_vcpus)} processor och {dec(ops.memory_budget_gib, 0)} GiB minne. Den
-          svarade på {int(ops.search_p95_ms)} ms vid 95:e percentilen, startade på{" "}
-          {dec(ops.cold_start_s, 1)} s som längst och använde som mest{" "}
-          {dec(ops.memory_peak_gib, 1)} GiB. Gränserna var {int(ops.search_p95_budget_ms)} ms och{" "}
-          {dec(ops.cold_start_budget_s, 0)} s.
+          Sökningen körs i en egen tjänst på Google Cloud Run, med indexet inbakat. Tjänsten
+          stängs av när ingen använder den. Själva sökningen i indexet mätte jag för sig, med
+          frågans vektor redan framme, i en container med {words(design.service_vcpus)} processor
+          och {dec(ops.memory_budget_gib, 0)} GiB minne. Den svarade på {int(ops.search_p95_ms)} ms
+          vid 95:e percentilen, startade på {dec(ops.cold_start_s, 1)} s som längst och använde som
+          mest{" "}
+          {dec(ops.memory_peak_gib, 1)} GiB. Gränserna var {int(ops.search_p95_budget_ms)} ms,{" "}
+          {dec(ops.cold_start_budget_s, 0)} s och {dec(ops.memory_budget_gib, 0)} GiB. Minnet hade
+          först en gräns på {dec(ops.memory_first_budget_gib, 0)} GiB. Jag höjde den innan
+          embeddingmodellerna jämfördes, när en mätning visade att vektorerna inte fick plats.
         </p>
         <p>
           Jag mätte också genom sajten, från att frågan skickas. I{" "}
@@ -444,28 +534,34 @@ export function Method({ answerStep }: { answerStep: boolean }) {
           {int(ops.vector_questions)} frågor väntade en fråga i median{" "}
           {dec(ops.vector_wait_p50_s, 1)} s på sin vektor, {dec(ops.vector_wait_p95_s, 1)} s vid
           95:e percentilen och som längst {dec(ops.vector_wait_max_s, 1)} s. Tjänsten väntar i upp
-          till {int(ops.vector_limit_s)} s och söker sedan med BM25 ensamt, och sidan säger till
-          när det händer. Gränsen satte jag efter att ha sett väntetiderna och innan testdelen
+          till {int(ops.vector_limit_s)} s och söker sedan med BM25 ensamt. Det gör den också
+          tidigare om vektortjänsten vägrar eller fortsätter att svara med fel. I båda fallen säger
+          sidan till. Gränsen satte jag efter att ha sett väntetiderna och innan testdelen
           öppnades. Med en gräns på {int(ops.vector_wait_short_s)} s hade{" "}
           {pct(ops.vector_wait_over_short, 1)} av frågorna fått BM25 ensamt.
         </p>
+        {answerStep && (
+          <p>
+            Ett svar med Opus 5.5 kostar ungefär {dec(ops.cost_per_question_usd, 2)} dollar. Sidans
+            budget är {dec(ops.monthly_budget_usd, 0)} dollar i månaden, så den räcker till
+            ungefär {int(ops.questions_per_month)} frågor. Resten av månaden väljer baslinjen
+            citaten, med en rad om det ovanför dem.
+          </p>
+        )}
         <p>
-          Ett svar med Opus 5.5 kostar ungefär {dec(ops.cost_per_question_usd, 2)} dollar. Sidans
-          budget är {dec(ops.monthly_budget_usd, 0)} dollar i månaden, så den räcker till ungefär{" "}
-          {int(ops.questions_per_month)} frågor. Resten av månaden väljer baslinjen citaten, och
-          sidan säger det.
-        </p>
-        <p>
-          En schemalagd körning väcker sökningen med jämna mellanrum, utan svarssteget. En annan
-          ställer en fast fråga varje dag och larmar om det väntade anförandet inte kommer tillbaka.
+          En schemalagd körning anropar tjänsten var femte minut, så att den sällan hinner stängas
+          av. En annan ställer
+          en fast fråga varje dag och larmar om det väntade anförandet inte kommer tillbaka, eller om
+          sökningen två gånger i rad får svara med nyckelord enbart.
         </p>
       </Section>
 
       <Section n={next()} name="Vad sidan inte gör">
         <p>
-          Sidan sammanfattar aldrig vad ett parti tycker. Skälet kommer ur sajtens egen studie, där{" "}
-          {leaningM} av {STUDY_META.models} språkmodeller skrev mer som Moderaterna än baslinjen
-          gör. <Link href="/llm">Vilket parti skriver språkmodellerna som?</Link>
+          Sidan sammanfattar aldrig vad ett parti tycker. Skälet kommer ur sajtens egen studie: när
+          klassificeraren läste text från {STUDY_META.models} språkmodeller lät {leaningM} av dem
+          mer som Moderaterna än verkliga anföranden från alla partier i lika delar.{" "}
+          <Link href="/llm">Vilket parti skriver språkmodellerna som?</Link>
         </p>
         <p>
           Ett citat är några stycken ur ett längre anförande, ibland ur en replik. Läs hela

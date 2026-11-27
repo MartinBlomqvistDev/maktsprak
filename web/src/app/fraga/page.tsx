@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
 import examplesRaw from "@/data/fraga/examples.json";
-import { answerStepRuns, answerStepSwitch } from "@/lib/answer-step";
+import { answerStepState, answerStepSwitch } from "@/lib/answer-step";
 import { FragaApp } from "./FragaApp";
 import { Method } from "./Method";
 import { figures } from "./method-data";
@@ -12,8 +12,16 @@ const examples = examplesRaw as ExamplesFile;
 const firstYear = Number(figures.corpus.first_date.slice(0, 4));
 const lastYear = Number(figures.corpus.last_date.slice(0, 4));
 
+// Read when the page is built, as the switch is: a change takes effect with the
+// next deployment.
+const report = figures.answer_test.report;
+const answerState = answerStepState(answerStepSwitch(), report === null ? null : report.launch);
+const answerStep = answerState === "on";
+
 const TITLE = "Fråga protokollet · Maktspråk / Protokollet";
-const DESCRIPTION = `Ställ en fråga och få svar med ordagranna citat ur riksdagens anföranden ${firstYear}-${lastYear}, alltid med talare, parti och länk till anförandet.`;
+const DESCRIPTION = answerStep
+  ? `Ställ en fråga och få svar med ordagranna citat ur riksdagens anföranden ${firstYear}-${lastYear}, alltid med talare, parti och länk till anförandet.`
+  : `Ställ en fråga och få de passager ur riksdagens anföranden ${firstYear}-${lastYear} som sökningen rankar högst, ordagrant och alltid med talare, parti och länk till anförandet.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -37,17 +45,18 @@ export const metadata: Metadata = {
 
 /**
  * The first example, read from the static files at build time so the page
- * opens on a real answer; the others are fetched when they are chosen.
+ * opens on a real answer; the others are fetched when they are chosen. Without
+ * the answer step the page is built with the results alone, so its source
+ * holds no quotation the language model chose.
  */
 function firstExample(): Example {
   const first = examples.examples[0];
   const file = path.join(process.cwd(), "public", "fraga", "exempel", `${first.id}.json`);
-  return JSON.parse(readFileSync(file, "utf-8")) as Example;
+  const example = JSON.parse(readFileSync(file, "utf-8")) as Example;
+  return answerStep ? example : { id: example.id, question: example.question, search: example.search };
 }
 
 export default function FragaPage() {
-  const report = figures.answer_test.report;
-  const answerStep = answerStepRuns(answerStepSwitch(), report === null ? null : report.launch);
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <p className="anf-marker mb-4">
@@ -80,13 +89,13 @@ export default function FragaPage() {
           generated={examples.generated}
           firstYear={firstYear}
           lastYear={lastYear}
-          answerStep={answerStep}
+          answerState={answerState}
           vectorLimitS={figures.operations.vector_limit_s}
           coldStartS={figures.operations.proxy_cold_first_line_s}
         />
       </div>
 
-      <Method answerStep={answerStep} />
+      <Method answerState={answerState} />
     </main>
   );
 }

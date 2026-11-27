@@ -45,10 +45,16 @@ function years(speaker: Speaker): string {
 export function SpeakerPicker({
   value,
   onChange,
+  onPending,
+  labelledBy,
   disabled,
 }: {
   value: Speaker | null;
   onChange: (speaker: Speaker | null) => void;
+  /** Told whether text is typed that no speaker has been picked for. */
+  onPending?: (pending: boolean) => void;
+  /** The id of the element that names the field. */
+  labelledBy?: string;
   disabled?: boolean;
 }) {
   const [typed, setTyped] = useState("");
@@ -82,12 +88,14 @@ export function SpeakerPicker({
 
   function choose(speaker: Speaker) {
     onChange(speaker);
+    onPending?.(false);
     setTyped("");
     setOpen(false);
   }
 
   function clear() {
     onChange(null);
+    onPending?.(false);
     setTyped("");
     setOpen(false);
     inputRef.current?.focus();
@@ -103,6 +111,7 @@ export function SpeakerPicker({
           aria-expanded={open && matches.length > 0}
           aria-controls={listId}
           aria-autocomplete="list"
+          aria-labelledby={labelledBy}
           aria-activedescendant={open && matches[active] ? `${listId}-${active}` : undefined}
           value={text}
           disabled={disabled}
@@ -110,6 +119,7 @@ export function SpeakerPicker({
           onFocus={ensureLoaded}
           onChange={(event) => {
             setTyped(event.target.value);
+            onPending?.(event.target.value.trim() !== "");
             setOpen(true);
             setActive(0);
             if (value) onChange(null);
@@ -122,15 +132,16 @@ export function SpeakerPicker({
             } else if (event.key === "ArrowUp") {
               event.preventDefault();
               setActive((i) => Math.max(i - 1, 0));
-            } else if (event.key === "Enter" && open && matches[active]) {
+            } else if (event.key === "Enter") {
+              // Enter picks a speaker and never sends the form from here.
               event.preventDefault();
-              choose(matches[active]);
+              if (open && matches[active]) choose(matches[active]);
             } else if (event.key === "Escape") {
               setOpen(false);
             }
           }}
           onBlur={() => window.setTimeout(() => setOpen(false), 120)}
-          className="w-full rounded-sm border border-line-2 bg-paper px-3 py-2 text-sm text-ink placeholder:text-ink-3 focus:border-accent focus:outline-none disabled:opacity-50"
+          className="w-full rounded-sm border border-line-2 bg-paper px-3 py-2 text-base text-ink placeholder:text-ink-3 focus:border-accent focus:outline-none disabled:opacity-50 sm:text-sm"
         />
         {value && !disabled && (
           <button

@@ -86,7 +86,7 @@ export async function stubAsk(
   await wait(cold ? 6000 : 800, signal);
 
   if (request.mode === "parties") {
-    onLine(baselineOf(example.parties));
+    if (example.parties) onLine(baselineOf(example.parties));
     return;
   }
 
@@ -102,6 +102,7 @@ export async function stubAsk(
     return;
   }
   await wait(cold ? 3000 : 2500, signal);
+  if (!example.answer) return;
   let answer: AnswerLine = example.answer;
   if (scenario === "budget" || scenario === "misslyckat") {
     answer = {
