@@ -48,7 +48,12 @@ REPORTS = (
     "service_latency_preview_search.json",
     "service_latency_preview_answer.json",
     "service_latency_preview_cold.json",
+    "protocol_versions.json",
+    "storage_spike.json",
 )
+
+#: The test run's result per question, as JSON Lines.
+RETRIEVAL_QUESTIONS = "retrieval_test_questions.jsonl"
 
 #: Reports that exist only once Martin has graded the drawn quotations.
 LATER_REPORTS = ("answer_test.json", "answer_test_sealed.json")
@@ -124,6 +129,27 @@ class Corpus(_Frozen):
     coverage_threshold: float
     links_sampled: int
     links_passed: int
+    legacy_records: int
+    legacy_speeches: int
+    legacy_protocols: int
+    legacy_scope_from: str
+
+
+class SessionVersions(_Frozen):
+    """One session whose speeches partly come from the Riksdag's preliminary protocols."""
+
+    session: str
+    speeches: int
+    preliminary: int
+
+
+class Versions(_Frozen):
+    """The speeches whose protocol is a snabbprotokoll, the Riksdag's preliminary version."""
+
+    preliminary: int
+    preliminary_share: float
+    preliminary_protocols: int
+    sessions: tuple[SessionVersions, ...]
 
 
 class QuestionSet(_Frozen):
@@ -222,6 +248,7 @@ class Retrieval(_Frozen):
     natural_mean: float
     parties: tuple[PartyRecall, ...]
     party_margin: float
+    interpellation_found: dict[str, float]
 
 
 class Round(_Frozen):
@@ -330,6 +357,7 @@ class Operations(_Frozen):
     cold_start_budget_s: float
     memory_peak_gib: float
     memory_budget_gib: float
+    memory_first_budget_gib: float
     proxy_search_requests: int
     proxy_search_p50_s: float
     proxy_search_p95_s: float
@@ -356,6 +384,7 @@ class MethodFigures(_Frozen):
     answer_test: AnswerRuns
     operations: Operations
     links: Links
+    versions: Versions
 
 
 def text_sha256(path: Path) -> str:
@@ -398,7 +427,48 @@ def _corpus(build: Any, passages: Any, reconciliation: Any, links: Any) -> Corpu
         coverage_threshold=reconciliation["coverage_threshold"],
         links_sampled=links["totals"]["sampled"],
         links_passed=links["totals"]["passed"],
+        legacy_records=reconciliation["old_corpus"]["rows"],
+        legacy_speeches=reconciliation["old_corpus"]["speeches"],
+        legacy_protocols=reconciliation["old_corpus"]["in_scope_protocols"]
+        + sum(entry["protocols"] for entry in reconciliation["old_corpus"]["out_of_scope"]),
+        legacy_scope_from=reconciliation["sessions_in_scope"][0],
     )
+
+
+def _versions(report: Any) -> Versions:
+    return Versions(
+        preliminary=report["preliminary"],
+        preliminary_share=report["preliminary_share"],
+        preliminary_protocols=report["preliminary_protocols"],
+        sessions=tuple(
+            SessionVersions(
+                session=entry["session"],
+                speeches=entry["speeches"],
+                preliminary=entry["preliminary"],
+            )
+            for entry in report["sessions"]
+            if entry["preliminary"]
+        ),
+    )
+
+
+def _interpellations_found(reports: Path, sources: dict[str, str]) -> dict[str, float]:
+    """Each system's share of interpellations with any of the debate's speeches in its top ten.
+
+    recall@10 on an interpellation is the share of the debate's speeches found,
+    so the page states this share beside it. A question's MRR@10 is above zero
+    exactly when one of its speeches is among the ten.
+    """
+    path = reports / RETRIEVAL_QUESTIONS
+    sources[RETRIEVAL_QUESTIONS] = text_sha256(path)
+    found: dict[str, list[bool]] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        entry = json.loads(line)
+        if entry["set"] == "interpellation":
+            found.setdefault(entry["system"], []).append(entry["metrics"]["mrr@10"] > 0)
+    return {system: round(sum(hits) / len(hits), 4) for system, hits in sorted(found.items())}
 
 
 def _questions(manifest: Any, review: Any) -> Questions:
@@ -434,7 +504,9 @@ def _judge(agreement: Any) -> Judge:
     )
 
 
-def _retrieval(settings: Settings, vectors: Any, tuning: Any, test: Any) -> Retrieval:
+def _retrieval(
+    settings: Settings, vectors: Any, tuning: Any, test: Any, interpellations: dict[str, float]
+) -> Retrieval:
     candidate = settings.vectors.candidate(test["candidate"])
     by_name = {entry["name"]: entry for entry in vectors["scores"]}
     order = [entry.name for entry in settings.vectors.candidates]
@@ -501,6 +573,7 @@ def _retrieval(settings: Settings, vectors: Any, tuning: Any, test: Any) -> Retr
             if party in test["deviating_parties"]
         ),
         party_margin=PARTY_MARGIN,
+        interpellation_found=interpellations,
     )
 
 
@@ -572,7 +645,13 @@ def _answer_test(report: Any) -> AnswerTest:
 
 
 def _operations(
-    settings: Settings, check: Any, hybrid_run: Any, search: Any, answer: Any, cold: Any
+    settings: Settings,
+    check: Any,
+    hybrid_run: Any,
+    search: Any,
+    answer: Any,
+    cold: Any,
+    spike: Any,
 ) -> Operations:
     """The service's measurements, in a container and from outside through the site's proxy.
 
@@ -602,6 +681,7 @@ def _operations(
         cold_start_budget_s=storage["budget"]["cold_start_s"],
         memory_peak_gib=storage["memory_peak_gib"],
         memory_budget_gib=storage["budget"]["memory_gib"],
+        memory_first_budget_gib=spike["budget"]["memory_gib"],
         proxy_search_requests=found["requests"],
         proxy_search_p50_s=found["p50"],
         proxy_search_p95_s=found["p95"],
@@ -663,6 +743,7 @@ def method_figures(settings: Settings) -> MethodFigures:
             read["vector_comparison_dev.json"],
             read["hybrid_tuning_dev.json"],
             read["retrieval_test.json"],
+            _interpellations_found(reports, sources),
         ),
         answer_dev=_answer_dev(read["answer_dev.json"]),
         answer_test=AnswerRuns(
@@ -693,10 +774,12 @@ def method_figures(settings: Settings) -> MethodFigures:
             read["service_latency_preview_search.json"],
             read["service_latency_preview_answer.json"],
             read["service_latency_preview_cold.json"],
+            read["storage_spike.json"],
         ),
         links=_links(
             read["anforanden_build.json"],
             read["page_example_links.json"],
             read["source_dashes.json"],
         ),
+        versions=_versions(read["protocol_versions.json"]),
     )

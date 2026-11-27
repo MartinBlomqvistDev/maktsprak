@@ -36,6 +36,10 @@ export interface MethodFigures {
     coverage_threshold: number;
     links_sampled: number;
     links_passed: number;
+    legacy_records: number;
+    legacy_speeches: number;
+    legacy_protocols: number;
+    legacy_scope_from: string;
   };
   questions: {
     sets: { name: string; questions: number; dev: number; test: number }[];
@@ -85,6 +89,7 @@ export interface MethodFigures {
     natural_mean: number;
     parties: { party: string; questions: number; recall_10: number; deviation: number }[];
     party_margin: number;
+    interpellation_found: Record<string, number>;
   };
   answer_dev: {
     answerable: number;
@@ -147,6 +152,7 @@ export interface MethodFigures {
     cold_start_budget_s: number;
     memory_peak_gib: number;
     memory_budget_gib: number;
+    memory_first_budget_gib: number;
     proxy_search_requests: number;
     proxy_search_p50_s: number;
     proxy_search_p95_s: number;
@@ -166,6 +172,12 @@ export interface MethodFigures {
     xml_records: number;
     dashless_from: string;
     dashless_to: string;
+  };
+  versions: {
+    preliminary: number;
+    preliminary_share: number;
+    preliminary_protocols: number;
+    sessions: { session: string; speeches: number; preliminary: number }[];
   };
 }
 

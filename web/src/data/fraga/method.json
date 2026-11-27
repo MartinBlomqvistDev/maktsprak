@@ -1,7 +1,7 @@
 {
   "sources": {
     "anforanden_build.json": "f39f2bb7357ea67fc8c5554079a6d0cccca600ed86739189f0387e2fff353011",
-    "answer_dev.json": "fc6fbc3653c863e5069cecd3b554649f32da90ad90a278f95a2e6277b5f5e067",
+    "answer_dev.json": "38fb740b99e574498f053feb43ace953b5998629cbb71e1268cf0ebbf0912b08",
     "answer_test_hand_draw.json": "e69fb726944cc39a6aef17f50be54812be8d4072f3a2e86aa570adff8437895f",
     "answer_test_run.json": "d760c82eeca716cb309ded91800a69454f406052318fd1229a1626ed2b9b47ba",
     "answer_test_run_hybrid.json": "3affdc9e9f44e3882fb806cd0b95857a4878f6ec850eb76543d983d417b086ee",
@@ -10,6 +10,7 @@
     "judge_agreement.json": "ed3e8a6160f252b542ecec92a192e466dea117c905a27ea9bda99262cea2519b",
     "page_example_links.json": "7b5e1297ba89152cd8932bbb6b46d0d551c61f9173b93de9920593af4c5de625",
     "passages.json": "def29e63421f7fdce5c291e722c4065fa890decf721d23a5d6653c81cb692220",
+    "protocol_versions.json": "8cc26d9138f46b896e4f02c451d7d02eac55fd74eb48dc6d546357c3a987c030",
     "questions/questions_manifest.json": "facbe7cdc6084cc28e26d23b624cac48e717e42ec3c35ecc418955f92ff6c667",
     "reconciliation.json": "4f21313f81f4f7fc6b49d388b09d7df250b13eb069ff03d4e4be8fe8f74df9aa",
     "retrieval_test.json": "6e2eca44d868d4b87de980ac07d03ab116f48adfbb33b5b9954fa4b426958d12",
@@ -19,6 +20,7 @@
     "service_latency_preview_cold.json": "3191e436effedf2fba8d129e4992d85c3b90d710d09e8ea369b33260a3d37051",
     "service_latency_preview_search.json": "86ff337b94f6df929de980b494a0fe9ad3b3dcc9bcb70ff157f4cc26d771972f",
     "source_dashes.json": "a26b2fcd242c6cbc738ae50dc4c2701b58a512498698d691a35242e5e3e6cc7f",
+    "storage_spike.json": "4d0a485359388c34e51fe260a1a779038cfbd0c5c300d7bea93dbfad3b91a9ed",
     "vector_comparison_dev.json": "1a69bbf781ac16d8c7c9179e2aaaa52ca87da45ff7a865cdba2e6b5ada5be40f"
   },
   "design": {
@@ -47,7 +49,11 @@
     "coverage": 0.9955,
     "coverage_threshold": 0.99,
     "links_sampled": 50,
-    "links_passed": 49
+    "links_passed": 49,
+    "legacy_records": 75148,
+    "legacy_speeches": 299149,
+    "legacy_protocols": 2970,
+    "legacy_scope_from": "2003/04"
   },
   "questions": {
     "sets": [
@@ -263,7 +269,12 @@
         "deviation": 0.2
       }
     ],
-    "party_margin": 0.05
+    "party_margin": 0.05,
+    "interpellation_found": {
+      "bm25": 0.6346,
+      "hybrid": 0.6911,
+      "vectors": 0.631
+    }
   },
   "answer_dev": {
     "answerable": 180,
@@ -327,6 +338,7 @@
     "cold_start_budget_s": 8.0,
     "memory_peak_gib": 3.154,
     "memory_budget_gib": 4.0,
+    "memory_first_budget_gib": 2.0,
     "proxy_search_requests": 29,
     "proxy_search_p50_s": 1.494,
     "proxy_search_p95_s": 5.975,
@@ -346,5 +358,52 @@
     "xml_records": 1,
     "dashless_from": "2003/04",
     "dashless_to": "2023/24"
+  },
+  "versions": {
+    "preliminary": 38706,
+    "preliminary_share": 0.1284,
+    "preliminary_protocols": 370,
+    "sessions": [
+      {
+        "session": "2004/05",
+        "speeches": 15832,
+        "preliminary": 172
+      },
+      {
+        "session": "2007/08",
+        "speeches": 15718,
+        "preliminary": 223
+      },
+      {
+        "session": "2009/10",
+        "speeches": 11171,
+        "preliminary": 2428
+      },
+      {
+        "session": "2010/11",
+        "speeches": 11421,
+        "preliminary": 9796
+      },
+      {
+        "session": "2011/12",
+        "speeches": 11484,
+        "preliminary": 609
+      },
+      {
+        "session": "2012/13",
+        "speeches": 12057,
+        "preliminary": 11747
+      },
+      {
+        "session": "2013/14",
+        "speeches": 14012,
+        "preliminary": 13730
+      },
+      {
+        "session": "2014/15",
+        "speeches": 12928,
+        "preliminary": 1
+      }
+    ]
   }
 }
