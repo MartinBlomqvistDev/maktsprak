@@ -2,15 +2,15 @@ import { ProtokollMarker } from "@/components/ProtokollMarker";
 import { PartySpectrum } from "@/components/PartySpectrum";
 import { PredictDemo } from "@/components/PredictDemo";
 import { RedactReveal } from "@/components/RedactReveal";
-import { meta } from "@/lib/site-data";
+import { figures } from "@/app/fraga/method-data";
 
 export default function Home() {
-  // The corpus count comes from meta.json, which build_site_data.py writes from
-  // the Parquet archive. It used to be fetched from Supabase, which is the wrong
-  // source and was quietly giving the wrong answer: Supabase is a trimmed ETL
-  // landing zone holding only recent years (~37k rows), not the 2002-2026 corpus.
-  // It also meant a database round-trip, and egress, to render the front page.
-  const speechCount = meta.count.toLocaleString("sv-SE");
+  // The corpus's size in speeches, as the search's reconciliation counted them
+  // in data/reports/search/reconciliation.json. The Parquet archive holds one
+  // record per speaker and protocol, so its row count, meta.json's count, is a
+  // count of records and not of speeches. The count used to be fetched from
+  // Supabase, which is only a trimmed ETL landing zone of recent years.
+  const speechCount = figures.corpus.legacy_speeches.toLocaleString("sv-SE");
 
   return (
     <main className="relative z-[1]">
@@ -28,8 +28,6 @@ export default function Home() {
               segments={[
                 { text: "Hur något sägs avslöjar " },
                 { text: "partiet", redact: true },
-                { text: ", inte bara " },
-                { text: "vad som sägs", redact: true },
                 { text: "." },
               ]}
             />
@@ -37,9 +35,9 @@ export default function Home() {
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2">
             Jag har finjusterat en språkmodell på riksdagens debatter tills den
-            lärt sig partiernas retoriska fingeravtryck: inte vad en politiker
-            talar om, utan hur. Klistra in valfri text nedan, utan att ange
-            källa, och se vilket parti modellen tror att den kommer från.
+            lärt sig partiernas retoriska fingeravtryck: hur en politiker
+            formulerar sig. Klistra in valfri text nedan, utan källa, så
+            ser du vilket parti modellen tror att den kommer från.
           </p>
 
           <div className="mt-10 max-w-xl">
@@ -91,17 +89,17 @@ export default function Home() {
             <ProtokollMarker n={2} name="Tränades" />
             <p className="mt-4 mb-10 text-ink-2">
               Modellen finjusterades en gång, på anföranden från 2015 och framåt.
-              Den tränas alltså inte om vecka för vecka; det är korpusen som
-              växer, inte modellen. Valideringen är <strong>talar-oberoende</strong>:
-              15 % av politikerna hölls helt utanför träningen, så siffran mäter
-              om modellen fångar ett partis sätt att argumentera, inte om den
-              känner igen enskilda talare.
+              Korpusen växer vecka för vecka med nya protokoll, medan modellen är
+              densamma. Valideringen är <strong>talar-oberoende</strong>: 15 % av
+              politikerna hölls helt utanför träningen, så siffran mäter om
+              modellen fångar ett partis sätt att argumentera hos talare den
+              aldrig har sett.
             </p>
 
             <ProtokollMarker n={3} name="Avslöjar" />
             <p className="mt-4 text-ink-2">
               Resultatet är ett verktyg som läser politisk text och visar
-              vilket parti den mest liknar retoriskt, och en öppen
+              vilket parti den mest liknar retoriskt. Till det kommer en öppen
               redovisning av var modellen är säker och var den gissar.
             </p>
           </div>

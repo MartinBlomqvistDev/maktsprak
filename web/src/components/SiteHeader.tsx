@@ -5,6 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const NAV = [
   { href: "/partierna", label: "Partierna" },
   { href: "/utveckling", label: "Utveckling" },
+  { href: "/fraga", label: "Fråga protokollet" },
   { href: "/llm", label: "LLM-studien" },
   { href: "/metod", label: "Metod" },
   { href: "/riktmarke", label: "Riktmärke" },
