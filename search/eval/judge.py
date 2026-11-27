@@ -353,7 +353,7 @@ GRADING_INTRO = (
     "om frågans ämne men besvarar inte frågan. 0: utdraget handlar om något annat. Bedöm "
     "bara det som står i utdraget, oavsett om du håller med talaren. Samma fråga kan "
     "komma tillbaka med andra utdrag. Svaren sparas i webbläsaren medan du arbetar. När "
-    "du är klar, kopiera eller ladda ned svaren och lämna dem i sessionen."
+    "du är klar, ladda ned svaren och spara filen."
 )
 
 #: The answer field of a grading form, as the page's script reads it.

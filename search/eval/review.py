@@ -295,8 +295,8 @@ def review_form(items: Sequence[ReviewItem], storage_key: str) -> str:
     intro = (
         "Svara på två frågor om varje fråga: är den rimlig, och besvarar utdraget den? "
         "För sökord gäller: är det rimliga sökord, och är utdraget en bra träff för dem? "
-        "Svaren sparas i webbläsaren medan du arbetar. När du är klar, kopiera eller "
-        "ladda ned svaren och lämna dem i sessionen."
+        "Svaren sparas i webbläsaren medan du arbetar. När du är klar, "
+        "ladda ned svaren och spara filen."
     )
     fields = (
         '[{name: "reasonable", parse: (value) => value === "true"},'
