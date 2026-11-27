@@ -362,7 +362,8 @@ class ServiceCheck(_Frozen):
         storage: The build held to the storage rule.
         queries: How the questions' vectors were asked for, from ``service_queries_dev.json``.
         sources_sha256: The hash of each file the check read, by name.
-        passed: Whether the hybrid reaches the floor for every question and the
+        passed: Whether the build's records hold every evaluated question, the
+            hybrid reaches the floor on average over the questions, and the
             build is within the storage rule.
     """
 
