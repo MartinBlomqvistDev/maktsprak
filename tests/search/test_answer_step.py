@@ -372,6 +372,8 @@ class TestTheStep:
         assert set(report["cost_usd"]) == {*names, "judge"}
         assert report["chosen_model"] == HAIKU
         assert report["leading_round"] == 1
+        assert report["unaccepted_judge"] is None
+        assert report["answerable_with_a_grade_2"] is not None
         lines = (settings.tracked.reports / step.QUESTIONS_REPORT).read_text("utf-8").splitlines()
         assert len(lines) == 4 * len(QUESTIONS)
         assert {json.loads(line)["run"] for line in lines} == {"baseline", *names}
@@ -422,6 +424,41 @@ class TestTheStep:
         step.make_report(settings)
         report = json.loads((settings.tracked.reports / step.REPORT).read_text("utf-8"))
         assert report["judge_accepted"] is False
+        assert report["chosen_model"] == OPUS and report["leading_round"] == 1
+        with pytest.raises(SystemExit, match="grades nothing more"):
+            step.run_judge(settings)
+
+    def test_the_grades_of_a_judge_that_fell_short_stand_apart_as_description(
+        self, settings, monkeypatch
+    ):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(selector_reply))
+        step.run_round(settings, 1, OPUS)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(judge_reply))
+        step.run_judge(settings)
+        agree(settings, accepted=False)
+        step.make_report(settings)
+        report = json.loads((settings.tracked.reports / step.REPORT).read_text("utf-8"))
+        name = step.run_name(1, OPUS)
+        judge = report["unaccepted_judge"]
+        assert judge["note"] == step.UNACCEPTED_JUDGE_NOTE
+        assert set(judge["selectors"]) == {"baseline", name}
+        for summary in report["selectors"]:
+            assert summary["quote_precision"] is None and summary["score"] is None
+            assert summary["launch_rule"][step.PRECISION_PART] is None
+            assert summary["pending_grades"] == 0
+        [opus] = [summary for summary in report["selectors"] if summary["name"] == name]
+        figures = judge["selectors"][name]
+        accuracy = opus["abstention"]["balanced_accuracy"]
+        assert figures["quote_precision"] == 1.0
+        assert figures["score"] == round((1.0 + accuracy) / 2, 6)
+        assert figures[step.PRECISION_PART] is True
+        [comparison] = report["comparisons"]
+        assert comparison["quote_precision"] is None
+        assert judge["comparisons"][name] is not None
+        assert report["answerable_with_a_grade_2"] is None
+        assert judge["answerable_with_a_grade_2"][1] > 0
         assert report["chosen_model"] == OPUS and report["leading_round"] == 1
 
     def test_round_1_runs_every_model_with_the_same_prompt(self, settings, monkeypatch, tmp_path):

@@ -17,7 +17,8 @@ Commands, in order:
   and 3 run only the model chosen after round 1, each with a prompt of its
   own. It needs ``--confirm``.
 - ``judge`` grades every quotation given to an answerable question, and every
-  candidate of one, that has no grade yet. It needs ``--confirm``.
+  candidate of one, that has no grade yet, once the judge's kappa has reached
+  0.6. It needs ``--confirm``.
 - ``report`` computes each selector's metrics, the comparisons with the
   baseline and the choice of model from what is recorded, and writes them
   among the tracked reports.
@@ -515,7 +516,8 @@ class SelectorSummary(BaseModel):
         prompt_sha256: The round's prompt.
         abstention: Balanced accuracy and its shares.
         quote_precision: The share of quotations on answerable questions graded
-            2, or ``None`` while some of them still wait for the judge.
+            2, or ``None`` while some of them still wait for the judge, or when
+            it is not measured because the judge's kappa fell short of 0.6.
         score: The mean of quote precision and balanced accuracy, or ``None``
             without a quote precision.
         quotes: How many quotations on answerable questions.
@@ -527,7 +529,9 @@ class SelectorSummary(BaseModel):
         cost_usd: What the round's requests cost.
         cost_per_question_usd: That cost over every question of the split.
         parties: The share of each party among the quotations on answerable questions.
-        launch_rule: Whether each part of the launch rule holds on the point estimates.
+        launch_rule: Whether each part of the launch rule holds on the point
+            estimates; the part on quote precision is ``None`` when quote
+            precision is not measured.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -548,7 +552,7 @@ class SelectorSummary(BaseModel):
     cost_usd: float
     cost_per_question_usd: float
     parties: dict[str, float]
-    launch_rule: dict[str, bool]
+    launch_rule: dict[str, bool | None]
 
 
 class Comparison(BaseModel):
@@ -557,7 +561,8 @@ class Comparison(BaseModel):
     Attributes:
         name: The round.
         quote_precision: The difference, round minus baseline, and the interval's
-            bounds; ``None`` while either has quotations that wait for the judge.
+            bounds; ``None`` while either has quotations that wait for a grade,
+            or when quote precision is not measured.
         balanced_accuracy: The same for balanced accuracy.
     """
 
@@ -568,8 +573,68 @@ class Comparison(BaseModel):
     balanced_accuracy: tuple[float, float, float]
 
 
+#: The part of the launch rule that reads quote precision.
+PRECISION_PART = "quote_precision_at_least_085"
+
+#: What the block of the judge's grades says, in the report itself.
+UNACCEPTED_JUDGE_NOTE = (
+    "The judge's kappa against the hand grades fell short of 0.6, so quote precision is not "
+    "measured on the development split. These figures come from the judge's grades and are "
+    "description without decision value: no model, round or launch rule was decided from "
+    "them. The grades in answer_dev_questions.jsonl are the judge's as well."
+)
+
+
+class JudgeFigures(BaseModel):
+    """What one selector's or round's quotations come to under the judge's grades.
+
+    Attributes:
+        quote_precision: The share of its quotations on answerable questions the
+            judge grades 2, or ``None`` while some of them still wait for the judge.
+        score: The mean of that share and balanced accuracy, or ``None`` without it.
+        quote_precision_at_least_085: Whether that share reaches 0.85.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    quote_precision: float | None
+    score: float | None
+    quote_precision_at_least_085: bool
+
+
+class UnacceptedJudge(BaseModel):
+    """The judge's grades of the development split after its kappa fell short: description.
+
+    The addendum of 2026-11-23 does not measure quote precision on the
+    development split when the judge's kappa falls short of 0.6, and the model
+    and the round are then chosen by balanced accuracy alone. What the judge's
+    grades come to is kept here, apart from the registered metrics, and nothing
+    is decided from it.
+
+    Attributes:
+        note: The same, for whoever reads the report on its own.
+        selectors: Each selector's and round's figures under the judge's grades.
+        comparisons: Each round's difference in that share from the baseline,
+            with its paired 95% interval, or ``None`` while grades wait.
+        answerable_with_a_grade_2: How many answerable questions have at least
+            one candidate the judge grades 2, and how many have a graded candidate.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    note: str = UNACCEPTED_JUDGE_NOTE
+    selectors: dict[str, JudgeFigures]
+    comparisons: dict[str, tuple[float, float, float] | None]
+    answerable_with_a_grade_2: tuple[int, int]
+
+
 class AnswerReport(BaseModel):
     """The answer step on the development split. Description: nothing here decides.
+
+    When the judge's kappa fell short of 0.6, quote precision, the score, the
+    part of the launch rule on quote precision, its intervals and the count of
+    candidates graded 2 are left out of the registered fields, and what the
+    judge's grades give for them stands apart in ``unaccepted_judge``.
 
     Attributes:
         split: The split run.
@@ -583,7 +648,8 @@ class AnswerReport(BaseModel):
         candidate_parties: The share of each party among the candidates of the
             answerable questions.
         answerable_with_a_grade_2: How many answerable questions have at least
-            one candidate the judge grades 2, and how many have a graded candidate.
+            one candidate the judge grades 2, and how many have a graded
+            candidate; ``None`` when the judge's kappa fell short.
         chosen_model: The model chosen after round 1, or ``None`` before round 1
             is answered by each of its models and graded.
         leading_round: Among the chosen model's rounds, the one with the highest
@@ -592,6 +658,8 @@ class AnswerReport(BaseModel):
         cost_usd: What the rounds and the judge have cost, by part.
         resamples: The bootstrap resamples behind each interval.
         bootstrap_seed: The seed of the resamples.
+        unaccepted_judge: The judge's figures, as description, when its kappa
+            fell short; ``None`` otherwise.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -605,12 +673,13 @@ class AnswerReport(BaseModel):
     selectors: tuple[SelectorSummary, ...]
     comparisons: tuple[Comparison, ...]
     candidate_parties: dict[str, float]
-    answerable_with_a_grade_2: tuple[int, int]
+    answerable_with_a_grade_2: tuple[int, int] | None
     chosen_model: str | None
     leading_round: int | None
     cost_usd: dict[str, float]
     resamples: int
     bootstrap_seed: int
+    unaccepted_judge: UnacceptedJudge | None = None
 
 
 class HandSummary(BaseModel):
@@ -1904,8 +1973,18 @@ def grading_pairs(settings: Settings, records: Sequence[QuestionCandidates]) -> 
 
 
 def run_judge(settings: Settings, cap_usd: float | None = None) -> None:
-    """Grade every pair without a grade, sending a failed one once more, under *cap_usd*."""
+    """Grade every pair without a grade, sending a failed one once more, under *cap_usd*.
+
+    The judge grades only once its kappa against the hand grades has reached
+    0.6. Short of it, quote precision is not measured on the development split,
+    so nothing the judge would grade is used.
+    """
     check_judge_known(settings)
+    if judge_accepted(settings) is False:
+        raise SystemExit(
+            "The judge's kappa fell short of 0.6, so it grades nothing more: quote "
+            "precision is not measured on the development split."
+        )
     _, records = read_candidates(settings)
     prompt = load_prompt("judge")
     check_judge_prompt(prompt)
@@ -1986,10 +2065,19 @@ def summarize(
     outcomes: Sequence[QuestionOutcome],
     record: RoundRecord | None,
     pending_grades: int,
+    measured: bool = True,
 ) -> SelectorSummary:
-    """One selector's or round's metrics."""
+    """One selector's or round's metrics.
+
+    Quote precision, the score and the launch rule's part on quote precision
+    stand under their registered names only when *measured*, that is when the
+    judge's kappa reached 0.6; :func:`judge_figures` gives them otherwise.
+    """
     shares = abstention(outcomes)
-    precision = quote_precision(outcomes) if pending_grades == 0 else None
+    precision = quote_precision(outcomes) if pending_grades == 0 and measured else None
+    rule: dict[str, bool | None] = dict(launch_rule(shares, precision))
+    if not measured:
+        rule[PRECISION_PART] = None
     answerable = [outcome for outcome in outcomes if outcome.answerable]
     cost = sum(outcome.cost_usd for outcome in outcomes)
     return SelectorSummary(
@@ -2015,7 +2103,18 @@ def summarize(
         cost_usd=round(cost, 4),
         cost_per_question_usd=round(cost / len(outcomes), 6),
         parties=party_shares(quote.party for outcome in answerable for quote in outcome.quotes),
-        launch_rule=launch_rule(shares, precision),
+        launch_rule=rule,
+    )
+
+
+def judge_figures(outcomes: Sequence[QuestionOutcome], pending_grades: int) -> JudgeFigures:
+    """One selector's or round's figures under the judge's grades, as description."""
+    shares = abstention(outcomes)
+    precision = quote_precision(outcomes) if pending_grades == 0 else None
+    return JudgeFigures(
+        quote_precision=None if precision is None else round(precision, 6),
+        score=None if precision is None else round((precision + shares.balanced_accuracy) / 2, 6),
+        quote_precision_at_least_085=launch_rule(shares, precision)[PRECISION_PART],
     )
 
 
@@ -2084,8 +2183,9 @@ def dev_summaries(
     answers = {name: read_answers(settings, name) for name in names}
     outcomes = {name: outcomes_of(records, answers[name], grades) for name in names}
     waiting = {name: len(pending(quote_pairs(records, answers[name]), log)) for name in names}
+    measured = judge_accepted(settings) is True
     summaries = tuple(
-        summarize(name, outcomes[name], rounds.get(name), waiting[name]) for name in names
+        summarize(name, outcomes[name], rounds.get(name), waiting[name], measured) for name in names
     )
     return rounds, outcomes, waiting, summaries
 
@@ -2113,8 +2213,10 @@ def make_report(settings: Settings) -> None:
     answer = settings.answer
     rounds, outcomes, waiting, summaries = dev_summaries(settings, records, log)
     names = [summary.name for summary in summaries]
+    accepted = judge_accepted(settings)
 
     comparisons = []
+    judge_intervals: dict[str, tuple[float, float, float] | None] = {}
     for name in names:
         if name == "baseline":
             continue
@@ -2125,10 +2227,11 @@ def make_report(settings: Settings) -> None:
                     outcomes[name], outcomes["baseline"], answer.bootstrap_seed, answer.resamples
                 )
             )
+        judge_intervals[name] = precision
         comparisons.append(
             Comparison(
                 name=name,
-                quote_precision=precision,
+                quote_precision=precision if accepted is True else None,
                 balanced_accuracy=_rounded(
                     accuracy_difference(
                         outcomes[name],
@@ -2146,7 +2249,14 @@ def make_report(settings: Settings) -> None:
         if record.answerable
     ]
     graded = [values for values in candidate_grades if any(value is not None for value in values)]
-    accepted = judge_accepted(settings)
+    with_a_grade_2 = (sum(any(value == 2 for value in values) for values in graded), len(graded))
+    unaccepted = None
+    if accepted is False:
+        unaccepted = UnacceptedJudge(
+            selectors={name: judge_figures(outcomes[name], waiting[name]) for name in names},
+            comparisons=judge_intervals,
+            answerable_with_a_grade_2=with_a_grade_2,
+        )
     chosen = chosen_model(settings, records, log)
     report = AnswerReport(
         split="dev",
@@ -2163,15 +2273,13 @@ def make_report(settings: Settings) -> None:
             if record.answerable
             for candidate in record.candidates
         ),
-        answerable_with_a_grade_2=(
-            sum(any(value == 2 for value in values) for values in graded),
-            len(graded),
-        ),
+        answerable_with_a_grade_2=None if accepted is False else with_a_grade_2,
         chosen_model=chosen,
         leading_round=leading_round(summaries, rounds, chosen, accepted),
         cost_usd=spent(settings),
         resamples=answer.resamples,
         bootstrap_seed=answer.bootstrap_seed,
+        unaccepted_judge=unaccepted,
     )
     write_report(report, settings.tracked.reports / REPORT)
     lines = [

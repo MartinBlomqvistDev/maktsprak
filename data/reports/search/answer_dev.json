@@ -47,8 +47,8 @@
         "answerable": 180,
         "unanswerable": 60
       },
-      "quote_precision": 0.525773,
-      "score": 0.589275,
+      "quote_precision": null,
+      "score": null,
       "quotes": 97,
       "pending_grades": 0,
       "ungraded": 0,
@@ -70,7 +70,7 @@
       "launch_rule": {
         "abstains_on_90_percent_of_unanswerable": false,
         "needless_abstention_at_most_15_percent": false,
-        "quote_precision_at_least_085": false
+        "quote_precision_at_least_085": null
       }
     },
     {
@@ -86,8 +86,8 @@
         "answerable": 180,
         "unanswerable": 60
       },
-      "quote_precision": 0.829522,
-      "score": 0.875872,
+      "quote_precision": null,
+      "score": null,
       "quotes": 481,
       "pending_grades": 0,
       "ungraded": 0,
@@ -109,7 +109,7 @@
       "launch_rule": {
         "abstains_on_90_percent_of_unanswerable": true,
         "needless_abstention_at_most_15_percent": true,
-        "quote_precision_at_least_085": false
+        "quote_precision_at_least_085": null
       }
     },
     {
@@ -125,8 +125,8 @@
         "answerable": 180,
         "unanswerable": 60
       },
-      "quote_precision": 0.851528,
-      "score": 0.884098,
+      "quote_precision": null,
+      "score": null,
       "quotes": 458,
       "pending_grades": 0,
       "ungraded": 0,
@@ -149,8 +149,8 @@
       },
       "launch_rule": {
         "abstains_on_90_percent_of_unanswerable": true,
-        "needless_abstention_at_most_15_percent": false,
-        "quote_precision_at_least_085": true
+        "needless_abstention_at_most_15_percent": true,
+        "quote_precision_at_least_085": null
       }
     },
     {
@@ -166,8 +166,8 @@
         "answerable": 180,
         "unanswerable": 60
       },
-      "quote_precision": 0.931138,
-      "score": 0.92668,
+      "quote_precision": null,
+      "score": null,
       "quotes": 334,
       "pending_grades": 0,
       "ungraded": 0,
@@ -189,18 +189,14 @@
       "launch_rule": {
         "abstains_on_90_percent_of_unanswerable": true,
         "needless_abstention_at_most_15_percent": true,
-        "quote_precision_at_least_085": true
+        "quote_precision_at_least_085": null
       }
     }
   ],
   "comparisons": [
     {
       "name": "round-1-opus-5-5",
-      "quote_precision": [
-        0.303749,
-        0.206593,
-        0.400413
-      ],
+      "quote_precision": null,
       "balanced_accuracy": [
         0.269444,
         0.205556,
@@ -209,11 +205,7 @@
     },
     {
       "name": "round-2-opus-5-5",
-      "quote_precision": [
-        0.325755,
-        0.226774,
-        0.421384
-      ],
+      "quote_precision": null,
       "balanced_accuracy": [
         0.263889,
         0.197222,
@@ -222,11 +214,7 @@
     },
     {
       "name": "round-3-opus-5-5",
-      "quote_precision": [
-        0.405365,
-        0.305926,
-        0.502308
-      ],
+      "quote_precision": null,
       "balanced_accuracy": [
         0.269444,
         0.205556,
@@ -244,10 +232,7 @@
     "M": 0.18611111111111112,
     "SD": 0.08666666666666667
   },
-  "answerable_with_a_grade_2": [
-    149,
-    180
-  ],
+  "answerable_with_a_grade_2": null,
   "chosen_model": "claude-opus-5-5",
   "leading_round": 3,
   "cost_usd": {
@@ -257,5 +242,51 @@
     "judge": 7.49
   },
   "resamples": 10000,
-  "bootstrap_seed": 20261125
+  "bootstrap_seed": 20261125,
+  "unaccepted_judge": {
+    "note": "The judge's kappa against the hand grades fell short of 0.6, so quote precision is not measured on the development split. These figures come from the judge's grades and are description without decision value: no model, round or launch rule was decided from them. The grades in answer_dev_questions.jsonl are the judge's as well.",
+    "selectors": {
+      "baseline": {
+        "quote_precision": 0.525773,
+        "score": 0.589275,
+        "quote_precision_at_least_085": false
+      },
+      "round-1-opus-5-5": {
+        "quote_precision": 0.829522,
+        "score": 0.875872,
+        "quote_precision_at_least_085": false
+      },
+      "round-2-opus-5-5": {
+        "quote_precision": 0.851528,
+        "score": 0.884098,
+        "quote_precision_at_least_085": true
+      },
+      "round-3-opus-5-5": {
+        "quote_precision": 0.931138,
+        "score": 0.92668,
+        "quote_precision_at_least_085": true
+      }
+    },
+    "comparisons": {
+      "round-1-opus-5-5": [
+        0.303749,
+        0.206593,
+        0.400413
+      ],
+      "round-2-opus-5-5": [
+        0.325755,
+        0.226774,
+        0.421384
+      ],
+      "round-3-opus-5-5": [
+        0.405365,
+        0.305926,
+        0.502308
+      ]
+    },
+    "answerable_with_a_grade_2": [
+      149,
+      180
+    ]
+  }
 }
