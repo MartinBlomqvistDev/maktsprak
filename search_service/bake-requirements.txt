@@ -1,0 +1,3 @@
+# The bake stage of search_service/Dockerfile: the client that fetches the
+# package from the Hub. Locked with hashes in bake-requirements.lock.
+huggingface_hub==2.4.0
