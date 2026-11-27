@@ -5,17 +5,14 @@ Public entry points::
     from src.maktsprak_pipeline.pipeline import run_etl, run_historical_backfill
 """
 
-from .extract import extract_all_tweets, extract_riksdag_protocols
-from .load import load_riksdag, load_tweets
+from .extract import extract_all_tweets, fetch_protocol_docs
+from .load import load_tweets
 from .orchestrate import run_etl, run_historical_backfill
-from .transform import transform_riksdag
 
 __all__ = [
     "run_etl",
     "run_historical_backfill",
-    "extract_riksdag_protocols",
+    "fetch_protocol_docs",
     "extract_all_tweets",
-    "transform_riksdag",
-    "load_riksdag",
     "load_tweets",
 ]

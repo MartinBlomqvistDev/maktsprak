@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import re
-import time
 import unicodedata
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
@@ -11,11 +10,10 @@ from pathlib import Path
 from typing import Any
 
 import pdfplumber
-import requests
-from tqdm import tqdm
 
 from ..config import PARTY_RENAMES, RAW_DATA_PATH, VALID_PARTIES
 from ..logger import get_logger
+from .extract import get_with_backoff
 
 logger = get_logger()
 
@@ -309,33 +307,22 @@ def _extract_protocol_text(pdf_path: Path) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def _download_pdf(file_url: str, pdf_path: Path, retries: int = 5) -> None:
-    """Download a protocol PDF, retrying transient connection failures.
+def _download_pdf(file_url: str, pdf_path: Path) -> None:
+    """Download a protocol PDF, retrying failed connections.
 
     The Riksdag file host drops connections under rapid sequential requests
     (``ConnectionResetError`` / ``RemoteDisconnected``), especially during a
-    large backfill.  Without retries those protocols are lost.  Retry with a
-    short growing back-off (2, 4, 6, 8, 10 s) recovers them.
+    large backfill, and the scheduled run has met failing name lookups.
+    :func:`~.extract.get_with_backoff` retries with a doubling wait.
 
     Args:
         file_url: The protocol PDF URL.
         pdf_path: Where to write the downloaded bytes.
-        retries:  Number of attempts before giving up.
 
     Raises:
         RuntimeError: If every attempt fails.
     """
-    last_exc: Exception | None = None
-    for attempt in range(retries):
-        try:
-            resp = requests.get(file_url, timeout=60)
-            resp.raise_for_status()
-            pdf_path.write_bytes(resp.content)
-            return
-        except requests.exceptions.RequestException as exc:
-            last_exc = exc
-            time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"PDF download failed after {retries} attempts: {file_url}") from last_exc
+    pdf_path.write_bytes(get_with_backoff(file_url, timeout=60).content)
 
 
 def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
@@ -375,33 +362,3 @@ def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
         return []
 
     return records_from_text(full_text, protocol_id, protocol_date, file_url)
-
-
-def transform_riksdag(xml_file: str | None) -> list[dict[str, Any]]:
-    """Convert a Riksdag protocol listing XML file into speech records.
-
-    Iterates over every ``<dokument>`` element, downloads and parses each
-    linked PDF, and returns the flat list of extracted speech dicts.
-
-    Args:
-        xml_file: Path to the XML file saved by
-            :func:`~.extract.extract_riksdag_protocols`.
-
-    Returns:
-        All extracted speech dicts across all protocols in the file.
-        Returns an empty list if ``xml_file`` is ``None``.
-    """
-    if not xml_file:
-        return []
-
-    root = ET.parse(xml_file).getroot()
-    documents = root.findall(".//dokument")
-    results: list[dict[str, Any]] = []
-
-    for doc in tqdm(documents, desc="Parsing protocols"):
-        results.extend(_process_doc(doc))
-
-    logger.info(
-        f"Transformation complete: {len(results)} speeches from {len(documents)} protocols."
-    )
-    return results
