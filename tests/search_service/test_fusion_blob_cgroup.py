@@ -5,6 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
+from search.index.fuse import reciprocal_rank_fusion
 from search_service.spike.blob import StringBlob, write_strings
 from search_service.spike.cgroup import parse_flat_keyed, parse_status, read_usage
 from search_service.spike.fusion import rrf
@@ -19,8 +20,29 @@ class TestRrf:
         assert scores[3] == pytest.approx(1 / 62)
         assert [item for item, _ in fused] == [2, 1, 3]
 
-    def test_equal_scores_are_ordered_by_item(self):
+    def test_equal_scores_and_ranks_are_ordered_by_item(self):
         assert [item for item, _ in rrf([[5], [4]], k=60, limit=2)] == [4, 5]
+
+    def test_equal_scores_are_ordered_by_the_better_rank_first(self):
+        # At k = 10, rank 1 alone and rank 12 in both legs score exactly 1/11.
+        lexical = [7, *range(100, 110), 3]
+        vector = [*range(200, 211), 3]
+        assert 1 / (10 + 1) == 1 / (10 + 12) + 1 / (10 + 12)
+        fused = [item for item, _ in rrf([lexical, vector], k=10, limit=3)]
+        assert fused == [7, 200, 3]
+
+    @pytest.mark.parametrize("seed", range(40))
+    def test_the_order_is_the_measured_hybrids(self, seed):
+        rng = np.random.default_rng(seed)
+        items = rng.permutation(60)
+        legs = [
+            rng.permutation(items)[: rng.integers(5, 40)].tolist(),
+            rng.permutation(items)[: rng.integers(5, 40)].tolist(),
+        ]
+        measured = reciprocal_rank_fusion(legs, k=10.0, limit=10)
+        fused = rrf(legs, k=10, limit=10)
+        assert [item for item, _ in fused] == [hit.passage for hit in measured]
+        assert [score for _, score in fused] == [hit.score for hit in measured]
 
     def test_the_limit_cuts_the_list(self):
         assert len(rrf([[1, 2, 3]], k=60, limit=2)) == 2
