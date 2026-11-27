@@ -1,5 +1,5 @@
 @echo off
-REM Maktspråk — scheduled ETL runner
+REM Maktspråk, scheduled ETL runner
 REM
 REM Uses %%~dp0 (the directory containing this script) instead of a hard-coded
 REM path so the script works on any machine or user account without modification.
@@ -7,7 +7,10 @@ REM
 REM Set up in Windows Task Scheduler:
 REM   Action:   Start a program
 REM   Program:  C:\path\to\MaktsprakAI\run_etl.bat
-REM   Start in: (leave blank — the script handles its own working directory)
+REM   Start in: (leave blank, the script handles its own working directory)
+REM
+REM The script exits with Python's exit code, so a failed run shows as a
+REM failure in the Task Scheduler's Last Run Result instead of 0x0.
 
 SET "PROJ=%~dp0"
 
@@ -17,8 +20,10 @@ cd /d "%PROJ%"
 REM Activate virtual environment
 call "%PROJ%.venv\Scripts\activate.bat"
 
-REM Run the incremental ETL — output goes to logs/ alongside the timestamped loguru files
+REM Run the incremental ETL, output goes to logs/ alongside the timestamped loguru files
 python -m src.maktsprak_pipeline.main >> "%PROJ%logs\etl_scheduled.log" 2>&1
+SET "RC=%ERRORLEVEL%"
 
-REM Deactivate
-deactivate
+REM No deactivate: the process ends here anyway, and deactivate.bat, started
+REM without CALL, would never return to the exit below.
+exit /b %RC%
