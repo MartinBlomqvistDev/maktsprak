@@ -1,9 +1,11 @@
 """Train the KB-BERT party classifier directly from the Supabase database.
 
 Fine-tunes ``KB/bert-base-swedish-cased`` on Riksdag speeches (plus a small
-set of party-leader tweets) to predict the speaker's party.  Training uses a
-**speaker-independent split**: 15 % of unique speakers are held out entirely,
-so validation measures generalisation to politicians the model has never seen.
+set of party-leader tweets) to predict the speaker's party.  Training holds out
+15 % of unique speaker strings.  The strings are the protocols' own, so one
+person can appear under several (a title, a changed surname, a misspelling) and
+land on both sides; a figure on unseen politicians must drop everyone with any
+string in training, as ``research/person_heldout.py`` does.
 
 Techniques used:
 
@@ -189,7 +191,13 @@ def speaker_split(
     seed: int = SPLIT_SEED,
     train_fraction: float = TRAIN_SPEAKER_FRACTION,
 ) -> tuple[pd.DataFrame, pd.DataFrame, set[str]]:
-    """Split rows so that no speaker appears in both train and validation.
+    """Split rows so that no speaker string appears in both train and validation.
+
+    Note:
+        The key is the raw ``speaker`` string, so the same politician printed
+        as ``Statsrådet PER BOLUND`` and as ``PER BOLUND`` is two keys and can
+        be split across the sides.  The 2026-07-13 model has
+        38 such people; see ``research/person_heldout.py``.
 
     Note:
         The resulting ``val_speakers`` set is persisted to disk by ``main()``

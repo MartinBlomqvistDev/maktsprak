@@ -60,10 +60,11 @@ def _kb_window(text: str) -> str:
     return _tokenizer.decode(ids, skip_special_tokens=True)
 
 
-# The frozen speaker-independent split from training (146 held-out speakers,
-# next to the model). Testing on their 2015-2026 speeches is the fair test:
-# same era KB-BERT trained on, speakers it never saw. 2002-2014 confounds the
-# comparison with era drift and is not used.
+# The frozen split from training (146 held-out speaker names, next to the
+# model). Testing on their 2015-2026 speeches keeps the era KB-BERT trained on;
+# 2002-2014 confounds the comparison with era drift and is not used. A person can
+# be held out under one name and trained under another, so the published figures
+# drop those people (research/person_heldout.py re-scores this sample).
 _VAL_PATH = Path("data/models/party_classifier/val_speakers.json")
 VAL_SPEAKERS: set[str] = set(json.loads(_VAL_PATH.read_text(encoding="utf-8")))
 PARTY_NAMES = {
@@ -82,9 +83,10 @@ PARTY_NAMES = {
 def sample_speeches(n_per_party: int = N_PER_PARTY, seed: int = SEED) -> pd.DataFrame:
     """Balanced sample of the held-out speaker-independent test set.
 
-    Speeches from 2015-2026 by the 146 speakers held out of training. Unseen by
-    KB-BERT (no speaker leak) yet in its own era (no era drift), which is the
-    only fair way to compare it against the LLMs.
+    Speeches from 2015-2026 by the 146 speaker names held out of training, in
+    KB-BERT's own era (no era drift). Of the 320 drawn, 73 come from people
+    trained under another form of their name; the published comparison scores
+    only the other 247 (research/person_heldout.py).
     """
     df = pd.read_parquet(CORPUS_PATH, columns=["protocol_date", "speaker", "party", "text"])
     df = df[df["speaker"].isin(VAL_SPEAKERS)]

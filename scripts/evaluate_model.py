@@ -1,9 +1,10 @@
 """Benchmark party classifiers on the speaker-independent held-out set.
 
-Evaluates each model on the *same* validation set the speaker-independent
-training run held out: 15 % of speakers are set aside entirely, so every
-evaluated speech comes from a politician the (new) model never saw during
-training.  A plain row-based split leaks speaker identity across the
+Evaluates each model on the *same* validation set the training run held out:
+15 % of speaker strings are set aside.  One politician can appear under several
+strings, so for a figure on politicians the model never saw, drop everyone with
+any string in training (``research/person_heldout.py``).  A plain row-based
+split leaks speaker identity across the
 train/test boundary and inflates macro-F1 dramatically (~59 % -> ~83 %).
 
 The split here byte-for-byte replicates ``scripts/train_party_model_db.py``:
