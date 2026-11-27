@@ -1,6 +1,6 @@
 """Step 15: write what the page Fråga protokollet shows without asking the search service.
 
-Three commands, each writing a file the site reads:
+Each command writes a file the site reads, or a report its method section reads:
 
 - ``examples`` answers the questions in ``search/page/examples.yaml`` with the
   chain the page runs. It writes one file per example under
@@ -25,6 +25,11 @@ Three commands, each writing a file the site reads:
   records that hold an en dash, and writes
   ``data/reports/search/source_dashes.json``. The datasets up to 2023/24 hold
   none, where the Riksdag's page of the same speech has one.
+- ``versions`` counts, per session, the corpus's speeches whose record names
+  its protocol a snabbprotokoll, the Riksdag's preliminary version of the
+  protocol, and writes ``data/reports/search/protocol_versions.json``. The
+  corpus does not keep the protocol's title, so the count is read from the
+  datasets as downloaded.
 - ``links`` requests the page of every speech the examples show, from
   data.riksdagen.se, and judges each against the speech with the deep-link
   check's own judgement: the page must name the speech and hold the opening
@@ -39,6 +44,7 @@ Usage::
     python search/pipeline/15_build_page.py speakers
     python search/pipeline/15_build_page.py links
     python search/pipeline/15_build_page.py dashes
+    python search/pipeline/15_build_page.py versions
 """
 
 from __future__ import annotations
@@ -51,7 +57,7 @@ import json
 import logging
 import sys
 import zipfile
-from collections.abc import Mapping, Sequence
+from collections.abc import Collection, Iterable, Mapping, Sequence
 from datetime import date, datetime
 from pathlib import Path
 from types import ModuleType
@@ -84,6 +90,7 @@ from search.answer.selector import (
 )
 from search.cli import add_data_root_argument, configure_logging, settings_from
 from search.config import REPO_ROOT, Settings
+from search.corpus.build import iter_records
 from search.corpus.links import (
     HostThrottle,
     PageResponse,
@@ -149,6 +156,14 @@ DASHES_REPORT = "source_dashes.json"
 
 #: The en dash, which the Riksdag's datasets up to 2023/24 write as a hyphen.
 EN_DASH = "\u2013"
+
+#: The report on the speeches whose protocol is the Riksdag's preliminary version.
+VERSIONS_REPORT = "protocol_versions.json"
+
+#: The word a protocol's title holds when the protocol is the preliminary version,
+#: as in "Riksdagens snabbprotokoll 2013/14:50"; the final one is titled
+#: "Riksdagens protokoll" or "Protokoll".
+PRELIMINARY = "snabbprotokoll"
 
 
 def load_script(name: str, path: Path) -> ModuleType:
@@ -907,6 +922,142 @@ def run_dashes(settings: Settings) -> None:
     )
 
 
+class SessionVersions(BaseModel):
+    """How many of one session's speeches in the corpus come from a preliminary protocol.
+
+    Attributes:
+        session: The session, such as ``2013/14``.
+        speeches: The corpus's speeches from the session.
+        preliminary: How many of them come from a protocol titled snabbprotokoll.
+        protocols: The session's protocols the corpus holds speeches from.
+        preliminary_protocols: How many of those are titled snabbprotokoll.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    session: str
+    speeches: int
+    preliminary: int
+    protocols: int
+    preliminary_protocols: int
+
+
+class VersionsReport(BaseModel):
+    """Which of the corpus's speeches come from the Riksdag's preliminary protocols.
+
+    Attributes:
+        manifest_sha256: The hash of the manifest that names the datasets.
+        build_sha256: The hash of the corpus build's report.
+        speeches: The corpus's speeches.
+        preliminary: How many of them come from a protocol titled snabbprotokoll.
+        preliminary_share: That count as a share of the speeches.
+        preliminary_protocols: The protocols titled snabbprotokoll.
+        sessions: Each session the corpus holds speeches from, in the
+            manifest's order.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    manifest_sha256: str
+    build_sha256: str
+    speeches: int
+    preliminary: int
+    preliminary_share: float
+    preliminary_protocols: int
+    sessions: tuple[SessionVersions, ...]
+
+
+def protocol_versions(
+    records: Iterable[Mapping[str, object]], kept: Collection[str]
+) -> tuple[SessionVersions, ...]:
+    """Count, per session, the kept speeches whose protocol is titled snabbprotokoll.
+
+    Args:
+        records: The datasets' records, each record's ``anforande`` object as
+            published, in the manifest's order.
+        kept: The ids of the corpus's speeches.
+
+    Returns:
+        One entry per session that holds a kept speech, in the order the
+        records name the sessions.
+
+    Raises:
+        ValueError: If a kept speech is not among the records.
+    """
+    speeches: dict[str, int] = {}
+    preliminary: dict[str, int] = {}
+    protocols: dict[str, set[str]] = {}
+    preliminary_protocols: dict[str, set[str]] = {}
+    found: set[str] = set()
+    for record in records:
+        dok_id = str(record["dok_id"])
+        # The build names a speech by its protocol and its number in the protocol.
+        anf_id = f"{dok_id}-{int(str(record['anforande_nummer']))}"
+        if anf_id not in kept:
+            continue
+        found.add(anf_id)
+        session = str(record["dok_rm"])
+        speeches[session] = speeches.get(session, 0) + 1
+        protocols.setdefault(session, set()).add(dok_id)
+        if PRELIMINARY in str(record.get("dok_titel") or "").lower():
+            preliminary[session] = preliminary.get(session, 0) + 1
+            preliminary_protocols.setdefault(session, set()).add(dok_id)
+    missing = len(kept) - len(found)
+    if missing:
+        raise ValueError(f"{missing} of the corpus's speeches are not in the datasets.")
+    return tuple(
+        SessionVersions(
+            session=session,
+            speeches=count,
+            preliminary=preliminary.get(session, 0),
+            protocols=len(protocols[session]),
+            preliminary_protocols=len(preliminary_protocols.get(session, set())),
+        )
+        for session, count in speeches.items()
+    )
+
+
+def run_versions(settings: Settings) -> None:
+    """Count the corpus's speeches that come from the Riksdag's preliminary protocols.
+
+    A snabbprotokoll is the protocol as first published, before it is checked.
+    Its wording can differ from the final protocol's, and the Riksdag's page of
+    such a speech shows the same preliminary text. The corpus does not keep the
+    protocol's title, so this reads it from each speech's record.
+    """
+    reports = settings.tracked.reports
+    manifest_path = reports / "anforanden_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    kept = set(
+        pq.read_table(settings.data.search / SPEECHES_NAME, columns=["anf_id"])
+        .column("anf_id")
+        .to_pylist()
+    )
+    records = (
+        record
+        for entry in manifest["files"]
+        for record in iter_records(settings.data.raw_anforanden / entry["file"])
+    )
+    sessions = protocol_versions(records, kept)
+    total = sum(item.preliminary for item in sessions)
+    report = VersionsReport(
+        manifest_sha256=text_sha256(manifest_path),
+        build_sha256=text_sha256(reports / "anforanden_build.json"),
+        speeches=sum(item.speeches for item in sessions),
+        preliminary=total,
+        preliminary_share=round(total / len(kept), 4),
+        preliminary_protocols=sum(item.preliminary_protocols for item in sessions),
+        sessions=sessions,
+    )
+    write_report(report, reports / VERSIONS_REPORT)
+    logger.info(
+        "%d of %d speeches come from a snabbprotokoll, in %d protocols",
+        report.preliminary,
+        report.speeches,
+        report.preliminary_protocols,
+    )
+
+
 def main() -> None:
     """Parse the command line and run the command."""
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -925,6 +1076,9 @@ def main() -> None:
     commands.add_parser("speakers", help="Write the speaker filter's list.")
     commands.add_parser("links", help="Check every link the examples show.")
     commands.add_parser("dashes", help="Count the en dashes in each of the Riksdag's datasets.")
+    commands.add_parser(
+        "versions", help="Count the corpus's speeches that come from a snabbprotokoll."
+    )
     args = parser.parse_args()
 
     configure_logging()
@@ -940,6 +1094,8 @@ def main() -> None:
         run_links(settings)
     elif args.command == "dashes":
         run_dashes(settings)
+    elif args.command == "versions":
+        run_versions(settings)
     else:
         run_speakers(settings)
 

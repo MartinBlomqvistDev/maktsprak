@@ -1,0 +1,178 @@
+{
+  "manifest_sha256": "d2ca417329166eb08c8d335cb8e0dad25aba3afc05dc6e146510ca46668d3f92",
+  "build_sha256": "f39f2bb7357ea67fc8c5554079a6d0cccca600ed86739189f0387e2fff353011",
+  "speeches": 301358,
+  "preliminary": 38706,
+  "preliminary_share": 0.1284,
+  "preliminary_protocols": 370,
+  "sessions": [
+    {
+      "session": "2003/04",
+      "speeches": 13523,
+      "preliminary": 0,
+      "protocols": 123,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2004/05",
+      "speeches": 15832,
+      "preliminary": 172,
+      "protocols": 131,
+      "preliminary_protocols": 2
+    },
+    {
+      "session": "2005/06",
+      "speeches": 13757,
+      "preliminary": 0,
+      "protocols": 137,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2006/07",
+      "speeches": 14008,
+      "preliminary": 0,
+      "protocols": 130,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2007/08",
+      "speeches": 15718,
+      "preliminary": 223,
+      "protocols": 132,
+      "preliminary_protocols": 2
+    },
+    {
+      "session": "2008/09",
+      "speeches": 13523,
+      "preliminary": 0,
+      "protocols": 125,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2009/10",
+      "speeches": 11171,
+      "preliminary": 2428,
+      "protocols": 120,
+      "preliminary_protocols": 23
+    },
+    {
+      "session": "2010/11",
+      "speeches": 11421,
+      "preliminary": 9796,
+      "protocols": 114,
+      "preliminary_protocols": 92
+    },
+    {
+      "session": "2011/12",
+      "speeches": 11484,
+      "preliminary": 609,
+      "protocols": 126,
+      "preliminary_protocols": 13
+    },
+    {
+      "session": "2012/13",
+      "speeches": 12057,
+      "preliminary": 11747,
+      "protocols": 125,
+      "preliminary_protocols": 118
+    },
+    {
+      "session": "2013/14",
+      "speeches": 14012,
+      "preliminary": 13730,
+      "protocols": 124,
+      "preliminary_protocols": 119
+    },
+    {
+      "session": "2014/15",
+      "speeches": 12928,
+      "preliminary": 1,
+      "protocols": 117,
+      "preliminary_protocols": 1
+    },
+    {
+      "session": "2015/16",
+      "speeches": 13702,
+      "preliminary": 0,
+      "protocols": 129,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2016/17",
+      "speeches": 12637,
+      "preliminary": 0,
+      "protocols": 131,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2017/18",
+      "speeches": 12343,
+      "preliminary": 0,
+      "protocols": 139,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2018/19",
+      "speeches": 9288,
+      "preliminary": 0,
+      "protocols": 98,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2019/20",
+      "speeches": 10321,
+      "preliminary": 0,
+      "protocols": 134,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2020/21",
+      "speeches": 15009,
+      "preliminary": 0,
+      "protocols": 148,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2021/22",
+      "speeches": 12062,
+      "preliminary": 0,
+      "protocols": 129,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2022/23",
+      "speeches": 12373,
+      "preliminary": 0,
+      "protocols": 124,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2023/24",
+      "speeches": 15195,
+      "preliminary": 0,
+      "protocols": 136,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2024/25",
+      "speeches": 14049,
+      "preliminary": 0,
+      "protocols": 135,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2025/26",
+      "speeches": 14356,
+      "preliminary": 0,
+      "protocols": 146,
+      "preliminary_protocols": 0
+    },
+    {
+      "session": "2026/27",
+      "speeches": 589,
+      "preliminary": 0,
+      "protocols": 12,
+      "preliminary_protocols": 0
+    }
+  ]
+}

@@ -277,6 +277,34 @@ def test_paths_point_into_the_site():
         assert web in path.parents
 
 
+def raw_record(dok_id: str, number: str, session: str, title: str) -> dict[str, str]:
+    """A speech record as the Riksdag's datasets publish it, with the fields counted."""
+    return {"dok_id": dok_id, "anforande_nummer": number, "dok_rm": session, "dok_titel": title}
+
+
+def test_speeches_from_a_snabbprotokoll_are_counted_per_session():
+    preliminary = "Riksdagens snabbprotokoll 2013/14:50 Onsdagen den 18 december"
+    records = [
+        raw_record("H10950", "029", "2013/14", preliminary),
+        raw_record("H10950", "30", "2013/14", preliminary),
+        raw_record("H10951", "1", "2013/14", "Riksdagens protokoll 2013/14:51"),
+        raw_record("H20950", "2", "2014/15", "Protokoll 2014/15:50"),
+        raw_record("H20950", "3", "2014/15", "Protokoll 2014/15:50"),
+    ]
+    kept = {"H10950-29", "H10950-30", "H10951-1", "H20950-2"}
+    counted = [
+        (s.session, s.speeches, s.preliminary, s.protocols, s.preliminary_protocols)
+        for s in step.protocol_versions(records, kept)
+    ]
+    assert counted == [("2013/14", 3, 2, 2, 1), ("2014/15", 1, 0, 1, 0)]
+
+
+def test_a_kept_speech_missing_from_the_datasets_is_an_error():
+    records = [raw_record("H10950", "29", "2013/14", "Protokoll 2013/14:50")]
+    with pytest.raises(ValueError, match="not in the datasets"):
+        step.protocol_versions(records, {"H10950-29", "H10950-31"})
+
+
 def test_the_error_line_is_the_one_the_service_sends():
     line = ErrorLine.model_validate({"type": "error", "error": "answer_failed"})
     assert line.model_dump() == {"type": "error", "error": "answer_failed"}
