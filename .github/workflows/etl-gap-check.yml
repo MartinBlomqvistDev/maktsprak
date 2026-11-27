@@ -1,0 +1,33 @@
+name: ETL gap check
+
+# The weekly ETL runs on one computer, and a run that fails there shows only in
+# its Task Scheduler. This check compares outcomes instead: every protocol from
+# the last 30 days with speeches by party members, published more than eight
+# days ago, must have rows in speeches. When one is missing the run fails, and
+# GitHub emails whoever last changed the schedule below. The anon key is
+# read-only by row-level security, and it lives in repository secrets so it
+# never appears in this public file. In a public repository GitHub turns
+# scheduled workflows off after 60 days without repository activity.
+
+on:
+  schedule:
+    # Daily, off the hour, and after the ETL's Thursday-morning run.
+    - cron: "43 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare the Riksdag's protocols with speeches
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        # Standard library only, so nothing is installed.
+        run: python3 scripts/check_etl_gaps.py
