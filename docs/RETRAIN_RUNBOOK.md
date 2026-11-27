@@ -6,7 +6,7 @@ pre-2015 backfill exists for the drift analytics, not the model.
 
 ## Where the data comes from
 
-The source of truth is `data/parquet/speeches_full.parquet` (75,148 speeches,
+The source of truth is `data/parquet/speeches_full.parquet` (75,148 records, one per speaker and protocol,
 2002-2026), rebuilt offline from the cached PDFs in `data/raw/` with the fixed
 parser:
 

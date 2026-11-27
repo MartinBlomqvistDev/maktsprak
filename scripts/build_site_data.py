@@ -7,7 +7,8 @@ source of truth for analysis; run ``scripts/export_corpus.py``
 first if it doesn't exist yet or is stale.
 
 Outputs (in ``--out``):
-  meta.json             corpus size, date span, per-year speech counts.
+  meta.json             corpus size, date span, per-year counts, in records:
+                        one record per speaker and protocol.
   distinctive.json      per party: its most distinctive words (Fightin' Words),
                          for the rhetorical-fingerprint word clouds.
   movers.json            top risers / fallers across the whole window (what the
