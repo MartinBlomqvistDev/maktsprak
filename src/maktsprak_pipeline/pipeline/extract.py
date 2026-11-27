@@ -5,8 +5,9 @@ from __future__ import annotations
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
-from typing import Any
+from collections.abc import Callable
+from datetime import date, datetime, timedelta, timezone
+from typing import Any, TypeVar
 
 import requests
 
@@ -16,6 +17,8 @@ from ..config import (
     PARTY_LEADERS_IDS,
     RATE_LIMIT_WAIT_SECONDS,
     RAW_DATA_PATH,
+    RETRY_ATTEMPTS,
+    RETRY_FIRST_WAIT_SECONDS,
     RIKSDAG_BASE_URL,
     X_BASE_URL,
     X_BEARER_TOKEN,
@@ -25,9 +28,86 @@ from ..logger import get_logger
 
 logger = get_logger()
 
+T = TypeVar("T")
+
 
 # ---------------------------------------------------------------------------
-# Shared HTTP helper
+# Retries
+# ---------------------------------------------------------------------------
+
+
+def call_with_backoff(
+    fn: Callable[[], T],
+    *,
+    retry_on: tuple[type[BaseException], ...],
+    what: str,
+    attempts: int = RETRY_ATTEMPTS,
+    first_wait: float = RETRY_FIRST_WAIT_SECONDS,
+) -> T:
+    """Call *fn*, retrying the given errors with a wait that doubles each time.
+
+    Any other error propagates at once, so a bug is not retried as if it were
+    the network.
+
+    Args:
+        fn:         The call to make, without arguments.
+        retry_on:   Exception types that count as transient.
+        what:       What the call does, for the log and the final error.
+        attempts:   Total attempts before giving up.
+        first_wait: Seconds before the second attempt.
+
+    Returns:
+        Whatever *fn* returns.
+
+    Raises:
+        RuntimeError: If every attempt fails, chained to the last error.
+    """
+    attempt = 1
+    while True:
+        try:
+            return fn()
+        except retry_on as exc:
+            if attempt >= attempts:
+                raise RuntimeError(f"{what} failed after {attempts} attempts") from exc
+            wait = first_wait * 2 ** (attempt - 1)
+            logger.warning(
+                f"{what} failed on attempt {attempt}/{attempts} ({exc}), retrying in {wait:g} s."
+            )
+            time.sleep(wait)
+            attempt += 1
+
+
+def get_with_backoff(url: str, timeout: float = 60) -> requests.Response:
+    """GET *url*, retrying failed connections and error statuses.
+
+    The Riksdag host drops connections now and then (``RemoteDisconnected``,
+    ``ConnectionResetError``), and scheduled runs have died on a name lookup
+    that failed (``getaddrinfo``).  Without retries one such failure ended the
+    whole run.
+
+    Args:
+        url:     The URL to fetch.
+        timeout: Per-attempt timeout in seconds.
+
+    Returns:
+        The successful :class:`requests.Response`.
+
+    Raises:
+        RuntimeError: If every attempt fails.
+    """
+
+    def attempt() -> requests.Response:
+        resp = requests.get(url, timeout=timeout)
+        resp.raise_for_status()
+        return resp
+
+    return call_with_backoff(
+        attempt, retry_on=(requests.exceptions.RequestException,), what=f"GET {url}"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Twitter / X HTTP helper
 # ---------------------------------------------------------------------------
 
 
@@ -71,56 +151,55 @@ def fetch_with_retry(
 # ---------------------------------------------------------------------------
 
 
-def extract_riksdag_protocols(
-    lookback_days: int = 7,
-    max_back: int = 90,
-) -> str | None:
-    """Fetch the Riksdag protocol listing for the last *n* days and save it to disk.
+def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.Element]:
+    """List every protocol dated within a window, oldest first.
 
-    Steps back one week at a time if no documents are found, up to *max_back*
-    days.  This handles parliamentary recesses without requiring manual
-    configuration.
+    Pages through the Riksdag's document list, 20 protocols a page, retrying
+    each page.  Every page is saved under ``data/raw`` as it arrives, because
+    ``scripts/rebuild_corpus.py`` takes each protocol's date from those files:
+    the PDFs carry no machine-readable date.
 
     Args:
-        lookback_days: Starting window size (days back from today).
-        max_back:      Maximum days to look back before aborting.
+        from_date: ISO date of the first protocol day (e.g. ``"2026-11-11"``).
+        to_date:   ISO date of the last.  Defaults to today.
 
     Returns:
-        Absolute path to the saved XML file, or ``None`` if no protocols found.
+        All ``<dokument>`` elements in the window, ascending by date.
     """
+    to_date = to_date or date.today().isoformat()
     RAW_DATA_PATH.mkdir(parents=True, exist_ok=True)
-    today = datetime.today()
+    stem = f"protocols_{from_date.replace('-', '')}_{to_date.replace('-', '')}"
+    all_docs: list[ET.Element] = []
+    page = 1
 
-    while lookback_days <= max_back:
-        start_date = today - timedelta(days=lookback_days)
+    while True:
         url = (
             f"{RIKSDAG_BASE_URL}"
-            f"?sok=&doktyp=prot"
-            f"&from={start_date.strftime('%Y-%m-%d')}"
-            f"&tom={today.strftime('%Y-%m-%d')}"
-            f"&utformat=xml&sort=datum&sortorder=desc"
+            f"?sok=&doktyp=prot&from={from_date}&tom={to_date}"
+            f"&utformat=xml&sort=datum&sortorder=asc&p={page}"
         )
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-
+        resp = get_with_backoff(url, timeout=30)
         root = ET.fromstring(resp.content)
-        doc_count = len(root.findall(".//dokument"))
 
-        if doc_count > 0:
-            logger.info(f"Found {doc_count} protocols from {start_date.date()} to {today.date()}.")
-            filename = (
-                RAW_DATA_PATH
-                / f"protocols_{start_date.strftime('%Y%m%d')}_{today.strftime('%Y%m%d')}.xml"
-            )
-            filename.write_bytes(resp.content)
-            logger.info(f"Protocol listing saved: {filename}")
-            return str(filename)
+        docs = root.findall(".//dokument")
+        if not docs:
+            break
 
-        logger.info("No protocols found, stepping back one week.")
-        lookback_days += 7
+        saved = RAW_DATA_PATH / (f"{stem}.xml" if page == 1 else f"{stem}_p{page}.xml")
+        saved.write_bytes(resp.content)
+        all_docs.extend(docs)
+        total = int(root.get("traffar", 0))
+        logger.info(
+            f"Page {page}: {len(docs)} protocols (total so far: {len(all_docs)}/{total}), "
+            f"saved to {saved.name}."
+        )
 
-    logger.warning(f"No protocols found within {max_back} days. Aborting.")
-    return None
+        if total and len(all_docs) >= total:
+            break
+        page += 1
+        time.sleep(1)
+
+    return all_docs
 
 
 # ---------------------------------------------------------------------------

@@ -5,6 +5,8 @@ from __future__ import annotations
 from src.maktsprak_pipeline.pipeline.transform import (
     _SPEECH_RE,
     _canonical_party,
+    _columns_to_text,
+    _is_furniture,
     _speaker_slug,
     records_from_text,
 )
@@ -207,3 +209,66 @@ class TestSpeechRegexOldFormat:
         assert speaker.strip() == "HANS STENBERG"
         assert party == "s"  # raw capture; canonicalised downstream
         assert "talman" in body
+
+
+class TestSpaceInsideTheParenthesis:
+    """The text of some PDFs has ``( SD)``, and such a speech used to vanish."""
+
+    def test_space_after_the_opening_parenthesis(self):
+        # As in HE0914, 2026-11-04.
+        text = (
+            "Anf. 4 OSCAR SJÖSTEDT ( SD): Fru talman! Nu pratar vi om grundlagen. "
+            "Anf. 5 MATS SANDER (M): Fru talman! Ett svar."
+        )
+        matches = _SPEECH_RE.findall(text)
+        assert [(speaker.strip(), party) for speaker, party, _ in matches] == [
+            ("OSCAR SJÖSTEDT", "SD"),
+            ("MATS SANDER", "M"),
+        ]
+        assert "grundlagen" in matches[0][2]
+        assert "svar" not in matches[0][2]
+
+    def test_space_before_the_closing_parenthesis_and_a_reply(self):
+        text = "Anf. 9 LINA NORDQUIST (L ) replik: Herr talman! Ett genmäle."
+        speaker, party, body = _SPEECH_RE.findall(text)[0]
+        assert (speaker.strip(), party) == ("LINA NORDQUIST", "L")
+        assert "genmäle" in body
+
+
+class TestColumnsToText:
+    """Joining the extracted column lines into one text."""
+
+    def test_a_word_split_across_lines_is_joined(self):
+        assert _columns_to_text([["Vi behöver fler kommu-", "ner som bygger."]]) == (
+            "Vi behöver fler kommuner som bygger."
+        )
+
+    def test_a_name_the_contents_spell_with_a_hyphen_keeps_it(self):
+        # As in HE097: the table of contents has the name on one line, and the
+        # speech header breaks it at its own hyphen.
+        columns = [
+            ["Anf. 155 KATARINA BOSETTI-KRISTOFFERSSON (S) .......... 47"],
+            ["Anf. 155 KATARINA BOSETTI-", "KRISTOFFERSSON (S): Fru talman!"],
+        ]
+        records = records_from_text(_columns_to_text(columns), "HE097", "2026-10-14", "")
+        assert [(r["id"], r["speaker"]) for r in records] == [
+            ("HE097_katarina-bosetti-kristoffersson_s", "KATARINA BOSETTI-KRISTOFFERSSON")
+        ]
+
+    def test_a_name_split_by_the_typesetting_is_joined(self):
+        # The contents spell it whole, so the hyphen at the break only split it.
+        columns = [
+            ["Anf. 3 MORGAN JOHANSSON (S) .......... 12"],
+            ["Anf. 3 MORGAN JOHANS-", "SON (S): Herr talman!"],
+        ]
+        records = records_from_text(_columns_to_text(columns), "H30960", "2016-12-07", "")
+        assert [r["speaker"] for r in records] == ["MORGAN JOHANSSON"]
+
+    def test_a_compound_spelt_with_a_hyphen_elsewhere_keeps_it(self):
+        text = _columns_to_text([["Fler EU-länder vill delta.", "Men alla EU-", "länder måste."]])
+        assert text == "Fler EU-länder vill delta. Men alla EU-länder måste."
+
+    def test_a_line_of_em_dashes_is_furniture_and_a_line_of_commas_is_not(self):
+        assert _is_furniture("\u2014\u2014\u2014\u2014", set())
+        assert _is_furniture("\u2013 \u2013 \u2013", set())
+        assert not _is_furniture(",,,", set())

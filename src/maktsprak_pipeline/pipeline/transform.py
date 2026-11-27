@@ -3,19 +3,18 @@
 from __future__ import annotations
 
 import re
-import time
 import unicodedata
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
+from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
 import pdfplumber
-import requests
-from tqdm import tqdm
 
 from ..config import PARTY_RENAMES, RAW_DATA_PATH, VALID_PARTIES
 from ..logger import get_logger
+from .extract import get_with_backoff
 
 logger = get_logger()
 
@@ -40,13 +39,15 @@ logger = get_logger()
 #   2, party abbreviation (1-2 letters incl. Swedish Å/Ä/Ö).  Protocols up to
 #       ~2009 lower-case the party, ``(m)``, ``(fp)``, and switched to
 #       upper-case ``(M)`` around 2010; both are accepted and normalised to
-#       upper case in :func:`_canonical_party`.
+#       upper case in :func:`_canonical_party`.  The text extracted from some
+#       PDFs has a space inside the parenthesis, as in ``OSCAR SJÖSTEDT ( SD):``.
+#       Spaces there are allowed, since without them the speech was dropped.
 #   3, speech body (up to the next Anf. marker or end-of-string)
 # ---------------------------------------------------------------------------
 _SPEECH_RE = re.compile(
     r"Anf\.\s+\d+\s+"
     r"((?:(?!Anf\.\s+\d).)*?)"  # 1: speaker name (never crosses a marker)
-    r"\s+\(([A-Za-zÅÄÖåäö]{1,2})\)"  # 2: party (either case; see note above)
+    r"\s+\(\s*([A-Za-zÅÄÖåäö]{1,2})\s*\)"  # 2: party (either case; see note above)
     r"(?:\s+replik)?:"  # optional reply marker
     r"((?:(?!Anf\.\s+\d).)*)",  # 3: body (never crosses a marker)
     re.S,
@@ -183,8 +184,16 @@ def _canonical_party(raw_party: str) -> str | None:
 _MONTHS = "januari|februari|mars|april|maj|juni|juli|augusti|september|oktober|november|december"
 _PROT_LINE_RE = re.compile(r"^Prot\.\s")
 _DATE_LINE_RE = re.compile(rf"^\d{{1,2}}\s+(?:{_MONTHS})$", re.I)
-_RULE_LINE_RE = re.compile(r"^[\s¯‾–, _-]+$")
+#: A line of nothing but rule characters: macrons, overlines, en and em dashes,
+#: underscores and hyphens.  The dashes are written as escapes.  When the
+#: literal em dashes in the codebase were replaced in July 2026, the one in this
+#: class became a comma.
+_RULE_LINE_RE = re.compile(r"^[\s¯‾\u2013\u2014_-]+$")
 _NUMBER_LINE_RE = re.compile(r"^\d{1,4}$")
+#: A hyphen that ends a line, with the word parts on either side of the break.
+_LINE_END_HYPHEN_RE = re.compile(r"(\w+)-\n(\w+)")
+#: A word that the text hyphenates within one line, such as ``ANN-CHRISTINE``.
+_HYPHENATED_WORD_RE = re.compile(r"\w+(?:-\w+)+")
 
 
 def _find_column_gutter(
@@ -281,6 +290,74 @@ def _is_furniture(line: str, repeated: set[str]) -> bool:
     )
 
 
+def _rejoin_line_breaks(text: str) -> str:
+    """Join the word parts that a hyphen at the end of a line split.
+
+    A hyphen at the end of a line nearly always splits a word, names in
+    capitals included (``JOHANS-``/``SON``), so the parts are joined.  The
+    hyphen stays only when the document spells the hyphenated form within one
+    line somewhere else.  The table of contents, which lists each speech with
+    its speaker, usually does that for a double-barrelled name, so
+    ``BOSETTI-``/``KRISTOFFERSSON`` keeps its hyphen.  Without it the name
+    became ``BOSETTIKRISTOFFERSSON``, a different speaker from the same person
+    elsewhere.
+
+    Args:
+        text: The kept lines of a protocol, joined by newlines.
+
+    Returns:
+        The text with every hyphen at a line end resolved.
+    """
+    attested: set[str] = set()
+    for word in _HYPHENATED_WORD_RE.findall(text):
+        parts = word.split("-")
+        attested.update(f"{left}-{right}" for left, right in pairwise(parts))
+
+    def rejoin(match: re.Match[str]) -> str:
+        left, right = match.groups()
+        return f"{left}-{right}" if f"{left}-{right}" in attested else left + right
+
+    # A hyphen with no word part on one side is dropped with its line break.
+    return _LINE_END_HYPHEN_RE.sub(rejoin, text).replace("-\n", "")
+
+
+def _extract_columns(pdf_path: Path) -> list[list[str]]:
+    """Read every page of a protocol PDF into text lines, one list per column.
+
+    Args:
+        pdf_path: Path to the cached protocol PDF.
+
+    Returns:
+        Per-column line lists for the whole document, in reading order.
+    """
+    columns: list[list[str]] = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            columns.extend(_extract_page_columns(page))
+    return columns
+
+
+def _columns_to_text(columns: list[list[str]]) -> str:
+    """Join a protocol's column lines into one text, without the page furniture.
+
+    Args:
+        columns: Per-column line lists from :func:`_extract_columns`.
+
+    Returns:
+        The full protocol text as a single whitespace-normalised string.
+    """
+    repeated = _detect_repeated_furniture(columns)
+    kept = [line for lines in columns for line in lines if not _is_furniture(line, repeated)]
+
+    text = _rejoin_line_breaks("\n".join(kept))
+    text = re.sub(r"\s+", " ", text)
+    # Sweep any furniture that survived on single-column fallback pages, where it
+    # is embedded inline rather than on its own line.
+    text = re.sub(r"Prot\.\s*\d{4}/\d{2}:\d+", " ", text)
+    text = re.sub(r"[¯‾]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def _extract_protocol_text(pdf_path: Path) -> str:
     """Extract clean, de-columnised full text from a protocol PDF.
 
@@ -291,51 +368,25 @@ def _extract_protocol_text(pdf_path: Path) -> str:
         The full protocol text as a single whitespace-normalised string with
         two-column layout resolved and page furniture removed.
     """
-    columns: list[list[str]] = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            columns.extend(_extract_page_columns(page))
-
-    repeated = _detect_repeated_furniture(columns)
-    kept = [line for lines in columns for line in lines if not _is_furniture(line, repeated)]
-
-    text = "\n".join(kept)
-    text = re.sub(r"-\n", "", text)  # rejoin hyphenated line-breaks
-    text = re.sub(r"\s+", " ", text)
-    # Sweep any furniture that survived on single-column fallback pages, where it
-    # is embedded inline rather than on its own line.
-    text = re.sub(r"Prot\.\s*\d{4}/\d{2}:\d+", " ", text)
-    text = re.sub(r"[¯‾]+", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
+    return _columns_to_text(_extract_columns(pdf_path))
 
 
-def _download_pdf(file_url: str, pdf_path: Path, retries: int = 5) -> None:
-    """Download a protocol PDF, retrying transient connection failures.
+def _download_pdf(file_url: str, pdf_path: Path) -> None:
+    """Download a protocol PDF, retrying failed connections.
 
     The Riksdag file host drops connections under rapid sequential requests
     (``ConnectionResetError`` / ``RemoteDisconnected``), especially during a
-    large backfill.  Without retries those protocols are lost.  Retry with a
-    short growing back-off (2, 4, 6, 8, 10 s) recovers them.
+    large backfill, and the scheduled run has met failing name lookups.
+    :func:`~.extract.get_with_backoff` retries with a doubling wait.
 
     Args:
         file_url: The protocol PDF URL.
         pdf_path: Where to write the downloaded bytes.
-        retries:  Number of attempts before giving up.
 
     Raises:
         RuntimeError: If every attempt fails.
     """
-    last_exc: Exception | None = None
-    for attempt in range(retries):
-        try:
-            resp = requests.get(file_url, timeout=60)
-            resp.raise_for_status()
-            pdf_path.write_bytes(resp.content)
-            return
-        except requests.exceptions.RequestException as exc:
-            last_exc = exc
-            time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"PDF download failed after {retries} attempts: {file_url}") from last_exc
+    pdf_path.write_bytes(get_with_backoff(file_url, timeout=60).content)
 
 
 def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
@@ -375,33 +426,3 @@ def _process_doc(doc: ET.Element) -> list[dict[str, Any]]:
         return []
 
     return records_from_text(full_text, protocol_id, protocol_date, file_url)
-
-
-def transform_riksdag(xml_file: str | None) -> list[dict[str, Any]]:
-    """Convert a Riksdag protocol listing XML file into speech records.
-
-    Iterates over every ``<dokument>`` element, downloads and parses each
-    linked PDF, and returns the flat list of extracted speech dicts.
-
-    Args:
-        xml_file: Path to the XML file saved by
-            :func:`~.extract.extract_riksdag_protocols`.
-
-    Returns:
-        All extracted speech dicts across all protocols in the file.
-        Returns an empty list if ``xml_file`` is ``None``.
-    """
-    if not xml_file:
-        return []
-
-    root = ET.parse(xml_file).getroot()
-    documents = root.findall(".//dokument")
-    results: list[dict[str, Any]] = []
-
-    for doc in tqdm(documents, desc="Parsing protocols"):
-        results.extend(_process_doc(doc))
-
-    logger.info(
-        f"Transformation complete: {len(results)} speeches from {len(documents)} protocols."
-    )
-    return results

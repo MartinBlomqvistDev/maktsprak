@@ -18,6 +18,12 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------------------------
 load_dotenv()
 
+
+def _env_flag(name: str) -> bool:
+    """Return ``True`` when the environment variable *name* is ``true`` or ``1``."""
+    return os.getenv(name, "").strip().lower() in {"true", "1"}
+
+
 # ---------------------------------------------------------------------------
 # Project layout
 # ---------------------------------------------------------------------------
@@ -61,12 +67,36 @@ LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 # ---------------------------------------------------------------------------
 RIKSDAG_BASE_URL: str = "https://data.riksdagen.se/dokumentlista/"
 
+#: Attempts per Riksdag request, and the wait in seconds before the second.
+#: The wait doubles each time (5, 10, 20, 40, 80), so the last attempt comes
+#: about two and a half minutes after the first.  The old waits added up to
+#: 30 s, and the run of 2026-07-23 still died on a name lookup that kept failing.
+RETRY_ATTEMPTS: int = 6
+RETRY_FIRST_WAIT_SECONDS: float = 5.0
+
+# ---------------------------------------------------------------------------
+# Incremental ETL
+# ---------------------------------------------------------------------------
+#: The weekly run starts listing this many days before the newest protocol
+#: already in ``speeches``.  A protocol that fails while newer ones load is
+#: listed again by the next run.  Its cached PDFs are parsed again, which takes
+#: from a few seconds to half a minute per protocol.
+WATERMARK_MARGIN_DAYS: int = 14
+
 # ---------------------------------------------------------------------------
 # Twitter / X API
 # ---------------------------------------------------------------------------
 X_BASE_URL: str = "https://api.twitter.com/2/users"
 #: Bearer token sourced from either env key name variant.
 X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")
+#: The weekly run calls X only when ``TWEETS_ENABLED`` is ``true`` or ``1``.
+#: X has answered every request with HTTP 403 since 2026-03-05, because the
+#: token must come from a developer App attached to a Project.  Nothing on the
+#: site reads ``tweets``.  Turning it back on also needs a UNIQUE constraint on
+#: ``tweets.tweet_id``, which no migration adds.  The upsert names that column
+#: as its conflict target, and the runs of 2026-02-19 and 2026-02-26 failed for
+#: want of it.
+TWEETS_ENABLED: bool = _env_flag("TWEETS_ENABLED")
 
 # ---------------------------------------------------------------------------
 # Swedish parliamentary parties

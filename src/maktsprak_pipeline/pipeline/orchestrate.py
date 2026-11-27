@@ -4,119 +4,125 @@ from __future__ import annotations
 
 import time
 import xml.etree.ElementTree as ET
+from datetime import date, datetime, timedelta
 
-import requests
+import httpx
 from tqdm import tqdm
 
-from ..config import RIKSDAG_BASE_URL
-from ..db import insert_speeches
+from ..config import TWEETS_ENABLED, WATERMARK_MARGIN_DAYS
+from ..db import fetch_latest_speech_date, insert_speeches
 from ..logger import get_logger
-from .extract import extract_all_tweets, extract_riksdag_protocols
-from .load import load_riksdag, load_tweets
-from .transform import _process_doc, transform_riksdag
+from .extract import call_with_backoff, extract_all_tweets, fetch_protocol_docs
+from .load import load_tweets
+from .transform import _process_doc
 
 logger = get_logger()
 
 
-def run_etl(lookback_days: int = 7) -> None:
-    """Run the full incremental ETL pipeline.
+def listing_start(margin_days: int = WATERMARK_MARGIN_DAYS, today: date | None = None) -> date:
+    """Return the first protocol date the incremental run lists.
 
-    Fetches Riksdag protocols from the last *lookback_days* days, parses the
-    PDFs, upserts speeches to Supabase, then collects recent tweets.
+    The watermark is the newest protocol date already in ``speeches``, and the
+    run lists from there, minus *margin_days*.  This replaces a fixed window of
+    seven days back from today.  With that window, a week whose run failed was
+    never listed again.  Now the next run lists everything since the last
+    stored protocol, however many runs failed in between, and the margin gives
+    a protocol that failed while newer ones loaded another chance.  The upsert
+    is keyed on ``id``, so the overlap rewrites rows rather than duplicating
+    them.
 
     Args:
-        lookback_days: How many days back to fetch protocols (default: 7).
+        margin_days: Days before the watermark to start listing.
+        today:       The day the run lists up to; defaults to today.  Used only
+            when ``speeches`` is empty.
+
+    Returns:
+        The first protocol date to list.
+    """
+    latest = call_with_backoff(
+        fetch_latest_speech_date,
+        retry_on=(httpx.TransportError,),
+        what="Reading the newest protocol date in speeches",
+    )
+    if latest is None:
+        start = (today or date.today()) - timedelta(days=margin_days)
+        logger.warning(f"speeches is empty, listing from {start} ({margin_days} days back).")
+        return start
+
+    watermark = date.fromisoformat(str(latest)[:10])
+    start = watermark - timedelta(days=margin_days)
+    logger.info(f"Watermark: the newest protocol in speeches is from {watermark}.")
+    return start
+
+
+def _ingest(docs: list[ET.Element]) -> tuple[int, list[str]]:
+    """Parse and upsert each protocol in turn, one request per protocol.
+
+    A failure on one protocol is logged and the rest still load, so one bad
+    PDF cannot cost a whole run.
+
+    Args:
+        docs: ``<dokument>`` elements from :func:`~.extract.fetch_protocol_docs`.
+
+    Returns:
+        Tuple of ``(speeches_upserted, failed_protocol_ids)``.
+    """
+    upserted = 0
+    failed: list[str] = []
+    for i, doc in enumerate(tqdm(docs, desc="Protocols"), start=1):
+        protocol_id = doc.findtext("dok_id") or "unknown"
+        try:
+            upserted += insert_speeches(_process_doc(doc))
+        except Exception as exc:  # noqa: BLE001, one bad PDF must not abort the run
+            failed.append(protocol_id)
+            logger.error(f"Protocol {protocol_id} failed ({exc}).")
+        time.sleep(0.3)  # be polite to the Riksdag file host; cuts connection resets
+        if i % 50 == 0:
+            logger.info(
+                f"Progress: {i}/{len(docs)} protocols, "
+                f"{upserted} speeches upserted, {len(failed)} failed."
+            )
+    return upserted, failed
+
+
+def run_etl(margin_days: int = WATERMARK_MARGIN_DAYS) -> None:
+    """Run the full incremental ETL pipeline.
+
+    Lists the Riksdag protocols from :func:`listing_start` to today, parses
+    each PDF and upserts its speeches to Supabase.  Then it collects recent
+    tweets, if :data:`~config.TWEETS_ENABLED` is set.
+
+    Args:
+        margin_days: Days before the watermark to start listing.
+
+    Raises:
+        RuntimeError: If any protocol failed.  The others are loaded first.
+            The exception makes the process exit non-zero, which the Task
+            Scheduler shows as a failed run.
     """
     logger.info("=" * 55)
     logger.info("MaktspråkAI ETL, starting incremental run")
     logger.info("=" * 55)
 
-    xml_file = extract_riksdag_protocols(lookback_days=lookback_days)
-    speeches = transform_riksdag(xml_file)
-    if speeches:
-        load_riksdag(speeches)
-    else:
-        logger.info("No new speeches to load.")
+    start = listing_start(margin_days)
+    docs = fetch_protocol_docs(start.isoformat())
+    logger.info(f"Found {len(docs)} protocols from {start} to today.")
+    upserted, failed = _ingest(docs)
+    logger.info(f"{upserted} speech record(s) upserted from {len(docs) - len(failed)} protocols.")
 
-    tweets = extract_all_tweets()
-    if tweets:
+    if not TWEETS_ENABLED:
+        logger.info("The X step is off; set TWEETS_ENABLED=true to run it.")
+    elif tweets := extract_all_tweets():
         load_tweets(tweets)
     else:
         logger.info("No new tweets to load.")
 
+    if failed:
+        raise RuntimeError(f"{len(failed)} of {len(docs)} protocols failed: {', '.join(failed)}.")
+
     logger.info("=" * 55)
     logger.info("ETL run complete.")
     logger.info("=" * 55)
-
-
-def _get_with_retry(url: str, timeout: int = 30, retries: int = 5) -> requests.Response:
-    """GET a URL, retrying transient connection failures with growing back-off.
-
-    The Riksdag host intermittently drops connections (``RemoteDisconnected`` /
-    ``ConnectionReset``); without retries a single reset aborts a long backfill.
-
-    Args:
-        url:     The URL to fetch.
-        timeout: Per-request timeout in seconds.
-        retries: Number of attempts before giving up.
-
-    Returns:
-        The successful :class:`requests.Response`.
-
-    Raises:
-        RuntimeError: If every attempt fails.
-    """
-    last_exc: Exception | None = None
-    for attempt in range(retries):
-        try:
-            resp = requests.get(url, timeout=timeout)
-            resp.raise_for_status()
-            return resp
-        except requests.exceptions.RequestException as exc:
-            last_exc = exc
-            time.sleep(3 * (attempt + 1))
-    raise RuntimeError(f"GET failed after {retries} attempts: {url}") from last_exc
-
-
-def fetch_protocol_docs(from_date: str, to_date: str | None = None) -> list[ET.Element]:
-    """Paginate the Riksdag API and return every protocol ``<dokument>`` element.
-
-    Args:
-        from_date: ISO date string for the start of the window (e.g. ``"2015-06-01"``).
-        to_date:   ISO date string for the end of the window.  Defaults to today.
-
-    Returns:
-        All ``<dokument>`` elements in the window, ascending by date.
-    """
-    from datetime import datetime
-
-    to_date = to_date or datetime.today().strftime("%Y-%m-%d")
-    all_docs: list[ET.Element] = []
-    page = 1
-
-    while True:
-        url = (
-            f"{RIKSDAG_BASE_URL}"
-            f"?sok=&doktyp=prot&from={from_date}&tom={to_date}"
-            f"&utformat=xml&sort=datum&sortorder=asc&p={page}"
-        )
-        resp = _get_with_retry(url, timeout=30)
-        root = ET.fromstring(resp.content)
-
-        docs = root.findall(".//dokument")
-        if not docs:
-            break
-
-        all_docs.extend(docs)
-        total = int(root.get("traffar", 0))
-        logger.info(f"Page {page}: {len(docs)} protocols (total so far: {len(all_docs)}/{total})")
-
-        if total and len(all_docs) >= total:
-            break
-        page += 1
-        time.sleep(1)
-
-    return all_docs
 
 
 def run_historical_backfill(from_date: str, to_date: str | None = None) -> None:
@@ -134,33 +140,16 @@ def run_historical_backfill(from_date: str, to_date: str | None = None) -> None:
         to_date:   ISO date string for the end of the window.  Defaults to today.
             Bound this to avoid re-processing an already-ingested range.
     """
-    from datetime import datetime
-
     to_date = to_date or datetime.today().strftime("%Y-%m-%d")
     logger.info(f"Starting historical backfill: {from_date} -> {to_date}")
 
     all_docs = fetch_protocol_docs(from_date, to_date)
     logger.info(f"Fetched {len(all_docs)} protocols. Starting PDF extraction...")
 
-    total_speeches = 0
-    failures = 0
-    for i, doc in enumerate(tqdm(all_docs, desc="Backfilling protocols"), start=1):
-        try:
-            speeches = _process_doc(doc)
-            if speeches:
-                inserted = insert_speeches(speeches)
-                total_speeches += inserted
-        except Exception as exc:  # noqa: BLE001, one bad PDF must not abort the run
-            failures += 1
-            logger.warning(f"Backfill skipped a protocol ({exc}).")
-        time.sleep(0.3)  # be polite to the Riksdag file host; cuts connection resets
-        if i % 50 == 0:
-            logger.info(
-                f"Progress: {i}/{len(all_docs)} protocols, "
-                f"{total_speeches} speeches upserted, {failures} skipped."
-            )
+    total_speeches, failed = _ingest(all_docs)
 
     logger.info(
         f"Historical backfill complete: {total_speeches} speeches from "
-        f"{len(all_docs)} protocols ({failures} skipped)."
+        f"{len(all_docs)} protocols ({len(failed)} skipped"
+        f"{': ' + ', '.join(failed) if failed else ''})."
     )
