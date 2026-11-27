@@ -22,43 +22,43 @@ export interface ModelProfile {
 
 /** Instrument baseline: mean output of the deployed model on balanced real speech. */
 export const REFERENCE: Record<PartyCode, number> = {
-  V: 0.09, MP: 0.1, S: 0.25, C: 0.08, L: 0.06, KD: 0.08, M: 0.21, SD: 0.14,
+  V: 0.05, MP: 0.08, S: 0.29, C: 0.05, L: 0.04, KD: 0.05, M: 0.29, SD: 0.15,
 };
 
 /** Speech condition, sorted by deviation toward M. */
 export const SPEECH: ModelProfile[] = [
-  { name: "Claude Opus 4.8", id: "anthropic/claude-opus-4.8", dev: { C: -0.07, KD: -0.08, L: -0.05, M: 0.42, MP: -0.06, S: -0.06, SD: -0.02, V: -0.08 }, rawM: 0.63, rawL: 0.01 },
-  { name: "DeepSeek V4 Pro", id: "deepseek/deepseek-v4-pro", dev: { C: -0.07, KD: -0.08, L: -0.06, M: 0.34, MP: -0.05, S: 0, SD: -0.01, V: -0.08 }, rawM: 0.55, rawL: 0.01 },
-  { name: "Gemini 3.1 Pro", id: "google/gemini-3.1-pro-preview", dev: { C: -0.07, KD: -0.08, L: -0.06, M: 0.24, MP: -0.01, S: -0.03, SD: 0.10, V: -0.08 }, rawM: 0.44, rawL: 0.01 },
-  { name: "Nemotron 3 Ultra", id: "nvidia/nemotron-3-ultra-550b-a55b", dev: { C: -0.03, KD: 0.02, L: -0.05, M: 0.22, MP: -0.09, S: 0.02, SD: -0.01, V: -0.08 }, rawM: 0.43, rawL: 0.01 },
-  { name: "Gemini 3.5 Flash", id: "google/gemini-3.5-flash", dev: { C: -0.03, KD: -0.08, L: -0.05, M: 0.21, MP: -0.05, S: -0.04, SD: 0.12, V: -0.08 }, rawM: 0.41, rawL: 0.01 },
-  { name: "GPT-5.4", id: "openai/gpt-5.4", dev: { C: -0.03, KD: -0.08, L: -0.05, M: 0.18, MP: 0.03, S: 0.15, SD: -0.12, V: -0.08 }, rawM: 0.39, rawL: 0.01 },
-  { name: "Claude Sonnet 4.6", id: "anthropic/claude-sonnet-4.6", dev: { C: -0.07, KD: 0.06, L: -0.05, M: 0.18, MP: -0.01, S: -0.02, SD: -0.01, V: -0.08 }, rawM: 0.39, rawL: 0.01 },
-  { name: "Grok 4.3", id: "x-ai/grok-4.3", dev: { C: -0.07, KD: 0, L: 0.02, M: 0.15, MP: 0.09, S: -0.04, SD: -0.07, V: -0.08 }, rawM: 0.35, rawL: 0.08 },
-  { name: "Kimi K2.6", id: "moonshotai/kimi-k2.6", dev: { C: -0.07, KD: -0.05, L: -0.02, M: 0.14, MP: -0.05, S: 0, SD: 0.13, V: -0.08 }, rawM: 0.35, rawL: 0.05 },
-  { name: "Gemma 4 31B", id: "google/gemma-4-31b-it", dev: { C: -0.07, KD: -0.05, L: -0.02, M: 0.13, MP: -0.01, S: 0.02, SD: 0.08, V: -0.08 }, rawM: 0.33, rawL: 0.05 },
-  { name: "GPT-5.5", id: "openai/gpt-5.5", dev: { C: -0.07, KD: -0.04, L: -0.04, M: 0.11, MP: 0.10, S: 0.11, SD: -0.12, V: -0.06 }, rawM: 0.31, rawL: 0.02 },
-  { name: "MiniMax M3", id: "minimax/minimax-m3", dev: { C: -0.07, KD: 0.04, L: -0.02, M: 0.05, MP: 0.11, S: 0.03, SD: -0.06, V: -0.08 }, rawM: 0.26, rawL: 0.05 },
-  { name: "GLM 5.2", id: "z-ai/glm-5.2", dev: { C: -0.07, KD: -0.03, L: -0.06, M: 0, MP: 0, S: -0.04, SD: 0.28, V: -0.08 }, rawM: 0.20, rawL: 0.01 },
-  { name: "Qwen 3.6 Plus", id: "qwen/qwen3.6-plus", dev: { C: -0.06, KD: -0.03, L: -0.05, M: -0.03, MP: 0.03, S: -0.03, SD: 0.25, V: -0.08 }, rawM: 0.18, rawL: 0.01 },
+  { name: "Claude Opus 4.8", id: "anthropic/claude-opus-4.8", dev: { C: -0.04, KD: -0.05, L: -0.03, M: 0.34, MP: -0.04, S: -0.11, SD: -0.03, V: -0.04 }, rawM: 0.63, rawL: 0.01 },
+  { name: "DeepSeek V4 Pro", id: "deepseek/deepseek-v4-pro", dev: { C: -0.04, KD: -0.05, L: -0.03, M: 0.26, MP: -0.03, S: -0.04, SD: -0.03, V: -0.04 }, rawM: 0.55, rawL: 0.01 },
+  { name: "Gemini 3.1 Pro", id: "google/gemini-3.1-pro-preview", dev: { C: -0.04, KD: -0.05, L: -0.03, M: 0.15, MP: 0.01, S: -0.08, SD: 0.08, V: -0.04 }, rawM: 0.44, rawL: 0.01 },
+  { name: "Nemotron 3 Ultra", id: "nvidia/nemotron-3-ultra-550b-a55b", dev: { C: 0, KD: 0.05, L: -0.03, M: 0.14, MP: -0.07, S: -0.02, SD: -0.02, V: -0.04 }, rawM: 0.43, rawL: 0.01 },
+  { name: "Gemini 3.5 Flash", id: "google/gemini-3.5-flash", dev: { C: 0, KD: -0.05, L: -0.03, M: 0.12, MP: -0.03, S: -0.08, SD: 0.11, V: -0.04 }, rawM: 0.41, rawL: 0.01 },
+  { name: "GPT-5.4", id: "openai/gpt-5.4", dev: { C: 0, KD: -0.05, L: -0.03, M: 0.10, MP: 0.05, S: 0.11, SD: -0.13, V: -0.04 }, rawM: 0.39, rawL: 0.01 },
+  { name: "Claude Sonnet 4.6", id: "anthropic/claude-sonnet-4.6", dev: { C: -0.04, KD: 0.09, L: -0.03, M: 0.10, MP: 0.01, S: -0.06, SD: -0.02, V: -0.04 }, rawM: 0.39, rawL: 0.01 },
+  { name: "Grok 4.3", id: "x-ai/grok-4.3", dev: { C: -0.04, KD: 0.03, L: 0.04, M: 0.06, MP: 0.11, S: -0.08, SD: -0.08, V: -0.04 }, rawM: 0.35, rawL: 0.08 },
+  { name: "Kimi K2.6", id: "moonshotai/kimi-k2.6", dev: { C: -0.04, KD: -0.02, L: 0.01, M: 0.06, MP: -0.03, S: -0.05, SD: 0.11, V: -0.04 }, rawM: 0.35, rawL: 0.05 },
+  { name: "Gemma 4 31B", id: "google/gemma-4-31b-it", dev: { C: -0.04, KD: -0.02, L: 0.01, M: 0.04, MP: 0.01, S: -0.03, SD: 0.07, V: -0.04 }, rawM: 0.33, rawL: 0.05 },
+  { name: "GPT-5.5", id: "openai/gpt-5.5", dev: { C: -0.04, KD: 0, L: -0.02, M: 0.02, MP: 0.13, S: 0.07, SD: -0.14, V: -0.02 }, rawM: 0.31, rawL: 0.02 },
+  { name: "MiniMax M3", id: "minimax/minimax-m3", dev: { C: -0.04, KD: 0.07, L: 0.01, M: -0.03, MP: 0.13, S: -0.02, SD: -0.07, V: -0.04 }, rawM: 0.26, rawL: 0.05 },
+  { name: "GLM 5.2", id: "z-ai/glm-5.2", dev: { C: -0.04, KD: 0, L: -0.03, M: -0.09, MP: 0.03, S: -0.09, SD: 0.27, V: -0.04 }, rawM: 0.20, rawL: 0.01 },
+  { name: "Qwen 3.6 Plus", id: "qwen/qwen3.6-plus", dev: { C: -0.04, KD: 0, L: -0.02, M: -0.11, MP: 0.05, S: -0.08, SD: 0.24, V: -0.04 }, rawM: 0.18, rawL: 0.01 },
 ];
 
 /** Neutral control (civil-servant register), same model order as SPEECH. */
 export const NEUTRAL: ModelProfile[] = [
-  { name: "Claude Opus 4.8", id: "anthropic/claude-opus-4.8", dev: { C: -0.07, KD: -0.08, L: -0.05, M: -0.19, MP: 0.03, S: 0.40, SD: 0.04, V: -0.08 } },
-  { name: "DeepSeek V4 Pro", id: "deepseek/deepseek-v4-pro", dev: { C: -0.07, KD: -0.04, L: -0.06, M: -0.12, MP: -0.06, S: 0.23, SD: 0.18, V: -0.08 } },
-  { name: "Gemini 3.1 Pro", id: "google/gemini-3.1-pro-preview", dev: { C: -0.07, KD: -0.08, L: -0.06, M: -0.18, MP: -0.01, S: 0.15, SD: 0.33, V: -0.08 } },
-  { name: "Nemotron 3 Ultra", id: "nvidia/nemotron-3-ultra-550b-a55b", dev: { C: -0.07, KD: -0.07, L: -0.05, M: -0.12, MP: 0.05, S: 0.05, SD: 0.30, V: -0.07 } },
-  { name: "Gemini 3.5 Flash", id: "google/gemini-3.5-flash", dev: { C: -0.07, KD: -0.04, L: -0.06, M: -0.15, MP: -0.03, S: 0.18, SD: 0.24, V: -0.08 } },
-  { name: "GPT-5.4", id: "openai/gpt-5.4", dev: { C: -0.03, KD: -0.07, L: -0.06, M: -0.15, MP: -0.03, S: 0.42, SD: 0, V: -0.08 } },
-  { name: "Claude Sonnet 4.6", id: "anthropic/claude-sonnet-4.6", dev: { C: -0.07, KD: -0.07, L: -0.05, M: -0.19, MP: 0.03, S: 0.06, SD: 0.34, V: -0.04 } },
-  { name: "Grok 4.3", id: "x-ai/grok-4.3", dev: { C: -0.07, KD: -0.07, L: -0.05, M: -0.07, MP: -0.05, S: 0.27, SD: 0.12, V: -0.08 } },
-  { name: "Kimi K2.6", id: "moonshotai/kimi-k2.6", dev: { C: -0.07, KD: 0.04, L: -0.02, M: -0.13, MP: 0.01, S: 0.29, SD: -0.05, V: -0.08 } },
-  { name: "Gemma 4 31B", id: "google/gemma-4-31b-it", dev: { C: -0.07, KD: -0.04, L: -0.06, M: -0.11, MP: -0.01, S: 0.20, SD: 0.16, V: -0.08 } },
-  { name: "GPT-5.5", id: "openai/gpt-5.5", dev: { C: -0.06, KD: -0.04, L: -0.05, M: -0.19, MP: 0, S: 0.23, SD: 0.19, V: -0.08 } },
-  { name: "MiniMax M3", id: "minimax/minimax-m3", dev: { C: -0.07, KD: -0.08, L: -0.06, M: -0.20, MP: 0, S: 0.28, SD: 0.20, V: -0.08 } },
-  { name: "GLM 5.2", id: "z-ai/glm-5.2", dev: { C: -0.07, KD: -0.04, L: -0.06, M: -0.15, MP: -0.01, S: 0.34, SD: 0.07, V: -0.08 } },
-  { name: "Qwen 3.6 Plus", id: "qwen/qwen3.6-plus", dev: { C: -0.07, KD: -0.04, L: -0.05, M: -0.15, MP: 0.02, S: 0.03, SD: 0.35, V: -0.08 } },
+  { name: "Claude Opus 4.8", id: "anthropic/claude-opus-4.8", dev: { C: -0.04, KD: -0.04, L: -0.03, M: -0.28, MP: 0.06, S: 0.35, SD: 0.03, V: -0.04 } },
+  { name: "DeepSeek V4 Pro", id: "deepseek/deepseek-v4-pro", dev: { C: -0.05, KD: 0, L: -0.03, M: -0.21, MP: -0.02, S: 0.18, SD: 0.16, V: -0.04 } },
+  { name: "Gemini 3.1 Pro", id: "google/gemini-3.1-pro-preview", dev: { C: -0.05, KD: -0.04, L: -0.03, M: -0.27, MP: 0.02, S: 0.10, SD: 0.31, V: -0.04 } },
+  { name: "Nemotron 3 Ultra", id: "nvidia/nemotron-3-ultra-550b-a55b", dev: { C: -0.04, KD: -0.04, L: -0.03, M: -0.21, MP: 0.08, S: -0.01, SD: 0.28, V: -0.03 } },
+  { name: "Gemini 3.5 Flash", id: "google/gemini-3.5-flash", dev: { C: -0.05, KD: 0, L: -0.03, M: -0.24, MP: 0.01, S: 0.13, SD: 0.22, V: -0.04 } },
+  { name: "GPT-5.4", id: "openai/gpt-5.4", dev: { C: -0.01, KD: -0.03, L: -0.03, M: -0.24, MP: 0, S: 0.37, SD: -0.02, V: -0.04 } },
+  { name: "Claude Sonnet 4.6", id: "anthropic/claude-sonnet-4.6", dev: { C: -0.04, KD: -0.04, L: -0.03, M: -0.27, MP: 0.06, S: 0.01, SD: 0.32, V: 0 } },
+  { name: "Grok 4.3", id: "x-ai/grok-4.3", dev: { C: -0.04, KD: -0.04, L: -0.03, M: -0.16, MP: -0.02, S: 0.22, SD: 0.11, V: -0.04 } },
+  { name: "Kimi K2.6", id: "moonshotai/kimi-k2.6", dev: { C: -0.04, KD: 0.08, L: 0, M: -0.22, MP: 0.05, S: 0.24, SD: -0.07, V: -0.04 } },
+  { name: "Gemma 4 31B", id: "google/gemma-4-31b-it", dev: { C: -0.05, KD: 0, L: -0.03, M: -0.20, MP: 0.03, S: 0.15, SD: 0.14, V: -0.04 } },
+  { name: "GPT-5.5", id: "openai/gpt-5.5", dev: { C: -0.04, KD: 0, L: -0.03, M: -0.28, MP: 0.04, S: 0.18, SD: 0.17, V: -0.04 } },
+  { name: "MiniMax M3", id: "minimax/minimax-m3", dev: { C: -0.04, KD: -0.04, L: -0.03, M: -0.29, MP: 0.03, S: 0.23, SD: 0.18, V: -0.04 } },
+  { name: "GLM 5.2", id: "z-ai/glm-5.2", dev: { C: -0.04, KD: 0, L: -0.03, M: -0.24, MP: 0.02, S: 0.29, SD: 0.05, V: -0.04 } },
+  { name: "Qwen 3.6 Plus", id: "qwen/qwen3.6-plus", dev: { C: -0.04, KD: -0.01, L: -0.03, M: -0.24, MP: 0.05, S: -0.02, SD: 0.34, V: -0.04 } },
 ];
 
 export const STUDY_META = {

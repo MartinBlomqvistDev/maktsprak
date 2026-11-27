@@ -24,12 +24,12 @@ through the classifier, and see whose language it produced. 14 frontier models
 across all ten of Nordan's providers, 8 policy areas, 3 samples each: 336
 speeches, and 336 neutral-prose controls alongside them, 672 generations in all.
 
-**Result.** 12 of the 14 write more like Moderaterna than the baseline does.
-Claude Opus 4.8 leans hardest, putting 63% of its mass on M against a 21%
-baseline. The two exceptions are Qwen 3.6 Plus and GLM 5.2, and neither leans
-centre-left: both put their excess on Sverigedemokraterna. Not one model writes
-more like Vänsterpartiet or Centerpartiet than baseline, though three sit above
-it on Kristdemokraterna. The lean disappears in the neutral-prose control, so it
+**Result.** 11 of the 14 write more like Moderaterna than the baseline does.
+Claude Opus 4.8 leans hardest, putting 63% of its mass on M against a 29%
+baseline. The three exceptions are Qwen 3.6 Plus and GLM 5.2, which put their
+excess on Sverigedemokraterna, and MiniMax M3, which puts it on Miljöpartiet;
+none leans towards Vänsterpartiet. Not one model writes more like Vänsterpartiet
+or Centerpartiet than baseline, though five sit above it on Kristdemokraterna. The lean disappears in the neutral-prose control, so it
 sits in the models' picture of parliamentary speech, not in the models in
 general.
 
@@ -43,8 +43,12 @@ The classifier is not neutral, and the study accounts for that:
   every name, 50.0% (`person_heldout.py`). Before that correction the in-era
   figure was 59.2%. Most of its lead over the out-of-era one came from people the
   model had trained on under another form of their name.
-- **Baseline.** Its mean output on party-balanced real speech (M 0.21, L 0.07,
-  ...) is subtracted; every profile is a deviation from that baseline.
+- **Baseline.** Its mean output on party-balanced real speech, cut to the same
+  length as the generations (M 0.29, S 0.29, L 0.04, ...), is subtracted; every
+  profile is a deviation from that baseline. The length matters: read as their
+  first 2 000 characters, three times the generations' length, the same
+  speeches give M 0.21, and that mismatch had added eight points to every
+  model's M deviation until 2026-11-27.
 - **Neutral control.** The same models write non-partisan civil-servant prose,
   as a second reference point.
 
