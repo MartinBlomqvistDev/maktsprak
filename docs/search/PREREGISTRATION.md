@@ -990,3 +990,164 @@ test run and applies to the new run: the 100 answerable questions drawn with
 the seed 20261124, the pairs in an order drawn with the same seed, each showing
 only the question and the quotation. The comparisons and the launch rule are
 computed as the addendum of 2026-11-22 sets out.
+
+### 2026-11-27: correction, the hybrid's BM25 keeps its stop words
+
+The addendum of 2026-11-21 on the embedding candidates gives the hybrid's BM25
+as "the configuration tuned on 2026-11-21: stemming without stop words, `k1`
+1.2 and `b` 0.9". There, "without stop words" means `stem-nostop`: Snowball
+stemming, with no stop words dropped. That is the configuration the tuning
+chose (`bm25_tuning_dev.json`, `hybrid_tuning_dev.json`) and the one every run
+used, as the addendum of 2026-11-22 on the answer step says. The text above
+stays as committed.
+
+### 2026-11-27: the order of commits, runs and publication
+
+The page said that git shows the order in which things happened. Two addenda
+were committed after a run they govern:
+
+- The addendum headed 2026-11-20, which starts the corpus with the 2003/04
+  session and applies the 99% to the sessions in scope, was committed on
+  2026-11-21 at 16:09 CET (`228f9fc`). The reconciliation was first run on
+  2026-11-20, as the addendum of 2026-11-21 records.
+- The addendum of 2026-11-21 that fixes the hash of the judge's prompt and the
+  kappa that decides was committed at 18:45 CET (`d9bcca4`). The judge's
+  verdicts on the 100 calibration pairs had been written at 18:13 CET
+  (`judge_calibration_verdicts.json`).
+
+The first changed the scope of the coverage rule. Counted over all the older
+corpus's sessions from 2002/03 onward, coverage would be 286 323 of 299 075,
+0.957, below the 0.99. By that addendum's own account, the session had been left
+out of the build when the source was read, ahead of the reconciliation, since
+the Riksdag publishes it as hard-wrapped text. The second moved no result: every
+kappa of the judge falls short of the bound.
+
+Git shows the order of commits, and the reports' own timestamps show when the
+runs were made. The original text and the first two addenda were public from
+2026-11-21, when main was pushed at 17:50 CET. The later addenda were first
+published on 2026-11-25 at 12:34 CET, with the branch
+`claude/fas-4-lagring-0eadc1`, after the runs on the test split. For them, the
+order rests on commit dates I set myself. From now on, an addendum is pushed
+before the run it governs.
+
+### 2026-11-27: the judge graded the development rounds after it was rejected
+
+On 2026-11-24 the calibration rejected the judge, with a Cohen's kappa of 0.321
+against the 0.6 required (`judge_agreement.json`). By the addendum of 2026-11-23,
+quote precision is then not measured on the development split, and only my own
+grades count. The judge was still run on the quotations of the three rounds on
+the development split, for 7.49 USD (`answer_dev.json`), and its grades of
+round 1 existed before round 2 was run.
+
+Under the rule for a rejected judge, the round that went to the test split was
+chosen by balanced accuracy alone, and the tie between rounds 1 and 3 went to
+the later round. The judge's grades therefore decided neither the round nor a
+launch criterion. In `answer_dev.json` the quote precision, the score, the
+launch flags on quote precision, their intervals and `answerable_with_a_grade_2`
+are now null. The values the judge's grades give are kept apart in the block
+`unaccepted_judge`, with a note that they are description without decision
+value. They describe the output of an instrument that failed its calibration and
+are not the registered metric. The page shows none of them. The step that runs
+the judge now stops once the judge has been rejected, so it grades nothing more.
+
+### 2026-11-27: pooled nDCG@10 and comparison 4 have not been run
+
+nDCG@10 on a pooled subset, 100 questions from the test split with the top five
+results of each system graded 0, 1 or 2, has not been measured, and comparison
+4, a reranker against none on nDCG@10, has not been run. No code for either
+exists yet. The page launches without them and says so. With the judge
+rejected, the pool is graded by hand.
+
+Before the pool is graded, an addendum fixes its unit, its draw, the reranker's
+model and when the grading happens. `retrieval_test_questions.jsonl` holds each
+system's 50 best speeches for every test question, so a pool of speeches can be
+drawn from it. The passages behind the vector and hybrid rankings cannot be
+rebuilt exactly, since the test questions' vectors were not stored.
+
+### 2026-11-27: the reading of the closing texts was not recorded
+
+The addendum of 2026-11-21 says that a language model read every distinct
+closing text and every paragraph that `after_closing` set aside. The model's
+id, its prompt and the date of the reading were not stored, against the rule
+above that they are stored with everything a model produces. The reading is
+therefore an unrecorded check. The named rules are what set the text aside, and
+the reading is no evidence that they cut none of a speaker's words. The dataset
+card now says so, and the page makes no claim that rests on the reading.
+
+### 2026-11-27: known errors in the corpus
+
+A review on 2026-11-26 found the errors below. The corpus is not changed now,
+since that would change the measured system after its runs on the test split.
+They are fixed in the next version of the corpus, which gets an addendum of its
+own.
+
+- **The snabbprotokoll.** 38 706 of the 301 358 speeches, 12.8%, come from
+  records whose protocol is titled snabbprotokoll: the protocol as first
+  published, before it is checked. They make up 9 796 of the 11 421 speeches of
+  2010/11, 11 747 of 12 057 in 2012/13 and 13 730 of 14 012 in 2013/14, and
+  3 433 in five other sessions (`protocol_versions.json`). The wording can differ
+  from the final protocol's. H10950-29 reads "Det har sagt en hel del här",
+  where the final protocol 2013/14:50 reads "Det har sagts en hel del här", and
+  H10950-132 reads "en rimligt ekonomisk kompensation" for "en rimlig ekonomisk
+  kompensation". The corpus does not keep the protocol's title, so the count is
+  read from the datasets as downloaded. The reconciliation of 2026-11-21 judged
+  all sessions together and did not look at the protocol's version. The
+  Riksdag's page for such a speech shows the same text, under a heading that
+  names the snabbprotokoll.
+- **The record's notes inside a paragraph.** Eight kept speeches hold one:
+  "(ohörbart)" in GS0914-133, -135 and -137, "(talaren gör tecken liknande
+  teckenspråk)" in GU09131-115, "(Applåder)" in GV093-6, GV09126-31 and
+  H10948-75, and "(Applåd)" in GV09122-222. `search/corpus/parse.py` says four.
+- **Line breaks inside words.** In the lines layout, a paragraph can start or
+  end inside a word where the record breaks a line after an emphasised run, as
+  in GR0918-9 ("som de nya p", then "ublic service-utredarna"), GT0979-4,
+  GR0916-1 and GR0921-2. The flag `lost_emphasis_boundary` does not count these
+  breaks.
+- **Party.** GT0921-34 carries S and GT0932-91 M, while every other speech by
+  the same person carries M and C.
+- **Duplicates.** Four pairs of speeches hold the same text by the same speaker
+  in one protocol: H109123-100 and -102, H50938-84 and -86, HD09106-171 and
+  -173, and HD09106-172 and -174.
+- **A date in the reconciliation.** `reconciliation.json` gives the 2002/03
+  protocols a last date of 2003-12-16. That is the date both sources give
+  GQ0937, protocol 2002/03:37, which falls between 2002-12-13 and 2002-12-17.
+  The session is not in the corpus, and coverage is not affected.
+
+Two more errors were found on 2026-11-27, when the next version of the corpus
+was built. Both are in the corpus the search runs on:
+
+- **The record's note on concurrence.** Seventeen speeches end with the short
+  form of the record's note on who concurred in the speech, "I anförandet
+  instämde" followed by names and parties. They come from the sessions 2006/07
+  to 2022/23. The rule in `search/corpus/parse.py` recognises only the longer
+  form, "I detta anförande instämde", so the short form stays as the last
+  paragraph of the speech and can be quoted as the speaker's words. The
+  seventeen are GU0918-133, GU0929-50, GV09130-95, GW09109-64, GW0931-196,
+  GW0952-141, GW0953-29, GW0972-74, GY0910-97, GY0960-131, GY0983-80, GY0987-27,
+  GZ0949-112, GZ0986-4, H10918-19, H909136-43 and HA099-5.
+- **A speaker.** GY0919-25, the answer to interpellation 2010/11:42, stands
+  under Maria Larsson (KD). The final protocol 2010/11:19 has the same text,
+  word for word, under Gunilla Carlsson (M).
+
+### 2026-11-27: correction, what a ping every five minutes costs
+
+The addendum of 2026-11-22 on the search service's memory says that a ping
+every five minutes uses well under one of the 25 hours of instance time a
+month. That was not measured. A warm search through the site's proxy took a
+median of 1.494 s (`service_latency_preview_search.json`), so 8 640 such pings
+a month would hold the instance for about three and a half hours, and Cloud Run
+also bills the time an instance spends starting and shutting down. The ping in
+`keep-warm.yml` in fact ran only a few times a day, since GitHub skips most
+scheduled runs. It is replaced by Cloud Scheduler, which asks the service's
+`/health` every five minutes as `search_service/DEPLOY.md` sets up. That ping
+runs no search, and its instance time has not been measured. The addendum itself
+stays as written.
+
+### 2026-11-27: correction, a launch flag of round 2 on the development split
+
+Round 2's flag for needless abstention at most 15 percent read false in
+`answer_dev.json` and now reads true. Round 2 abstained needlessly on 27 of 180
+answerable questions, exactly 15 percent, which floating-point arithmetic stored
+as 0.15000000000000002. The shares are now compared to the limits at nine
+decimals. The flag decided nothing: the launch rule is applied to the test
+split, and the test run uses round 3.
