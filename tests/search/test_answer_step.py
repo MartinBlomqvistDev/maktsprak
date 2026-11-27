@@ -21,6 +21,7 @@ from search.answer.candidates import fuse_candidates, load_speeches, rank_passag
 from search.answer.selector import load_selector_prompt
 from search.config import Settings, load_settings
 from search.corpus.table import load_passage_table
+from search.eval.answer_metrics import Abstention
 from search.eval.generation import append_log
 from search.eval.llm import Completion, Usage
 from search.eval.questions import EvalQuestion, Provenance
@@ -785,7 +786,9 @@ class TestTheHybrid:
             1,
         )
         assert report["retrieval"]["embedding"] == "qwen3-8b"
-        assert report["runs"] == ("selector" if report["beats_baseline"] else "baseline")
+        # One question is drawn and every pair is graded 2, so the difference in
+        # quote precision is 0 or missing, and its lower bound is not above 0.
+        assert (report["beats_baseline"], report["runs"]) == (False, "baseline")
         assert (step.hand_dir(settings) / f"{step.HAND_FORM_KEY}.json").is_file()
         lines = (reports / step.TEST_QUESTIONS_REPORT).read_text("utf-8").splitlines()
         assert len(lines) == 2 * len(TEST_QUESTIONS)
@@ -818,6 +821,62 @@ class TestTheHybrid:
         with pytest.raises(SystemExit, match="Without a grade"):
             step.run_test_report(settings, answers)
         assert not (settings.tracked.reports / step.TEST_REPORT).exists()
+
+
+def shares(abstains: float, needless: float) -> Abstention:
+    """Abstention with these two shares, over ten questions of each kind."""
+    return Abstention(
+        balanced_accuracy=(abstains + 1 - needless) / 2,
+        abstains_unanswerable=abstains,
+        answers_answerable=1 - needless,
+        needless_abstention=needless,
+        answerable=10,
+        unanswerable=10,
+    )
+
+
+class TestTheLaunchRule:
+    @pytest.mark.parametrize(
+        ("abstains", "needless", "precision", "expected"),
+        [
+            (0.90, 0.15, 0.85, (True, True, True)),
+            (3 * 0.3, 1 - 0.85, 17 / 20, (True, True, True)),
+            (0.8999, 0.15, 0.85, (False, True, True)),
+            (0.90, 0.1501, 0.85, (True, False, True)),
+            (0.90, 0.15, 0.8499, (True, True, False)),
+            (1.0, 0.0, None, (True, True, False)),
+        ],
+    )
+    def test_each_part_holds_at_its_limit_and_not_beyond(
+        self, abstains, needless, precision, expected
+    ):
+        rule = step.launch_rule(shares(abstains, needless), precision)
+        assert list(rule) == [
+            "abstains_on_90_percent_of_unanswerable",
+            "needless_abstention_at_most_15_percent",
+            step.PRECISION_PART,
+        ]
+        assert tuple(rule.values()) == expected
+
+    PASSES = {"a": True, "b": True}
+    FAILS = {"a": True, "b": False}
+
+    @pytest.mark.parametrize(
+        ("precision", "accuracy", "selector", "baseline", "expected"),
+        [
+            ((0.2, 0.05, 0.3), (0.3, 0.1, 0.4), PASSES, FAILS, (True, "selector", True)),
+            ((0.2, 0.0, 0.3), (0.3, 0.1, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            ((0.2, 0.05, 0.3), (0.3, 0.0, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            (None, (0.3, 0.1, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            ((0.2, 0.05, 0.3), (0.3, 0.1, 0.4), FAILS, PASSES, (True, "selector", False)),
+            ((-0.1, -0.2, 0.0), (0.3, 0.1, 0.4), FAILS, PASSES, (False, "baseline", True)),
+        ],
+    )
+    def test_the_selector_that_runs_and_its_launch(
+        self, precision, accuracy, selector, baseline, expected
+    ):
+        rules = {"selector": selector, "baseline": baseline}
+        assert step.launch_decision(precision, accuracy, rules) == expected
 
 
 def test_the_candidates_are_the_ones_bm25_ranks(settings):

@@ -2131,6 +2131,33 @@ def launch_rule(shares: Abstention, precision: float | None) -> dict[str, bool]:
     }
 
 
+def launch_decision(
+    precision: tuple[float, float, float] | None,
+    accuracy: tuple[float, float, float],
+    launch_rules: Mapping[str, Mapping[str, bool | None]],
+) -> tuple[bool, str, bool]:
+    """Whether the language model beats the baseline, which selector runs, and if it launches.
+
+    The language model beats the baseline when the lower bound of both
+    intervals lies above 0. The selector that runs is the language model if it
+    does and the baseline otherwise, and the launch rule is read for it.
+
+    Args:
+        precision: The difference in quote precision, language model minus
+            baseline, with its interval; ``None`` when a selector has no
+            graded quotation.
+        accuracy: The same for balanced accuracy.
+        launch_rules: Each selector's launch rule, by name.
+
+    Returns:
+        Whether it beats the baseline, the selector that runs, and whether
+        every part of the launch rule holds for that selector.
+    """
+    beats = precision is not None and precision[1] > 0 and accuracy[1] > 0
+    runs = "selector" if beats else "baseline"
+    return beats, runs, all(launch_rules[runs].values())
+
+
 def leading_round(
     summaries: Sequence[SelectorSummary],
     rounds: Mapping[str, RoundRecord],
@@ -2456,9 +2483,9 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
             outcomes["selector"], outcomes["baseline"], answer.bootstrap_seed, answer.resamples
         )
     )
-    beats = precision is not None and precision[1] > 0 and accuracy[1] > 0
-    runs = "selector" if beats else "baseline"
-    running = next(summary for summary in summaries if summary.name == runs)
+    beats, runs, launch = launch_decision(
+        precision, accuracy, {summary.name: summary.launch_rule for summary in summaries}
+    )
     report = AnswerTestReport(
         split=TEST_SPLIT,
         run_sha256=run_sha256,
@@ -2475,7 +2502,7 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
         ),
         beats_baseline=beats,
         runs=runs,
-        launch=all(running.launch_rule.values()),
+        launch=launch,
         candidate_parties=party_shares(
             candidate.party
             for record in records
