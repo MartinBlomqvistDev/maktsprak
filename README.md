@@ -7,17 +7,18 @@
 
 **Live: [maktsprak.se](https://maktsprak.se)**
 
-An end-to-end NLP system over the complete Riksdag debate record: a weekly ETL that parses the chamber's two-column PDFs, a fine-tuned KB-BERT classifier served from its own inference API, and a precomputed analytics site built on the Fightin' Words statistic.
+An end-to-end NLP system over the Riksdag's debates since 2002: a weekly ETL that parses the chamber's two-column PDFs, a fine-tuned KB-BERT classifier served from its own inference API, a precomputed analytics site built on the Fightin' Words statistic, and a hybrid search that answers a question with verbatim passages from the speeches.
 
 Every headline number here is one a validation leak would have inflated. I found the leak, fixed it, and report the lower number.
 
 | | |
 |---|---|
-| **Corpus** | 75 148 speeches · 2 970 protocols · 2002-2026 · rebuilt from source, verified against it |
+| **Corpus** | 299 149 speeches in 75 148 records, one record per speaker and protocol · 2 970 protocols · 2002-2026 · rebuilt from source, verified against it |
 | **Model** | KB-BERT, 8-way party classification, **0.628 acc / 0.619 macro-F1** speaker-independent. Trained once on 2015-onward debates; the pre-2015 corpus powers the drift analytics, not the model |
 | **Serving** | FastAPI on Cloud Run, scale-to-zero |
-| **Site** | Next.js on Vercel, static precomputed JSON |
-| **Tests** | 1 806, green, on every push |
+| **Search** | BM25 and Qwen3-Embedding-8B merged by reciprocal rank fusion, over 301 358 speeches from the Riksdag's open data, 2003/04 onward. Pre-registered: recall@10 0.467 against 0.267 for BM25 alone on the test split |
+| **Site** | Next.js on Vercel, static precomputed JSON, and a proxy to the search |
+| **Tests** | 1 889 pytest cases and 28 node tests, run by CI on pushes to main and on pull requests. The pytest figure is CI's own count of passed tests under the `ci` extra, where 7 are skipped: 6 need packages CI does not install and 1 a downloaded model. A second job runs the search and service tests on the libraries of the service's image, and 1 772 pass there |
 
 ---
 
@@ -124,7 +125,7 @@ Reading real matches killed the obvious approach. `dessa människor` (3 356 hits
 
 Counting those as othering counts compassion as hostility. In the chamber's formal register, hostility lives in the predicate, not in the noun phrase, so a word list over referring expressions measures *talking about a group of people*: which is what a welfare debate consists of.
 
-The defensible version requires an in-group **and** an out-group marker in the same sentence. That yields near-perfect precision and **55 sentences in 75 000 speeches**: too few to chart, so it is published as an exhaustive census rather than a trend. Its distribution is the finding:
+The defensible version requires an in-group **and** an out-group marker in the same sentence. That yields near-perfect precision and **55 sentences in the whole corpus, about 300 000 speeches**: too few to chart, so it is published as an exhaustive census rather than a trend. Its distribution is the finding:
 
 | out-group type | count |  | party | count |
 |---|---|---|---|---|
@@ -135,6 +136,20 @@ The defensible version requires an in-group **and** an out-group marker in the s
 A single undifferentiated "us-vs-them" score would have ranked V highest and SD near the bottom, and been read as a machine calling V populist. The measurement that worked found something no one expected; the one that failed would have confirmed a prior. That is the whole argument for the gate.
 
 Pattern provenance and the audit trail behind every word list: [`data/lexicons/CHANGELOG.md`](data/lexicons/CHANGELOG.md).
+
+---
+
+## Fråga protokollet: search over the speeches
+
+[maktsprak.se/fraga](https://maktsprak.se/fraga) answers a question in Swedish with the passages of the Riksdag's speeches that a hybrid search ranks highest, verbatim, each with its speaker, party, date and a link to the speech on the Riksdag's own site.
+
+The corpus is built from the Riksdag's open data, one record per speech, not from the PDFs: 301 358 speeches from the 2003/04 session onward, cut into 563 909 passages of whole paragraphs. About one speech in eight comes from the Riksdag's preliminary protocol, whose wording can differ from the final one; the method section lists the sessions, and the next version of the corpus rebuilds them from the final protocols. The question sets, the metrics and the rules that decide what runs on the page were written down before anything was measured, in [`docs/search/PREREGISTRATION.md`](docs/search/PREREGISTRATION.md), and every later change is a dated addendum there.
+
+The question was whether vector search beats keyword search on Swedish parliamentary language, which compounds words freely. On the natural-language questions of the test split, the hybrid found the right speech among its ten best for 0.467 of the questions and BM25 for 0.267, so the hybrid runs on the page. The vectors alone did better still on those questions, and BM25 won when the same questions were asked as keywords. Both results are in the method section of [the page](https://maktsprak.se/fraga).
+
+An answer step, where Claude Opus 5.5 chooses which paragraphs of the ten passages to quote and code fetches them from the corpus, is built and was run on the test split. It stays off until my own grading of its quotations shows that the pre-registered launch rule holds.
+
+The search runs as its own FastAPI service on Cloud Run, with the index baked into the image. The question's vector comes from Qwen3-Embedding-8B through OpenRouter, routed to Nebius. The index is published as a dataset, [`MartinBlomqvist/fraga-protokollet-index`](https://huggingface.co/datasets/MartinBlomqvist/fraga-protokollet-index).
 
 ---
 
@@ -157,8 +172,9 @@ Two studies in [`research/`](research/) reuse the classifier as a measurement in
 | NLP / ML | `transformers` (KB-BERT), `torch`, `scikit-learn`, `numpy` |
 | Storage | Parquet (zstd) as source of truth; Supabase/PostgreSQL as ETL landing zone |
 | Serving | FastAPI, Docker, Google Cloud Run |
+| Search | BM25 with Snowball stemming, Qwen3-Embedding-8B via OpenRouter, reciprocal rank fusion, numpy |
 | Web | Next.js, React, Recharts, Tailwind, Vercel |
-| CI | GitHub Actions: `ruff` + `pytest`, and `eslint` + `next build`, path-scoped |
+| CI | GitHub Actions on pushes to main and on pull requests: `ruff` + `pytest`, and `eslint` + `npm test` + `next build` with a check that the search page's figures match their reports, both on every change |
 
 ---
 
@@ -168,16 +184,17 @@ Two studies in [`research/`](research/) reuse the classifier as a measurement in
 git clone https://github.com/MartinBlomqvistDev/maktsprak.git
 cd maktsprak
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -e ".[dev,app]"
+pip install -e ".[ci]"                              # the tests' dependencies, as CI installs them
 cp .env.example .env                                # SUPABASE_URL, SUPABASE_KEY, ...
 ```
 
 ```bash
-pytest tests/ -v                                    # 1 806 tests, no credentials needed
+pytest tests/ -v                                    # no credentials needed
 python scripts/rebuild_corpus.py --jobs 12          # rebuild the corpus, offline
 python scripts/build_site_data.py                   # precompute the site's JSON
 python -m src.maktsprak_pipeline.main               # one incremental ETL pass
 cd web && npm install && npm run dev                # the site
+cd web && npm test                                  # the site's tests
 ```
 
 The test suite runs without any credentials: the database is mocked, and nothing reaches the network.
@@ -208,9 +225,12 @@ research/                   # LLM studies that reuse the classifier as an instru
 ├── llm_language_profile.py # which party do LLMs write like
 └── llm_classify_benchmark.py # KB-BERT vs frontier LLMs, with cost
 inference_service/          # FastAPI + Dockerfile, deployed to Cloud Run
+search/                     # the search: corpus, passages, indexes, evaluation, numbered steps
+search_service/             # the search service, FastAPI on Cloud Run
+docs/search/                # pre-registration, ADR and the index's dataset card
 web/                        # Next.js site (Vercel)
 notebooks/retrain_colab.ipynb
-tests/                      # 1 806 tests
+tests/                      # the pytest suite; the site's tests sit beside its code
 ```
 
 ---
