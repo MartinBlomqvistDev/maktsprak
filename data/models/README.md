@@ -8,18 +8,20 @@ Local training artifacts for the party classifier. Weights are gitignored
 
 The live model behind maktsprak.se. Fine-tuned KB-BERT on the re-indexed,
 parser-fixed Riksdag corpus (2015 onward) with a **speaker-independent**
-train/val split: 15% of unique speakers (146 of them) are held out entirely, so
-validation measures generalization to politicians the model never saw during
-training, not recall of familiar voices. The held-out set is persisted in
+train/val split: 15% of speaker names (146) were held out. The names are the
+protocols' own, so 38 people were also in training under another form of their
+name. The figures below count only the 99 people who appear in training under
+no name, matched on the Riksdag's id for each speaker
+(`research/person_heldout.py`). The held-out names are persisted in
 `val_speakers.json` next to the weights, so nothing re-derives the split.
 
 | | |
 |---|---|
 | Base model | `KB/bert-base-swedish-cased` |
-| Split | speaker-independent, 146 speakers (15%) held out |
+| Split | 146 speaker names (15%) held out; 99 people absent from training under every name |
 | Trained on | Colab, NVIDIA L4 |
-| Held-out accuracy | 0.628 |
-| Held-out macro-F1 | 0.619 |
+| Held-out accuracy | 0.612 (was 0.628 before 2026-11-27) |
+| Held-out macro-F1 | 0.606 (was 0.619 before 2026-11-27) |
 
 Class imbalance is corrected once (loss weighting), not twice. An earlier
 version also oversampled rare parties; correcting twice made short slogans
@@ -40,8 +42,8 @@ The original model, trained before two things were fixed:
    speeches (dropped `replik` replies, mis-labelled party-less speakers).
 2. **Evaluation split**: validated with a plain row-based split, so the same
    speakers appeared in both train and test. That leak inflates macro-F1
-   substantially (0.775 on the row split vs. the honest 0.619 on the
-   speaker-independent split) because the model partly learns to recognize
+   substantially (0.775 on the row split vs. the honest 0.606 on people held
+   out of training under every name form) because the model partly learns to recognize
    *individual politicians' phrasing*, not *party rhetoric*.
 
 Kept for comparison, not for deployment.
