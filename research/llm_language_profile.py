@@ -361,7 +361,15 @@ def calibrate(n_per_party: int = 60, seed: int = 13) -> dict[str, float]:
     Reporting only the 2002-2014 number understates the instrument: that set is
     two decades of vocabulary drift away, so it measures drift as much as skill.
     The models here write *contemporary* text, so the number that matters is the
-    in-era one: speakers held out of training entirely, 2015 onward.
+    in-era one, 2015 onward.
+
+    Note:
+        ``in_era`` matches the title-stripped name against ``val_speakers.json``,
+        so a training row such as ``Statsrådet JESSIKA ROSWALL`` counts as held
+        out when ``JESSIKA ROSWALL`` is a held-out name, and people trained under
+        another form of their name stay in. This gives 59.2 %. The published
+        figure, 50.0 %, is the same draw from people absent from training under
+        every name (``research/person_heldout.py``).
 
     Returns:
         Argmax accuracy for each population, keyed ``in_era`` and ``out_of_era``.
@@ -409,13 +417,13 @@ def reference_distribution(n_per_party: int = 80, seed: int = 21) -> np.ndarray:
     """Mean classifier output on party-balanced real speech: the instrument's own tilt.
 
     The sample is drawn from the whole corpus, which mixes speakers the model
-    trained on with held-out ones. Restricting it to held-out speakers from 2015
-    onward is arguably stricter, so that was measured rather than assumed: the
-    baseline moves by at most 0.031 (on M), every other party by under 0.02, and
-    the conclusions are identical (still 12 of 14 leaning M, still none above
-    baseline on V or C). The looser sample is kept because it is the larger and
-    more representative one; see research/out/baseline_heldout.json for the
-    comparison.
+    trained on with held-out ones. Restricting it to people absent from training
+    under every name (2015 onward) is arguably stricter, so that was measured
+    rather than assumed: the baseline moves by up to 0.039 (MP -0.039, S +0.038,
+    V -0.030, M +0.030), and the conclusions are identical (still 12 of 14 above
+    baseline on M, still none above baseline on V or C). The looser sample is kept
+    because it is the larger and more representative one; see the ``studies``
+    section of data/reports/person_heldout.json for the comparison.
     """
     df = pd.read_parquet(CORPUS_PATH, columns=["party", "text"])
     df = df[df["text"].notna() & df["party"].isin(PARTIES)]

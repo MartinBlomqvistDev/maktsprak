@@ -31,9 +31,17 @@ python scripts/train_party_model_db.py \
     --output-dir /content/drive/MyDrive/MaktsprakAI_Checkpoints
 ```
 
-The split is speaker-independent: 15% of speakers are held out entirely, and the
-exact held-out set is persisted to `val_speakers.json` next to the model. That
-file is what makes evaluation reproducible; nothing re-derives the split.
+The split holds out 15% of speaker names, and the exact held-out set is persisted
+to `val_speakers.json` next to the model. That file is what makes evaluation
+reproducible; nothing re-derives the split. The names are the protocols' own, so
+one person can be on both sides under different forms (a title, a changed
+surname, a misspelling). Score only the people who appear in training under no
+name, matched on the Riksdag's id for each speaker, as
+`research/person_heldout.py` does for the deployed model.
+
+The next retrain splits on the Riksdag's person id (`intressent_id`, stored as
+`person_id` in `data/search/anforanden.parquet`) and persists the held-out ids
+together with every name form they carry.
 Checkpoints land on Drive, so a disconnect just means re-running the cell.
 
 ### Cost / speed levers

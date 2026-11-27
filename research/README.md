@@ -37,11 +37,12 @@ The classifier is not neutral, and the study accounts for that:
 
 - **Calibration.** The classifier trained on 2015-2026; 2002-2014 speeches were
   never seen. Those go through first, to confirm it recovers a known party
-  (48.8% argmax, chance 12.5%) before it is pointed at model output. The script
-  reports two calibrations, `in_era` and `out_of_era`; this is the out-of-era one,
-  and it is the lower of the two by design. The main README quotes the in-era,
-  speaker-held-out figure. The gap between them is era drift, not instrument
-  error.
+  (47.5% argmax, chance 12.5%) before it is pointed at model output. The script
+  reports two calibrations, `in_era` and `out_of_era`; this is the out-of-era one.
+  The main README quotes the in-era figure on people absent from training under
+  every name, 50.0% (`person_heldout.py`). Before that correction the in-era
+  figure was 59.2%. Most of its lead over the out-of-era one came from people the
+  model had trained on under another form of their name.
 - **Baseline.** Its mean output on party-balanced real speech (M 0.21, L 0.07,
   ...) is subtracted; every profile is a deviation from that baseline.
 - **Neutral control.** The same models write non-partisan civil-servant prose,
@@ -55,25 +56,34 @@ it. Writing style is not ideology.
 Live: <https://maktsprak.se/riktmarke>
 
 The reverse question. The LLMs are the classifiers now, on the same task the
-110M model was fine-tuned for: read a real speech, name the party. 320 speeches
-from the classifier's own speaker-independent held-out set (2015-2026, by
-speakers held out of training, verified clean at 0.591 held-out against 0.995 on
-training speakers). Every model reads the same input, KB-BERT's own 512-token
+110M model was fine-tuned for: read a real speech, name the party. 247 speeches
+by people who appear in training under no name, from a sample of 320 drawn from
+the classifier's held-out speaker names (2015-2026). The other 73 came from people
+trained under another form of their name and are left out
+(`person_heldout.py`). Training speakers score 0.959 in the same window,
+held-out 0.579. Every model reads the same input, KB-BERT's own 512-token
 window, so no LLM gets more of the speech than the small model can physically
 read. Real per-token cost measured.
 
-**Result** (`out/benchmark_results.csv`). All six frontier models beat the
-fine-tune. GPT-5.5 leads at 0.762 accuracy, down to Qwen 3.6 Plus at 0.644,
-against KB-BERT's 0.591 (0.606 macro-F1). But they cost $0.25 to $5.62 per 1000
+**Result** (the strict re-score in `data/reports/person_heldout.json`; the run on
+all 320 is `out/benchmark_results.csv`). All six frontier models beat the
+fine-tune. GPT-5.5 leads at 0.745 accuracy, down to Qwen 3.6 Plus at 0.648,
+against KB-BERT's 0.579 (0.592 macro-F1). But they cost $0.25 to $5.62 per 1000
 classifications and an API round-trip; KB-BERT costs nothing, runs locally, and
 no text leaves the machine. Published with the result unspun: the small model
 comes last on accuracy, and the cost and latency trade-off is the finding. Not a
 privacy argument, since riksdagen's proceedings are public record.
 
+**Correction, 27 November 2026.** On all 320 speeches the figures were 0.762 for
+GPT-5.5 and 0.591 for KB-BERT, but 73 of those speeches came from people trained
+under another form of their name. Among the six models the order moves only
+within the uncertainty (Grok from fifth to third), and all six still beat the
+fine-tune.
+
 **Two robustness conditions, both kept.**
 
 - `out/benchmark_results_2000char.csv`: a shared 2000-character window instead of
-  512 tokens. Everything shifts down together (GPT-5.5 0.709, KB-BERT 0.559) and
+  512 tokens. Everything shifts down together (GPT-5.5 0.704, KB-BERT 0.551) and
   the ordering holds.
 - `out/benchmark_results_outofera.csv`: the same task on 2002-2014 speeches,
   outside KB-BERT's training window entirely. Every model drops and the small one

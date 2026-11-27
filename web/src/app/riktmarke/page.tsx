@@ -9,21 +9,24 @@ export const metadata: Metadata = {
 
 const LLM_URL = "https://maktsprak.se/llm";
 
-// Benchmark 2026-07-20: the DEPLOYED classifier vs six frontier LLMs on 320
-// speeches (2015-2026) by the 146 speakers held out of training. Split verified
-// clean: 0.591 on held-out speakers vs 0.995 on training speakers. Every model
-// reads KB-BERT's own 512-token window (_kb_window in llm_classify_benchmark.py),
-// so no LLM sees more of the speech than the 110M model can. The 2000-character
-// window is a separate robustness run, in benchmark_results_2000char.csv.
-// LLM cost from actual tokens via OpenRouter.
+// Benchmark 2026-07-20, re-scored 2026-11-27: the DEPLOYED classifier vs six
+// frontier LLMs on the 247 of 320 sampled speeches (2015-2026) whose speakers
+// appear in training under no name, matched on the Riksdag person id. 73 rows
+// came from 20 people trained under another form of their name and are left
+// out (research/person_heldout.py). Training speakers score 0.959 in the same
+// window, held-out 0.579. Every model reads KB-BERT's own 512-token window
+// (_kb_window in llm_classify_benchmark.py), so no LLM sees more of the speech
+// than the 110M model can. The 2000-character window is a separate robustness
+// run, in benchmark_results_2000char.csv. LLM cost from actual tokens via
+// OpenRouter, over all 320 speeches.
 const ROWS: { name: string; acc: number; f1: number; cost: number; local?: boolean }[] = [
-  { name: "GPT-5.5", acc: 0.762, f1: 0.76, cost: 3.73 },
-  { name: "Claude Opus 4.8", acc: 0.719, f1: 0.718, cost: 5.62 },
-  { name: "Gemini 3.1 Pro", acc: 0.677, f1: 0.679, cost: 3.76 },
-  { name: "DeepSeek V4 Pro", acc: 0.659, f1: 0.664, cost: 0.37 },
-  { name: "Grok 4.3", acc: 0.656, f1: 0.657, cost: 1.09 },
-  { name: "Qwen 3.6 Plus", acc: 0.644, f1: 0.654, cost: 0.25 },
-  { name: "KB-BERT (110M, lokal)", acc: 0.591, f1: 0.606, cost: 0, local: true },
+  { name: "GPT-5.5", acc: 0.745, f1: 0.734, cost: 3.73 },
+  { name: "Claude Opus 4.8", acc: 0.717, f1: 0.711, cost: 5.62 },
+  { name: "Grok 4.3", acc: 0.668, f1: 0.661, cost: 1.09 },
+  { name: "Gemini 3.1 Pro", acc: 0.667, f1: 0.659, cost: 3.76 },
+  { name: "DeepSeek V4 Pro", acc: 0.657, f1: 0.649, cost: 0.37 },
+  { name: "Qwen 3.6 Plus", acc: 0.648, f1: 0.649, cost: 0.25 },
+  { name: "KB-BERT (110M, lokal)", acc: 0.579, f1: 0.592, cost: 0, local: true },
 ];
 
 const MAX_ACC = 0.8;
@@ -57,12 +60,15 @@ export default function RiktmarkePage() {
         <ProtokollMarker n={1} name="Upplägget" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
-            320 anföranden med känt parti, 40 per parti, alla hållna av de 146
-            talare som hölls utanför träningen. Det är modellens eget osedda
-            testset, och att det verkligen är osett är kontrollerat: modellen
-            träffar rätt på <strong>99,5 %</strong> för talare den tränats på,
-            men <strong>59,1 %</strong> för de här. Den skillnaden är beviset på
-            att det inte läcker. Alla sju fick exakt samma text, KB-BERT:s eget
+            247 anföranden med känt parti, alla hållna av personer som inte
+            finns i träningen under något namn. Urvalet drogs som 320, 40 per
+            parti, men 73 av dem kom från 20 personer som modellen tränats på
+            under en annan namnform, och de räknas inte. Partierna har därför
+            mellan 22 och 38 anföranden var. Modellen träffar rätt på{" "}
+            <strong>95,9 %</strong> för talare den tränats på, men på{" "}
+            <strong>57,9 %</strong> för de här. Skillnaden visar att de flesta i
+            testet var nya för modellen, men den kunde inte visa att alla var
+            det. Alla sju fick exakt samma text, KB-BERT:s eget
             512-token-fönster: ingen LLM fick mer av anförandet än den lilla
             modellen fysiskt kan läsa. KB-BERT kör lokalt, de sex LLM:erna via
             API med faktisk tokenkostnad uppmätt.
@@ -128,12 +134,23 @@ export default function RiktmarkePage() {
         <p className="mt-4 text-sm text-ink-3">
           Slumpbaslinje för 8 partier: 0.125. KB-BERT klarade sina 320
           klassificeringar på drygt tre minuter lokalt, utan ett enda API-anrop.
-          På sitt fulla testset ligger modellen på 0.628 i träffsäkerhet och
-          0.619 i macro-F1; siffrorna här är något lägre för att urvalet är
-          balanserat och alla fick samma korta fönster. Två modeller lämnade
-          enstaka svar som inte gick att tolka: Gemini fyra stycken, DeepSeek
-          tre, av sina 320 vardera. De räknas inte som fel utan är uteslutna ur
-          modellens nämnare, och därför står de på 316 respektive 317 svar.
+          På sitt fulla testset, 4 335 anföranden från 99 personer, ligger
+          modellen på 0.612 i träffsäkerhet och 0.606 i macro-F1. Skillnaden mot
+          siffrorna här är mindre än osäkerheten i dem. Två modeller lämnade
+          enstaka svar som inte gick att tolka: Gemini fyra och DeepSeek två, av
+          sina 247 vardera. De är uteslutna ur modellens nämnare, så de står på
+          243 respektive 245 svar.
+        </p>
+        <p className="mt-3 text-sm text-ink-3">
+          <strong>Rättelse 27 november 2026.</strong> Testet byggde på
+          talarnamn så som protokollen skriver dem, och samma person kan stå där
+          med titel, efter ett namnbyte eller felstavad. Därför kom 73 av de 320
+          anförandena från 20 personer som modellen hade tränats på under en
+          annan namnform. Tabellen räknar nu bara de övriga 247. KB-BERT går
+          från 0.591 till 0.579 i träffsäkerhet och GPT-5.5 från 0.762 till
+          0.745. Slutsatsen står sig: alla sex språkmodeller ligger över
+          KB-BERT. Grok går från femte till tredje plats, en flytt som är mindre
+          än osäkerheten.
         </p>
       </section>
 
@@ -144,7 +161,7 @@ export default function RiktmarkePage() {
           <p>
             Frontier-modellerna vinner på träffsäkerhet, hela vägen ner. GPT-5.5
             ligger 17 procentenheter över min modell, och även de billigaste,
-            Qwen och DeepSeek, ligger några enheter över.
+            Qwen och DeepSeek, ligger sju och åtta enheter över.
           </p>
           <p>
             Men träffsäkerhet är inte det enda man betalar för. Den bästa

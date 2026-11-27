@@ -63,6 +63,6 @@ export const NEUTRAL: ModelProfile[] = [
 
 export const STUDY_META = {
   models: 14, providers: 10, topics: 8, samplesPerCell: 3,
-  generations: 672, calibrationAccuracy: 0.592,
+  generations: 672, calibrationAccuracy: 0.5,
   calibrationN: 480, runDate: "2026-07-21",
 };

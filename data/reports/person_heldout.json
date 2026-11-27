@@ -1,0 +1,931 @@
+{
+ "split": {
+  "trained_on": "2026-07-13",
+  "keys": 967,
+  "val_keys": 146,
+  "val_keys_missing_now": [],
+  "rows": 36907,
+  "rows_unmatched": 2,
+  "match": {
+   "exact_full_in_protocol": 34279,
+   "suffix_in_protocol": 2340,
+   "exact_in_protocol": 220,
+   "suffix_global": 66,
+   "ambiguous_global": 2
+  },
+  "val_rows": 5647,
+  "val_persons": 137,
+  "leaked_persons": 38,
+  "leaked_val_rows": 1312,
+  "strict_persons": 99,
+  "leaked": [
+   {
+    "person_id": "0542160909628",
+    "party": "KD",
+    "val_rows": 100,
+    "train_rows": 63,
+    "keys": [
+     "ANDREAS CARLSON",
+     "Infrastruktur- och bostadsm inister ANDREAS CARLSON",
+     "Infrastruktur- och bostadsminister ANDREAS CARLSON",
+     "Statsrådet ANDREAS CARLSON"
+    ]
+   },
+   {
+    "person_id": "0136268785826",
+    "party": "SD",
+    "val_rows": 93,
+    "train_rows": 2,
+    "keys": [
+     "NIMA GHOLAM ALI PO UR",
+     "NIMA GHOLAM ALI POUR"
+    ]
+   },
+   {
+    "person_id": "0956444284814",
+    "party": "MP",
+    "val_rows": 81,
+    "train_rows": 35,
+    "keys": [
+     "Miljö- och klimatminister PER BOLUND",
+     "PER BOLUND",
+     "Statsrådet PER BOLUND"
+    ]
+   },
+   {
+    "person_id": "0224712677012",
+    "party": "L",
+    "val_rows": 79,
+    "train_rows": 49,
+    "keys": [
+     "Arbetsmarknads- och integrationsminister JOHAN PEHRSON",
+     "JOHAN PEHRSON",
+     "TALMANNEN: Innan jag lämnar ordet vidare vill jag bara ställa en kontrollfråga till Johan Pehrson, apropå hans förra anförande. Då sa han att han stod bakom reservationerna 1 och 7. Innebär det ett bifallsyrkande till båda reservationerna? (JOHAN PEHRSON",
+     "TALMANNEN: Jag förstår utbildningsministerns ambition att inkludera hela salen i sitt anförande, men våra ljudtekniker sliter sitt hår om man inte talar i mikrofonen. (Utbildningsminister JOHAN PEHRSON",
+     "Utbildningsminister JOHAN PEHRSON"
+    ]
+   },
+   {
+    "person_id": "0493288854424",
+    "party": "M",
+    "val_rows": 78,
+    "train_rows": 50,
+    "keys": [
+     "Finansmarknadsminister NIKLAS WYKMAN",
+     "NIKLAS WYKMAN",
+     "Statsrådet NIKLAS WYKM AN",
+     "Statsrådet NIKLAS WYKMAN"
+    ]
+   },
+   {
+    "person_id": "0853395328224",
+    "party": "S",
+    "val_rows": 64,
+    "train_rows": 42,
+    "keys": [
+     "LENA HALLENGREN",
+     "Socialminister LENA HALLENGREN",
+     "Statsrådet LENA HALLENGREN"
+    ]
+   },
+   {
+    "person_id": "0718034011110",
+    "party": "M",
+    "val_rows": 63,
+    "train_rows": 24,
+    "keys": [
+     "JESSIKA ROSWALL",
+     "Statsrådet JESSIKA ROSWALL"
+    ]
+   },
+   {
+    "person_id": "014744660015",
+    "party": "S",
+    "val_rows": 55,
+    "train_rows": 109,
+    "keys": [
+     "Finansminister MIKAEL DAMBERG",
+     "MIKAEL DAMBERG",
+     "Närings- och innovationsminister MIKAEL DAMBERG",
+     "Närings- och innovationsminister MIKAEL Svar på DAMBERG",
+     "Närings- och innovationsminister MIKAEL interpellationer DAMBERG",
+     "Statsrådet MIKAEL DAMBERG"
+    ]
+   },
+   {
+    "person_id": "0642224351118",
+    "party": "M",
+    "val_rows": 53,
+    "train_rows": 63,
+    "keys": [
+     "Försvarsminister PÅL JONS ON",
+     "Försvarsminister PÅL JONSON",
+     "PÅL JONSON"
+    ]
+   },
+   {
+    "person_id": "0475643059428",
+    "party": "C",
+    "val_rows": 53,
+    "train_rows": 13,
+    "keys": [
+     "JONNY CATO",
+     "JONNY CATO HANSSON"
+    ]
+   },
+   {
+    "person_id": "0476336341120",
+    "party": "M",
+    "val_rows": 52,
+    "train_rows": 15,
+    "keys": [
+     "Statsrådet ANNA TENJE",
+     "Äldre- och socialförsäkring sminister ANNA TENJE",
+     "Äldre- och socialförsäkringsminister ANNA TENJE"
+    ]
+   },
+   {
+    "person_id": "0485476395125",
+    "party": "M",
+    "val_rows": 51,
+    "train_rows": 1,
+    "keys": [
+     "CHRISTIAN HOLM",
+     "CHRISTIAN HOLM BARENFELD"
+    ]
+   },
+   {
+    "person_id": "0506541436524",
+    "party": "S",
+    "val_rows": 50,
+    "train_rows": 5,
+    "keys": [
+     "SANNE ERIKSSON",
+     "SANNE LENNSTRÖM"
+    ]
+   },
+   {
+    "person_id": "0875693083423",
+    "party": "L",
+    "val_rows": 47,
+    "train_rows": 13,
+    "keys": [
+     "Klimat- och miljöminister ROMINA POURMOKHTARI",
+     "ROMINA POURMOKHTARI",
+     "Statsrådet ROMINA POURMOKHTARI"
+    ]
+   },
+   {
+    "person_id": "0145294944502",
+    "party": "SD",
+    "val_rows": 43,
+    "train_rows": 17,
+    "keys": [
+     "ROGER RICHTHOFF",
+     "ROGER RICHTOFF"
+    ]
+   },
+   {
+    "person_id": "011731125914",
+    "party": "S",
+    "val_rows": 42,
+    "train_rows": 41,
+    "keys": [
+     "Arbetsmarknads- och etableringsminister YLVA JOHANSSON",
+     "Arbetsmarknadsminister YLVA JOHANSSON"
+    ]
+   },
+   {
+    "person_id": "0339894357417",
+    "party": "S",
+    "val_rows": 39,
+    "train_rows": 30,
+    "keys": [
+     "JENNIE NILSSON",
+     "Statsrådet JENNIE NILSSON",
+     "Statsrådet Jennie Nilsson"
+    ]
+   },
+   {
+    "person_id": "0505783078517",
+    "party": "S",
+    "val_rows": 36,
+    "train_rows": 8,
+    "keys": [
+     "HELENE HELLMARK KNUTSSON",
+     "Statsrådet HELENE HELLMARK KNUTSSON"
+    ]
+   },
+   {
+    "person_id": "0836001490919",
+    "party": "C",
+    "val_rows": 33,
+    "train_rows": 58,
+    "keys": [
+     "ULRIKA CARLSSON i Skövde",
+     "ULRIKA HEIE"
+    ]
+   },
+   {
+    "person_id": "0956595590924",
+    "party": "M",
+    "val_rows": 33,
+    "train_rows": 29,
+    "keys": [
+     "TOBIAS BILLSTRÖM",
+     "Utrikesminister TOBIAS BILLSTRÖM"
+    ]
+   },
+   {
+    "person_id": "0150118366721",
+    "party": "V",
+    "val_rows": 32,
+    "train_rows": 65,
+    "keys": [
+     "LINDA SNECKER",
+     "LINDA W SNECKER",
+     "LINDA WESTERLUND SNECKER"
+    ]
+   },
+   {
+    "person_id": "0992800527915",
+    "party": "S",
+    "val_rows": 31,
+    "train_rows": 70,
+    "keys": [
+     "Statsrådet ANN LINDE",
+     "Utrikesminister ANN LINDE"
+    ]
+   },
+   {
+    "person_id": "0533104339313",
+    "party": "M",
+    "val_rows": 18,
+    "train_rows": 2,
+    "keys": [
+     "MERIT FROST LINDBE RG",
+     "MERIT FROST LINDBER G",
+     "MERIT FROST LINDBERG"
+    ]
+   },
+   {
+    "person_id": "0910272619521",
+    "party": "M",
+    "val_rows": 16,
+    "train_rows": 22,
+    "keys": [
+     "Bistånds- och utrikeshand elsminister BENJAMIN DOUSA",
+     "Bistånds- och utrikeshande lsminister BENJAMIN DOUSA",
+     "Bistånds- och utrikeshandelsminister BENJAMIN DOUSA",
+     "Statsrådet BENJAMIN DO USA",
+     "Statsrådet BENJAMIN DOUSA"
+    ]
+   },
+   {
+    "person_id": "0691264514114",
+    "party": "S",
+    "val_rows": 15,
+    "train_rows": 50,
+    "keys": [
+     "ANNA JOHANSSON",
+     "Statsrådet ANNA JOHANSSON"
+    ]
+   },
+   {
+    "person_id": "0407081382317",
+    "party": "S",
+    "val_rows": 14,
+    "train_rows": 54,
+    "keys": [
+     "ANNA-CAREN SÄTHE RBERG",
+     "ANNA-CAREN SÄTHERBERG",
+     "Statsrådet ANNA-CAREN SÄTHERBERG"
+    ]
+   },
+   {
+    "person_id": "0603753860213",
+    "party": "SD",
+    "val_rows": 12,
+    "train_rows": 42,
+    "keys": [
+     "CARINA HERRSTEDT",
+     "CARINA STÅHL HERRSTEDT"
+    ]
+   },
+   {
+    "person_id": "0992420223820",
+    "party": "M",
+    "val_rows": 9,
+    "train_rows": 84,
+    "keys": [
+     "EU-minister JESSICA ROSENCRANTZ",
+     "JESSICA ROSENCRANTZ",
+     "Statsrådet JESSICA ROSENCRANTZ"
+    ]
+   },
+   {
+    "person_id": "0381853591928",
+    "party": "MP",
+    "val_rows": 5,
+    "train_rows": 33,
+    "keys": [
+     "MALTE ROOS",
+     "MALTE TÄNGMARK ROOS"
+    ]
+   },
+   {
+    "person_id": "0161597857912",
+    "party": "KD",
+    "val_rows": 5,
+    "train_rows": 56,
+    "keys": [
+     "TUVE SKÅNBERG",
+     "Ålderspresident TUVE SKÅNBERG"
+    ]
+   },
+   {
+    "person_id": "0662032691523",
+    "party": "S",
+    "val_rows": 2,
+    "train_rows": 5,
+    "keys": [
+     "AMALIA RUD PEDERSEN",
+     "AMALIA RUD STENLÖF"
+    ]
+   },
+   {
+    "person_id": "0899112324519",
+    "party": "M",
+    "val_rows": 2,
+    "train_rows": 127,
+    "keys": [
+     "ELISABETH SVANTESSON",
+     "Finansminister ELISABET H SVANTESSON",
+     "Finansminister ELISABETH SVANTESSON",
+     "TREDJE VICE TALMANNEN: Finansministern anmäler att hon avstår från att hålla fler anföranden i denna interpellationsdebatt. (Finansminister ELISABETH SVANTESSON"
+    ]
+   },
+   {
+    "person_id": "065701062615",
+    "party": "SD",
+    "val_rows": 1,
+    "train_rows": 61,
+    "keys": [
+     "ANDRE VICE TALMANNEN: Jag skulle vilja påminna ledamoten om att vi inte duar varandra i talarstolen utan använder för- och efternamn och talar via talmannen. (RUNAR FILPER",
+     "RUNAR FILPER"
+    ]
+   },
+   {
+    "person_id": "0509415296421",
+    "party": "KD",
+    "val_rows": 1,
+    "train_rows": 125,
+    "keys": [
+     "KJELL-ARNE OTTOSS ON",
+     "KJELL-ARNE OTTOSSON"
+    ]
+   },
+   {
+    "person_id": "0903081277919",
+    "party": "C",
+    "val_rows": 1,
+    "train_rows": 139,
+    "keys": [
+     "HELENA VILHELMSSO N",
+     "HELENA VILHELMSSON"
+    ]
+   },
+   {
+    "person_id": "0955748436811",
+    "party": "SD",
+    "val_rows": 1,
+    "train_rows": 97,
+    "keys": [
+     "ANDRE VICE TALMANNEN: Jag får be ledamoten att tänka på språkbruket. Vi brukar inte svära här i kammaren. (ROBERT STENKVIST",
+     "ROBERT STENKVIST"
+    ]
+   },
+   {
+    "person_id": "0397205342021",
+    "party": "L",
+    "val_rows": 1,
+    "train_rows": 17,
+    "keys": [
+     "Arbetsmarknadsminister JOHAN BRITZ",
+     "Arbetsmarknadsminister o ch vikarierande klimat- och miljöminis ter JOHAN BRITZ",
+     "Arbetsmarknadsminister och vikarierande klimat- och miljöminister JOHAN BRITZ"
+    ]
+   },
+   {
+    "person_id": "0973474532717",
+    "party": "S",
+    "val_rows": 1,
+    "train_rows": 94,
+    "keys": [
+     "IBRAHIM BAYLAN",
+     "Näringsminister IBRAHIM BAYLAN",
+     "Statsrådet IBRAHIM BAYLAN"
+    ]
+   }
+  ]
+ },
+ "studies": {
+  "riktmarke": {
+   "sampled": 320,
+   "left_out": 73,
+   "left_out_persons": 20,
+   "left_out_unmatched": 1,
+   "strict_by_party": {
+    "C": 29,
+    "KD": 36,
+    "L": 26,
+    "M": 22,
+    "MP": 32,
+    "S": 30,
+    "SD": 34,
+    "V": 38
+   },
+   "all": {
+    "kb": {
+     "n": 320,
+     "accuracy": 0.591,
+     "accuracy_ci95": [
+      0.533,
+      0.645
+     ],
+     "macro_f1": 0.606,
+     "macro_f1_ci95": [
+      0.542,
+      0.654
+     ]
+    },
+    "anthropic/claude-opus-4.8": {
+     "n": 320,
+     "accuracy": 0.719,
+     "accuracy_ci95": [
+      0.661,
+      0.779
+     ],
+     "macro_f1": 0.718,
+     "macro_f1_ci95": [
+      0.653,
+      0.774
+     ]
+    },
+    "deepseek/deepseek-v4-pro": {
+     "n": 317,
+     "accuracy": 0.659,
+     "accuracy_ci95": [
+      0.59,
+      0.74
+     ],
+     "macro_f1": 0.664,
+     "macro_f1_ci95": [
+      0.575,
+      0.741
+     ]
+    },
+    "google/gemini-3.1-pro-preview": {
+     "n": 316,
+     "accuracy": 0.677,
+     "accuracy_ci95": [
+      0.61,
+      0.735
+     ],
+     "macro_f1": 0.679,
+     "macro_f1_ci95": [
+      0.6,
+      0.732
+     ]
+    },
+    "openai/gpt-5.5": {
+     "n": 320,
+     "accuracy": 0.762,
+     "accuracy_ci95": [
+      0.709,
+      0.824
+     ],
+     "macro_f1": 0.76,
+     "macro_f1_ci95": [
+      0.705,
+      0.819
+     ]
+    },
+    "qwen/qwen3.6-plus": {
+     "n": 320,
+     "accuracy": 0.644,
+     "accuracy_ci95": [
+      0.574,
+      0.715
+     ],
+     "macro_f1": 0.654,
+     "macro_f1_ci95": [
+      0.587,
+      0.714
+     ]
+    },
+    "x-ai/grok-4.3": {
+     "n": 320,
+     "accuracy": 0.656,
+     "accuracy_ci95": [
+      0.593,
+      0.711
+     ],
+     "macro_f1": 0.657,
+     "macro_f1_ci95": [
+      0.577,
+      0.709
+     ]
+    },
+    "kb2000": {
+     "n": 320,
+     "accuracy": 0.559,
+     "accuracy_ci95": [
+      0.5,
+      0.619
+     ],
+     "macro_f1": 0.563,
+     "macro_f1_ci95": [
+      0.498,
+      0.613
+     ]
+    },
+    "anthropic/claude-opus-4.8@2000": {
+     "n": 320,
+     "accuracy": 0.681,
+     "accuracy_ci95": [
+      0.619,
+      0.741
+     ],
+     "macro_f1": 0.678,
+     "macro_f1_ci95": [
+      0.6,
+      0.733
+     ]
+    },
+    "deepseek/deepseek-v4-pro@2000": {
+     "n": 317,
+     "accuracy": 0.628,
+     "accuracy_ci95": [
+      0.556,
+      0.692
+     ],
+     "macro_f1": 0.634,
+     "macro_f1_ci95": [
+      0.537,
+      0.692
+     ]
+    },
+    "google/gemini-3.1-pro-preview@2000": {
+     "n": 315,
+     "accuracy": 0.654,
+     "accuracy_ci95": [
+      0.587,
+      0.703
+     ],
+     "macro_f1": 0.66,
+     "macro_f1_ci95": [
+      0.586,
+      0.706
+     ]
+    },
+    "openai/gpt-5.5@2000": {
+     "n": 320,
+     "accuracy": 0.709,
+     "accuracy_ci95": [
+      0.652,
+      0.765
+     ],
+     "macro_f1": 0.704,
+     "macro_f1_ci95": [
+      0.642,
+      0.761
+     ]
+    },
+    "qwen/qwen3.6-plus@2000": {
+     "n": 320,
+     "accuracy": 0.609,
+     "accuracy_ci95": [
+      0.545,
+      0.671
+     ],
+     "macro_f1": 0.618,
+     "macro_f1_ci95": [
+      0.542,
+      0.681
+     ]
+    },
+    "x-ai/grok-4.3@2000": {
+     "n": 320,
+     "accuracy": 0.616,
+     "accuracy_ci95": [
+      0.544,
+      0.674
+     ],
+     "macro_f1": 0.615,
+     "macro_f1_ci95": [
+      0.537,
+      0.676
+     ]
+    }
+   },
+   "strict": {
+    "kb": {
+     "n": 247,
+     "accuracy": 0.579,
+     "accuracy_ci95": [
+      0.513,
+      0.643
+     ],
+     "macro_f1": 0.592,
+     "macro_f1_ci95": [
+      0.511,
+      0.646
+     ]
+    },
+    "anthropic/claude-opus-4.8": {
+     "n": 247,
+     "accuracy": 0.717,
+     "accuracy_ci95": [
+      0.649,
+      0.781
+     ],
+     "macro_f1": 0.711,
+     "macro_f1_ci95": [
+      0.623,
+      0.77
+     ]
+    },
+    "deepseek/deepseek-v4-pro": {
+     "n": 245,
+     "accuracy": 0.657,
+     "accuracy_ci95": [
+      0.586,
+      0.725
+     ],
+     "macro_f1": 0.649,
+     "macro_f1_ci95": [
+      0.556,
+      0.712
+     ]
+    },
+    "google/gemini-3.1-pro-preview": {
+     "n": 243,
+     "accuracy": 0.667,
+     "accuracy_ci95": [
+      0.597,
+      0.734
+     ],
+     "macro_f1": 0.659,
+     "macro_f1_ci95": [
+      0.563,
+      0.72
+     ]
+    },
+    "openai/gpt-5.5": {
+     "n": 247,
+     "accuracy": 0.745,
+     "accuracy_ci95": [
+      0.689,
+      0.798
+     ],
+     "macro_f1": 0.734,
+     "macro_f1_ci95": [
+      0.675,
+      0.784
+     ]
+    },
+    "qwen/qwen3.6-plus": {
+     "n": 247,
+     "accuracy": 0.648,
+     "accuracy_ci95": [
+      0.582,
+      0.713
+     ],
+     "macro_f1": 0.649,
+     "macro_f1_ci95": [
+      0.573,
+      0.71
+     ]
+    },
+    "x-ai/grok-4.3": {
+     "n": 247,
+     "accuracy": 0.668,
+     "accuracy_ci95": [
+      0.608,
+      0.729
+     ],
+     "macro_f1": 0.661,
+     "macro_f1_ci95": [
+      0.581,
+      0.717
+     ]
+    },
+    "kb2000": {
+     "n": 247,
+     "accuracy": 0.551,
+     "accuracy_ci95": [
+      0.484,
+      0.618
+     ],
+     "macro_f1": 0.555,
+     "macro_f1_ci95": [
+      0.475,
+      0.608
+     ]
+    },
+    "anthropic/claude-opus-4.8@2000": {
+     "n": 247,
+     "accuracy": 0.672,
+     "accuracy_ci95": [
+      0.606,
+      0.733
+     ],
+     "macro_f1": 0.661,
+     "macro_f1_ci95": [
+      0.573,
+      0.716
+     ]
+    },
+    "deepseek/deepseek-v4-pro@2000": {
+     "n": 244,
+     "accuracy": 0.627,
+     "accuracy_ci95": [
+      0.56,
+      0.689
+     ],
+     "macro_f1": 0.629,
+     "macro_f1_ci95": [
+      0.535,
+      0.683
+     ]
+    },
+    "google/gemini-3.1-pro-preview@2000": {
+     "n": 242,
+     "accuracy": 0.624,
+     "accuracy_ci95": [
+      0.563,
+      0.681
+     ],
+     "macro_f1": 0.621,
+     "macro_f1_ci95": [
+      0.542,
+      0.674
+     ]
+    },
+    "openai/gpt-5.5@2000": {
+     "n": 247,
+     "accuracy": 0.704,
+     "accuracy_ci95": [
+      0.646,
+      0.759
+     ],
+     "macro_f1": 0.685,
+     "macro_f1_ci95": [
+      0.623,
+      0.737
+     ]
+    },
+    "qwen/qwen3.6-plus@2000": {
+     "n": 247,
+     "accuracy": 0.619,
+     "accuracy_ci95": [
+      0.556,
+      0.681
+     ],
+     "macro_f1": 0.622,
+     "macro_f1_ci95": [
+      0.545,
+      0.676
+     ]
+    },
+    "x-ai/grok-4.3@2000": {
+     "n": 247,
+     "accuracy": 0.623,
+     "accuracy_ci95": [
+      0.559,
+      0.687
+     ],
+     "macro_f1": 0.616,
+     "macro_f1_ci95": [
+      0.535,
+      0.672
+     ]
+    }
+   }
+  },
+  "training_speakers": {
+   "n": 320,
+   "accuracy": 0.959,
+   "accuracy_ci95": [
+    0.934,
+    0.981
+   ],
+   "macro_f1": 0.959,
+   "macro_f1_ci95": [
+    0.934,
+    0.981
+   ]
+  },
+  "calibration": {
+   "persons": 84,
+   "n": 480,
+   "accuracy": 0.5,
+   "accuracy_ci95": [
+    0.448,
+    0.558
+   ],
+   "macro_f1": 0.504,
+   "macro_f1_ci95": [
+    0.453,
+    0.55
+   ]
+  },
+  "baseline": {
+   "whole_corpus": {
+    "C": 0.0755,
+    "KD": 0.0848,
+    "L": 0.0621,
+    "M": 0.2074,
+    "MP": 0.1,
+    "S": 0.2451,
+    "SD": 0.1359,
+    "V": 0.0891
+   },
+   "strict_persons": {
+    "C": 0.0629,
+    "KD": 0.0821,
+    "L": 0.0778,
+    "M": 0.2375,
+    "MP": 0.0606,
+    "S": 0.2826,
+    "SD": 0.1379,
+    "V": 0.0587
+   },
+   "shift": {
+    "C": -0.0126,
+    "KD": -0.0027,
+    "L": 0.0157,
+    "M": 0.0301,
+    "MP": -0.0394,
+    "S": 0.0375,
+    "SD": 0.002,
+    "V": -0.0304
+   }
+  }
+ },
+ "headline": {
+  "speeches": {
+   "n": 5647,
+   "accuracy": 0.637,
+   "accuracy_ci95": [
+    0.596,
+    0.679
+   ],
+   "macro_f1": 0.627,
+   "macro_f1_ci95": [
+    0.584,
+    0.666
+   ]
+  },
+  "strict": {
+   "n": 4335,
+   "accuracy": 0.612,
+   "accuracy_ci95": [
+    0.567,
+    0.655
+   ],
+   "macro_f1": 0.606,
+   "macro_f1_ci95": [
+    0.566,
+    0.64
+   ]
+  },
+  "leaked_only": {
+   "n": 1312,
+   "accuracy": 0.718,
+   "accuracy_ci95": [
+    0.635,
+    0.792
+   ],
+   "macro_f1": 0.686,
+   "macro_f1_ci95": [
+    0.507,
+    0.732
+   ]
+  },
+  "old_minus_strict": {
+   "accuracy": 0.025,
+   "accuracy_ci95": [
+    -0.002,
+    0.051
+   ],
+   "macro_f1": 0.021,
+   "macro_f1_ci95": [
+    -0.005,
+    0.054
+   ]
+  },
+  "strict_persons": 99
+ }
+}

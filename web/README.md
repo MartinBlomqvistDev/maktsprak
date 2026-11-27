@@ -2,9 +2,9 @@
 
 The public site for [MaktspråkAI](https://github.com/MartinBlomqvistDev/maktsprak), a
 fine-tuned KB-BERT classifier that reads Swedish Riksdag speeches and predicts
-which party is speaking, trained on a talar-oberoende (speaker-independent)
-split so the reported score reflects real generalisation, not memorised
-politicians.
+which party is speaking. The reported score counts only politicians who appear
+in training under no name, so it measures generalisation to people the model
+never saw.
 
 This repo is the Next.js frontend only. The ETL pipeline, PDF parser, and
 model training live in the [Python repo](https://github.com/MartinBlomqvistDev/maktsprak);
