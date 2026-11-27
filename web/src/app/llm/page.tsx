@@ -5,7 +5,7 @@ import { NEUTRAL, SPEECH, STUDY_META } from "@/lib/llm-study";
 
 const LLM_TITLE = "Vilket parti skriver språkmodellerna som? · Maktspråk / Protokollet";
 const LLM_DESCRIPTION =
-  "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Tolv av fjorton skriver mest som Moderaterna, ingen som Vänsterpartiet.";
+  "14 frontier-modeller fick hålla riksdagsanföranden utan att nämna parti. En KB-BERT-klassificerare läste svaren. Elva av fjorton skriver mer som Moderaterna än baslinjen, ingen mer som Vänsterpartiet.";
 
 export const metadata: Metadata = {
   title: LLM_TITLE,
@@ -109,16 +109,25 @@ export default function LlmPage() {
             under en annan namnform. Det nya urvalet är draget på samma sätt
             bland 84 politiker som inte finns i träningen under något namn.
             Slutsatserna står sig, eftersom de bygger på avvikelsen från
-            baslinjen. Med en baslinje dragen från samma personer ligger
+            baslinjen. Med en baslinje dragen från samma personer låg
             fortfarande tolv av fjorton modeller över den på M, och ingen på V
-            eller C.
+            eller C, mätt med baslinjen från före rättelsen nedan.
           </p>
           <p>
             <strong>Baslinje.</strong> På en partibalanserad mängd verkliga
-            anföranden svarar klassificeraren inte jämnt: S får 25 procent i
-            snitt och M 21, medan L bara får 6. Den lutningen är instrumentets,
-            inte modellernas. Allt nedan redovisas därför som avvikelse från
-            just den baslinjen.
+            anföranden, kortade till samma längd som modellernas tal, svarar
+            klassificeraren inte jämnt: S och M får 29 procent var i snitt,
+            medan L bara får 4. Den lutningen är instrumentets, inte
+            modellernas. Allt nedan redovisas därför som avvikelse från just
+            den baslinjen.
+          </p>
+          <p className="text-sm text-ink-3">
+            <strong>Rättelse 27 november 2026.</strong> Baslinjen läste tidigare
+            bara de första 2 000 tecknen av varje verkligt anförande, tre gånger
+            så mycket text som modellernas tal. Klassificeraren ger korta texter
+            mer M, så samma anföranden fick M 21 procent i stället för 29. Därför
+            blev varje modells M-avvikelse åtta punkter för stor, och tolv av
+            fjorton låg över baslinjen på M i stället för elva.
           </p>
           <p>
             <strong>Neutral kontroll.</strong> Samma modeller fick också
@@ -145,24 +154,25 @@ export default function LlmPage() {
         </div>
         <div className="mt-8 space-y-4 text-ink-2">
           <p>
-            Två saker står ut. <strong>Tolv av fjorton modeller skriver mer som
-            Moderaterna</strong> än baslinjen, från Claude Opus 4.8 (+0.42) och
-            DeepSeek V4 Pro (+0.34) och nedåt. Och <strong>inte en enda av de
+            Två saker står ut. <strong>Elva av fjorton modeller skriver mer som
+            Moderaterna</strong> än baslinjen, från Claude Opus 4.8 (+0.34) och
+            DeepSeek V4 Pro (+0.26) och nedåt. Och <strong>inte en enda av de
             fjorton skriver mer som Vänsterpartiet eller Centerpartiet</strong>
             än baslinjen: avståndet till vänstern och Centern är entydigt, hela
             kolumnerna är bruna.
           </p>
           <p>
             De största modellerna drar hårdast. Claude Opus 4.8 lägger 63
-            procent av sin sannolikhetsmassa på Moderaterna, mot baslinjens 21.
+            procent av sin sannolikhetsmassa på Moderaterna, mot baslinjens 29.
             DeepSeek ligger på 55.
           </p>
           <p>
-            Två modeller bryter M-mönstret. Qwen och GLM skriver inte mer som
-            Moderaterna än baslinjen; de drar i stället mot SD (GLM +0.28, Qwen
-            +0.25). Räknat över alla åtta partierna drar tolv modeller mot M, sex
-            mot SD, sex mot S, sex mot MP, tre mot KD och en enda mot L (Grok 4.3
-            på +0.02, vilket är brus). Mot <strong>Vänsterpartiet och
+            Tre modeller bryter M-mönstret. Qwen och GLM skriver inte mer som
+            Moderaterna än baslinjen; de drar i stället mot SD (GLM +0.27, Qwen
+            +0.24). MiniMax drar mot MP (+0.13). Räknat över alla åtta partierna
+            drar elva modeller mot M, nio mot MP, sex mot SD, fem mot KD, fyra
+            mot L och två mot S. Tre av de fyra L-avvikelserna ligger under
+            +0.01, alltså brus. Mot <strong>Vänsterpartiet och
             Centerpartiet drar ingen alls</strong>: de är de enda partier som
             inte en enda modell hamnar över baslinjen på.
           </p>

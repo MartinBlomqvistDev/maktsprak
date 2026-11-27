@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -413,24 +414,51 @@ def calibrate(n_per_party: int = 60, seed: int = 13) -> dict[str, float]:
 
 
 # %%
-def reference_distribution(n_per_party: int = 80, seed: int = 21) -> np.ndarray:
+def _first_sentences(text: str, max_chars: int) -> str:
+    """Whole sentences from the start of text, as many as fit in max_chars (at least one)."""
+    out = ""
+    for sentence in re.split(r"(?<=[.!?])\s+", text.strip()):
+        if out and len(out) + 1 + len(sentence) > max_chars:
+            break
+        out = f"{out} {sentence}".strip()
+    return out
+
+
+def reference_distribution(
+    lengths: np.ndarray | None = None, n_per_party: int = 80, seed: int = 21
+) -> np.ndarray:
     """Mean classifier output on party-balanced real speech: the instrument's own tilt.
+
+    The baseline must be read at the length of the texts it is compared with. The
+    generations are four to six sentences (median about 665 characters), and the
+    classifier gives the same real speeches more M when they are short: read as
+    their first 2 000 characters, as this function did until 2026-11-27, the 640
+    speeches averaged M 0.207; cut to the generations' length, 0.290. That
+    mismatch had inflated every model's M deviation by about eight points. So with
+    ``lengths`` (the character lengths of the generations being profiled), each
+    sampled speech is cut to whole sentences up to a length drawn from them,
+    seeded; without it, the old 2 000-character reading is kept for comparison.
 
     The sample is drawn from the whole corpus, which mixes speakers the model
     trained on with held-out ones. Restricting it to people absent from training
-    under every name (2015 onward) is arguably stricter, so that was measured
-    rather than assumed: the baseline moves by up to 0.039 (MP -0.039, S +0.038,
-    V -0.030, M +0.030), and the conclusions are identical (still 12 of 14 above
-    baseline on M, still none above baseline on V or C). The looser sample is kept
-    because it is the larger and more representative one; see the ``studies``
-    section of data/reports/person_heldout.json for the comparison.
+    under every name (2015 onward) was measured on the 2 000-character reading:
+    the baseline moved by up to 0.039 (MP -0.039, S +0.038, V -0.030, M +0.030),
+    and the conclusions were the same (then still 12 of 14 above baseline on M,
+    none above baseline on V or C). The looser sample is kept because it is the
+    larger and more representative one; see the ``studies`` section of
+    data/reports/person_heldout.json for the comparison.
     """
     df = pd.read_parquet(CORPUS_PATH, columns=["party", "text"])
     df = df[df["text"].notna() & df["party"].isin(PARTIES)]
     balanced = df.groupby("party", group_keys=False).apply(
         lambda g: g.sample(min(n_per_party, len(g)), random_state=seed)
     )
-    vecs = [as_vector(classify(t[:2000])) for t in balanced["text"]]
+    if lengths is None:
+        texts = [t[:2000] for t in balanced["text"]]
+    else:
+        drawn = np.random.default_rng(seed).choice(np.asarray(lengths), len(balanced))
+        texts = [_first_sentences(t, int(n)) for t, n in zip(balanced["text"], drawn, strict=True)]
+    vecs = [as_vector(classify(t)) for t in texts]
     ref = np.mean(vecs, axis=0)
     print("Reference (instrument tilt on balanced real speech):")
     print("  " + "  ".join(f"{p} {v:.2f}" for p, v in zip(PARTIES, ref, strict=True)))
@@ -509,16 +537,42 @@ def plot_profiles(profiles: pd.DataFrame, title: str, path: Path) -> None:
 
 
 # %%
-def main() -> None:
-    calibrate()
-    reference = reference_distribution()
-    gens = generate_all()
+def cached_generations(models=OPENROUTER_MODELS, topics=TOPICS) -> pd.DataFrame:
+    """The cached generations for the published grid, without ever calling an API."""
+    cache = _load_cache()
+    rows = [
+        cache[(m, t, kind, s)]
+        for m in models
+        for t in topics
+        for kind in ("speech", "neutral")
+        for s in range(SAMPLES_PER_CELL)
+        if (m, t, kind, s) in cache
+    ]
+    return pd.DataFrame(rows)
+
+
+def _lengths(gens: pd.DataFrame, kind: str) -> np.ndarray:
+    texts = gens.loc[gens["kind"] == kind, "text"]
+    return texts[texts.str.len() >= MIN_CHARS].str.len().to_numpy()
+
+
+def main(rebuild: bool = False) -> None:
+    """Run the study. With rebuild, only re-score the cached generations: no API calls."""
+    if rebuild:
+        gens = cached_generations()
+        print(f"{len(gens)} cached generations, nothing generated.")
+    else:
+        calibrate()
+        gens = generate_all()
     if gens.empty:
         print("No generations yet. Set GEMINI_API_KEY or OPENROUTER_API_KEY and rerun.")
         return
 
-    speech = build_profiles(gens, reference, kind="speech")
-    neutral = build_profiles(gens, reference, kind="neutral")
+    # Each condition gets a baseline read at its own texts' length.
+    ref_speech = reference_distribution(_lengths(gens, "speech"))
+    ref_neutral = reference_distribution(_lengths(gens, "neutral"))
+    speech = build_profiles(gens, ref_speech, kind="speech")
+    neutral = build_profiles(gens, ref_neutral, kind="neutral")
 
     speech.to_csv(OUT_DIR / "profiles_speech.csv", index=False)
     neutral.to_csv(OUT_DIR / "profiles_neutral.csv", index=False)
@@ -540,7 +594,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0] if __doc__ else None)
+    parser.add_argument(
+        "--rebuild", action="store_true", help="re-score the cached generations only; no API calls"
+    )
+    main(rebuild=parser.parse_args().rebuild)
 
 # %% [markdown]
 # ## Limits
