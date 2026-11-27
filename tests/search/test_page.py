@@ -20,6 +20,7 @@ from search.answer.models import Answer, Candidate, Rejected, Selected
 from search.answer.models import Quote as AssembledQuote
 from search.config import REPO_ROOT, load_settings
 from search.page.contract import (
+    ErrorLine,
     PartiesLine,
     PartyAnswer,
     Quote,
@@ -274,3 +275,10 @@ def test_paths_point_into_the_site():
     web = Path(REPO_ROOT) / "web"
     for path in (step.EXAMPLES_JSON, step.METHOD_JSON, step.SPEAKERS_JSON, step.EXAMPLE_DIR):
         assert web in path.parents
+
+
+def test_the_error_line_is_the_one_the_service_sends():
+    line = ErrorLine.model_validate({"type": "error", "error": "answer_failed"})
+    assert line.model_dump() == {"type": "error", "error": "answer_failed"}
+    with pytest.raises(ValidationError):
+        ErrorLine.model_validate({"type": "error", "error": "something_else"})

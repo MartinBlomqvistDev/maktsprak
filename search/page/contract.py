@@ -208,6 +208,21 @@ class PartiesLine(_Frozen):
         return self
 
 
+class ErrorLine(_Frozen):
+    """The line the service sends when the answer step fails after the list of results.
+
+    The list of results has gone out by then and stands; the page says the
+    answer broke off and asks the visitor to ask again.
+
+    Attributes:
+        type: Always ``error``.
+        error: Always ``answer_failed``: the only failure the service reports as a line.
+    """
+
+    type: Literal["error"] = "error"
+    error: Literal["answer_failed"]
+
+
 def hit_of(candidate: Candidate, facts: Mapping[str, SpeechFacts]) -> Hit:
     """A candidate as the list of results shows it.
 
