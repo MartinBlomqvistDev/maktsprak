@@ -376,12 +376,15 @@ class Ranking:
         mode: Which legs ran.
         marks: When the search started, and when the filter, the BM25 leg, the
             vector leg and the fusion were done, by :func:`time.perf_counter`.
+        lexical_scores: Every passage's BM25 score, unfiltered, when the BM25
+            leg ran; else ``None``.
     """
 
     ranked: tuple[tuple[int, float], ...]
     allowed: int
     mode: str
     marks: tuple[float, float, float, float, float]
+    lexical_scores: np.ndarray | None = None
 
     def timings(self, end: float) -> Timings:
         """Where the time went, with the hits' text read by *end*."""
@@ -479,9 +482,16 @@ class NumpyStore:
             text=self.texts[position],
         )
 
-    def _lexical_leg(self, text: str, allowed: np.ndarray | None) -> list[int]:
-        hits = self.lexical.search(text, self.params, limit=self.settings.depth, allowed=allowed)
-        return [hit.passage for hit in hits]
+    def _lexical_leg(self, text: str, allowed: np.ndarray | None) -> tuple[list[int], np.ndarray]:
+        """The BM25 leg, ranked as :meth:`LexicalIndex.search` ranks, with every passage's score.
+
+        The scores are kept so that a caller can label its hits without
+        scoring the corpus a second time.
+        """
+        scores = self.lexical.scores(text, self.params)
+        held = scores if allowed is None else np.where(allowed, scores, 0.0)
+        matching = np.flatnonzero(held > 0)
+        return top_positions(held[matching], self.settings.depth, matching).tolist(), scores
 
     def _vector_leg(self, query: np.ndarray, allowed: np.ndarray | None) -> list[int]:
         rows = self.vectors.search(query, self.settings.depth, allowed, self.settings.gather_below)
@@ -527,8 +537,9 @@ class NumpyStore:
         count = self.passages if allowed is None else int(allowed.sum())
         filtered = perf_counter()
         lexical: list[int] = []
+        lexical_scores = None
         if count and request.mode != "vector":
-            lexical = self._lexical_leg(request.text, allowed)
+            lexical, lexical_scores = self._lexical_leg(request.text, allowed)
         lexical_done = perf_counter()
         nearest: list[int] = []
         if count and request.mode != "lexical":
@@ -542,6 +553,7 @@ class NumpyStore:
             allowed=count,
             mode=request.mode,
             marks=(start, filtered, lexical_done, vector_done, perf_counter()),
+            lexical_scores=lexical_scores,
         )
 
     def search(self, request: SearchRequest, vector: np.ndarray | None = None) -> SearchResponse:

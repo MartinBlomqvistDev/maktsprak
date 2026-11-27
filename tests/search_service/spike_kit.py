@@ -287,11 +287,16 @@ class SpikeCorpus:
         return self.reports_dir / TUNING_NAME
 
 
-def write_spike_corpus(directory: Path) -> SpikeCorpus:
-    """Write the kit's corpus, two BM25 indexes, a tuning report and question sets."""
+def write_spike_corpus(directory: Path, speeches: list[Anforande] | None = None) -> SpikeCorpus:
+    """Write the kit's corpus, two BM25 indexes, a tuning report and question sets.
+
+    Args:
+        directory: Where to write.
+        speeches: The speeches, the kit's twelve when ``None``.
+    """
     search_dir = directory / "search"
     reports_dir = directory / "reports"
-    speeches_path, passages_path = write_corpus(search_dir, SPEECHES)
+    speeches_path, passages_path = write_corpus(search_dir, speeches or SPEECHES)
     pairs = list(passage_texts(speeches_path, passages_path))
     ids = [passage for passage, _ in pairs]
     for analyzer in (CHOSEN, RAW):

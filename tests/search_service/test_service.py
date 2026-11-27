@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import asyncio
 import json
+import time
+import unicodedata
 from datetime import date
 
 import numpy as np
@@ -11,11 +13,12 @@ import pytest
 
 from search.answer.models import Selected
 from search.answer.selector import ABSTENTION, selection_output
+from search.eval.generation import passage_span
 from search.parties import PARTY_ORDER
 from search_service.service import Filters, InvalidRequest, Question, RateLimiter
 from search_service.spike.contracts import PartyViewRequest, SearchFilter, SearchRequest
 from tests.search_service.package_kit import FakeSelector, build_kit_package, kit_service
-from tests.search_service.spike_kit import write_spike_corpus
+from tests.search_service.spike_kit import SPEECHES, _speech, write_spike_corpus
 
 #: A question with words of several of the kit's passages.
 QUESTION = "skolan skolor jobb el sjukvården vårdköerna"
@@ -56,6 +59,15 @@ class TestRead:
     def test_the_question_is_trimmed(self, service):
         text, search_filter = service.read(ask(f"  {QUESTION} "))
         assert text == QUESTION and search_filter.empty
+
+    def test_a_decomposed_question_is_read_composed(self, service):
+        composed = "Kärnkraften på Ringhals och vårdköerna"
+        decomposed = unicodedata.normalize("NFD", composed)
+        assert decomposed != composed
+        text, _ = service.read(ask(decomposed))
+        assert text == composed
+        found = service.find(text, SearchFilter(), None, None)
+        assert found.candidates == service.find(composed, SearchFilter(), None, None).candidates
 
     @pytest.mark.parametrize("question", ["", "   ", "x" * 401])
     def test_an_empty_or_long_question_is_refused(self, service, question):
@@ -153,6 +165,117 @@ class TestFind:
     def test_a_filter_applies_to_both_legs(self, service, built):
         found = service.find(QUESTION, SearchFilter(party="M"), built[3][4], 1)
         assert found.candidates and {c.party for c in found.candidates} == {"M"}
+
+    def test_the_corpus_is_scored_once_a_search(self, service, built, monkeypatch):
+        lexical = service.store.lexical
+        calls = []
+        scores = lexical.scores
+        monkeypatch.setattr(lexical, "scores", lambda *args: calls.append(1) or scores(*args))
+        service.find(QUESTION, SearchFilter(), built[3][4], 1)
+        service.find(QUESTION, SearchFilter(party="S"), None, None)
+        assert len(calls) == 2
+
+    @pytest.mark.parametrize("party", [None, "S", "M"])
+    @pytest.mark.parametrize("question", [QUESTION, "skolan", "kärnkraften el", "ingenting alls"])
+    def test_the_lexical_leg_ranks_as_the_tuned_bm25_search(self, service, question, party):
+        store = service.store
+        allowed = store.mask(SearchFilter(party=party))
+        leg, _ = store._lexical_leg(question, allowed)
+        hits = store.lexical.search(
+            question, service.params, limit=store.settings.depth, allowed=allowed
+        )
+        assert leg == [hit.passage for hit in hits]
+
+
+#: A speech of three long paragraphs, which the kit packs into three passages.
+LONG = _speech(
+    "H209999",
+    4,
+    [
+        f"Stycke {number} om vindkraften och elnäten. " + " ".join([f"ord{number}"] * 150)
+        for number in (1, 2, 3)
+    ],
+    "C",
+    date(2021, 5, 4),
+    "0909",
+)
+
+
+@pytest.fixture(scope="module")
+def long_built(tmp_path_factory):
+    corpus = write_spike_corpus(tmp_path_factory.mktemp("long"), [*SPEECHES, LONG])
+    return build_kit_package(corpus, tmp_path_factory.mktemp("long-built"))
+
+
+class TestSpeechOfSeveralPassages:
+    def later_passage(self, ids):
+        passages = [passage for passage in ids if passage.startswith(f"{LONG.anf_id}:")]
+        assert len(passages) >= 2
+        return next(passage for passage in passages if passage_span(passage)[1] > 0)
+
+    def test_the_table_joins_the_speech_from_its_passages(self, long_built):
+        directory, manifest, ids, _, _ = long_built
+        service = kit_service(directory, manifest, {})
+        position = ids.index(self.later_passage(ids))
+        speech = service.speeches.speech(service.speeches.row_of(position))
+        assert (speech.anf_id, list(speech.paragraphs)) == (LONG.anf_id, list(LONG.paragraphs))
+
+    def test_a_quotation_from_a_later_passage_is_the_speechs_own_paragraph(self, long_built):
+        directory, manifest, ids, _, _ = long_built
+        later = self.later_passage(ids)
+        _, first, _ = passage_span(later)
+        selector = FakeSelector(selection_output(later, 1, 1))
+        service = kit_service(directory, manifest, {}, selector=selector)
+        found = service.find("vindkraften elnäten", SearchFilter(party="C"), None, None)
+        assert later in [candidate.passage_id for candidate in found.candidates]
+        answer = service.answer("vindkraften elnäten", found)
+        (quote,) = answer.quotes
+        assert list(quote.paragraphs) == [LONG.paragraphs[first]]
+        line = service.answer_line(answer, found)
+        assert line["quotes"][0]["paragraphs"] == [LONG.paragraphs[first]]
+
+    def test_a_range_past_its_passage_quotes_nothing(self, long_built):
+        directory, manifest, ids, _, _ = long_built
+        later = self.later_passage(ids)
+        _, first, last = passage_span(later)
+        beyond = selection_output(later, 1, last - first + 2)
+        service = kit_service(directory, manifest, {}, selector=FakeSelector(beyond))
+        found = service.find("vindkraften elnäten", SearchFilter(party="C"), None, None)
+        assert list(service.answer("vindkraften elnäten", found).quotes) == []
+
+
+class TestAnswerInTime:
+    def test_past_the_deadline_the_baseline_answers(self, built):
+        directory, manifest, _, matrix, _ = built
+        selector = FakeSelector(delay_s=0.6)
+        service = kit_service(directory, manifest, {}, selector=selector, answer_deadline_s=0.2)
+        found = service.find(QUESTION, SearchFilter(), matrix[4], 1)
+        answer = asyncio.run(service.answer_in_time(QUESTION, found))
+        assert (answer.selected.selector, answer.selected.fallback) == ("baseline", "failed")
+        assert service.counters["answer_late"] == 1
+        service.close()
+
+    def test_a_question_that_waits_past_the_deadline_is_never_sent(self, built):
+        directory, manifest, _, matrix, _ = built
+        selector = FakeSelector(delay_s=0.5)
+        service = kit_service(directory, manifest, {}, selector=selector, answer_deadline_s=0.2)
+        found = service.find(QUESTION, SearchFilter(), matrix[4], 1)
+
+        async def two():
+            return await asyncio.gather(
+                service.answer_in_time(QUESTION, found), service.answer_in_time(QUESTION, found)
+            )
+
+        answers = asyncio.run(two())
+        time.sleep(0.6)
+        assert [answer.selected.fallback for answer in answers] == ["failed", "failed"]
+        assert len(selector.asked) == 1
+        service.close()
+
+    def test_within_the_deadline_the_selector_answers(self, service, built):
+        found = service.find(QUESTION, SearchFilter(), built[3][4], 1)
+        answer = asyncio.run(service.answer_in_time(QUESTION, found))
+        assert (answer.selected.selector, answer.selected.fallback) == ("claude", None)
 
 
 class TestLines:
@@ -263,6 +386,27 @@ class TestRateLimiter:
         assert rates.check("a", "answer") is None
         now[0] = 61.0
         assert rates.check("a", "search") is None
+
+    def test_a_caller_is_forgotten_within_two_windows(self):
+        now = [0.0]
+        rates = RateLimiter(60, {"search": 2, "answer": 1}, clock=lambda: now[0])
+        rates.check("a", "search")
+        now[0] = 70.0
+        rates.check("b", "search")
+        now[0] = 121.0
+        rates.check("c", "search")
+        assert len(rates) == 2  # a is forgotten; b's and c's windows have not passed
+        now[0] = 182.0
+        rates.tidy()
+        assert len(rates) == 0
+
+    def test_no_more_than_the_most_callers_are_held(self):
+        rates = RateLimiter(60, {"search": 2, "answer": 1}, max_callers=10)
+        for number in range(25):
+            rates.check(f"caller-{number}", "search")
+        assert len(rates) <= 10
+        rates.check("caller-24", "search")
+        assert rates.check("caller-24", "search") is not None  # the latest is still counted
 
     def test_a_caller_is_kept_as_a_salted_hash(self):
         rates = RateLimiter(60, {"search": 1, "answer": 1})

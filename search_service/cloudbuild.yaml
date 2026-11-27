@@ -3,7 +3,8 @@
 #   gcloud builds submit --project maktsprak-inference --region us-central1 \
 #     --config search_service/cloudbuild.yaml --substitutions _TAG=TAG .
 #
-# .gcloudignore at the root keeps the upload to search/ and search_service/.
+# .gcloudignore at the root keeps the upload to search/, search_service/ and
+# the answer step's test files in data/reports/search/.
 # The image pins its package (search_service/Dockerfile), so the build fetches
 # exactly that revision of the dataset and fails if it does not check out.
 steps:

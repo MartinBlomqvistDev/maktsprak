@@ -1,6 +1,13 @@
 # The search service's image (search_service/Dockerfile). The libraries of the
 # store are pinned to the versions of the storage spike's slim image
 # (spike/requirements.txt), in which the check before the test split measured it.
+#
+# The image installs from requirements.lock, which pins every library these
+# need, with the hash of each file. After a change here, lock it again:
+#
+#   uv pip compile search_service/requirements.txt --python-version 3.11 --python-platform x86_64-unknown-linux-gnu --generate-hashes -o search_service/requirements.lock
+#
+# CI's job for the search service installs the lock too.
 numpy==2.4.6
 pyarrow==26.0.1
 pydantic==2.14.4

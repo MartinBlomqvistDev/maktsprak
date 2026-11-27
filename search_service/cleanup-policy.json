@@ -1,0 +1,19 @@
+[
+  {
+    "name": "keep-the-two-latest-search-images",
+    "action": {"type": "Keep"},
+    "mostRecentVersions": {
+      "packageNamePrefixes": ["maktsprak-search"],
+      "keepCount": 2
+    }
+  },
+  {
+    "name": "delete-older-search-images",
+    "action": {"type": "Delete"},
+    "condition": {
+      "packageNamePrefixes": ["maktsprak-search"],
+      "tagState": "any",
+      "olderThan": "1d"
+    }
+  }
+]

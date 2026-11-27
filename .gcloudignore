@@ -1,7 +1,17 @@
 # What `gcloud builds submit` uploads from the repository root: the search
-# service's image needs search/ and search_service/ only. Everything else,
-# the data and .env included, stays on the machine.
+# service's image needs search/ and search_service/, and the test run's
+# committed files, whose launch report decides whether the answer step may
+# run. Everything else, the data and every env file included, stays on the
+# machine.
 /*
 !/search/
 !/search_service/
+!/data/
+/data/*
+!/data/reports/
+/data/reports/*
+!/data/reports/search/
+/data/reports/search/*
+!/data/reports/search/answer_test*.json
 **/__pycache__/
+**/.env*
