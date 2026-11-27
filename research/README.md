@@ -65,13 +65,20 @@ held-out 0.579. Every model reads the same input, KB-BERT's own 512-token
 window, so no LLM gets more of the speech than the small model can physically
 read. Real per-token cost measured.
 
-**Result** (`out/benchmark_results.csv`). All six frontier models beat the
+**Result** (the strict re-score in `data/reports/person_heldout.json`; the run on
+all 320 is `out/benchmark_results.csv`). All six frontier models beat the
 fine-tune. GPT-5.5 leads at 0.745 accuracy, down to Qwen 3.6 Plus at 0.648,
 against KB-BERT's 0.579 (0.592 macro-F1). But they cost $0.25 to $5.62 per 1000
 classifications and an API round-trip; KB-BERT costs nothing, runs locally, and
 no text leaves the machine. Published with the result unspun: the small model
 comes last on accuracy, and the cost and latency trade-off is the finding. Not a
 privacy argument, since riksdagen's proceedings are public record.
+
+**Correction, 27 November 2026.** On all 320 speeches the figures were 0.762 for
+GPT-5.5 and 0.591 for KB-BERT, but 73 of those speeches came from people trained
+under another form of their name. Among the six models the order moves only
+within the uncertainty (Grok from fifth to third), and all six still beat the
+fine-tune.
 
 **Two robustness conditions, both kept.**
 

@@ -23,6 +23,12 @@ no name, matched on the Riksdag's id for each speaker
 | Held-out accuracy | 0.612 (was 0.628 before 2026-11-27) |
 | Held-out macro-F1 | 0.606 (was 0.619 before 2026-11-27) |
 
+**Correction, 27 November 2026.** The figures were 0.628 and 0.619 on everyone
+behind the 146 held-out names. 38 of those 137 people were also in training under
+another form of their name, so the table now counts only the other 99. The
+conclusion holds: against a 0.125 baseline the signal is clear. The model has not
+been retrained.
+
 Class imbalance is corrected once (loss weighting), not twice. An earlier
 version also oversampled rare parties; correcting twice made short slogans
 collapse to the smallest class ("Stoppa invandringen!" read Vänsterpartiet).
