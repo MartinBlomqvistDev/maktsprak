@@ -95,12 +95,13 @@ export default function LlmPage() {
             klassificeraren har egna böjelser. Tre kontroller hanterar det.
           </p>
           <p>
-            <strong>Kalibrering.</strong> Femton procent av politikerna hölls
-            helt utanför träningen. På {STUDY_META.calibrationN}{" "}
-            partibalanserade anföranden från just de talarna träffar
-            klassificeraren rätt parti i 59,2 procent av fallen, mot 12,5 för
-            slumpen. Instrumentet mäter alltså något verkligt på text det aldrig
-            sett.
+            <strong>Kalibrering.</strong> På {STUDY_META.calibrationN}{" "}
+            partibalanserade anföranden från 84 politiker som inte finns i
+            träningen under något namn träffar klassificeraren rätt parti i 50,0
+            procent av fallen, mot 12,5 för slumpen. Instrumentet mäter alltså
+            något verkligt på text det aldrig sett. Rättat 27 november 2026: här
+            stod tidigare 59,2 procent, på ett urval där 30 av anförandena fanns
+            i träningsdatan.
           </p>
           <p>
             <strong>Baslinje.</strong> På en partibalanserad mängd verkliga

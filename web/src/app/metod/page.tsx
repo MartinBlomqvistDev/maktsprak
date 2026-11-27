@@ -16,12 +16,12 @@ export default function MetodPage() {
         <span>Metod och validering</span>
       </p>
       <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
-        Varför siffran sjönk från 0,78 till 0,62.
+        Varför siffran sjönk från 0,78 till 0,61.
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-2">
         Den högre siffran kom från en vanlig valideringsfälla. Den lägre är
-        talar-oberoende: ingen politiker i testet har en enda mening i
-        träningsdatan. Här är skillnaden, och vad den kostar i siffror.
+        talar-oberoende: ingen politiker i testet finns i träningsdatan under
+        något namn. Här är skillnaden, och vad den kostar i siffror.
       </p>
 
       {/* ---------------------------------------------------------- THE LEAK */}
@@ -50,16 +50,19 @@ export default function MetodPage() {
         <ProtokollMarker n={2} name="Lösningen" />
         <div className="mt-5 space-y-4 text-ink-2">
           <p>
-            Nuvarande validering är <strong>talar-oberoende</strong>: alla
-            unika talare listas, blandas med ett fast frö, och 15 % läggs
-            åt sidan i sin helhet innan träningen ens börjar. Ingen mening
-            som en testad politiker någonsin sagt förekommer i
+            Nuvarande validering är <strong>talar-oberoende</strong>. Före
+            träningen listades alla talarnamn, de blandades med ett fast frö
+            och 15 procent lades åt sidan. Namnen var protokollets egna, så
+            samma person kunde hamna på båda sidor under olika namnformer.
+            Testet räknas därför bara på personer som inte finns i träningen
+            under något namn, matchade mot riksdagens eget id för varje
+            talare. Ingen mening som en testad politiker sagt förekommer i
             träningsdatan.
           </p>
           <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-4">
             {[
-              ["Undanhållna talare", "146"],
-              ["Andel av talarna", "15 %"],
+              ["Personer i testet", "99"],
+              ["Anföranden i testet", "4 335"],
               ["Träningsperiod", "2015-2026"],
               ["Anföranden i korpus", "75 148"],
             ].map(([label, value]) => (
@@ -96,12 +99,25 @@ export default function MetodPage() {
               <tr className="border-b border-line">
                 <td className="py-3 pr-4">
                   <span className="font-medium text-ink">Nuvarande</span>{" "}
-                  <span className="text-ink-3">· talar-oberoende split</span>
+                  <span className="text-ink-3">· personer utanför träningen</span>
                 </td>
                 <td className="tabular py-3 pr-4 text-right text-good font-medium">
-                  0.628
+                  0.612
                 </td>
                 <td className="tabular py-3 text-right text-good font-medium">
+                  0.606
+                </td>
+              </tr>
+              <tr className="border-b border-line">
+                <td className="py-3 pr-4">
+                  <span className="text-ink-3">
+                    Talarnamn som nyckel (läckt via namnformer)
+                  </span>
+                </td>
+                <td className="tabular py-3 pr-4 text-right text-ink-3 line-through decoration-crit">
+                  0.628
+                </td>
+                <td className="tabular py-3 text-right text-ink-3 line-through decoration-crit">
                   0.619
                 </td>
               </tr>
@@ -122,9 +138,21 @@ export default function MetodPage() {
           </table>
         </div>
         <p className="mt-5 text-sm text-ink-3">
-          Slumpbaslinje för 8-vägsklassificering: 0.125. Random Forest på
-          samma korpus utan läckage landar i samma härad; 0.619 är alltså
-          en verklig, försvarbar signal, inte brus.
+          Slumpbaslinje för 8-vägsklassificering: 0.125. Mot den är 0.606 en
+          verklig signal.
+        </p>
+        <p className="mt-3 text-sm text-ink-3">
+          <strong>Rättelse 27 november 2026.</strong> Testet bestod av
+          anförandena från 15 procent av talarnamnen, så som protokollen
+          skriver dem. Där kan samma person stå på flera sätt: med titel, efter
+          ett namnbyte eller felstavad. Därför fanns 38 av de 137 personerna i
+          testet också i träningen, under en annan form av namnet. De stod för
+          23 procent av testanförandena. Räknat bara på de 99 personer som inte
+          finns i träningen under något namn är macro-F1 0,606 och
+          träffsäkerheten 0,612, mot tidigare 0,619 och 0,628. Personerna är
+          matchade mot riksdagens eget id för varje talare. Riktmärket och
+          kalibreringen i LLM-studien är omräknade på samma sätt. Modellen är
+          inte omtränad.
         </p>
         <p className="mt-3 text-sm text-ink-3">
           En tidigare version korrigerade partiobalansen <em>två gånger</em>,

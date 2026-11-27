@@ -69,7 +69,7 @@ export default function Home() {
                 <dt className="label text-ink-3">
                   Macro-F1, ohörda talare
                 </dt>
-                <dd className="tabular font-display text-2xl">0.619</dd>
+                <dd className="tabular font-display text-2xl">0.606</dd>
               </div>
             </dl>
           </div>
@@ -93,9 +93,9 @@ export default function Home() {
               Modellen finjusterades en gång, på anföranden från 2015 och framåt.
               Den tränas alltså inte om vecka för vecka; det är korpusen som
               växer, inte modellen. Valideringen är <strong>talar-oberoende</strong>:
-              15 % av politikerna hölls helt utanför träningen, så siffran mäter
-              om modellen fångar ett partis sätt att argumentera, inte om den
-              känner igen enskilda talare.
+              siffran räknas bara på politiker som inte finns i träningen under
+              något namn, så den mäter om modellen känner igen ett partis sätt
+              att argumentera hos talare den aldrig hört.
             </p>
 
             <ProtokollMarker n={3} name="Avslöjar" />
