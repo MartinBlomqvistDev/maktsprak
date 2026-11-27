@@ -7,6 +7,7 @@ once more, the judge, the report with the choice of model, and round 2.
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import sys
@@ -769,13 +770,35 @@ class TestTheHybrid:
             json.dumps({"form": step.HAND_FORM_KEY, "answers": graded}), encoding="utf-8"
         )
         with pytest.raises(SystemExit, match="must be committed"):
-            step.run_test_report(settings, answers)
+            step.run_hand_grades(settings, answers)
         committed.add(step.HAND_DRAW_REPORT)
+        step.run_hand_grades(settings, answers)
+        digest = hashlib.sha256(answers.read_bytes()).hexdigest()
+        record = json.loads((reports / step.HAND_GRADES_REPORT).read_text("utf-8"))
+        assert record["answers_sha256"] == digest and record["pairs"] == len(draw["pairs"])
+        assert step.kept_grades(settings, digest).read_bytes() == answers.read_bytes()
+        assert not (reports / step.TEST_REPORT).exists()
+        step.run_hand_grades(settings, answers)
+        regraded = tmp_path / "regraded.json"
+        regraded.write_text(
+            json.dumps(
+                {"form": step.HAND_FORM_KEY, "answers": [{**item, "grade": 0} for item in graded]}
+            ),
+            encoding="utf-8",
+        )
+        with pytest.raises(SystemExit, match="recorded once"):
+            step.run_hand_grades(settings, regraded)
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_test_report(settings)
         with pytest.raises(SystemExit, match="must be committed"):
             step.run_sealed_description(settings)
-        step.run_test_report(settings, answers)
+        committed.add(step.HAND_GRADES_REPORT)
+        step.run_test_report(settings)
+        with pytest.raises(SystemExit, match="computed once"):
+            step.run_test_report(settings)
 
         report = json.loads((reports / step.TEST_REPORT).read_text("utf-8"))
+        assert report["grades_sha256"] == digest
         assert (report["drawn_questions"], report["graded_pairs"]) == (1, len(draw["pairs"]))
         assert report["grades"] == {"0": 0, "1": 0, "2": len(draw["pairs"])}
         baseline, selector = report["selectors"]
@@ -789,12 +812,19 @@ class TestTheHybrid:
         # One question is drawn and every pair is graded 2, so the difference in
         # quote precision is 0 or missing, and its lower bound is not above 0.
         assert (report["beats_baseline"], report["runs"]) == (False, "baseline")
-        assert (step.hand_dir(settings) / f"{step.HAND_FORM_KEY}.json").is_file()
         lines = (reports / step.TEST_QUESTIONS_REPORT).read_text("utf-8").splitlines()
         assert len(lines) == 2 * len(TEST_QUESTIONS)
         assert not (reports / step.SEALED_REPORT).exists()
 
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_sealed_description(settings)
         committed.add(step.TEST_REPORT)
+        report_path = reports / step.TEST_REPORT
+        honest = report_path.read_bytes()
+        report_path.write_bytes(honest.replace(digest.encode(), b"0" * 64))
+        with pytest.raises(SystemExit, match="not the report computed from the recorded grades"):
+            step.run_sealed_description(settings)
+        report_path.write_bytes(honest)
         step.run_sealed_description(settings)
         sealed = json.loads((reports / step.SEALED_REPORT).read_text("utf-8"))
         assert set(sealed["abstention"]) == {"baseline", "selector"}
@@ -819,7 +849,8 @@ class TestTheHybrid:
             json.dumps({"form": step.HAND_FORM_KEY, "answers": []}), encoding="utf-8"
         )
         with pytest.raises(SystemExit, match="Without a grade"):
-            step.run_test_report(settings, answers)
+            step.run_hand_grades(settings, answers)
+        assert not (settings.tracked.reports / step.HAND_GRADES_REPORT).exists()
         assert not (settings.tracked.reports / step.TEST_REPORT).exists()
 
 
