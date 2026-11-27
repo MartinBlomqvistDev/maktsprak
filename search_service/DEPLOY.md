@@ -19,7 +19,7 @@ $project = "maktsprak-inference"
 $region = "us-central1"
 $runner = "maktsprak-search@$project.iam.gserviceaccount.com"
 $image = "us-central1-docker.pkg.dev/$project/cloud-run-source-deploy/maktsprak-search"
-$envFile = Resolve-Path .env
+$envFile = Resolve-Path .env  # from a worktree, give the path of the main checkout's .env
 ```
 
 ## The search alone, in one run
@@ -40,14 +40,24 @@ This run deploys the search without the answer step. In order, it:
 Old preview deployments on Vercel hold the old secret, so from step 5 on the
 service answers them with 401. Their `/api/fraga` then answers 502.
 
+Everything this run sets up has been in place since 2026-11-27. A new image
+needs only the section "A later deploy of a new image".
+
 ```powershell
 # 1. The APIs.
 gcloud services enable cloudscheduler.googleapis.com billingbudgets.googleapis.com --project $project
 
-# 2. The service's own account, with its two secrets.
+# 2. The service's own account, with its two secrets. IAM can refuse a binding
+#    for a few seconds after the account is created, so each binding is tried
+#    up to five times.
 gcloud iam service-accounts create maktsprak-search --display-name "maktsprak-search" --project $project
 foreach ($name in "openrouter-api-key", "search-shared-secret") {
-  gcloud secrets add-iam-policy-binding $name --member="serviceAccount:$runner" --role="roles/secretmanager.secretAccessor" --project $project
+  foreach ($try in 1..5) {
+    gcloud secrets add-iam-policy-binding $name --member="serviceAccount:$runner" --role="roles/secretmanager.secretAccessor" --project $project
+    if ($LASTEXITCODE -eq 0) { break }
+    Start-Sleep -Seconds 10
+  }
+  if ($LASTEXITCODE -ne 0) { throw "The account cannot read $name" }
 }
 
 # 3. A new shared secret, in .env and as a new version.
@@ -100,8 +110,11 @@ gcloud storage buckets remove-iam-policy-binding gs://maktsprak-search-ledger --
 gcloud scheduler jobs create http maktsprak-search-warm --project $project --location $region --schedule "*/5 * * * *" --uri "$url/health" --http-method GET --attempt-deadline 60s --description "Keeps the search service warm"
 
 # 9. A budget on the project, with alerts by email at half, nine tenths and all of it.
+#    The amount is in the billing account's currency, here SEK. The budget API
+#    is off in gcloud's default project, so the call names this project with
+#    --billing-project.
 $account = (gcloud billing projects describe $project --format="value(billingAccountName)").Split("/")[-1]
-gcloud billing budgets create --billing-account $account --display-name "maktsprak-inference" --budget-amount 10USD --filter-projects "projects/$project" --threshold-rule percent=0.5 --threshold-rule percent=0.9 --threshold-rule percent=1.0
+gcloud billing budgets create --billing-account $account --billing-project $project --display-name "maktsprak-inference" --budget-amount 100SEK --filter-projects "projects/$project" --threshold-rule percent=0.5 --threshold-rule percent=0.9 --threshold-rule percent=1.0
 
 # 10. The two latest images, and no older ones.
 gcloud artifacts repositories set-cleanup-policies cloud-run-source-deploy --project $project --location $region --policy search_service/cleanup-policy.json --no-dry-run
