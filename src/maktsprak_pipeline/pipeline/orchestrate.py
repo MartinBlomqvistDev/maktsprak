@@ -9,7 +9,7 @@ from datetime import date, datetime, timedelta
 import httpx
 from tqdm import tqdm
 
-from ..config import WATERMARK_MARGIN_DAYS
+from ..config import TWEETS_ENABLED, WATERMARK_MARGIN_DAYS
 from ..db import fetch_latest_speech_date, insert_speeches
 from ..logger import get_logger
 from .extract import call_with_backoff, extract_all_tweets, fetch_protocol_docs
@@ -89,7 +89,8 @@ def run_etl(margin_days: int = WATERMARK_MARGIN_DAYS) -> None:
     """Run the full incremental ETL pipeline.
 
     Lists the Riksdag protocols from :func:`listing_start` to today, parses
-    each PDF, upserts its speeches to Supabase, then collects recent tweets.
+    each PDF and upserts its speeches to Supabase.  Then it collects recent
+    tweets, if :data:`~config.TWEETS_ENABLED` is set.
 
     Args:
         margin_days: Days before the watermark to start listing.
@@ -109,8 +110,9 @@ def run_etl(margin_days: int = WATERMARK_MARGIN_DAYS) -> None:
     upserted, failed = _ingest(docs)
     logger.info(f"{upserted} speech record(s) upserted from {len(docs) - len(failed)} protocols.")
 
-    tweets = extract_all_tweets()
-    if tweets:
+    if not TWEETS_ENABLED:
+        logger.info("The X step is off; set TWEETS_ENABLED=true to run it.")
+    elif tweets := extract_all_tweets():
         load_tweets(tweets)
     else:
         logger.info("No new tweets to load.")

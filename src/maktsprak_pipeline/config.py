@@ -18,6 +18,12 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------------------------
 load_dotenv()
 
+
+def _env_flag(name: str) -> bool:
+    """Return ``True`` when the environment variable *name* is ``true`` or ``1``."""
+    return os.getenv(name, "").strip().lower() in {"true", "1"}
+
+
 # ---------------------------------------------------------------------------
 # Project layout
 # ---------------------------------------------------------------------------
@@ -83,6 +89,14 @@ WATERMARK_MARGIN_DAYS: int = 14
 X_BASE_URL: str = "https://api.twitter.com/2/users"
 #: Bearer token sourced from either env key name variant.
 X_BEARER_TOKEN: str | None = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")
+#: The weekly run calls X only when ``TWEETS_ENABLED`` is ``true`` or ``1``.
+#: X has answered every request with HTTP 403 since 2026-03-05, because the
+#: token must come from a developer App attached to a Project.  Nothing on the
+#: site reads ``tweets``.  Turning it back on also needs a UNIQUE constraint on
+#: ``tweets.tweet_id``, which no migration adds.  The upsert names that column
+#: as its conflict target, and the runs of 2026-02-19 and 2026-02-26 failed for
+#: want of it.
+TWEETS_ENABLED: bool = _env_flag("TWEETS_ENABLED")
 
 # ---------------------------------------------------------------------------
 # Swedish parliamentary parties

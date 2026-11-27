@@ -10,6 +10,7 @@ import httpx
 import pytest
 import requests
 
+from src.maktsprak_pipeline import config
 from src.maktsprak_pipeline.pipeline import extract, orchestrate, transform
 
 
@@ -192,3 +193,42 @@ class TestRunEtl:
         ):
             orchestrate.run_etl()
         fetch.assert_called_once_with("2026-11-11")
+
+
+class TestTweetsSwitch:
+    @staticmethod
+    def _tweets_called(enabled: bool) -> bool:
+        """Run the ETL over no protocols and report whether it called X."""
+        with (
+            patch.object(orchestrate, "TWEETS_ENABLED", enabled),
+            patch.object(orchestrate, "listing_start", return_value=date(2026, 11, 11)),
+            patch.object(orchestrate, "fetch_protocol_docs", return_value=[]),
+            patch.object(orchestrate, "extract_all_tweets", return_value=[]) as tweets,
+        ):
+            orchestrate.run_etl()
+        return tweets.called
+
+    def test_x_is_not_called_while_the_switch_is_off(self):
+        assert self._tweets_called(enabled=False) is False
+
+    def test_x_is_called_once_the_switch_is_on(self):
+        assert self._tweets_called(enabled=True) is True
+
+    @pytest.mark.parametrize(
+        ("value", "expected"),
+        [
+            ("true", True),
+            ("1", True),
+            (" TRUE ", True),
+            ("", False),
+            ("false", False),
+            ("yes", False),
+        ],
+    )
+    def test_the_switch_reads_true_or_1(self, monkeypatch, value, expected):
+        monkeypatch.setenv("TWEETS_ENABLED", value)
+        assert config._env_flag("TWEETS_ENABLED") is expected
+
+    def test_an_unset_switch_is_off(self, monkeypatch):
+        monkeypatch.delenv("TWEETS_ENABLED", raising=False)
+        assert config._env_flag("TWEETS_ENABLED") is False
