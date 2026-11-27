@@ -12,19 +12,29 @@ else writes the text of a quotation.
 The view of the eight parties is outside what was measured, and runs the
 baseline selector on each party's best passage, so it calls no model.
 
+A question is put in Unicode's composed form (NFC) before anything reads it,
+as the corpus is written, so that a pasted question whose å, ä and ö are
+decomposed finds the same words. The answer step runs one question at a time
+on an instance, apart from the searches, and within a deadline past which the
+baseline answers.
+
 Nothing here keeps or logs a question. The counters count, and the rate limit
-keeps a salted hash of each caller in memory for one window.
+keeps a salted hash of each caller in memory, which it forgets within two of
+its windows after the caller's last request, or when the instance stops.
 """
 
 from __future__ import annotations
 
 import asyncio
 import hashlib
+import itertools
 import logging
 import secrets
 import time
+import unicodedata
 from collections import Counter, deque
 from collections.abc import Awaitable, Callable, Mapping, Sequence
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import date
 from typing import Any, Literal, Protocol
@@ -34,7 +44,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from search.answer.assemble import assemble
 from search.answer.models import Answer, Candidate, Quote, Selected, Speech
-from search.answer.selector import BaselineSelector
+from search.answer.selector import BaselineSelector, fall_back
 from search.eval.generation import passage_span
 from search.index.lexical import Bm25Params
 from search.parties import PARTY_ORDER, VALID_PARTIES
@@ -48,6 +58,21 @@ logger = logging.getLogger("search_service")
 
 Retrieval = Literal["hybrid", "bm25"]
 Kind = Literal["search", "answer"]
+
+#: The most characters a question may hold as sent, before it is trimmed and
+#: held to the settings' ``question_chars``.
+QUESTION_MAX_CHARS = 1000
+
+#: The most digits a speaker's id may hold; the Riksdag's ids hold 10 to 13.
+SPEAKER_MAX_CHARS = 20
+
+#: The longest the answer step may take for one question, its wait for the
+#: instance's one selector included; past it, the baseline answers.
+ANSWER_DEADLINE_S = 45.0
+
+#: The most callers the rate limit holds at once, about 50 MB. Past it, the
+#: callers not heard from for longest are forgotten first, down to nine tenths.
+MAX_CALLERS = 50_000
 
 
 class InvalidRequest(ValueError):
@@ -71,7 +96,7 @@ class Filters(_Frozen):
     party: str | None = None
     year_from: int | None = None
     year_to: int | None = None
-    speaker: str | None = Field(default=None, pattern=r"^[0-9]+$")
+    speaker: str | None = Field(default=None, pattern=r"^[0-9]+$", max_length=SPEAKER_MAX_CHARS)
 
 
 class Question(_Frozen):
@@ -82,7 +107,7 @@ class Question(_Frozen):
         filters: What it is narrowed to.
     """
 
-    question: str
+    question: str = Field(max_length=QUESTION_MAX_CHARS)
     filters: Filters = Filters()
 
 
@@ -138,7 +163,11 @@ class RateLimiter:
     """How many searches and answers one caller may ask in a window, kept in memory.
 
     A caller is known by a salted hash of what the proxy names it by. The salt
-    is drawn when the instance starts and never leaves it.
+    is drawn when the instance starts and never leaves it. A caller is
+    forgotten at the first sweep after a window has passed since its last
+    request, and sweeps run at least once a window while the instance is asked
+    anything, so no caller is held for more than two windows after its last
+    request. No more than ``max_callers`` are held at once.
     """
 
     def __init__(
@@ -146,16 +175,21 @@ class RateLimiter:
         window_s: float,
         limits: Mapping[Kind, int],
         clock: Callable[[], float] = time.monotonic,
+        max_callers: int = MAX_CALLERS,
     ) -> None:
         self.window_s = window_s
         self.limits = dict(limits)
+        self.max_callers = max_callers
         self._clock = clock
         self._salt = secrets.token_bytes(16)
         self._seen: dict[tuple[str, Kind], deque[float]] = {}
-        self._checks = 0
+        self._swept = clock()
 
     def _key(self, caller: str) -> str:
         return hashlib.sha256(self._salt + caller.encode("utf-8")).hexdigest()
+
+    def __len__(self) -> int:
+        return len(self._seen)
 
     def _sweep(self, now: float) -> None:
         for key in [
@@ -164,6 +198,17 @@ class RateLimiter:
             if not times or times[-1] <= now - self.window_s
         ]:
             del self._seen[key]
+        self._swept = now
+        if len(self._seen) >= self.max_callers:
+            excess = len(self._seen) - self.max_callers * 9 // 10
+            for key in list(itertools.islice(self._seen, excess)):
+                del self._seen[key]
+
+    def tidy(self) -> None:
+        """Forget the callers whose window has passed, once a window has gone by since a sweep."""
+        now = self._clock()
+        if now - self._swept >= self.window_s:
+            self._sweep(now)
 
     def check(self, caller: str, kind: Kind) -> float | None:
         """Count one request, or say how long the caller must wait.
@@ -176,10 +221,11 @@ class RateLimiter:
             ``None`` when the request is allowed, else the seconds until it would be.
         """
         now = self._clock()
-        self._checks += 1
-        if self._checks % 1000 == 0:
+        if now - self._swept >= self.window_s or len(self._seen) >= self.max_callers:
             self._sweep(now)
-        times = self._seen.setdefault((self._key(caller), kind), deque())
+        key = (self._key(caller), kind)
+        times = self._seen.pop(key, None) or deque()
+        self._seen[key] = times
         while times and times[0] <= now - self.window_s:
             times.popleft()
         if len(times) >= self.limits[kind]:
@@ -204,6 +250,7 @@ class SearchService:
         baseline: The baseline selector, which also answers the view of the parties.
         rates: The rate limit.
         question_chars: The most characters a question holds once trimmed.
+        answer_deadline_s: The longest the answer step may take for one question.
         counters: How many requests of each kind, and what became of them.
     """
 
@@ -216,6 +263,7 @@ class SearchService:
         selector: Selector,
         rates: RateLimiter,
         question_chars: int,
+        answer_deadline_s: float = ANSWER_DEADLINE_S,
     ) -> None:
         self.manifest = manifest
         self.store = store
@@ -226,7 +274,15 @@ class SearchService:
         self.selector = selector
         self.rates = rates
         self.question_chars = question_chars
+        self.answer_deadline_s = answer_deadline_s
         self.counters: Counter[str] = Counter()
+        # One selector at a time, on threads of its own: a slow model holds
+        # this thread, never one of the searches'.
+        self._answers = ThreadPoolExecutor(max_workers=1, thread_name_prefix="answer")
+
+    def close(self) -> None:
+        """Let go of the answer step's thread, dropping what waits for it."""
+        self._answers.shutdown(wait=False, cancel_futures=True)
 
     # The request -----------------------------------------------------------
 
@@ -239,13 +295,13 @@ class SearchService:
                 chooses the party and asks of no one speaker.
 
         Returns:
-            The question and the filter.
+            The question in composed form, trimmed, and the filter.
 
         Raises:
             InvalidRequest: If the question is empty or too long, or a filter is
                 outside what the page offers.
         """
-        text = body.question.strip()
+        text = unicodedata.normalize("NFC", body.question).strip()
         if not 1 <= len(text) <= self.question_chars:
             raise InvalidRequest("The question is empty or too long.")
         filters = body.filters
@@ -350,7 +406,10 @@ class SearchService:
         speeches: dict[str, Speech] = {}
         candidates, rows = [], []
         if positions:
-            scores = self.store.lexical.scores(text, self.params)
+            # The lexical leg scored every passage; its scores label the candidates.
+            scores = ranking.lexical_scores
+            if scores is None:
+                scores = self.store.lexical.scores(text, self.params)
             for rank, position in enumerate(positions, start=1):
                 candidate, row = self._candidate(rank, position, float(scores[position]), speeches)
                 candidates.append(candidate)
@@ -370,6 +429,45 @@ class SearchService:
         )
         if answer.selected.fallback is not None:
             self.counters[f"fallback_{answer.selected.fallback}"] += 1
+        return answer
+
+    def baseline_answer(self, text: str, found: Found, reason: str) -> Answer:
+        """The baseline's answer in place of the selector's, marked with *reason*."""
+        selected = fall_back(
+            Selected(selector="claude", output=None),
+            self.baseline.select(text, found.candidates),
+            reason,
+        )
+        self.counters[f"fallback_{reason}"] += 1
+        return assemble(selected, found.candidates, found.speeches)
+
+    def _answer_before(self, text: str, found: Found, deadline: float) -> Answer | None:
+        if time.monotonic() >= deadline:
+            return None  # waited past the deadline: the baseline has answered already
+        return self.answer(text, found)
+
+    async def answer_in_time(self, text: str, found: Found) -> Answer:
+        """The selector's answer, on the answer step's own thread, within the deadline.
+
+        A question that waits for the thread past the deadline is never sent to
+        the model. One whose model has not answered by then is answered by the
+        baseline, marked ``failed``; the model's request runs out on its thread,
+        and the budget still counts what it costs.
+
+        Returns:
+            The answer.
+        """
+        deadline = time.monotonic() + self.answer_deadline_s
+        work = asyncio.get_running_loop().run_in_executor(
+            self._answers, self._answer_before, text, found, deadline
+        )
+        try:
+            answer = await asyncio.wait_for(work, timeout=self.answer_deadline_s)
+        except TimeoutError:
+            answer = None
+        if answer is None:
+            self.counters["answer_late"] += 1
+            return self.baseline_answer(text, found, "failed")
         return answer
 
     def party_best(

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import time
 from collections.abc import Sequence
 from pathlib import Path
 
@@ -64,8 +65,10 @@ def unit_matrix(rows: int, dim: int, seed: int = 7) -> np.ndarray:
     return matrix / np.linalg.norm(matrix, axis=1, keepdims=True)
 
 
-def build_kit_package(corpus, root: Path):
-    """A package of the kit's corpus, with random unit vectors of eight dimensions.
+def build_kit_package(
+    corpus, root: Path, embedding: Embedding = EMBEDDING, answer: AnswerConfig = ANSWER
+):
+    """A package of the kit's corpus, with random unit vectors of the embedding's dimension.
 
     Returns:
         The package's directory, its manifest, the passage ids, the vectors and
@@ -73,7 +76,7 @@ def build_kit_package(corpus, root: Path):
     """
     files = CorpusFiles.under(corpus.search_dir, corpus.tuning)
     ids = list(read_passage_columns(files.passages).passage_ids)
-    matrix = unit_matrix(len(ids), 8)
+    matrix = unit_matrix(len(ids), embedding.dimension)
     index = write_index(root / "index", ids, matrix)
     manifest = build_package(
         root / "package",
@@ -82,8 +85,8 @@ def build_kit_package(corpus, root: Path):
         vectors_from=index,
         vectors=kit_settings().vectors,
         retrieval=RETRIEVAL,
-        embedding=EMBEDDING,
-        answer=ANSWER,
+        embedding=embedding,
+        answer=answer,
         report_hashes=HASHES,
     )
     return root / "package", manifest, ids, matrix, files
@@ -92,13 +95,15 @@ def build_kit_package(corpus, root: Path):
 class FakeSelector:
     """Quotes the first paragraph of the first candidate, or what it is told to answer."""
 
-    def __init__(self, output: str | None = None, fail: bool = False) -> None:
+    def __init__(self, output: str | None = None, fail: bool = False, delay_s: float = 0.0) -> None:
         self.output = output
         self.fail = fail
+        self.delay_s = delay_s
         self.asked: list[tuple[str, list[str]]] = []
 
     def select(self, question: str, candidates: Sequence[Candidate]) -> Selected:
         self.asked.append((question, [candidate.passage_id for candidate in candidates]))
+        time.sleep(self.delay_s)
         if self.fail:
             raise RuntimeError("the selector broke")
         output = self.output
@@ -116,6 +121,7 @@ def kit_service(
     delay_s: float = 0.0,
     wait_s: float | None = None,
     limits: dict[str, int] | None = None,
+    answer_deadline_s: float = 45.0,
 ) -> SearchService:
     """A service over a kit package whose embedder knows the vectors given, by question."""
     if wait_s is not None:
@@ -149,4 +155,5 @@ def kit_service(
         selector or FakeSelector(),
         RateLimiter(3600, limits or {"search": 100, "answer": 100}),
         question_chars=400,
+        answer_deadline_s=answer_deadline_s,
     )
