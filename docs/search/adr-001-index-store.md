@@ -385,3 +385,27 @@ its lexical leg is not the BM25 the evaluation measures.
 - **The memory verdict at the limit.** Where the peak touched the limit,
   whether a run stayed within it came down to a few pages. The tables mark
   those runs.
+
+## Addendum, 2026-11-27: the query model was superseded
+
+The storage decision stands. The vectors are a numpy matrix beside the tuned
+BM25 index, searched exactly, and nothing in the store is quantized.
+
+The part of the decision about the query model does not describe the service.
+The embedding comparison that the pre-registration's addenda of 2026-11-22 to
+2026-11-24 set out chose `qwen/qwen3-embedding-8b`, and the service embeds each
+question with it through OpenRouter, routed to Nebius in bf16 with fallbacks
+switched off, at 1 024 dimensions. No query model runs in the service, and the
+service holds no ONNX code. The decision's local ONNX model, its float32 query
+model and the cold start and memory reasoning for it are therefore out of date.
+
+That choice adds what the Consequences above leave out: the search depends on
+two services outside the project. A key that runs out of credit or is revoked,
+or a provider that is down, turns every search into BM25 alone. The service
+waits up to 30 s for a question's vector and then answers from BM25, and it does
+so sooner when the embedding API refuses the request or keeps failing after its
+retries. Over 855 questions of
+the development split, a question waited a median of 1.25 s for its vector,
+5.61 s at the 95th percentile and 13.79 s at the longest. In a container with
+one vCPU and 4 GiB, the service peaked at 3.154 GiB
+(`data/reports/search/service_check_dev.json`).
