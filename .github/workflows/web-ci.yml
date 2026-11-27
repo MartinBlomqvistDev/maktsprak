@@ -3,10 +3,8 @@ name: Web CI
 on:
   push:
     branches: ["main"]
-    paths: ["web/**", ".github/workflows/web-ci.yml"]
   pull_request:
     branches: ["main"]
-    paths: ["web/**", ".github/workflows/web-ci.yml"]
 
 jobs:
   lint-and-build:
@@ -37,3 +35,31 @@ jobs:
 
       - name: Build (includes TypeScript check)
         run: npm run build
+
+  # The figures and examples of /fraga are written by search/pipeline/15_build_page.py
+  # from the reports, and tests/search/test_page.py checks that the committed files
+  # still match them. The Python CI skips commits that touch only web/, so the
+  # check runs here too, for a change to web/ alone. It needs the search's
+  # dependencies from the ci extra, not the model stack the package depends on.
+  method-figures:
+    name: The page's figures match the reports
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install the ci extra, without the package's own dependencies
+        run: |
+          pip install --upgrade pip
+          python -c "import tomllib; print('\n'.join(tomllib.load(open('pyproject.toml', 'rb'))['project']['optional-dependencies']['ci']))" > ci-requirements.txt
+          pip install -r ci-requirements.txt
+          pip install --no-deps -e .
+
+      - name: Check the page's data against the reports
+        run: pytest tests/search/test_page.py -v --tb=short

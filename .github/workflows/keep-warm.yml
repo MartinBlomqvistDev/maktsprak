@@ -2,39 +2,31 @@ name: Keep inference warm
 
 # The inference service scales to zero, so the first prediction after an idle
 # spell pays a cold start: measured at 26 seconds against 0.2 warm. This knocks on
-# the door through the site's own proxy during Swedish waking hours, so a visitor
-# is unlikely to be the one who wakes it.
+# the door through the site's own proxy, so that a visitor is less often the one
+# who wakes it.
 #
-# The search service behind /fraga scales to zero too, and the second step wakes
-# it the same way. It asks for a search alone: the answer step is not run, so no
-# language model is called and nothing is taken from the page's monthly budget.
-# The one outside call is for the question's vector, which costs a fraction of a
-# cent a month at this rate.
+# It does not keep the service warm. GitHub runs scheduled workflows on a best
+# effort basis, and in November 2026 this one ran two to five times a day
+# against the 288 its schedule asks for. A cold start is therefore the normal
+# case for the first visitor, and the cold-start hint in PredictDemo is what
+# covers it.
+#
+# The search service behind /fraga is not pinged from here. Cloud Scheduler asks
+# its /health every five minutes, as step 8 of search_service/DEPLOY.md sets up.
 #
 # Deliberately goes via maktsprak.se rather than the Cloud Run URL directly: that
 # URL is only known to the Vercel environment, and putting it in a public workflow
 # would expose /predict to anyone who reads this file.
 #
-# Cost is negligible. Each ping is one short prediction, and Cloud Run's always-free
-# tier is 2M requests and 180,000 vCPU-seconds a month; this uses a few thousand
-# requests and on the order of 20 vCPU-minutes.
+# Cost is negligible. Each ping is one short prediction. Even if every scheduled
+# run happened, it would be about 8,600 requests and 2,600 vCPU-seconds a month,
+# against Cloud Run's always-free tier of 2M requests and 180,000 vCPU-seconds.
 
 on:
   schedule:
-    # Every 5 minutes, around the clock. Five is GitHub's shortest allowed interval.
-    #
-    # Round the clock rather than office hours, for three reasons: GitHub's scheduler
-    # is best effort and routinely runs late or skips under load, so a narrow window
-    # can be missed entirely; readers arrive from other timezones, and a post can
-    # circulate at any hour; and a 24h schedule has no UTC-to-local window to get
-    # wrong and no daylight-saving edge to maintain twice a year.
-    #
-    # Still comfortably free: ~8,600 requests a month against Cloud Run's 2M free
-    # tier, and roughly 2,600 vCPU-seconds against 180,000. Public repos get
-    # unlimited Actions minutes.
-    #
-    # It remains probabilistic, not a guarantee. The cold-start hint in PredictDemo
-    # is the safety net for the times GitHub does not deliver.
+    # Every 5 minutes, around the clock, which is GitHub's shortest interval. The
+    # scheduler skips most of these runs (see above), and a narrower window would
+    # be skipped as easily. Public repos get unlimited Actions minutes.
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
@@ -46,8 +38,8 @@ concurrency:
 jobs:
   ping:
     runs-on: ubuntu-latest
-    # Two steps of at most 90 seconds each, with room for the runner itself.
-    timeout-minutes: 4
+    # One step of at most 90 seconds, with room for the runner itself.
+    timeout-minutes: 3
     steps:
       - name: Warm the model
         run: |
@@ -68,18 +60,4 @@ jobs:
           # warning below stays truthful.
           if [ "$code" != "200" ]; then
             echo "::warning::keep-warm got HTTP $code"
-          fi
-
-      - name: Warm the search
-        run: |
-          start=$(date +%s)
-          # mode "search" runs the search alone, without the answer step.
-          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 90 \
-            -X POST https://maktsprak.se/api/fraga \
-            -H 'Content-Type: application/json' \
-            -d '{"question":"Uppvärmning av sökningen.","filters":{},"mode":"search"}' || echo "000")
-          echo "fraga -> HTTP $code in $(( $(date +%s) - start ))s"
-          # Warn, do not fail, for the reasons the step above gives.
-          if [ "$code" != "200" ]; then
-            echo "::warning::keep-warm got HTTP $code from /api/fraga"
           fi
