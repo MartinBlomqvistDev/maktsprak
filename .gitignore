@@ -20,10 +20,13 @@ data/raw/**
 *.pdf
 
 # Databaser och mappar (KRITISK KORRIGERING)
-data/db/               # IGNORERAR HELA MAPPARNA data/db/
+# Hela mappen data/db/:
+data/db/
 data/db/maktsprakai.db
-*.db                   # IGNORERAR ALLA filer med .db
+# Alla filer med .db, .sqlite och .sqlite3:
+*.db
 *.sqlite
+*.sqlite3
 data/parquet/
 *.parquet
 
@@ -35,7 +38,11 @@ data/parquet/
 *.safetensors
 data/models/*
 !data/models/README.md
-/.env
+
+# Alla env-filer, var de än ligger, utom exemplen
+.env
+.env.*
+!.env.example
 
 # ----------------------------------------------------
 # 3. CLOUD & BUILD ARTEFACTS
@@ -67,9 +74,7 @@ results_new_model/
 # ----------------------------------------------------
 web/node_modules/
 web/.next/
-web/.env
-web/.env*.local
-# web/src/data/*.json (precomputed site data) stays tracked — Vercel's build
+# web/src/data/*.json (precomputed site data) stays tracked: Vercel's build
 # has no Python runtime, so those JSON files ARE the deploy artifact.
 DEV_LOG.md
 research/out/
