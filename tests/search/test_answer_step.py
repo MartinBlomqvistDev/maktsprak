@@ -7,6 +7,7 @@ once more, the judge, the report with the choice of model, and round 2.
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import sys
@@ -21,6 +22,7 @@ from search.answer.candidates import fuse_candidates, load_speeches, rank_passag
 from search.answer.selector import load_selector_prompt
 from search.config import Settings, load_settings
 from search.corpus.table import load_passage_table
+from search.eval.answer_metrics import Abstention
 from search.eval.generation import append_log
 from search.eval.llm import Completion, Usage
 from search.eval.questions import EvalQuestion, Provenance
@@ -372,6 +374,8 @@ class TestTheStep:
         assert set(report["cost_usd"]) == {*names, "judge"}
         assert report["chosen_model"] == HAIKU
         assert report["leading_round"] == 1
+        assert report["unaccepted_judge"] is None
+        assert report["answerable_with_a_grade_2"] is not None
         lines = (settings.tracked.reports / step.QUESTIONS_REPORT).read_text("utf-8").splitlines()
         assert len(lines) == 4 * len(QUESTIONS)
         assert {json.loads(line)["run"] for line in lines} == {"baseline", *names}
@@ -422,6 +426,41 @@ class TestTheStep:
         step.make_report(settings)
         report = json.loads((settings.tracked.reports / step.REPORT).read_text("utf-8"))
         assert report["judge_accepted"] is False
+        assert report["chosen_model"] == OPUS and report["leading_round"] == 1
+        with pytest.raises(SystemExit, match="grades nothing more"):
+            step.run_judge(settings)
+
+    def test_the_grades_of_a_judge_that_fell_short_stand_apart_as_description(
+        self, settings, monkeypatch
+    ):
+        step.make_candidates(settings, MANIFEST)
+        step.run_baseline(settings)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(selector_reply))
+        step.run_round(settings, 1, OPUS)
+        monkeypatch.setattr(step, "run_batch", FakeBatches(judge_reply))
+        step.run_judge(settings)
+        agree(settings, accepted=False)
+        step.make_report(settings)
+        report = json.loads((settings.tracked.reports / step.REPORT).read_text("utf-8"))
+        name = step.run_name(1, OPUS)
+        judge = report["unaccepted_judge"]
+        assert judge["note"] == step.UNACCEPTED_JUDGE_NOTE
+        assert set(judge["selectors"]) == {"baseline", name}
+        for summary in report["selectors"]:
+            assert summary["quote_precision"] is None and summary["score"] is None
+            assert summary["launch_rule"][step.PRECISION_PART] is None
+            assert summary["pending_grades"] == 0
+        [opus] = [summary for summary in report["selectors"] if summary["name"] == name]
+        figures = judge["selectors"][name]
+        accuracy = opus["abstention"]["balanced_accuracy"]
+        assert figures["quote_precision"] == 1.0
+        assert figures["score"] == round((1.0 + accuracy) / 2, 6)
+        assert figures[step.PRECISION_PART] is True
+        [comparison] = report["comparisons"]
+        assert comparison["quote_precision"] is None
+        assert judge["comparisons"][name] is not None
+        assert report["answerable_with_a_grade_2"] is None
+        assert judge["answerable_with_a_grade_2"][1] > 0
         assert report["chosen_model"] == OPUS and report["leading_round"] == 1
 
     def test_round_1_runs_every_model_with_the_same_prompt(self, settings, monkeypatch, tmp_path):
@@ -731,13 +770,35 @@ class TestTheHybrid:
             json.dumps({"form": step.HAND_FORM_KEY, "answers": graded}), encoding="utf-8"
         )
         with pytest.raises(SystemExit, match="must be committed"):
-            step.run_test_report(settings, answers)
+            step.run_hand_grades(settings, answers)
         committed.add(step.HAND_DRAW_REPORT)
+        step.run_hand_grades(settings, answers)
+        digest = hashlib.sha256(answers.read_bytes()).hexdigest()
+        record = json.loads((reports / step.HAND_GRADES_REPORT).read_text("utf-8"))
+        assert record["answers_sha256"] == digest and record["pairs"] == len(draw["pairs"])
+        assert step.kept_grades(settings, digest).read_bytes() == answers.read_bytes()
+        assert not (reports / step.TEST_REPORT).exists()
+        step.run_hand_grades(settings, answers)
+        regraded = tmp_path / "regraded.json"
+        regraded.write_text(
+            json.dumps(
+                {"form": step.HAND_FORM_KEY, "answers": [{**item, "grade": 0} for item in graded]}
+            ),
+            encoding="utf-8",
+        )
+        with pytest.raises(SystemExit, match="recorded once"):
+            step.run_hand_grades(settings, regraded)
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_test_report(settings)
         with pytest.raises(SystemExit, match="must be committed"):
             step.run_sealed_description(settings)
-        step.run_test_report(settings, answers)
+        committed.add(step.HAND_GRADES_REPORT)
+        step.run_test_report(settings)
+        with pytest.raises(SystemExit, match="computed once"):
+            step.run_test_report(settings)
 
         report = json.loads((reports / step.TEST_REPORT).read_text("utf-8"))
+        assert report["grades_sha256"] == digest
         assert (report["drawn_questions"], report["graded_pairs"]) == (1, len(draw["pairs"]))
         assert report["grades"] == {"0": 0, "1": 0, "2": len(draw["pairs"])}
         baseline, selector = report["selectors"]
@@ -748,13 +809,22 @@ class TestTheHybrid:
             1,
         )
         assert report["retrieval"]["embedding"] == "qwen3-8b"
-        assert report["runs"] == ("selector" if report["beats_baseline"] else "baseline")
-        assert (step.hand_dir(settings) / f"{step.HAND_FORM_KEY}.json").is_file()
+        # One question is drawn and every pair is graded 2, so the difference in
+        # quote precision is 0 or missing, and its lower bound is not above 0.
+        assert (report["beats_baseline"], report["runs"]) == (False, "baseline")
         lines = (reports / step.TEST_QUESTIONS_REPORT).read_text("utf-8").splitlines()
         assert len(lines) == 2 * len(TEST_QUESTIONS)
         assert not (reports / step.SEALED_REPORT).exists()
 
+        with pytest.raises(SystemExit, match="must be committed"):
+            step.run_sealed_description(settings)
         committed.add(step.TEST_REPORT)
+        report_path = reports / step.TEST_REPORT
+        honest = report_path.read_bytes()
+        report_path.write_bytes(honest.replace(digest.encode(), b"0" * 64))
+        with pytest.raises(SystemExit, match="not the report computed from the recorded grades"):
+            step.run_sealed_description(settings)
+        report_path.write_bytes(honest)
         step.run_sealed_description(settings)
         sealed = json.loads((reports / step.SEALED_REPORT).read_text("utf-8"))
         assert set(sealed["abstention"]) == {"baseline", "selector"}
@@ -779,8 +849,65 @@ class TestTheHybrid:
             json.dumps({"form": step.HAND_FORM_KEY, "answers": []}), encoding="utf-8"
         )
         with pytest.raises(SystemExit, match="Without a grade"):
-            step.run_test_report(settings, answers)
+            step.run_hand_grades(settings, answers)
+        assert not (settings.tracked.reports / step.HAND_GRADES_REPORT).exists()
         assert not (settings.tracked.reports / step.TEST_REPORT).exists()
+
+
+def shares(abstains: float, needless: float) -> Abstention:
+    """Abstention with these two shares, over ten questions of each kind."""
+    return Abstention(
+        balanced_accuracy=(abstains + 1 - needless) / 2,
+        abstains_unanswerable=abstains,
+        answers_answerable=1 - needless,
+        needless_abstention=needless,
+        answerable=10,
+        unanswerable=10,
+    )
+
+
+class TestTheLaunchRule:
+    @pytest.mark.parametrize(
+        ("abstains", "needless", "precision", "expected"),
+        [
+            (0.90, 0.15, 0.85, (True, True, True)),
+            (3 * 0.3, 1 - 0.85, 17 / 20, (True, True, True)),
+            (0.8999, 0.15, 0.85, (False, True, True)),
+            (0.90, 0.1501, 0.85, (True, False, True)),
+            (0.90, 0.15, 0.8499, (True, True, False)),
+            (1.0, 0.0, None, (True, True, False)),
+        ],
+    )
+    def test_each_part_holds_at_its_limit_and_not_beyond(
+        self, abstains, needless, precision, expected
+    ):
+        rule = step.launch_rule(shares(abstains, needless), precision)
+        assert list(rule) == [
+            "abstains_on_90_percent_of_unanswerable",
+            "needless_abstention_at_most_15_percent",
+            step.PRECISION_PART,
+        ]
+        assert tuple(rule.values()) == expected
+
+    PASSES = {"a": True, "b": True}
+    FAILS = {"a": True, "b": False}
+
+    @pytest.mark.parametrize(
+        ("precision", "accuracy", "selector", "baseline", "expected"),
+        [
+            ((0.2, 0.05, 0.3), (0.3, 0.1, 0.4), PASSES, FAILS, (True, "selector", True)),
+            ((0.2, 0.0, 0.3), (0.3, 0.1, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            ((0.2, 0.05, 0.3), (0.3, 0.0, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            (None, (0.3, 0.1, 0.4), PASSES, FAILS, (False, "baseline", False)),
+            ((0.2, 0.05, 0.3), (0.3, 0.1, 0.4), FAILS, PASSES, (True, "selector", False)),
+            ((-0.1, -0.2, 0.0), (0.3, 0.1, 0.4), FAILS, PASSES, (False, "baseline", True)),
+        ],
+    )
+    def test_the_selector_that_runs_and_its_launch(
+        self, precision, accuracy, selector, baseline, expected
+    ):
+        rules = {"selector": selector, "baseline": baseline}
+        assert step.launch_decision(precision, accuracy, rules) == expected
 
 
 def test_the_candidates_are_the_ones_bm25_ranks(settings):

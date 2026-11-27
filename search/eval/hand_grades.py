@@ -80,6 +80,28 @@ class HandDraw(BaseModel):
     pairs: tuple[HandPair, ...]
 
 
+class HandGradesRecord(BaseModel):
+    """The hand grades as recorded once, before any metric is computed from them.
+
+    The record is committed before the test report reads the grades, so git
+    shows that the grades were fixed first. The answers themselves are kept
+    under their hash.
+
+    Attributes:
+        form: The form the answers come from.
+        draw_sha256: The hash of the record of the draw the grades answer.
+        answers_sha256: The hash of the answers the form handed over.
+        pairs: How many pairs they grade.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    form: str
+    draw_sha256: str
+    answers_sha256: str
+    pairs: int
+
+
 def draw_questions(answerable: Iterable[str], seed: int, size: int) -> list[str]:
     """Draw the answerable questions whose quotations are graded by hand.
 

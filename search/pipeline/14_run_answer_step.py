@@ -17,7 +17,8 @@ Commands, in order:
   and 3 run only the model chosen after round 1, each with a prompt of its
   own. It needs ``--confirm``.
 - ``judge`` grades every quotation given to an answerable question, and every
-  candidate of one, that has no grade yet. It needs ``--confirm``.
+  candidate of one, that has no grade yet, once the judge's kappa has reached
+  0.6. It needs ``--confirm``.
 - ``report`` computes each selector's metrics, the comparisons with the
   baseline and the choice of model from what is recorded, and writes them
   among the tracked reports.
@@ -42,15 +43,19 @@ the hybrid's candidates, and keep everything they write apart from the rest:
   and ``--confirm``.
 
 The judge's kappa fell short of 0.6, so the quotations of that run are graded
-by hand, and three commands follow it, none of them paid:
+by hand, and four commands follow it, none of them paid:
 
 - ``hand-form`` draws 100 answerable questions of the test split with the seed
   20261124, records the draw, and writes the form that shows each quotation
   either selector gave them, once, in an order drawn with the same seed.
-- ``test-report`` reads the grades the form handed over, once the draw's record
-  is committed, and computes the comparisons and the launch rule.
+- ``hand-grades`` checks the answers the form handed over against the draw,
+  once the draw's record is committed, keeps them under their hash and
+  records the hash, once. It computes nothing from them.
+- ``test-report`` reads the recorded grades, once their record is committed,
+  and computes the comparisons and the launch rule, once.
 - ``open-sealed`` opens the first run on the test split, once the test report
-  is committed, and describes how its selectors abstain.
+  is committed and is the report of the recorded grades, and describes how
+  its selectors abstain.
 
 Nothing runs before the question sets' hashes and the addenda on the answer
 step stand in the pre-registration as committed at ``HEAD``, and nothing paid
@@ -76,7 +81,8 @@ Usage::
     python search/pipeline/14_run_answer_step.py baseline --hybrid
     python search/pipeline/14_run_answer_step.py test-run --hybrid --max-usd 7 --confirm
     python search/pipeline/14_run_answer_step.py hand-form
-    python search/pipeline/14_run_answer_step.py test-report --answers bedomning-testdelen.json
+    python search/pipeline/14_run_answer_step.py hand-grades --answers bedomning-testdelen.json
+    python search/pipeline/14_run_answer_step.py test-report
     python search/pipeline/14_run_answer_step.py open-sealed
 """
 
@@ -145,6 +151,7 @@ from search.eval.hand_grades import (
     HAND_QUESTIONS,
     HAND_SEED,
     HandDraw,
+    HandGradesRecord,
     draw_questions,
     hand_form,
     name_pairs,
@@ -231,9 +238,11 @@ QUERY_RECORD_NAME = "query_vectors.json"
 #: How long the page waits for a question's vector before it answers from BM25 alone.
 VECTOR_WAIT_S = 30.0
 
-#: Grading the run from the hybrid's candidates by hand: the draw's record, the
-#: form's name and directory, the reports, and the selectors in report order.
+#: Grading the run from the hybrid's candidates by hand: the records of the draw
+#: and of the grades, the form's name and directory, the reports, and the
+#: selectors in report order.
 HAND_DRAW_REPORT = "answer_test_hand_draw.json"
+HAND_GRADES_REPORT = "answer_test_hand_grades.json"
 HAND_FORM_KEY = "bedomning-testdelen"
 HAND_DIR = "hand"
 TEST_REPORT = "answer_test.json"
@@ -515,7 +524,8 @@ class SelectorSummary(BaseModel):
         prompt_sha256: The round's prompt.
         abstention: Balanced accuracy and its shares.
         quote_precision: The share of quotations on answerable questions graded
-            2, or ``None`` while some of them still wait for the judge.
+            2, or ``None`` while some of them still wait for the judge, or when
+            it is not measured because the judge's kappa fell short of 0.6.
         score: The mean of quote precision and balanced accuracy, or ``None``
             without a quote precision.
         quotes: How many quotations on answerable questions.
@@ -527,7 +537,9 @@ class SelectorSummary(BaseModel):
         cost_usd: What the round's requests cost.
         cost_per_question_usd: That cost over every question of the split.
         parties: The share of each party among the quotations on answerable questions.
-        launch_rule: Whether each part of the launch rule holds on the point estimates.
+        launch_rule: Whether each part of the launch rule holds on the point
+            estimates; the part on quote precision is ``None`` when quote
+            precision is not measured.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -548,7 +560,7 @@ class SelectorSummary(BaseModel):
     cost_usd: float
     cost_per_question_usd: float
     parties: dict[str, float]
-    launch_rule: dict[str, bool]
+    launch_rule: dict[str, bool | None]
 
 
 class Comparison(BaseModel):
@@ -557,7 +569,8 @@ class Comparison(BaseModel):
     Attributes:
         name: The round.
         quote_precision: The difference, round minus baseline, and the interval's
-            bounds; ``None`` while either has quotations that wait for the judge.
+            bounds; ``None`` while either has quotations that wait for a grade,
+            or when quote precision is not measured.
         balanced_accuracy: The same for balanced accuracy.
     """
 
@@ -568,8 +581,68 @@ class Comparison(BaseModel):
     balanced_accuracy: tuple[float, float, float]
 
 
+#: The part of the launch rule that reads quote precision.
+PRECISION_PART = "quote_precision_at_least_085"
+
+#: What the block of the judge's grades says, in the report itself.
+UNACCEPTED_JUDGE_NOTE = (
+    "The judge's kappa against the hand grades fell short of 0.6, so quote precision is not "
+    "measured on the development split. These figures come from the judge's grades and are "
+    "description without decision value: no model, round or launch rule was decided from "
+    "them. The grades in answer_dev_questions.jsonl are the judge's as well."
+)
+
+
+class JudgeFigures(BaseModel):
+    """What one selector's or round's quotations come to under the judge's grades.
+
+    Attributes:
+        quote_precision: The share of its quotations on answerable questions the
+            judge grades 2, or ``None`` while some of them still wait for the judge.
+        score: The mean of that share and balanced accuracy, or ``None`` without it.
+        quote_precision_at_least_085: Whether that share reaches 0.85.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    quote_precision: float | None
+    score: float | None
+    quote_precision_at_least_085: bool
+
+
+class UnacceptedJudge(BaseModel):
+    """The judge's grades of the development split after its kappa fell short: description.
+
+    The addendum of 2026-11-23 does not measure quote precision on the
+    development split when the judge's kappa falls short of 0.6, and the model
+    and the round are then chosen by balanced accuracy alone. What the judge's
+    grades come to is kept here, apart from the registered metrics, and nothing
+    is decided from it.
+
+    Attributes:
+        note: The same, for whoever reads the report on its own.
+        selectors: Each selector's and round's figures under the judge's grades.
+        comparisons: Each round's difference in that share from the baseline,
+            with its paired 95% interval, or ``None`` while grades wait.
+        answerable_with_a_grade_2: How many answerable questions have at least
+            one candidate the judge grades 2, and how many have a graded candidate.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    note: str = UNACCEPTED_JUDGE_NOTE
+    selectors: dict[str, JudgeFigures]
+    comparisons: dict[str, tuple[float, float, float] | None]
+    answerable_with_a_grade_2: tuple[int, int]
+
+
 class AnswerReport(BaseModel):
     """The answer step on the development split. Description: nothing here decides.
+
+    When the judge's kappa fell short of 0.6, quote precision, the score, the
+    part of the launch rule on quote precision, its intervals and the count of
+    candidates graded 2 are left out of the registered fields, and what the
+    judge's grades give for them stands apart in ``unaccepted_judge``.
 
     Attributes:
         split: The split run.
@@ -583,7 +656,8 @@ class AnswerReport(BaseModel):
         candidate_parties: The share of each party among the candidates of the
             answerable questions.
         answerable_with_a_grade_2: How many answerable questions have at least
-            one candidate the judge grades 2, and how many have a graded candidate.
+            one candidate the judge grades 2, and how many have a graded
+            candidate; ``None`` when the judge's kappa fell short.
         chosen_model: The model chosen after round 1, or ``None`` before round 1
             is answered by each of its models and graded.
         leading_round: Among the chosen model's rounds, the one with the highest
@@ -592,6 +666,8 @@ class AnswerReport(BaseModel):
         cost_usd: What the rounds and the judge have cost, by part.
         resamples: The bootstrap resamples behind each interval.
         bootstrap_seed: The seed of the resamples.
+        unaccepted_judge: The judge's figures, as description, when its kappa
+            fell short; ``None`` otherwise.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -605,12 +681,13 @@ class AnswerReport(BaseModel):
     selectors: tuple[SelectorSummary, ...]
     comparisons: tuple[Comparison, ...]
     candidate_parties: dict[str, float]
-    answerable_with_a_grade_2: tuple[int, int]
+    answerable_with_a_grade_2: tuple[int, int] | None
     chosen_model: str | None
     leading_round: int | None
     cost_usd: dict[str, float]
     resamples: int
     bootstrap_seed: int
+    unaccepted_judge: UnacceptedJudge | None = None
 
 
 class HandSummary(BaseModel):
@@ -1904,8 +1981,18 @@ def grading_pairs(settings: Settings, records: Sequence[QuestionCandidates]) -> 
 
 
 def run_judge(settings: Settings, cap_usd: float | None = None) -> None:
-    """Grade every pair without a grade, sending a failed one once more, under *cap_usd*."""
+    """Grade every pair without a grade, sending a failed one once more, under *cap_usd*.
+
+    The judge grades only once its kappa against the hand grades has reached
+    0.6. Short of it, quote precision is not measured on the development split,
+    so nothing the judge would grade is used.
+    """
     check_judge_known(settings)
+    if judge_accepted(settings) is False:
+        raise SystemExit(
+            "The judge's kappa fell short of 0.6, so it grades nothing more: quote "
+            "precision is not measured on the development split."
+        )
     _, records = read_candidates(settings)
     prompt = load_prompt("judge")
     check_judge_prompt(prompt)
@@ -1986,10 +2073,19 @@ def summarize(
     outcomes: Sequence[QuestionOutcome],
     record: RoundRecord | None,
     pending_grades: int,
+    measured: bool = True,
 ) -> SelectorSummary:
-    """One selector's or round's metrics."""
+    """One selector's or round's metrics.
+
+    Quote precision, the score and the launch rule's part on quote precision
+    stand under their registered names only when *measured*, that is when the
+    judge's kappa reached 0.6; :func:`judge_figures` gives them otherwise.
+    """
     shares = abstention(outcomes)
-    precision = quote_precision(outcomes) if pending_grades == 0 else None
+    precision = quote_precision(outcomes) if pending_grades == 0 and measured else None
+    rule: dict[str, bool | None] = dict(launch_rule(shares, precision))
+    if not measured:
+        rule[PRECISION_PART] = None
     answerable = [outcome for outcome in outcomes if outcome.answerable]
     cost = sum(outcome.cost_usd for outcome in outcomes)
     return SelectorSummary(
@@ -2015,7 +2111,18 @@ def summarize(
         cost_usd=round(cost, 4),
         cost_per_question_usd=round(cost / len(outcomes), 6),
         parties=party_shares(quote.party for outcome in answerable for quote in outcome.quotes),
-        launch_rule=launch_rule(shares, precision),
+        launch_rule=rule,
+    )
+
+
+def judge_figures(outcomes: Sequence[QuestionOutcome], pending_grades: int) -> JudgeFigures:
+    """One selector's or round's figures under the judge's grades, as description."""
+    shares = abstention(outcomes)
+    precision = quote_precision(outcomes) if pending_grades == 0 else None
+    return JudgeFigures(
+        quote_precision=None if precision is None else round(precision, 6),
+        score=None if precision is None else round((precision + shares.balanced_accuracy) / 2, 6),
+        quote_precision_at_least_085=launch_rule(shares, precision)[PRECISION_PART],
     )
 
 
@@ -2030,6 +2137,33 @@ def launch_rule(shares: Abstention, precision: float | None) -> dict[str, bool]:
         "needless_abstention_at_most_15_percent": round(shares.needless_abstention, 9) <= 0.15,
         "quote_precision_at_least_085": precision is not None and round(precision, 9) >= 0.85,
     }
+
+
+def launch_decision(
+    precision: tuple[float, float, float] | None,
+    accuracy: tuple[float, float, float],
+    launch_rules: Mapping[str, Mapping[str, bool | None]],
+) -> tuple[bool, str, bool]:
+    """Whether the language model beats the baseline, which selector runs, and if it launches.
+
+    The language model beats the baseline when the lower bound of both
+    intervals lies above 0. The selector that runs is the language model if it
+    does and the baseline otherwise, and the launch rule is read for it.
+
+    Args:
+        precision: The difference in quote precision, language model minus
+            baseline, with its interval; ``None`` when a selector has no
+            graded quotation.
+        accuracy: The same for balanced accuracy.
+        launch_rules: Each selector's launch rule, by name.
+
+    Returns:
+        Whether it beats the baseline, the selector that runs, and whether
+        every part of the launch rule holds for that selector.
+    """
+    beats = precision is not None and precision[1] > 0 and accuracy[1] > 0
+    runs = "selector" if beats else "baseline"
+    return beats, runs, all(launch_rules[runs].values())
 
 
 def leading_round(
@@ -2084,8 +2218,9 @@ def dev_summaries(
     answers = {name: read_answers(settings, name) for name in names}
     outcomes = {name: outcomes_of(records, answers[name], grades) for name in names}
     waiting = {name: len(pending(quote_pairs(records, answers[name]), log)) for name in names}
+    measured = judge_accepted(settings) is True
     summaries = tuple(
-        summarize(name, outcomes[name], rounds.get(name), waiting[name]) for name in names
+        summarize(name, outcomes[name], rounds.get(name), waiting[name], measured) for name in names
     )
     return rounds, outcomes, waiting, summaries
 
@@ -2113,8 +2248,10 @@ def make_report(settings: Settings) -> None:
     answer = settings.answer
     rounds, outcomes, waiting, summaries = dev_summaries(settings, records, log)
     names = [summary.name for summary in summaries]
+    accepted = judge_accepted(settings)
 
     comparisons = []
+    judge_intervals: dict[str, tuple[float, float, float] | None] = {}
     for name in names:
         if name == "baseline":
             continue
@@ -2125,10 +2262,11 @@ def make_report(settings: Settings) -> None:
                     outcomes[name], outcomes["baseline"], answer.bootstrap_seed, answer.resamples
                 )
             )
+        judge_intervals[name] = precision
         comparisons.append(
             Comparison(
                 name=name,
-                quote_precision=precision,
+                quote_precision=precision if accepted is True else None,
                 balanced_accuracy=_rounded(
                     accuracy_difference(
                         outcomes[name],
@@ -2146,7 +2284,14 @@ def make_report(settings: Settings) -> None:
         if record.answerable
     ]
     graded = [values for values in candidate_grades if any(value is not None for value in values)]
-    accepted = judge_accepted(settings)
+    with_a_grade_2 = (sum(any(value == 2 for value in values) for values in graded), len(graded))
+    unaccepted = None
+    if accepted is False:
+        unaccepted = UnacceptedJudge(
+            selectors={name: judge_figures(outcomes[name], waiting[name]) for name in names},
+            comparisons=judge_intervals,
+            answerable_with_a_grade_2=with_a_grade_2,
+        )
     chosen = chosen_model(settings, records, log)
     report = AnswerReport(
         split="dev",
@@ -2163,15 +2308,13 @@ def make_report(settings: Settings) -> None:
             if record.answerable
             for candidate in record.candidates
         ),
-        answerable_with_a_grade_2=(
-            sum(any(value == 2 for value in values) for values in graded),
-            len(graded),
-        ),
+        answerable_with_a_grade_2=None if accepted is False else with_a_grade_2,
         chosen_model=chosen,
         leading_round=leading_round(summaries, rounds, chosen, accepted),
         cost_usd=spent(settings),
         resamples=answer.resamples,
         bootstrap_seed=answer.bootstrap_seed,
+        unaccepted_judge=unaccepted,
     )
     write_report(report, settings.tracked.reports / REPORT)
     lines = [
@@ -2275,6 +2418,66 @@ def run_hand_form(settings: Settings) -> None:
     )
 
 
+def recorded_draw(settings: Settings) -> tuple[HandDraw, Path]:
+    """The draw's record, committed, and still the draw the run's answers give.
+
+    Raises:
+        SystemExit: If the record is not committed as it stands, or the run's
+            answers give another draw.
+    """
+    path = settings.tracked.reports / HAND_DRAW_REPORT
+    require_committed(path)
+    recorded = HandDraw.model_validate_json(path.read_text(encoding="utf-8"))
+    draw, _ = make_hand_draw(settings)
+    if draw != recorded:
+        raise SystemExit("The run's answers no longer give the recorded draw.")
+    return recorded, path
+
+
+def kept_grades(settings: Settings, answers_sha256: str) -> Path:
+    """Where the answers the form handed over are kept, under their hash."""
+    return hand_dir(settings) / f"{HAND_FORM_KEY}-{answers_sha256[:16]}.json"
+
+
+def run_hand_grades(settings: Settings, answers_file: Path) -> None:
+    """Record the hash of the hand grades, once, and keep the answers under it.
+
+    The answers are checked against the committed draw and nothing is computed
+    from them. Their record is committed before the test report reads them, so
+    git shows that the grades were fixed before any metric was. Answers that
+    differ from the recorded ones are refused.
+    """
+    check_hybrid_registered()
+    draw, draw_path = recorded_draw(settings)
+    try:
+        read_hand_grades(answers_file, draw, HAND_FORM_KEY)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+    data = answers_file.read_bytes()
+    record = HandGradesRecord(
+        form=HAND_FORM_KEY,
+        draw_sha256=file_text_sha256(draw_path),
+        answers_sha256=hashlib.sha256(data).hexdigest(),
+        pairs=len(draw.pairs),
+    )
+    path = settings.tracked.reports / HAND_GRADES_REPORT
+    if path.is_file():
+        recorded = HandGradesRecord.model_validate_json(path.read_text(encoding="utf-8"))
+        if recorded != record:
+            raise SystemExit(f"{path} records other grades, and the grades are recorded once.")
+    kept = kept_grades(settings, record.answers_sha256)
+    kept.parent.mkdir(parents=True, exist_ok=True)
+    kept.write_bytes(data)
+    write_report(record, path)
+    logger.info(
+        "The grades of %d pairs are recorded in %s and kept in %s; commit the record "
+        "before test-report",
+        record.pairs,
+        path,
+        kept,
+    )
+
+
 def hand_summary(name: str, outcomes: Sequence[QuestionOutcome], drawn: set[str]) -> HandSummary:
     """One selector's metrics on the test split, with quote precision on the drawn questions."""
     shares = abstention(outcomes)
@@ -2304,24 +2507,35 @@ def hand_summary(name: str, outcomes: Sequence[QuestionOutcome], drawn: set[str]
     )
 
 
-def run_test_report(settings: Settings, answers_file: Path) -> None:
-    """Compute the comparisons and the launch rule of the test run with the hand grades.
+def run_test_report(settings: Settings) -> None:
+    """Compute the comparisons and the launch rule of the test run with the hand grades, once.
 
-    The draw's record must be committed as it stands, so the pairs were fixed
-    before the grades were read. Quote precision is computed over each
-    selector's quotations on the drawn questions, and its paired bootstrap
-    resamples them; balanced accuracy is computed on every question of the test
-    split. The language model beats the baseline when the lower bound of both
-    intervals lies above 0, and the launch rule is read on the point estimates
-    of the selector that runs.
+    The draw's record and the grades' record must be committed as they stand,
+    so the pairs were fixed before the grades were given, and the grades
+    before anything was computed from them. The report is computed once.
+    Quote precision is computed over each selector's quotations on the drawn
+    questions, and its paired bootstrap resamples them; balanced accuracy is
+    computed on every question of the test split. The language model beats
+    the baseline when the lower bound of both intervals lies above 0, and the
+    launch rule is read on the point estimates of the selector that runs.
     """
     check_hybrid_registered()
-    draw_path = settings.tracked.reports / HAND_DRAW_REPORT
-    require_committed(draw_path)
-    recorded = HandDraw.model_validate_json(draw_path.read_text(encoding="utf-8"))
-    draw, _ = make_hand_draw(settings)
-    if draw != recorded:
-        raise SystemExit("The run's answers no longer give the recorded draw.")
+    draw, draw_path = recorded_draw(settings)
+    reports = settings.tracked.reports
+    grades_path = reports / HAND_GRADES_REPORT
+    require_committed(grades_path)
+    record = HandGradesRecord.model_validate_json(grades_path.read_text(encoding="utf-8"))
+    if record.draw_sha256 != file_text_sha256(draw_path):
+        raise SystemExit(f"{grades_path} records the grades of another draw.")
+    report_path = reports / TEST_REPORT
+    if report_path.exists():
+        raise SystemExit(f"{report_path} exists, and the test report is computed once.")
+    answers_file = kept_grades(settings, record.answers_sha256)
+    if (
+        not answers_file.is_file()
+        or hashlib.sha256(answers_file.read_bytes()).hexdigest() != record.answers_sha256
+    ):
+        raise SystemExit(f"{answers_file} is not the answers {grades_path.name} records.")
     try:
         hand = read_hand_grades(answers_file, draw, HAND_FORM_KEY)
     except ValueError as error:
@@ -2348,14 +2562,14 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
             outcomes["selector"], outcomes["baseline"], answer.bootstrap_seed, answer.resamples
         )
     )
-    beats = precision is not None and precision[1] > 0 and accuracy[1] > 0
-    runs = "selector" if beats else "baseline"
-    running = next(summary for summary in summaries if summary.name == runs)
+    beats, runs, launch = launch_decision(
+        precision, accuracy, {summary.name: summary.launch_rule for summary in summaries}
+    )
     report = AnswerTestReport(
         split=TEST_SPLIT,
         run_sha256=run_sha256,
         draw_sha256=file_text_sha256(draw_path),
-        grades_sha256=hashlib.sha256(answers_file.read_bytes()).hexdigest(),
+        grades_sha256=record.answers_sha256,
         retrieval=run.retrieval,
         threshold=run.threshold,
         drawn_questions=len(draw.questions),
@@ -2367,7 +2581,7 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
         ),
         beats_baseline=beats,
         runs=runs,
-        launch=all(running.launch_rule.values()),
+        launch=launch,
         candidate_parties=party_shares(
             candidate.party
             for record in records
@@ -2377,7 +2591,6 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
         resamples=answer.resamples,
         bootstrap_seed=answer.bootstrap_seed,
     )
-    write_report(report, settings.tracked.reports / TEST_REPORT)
     lines = [
         json.dumps(
             {"run": name, "drawn": outcome.question_id in drawn, **outcome.model_dump(mode="json")},
@@ -2386,13 +2599,10 @@ def run_test_report(settings: Settings, answers_file: Path) -> None:
         for name in SELECTORS
         for outcome in outcomes[name]
     ]
-    (settings.tracked.reports / TEST_QUESTIONS_REPORT).write_text(
+    (reports / TEST_QUESTIONS_REPORT).write_text(
         "\n".join(lines) + "\n", encoding="utf-8", newline="\n"
     )
-    kept = hand_dir(settings) / f"{HAND_FORM_KEY}.json"
-    if answers_file.resolve() != kept.resolve():
-        kept.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(answers_file, kept)
+    write_report(report, report_path)
     for summary in summaries:
         logger.info(
             "%-8s balanced accuracy %.3f (abstains on %.2f of unanswerable, answers %.2f of "
@@ -2417,14 +2627,33 @@ def run_sealed_description(settings: Settings) -> None:
 
     The addendum on the hybrid's candidates opens the first run only after the
     comparisons and the launch rule of the second have been computed with the
-    hand grades, so the test report must be committed as it stands first. The
-    first run decides nothing: the balanced accuracy and the two shares behind
-    it are description, and its quotations are not graded.
+    hand grades, so the test report must be committed as it stands first, and
+    must be the report of the recorded grades, the recorded draw and the run
+    from the hybrid's candidates. The first run decides nothing: the balanced
+    accuracy and the two shares behind it are description, and its quotations
+    are not graded.
     """
     check_hybrid_registered()
-    report_path = settings.tracked.reports / TEST_REPORT
-    require_committed(report_path)
-    first_path = settings.tracked.reports / TEST_RUN_REPORT
+    reports = settings.tracked.reports
+    draw_path = reports / HAND_DRAW_REPORT
+    grades_path = reports / HAND_GRADES_REPORT
+    report_path = reports / TEST_REPORT
+    for path in (draw_path, grades_path, report_path):
+        require_committed(path)
+    record = HandGradesRecord.model_validate_json(grades_path.read_text(encoding="utf-8"))
+    report = AnswerTestReport.model_validate_json(report_path.read_text(encoding="utf-8"))
+    draw_sha256 = file_text_sha256(draw_path)
+    run_sha256 = file_text_sha256(reports / HYBRID_TEST_RUN_REPORT)
+    if record.draw_sha256 != draw_sha256 or (
+        report.grades_sha256,
+        report.draw_sha256,
+        report.run_sha256,
+    ) != (record.answers_sha256, draw_sha256, run_sha256):
+        raise SystemExit(
+            f"{report_path.name} is not the report computed from the recorded grades, "
+            "the recorded draw and the run."
+        )
+    first_path = reports / TEST_RUN_REPORT
     first = SealedRun.model_validate_json(first_path.read_text(encoding="utf-8"))
     for name in SELECTORS:
         path = answers_path(settings, name, TEST_SPLIT)
@@ -2525,11 +2754,14 @@ def main() -> None:
     test_run.add_argument("--hybrid", action="store_true", help=hybrid_help)
     test_run.add_argument("--confirm", action="store_true", help="Required: this calls the API.")
     commands.add_parser("hand-form", help="Draw the questions graded by hand and write the form.")
-    test_report = commands.add_parser(
-        "test-report", help="Compute the test run's comparisons with the hand grades."
+    hand_grades = commands.add_parser(
+        "hand-grades", help="Record the hash of the hand grades, once, and keep them."
     )
-    test_report.add_argument(
+    hand_grades.add_argument(
         "--answers", type=Path, required=True, help="The answers the form handed over, as JSON."
+    )
+    commands.add_parser(
+        "test-report", help="Compute the test run's comparisons with the recorded hand grades."
     )
     commands.add_parser(
         "open-sealed", help="Describe the first run on the test split, after the test report."
@@ -2567,8 +2799,10 @@ def main() -> None:
             run_test(settings, manifest, args.max_usd)
     elif args.command == "hand-form":
         run_hand_form(settings)
+    elif args.command == "hand-grades":
+        run_hand_grades(settings, args.answers)
     elif args.command == "test-report":
-        run_test_report(settings, args.answers)
+        run_test_report(settings)
     elif args.command == "open-sealed":
         run_sealed_description(settings)
     else:
