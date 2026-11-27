@@ -99,9 +99,19 @@ export default function LlmPage() {
             partibalanserade anföranden från 84 politiker som inte finns i
             träningen under något namn träffar klassificeraren rätt parti i 50,0
             procent av fallen, mot 12,5 för slumpen. Instrumentet mäter alltså
-            något verkligt på text det aldrig sett. Rättat 27 november 2026: här
-            stod tidigare 59,2 procent, på ett urval där 30 av anförandena fanns
-            i träningsdatan.
+            något verkligt på text det aldrig sett.
+          </p>
+          <p className="text-sm text-ink-3">
+            <strong>Rättelse 27 november 2026.</strong> Här stod tidigare 59,2
+            procent. Urvalet jämförde namn utan titel med listan över
+            undanhållna talare. Därför kom 30 av de 480 anförandena ur själva
+            träningsdatan, och 77 till från personer som modellen tränats på
+            under en annan namnform. Det nya urvalet är draget på samma sätt
+            bland 84 politiker som inte finns i träningen under något namn.
+            Slutsatserna står sig, eftersom de bygger på avvikelsen från
+            baslinjen. Med en baslinje dragen från samma personer ligger
+            fortfarande tolv av fjorton modeller över den på M, och ingen på V
+            eller C.
           </p>
           <p>
             <strong>Baslinje.</strong> På en partibalanserad mängd verkliga

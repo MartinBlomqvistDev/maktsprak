@@ -89,13 +89,19 @@ export default function Home() {
             </p>
 
             <ProtokollMarker n={2} name="Tränades" />
-            <p className="mt-4 mb-10 text-ink-2">
+            <p className="mt-4 mb-4 text-ink-2">
               Modellen finjusterades en gång, på anföranden från 2015 och framåt.
               Den tränas alltså inte om vecka för vecka; det är korpusen som
               växer, inte modellen. Valideringen är <strong>talar-oberoende</strong>:
               siffran räknas bara på politiker som inte finns i träningen under
               något namn, så den mäter om modellen känner igen ett partis sätt
               att argumentera hos talare den aldrig hört.
+            </p>
+            <p className="mb-10 text-sm text-ink-3">
+              <strong>Rättelse 27 november 2026.</strong> Siffran var tidigare
+              0,619. Testet byggde på talarnamn, så 38 av dess 137 personer fanns
+              också i träningen under en annan namnform. Räknat bara på de övriga
+              99 är siffran 0,606. Detaljerna står på metodsidan.
             </p>
 
             <ProtokollMarker n={3} name="Avslöjar" />

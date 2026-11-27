@@ -152,7 +152,9 @@ export default function MetodPage() {
           träffsäkerheten 0,612, mot tidigare 0,619 och 0,628. Personerna är
           matchade mot riksdagens eget id för varje talare. Riktmärket och
           kalibreringen i LLM-studien är omräknade på samma sätt. Modellen är
-          inte omtränad.
+          inte omtränad. Slutsatsen står sig: mot slumpens 0,125 är signalen
+          tydlig, och på riktmärket ligger alla sex språkmodeller fortfarande
+          över KB-BERT.
         </p>
         <p className="mt-3 text-sm text-ink-3">
           En tidigare version korrigerade partiobalansen <em>två gånger</em>,

@@ -66,7 +66,9 @@ export default function RiktmarkePage() {
             under en annan namnform, och de räknas inte. Partierna har därför
             mellan 22 och 38 anföranden var. Modellen träffar rätt på{" "}
             <strong>95,9 %</strong> för talare den tränats på, men på{" "}
-            <strong>57,9 %</strong> för de här. Alla sju fick exakt samma text, KB-BERT:s eget
+            <strong>57,9 %</strong> för de här. Skillnaden visar att de flesta i
+            testet var nya för modellen, men den kunde inte visa att alla var
+            det. Alla sju fick exakt samma text, KB-BERT:s eget
             512-token-fönster: ingen LLM fick mer av anförandet än den lilla
             modellen fysiskt kan läsa. KB-BERT kör lokalt, de sex LLM:erna via
             API med faktisk tokenkostnad uppmätt.
@@ -137,8 +139,18 @@ export default function RiktmarkePage() {
           siffrorna här är mindre än osäkerheten i dem. Två modeller lämnade
           enstaka svar som inte gick att tolka: Gemini fyra och DeepSeek två, av
           sina 247 vardera. De är uteslutna ur modellens nämnare, så de står på
-          243 respektive 245 svar. Rättat 27 november 2026: tabellen byggde
-          tidigare på alla 320, och KB-BERT stod då på 0.591.
+          243 respektive 245 svar.
+        </p>
+        <p className="mt-3 text-sm text-ink-3">
+          <strong>Rättelse 27 november 2026.</strong> Testet byggde på
+          talarnamn så som protokollen skriver dem, och samma person kan stå där
+          med titel, efter ett namnbyte eller felstavad. Därför kom 73 av de 320
+          anförandena från 20 personer som modellen hade tränats på under en
+          annan namnform. Tabellen räknar nu bara de övriga 247. KB-BERT går
+          från 0.591 till 0.579 i träffsäkerhet och GPT-5.5 från 0.762 till
+          0.745. Slutsatsen står sig: alla sex språkmodeller ligger över
+          KB-BERT. Grok går från femte till tredje plats, en flytt som är mindre
+          än osäkerheten.
         </p>
       </section>
 
